@@ -5,7 +5,7 @@
 
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$totalBudget = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResources::getTotalBudget($records[0]['FormID']);
+$totalBudget = \ImetCore\Models\Imet\v2\Modules\Context\FinancialResources::getTotalBudget($records[0]['FormID']);
 $totalSum = 0;
 foreach($records as $index => $record){
     $records[$index]['__sum_row'] = $record[$definitions['fields'][1]['name']]

@@ -1,24 +1,24 @@
 <?php
 
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
+namespace ImetCore\Models\Imet\ScalingUp;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Helpers\API\DOPA\DOPA;
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\API\Comments\Comments;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Group;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ModularForms\Helpers\Locale;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Helpers\API\DOPA\DOPA;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\API\Comments\Comments;
+use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
+use ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
+use ImetCore\Models\Imet\ScalingUp\Sections\Group;
+use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
+use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
+use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\ScalingUp\Common;
+use ModularForms\Helpers\Locale;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -313,7 +313,12 @@ class ScalingUpAnalysis extends Model
         $time_start = microtime(true);
         $assessments = [];
         $synthetic_indicators_table = Common::get_assessments($form_ids, static::$scaling_id);
+        //dd($synthetic_indicators_table);
         $assessments['data'] = $synthetic_indicators_table['data'];
+        // filter out and reindex the assessments starting from 0
+
+
+
         $index_ranking = Ranking::get_overall_ranking($form_ids, $assessments);
         $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments, true);
         $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
@@ -334,7 +339,7 @@ class ScalingUpAnalysis extends Model
                 'averages_six_elements' => $averages_six_elements['data'],
                 'radar' => $radars['data']['diagrams'],
                 'scatter' => $scatter_plots['data']['scatter'],
-                'assessments' => $assessments['data']['assessments']
+                'assessments' => $assessments['data']['assessments_average']
             ]
         ];
     }
@@ -843,6 +848,8 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_assessments(array $form_ids): array
     {
-        return Common::get_assessments($form_ids, static::$scaling_id);
+        $assessments = Common::get_assessments($form_ids, static::$scaling_id);
+        unset($assessments['data']['assessments']);
+        return $assessments;
     }
 }

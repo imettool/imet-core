@@ -1,13 +1,13 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\Template;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\v2\Controller;
+use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
-use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
+use ImetCore\Controllers\Imet\oecm;
 
 /** @var string $action */
 /** @var Imet $item */
@@ -85,7 +85,7 @@ if ($item->language != App::getLocale()) {
                         'item' => $item,
                         'step' => null,
                         'radar_show' => false,
-                        'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM,
+                        'version' => \ImetCore\Models\Imet\Imet::IMET_OECM,
                     ])
                     <div class="w-4/12">
                         <imet_radar :values="radar_values" :width="380" :height="250"></imet_radar>
@@ -169,12 +169,12 @@ if ($item->language != App::getLocale()) {
             ])
             <span class="btn medium mr-1" v-if="reportLength < 10">
                 <button type="button" class="btn-nav medium " v-on:click="addItem">
-                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('plus-circle', 'white') !!} {!! ucfirst(trans('modular-forms::common.add_item')) !!}
+                    {!! \ModularForms\Helpers\Template::icon('plus-circle', 'white') !!} {!! ucfirst(trans('modular-forms::common.add_item')) !!}
                 </button>
             </span>
             <span v-if="reportLength > 1">
                 <button type="button" class="btn-nav medium red" v-on:click="deleteItem">
-                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('trash', 'white') !!}
+                    {!! \ModularForms\Helpers\Template::icon('trash', 'white') !!}
                 </button>
             </span>
         </div>
@@ -254,7 +254,7 @@ if ($item->language != App::getLocale()) {
             report: @json($report),
             scores: @json($scores),
             default_schema: @json($report_schema),
-            url: '{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
+            url: '{{ route(\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
             loading: false,
             loading_objectives: false,
             error_objectives: false,
@@ -263,7 +263,7 @@ if ($item->language != App::getLocale()) {
             table_input_elems: [0],
             short_long_objectives: {},
             labels: @json($labels),
-            version: "{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM }}",
+            version: "{{ \ImetCore\Models\Imet\Imet::IMET_OECM }}",
             objectives_url: '{{ route(REPORT_PREFIX . 'report_objectives', ['form_id' => $form_id]) }}'
         }));
         app.mount('#imet_report');

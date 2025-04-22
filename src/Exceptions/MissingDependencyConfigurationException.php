@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Exceptions;
+namespace ImetCore\Exceptions;
 
 use Exception;
 use Throwable;

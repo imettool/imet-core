@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Jobs;
+namespace ImetCore\Jobs;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 

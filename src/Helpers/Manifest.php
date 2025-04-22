@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Helpers;
+namespace ImetCore\Helpers;
 
 use Illuminate\Support\Str;
 

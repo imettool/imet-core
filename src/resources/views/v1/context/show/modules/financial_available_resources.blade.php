@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 
 $record = $records[0];
-$total_budget = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
+$total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
 $group_key = $group_key ?? '';
 
 $table_id = 'table_'.$definitions['module_key'];
@@ -26,7 +26,7 @@ foreach ($records as $index => $record) {
         $percentage_results[$index] = "";
     }
 }
-\AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::set_financial_available_resources_totals($result);
+\ImetCore\Controllers\Imet\v1\ContextController::set_financial_available_resources_totals($result);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">

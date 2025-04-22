@@ -1,12 +1,12 @@
 <?php
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\User\Role;
 
 ?>
 
 @if(\App::environment('imetglobal_dev'))
 
     <li>
-        <a>{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('random', '', '', 'fa-lg') !!} Change USER</a>
+        <a>{!! \ModularForms\Helpers\Template::icon('random', '', '', 'fa-lg') !!} Change USER</a>
         <ul class="language_selector">
 
             @foreach(Role::all_roles() as $role)

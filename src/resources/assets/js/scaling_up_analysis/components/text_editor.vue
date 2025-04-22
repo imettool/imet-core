@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-editor-edit">
-            <ckeditor :editor="editor" v-model="editorData" :config="editorConfig" @input="onEditorInput" />
+            <div class="field-edit" ref="textEditorComponent"></div>
         </div>
         <div class="text-editor-print" v-html=editorData></div>
     </div>
@@ -14,6 +14,9 @@
         display: none;
     }
 }
+.text-editor-edit, .ql-container{
+    max-width: 800px;
+}
 
 .text-editor-print {
     background-color: white !important;
@@ -25,16 +28,22 @@
 }
 </style>
 <style>
-.ck.ck-editor {
-    max-width: none;
+.ql-toolbar{
+    background: white;
 }
 </style>
 
 <script setup>
 import { ref, watch, inject, onMounted } from 'vue';
-import { ClassicEditor, Essentials, Paragraph, Undo, Bold, Italic, Link, List, Heading } from "~/ckeditor5";
-import CKEditor from "@ckeditor/ckeditor5-vue";
-import "~/ckeditor5/dist/ckeditor5.css";
+import Quill from 'quill';
+import Bold from 'quill/formats/bold';
+import Italic from 'quill/formats/italic';
+import Link from 'quill/formats/link';
+import List from 'quill/formats/list';
+import Header from 'quill/formats/header';
+
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
 
 const props = defineProps({
     value: { type: String, default: '' },
@@ -43,21 +52,22 @@ const props = defineProps({
 });
 
 const emitter = inject('emitter');
-const ckeditor = CKEditor.component
-const editor = ClassicEditor;
+
+
 const editorData = ref('');
-const editorConfig = {
-    plugins: [
-        Essentials, Paragraph, Undo, // mandatory plugins (seems not to work without them)
-        Italic, Bold, Link, List, Heading
-    ],
-    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList'],
-    heading: {
-        options: [
-            { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-            { model: 'heading2', view: 'h2', title: 'Heading', class: 'ck-heading_heading2' }
-        ]
-    }
+const textEditorComponent = ref(null);
+
+let quill = null;
+const options = {
+    modules: {
+        toolbar: [
+            ['bold', 'italic'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            ['link'],
+            [{ header: [2, false] }],
+        ],
+    },
+    theme: 'snow'
 };
 
 watch(() => props.value, (newValue) => {
@@ -67,12 +77,13 @@ watch(() => props.value, (newValue) => {
 });
 
 onMounted(() => {
+    quill = new Quill(textEditorComponent.value, options);
+    quill.on('text-change', () => {
+        editorData.value = quill.container.querySelector('.ql-editor').innerHTML;
+    });
     emitter.on('save_comments', (func, attr) => {
         func(editorData.value || '', attr);
     });
 });
 
-const onEditorInput = (value) => {
-    editorData.value = value;
-};
 </script>

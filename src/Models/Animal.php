@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ModularForms\Models\Utils\Animal as BaseAnimal;
+use ImetCore\Helpers\Database;
+use ModularForms\Models\Utils\Animal as BaseAnimal;
 
 class Animal extends BaseAnimal
 {

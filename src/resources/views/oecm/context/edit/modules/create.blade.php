@@ -1,6 +1,6 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */

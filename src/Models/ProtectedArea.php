@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * @property string $creation_date
  * @property numeric $area
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class ProtectedArea extends BaseProtectedArea
 {

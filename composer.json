@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AndreaMarelli\\ImetCore\\": "src"
+            "ImetCore\\": "src"
         },
         "files": [
             "src/helpers.php"
@@ -32,10 +32,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "AndreaMarelli\\ImetCore\\ServiceProvider"
+                "ImetCore\\ServiceProvider"
             ],
             "aliases": {
-                "ImetUser": "AndreaMarelli\\ImetCore\\Models\\User"
+                "ImetUser": "ImetCore\\Models\\User"
             }
         }
     },

@@ -1,8 +1,8 @@
 <?php
 
-use \AndreaMarelli\ImetCore\Controllers;
-use \AndreaMarelli\ImetCore\Models;
-use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+use \ImetCore\Controllers;
+use \ImetCore\Models;
+use \ModularForms\Enums\ModuleViewModes;
 
 /** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var integer $formID */
@@ -17,7 +17,7 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
     <!-- anchor -->
     <template slot="dialog-anchor">
         <button type="button" class="btn-nav small">
-            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('eye', 'white') !!}
+            {!! \ModularForms\Helpers\Template::icon('eye', 'white') !!}
         </button>
         <tooltip>@uclang('modular-forms::common.show')</tooltip>
     </template>

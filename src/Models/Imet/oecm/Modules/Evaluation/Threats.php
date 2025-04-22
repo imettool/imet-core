@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\StakeholdersService;
-use AndreaMarelli\ImetCore\Services\ThreatsService;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ImetCore\Services\StakeholdersService;
+use ImetCore\Services\ThreatsService;
 
 class Threats extends Modules\Component\ImetModule_Eval {
 

@@ -9,8 +9,8 @@ $group_key = $group_key ?? '';
 
 $table_id = 'table_'.$definitions['module_key'];
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
-$totals = \AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
+$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
+$totals = \ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
 $totalBudget = array_reduce($totals, function ($carry, $item) {
     $carry += $item;
     return $carry;

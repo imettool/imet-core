@@ -4,8 +4,8 @@
 /** @var Mixed $records */
 $record = $records[0];
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
-\AndreaMarelli\ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
+$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
+\ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
 $fn = function ($value) {
     if(!is_infinite($value) && $value > 0){
         return true;

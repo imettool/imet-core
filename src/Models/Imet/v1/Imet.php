@@ -1,12 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1;
+namespace ImetCore\Models\Imet\v1;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Encoder;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\v1\Encoder;
+use ImetCore\Models\Imet\Imet as BaseImetForm;
+use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
+use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Imet extends BaseImetForm

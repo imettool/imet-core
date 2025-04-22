@@ -1,18 +1,18 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\Statistics;
+namespace ImetCore\Models\Imet\API\Statistics;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\v2\Modules\Context\Areas;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use AndreaMarelli\ImetCore\Models\Imet\v1;
-use AndreaMarelli\ImetCore\Models\Imet\v2;
-use AndreaMarelli\ImetCore\Models\Region;
-use AndreaMarelli\ImetCore\Models\Country;
+use ImetCore\Models\Imet\v1;
+use ImetCore\Models\Imet\v2;
+use ImetCore\Models\Region;
+use ImetCore\Models\Country;
 
 class GlobalStatistics
 {

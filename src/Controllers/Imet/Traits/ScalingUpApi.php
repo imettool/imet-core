@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Helpers\API\Common\Common;
-use AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Api;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\API\Common\Common;
+use ImetCore\Models\Imet\API\ScalingUp\Api;
+use ImetCore\Models\Imet\v2\Modules;
 use ErrorException;
 use Illuminate\Http\Request;
 use ReflectionException;

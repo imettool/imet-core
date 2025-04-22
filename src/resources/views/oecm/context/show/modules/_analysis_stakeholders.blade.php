@@ -1,5 +1,5 @@
 <?php
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
@@ -24,7 +24,7 @@ $stakeholders_records = collect($records)
 
 $stakeholders_categories = Stakeholders::getStakeholders(
     $form_id,
-    ('AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE,
+    ('ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE,
     true
 );
 

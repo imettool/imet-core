@@ -1,7 +1,7 @@
 <?php
 
-/** @var \AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller $controller */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
+/** @var \ImetCore\Controllers\Imet\oecm\Controller $controller */
+/** @var \ImetCore\Models\Imet\oecm\Imet $item */
 
 ?>
 

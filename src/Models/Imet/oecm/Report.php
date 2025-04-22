@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
+namespace ImetCore\Models\Imet\oecm;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Report as BaseReport;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Report as BaseReport;
 
 class Report extends BaseReport
 {

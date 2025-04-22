@@ -1,19 +1,19 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
+use ImetCore\Controllers\__Controller;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\Basket;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\File\Zip;
+use ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -333,13 +333,19 @@ class ScalingUpAnalysisController extends __Controller
     {
         $files = [];
         $scaling_ups = Basket::where('scaling_up_id', $scaling_id)->get();
+        if(config('app.asset_url')){
+            $asset_url = ltrim(config('app.asset_url'),"/");
+        } else {
+            $asset_url = "";
+        }
+
         if (count($scaling_ups) > 0) {
             $item = ModelScalingUpAnalysis::where('id', $scaling_id)->first();
 
             $this->auth_saved(explode(',', $item->wdpas));
 
             foreach ($scaling_ups as $record) {
-                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . str_replace($asset_url, "" ,$record->item);
             }
 
             if (count($files) > 1) {

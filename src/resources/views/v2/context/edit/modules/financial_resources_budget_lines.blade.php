@@ -6,7 +6,7 @@
 $group_key = $group_key ?? '';
 $table_id = 'table_'.$definitions['module_key'];
 
-$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
+$vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">

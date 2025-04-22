@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Helpers\API\DOPA;
+namespace ImetCore\Helpers\API\DOPA;
 
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\Wdpa as BaseWdpa;
+use ModularForms\Helpers\API\DOPA\Wdpa as BaseWdpa;
 
 trait Wdpa
 {

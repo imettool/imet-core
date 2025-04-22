@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
+namespace ImetCore\Models\Imet\CrossAnalysis;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model

@@ -1,12 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 
 trait Context {
 

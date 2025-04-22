@@ -9,8 +9,8 @@ $record  = $records[0];
 $group_key = 'null';
 $table_id = 'table_'.$definitions['module_key'];
 
-$area = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
-$totalBudget = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResources::getTotalBudget($records[0]['FormID']) : null;
+$area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
+$totalBudget = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Modules\Context\FinancialResources::getTotalBudget($records[0]['FormID']) : null;
 
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class Contexts extends Modules\Component\ImetModule
 {

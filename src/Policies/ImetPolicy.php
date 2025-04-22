@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Policies;
+namespace ImetCore\Policies;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 

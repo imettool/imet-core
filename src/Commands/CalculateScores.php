@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Commands;
+namespace ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Jobs;
+use ImetCore\Jobs;
 use Exception;
 use Illuminate\Console\Command;
 

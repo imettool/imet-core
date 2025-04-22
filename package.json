@@ -1,11 +1,12 @@
 {
+    "type": "module",
     "name": "imet-core",
-    "version": "1.0.0",
+    "version": "0.0.0",
     "dependencies": {
         "dropzone-vue3": "1.0.2",
         "echarts": "^5.5.1",
         "html-to-image": "1.11.1",
-        "mapbox-gl": "^3.1.2",
+        "maplibre-gl": "^5.2.0",
         "modular-forms": "file:./vendor/andreamarelli/modular-forms",
         "pinia": "^2.1.7",
         "vue3-colorpicker": "^2.3.0"

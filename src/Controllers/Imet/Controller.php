@@ -1,16 +1,16 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Backup;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ConvertSQLite;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Merge;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
+use ImetCore\Controllers\__Controller;
+use ImetCore\Controllers\Imet\Traits\Backup;
+use ImetCore\Controllers\Imet\Traits\ConvertSQLite;
+use ImetCore\Controllers\Imet\Traits\ImportExportJSON;
+use ImetCore\Controllers\Imet\Traits\Merge;
+use ImetCore\Controllers\Imet\Traits\Pame;
+use ImetCore\Models\Imet\Imet;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

@@ -4,8 +4,8 @@
 /** @var Mixed $vueData */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
-use \AndreaMarelli\ImetCore\Helpers\Template;
-use \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use \ImetCore\Helpers\Template;
+use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $group_key = $group_key ?? '';
 

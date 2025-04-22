@@ -1,17 +1,19 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ModularForms\Helpers\Module;
-use AndreaMarelli\ModularForms\Helpers\ModuleKey;
-use AndreaMarelli\ModularForms\Models\Traits\Upload;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Services\Scores\OecmScores;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\File\Zip;
+use ModularForms\Helpers\HTTP;
+use ModularForms\Helpers\Module;
+use ModularForms\Helpers\ModuleKey;
+use ModularForms\Models\Traits\Upload;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -332,11 +334,12 @@ trait ImportExportJSON
                 $json = json_decode($fileContent, True);
             }
 
-            if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
+            $version = $json['Imet']['version'];
+            if ($version === Imet\Imet::IMET_V1) {
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
+            } else if ($version === Imet\Imet::IMET_V2) {
                 $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
+            } else if ($version === Imet\Imet::IMET_OECM) {
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
 
@@ -355,8 +358,16 @@ trait ImportExportJSON
 
             DB::commit();
 
+            // Force refresh scores
+            if ($version === Imet\Imet::IMET_V1 ||
+                $version === Imet\Imet::IMET_V2) {
+                ImetScores::refresh_scores($formID);
+            } else if ($version === Imet\Imet::IMET_OECM) {
+                OecmScores::refresh_scores($formID);
+            }
+
             // backup in JSON
-            (new static)->backup($formID, $json['Imet']['version']);
+            (new static)->backup($formID, $version);
 
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {

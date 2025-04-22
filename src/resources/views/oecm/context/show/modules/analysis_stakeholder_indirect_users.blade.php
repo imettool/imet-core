@@ -1,6 +1,6 @@
 <?php
 
-use \AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use \ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use \Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */

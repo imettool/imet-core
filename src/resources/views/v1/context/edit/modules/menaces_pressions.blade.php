@@ -3,14 +3,14 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
 $view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
 
 // Inject titles
 foreach(MenacesPressions::$groupsByCategory as $i => $category){
-    $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectGroupTitle(
+    $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle(
         $view_groupTable, $definitions['module_key'], $category[0],
         ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
 }

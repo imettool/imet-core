@@ -1,18 +1,18 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet;
+namespace ImetCore\Models\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\Imet\v1;
-use AndreaMarelli\ImetCore\Models\Imet\v2;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\Type\Chars;
-use AndreaMarelli\ModularForms\Models\Form;
+use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Country;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\Imet\v1;
+use ImetCore\Models\Imet\v2;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\User\Role;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\Type\Chars;
+use ModularForms\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
@@ -428,8 +428,8 @@ abstract class Imet extends Form
                 $modules_imported[] = $module_class::getShortClassName();
                 foreach ($records[$module_class::getShortClassName()] as $record) {
 
-                    if(Str::contains($module_class, "\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Contexts")
-                        || Str::contains($module_class, "\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeographicalLocation")
+                    if(Str::contains($module_class, "\ImetCore\Models\Imet\v2\Modules\Context\Contexts")
+                        || Str::contains($module_class, "\ImetCore\Models\Imet\v2\Modules\Context\GeographicalLocation")
                     ){
 
                         dd($module_class, $record);

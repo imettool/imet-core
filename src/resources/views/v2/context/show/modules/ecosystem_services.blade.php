@@ -5,10 +5,10 @@
 
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$stats = array_key_exists('FormID', $records[0]) ? \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::getStats($records[0]['FormID']) : null;
+$stats = array_key_exists('FormID', $records[0]) ? \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::getStats($records[0]['FormID']) : null;
 $fistGroupPerCategory = array_map(function($category){
     return $category[0];
-}, \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::$groupsByCategory);
+}, \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::$groupsByCategory);
 
 $view = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');

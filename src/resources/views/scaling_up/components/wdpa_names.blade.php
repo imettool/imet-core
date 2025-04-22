@@ -1,7 +1,7 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
-use AndreaMarelli\ModularForms\Helpers\Input\Input;
+use ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use ModularForms\Helpers\Input\Input;
 
 ?>
 <x-modular-forms::accordion.container class="form-filters">

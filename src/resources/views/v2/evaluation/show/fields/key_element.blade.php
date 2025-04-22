@@ -1,8 +1,8 @@
 <?php
 /** @var String $value */
 
-use \AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use \AndreaMarelli\ImetCore\Models\Animal;
+use \ModularForms\Helpers\Input\SelectionList;
+use \ImetCore\Models\Animal;
 
 if(Animal::isTaxonomy($value)){
     $taxonomy = Animal::parseTaxonomy($value);

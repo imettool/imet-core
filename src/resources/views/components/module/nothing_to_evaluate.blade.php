@@ -2,7 +2,7 @@
 /** @var string $num_cols  */
 /** @var string $mode [optional]  */
 
-use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+use \ModularForms\Enums\ModuleViewModes;
 
 $attributes = $attributes ?? '';
 $num_cols = $num_cols ?? 3;

@@ -1,12 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
+namespace ImetCore\Models\Imet\API\Assessment;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
+use ImetCore\Models\Imet\v2\Modules\Context\Areas;
+use ImetCore\Models\Imet\v2\Modules;
 use Illuminate\Support\Facades\Lang;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Report;
+use ImetCore\Models\Imet\v2\Report;
 
 class ReportV2 extends ReportV1
 {

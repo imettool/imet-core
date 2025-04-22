@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
 
 
 trait KeyElements

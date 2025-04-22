@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components;
+namespace ImetCore\Models\Imet\Components;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
+use ImetCore\Helpers\Database;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model

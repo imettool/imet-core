@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore;
+namespace ImetCore;
 
-use AndreaMarelli\ImetCore\Commands\CalculateScores;
-use AndreaMarelli\ImetCore\Commands\ConvertSQLite;
-use AndreaMarelli\ImetCore\Commands\Export;
-use AndreaMarelli\ImetCore\Commands\Import;
+use ImetCore\Commands\CalculateScores;
+use ImetCore\Commands\ConvertSQLite;
+use ImetCore\Commands\Export;
+use ImetCore\Commands\Import;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 

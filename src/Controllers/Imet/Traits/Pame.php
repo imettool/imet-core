@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

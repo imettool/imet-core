@@ -1,11 +1,11 @@
 <?php
 
-use \AndreaMarelli\ImetCore\Controllers;
-use \AndreaMarelli\ImetCore\Models\Imet;
-use \AndreaMarelli\ImetCore\Models\Imet\v1;
-use \AndreaMarelli\ImetCore\Models\Imet\v2;
-use \AndreaMarelli\ImetCore\Models\Imet\oecm;
-use \AndreaMarelli\ModularForms\Helpers\Module;
+use \ImetCore\Controllers;
+use \ImetCore\Models\Imet;
+use \ImetCore\Models\Imet\v1;
+use \ImetCore\Models\Imet\v2;
+use \ImetCore\Models\Imet\oecm;
+use \ModularForms\Helpers\Module;
 
 /** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var v1\Imet|v2\Imet|oecm\Imet $primary_form */
@@ -62,7 +62,7 @@ if(!function_exists('get_quoted_responsible')){
 
     <div class="entity-heading">
         <div class="name">{{ $primary_form->Name }}</div>
-        <div class="location">{!! \AndreaMarelli\ImetCore\Helpers\Template::flag_and_name($primary_form->Country) !!}</div>
+        <div class="location">{!! \ImetCore\Helpers\Template::flag_and_name($primary_form->Country) !!}</div>
     </div>
 
     <table id="merge_table" class="striped">
@@ -92,7 +92,7 @@ if(!function_exists('get_quoted_responsible')){
                         {{-- Set as destination form --}}
                         <div style="margin-top: 10px">
                             <a href="{{ route($merge_view_route, [$duplicated_form_id]) }}" class="btn-nav small yellow">
-                                {!! AndreaMarelli\ModularForms\Helpers\Template::icon('thumbtack', 'white') !!}
+                                {!! \ModularForms\Helpers\Template::icon('thumbtack', 'white') !!}
                                 @uclang('imet-core::common.destination_form')
                             </a>
                         </div>
@@ -141,7 +141,7 @@ if(!function_exists('get_quoted_responsible')){
                             @endphp
                             @if(!$module->isEmpty())
                                 @if($module_class::areIdentical($module, $module_primary_orig))
-                                     <b class="highlight">{!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('modular-forms::common.no_differences')</b>
+                                     <b class="highlight">{!! \ModularForms\Helpers\Template::icon('check-circle') !!}  @lang('modular-forms::common.no_differences')</b>
                                 @else
                                     @include('imet-core::merge.view_module', [
                                         'controller' => $controller,

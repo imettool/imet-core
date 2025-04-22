@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
+namespace ImetCore\Models\Imet\v1\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Type\JSON;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Type\JSON;
 use Illuminate\Support\Str;
 
 class Networks extends Modules\Component\ImetModule

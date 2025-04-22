@@ -1,24 +1,24 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
+namespace ImetCore\Services\Scores\Functions;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions;
+use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
+use ImetCore\Services\Scores\Functions\CustomFunctions;
 
 
 class OECMScores extends _Scores

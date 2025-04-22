@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\User;
+namespace ImetCore\Models\User;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\BaseModel;
+use ImetCore\Models\Country;
+use ImetCore\Models\ProtectedArea;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,7 +92,7 @@ class Role extends BaseModel
      * Retrieve roles by user id
      *
      * @param $user_id
-     * @return \AndreaMarelli\ImetCore\Models\User\Role[]|\Illuminate\Database\Eloquent\Collection
+     * @return \ImetCore\Models\User\Role[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getByUser($user_id)
     {
@@ -159,7 +159,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_wdpa
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return \ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
     {
@@ -201,7 +201,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_iso
-     * @return \AndreaMarelli\ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return \ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
     {

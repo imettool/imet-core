@@ -30,7 +30,7 @@ $vue_record_index = '0';
             @include('modular-forms::module.edit.field.vue', [
                 'type' => $field['type'],
                 'v_value' => $field['name'].'_km2',
-                'id' =>"'".$definitions['module_key'].\AndreaMarelli\ModularForms\Helpers\ModuleKey::separator.$field['name']."_km2'",
+                'id' =>"'".$definitions['module_key'].\ModularForms\Helpers\ModuleKey::separator.$field['name']."_km2'",
                 'other' => '@input=convertToHa("' . $field['name'] . '")'
             ])
             <span class="ml-2">[km2]</span>

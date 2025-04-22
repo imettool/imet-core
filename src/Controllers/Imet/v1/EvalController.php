@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
+namespace ImetCore\Controllers\Imet\v1;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController as BaseEvalController;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet_Eval;
+use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
+use ImetCore\Models\Imet\v1\Imet_Eval;
 
 
 class EvalController extends BaseEvalController

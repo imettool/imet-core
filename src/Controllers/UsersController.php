@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
+use ImetCore\Models\User\Role;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

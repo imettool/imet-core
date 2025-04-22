@@ -1,6 +1,6 @@
 <?php
 /** @var String $controller */
-/** @var \AndreaMarelli\ModularForms\Models\Module $module_class */
+/** @var \ModularForms\Models\Module $module_class */
 /** @var int $form_id */
 
 $definitions = $module_class::getDefinitions();

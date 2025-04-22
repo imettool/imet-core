@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\RegulationsAdequacy;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\RegulationsAdequacy;
 use Illuminate\Support\Facades\View;
 
 

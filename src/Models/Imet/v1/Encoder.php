@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1;
+namespace ImetCore\Models\Imet\v1;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Encoder as BaseEncoder;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Encoder as BaseEncoder;
 
 class Encoder extends BaseEncoder
 {

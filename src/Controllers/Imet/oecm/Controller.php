@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
+namespace ImetCore\Controllers\Imet\oecm;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\CreateAndStoreNonWdpa;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Prefill;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Controllers\Imet\Controller as BaseController;
+use ImetCore\Controllers\Imet\Traits\CreateAndStoreNonWdpa;
+use ImetCore\Controllers\Imet\Traits\Prefill;
+use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ModularForms\Helpers\Input\SelectionList;
+use ModularForms\Models\Traits\Payload;
 
 class Controller extends BaseController
 {

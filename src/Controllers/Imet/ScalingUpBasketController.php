@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
-use AndreaMarelli\ModularForms\Helpers\File\File;
+use ImetCore\Controllers\__Controller;
+use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
+use ModularForms\Helpers\File\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 

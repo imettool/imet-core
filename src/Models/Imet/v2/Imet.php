@@ -1,18 +1,18 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2;
+namespace ImetCore\Models\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Encoder;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Controllers\Imet\v2\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\v2\Encoder;
+use ImetCore\Models\Imet\Imet as BaseImetForm;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use ImetCore\Models\Imet\v2\Modules\Context\Habitats;
+use ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
+use ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,7 +122,7 @@ class Imet extends BaseImetForm
      * Get IMET available years for the given PA
      *
      * @param $wdpa_id
-     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
+     * @return \ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getYears($wdpa_id)
     {

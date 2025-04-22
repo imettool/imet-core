@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
+namespace ImetCore\Controllers\Imet\oecm;
 
 
 class ContextController extends Controller

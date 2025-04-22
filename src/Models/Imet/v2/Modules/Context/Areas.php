@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class Areas extends Modules\Component\ImetModule
 {

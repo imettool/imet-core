@@ -12,7 +12,7 @@
         >
 
             <div class="dropzone-custom-content">
-                <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
+                <h3 class="dropzone-custom-title">{{ Locale.getLabel('imet-core::common.dropzone.multiple_files_description') }}</h3>
             </div>
 
         </vue-dropzone>
@@ -84,16 +84,19 @@ const dropZoneOptions = {
     timeout: 100000,
     acceptedFiles: ".json,.zip",
     autoProcessQueue: true,
-    dictDefaultMessage: Locale.getLabel('modular-forms::common.upload.dict_default_message'),
-    dictFallbackMessage: Locale.getLabel('modular-forms::common.upload.dict_fallback_message'),
-    dictFallbackText: Locale.getLabel('modular-forms::common.upload.dict_fallback_text'),
-    dictFileTooBig: Locale.getLabel('modular-forms::common.upload.dict_file_too_big'),
-    dictInvalidFileType: Locale.getLabel('modular-forms::common.upload.dict_invalid_file_type'),
-    dictResponseError: Locale.getLabel('modular-forms::common.upload.dict_response_error'),
-    dictCancelUpload: Locale.getLabel('modular-forms::common.upload.dict_cancel_upload'),
-    dictUploadCanceled: Locale.getLabel('modular-forms::common.upload.dict_upload_canceled'),
-    dictRemoveFile: Locale.getLabel('modular-forms::common.upload.dict_remove_file'),
-    dictMaxFilesExceeded: Locale.getLabel('modular-forms::common.upload.dictMaxFilesExceeded'),
+    dictDefaultMessage: Locale.getLabel('imet-core::common.dropzone.dict_default_message'),
+    dictFallbackMessage: Locale.getLabel('imet-core::common.dropzone.dict_fallback_message'),
+    dictFallbackText: Locale.getLabel('imet-core::common.dropzone.dict_fallback_text'),
+    dictFileTooBig: Locale.getLabel('imet-core::common.dropzone.dict_file_too_big')
+        .replace('__filesize__', '{{filesize}}')
+        .replace('__maxFilesize__', '{{maxFilesize}}'),
+    dictInvalidFileType: Locale.getLabel('imet-core::common.dropzone.dict_invalid_file_type'),
+    dictResponseError: Locale.getLabel('imet-core::common.dropzone.dict_response_error')
+        .replace('__statusCode__', '{{statusCode}}'),
+    dictCancelUpload: Locale.getLabel('imet-core::common.dropzone.dict_cancel_upload'),
+    dictUploadCanceled: Locale.getLabel('imet-core::common.dropzone.dict_upload_canceled'),
+    dictRemoveFile: Locale.getLabel('imet-core::common.dropzone.dict_remove_file'),
+    dictMaxFilesExceeded: Locale.getLabel('imet-core::common.dropzone.dictMaxFilesExceeded'),
 };
 
 function progressBarConfiguration(file, label, color = 'blue', width = '100%') {
@@ -110,11 +113,11 @@ function fileAdded(file) {
 
 function uploadError(file, message) {
     files_uploaded.value++;
-    let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
+    let errorMessage = Locale.getLabel('imet-core::common.dropzone.upload_error');
     if (message['message']) {
         errorMessage += message['message'];
     } else if (!formatTypes.includes(file.type)) {
-        errorMessage = Locale.getLabel('modular-forms::common.upload.not_valid_format');
+        errorMessage = Locale.getLabel('imet-core::common.dropzone.not_valid_format');
     } else {
         errorMessage += message;
     }
@@ -122,12 +125,12 @@ function uploadError(file, message) {
 }
 
 function processing(file) {
-    progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
+    progressBarConfiguration(file, Locale.getLabel('imet-core::common.dropzone.uploading'));
 }
 
 function uploadedSuccessfully(file, response) {
     files_uploaded.value++;
-    let message = Locale.getLabel('modular-forms::common.upload.uploaded');
+    let message = Locale.getLabel('imet-core::common.dropzone.uploaded');
     if (response.length > 1) {
         let filesDidNotUploaded = 0;
         response.forEach((r => {
@@ -136,7 +139,7 @@ function uploadedSuccessfully(file, response) {
             }
         }))
         const totalFiles = response.length;
-        message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
+        message += Locale.getLabel('imet-core::common.dropzone.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
     }
     progressBarConfiguration(file, message, "green");
 }

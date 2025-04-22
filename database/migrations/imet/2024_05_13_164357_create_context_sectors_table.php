@@ -1,6 +1,6 @@
 <?php
 
-use AndreaMarelli\ImetCore\Helpers\Database;
+use ImetCore\Helpers\Database;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

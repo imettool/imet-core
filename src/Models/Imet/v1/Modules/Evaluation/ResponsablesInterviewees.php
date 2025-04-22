@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\v1\Modules;
 
 class ResponsablesInterviewees extends Modules\Context\ResponsablesInterviewees
 {

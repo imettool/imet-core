@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Helpers;
+namespace ImetCore\Helpers;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule;
-use AndreaMarelli\ModularForms\Helpers\Template as BaseTemplate;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ModularForms\Helpers\Template as BaseTemplate;
 
 class Template{
 

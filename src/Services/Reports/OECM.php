@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Reports;
+namespace ImetCore\Services\Reports;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Component\ImetModule_Eval;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\Imet\oecm\Modules\Component\ImetModule_Eval;
+use ImetCore\Models\Imet\oecm\Report;
 
 
 class OECM

@@ -1,5 +1,5 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\oecm\Imet $item */
+/** @var \ImetCore\Models\Imet\oecm\Imet $item */
 /** @var array $scores */
 /** @var array $labels */
 /** @var array $key_elements_biodiversity */

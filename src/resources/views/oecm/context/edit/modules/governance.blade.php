@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use ModularForms\Helpers\Input\SelectionList;
 
 $vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 

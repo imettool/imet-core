@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
+namespace ImetCore\Controllers\Imet\v1;
 
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Controllers\Imet\Controller as BaseController;
+use ImetCore\Models\Imet\v1\Imet;
 
 class Controller extends BaseController
 {

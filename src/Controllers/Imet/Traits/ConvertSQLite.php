@@ -1,13 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet_Eval;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\v1\Imet_Eval;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 use Illuminate\Support\Str;
 
 trait ConvertSQLite{

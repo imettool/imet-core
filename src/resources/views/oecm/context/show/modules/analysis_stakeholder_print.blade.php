@@ -1,6 +1,6 @@
 <?php
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\oecm\Imet;
 
 /** @var Imet $item */
 /** @var String $stakeholder */

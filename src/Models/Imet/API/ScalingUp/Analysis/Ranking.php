@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
+namespace ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Ranking as ScalingUpRanking;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ScalingUp\Sections\Ranking as ScalingUpRanking;
 
 trait Ranking
 {

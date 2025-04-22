@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\BoundaryLevel;
 
 trait Planning
 {

@@ -21,7 +21,7 @@ $threats_in_sa2 = collect($records)
     ->pluck('__threat_key')
     ->toArray();
 
-$stats = collect(\AndreaMarelli\ImetCore\Services\ThreatsService::calculateRanking($records))
+$stats = collect(\ImetCore\Services\ThreatsService::calculateRanking($records))
     ->pluck('__score', '__threat_key')
     ->toArray();
 

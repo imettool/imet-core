@@ -1,8 +1,8 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
+use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Models\Imet\Imet;
+use ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 

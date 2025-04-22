@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
 
 trait Outputs
 {

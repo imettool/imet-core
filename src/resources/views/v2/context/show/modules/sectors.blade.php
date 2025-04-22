@@ -4,13 +4,13 @@
 
 /** @var Mixed $records */
 
-use \AndreaMarelli\ImetCore\Helpers\Template;
-use \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use \ImetCore\Helpers\Template;
+use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $table_id = 'table_' . $definitions['module_key'];
 $group_key = '';
 
-$area = \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);
+$area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);
 $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
 
 ?>

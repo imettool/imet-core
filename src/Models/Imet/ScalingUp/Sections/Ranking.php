@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
+namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
 use Illuminate\Support\Facades\App;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 
 class Ranking
 {
@@ -13,10 +13,10 @@ class Ranking
      * @param array $form_ids
      * @param string $type
      * @param array $indicators
-     * @param int $scaling_id
+     * @param ?int $scaling_id
      * @return array[]|\array[][]
      */
-    public static function ranking_indicators(array $form_ids, string $type, array $indicators, int $scaling_id = 0): array
+    public static function ranking_indicators(array $form_ids, string $type, array $indicators, ?int $scaling_id = 0): array
     {
         $items_to_calculate = $percent_values = $sum_values = $separated_values_by_pa = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
@@ -45,12 +45,12 @@ class Ranking
             if (!isset($items_to_calculate[$i])) {
                 $items_to_calculate[$i] = 0;
             }
+
             foreach ($values as $v => $value) {
                 if ($type === "process" && stripos($v, "_")) {
                     $name = Common::get_all_indicator_labels_cached()[$v]." _".trans('imet-core::analysis_report.legends.'.$v);
                 } else {
                     $name = Common::get_all_indicator_labels_cached()[$v];
-//                    indicator_label($v, 'imet-core::analysis_report.assessment.');
                 }
                 $indicators_process_number = [];
                 if (isset($indicators_numbers[$id])) {
@@ -138,8 +138,8 @@ class Ranking
                 if (!isset($new_ranking['actual_value'][$ind])) {
                     $new_ranking['actual_value'][$ind] = [];
                 }
-                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? "-99999999";
-                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? "-99999999";
+                $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
+                $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
                 if(isset($separated_values_by_pa[$k])) {
@@ -147,7 +147,7 @@ class Ranking
                 } else {
                     $reorder_separated_values_by_pa[$i] = [];
                 }
-                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? "-99999999";
+                $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $i++;
             }
         }

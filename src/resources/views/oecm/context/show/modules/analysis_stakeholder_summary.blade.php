@@ -1,8 +1,8 @@
 <?php
 /** @var int $form_id */
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
 $stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);

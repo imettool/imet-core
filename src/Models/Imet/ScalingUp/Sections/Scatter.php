@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
+namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Helpers\ScalingUp\Common;
 
 class Scatter
 {

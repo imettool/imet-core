@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components;
+namespace ImetCore\Models\Imet\Components;
 
-use AndreaMarelli\ImetCore\Exceptions\MissingDependencyConfigurationException;
+use ImetCore\Exceptions\MissingDependencyConfigurationException;
 use Illuminate\Support\Str;
 
 trait Dependencies{

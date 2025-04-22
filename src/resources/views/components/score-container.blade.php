@@ -1,5 +1,5 @@
 <?php
-use AndreaMarelli\ImetCore\Models\Imet;
+use ImetCore\Models\Imet;
 
 /** @var String $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */

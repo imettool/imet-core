@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
+namespace ImetCore\Helpers\ScalingUp;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet as ImetAlias;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Support\Facades\Cache;
 
 class Common
@@ -45,7 +45,7 @@ class Common
     /**
      * @param array $array
      * @param int $items_number
-     * @return float|int
+     * @return float|null
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
@@ -120,9 +120,9 @@ class Common
     }
 
     /**
-     * @return void
+     *
      */
-    public static function reset_areas_ids()
+    public static function reset_areas_ids(): void
     {
         static::$protected_areas_ids = [];
     }
@@ -209,7 +209,7 @@ class Common
             $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : "-";
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
-        //print_r($filtered);
+
         return $filtered;
     }
 
@@ -270,29 +270,50 @@ class Common
         ];
 
         $assessments = [];
+        $i = 0;
+        $assessments[$i] = ['name' => trans('imet-core::analysis_report.average')];
+        $assessments[$i] = array_merge($assessments[$i], array_fill_keys($indicators, 0));
+        $i++;
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = ImetScores::get_radar($form_id);
+            $assessments[$i] = ImetScores::get_radar($form_id);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 
-            $assessments[$k]['name'] = $name->name;
-            $assessments[$k]['color'] = $name->color;
-            $assessments[$k]['wdpa_id'] = $name->wdpa_id;
-            $assessments[$k]['form_id'] = (int)$form_id;
-            $assessments[$k]['year'] = (int)$name->Year;
+            $assessments[$i]['name'] = $name->name;
+            $assessments[$i]['color'] = $name->color;
+            $assessments[$i]['wdpa_id'] = $name->wdpa_id;
+            $assessments[$i]['formid'] = (int)$form_id;
+            $assessments[$i]['year'] = (int)$name->Year;
 
-            $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
+            $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
             foreach ($indicators as $key => $indicator) {
-                $assessments[$k][$indicator] = static::round_number($assessments[$k][$indicator]);
+                $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
             }
+            $i++;
+        }
+
+        foreach ($indicators as $item) {
+            $sum = 0;
+            $count = 0;
+            foreach ($assessments as $key => $assessment) {
+                if ($key > 0) {
+                    $sum += (float)$assessment[$item];
+                    $count++;
+                }
+            }
+            $assessments[0][$item] = static::round_number($sum / $count);
         }
 
         uasort($assessments, function ($a, $b) {
             return $b['name'] <=> $a['name'];
         });
 
-        return ['status' => 'success', 'data' => ['assessments' => $assessments]];
+        $assessments_without_average = array_values(array_filter($assessments, function ($value) {
+            return $value['name'] !== trans('imet-core::analysis_report.average');
+        }));
+
+        return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
     }
 
     public static function get_pa_name(int $id, int $scaling_id = 0)

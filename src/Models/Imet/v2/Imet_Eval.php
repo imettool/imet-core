@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2;
+namespace ImetCore\Models\Imet\v2;
 
 
 class Imet_Eval extends Imet{

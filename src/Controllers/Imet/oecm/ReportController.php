@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\oecm;
+namespace ImetCore\Controllers\Imet\oecm;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Report;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
+use ImetCore\Controllers\Imet\ReportController as BaseReportController;
+use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\Imet\oecm\Report;
+use ImetCore\Services\Scores\OecmScores;
 use Illuminate\Http\Request;
-use AndreaMarelli\ImetCore\Services\Reports\OECM;
+use ImetCore\Services\Reports\OECM;
 
 class ReportController extends BaseReportController
 {
@@ -48,7 +48,7 @@ class ReportController extends BaseReportController
             'stake_analysis' => OECM::getStakeAnalysis($form_id),
             'objectives' => OECM::getObjectives($form_id),
             'scores' => OecmScores::get_all($form_id),
-            'labels' => OecmScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM),
+            'labels' => OecmScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_OECM),
             'report' => Report::getByForm($form_id),
             'report_schema' => Report::getSchema(),
             'show_non_wdpa' => $show_non_wdpa ?? false,

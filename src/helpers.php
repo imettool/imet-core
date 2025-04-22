@@ -38,11 +38,11 @@ function imet_selection_lists(string $type): array
         preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
         if ($matches[2] == "ProtectedArea") {
-            $list = \AndreaMarelli\ImetCore\Models\ProtectedArea::selectionList();
+            $list = \ImetCore\Models\ProtectedArea::selectionList();
         } elseif ($matches[2] == "Country") {
-            $list = \AndreaMarelli\ImetCore\Models\Country::selectionList();
+            $list = \ImetCore\Models\Country::selectionList();
         } elseif ($matches[2] == "Currency") {
-            $list = \AndreaMarelli\ImetCore\Models\Currency::imetV1List();
+            $list = \ImetCore\Models\Currency::imetV1List();
         } elseif ($matches[1] != "") {
 
             $list = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);

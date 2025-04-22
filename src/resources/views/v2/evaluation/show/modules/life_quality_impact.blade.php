@@ -19,7 +19,7 @@ foreach ($definitions['groups'] as $group_key => $group){
                 <th>'.
                     \Illuminate\Support\Facades\View::make('modular-forms::module.show.field', [
                         'type' => 'numeric',
-                        'value' => round(\AndreaMarelli\ImetCore\Helpers\Math::records_average($group_records, 'EvaluationScore'), 2)
+                        'value' => round(\ImetCore\Helpers\Math::records_average($group_records, 'EvaluationScore'), 2)
                     ]).'
                 </th>
                 <th></th>

@@ -1,16 +1,16 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Region
  *
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class Region extends BaseModel
 {

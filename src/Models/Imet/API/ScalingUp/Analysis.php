@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
-use AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis\Average;
-use AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis\Data;
-use AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis\DataUpperLowerAverage;
-use AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis\Ranking;
+use ImetCore\Models\Imet\API\ScalingUp\Analysis\Average;
+use ImetCore\Models\Imet\API\ScalingUp\Analysis\Data;
+use ImetCore\Models\Imet\API\ScalingUp\Analysis\DataUpperLowerAverage;
+use ImetCore\Models\Imet\API\ScalingUp\Analysis\Ranking;
 
 trait Analysis
 {

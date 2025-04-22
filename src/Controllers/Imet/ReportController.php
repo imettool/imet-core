@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
@@ -47,7 +47,7 @@ abstract class ReportController extends Controller
     {
         $this->authorize('edit', (static::$form_class)::find($item));
 
-        \AndreaMarelli\ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
+        \ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
         return ['status' => 'success'];
     }
 

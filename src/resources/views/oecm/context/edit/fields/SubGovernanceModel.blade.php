@@ -8,8 +8,8 @@
 /** @var Mixed $definitions */
 
 
-$vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($id, $v_value);
-$rules_attribute = \AndreaMarelli\ModularForms\Helpers\DOM::rulesAttribute($rules);
+$vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($id, $v_value);
+$rules_attribute = \ModularForms\Helpers\DOM::rulesAttribute($rules);
 $other_attributes = $other ?? '';
 
 ?>

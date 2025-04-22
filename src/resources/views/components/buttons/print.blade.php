@@ -1,14 +1,14 @@
 <?php
 /** @var String $version */
 
-use AndreaMarelli\ModularForms\Helpers\Template;
+use ModularForms\Helpers\Template;
 
-if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1){
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::class;
-} else if($version === \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2){
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller::class;
+if($version === \ImetCore\Models\Imet\Imet::IMET_V1){
+    $controller = \ImetCore\Controllers\Imet\v1\Controller::class;
+} else if($version === \ImetCore\Models\Imet\Imet::IMET_V2){
+    $controller = \ImetCore\Controllers\Imet\v2\Controller::class;
 } else {
-    $controller = \AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller::class;
+    $controller = \ImetCore\Controllers\Imet\oecm\Controller::class;
 }
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores;
+namespace ImetCore\Services\Scores;
 
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ModularForms\Helpers\Locale;
+use ImetCore\Models\Imet;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ModularForms\Helpers\Locale;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 

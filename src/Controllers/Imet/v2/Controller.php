@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
+namespace ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as BaseController;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\CreateAndStoreNonWdpa;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Prefill;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Controllers\Imet\Controller as BaseController;
+use ImetCore\Controllers\Imet\Traits\CreateAndStoreNonWdpa;
+use ImetCore\Controllers\Imet\Traits\Prefill;
+use ImetCore\Models\Imet\v2\Imet;
 
 class Controller extends BaseController
 {

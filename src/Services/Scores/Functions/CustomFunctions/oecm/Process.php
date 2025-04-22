@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
 
 trait Process
 {

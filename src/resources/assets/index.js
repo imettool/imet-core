@@ -8,18 +8,6 @@ window.ImetCore = {};
 window.ImetCore.Helpers = {};
 window.ImetCore.Components = {};
 
-
-// ############################################
-// #################  MAPBOX  #################
-// ############################################
-import mapboxgl from 'mapbox-gl';
-window.mapboxgl = mapboxgl;
-window.mapboxgl.accessToken = window.accessToken;
-
-import BiopamaWDPA from "./js/helpers/biopamaWDPA.js";
-window.ImetCore.Helpers.BiopamaWDPA = BiopamaWDPA;
-
-
 // ############################################
 // ##################  Apps  ##################
 // ############################################

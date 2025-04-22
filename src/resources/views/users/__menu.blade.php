@@ -1,7 +1,7 @@
 <?php
 /** @var string $selected */
 
-use \AndreaMarelli\ImetCore\Models\User\Role;
+use \ImetCore\Models\User\Role;
 
 ?>
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
+use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
 
 trait Overall
 {

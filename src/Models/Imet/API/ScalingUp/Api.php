@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
 class Api
 {

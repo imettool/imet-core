@@ -16,7 +16,7 @@
 @if($definitions['module_info']!==null)
     <div class="module-bar info-bar">
         <div class="icon">
-            {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('info-circle', '', '1.4em') !!}
+            {!! \ModularForms\Helpers\Template::icon('info-circle', '', '1.4em') !!}
         </div>
         <div class="message">
             {!! $definitions['module_info'] !!}
@@ -27,7 +27,7 @@
 @if($definitions['module_info_EvaluationQuestion']!==null || $definitions['module_info_Rating']!==null)
     <div class="module-bar info-black-bar">
         <div class="icon blue">
-            {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('file-alt', '', '1.4em') !!}
+            {!! \ModularForms\Helpers\Template::icon('file-alt', '', '1.4em') !!}
         </div>
         <div class="message">
             {{-- Methodology --}}
@@ -66,7 +66,7 @@
 @if($definitions['ratingLegend']!==null)
     <div class="module-bar info-black-bar">
         <div class="icon blue">
-            {!! \AndreaMarelli\ModularForms\Helpers\Template::icon('star', '', '1.4em') !!}
+            {!! \ModularForms\Helpers\Template::icon('star', '', '1.4em') !!}
         </div>
         <div class="message">
             @foreach($definitions['ratingLegend'] as $field_name => $ratingLegend)

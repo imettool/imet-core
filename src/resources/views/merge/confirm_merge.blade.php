@@ -1,7 +1,7 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet $source */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Imet|\AndreaMarelli\ImetCore\Models\Imet\v2\Imet $destination */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
+/** @var \ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet $source */
+/** @var \ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet $destination */
+/** @var \ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
 /** @var string $route */
 
 $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$module::getShortClassName();
@@ -14,7 +14,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
     <!-- anchor -->
     <template slot="dialog-anchor">
         <button type="button" class="btn-nav small yellow">
-            {!! AndreaMarelli\ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!}
+            {!! \ModularForms\Helpers\Template::icon('arrow-alt-circle-left', 'white', '', 'fa-flip-vertical') !!}
             @uclang('modular-forms::common.apply')
         </button>
         <tooltip>@uclang('modular-forms::common.apply')</tooltip>
@@ -55,7 +55,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                 <button type="button"
                         data-dismiss="modal"
                         class="btn-nav small red btn-sm">
-                    {!! AndreaMarelli\ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @uclang('modular-forms::common.cancel')
+                    {!! \ModularForms\Helpers\Template::icon('times-circle', 'white') !!} @uclang('modular-forms::common.cancel')
                 </button>
                 <form action="{{ route($route) }}" method="POST" style="display: inline;">
                     {{ csrf_field() }}
@@ -64,7 +64,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                     <input type="hidden" name="destination_form" value="{{ $destination->FormID }}">
                     <button type="button"
                             class="btn-nav small" onclick="this.form.submit();">
-                        {!! AndreaMarelli\ModularForms\Helpers\Template::icon('check-circle', 'white') !!} @uclang('modular-forms::common.confirm')
+                        {!! \ModularForms\Helpers\Template::icon('check-circle', 'white') !!} @uclang('modular-forms::common.confirm')
                     </button>
                 </form>
             </div>

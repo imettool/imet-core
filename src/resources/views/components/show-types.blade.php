@@ -1,7 +1,7 @@
 <?php
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Models\Animal;
+use ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
 /** @var String $type */

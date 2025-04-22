@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
+namespace ImetCore\Services\Scores\Functions;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions;
+use ImetCore\Models\Imet\v1\Modules\Evaluation;
+use ImetCore\Services\Scores\Functions\CustomFunctions;
 
 
 class V1Scores extends _Scores

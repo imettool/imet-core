@@ -1,13 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Equipments;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementEquipmentAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\Staff;
+use ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
+use ImetCore\Models\Imet\v2\Modules\Context\Equipments;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetAdequacy;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementEquipmentAdequacy;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\Staff;
 
 trait Inputs
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
+namespace ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\EvalController as BaseEvalController;
-use AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
+use ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
+use ImetCore\Models\Imet\v2\Imet_Eval;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

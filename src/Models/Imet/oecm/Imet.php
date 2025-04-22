@@ -1,16 +1,16 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
+namespace ImetCore\Models\Imet\oecm;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
-use AndreaMarelli\ModularForms\Helpers\Type\Chars;
+use ImetCore\Controllers\Imet\oecm\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Imet as BaseImetForm;
+use ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
+use ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\User\Role;
+use ImetCore\Services\Scores\OecmScores;
+use ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;

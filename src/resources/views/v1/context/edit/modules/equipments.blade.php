@@ -7,7 +7,7 @@ $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module
 
 // Inject Average calculation
 for($i=0; $i<=12; $i++){
-    $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group'.$i, 2, 2);
+    $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group'.$i, 2, 2);
 }
 
 ?>

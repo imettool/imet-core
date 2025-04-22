@@ -1,5 +1,5 @@
 <?php
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\ApiController;
 /** @var array $scores */
 /** @var array $labels */
 

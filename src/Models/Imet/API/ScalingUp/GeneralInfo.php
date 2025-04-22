@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 use Illuminate\Support\Facades\App;
 
 trait GeneralInfo

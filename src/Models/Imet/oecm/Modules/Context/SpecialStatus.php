@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {

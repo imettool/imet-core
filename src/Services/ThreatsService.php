@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services;
+namespace ImetCore\Services;
 
 class ThreatsService{
 

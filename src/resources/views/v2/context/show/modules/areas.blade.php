@@ -6,7 +6,7 @@
 $record  = $records[0];
 
 $calc = null;
-$area = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
+$area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
 
 if(floatval($area)>0 && floatval($record['BoundaryLength'])>0){
     $calc = sqrt(3.14)/(2*3.14)*floatval($record['BoundaryLength'])/sqrt($area);

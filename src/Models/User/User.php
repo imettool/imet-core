@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\User;
+namespace ImetCore\Models\User;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use \AndreaMarelli\ModularForms\Models\User\User as BaseUser;
+use ImetCore\Models\Country;
+use \ModularForms\Models\User\User as BaseUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 

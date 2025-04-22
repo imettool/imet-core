@@ -1,6 +1,6 @@
 <?php
-use \AndreaMarelli\ImetCore\Controllers;
-use \AndreaMarelli\ImetCore\Models\Imet\Imet;
+use \ImetCore\Controllers;
+use \ImetCore\Models\Imet\Imet;
 use \Illuminate\Support\Facades\Route;
 use \Illuminate\Support\Str;
 

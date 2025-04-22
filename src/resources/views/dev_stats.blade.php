@@ -1,6 +1,6 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Models\Imet\Imet $assessments_v1 */
-/** @var \AndreaMarelli\ImetCore\Models\Imet\Imet $assessments_v2 */
+/** @var \ImetCore\Models\Imet\Imet $assessments_v1 */
+/** @var \ImetCore\Models\Imet\Imet $assessments_v2 */
 /** @var array $v1_stats_from_db */
 /** @var array $v1_stats_from_php */
 /** @var array $v2_stats_from_db */

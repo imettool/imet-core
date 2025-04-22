@@ -1,12 +1,12 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Assessment;
+namespace ImetCore\Services\Assessment;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet as ImetV1;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ImetCore\Services\Scores\Labels;
+use ImetCore\Models\Imet\v1\Imet as ImetV1;
+use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Services\Scores\Labels;
 use Illuminate\Database\Eloquent\Collection;
 
 class ImetAssessment

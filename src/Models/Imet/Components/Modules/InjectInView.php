@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
+namespace ImetCore\Models\Imet\Components\Modules;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
+use ImetCore\Helpers\Template;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
+namespace ImetCore\Services\Scores\Functions;
 
 
 class V1ToV2Scores extends _Scores

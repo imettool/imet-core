@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
+namespace ImetCore\Models\Imet\API\Assessment;
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\v1\Modules\Context\Areas;
+use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
+use ModularForms\Helpers\API\DOPA\DOPA;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\v1\Report;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;

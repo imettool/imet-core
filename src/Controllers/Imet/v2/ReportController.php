@@ -1,14 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v2;
+namespace ImetCore\Controllers\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ReportController as BaseReportController;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
+use ImetCore\Controllers\Imet\ReportController as BaseReportController;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Animal;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
 use ReflectionException;
 
@@ -66,8 +66,8 @@ class ReportController extends BaseReportController
                 })->pluck('Aspect')->toArray(),
             ],
             'scores' => ImetScores::get_all($item),
-            'labels' => ImetScores::indicators_labels(\AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2),
-            'report' => \AndreaMarelli\ImetCore\Models\Imet\v2\Report::getByForm($form_id),
+            'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V2),
+            'report' => \ImetCore\Models\Imet\v2\Report::getByForm($form_id),
             'connection' => $api_available,
             'show_api' => $show_api,
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,

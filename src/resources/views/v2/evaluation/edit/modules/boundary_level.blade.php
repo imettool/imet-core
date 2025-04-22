@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
 use Illuminate\Support\Facades\View;
 
 $vueData['marine_predefined'] = BoundaryLevel::get_marine_predefined();

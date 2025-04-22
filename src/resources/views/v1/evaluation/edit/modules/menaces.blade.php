@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;

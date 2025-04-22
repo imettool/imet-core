@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ModularForms\Models\BaseModel;
+use ImetCore\Helpers\Database;
+use ModularForms\Models\BaseModel;
 
 
 /**

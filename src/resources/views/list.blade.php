@@ -1,9 +1,9 @@
 <?php
 
-use \AndreaMarelli\ImetCore\Controllers;
-use \AndreaMarelli\ImetCore\Models\Imet;
-use \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
-use \AndreaMarelli\ModularForms\Helpers\Template;
+use \ImetCore\Controllers;
+use \ImetCore\Models\Imet;
+use \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
+use \ModularForms\Helpers\Template;
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Http\Request;
 

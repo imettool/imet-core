@@ -1,14 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
+use ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
+use ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 
 trait Inputs
 {

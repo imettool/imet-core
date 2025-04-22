@@ -1,14 +1,14 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet;
-use AndreaMarelli\ImetCore\Controllers\Imet\oecm;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpAnalysisController;
-use AndreaMarelli\ImetCore\Controllers\Imet\ScalingUpBasketController;
-use AndreaMarelli\ImetCore\Controllers\Imet\v1;
-use AndreaMarelli\ImetCore\Controllers\Imet\v2;
-use AndreaMarelli\ImetCore\Controllers\ProtectedAreaController;
-use AndreaMarelli\ImetCore\Controllers\SpeciesController;
-use AndreaMarelli\ImetCore\Controllers\UsersController;
+use ImetCore\Controllers\Imet;
+use ImetCore\Controllers\Imet\oecm;
+use ImetCore\Controllers\Imet\ScalingUpAnalysisController;
+use ImetCore\Controllers\Imet\ScalingUpBasketController;
+use ImetCore\Controllers\Imet\v1;
+use ImetCore\Controllers\Imet\v2;
+use ImetCore\Controllers\ProtectedAreaController;
+use ImetCore\Controllers\SpeciesController;
+use ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 

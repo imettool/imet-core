@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
+namespace ImetCore\Models\Imet\v1\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\v1\Modules;
 
 class _Objectives extends Modules\Component\ImetModule
 {

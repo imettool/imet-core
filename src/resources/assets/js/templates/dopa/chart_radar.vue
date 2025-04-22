@@ -41,7 +41,6 @@ export default {
         let _this = this;
         let elem = this.$el.querySelector("div.dopa_radar");
         if (this.data != null && this.data != "null" && this.data !== '[]') {
-            debugger;
             this.chart = echarts.init(elem);
             this.chart.setOption(_this.radar_options());
         }

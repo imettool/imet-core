@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Jobs;
+namespace ImetCore\Jobs;
 
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Services\Scores\OecmScores;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet as ImetV2;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOECM;
+use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Models\Imet\oecm\Imet as ImetOECM;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
@@ -48,8 +48,8 @@ class CalculateScores implements ShouldQueue
         // OECM
         $OECMs = ImetOECM::select(['FormID'])->get();
         foreach($OECMs as $oecm){
-            OecmScores::refresh_scores($oecm->FormID);
-            Log::info('OECM #' . $oecm->FormID . ' scores updated');
+            OecmScores::refresh_scores($oecm);
+            Log::info('OECM #' . $oecm . ' scores updated');
         }
 
     }

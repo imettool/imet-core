@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
 class Objectives extends Modules\Component\ImetModule_Eval
 {
@@ -16,6 +16,8 @@ class Objectives extends Modules\Component\ImetModule_Eval
     protected static $DEPENDENCIES = [
         [AchievedObjectives::class, 'Objective']
     ];
+
+    private static $cache_predefined_values = null;
 
     public function __construct(array $attributes = []) {
 
@@ -40,23 +42,28 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     protected static function getPredefined($form_id = null): ?array
     {
-        $key_elements = $form_id != null
-            ? array_merge(
-                KeyElements::getPrioritizedElements($form_id),
-                Designation::getPrioritizedElements($form_id),
-                SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
-                ThreatsIntegration::getPrioritizedElements($form_id)
-            )
-            : [];
+        if (static::$cache_predefined_values === null) {
+            $key_elements = $form_id != null
+                ? array_merge(
+                    KeyElements::getPrioritizedElements($form_id),
+                    Designation::getPrioritizedElements($form_id),
+                    SupportsAndConstraintsIntegration::getPrioritizedElements($form_id),
+                    ThreatsIntegration::getPrioritizedElements($form_id)
+                )
+                : [];
 
-        return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => [
-                'group0' => [],
-                'group1' => $key_elements
-            ]
-        ];
+
+            static::$cache_predefined_values = [
+                'field' => static::$DEPENDENCY_ON,
+                'values' => [
+                    'group0' => [],
+                    'group1' => $key_elements
+                ]
+            ];
+        }
+        return static::$cache_predefined_values;
     }
+
 
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {

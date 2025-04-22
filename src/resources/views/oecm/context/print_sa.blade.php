@@ -1,9 +1,9 @@
 <?php
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Support\Facades\App;
 
 /** @var Imet $item */

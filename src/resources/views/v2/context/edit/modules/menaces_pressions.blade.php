@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
 $vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
@@ -19,7 +19,7 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
 
     // Inject titles
     foreach(MenacesPressions::$groupsByCategory as $i => $category){
-        $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectGroupTitle(
+        $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle(
             $view_groupTable, $definitions['module_key'], $category[0],
             ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
     }

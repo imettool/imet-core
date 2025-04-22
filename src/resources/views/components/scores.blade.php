@@ -1,8 +1,8 @@
 <?php
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Models\Imet;
+use ImetCore\Services\Assessment\ImetAssessment;
+use ImetCore\Services\Scores\Functions\_Scores;
 
 /** @var String $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */

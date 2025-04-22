@@ -41,7 +41,7 @@ $official_recognition = $governance['OfficialRecognition'] === 1 ? trans('imet-c
         <td style="text-align: left;"><b>@lang('imet-core::oecm_context.Governance.fields.DateOfCreation')</b></td>
         <td  style="text-align: left;">
             @if($governance['DateOfCreation']!==null)
-               @if(array_key_exists($governance['DateOfCreation'], \AndreaMarelli\ModularForms\Helpers\Input\SelectionList::getList('ImetOECM_DateOfCreation')))
+               @if(array_key_exists($governance['DateOfCreation'], \ModularForms\Helpers\Input\SelectionList::getList('ImetOECM_DateOfCreation')))
                    @lang('imet-core::oecm_lists.DateOfCreation.'.$governance['DateOfCreation'])
                @else
                    {{ $governance['DateOfCreation'] }}

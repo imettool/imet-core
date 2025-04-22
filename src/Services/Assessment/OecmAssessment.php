@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Assessment;
+namespace ImetCore\Services\Assessment;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOecm;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
-use AndreaMarelli\ImetCore\Services\Scores\Labels;
+use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\OecmScores;
+use ImetCore\Services\Scores\Labels;
 
 class OecmAssessment
 {

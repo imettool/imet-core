@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Commands;
+namespace ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as ImetController;
-use AndreaMarelli\ModularForms\Helpers\File\File;
+use ImetCore\Controllers\Imet\Controller as ImetController;
+use ModularForms\Helpers\File\File;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;

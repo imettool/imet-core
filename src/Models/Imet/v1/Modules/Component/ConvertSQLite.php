@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
+namespace ImetCore\Models\Imet\v1\Modules\Component;
 
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedArea;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;

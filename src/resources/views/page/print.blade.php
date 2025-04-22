@@ -1,9 +1,9 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet;
-use AndreaMarelli\ImetCore\Models;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+use ImetCore\Controllers\Imet;
+use ImetCore\Models;
+use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleViewModes;
 use \Illuminate\Support\Str;
 
 /** @var Imet\v2\ContextController|Imet\v1\ContextController|Imet\oecm\ContextController|Imet\v1\EvalController|Imet\v2\EvalController|Imet\oecm\EvalController $controller */

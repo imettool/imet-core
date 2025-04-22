@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions;
+namespace ImetCore\Services\Scores\Functions;
 
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\Cache;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\Cache;
 
 abstract class _Scores
 {

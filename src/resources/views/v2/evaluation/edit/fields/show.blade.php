@@ -5,7 +5,7 @@
 /** @var String $class  */
 /** @var String $other [optional] */
 
-$vue_attributes = \AndreaMarelli\ModularForms\Helpers\DOM::vueAttributes($v_id, $v_value);
+$vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($v_id, $v_value);
 
 ?>
 

@@ -16,7 +16,7 @@ if (!function_exists('financial_resources_calc')) {
 }
 
 $record = $records[0];
-$area = array_key_exists('FormID', $record) ? \AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
+$area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID']) : null;
 
 
 ?>

@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ModularForms\Models\Utils\Currency as BaseCurrency;
+use ImetCore\Helpers\Database;
+use ModularForms\Models\Utils\Currency as BaseCurrency;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Config;
  * @property string $name_en
  * @property string $name_sp
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class Currency extends BaseCurrency
 {

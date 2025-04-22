@@ -1,14 +1,21 @@
 export default{
 
-    base_layer: 'mapbox://styles/jamesdavy/cjw25laqe0y311dqulwkvnfoc',
-
-    addWdpaLayer(map, wdpa_ids = null, color = null){
+    vectorTileLayer(map, wdpa_ids = null, color = null){
 
         // Add source: JRC geoserver
         map.addSource("geospatial_jrc", {
             type: 'vector',
             tiles: [
-                'https://geospatial.jrc.ec.europa.eu/geoserver/gwc/service/wmts?layer=marxan:wdpa_latest_biopama&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=application/x-protobuf;type=mapbox-vector&TileMatrix=EPSG:900913:{z}&TILECOL={x}&TILEROW={y}'
+                'https://geospatial.jrc.ec.europa.eu/geoserver/gwc/service/wmts?' +
+                'layer=marxan:wdpa_latest_biopama' +
+                '&tilematrixset=EPSG:900913' +
+                '&Service=WMTS' +
+                '&Request=GetTile' +
+                '&Version=1.0.0' +
+                '&Format=application/x-protobuf;type=mapbox-vector' +
+                '&TileMatrix=EPSG:900913:{z}' +
+                '&TILECOL={x}' +
+                '&TILEROW={y}'
             ],
             'tileSize': 512,
             'scheme': 'xyz',

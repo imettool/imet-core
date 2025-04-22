@@ -1,6 +1,6 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\v1;
+namespace ImetCore\Controllers\Imet\v1;
 
 
 class ContextController extends Controller

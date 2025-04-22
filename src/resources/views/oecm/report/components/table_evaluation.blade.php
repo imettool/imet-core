@@ -1,5 +1,5 @@
 <?php
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\ApiController;
 /** @var array $scores */
 /** @var array $labels */
 
@@ -16,7 +16,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['context']['avg_indicator'], '') !!}">{{ $scores['context']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['context']['avg_indicator'], '') !!}">{{ $scores['context']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
 
@@ -41,7 +41,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['planning']['avg_indicator'], '') !!}">{{ $scores['planning']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['planning']['avg_indicator'], '') !!}">{{ $scores['planning']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -67,7 +67,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['inputs']['avg_indicator'], '') !!}">{{ $scores['inputs']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['inputs']['avg_indicator'], '') !!}">{{ $scores['inputs']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -92,7 +92,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['process']['avg_indicator'], '') !!}">{{ $scores['process']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['process']['avg_indicator'], '') !!}">{{ $scores['process']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -137,7 +137,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['outputs']['avg_indicator'], '') !!}">{{ $scores['outputs']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['outputs']['avg_indicator'], '') !!}">{{ $scores['outputs']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>
@@ -159,7 +159,7 @@ use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
     <tr>
         <td colspan="12">
             <h4>
-                <div class="{!! \AndreaMarelli\ImetCore\Controllers\Imet\ApiController::score_class($scores['outcomes']['avg_indicator'], '') !!}">{{ $scores['outcomes']['avg_indicator']  ?? ' - ' }}</div>
+                <div class="{!! \ImetCore\Controllers\Imet\ApiController::score_class($scores['outcomes']['avg_indicator'], '') !!}">{{ $scores['outcomes']['avg_indicator']  ?? ' - ' }}</div>
             </h4>
         </td>
     </tr>

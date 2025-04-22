@@ -5,8 +5,8 @@
 
 $definitions['label_width'] = 7;
 
-use \AndreaMarelli\ImetCore\Helpers\Template;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use \ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 ?>
 

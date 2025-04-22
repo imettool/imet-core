@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Commands;
+namespace ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller as ImetController;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
+use ImetCore\Controllers\Imet\Controller as ImetController;
+use ImetCore\Models\Imet\Imet;
 use Illuminate\Console\Command;
 
 

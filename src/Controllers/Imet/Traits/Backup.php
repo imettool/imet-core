@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\Imet;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;

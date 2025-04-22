@@ -1,20 +1,20 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV1;
-use AndreaMarelli\ImetCore\Models\Imet\API\Assessment\ReportV2;
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Controllers\Controller;
-use AndreaMarelli\ModularForms\Helpers\ModuleKey;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Assessment;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\StatisticsApi;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ScalingUpApi;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\API\Assessment\ReportV1;
+use ImetCore\Models\Imet\API\Assessment\ReportV2;
+use ImetCore\Models\Imet;
+use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Controllers\Controller;
+use ModularForms\Helpers\ModuleKey;
+use ImetCore\Controllers\Imet\Traits\Assessment;
+use ImetCore\Controllers\Imet\Traits\StatisticsApi;
+use ImetCore\Controllers\Imet\Traits\ScalingUpApi;
 use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
@@ -184,7 +184,7 @@ class ApiController extends Controller
                     $api[] = $item;
                 }
 
-                $assessment_labels = \AndreaMarelli\ImetCore\Services\Scores\ImetScores::labels();
+                $assessment_labels = \ImetCore\Services\Scores\ImetScores::labels();
                 foreach ($assessment_labels as $key => $values) {
                     foreach ($values['abbreviations'] as $abb_key => $value) {
                         $labels[$key][$value] = $values['full'][$abb_key];

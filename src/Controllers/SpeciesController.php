@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ModularForms\Controllers\Controller;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ImetCore\Models\Animal;
+use ModularForms\Controllers\Controller;
+use ModularForms\Helpers\HTTP;
+use ImetCore\Models\Animal;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

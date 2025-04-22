@@ -1,5 +1,5 @@
 <?php
-/** @var $moduleClass \AndreaMarelli\ModularForms\Models\Module */
+/** @var $moduleClass \ModularForms\Models\Module */
 
 $definitions = $moduleClass::getDefinitions();
 
@@ -11,7 +11,7 @@ $definitions = $moduleClass::getDefinitions();
     {{$definitions['module_title']}}
 </td>
 <td class="align-baseline width150px">
-    <a href="{{ route('imet-core::csv', ['ids' => $results,  'module_key' => \AndreaMarelli\ModularForms\Helpers\ModuleKey::ClassNameToKey($module)]) }}"
+    <a href="{{ route('imet-core::csv', ['ids' => $results,  'module_key' => \ModularForms\Helpers\ModuleKey::ClassNameToKey($module)]) }}"
        class="btn-nav small"><span class="fas fa-fw fa-cloud-download-alt  "></span></a>
     <tooltip>@uclang('modular-forms::common.export')</tooltip>
 </td>

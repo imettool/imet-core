@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services;
+namespace ImetCore\Services;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
 class StakeholdersService{
 

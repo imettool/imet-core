@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDomination;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDominationMPA;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDomination;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDominationMPA;
 
 trait Outputs
 {

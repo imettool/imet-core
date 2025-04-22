@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components;
+namespace ImetCore\Models\Imet\Components;
 
-use AndreaMarelli\ImetCore\Models\Currency;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Models\Currency;
+use ModularForms\Helpers\Input\SelectionList;
 
 Trait Upgrade
 {

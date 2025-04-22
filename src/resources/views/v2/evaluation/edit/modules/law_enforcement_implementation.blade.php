@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
 use Illuminate\Support\Facades\View;
 
 $view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();

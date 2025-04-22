@@ -4,11 +4,11 @@
 /** @var Mixed $vueData */
 
 
-    $imet = \AndreaMarelli\ImetCore\Models\Imet\v1\Imet::find($vueData['form_id']);
-    if(\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
-        $pa = \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::find($imet->wdpa_id);
+    $imet = \ImetCore\Models\Imet\v1\Imet::find($vueData['form_id']);
+    if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
+        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::find($imet->wdpa_id);
     } else {
-        $pa = \AndreaMarelli\ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
+        $pa = \ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
     }
 
     if($pa!==null){

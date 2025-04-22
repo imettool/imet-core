@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\User\Role;
 
 class ObjectivesSupportsAndConstraints extends _Objectives
 {

@@ -30,7 +30,7 @@ foreach ($averages as $group) {
 
 // Inject Average calculation
 foreach ($results as $index => $result) {
-    $view_groupTable = AndreaMarelli\ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group' . $index, 2, 2, '', $result);
+    $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group' . $index, 2, 2, '', $result);
 }
 
 ?>

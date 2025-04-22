@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-use \AndreaMarelli\ModularForms\Enums\ModuleViewModes;
+use \ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
 $table_id = 'table_'.$definitions['module_key'];

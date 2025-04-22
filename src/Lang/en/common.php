@@ -168,4 +168,18 @@ return [
         ]
     ],
 
+    'dropzone' => [
+        'dict_default_message' => 'Drag and drop to upload json/zip files',
+        'dict_fallback_message' => 'Your browser does not support drag\'n\'drop file uploads.',
+        'dict_fallback_text' => 'Please use the fallback form below to upload your files like in the olden days.',
+        'dict_file_too_big' => 'File is too big (__filesize__MiB). Max filesize: __maxFilesize__MiB.',
+        'dict_invalid_file_type' => 'You can\'t upload files of this type.',
+        'dict_response_error' => 'Server responded with __statusCode__ code.',
+        'dict_cancel_upload' => 'Cancel upload',
+        'dict_upload_canceled' => 'Upload canceled',
+        'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
+        'dict_remove_file'  => 'Remove file',
+        'dictMaxFilesExceeded' => 'You exceeded the maximum files for upload. Please remove files in order to upload more',
+    ]
+
 ];

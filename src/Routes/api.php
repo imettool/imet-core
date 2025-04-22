@@ -1,7 +1,7 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Support\Facades\Route;
 
 

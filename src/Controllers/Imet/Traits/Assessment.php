@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Services\Assessment\ImetAssessment;
-use AndreaMarelli\ImetCore\Services\Assessment\OecmAssessment;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Assessment\ImetAssessment;
+use ImetCore\Services\Assessment\OecmAssessment;
+use ImetCore\Services\Scores\Functions\_Scores;
 use Illuminate\Http\JsonResponse;
 
 use function response;

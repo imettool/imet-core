@@ -1,13 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
 
 trait Planning
 {

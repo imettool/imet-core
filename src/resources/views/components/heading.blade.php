@@ -1,8 +1,8 @@
 <?php
-use \AndreaMarelli\ImetCore\Helpers\Template;
-use \AndreaMarelli\ImetCore\Models\Imet\Imet;
-use \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
+use \ImetCore\Helpers\Template;
+use \ImetCore\Models\Imet\Imet;
+use \ImetCore\Models\ProtectedAreaNonWdpa;
+use \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 
 /** @var Imet $item */
 

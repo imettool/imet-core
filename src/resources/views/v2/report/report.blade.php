@@ -1,11 +1,11 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Controllers\Imet\v2\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\Template;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\v2\Controller;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
 
 /** @var string $action */
@@ -124,7 +124,7 @@ if ($item->language != App::getLocale()) {
                         'item' => $item,
                         'step' => null,
                         'radar_show' => false,
-                        'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2,
+                        'version' => \ImetCore\Models\Imet\Imet::IMET_V2,
                     ])
                     <div class="w-4/12">
                         <imet_radar :values="radar_values" :width="380" :height="250"></imet_radar>
@@ -304,7 +304,7 @@ if ($item->language != App::getLocale()) {
             report: @json($report),
             scores: @json($scores),
             labels: @json($labels),
-            version: "{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 }}",
+            version: "{{ \ImetCore\Models\Imet\Imet::IMET_V2 }}",
             api_data: @json($dopa_indicators),
             connection: {{ $connection ? 'true' : 'false' }},
             wdpa_id: '{{ $item->wdpa_id }}',

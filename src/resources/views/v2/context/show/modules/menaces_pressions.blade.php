@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 use \Wa72\HtmlPageDom\Helpers;

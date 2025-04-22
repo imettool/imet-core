@@ -1,5 +1,5 @@
 <?php
-namespace AndreaMarelli\ImetCore\Helpers;
+namespace ImetCore\Helpers;
 
 use Illuminate\Support\Str;
 
@@ -15,7 +15,7 @@ class ModuleKey{
     {
         $items = explode(self::separator, $module_key);
 
-        $module_class = 'AndreaMarelli\\ImetCore\\Models';
+        $module_class = 'ImetCore\\Models';
         foreach ($items as $index => $item) {
             if($index===1){
                 $module_class .= '\\' . $item; // Version

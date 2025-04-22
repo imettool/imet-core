@@ -1,13 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceClassification;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceHabitats;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceSpecies;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceClassification;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceHabitats;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceSpecies;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstraints;
 
 trait Context
 {

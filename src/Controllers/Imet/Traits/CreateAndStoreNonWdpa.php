@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ModularForms\Helpers\Input\SelectionList;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

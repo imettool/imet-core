@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp;
+namespace ImetCore\Models\Imet\API\ScalingUp;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Group as SectionGroup;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
+use ImetCore\Models\Imet\ScalingUp\Sections\Group as SectionGroup;
+use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
 
 trait Group
 {

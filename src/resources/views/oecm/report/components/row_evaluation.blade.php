@@ -6,7 +6,7 @@
 
 /** @var boolean $threats [optional] */
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\ApiController;
 
 $assessment_value   = $assessment_value ?? null;
 $additional_classes = $additional_classes ?? null;

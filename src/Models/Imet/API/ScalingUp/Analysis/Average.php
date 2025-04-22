@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
+namespace ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
+use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 
 trait Average
 {

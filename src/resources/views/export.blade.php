@@ -1,12 +1,12 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Controllers\Imet\Controller $controller */
+/** @var \ImetCore\Controllers\Imet\Controller $controller */
 /** @var \Illuminate\Database\Eloquent\Collection $list */
 /** @var \Illuminate\Http\Request $request */
 /** @var string $route_prefix */
 /** @var array $countries */
 /** @var array $years */
 
-use \AndreaMarelli\ImetCore\Models\Imet\Imet;
+use \ImetCore\Models\Imet\Imet;
 
 ?>
 
@@ -69,7 +69,7 @@ use \AndreaMarelli\ImetCore\Models\Imet\Imet;
                         <div class="imet_pa_name">
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             (<a target="_blank"
-                                :href="'{{ \AndreaMarelli\ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{
+                                :href="'{{ \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{
                                 item.wdpa_id }}</a>)
                             <br/>
                         </div>

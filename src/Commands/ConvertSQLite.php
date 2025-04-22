@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Commands;
+namespace ImetCore\Commands;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\Type\Chars;
+use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\Type\Chars;
 use Illuminate\Console\Command;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Facades\Config;

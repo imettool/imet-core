@@ -5,7 +5,7 @@
 
 $vue_record_index = '0';
 
-$vueData['area'] = \AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
 
 ?>
 

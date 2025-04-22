@@ -1,15 +1,15 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
+use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Process
 {
@@ -26,8 +26,25 @@ trait Process
 
         $values = $records
             ->map(function($record) use ($staff_weights){
-                $record['eval_score'] = $record['EvaluationScore']!==null ? $record['EvaluationScore'] : $staff_weights[$record['Theme']]['ratio03'];
-                $record['weight'] = $record['EvaluationScore']===null ? $staff_weights[$record['Theme']]['w_avg'] : 1;
+                if ($record['EvaluationScore'] !== null) {
+                    $eval_score = $record['EvaluationScore'];
+                } else if (isset($staff_weights[$record['Theme']])) {
+                    $eval_score = $staff_weights[$record['Theme']]['ratio03'];
+                } else {
+                    $eval_score = 0;
+                }
+
+                $weight = 1;
+                $record['eval_score'] = $eval_score;
+                if ($record['EvaluationScore'] === null) {
+                    if (isset($staff_weights[$record['Theme']])) {
+                        $weight = $staff_weights[$record['Theme']]['w_avg'];
+                    }
+                }
+
+
+                $record['eval_score'] = $eval_score;
+                $record['weight'] = $weight;
                 return $record;
             });
 

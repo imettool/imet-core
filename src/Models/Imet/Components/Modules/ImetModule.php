@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
+namespace ImetCore\Models\Imet\Components\Modules;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Dependencies;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Module;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Dependencies;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Module;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use ReflectionException;

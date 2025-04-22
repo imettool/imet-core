@@ -3,8 +3,8 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\DesignAdequacy;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\DesignAdequacy;
 use Illuminate\Support\Facades\View;
 
 $vueData['marine_predefined'] = DesignAdequacy::get_marine_predefined();

@@ -1,11 +1,11 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Component;
+namespace ImetCore\Models\Imet\v2\Modules\Component;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
+use ImetCore\Models\Imet\Components\Upgrade;
+use ImetCore\Models\Imet\v2\Imet;
 
 
 class ImetModule extends BaseImetModule

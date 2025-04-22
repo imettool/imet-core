@@ -3,10 +3,10 @@
 /** @var Mixed $definitions */
 /** @var Mixed $item */
 
-    if(\AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
-        $pa = \AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa::find($item->wdpa_id);
+    if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
+        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::find($item->wdpa_id);
     } else {
-        $pa = \AndreaMarelli\ImetCore\Models\ProtectedArea::getByWdpa($item->wdpa_id);
+        $pa = \ImetCore\Models\ProtectedArea::getByWdpa($item->wdpa_id);
     }
 
     if($pa!==null){

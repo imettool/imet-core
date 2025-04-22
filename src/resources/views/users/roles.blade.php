@@ -1,9 +1,9 @@
 <?php
-/** @var \AndreaMarelli\ImetCore\Controllers\UsersController $controller */
+/** @var \ImetCore\Controllers\UsersController $controller */
 /** @var string $role */
 /** @var \Illuminate\Database\Eloquent\Collection $users_and_roles */
 
-use \AndreaMarelli\ImetCore\Models\User\Role;
+use \ImetCore\Models\User\Role;
 
 ?>
 
@@ -61,7 +61,7 @@ use \AndreaMarelli\ImetCore\Models\User\Role;
                             <td>
                                 <dropdown
                                         :multiple="true"
-                                        data-values='@json(\AndreaMarelli\ImetCore\Models\Country::selectionList())'
+                                        data-values='@json(\ImetCore\Models\Country::selectionList())'
                                         v-model="records[index]['role_isos']"
                                         :id="'records_'+index+'_isos'"
                                         data-class="field-edit"

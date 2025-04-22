@@ -1,14 +1,14 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\Utils\Country as BaseCountry;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\Utils\Country as BaseCountry;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use AndreaMarelli\ImetCore\Models\Region;
+use ImetCore\Models\Region;
 use Illuminate\Support\Facades\App;
 
 
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\App;
  * @property string $name
  * @property string $Name
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class Country extends BaseCountry
 {

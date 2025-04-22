@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
+use ModularForms\Models\Traits\Payload;
 use Exception;
 use Illuminate\Http\Request;
 

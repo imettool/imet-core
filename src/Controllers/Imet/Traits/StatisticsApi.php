@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use function abort;

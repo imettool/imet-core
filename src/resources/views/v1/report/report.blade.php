@@ -1,9 +1,9 @@
 <?php
 
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\_Scores;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Support\Facades\App;
 
 /** @var string $action */
@@ -123,7 +123,7 @@ if ($item->language != App::getLocale()) {
                         'item' => $item,
                         'step' => null,
                         'radar_show' => false,
-                        'version' => \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1,
+                        'version' => \ImetCore\Models\Imet\Imet::IMET_V1,
                     ])
                     <div class="w-4/12">
                         <imet_radar :values="radar_values" :width="380" :height="250"></imet_radar>
@@ -290,11 +290,11 @@ if ($item->language != App::getLocale()) {
                 {{-- Save --}}
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
-                        action="{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                        action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
                         style="display: inline-block;">
                         @method('PATCH')
                         @csrf
-                        <span @click="saveReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('save') !!}
+                        <span @click="saveReport">{!! \ModularForms\Helpers\Template::icon('save') !!}
                             {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
@@ -310,7 +310,7 @@ if ($item->language != App::getLocale()) {
                 </div>
 
                 {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! \AndreaMarelli\ModularForms\Helpers\Template::icon('print') !!}
+                <div class="standalone" @click="printReport">{!! \ModularForms\Helpers\Template::icon('print') !!}
                     {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
@@ -330,7 +330,7 @@ if ($item->language != App::getLocale()) {
             report: @json($report),
             scores: @json($scores),
             labels: @json($labels),
-            version: "{{ \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1 }}",
+            version: "{{ \ImetCore\Models\Imet\Imet::IMET_V1 }}",
             loading: false,
             error: false,
             status: 'idle',
@@ -421,7 +421,7 @@ if ($item->language != App::getLocale()) {
                     ]
                 }
             },
-            url: '{{ route(\AndreaMarelli\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
+            url: '{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
         }));
 
         app.mount('#imet_report');

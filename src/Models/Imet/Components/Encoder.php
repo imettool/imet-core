@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components;
+namespace ImetCore\Models\Imet\Components;
 
-use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
+use ImetCore\Models\Imet\Components\BaseModel;
 use Carbon\Carbon;
 
 abstract class Encoder extends BaseModel

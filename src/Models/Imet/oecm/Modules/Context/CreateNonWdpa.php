@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\Imet\oecm\Modules;
 
 
 class CreateNonWdpa extends Modules\Component\ImetModule

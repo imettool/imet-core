@@ -1,9 +1,9 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp;
+namespace ImetCore\Models\Imet\ScalingUp;
 
-use AndreaMarelli\ImetCore\Helpers\Database;
-use AndreaMarelli\ImetCore\Models\Imet\Components\BaseModel;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 
 
 class ScalingUpWdpa extends BaseModel

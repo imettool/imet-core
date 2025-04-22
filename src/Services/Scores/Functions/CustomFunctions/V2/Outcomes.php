@@ -1,8 +1,8 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\KeyConservationTrend;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\KeyConservationTrend;
 
 trait Outcomes
 {

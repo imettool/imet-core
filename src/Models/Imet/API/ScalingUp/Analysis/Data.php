@@ -1,10 +1,10 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
+namespace ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\DataTable as ScalingUpDataTable;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\Radar;
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ScalingUp\Sections\DataTable as ScalingUpDataTable;
+use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
+use ImetCore\Helpers\ScalingUp\Common;
 
 trait Data
 {

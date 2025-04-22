@@ -1,13 +1,13 @@
 <?php
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ModularForms\Controllers\FormController as BaseFormController;
+use ModularForms\Controllers\FormController as BaseFormController;
 
 /**
  * Class FormController
  *
- * @package AndreaMarelli\ImetCore\Controllers
+ * @package ImetCore\Controllers
  */
 class __Controller extends BaseFormController
 {
