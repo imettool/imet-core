@@ -10,8 +10,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-/**  */
-use \ImetUser as User;
 
 
 class UsersController extends __Controller
@@ -27,7 +25,7 @@ class UsersController extends __Controller
         $this->authorize('manage', static::$form_class);
 
         $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
-        $users = User::where('imet_role', $role_type)
+        $users = (config('imet-core.user'))::where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
             ->map(function ($item){
@@ -63,7 +61,7 @@ class UsersController extends __Controller
     public function search(Request $request): JsonResponse
     {
         $list = $request->filled('search_key')
-            ? User::searchByKey($request->input('search_key'))
+            ? (config('imet-core.user'))::searchByKey($request->input('search_key'))
             : collect();
 
         return static::sendAPIResponse($list->toArray());
@@ -87,13 +85,13 @@ class UsersController extends __Controller
                 if($record['user']){
                     // Remove any eventual role and set user's imet_role
                     Role::where('user_id', $record['user']['id'])->delete();
-                    User::find($record['user']['id'])->update(['imet_role' => $role_type]);
+                    (config('imet-core.user'))::find($record['user']['id'])->update(['imet_role' => $role_type]);
                     $defined_users[] = $record['user']['id'];
                 }
             }
             // Set imet_role to null for any user with the given role which is not in the provided list
             if(!empty($defined_users)){
-                User::where('imet_role', $role_type)
+                (config('imet-core.user'))::where('imet_role', $role_type)
                     ->whereNotIn('id', $defined_users)
                     ->update(['imet_role' => null]);
             }
