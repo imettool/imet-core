@@ -10,7 +10,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-nativephp"
+        "andreamarelli/modular-forms": "dev-beta"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0"
