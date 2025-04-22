@@ -9,15 +9,14 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 
 class Ranking
 {
-
     /**
      * @param array $form_ids
      * @param string $type
      * @param array $indicators
-     * @param int $scaling_id
+     * @param ?int $scaling_id
      * @return array[]|\array[][]
      */
-    public static function ranking_indicators(array $form_ids, string $type, array $indicators, int $scaling_id = 0): array
+    public static function ranking_indicators(array $form_ids, string $type, array $indicators, ?int $scaling_id = 0): array
     {
         $items_to_calculate = $percent_values = $sum_values = $separated_values_by_pa = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
@@ -46,6 +45,7 @@ class Ranking
             if (!isset($items_to_calculate[$i])) {
                 $items_to_calculate[$i] = 0;
             }
+
             foreach ($values as $v => $value) {
                 if ($type === "process" && stripos($v, "_")) {
                     $name = Common::get_all_indicator_labels_cached()[$v]." _".trans('imet-core::analysis_report.legends.'.$v);
