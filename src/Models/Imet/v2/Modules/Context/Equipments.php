@@ -64,7 +64,7 @@ class Equipments extends Modules\Component\ImetModule
 
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
         $record = static::replacePredefinedValue($record, 'Resource', 'Hydraulic electric facility', 'Hydropower electric facility');

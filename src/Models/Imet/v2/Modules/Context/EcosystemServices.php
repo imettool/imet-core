@@ -84,7 +84,7 @@ class EcosystemServices extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
         $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other');

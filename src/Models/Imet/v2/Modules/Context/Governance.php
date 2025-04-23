@@ -41,7 +41,7 @@ class Governance extends Modules\Component\ImetModule
     /**
      * @throws Exception
      */
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // #### not in predefined lists ####
         $record['InstitutionType'] = static::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');

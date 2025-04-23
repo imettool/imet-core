@@ -40,7 +40,7 @@ class Habitats extends Modules\Component\ImetModule
 
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.8 -> v2.10 (revised habitat list)  ####
         $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest temperate','forest_temperate_boreal');
