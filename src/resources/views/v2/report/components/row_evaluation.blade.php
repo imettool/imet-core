@@ -11,10 +11,13 @@ use ImetCore\Controllers\Imet\ApiController;
 $assessment_value   = $assessment_value ?? null;
 $additional_classes = $additional_classes ?? null;
 $threats            = $threats ?? false;
+$constraints        = $constraints ?? false;
 
-$classes = $threats
-    ? ApiController::score_class_threats($assessment_value)
-    : ApiController::score_class($assessment_value);
+$classes = match(true) {
+    $threats => ApiController::score_class_threats($assessment_value),
+    $constraints => ApiController::score_class_threats($assessment_value, 'score_constraints_success'),
+    default => ApiController::score_class($assessment_value)
+};
 
 ?>
 
