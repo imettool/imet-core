@@ -33,7 +33,7 @@ class Governance extends Modules\Component\ImetModule
             ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
 
-        $this->module_info =  trans('imet-core::v2_context.Governance.info');
+        $this->module_info =  trans('imet-core::v2_context.Governance.module_info');
 
         parent::__construct($attributes);
     }

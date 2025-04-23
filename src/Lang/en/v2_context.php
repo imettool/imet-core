@@ -101,7 +101,7 @@ return [
         ],
         'governance' => 'Governance',
         'partnership' => 'Partnerships',
-        'info' =>
+        'module_info' =>
             'This section describes the existing governance structure and stakeholder partnerships within the protected
              area. It outlines the key institutions involved, kind of decision-making processes, stakeholder roles and 
              the level of coordination between actors. It also highlights the current partnerships supporting conservation 
@@ -123,7 +123,13 @@ return [
             'networks'     => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Designation for the status of conservation importance by international bodies (IBA, AZE, etc.)',
             'marine_pa'    => 'Designation of marine protected areas',
-        ]
+        ],
+        'module_info' =>
+            'This section outlines the official designations given to the protected area, such as World Heritage Sites, 
+            Man and Biosphere Reserves (MAB), Ramsar Sites, Important Bird Areas (IBA), Specially Protected Areas of 
+            Mediterranean Importance (SPAMI) and Locally Managed Marine Areas (LMMA). These designations reflect the 
+            ecological importance of the area and influence its management framework, conservation priorities and 
+            international obligations.'
     ],
 
     'Networks' => [

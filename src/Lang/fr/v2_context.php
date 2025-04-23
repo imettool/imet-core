@@ -104,7 +104,7 @@ return [
         ],
         'governance' => 'Gouvernance',
         'partnership' => 'Partenariats',
-        'info' =>
+        'module_info' =>
             'Cette section décrit la structure de gouvernance et les partenariats existants au sein de \'aire protégée. 
             Elle décrit les principales institutions impliquées, les types de processus décisionnels, les rôles des 
             parties prenantes et le niveau de coordination entre les acteurs. Elle met également en évidence les 
@@ -127,7 +127,12 @@ return [
             'conservation'  => 'Site désigné par des organismes internationaux (IBA, AZE, etc.) pour son intérêt en matière de conservation',
             'marine_pa'     => 'Statut des aires protégées marines'
         ],
-        'module_info' => 'La liste indicative, mais pas exhaustive est disponible dans la guide du formulaire'
+        'module_info' =>
+            'Cette section présente les désignations officielles attribuées à l\'aire protégée, telles que les sites du
+             patrimoine mondial, les réserves de biosphère (MAB), les sites Ramsar, les zones importantes pour la 
+             conservation des oiseaux (ZICO), les aires spécialement protégées d\'importance méditerranéenne (ASPIM) 
+             et les aires marines gérées localement (AMGL). Ces désignations reflètent l\'importance écologique de la 
+             zone et influencent son cadre de gestion, ses priorités de conservation et ses obligations internationales.'
     ],
 
     'Networks' => [

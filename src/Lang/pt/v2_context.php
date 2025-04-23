@@ -100,7 +100,7 @@ return [
         ],
         'governance' => 'Governação',
         'partnership' => 'Parceria ',
-        'info' =>
+        'module_info' =>
             'Esta secção descreve a estrutura de governação existente e as parcerias com as partes interessadas dentro 
             da área protegida. Descreve as principais instituições envolvidas, os tipos de processos de tomada de 
             decisão, os papéis das partes interessadas e o nível de coordenação entre os intervenientes. Destaca 
@@ -122,7 +122,13 @@ return [
             'networks' => 'Membro de uma rede internacional reconhecida (MAB, RAPAC etc.)',
             'conservation' => 'Designação para o estado da importancia da conservação pelos organismos internacionais (IBA, AZE, etc.)',
             'marine_pa' => 'Designação das áreas protegidas marinhas',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção descreve as designações oficiais dadas à área protegida, tais como Sítios do Património Mundial, 
+            Reservas do Homem e da Biosfera (MAB), Sítios Ramsar, Áreas Importantes para Aves (IBA), Áreas Especialmente 
+            Protegidas de Importância Mediterrânica (SPAMI) e Áreas Marinhas Geridas Localmente (LMMA). Estas designações 
+            reflectem a importância ecológica da área e influenciam a sua estrutura de gestão, as prioridades de conservação 
+            e as obrigações internacionais.'
     ],
 
     'Networks' => [

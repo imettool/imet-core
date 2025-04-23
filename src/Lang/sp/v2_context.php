@@ -104,7 +104,7 @@ return [
         ],
         'governance' => 'Gobernanza',
         'partnership' => 'Asociación',
-        'info' =>
+        'module_info' =>
             'Esta sección describe la estructura de gobernanza existente y las alianzas con las partes interesadas dentro 
             del área protegida. Describe las instituciones clave involucradas, los tipos de procesos de toma de decisiones, 
             los roles de las partes interesadas y el nivel de coordinación entre los actores. También destaca las alianzas 
@@ -126,7 +126,13 @@ return [
             'networks'     => 'Pertenencia a una red internacional reconocida oficialmente (MAB, RAPAC, Red Parques, Lista Verde, etc.)',
             'conservation' => 'Designación del estado de importancia de la conservación por los organismos internacionales (IBA, AZE, etc.)',
             'marine_pa'    => 'Designación de áreas marinas protegidas',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección describe las designaciones oficiales otorgadas al área protegida, como Sitios de Patrimonio 
+            Mundial, Reservas del Hombre y de la Biosfera (MAB), Sitios Ramsar, Áreas Importantes para la Conservación 
+            de las Aves (IBA), Zonas Especialmente Protegidas de Importancia para el Mediterráneo (ZEPIM) y Áreas Marinas 
+            de Gestión Local (AMG). Estas designaciones reflejan la importancia ecológica del área e influyen en su marco 
+            de gestión, sus prioridades de conservación y sus obligaciones internacionales.'
     ],
 
     'Networks' => [
