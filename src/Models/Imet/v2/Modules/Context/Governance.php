@@ -28,9 +28,9 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'GovernanceModel',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
+            ['name' => 'GovernanceModel',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.GovernanceModel')],
             ['name' => 'SubGovernanceModel',   'type' => 'dropdown-ImetV2_SubGovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
-            ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
+            ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
 
         $this->module_info =  trans('imet-core::v2_context.Governance.info');
