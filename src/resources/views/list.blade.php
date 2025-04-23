@@ -56,7 +56,10 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             {!! Template::icon('file-import', 'white') !!}
             {{ ucfirst(trans('modular-forms::common.import')) }}
         </a>
-        @if($scaling_up_enable)
+    @endcan
+
+    @if($scaling_up_enable)
+        @can('scaling_up', $form_class)
             &nbsp;&nbsp;
             &nbsp;&nbsp;
             {{-- Scaling Up --}}
@@ -65,9 +68,8 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 {!! Template::icon('chart-bar', 'white') !!}
                 {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
             </a>
-        @endif
-
-    @endcan
+            @endcan
+    @endif
 
     @can('exportAll', $form_class)
         &nbsp;&nbsp;
