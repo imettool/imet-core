@@ -32,7 +32,7 @@ class Basket extends Model
         $image = str_replace(' ', '+', $image);
 
         $record = BasketModel::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
-        $imageName = $record->id . '.png';
+        $imageName = hash('sha256', $record->id . time()) . '.png';
 
         $disk = Storage::disk(self::BASKET_DISK);
         $image_path = self::BASKET_FOLDER . $imageName;
