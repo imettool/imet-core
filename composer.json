@@ -33,10 +33,7 @@
         "laravel": {
             "providers": [
                 "ImetCore\\ServiceProvider"
-            ],
-            "aliases": {
-                "ImetUser": "ImetCore\\Models\\User"
-            }
+            ]
         }
     },
     "config": {
