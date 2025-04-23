@@ -13,7 +13,7 @@
         "andreamarelli/modular-forms": "dev-beta"
     },
     "require-dev": {
-        "orchestra/testbench": "^9.0"
+        "orchestra/testbench": "^10.0"
     },
     "repositories": {
         "andreamarelli/modular-forms": {
