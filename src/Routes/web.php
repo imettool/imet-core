@@ -19,7 +19,7 @@ const V2_ROUTE_PREFIX = v2\Controller::ROUTE_PREFIX;
 const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
-Route::middleware([SetLocale::class::class, 'web'])->group(function () {
+Route::middleware([SetLocale::class, 'web'])->group(function () {
 
     // Old routes: to be kept for the moment to ensure backwards compatibility
     Route::get('/{url}', function ($url) {
