@@ -100,6 +100,11 @@ return [
         ],
         'governance' => 'Governance',
         'partnership' => 'Partnerships',
+        'info' =>
+            'This section describes the existing governance structure and stakeholder partnerships within the protected
+             area. It outlines the key institutions involved, kind of decision-making processes, stakeholder roles and 
+             the level of coordination between actors. It also highlights the current partnerships supporting conservation 
+             efforts and their role in management implementation.'
     ],
 
     'SpecialStatus' => [

@@ -99,6 +99,11 @@ return [
         ],
         'governance' => 'Governação',
         'partnership' => 'Parceria ',
+        'info' =>
+            'Esta secção descreve a estrutura de governação existente e as parcerias com as partes interessadas dentro 
+            da área protegida. Descreve as principais instituições envolvidas, os tipos de processos de tomada de 
+            decisão, os papéis das partes interessadas e o nível de coordenação entre os intervenientes. Destaca 
+            também as parcerias atuais que apoiam os esforços de conservação e o seu papel na implementação da gestão.'
     ],
 
     'SpecialStatus' => [

@@ -103,6 +103,11 @@ return [
         ],
         'governance' => 'Gouvernance',
         'partnership' => 'Partenariats',
+        'info' =>
+            'Cette section décrit la structure de gouvernance et les partenariats existants au sein de \'aire protégée. 
+            Elle décrit les principales institutions impliquées, les types de processus décisionnels, les rôles des 
+            parties prenantes et le niveau de coordination entre les acteurs. Elle met également en évidence les 
+            partenariats actuels soutenant les efforts de conservation et leur rôle dans la mise en œuvre de la gestion.'
     ],
 
     'SpecialStatus' => [

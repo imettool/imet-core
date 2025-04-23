@@ -103,6 +103,11 @@ return [
         ],
         'governance' => 'Gobernanza',
         'partnership' => 'Asociación',
+        'info' =>
+            'Esta sección describe la estructura de gobernanza existente y las alianzas con las partes interesadas dentro 
+            del área protegida. Describe las instituciones clave involucradas, los tipos de procesos de toma de decisiones, 
+            los roles de las partes interesadas y el nivel de coordinación entre los actores. También destaca las alianzas 
+            actuales que apoyan los esfuerzos de conservación y su papel en la implementación de la gestión.'
     ],
 
     'SpecialStatus' => [
