@@ -2,7 +2,10 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-use ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo;
+use Exception;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo as V2GeneralInfo;
+use ImetCore\Models\Imet\oecm\Modules\Context\GeneralInfo as OecmGeneralInfo;
+use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Traits\Payload;
@@ -21,7 +24,7 @@ trait CreateAndStoreNonWdpa
      *
      * @throws AuthorizationException
      */
-    public function create_non_wdpa()
+    public function create_non_wdpa(): View
     {
         $this->authorize('create', static::$form_class);
 
@@ -33,11 +36,9 @@ trait CreateAndStoreNonWdpa
      * - create prefilled IMET
      * - create IMET on non-WDPA site
      *
-     * @param Request $request
-     * @return array|View|mixed
      * @throws AuthorizationException|Throwable
      */
-    public function store(Request $request)
+    public function store(Request $request): View|array
     {
         $this->authorize('create', static::$form_class);
 
@@ -63,9 +64,7 @@ trait CreateAndStoreNonWdpa
     /**
      * Manage "store" route
      *
-     * @param Request $request
-     * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     private function store_non_wdpa(Request $request): array
     {
@@ -89,17 +88,18 @@ trait CreateAndStoreNonWdpa
             $form_record['wdpa_id'] = $new_pa->getKey();
             $form_record['Country'] = $records[0]['country'];
             $form_record['version'] = (static::$form_class)::version;
+            $form_record = array_filter($form_record);
             $request->merge(['records_json' => Payload::encode([$form_record])]);
 
             return static::redirect_to_edit_non_wdpa($request);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Session::flash('message', trans('modular-forms::common.saved_error'));
             throw $e;
         }
     }
 
-    private static function redirect_to_edit($request)
+    private static function redirect_to_edit($request): array
     {
         $form = new static::$form_class();
         $result = $form->store($request);
@@ -111,8 +111,9 @@ trait CreateAndStoreNonWdpa
         return $result;
     }
 
-    private static function redirect_to_edit_non_wdpa($request)
+    private static function redirect_to_edit_non_wdpa($request): array
     {
+        $records = Payload::decode($request->input('records_json'));
         $form = new static::$form_class();
         $result = $form->store($request);
 
@@ -120,13 +121,22 @@ trait CreateAndStoreNonWdpa
         $non_wdpa_id = Payload::decode($request->input('records_json'))[0]['wdpa_id'];
         $non_wdpa = ProtectedAreaNonWdpa::find($non_wdpa_id);
 
-        GeneralInfo::create([
-                                'FormID' => $form_id,
-                                'CompleteName' => $non_wdpa->name,
-                                'Country' => $non_wdpa->country,
-                                'Ownership' => SelectionList::getList('ImetV2_OwnershipType')[$non_wdpa->ownership_type],
-                                'CreationYear' => $non_wdpa->status_year
-                            ]);
+        if($records[0]['version'] == Imet::version){
+            V2GeneralInfo::create([
+                'FormID' => $form_id,
+                'CompleteName' => $non_wdpa->name,
+                'Country' => $non_wdpa->country,
+                'CreationYear' => $non_wdpa->status_year
+            ]);
+        } else {
+            OecmGeneralInfo::create([
+                'FormID' => $form_id,
+                'CompleteName' => $non_wdpa->name,
+                'Country' => $non_wdpa->country,
+                'Ownership' => SelectionList::getList('ImetV2_OwnershipType')[$non_wdpa->ownership_type],
+                'CreationYear' => $non_wdpa->status_year
+            ]);
+        }
 
         if($result['status'] === 'success'){
             $result['entity_label'] = $form::find($result['entity_id'])->{$form::LABEL};
