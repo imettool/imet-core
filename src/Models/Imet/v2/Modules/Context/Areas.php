@@ -3,7 +3,9 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
 
 class Areas extends Modules\Component\ImetModule
@@ -108,6 +110,26 @@ class Areas extends Modules\Component\ImetModule
             ) && $areas[0]['GISArea'] !== null && $areas[0]['GISArea'] > 0 ? $areas[0]['GISArea'] : $area;
         }
         return $area === 0 ? null : $area / 100; // ha->km2
+    }
+
+    /**
+     * Override: retrieve the PA area (only when the module is empty)
+     */
+    public static function getModuleRecords($form_id, $collection = null): array
+    {
+        $records = parent::getModuleRecords($form_id, $collection);
+
+        if($records['records'][0] === $records['empty_record']){
+            $wdpa_id = Imet::find($form_id)->wdpa_id;
+            $pa_area_km2 = ProtectedArea::getByWdpa($wdpa_id)->area;
+            if($pa_area_km2 !== null && $pa_area_km2 > 0){
+                $pa_area_ha = $pa_area_km2 * 100; // km2 -> ha
+                $records['empty_record']['WDPAArea'] = $pa_area_ha;
+                $records['records'][0] = $records['empty_record'];
+            }
+        }
+
+        return $records;
     }
 
 }
