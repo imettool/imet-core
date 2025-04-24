@@ -158,7 +158,21 @@ return [
             'InternationalSource' => 'Fonte',
             'InternationalManagementPlan' => 'Arquivo (Plano de Gestão)',
             'Observation' => 'Observação',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção apresenta a estrutura estratégica para a área protegida, incluindo a sua visão, missão e 
+            objectivos de gestão.<ul>
+            <li>Visão da área protegida: A visão é basicamente um plano de como a AP deverá ser no futuro, abrangendo a 
+            ecologia, a sociedade e a governação. É o grande objetivo que orienta tudo o que fazemos para conservar e 
+            gerir a área.</li>
+            <li>Missão da área protegida: a missão explica o que a AP está a tentar fazer e como se enquadra na visão. 
+            Define quais são as nossas responsabilidades, como vamos gerir as coisas e as regras sobre como vamos utilizar 
+            a área de uma forma que seja boa para o ambiente e para a população local.</li>
+            <li>Objectivos a longo prazo da área protegida: Os objectivos a longo prazo são como um roteiro, transformando 
+            a visão e a missão em metas específicas que orientam os esforços de gestão nos próximos 10 a 20 anos. Estes 
+            objectivos baseiam-se nas principais áreas de conservação, governação e sustentabilidade, garantindo que a 
+            AP cumpre o seu papel em termos de ecologia e economia.</li>
+            </ul>'
     ],
 
     'Contexts' => [

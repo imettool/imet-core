@@ -30,7 +30,7 @@ class Missions extends Modules\Component\ImetModule
             ['name' => 'Observation',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Missions.fields.Observation')],
         ];
 
-
+        $this->module_info = trans('imet-core::v2_context.Missions.module_info');
 
         parent::__construct($attributes);
 
