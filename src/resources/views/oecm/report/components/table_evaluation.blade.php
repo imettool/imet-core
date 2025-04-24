@@ -23,7 +23,11 @@ use ImetCore\Controllers\Imet\ApiController;
     </tr>
     <tr>
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $scores['context']['C1'], 'assessment_label' => $labels['C1']])
-        @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $scores['context']['C3'], 'assessment_label' => $labels['C3']])
+        @include('imet-core::oecm.report.components.row_evaluation', [
+           'assessment_value' => $scores['context']['C3'],
+           'assessment_label' => $labels['C3'],
+           'threats' => true
+       ])
         @include('imet-core::oecm.report.components.row_evaluation', ['assessment_value' => $scores['context']['C4'], 'assessment_label' => $labels['C4']])
         @include('imet-core::oecm.report.components.row_evaluation', [
             'assessment_value' => $scores['context']['C2'],
