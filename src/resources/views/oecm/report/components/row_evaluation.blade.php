@@ -15,12 +15,17 @@ $colspan            = isset($colspan) ? "colspan=".$colspan : "";
 $color_scores       = $color_scores ?? true;
 $constraints = $constraints ?? false;
 
-$classes = match(true) {
-    $color_scores => '',
-    $threats => ApiController::score_class_threats($assessment_value),
-    $constraints => ApiController::score_class_threats($assessment_value, 'score_constraints_success'),
-    default => ''
-};
+$classes = '';
+if ($color_scores) {
+    if ($threats) {
+        $classes = ApiController::score_class_threats($assessment_value);
+    } elseif ($constraints) {
+        $classes = ApiController::score_class_threats($assessment_value, 'score_constraints_success');
+    } else {
+        $classes = ApiController::score_class($assessment_value);
+    }
+}
+
 
 ?>
 
