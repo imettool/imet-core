@@ -195,7 +195,20 @@ return [
             'Contexto jurídico',
             'Contexto institucional'
         ],
-        'module_info' => 'Datos a nivel nacional con verificación a nivel local'
+        'module_info' =>
+            'Esta sección ofrece una visión general de los factores contextuales clave que afectan al área protegida. Incluye: 
+            <ul>
+            <li><b>Contexto histórico</b>: Eventos e hitos clave que han definido la conservación y la gestión del área.</li>
+            <li><b>Contexto socioeconómico</b>: El papel del área protegida en los medios de vida locales, las actividades 
+            económicas y las interacciones comunitarias.</li>
+            <li><b>Contexto político (a nivel de país): Estructuras de gobernanza, marcos de políticas e influencias políticas
+             que afectan la toma de decisiones.</li>
+            <li><b>Contexto legal e institucional</b>: Leyes, reglamentos e instituciones pertinentes que se aplican al área 
+            protegida.</li>
+            <li><b>Contexto institucional</b>: Las funciones y responsabilidades de las instituciones clave involucradas en 
+            la gestión y la gobernanza del área.</li>
+            </ul>
+            Estos elementos definen el marco general en el que opera el área protegida.'
     ],
 
     'GeographicalLocation' => [

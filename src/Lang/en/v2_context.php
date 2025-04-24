@@ -193,7 +193,21 @@ return [
             'Legal context',
             'Institutional context'
         ],
-        'module_info' => 'Data at national level with verification at local level'
+        'module_info' =>
+            'This section provides an overview of the key contextual factors affecting the protected area. It includes
+            <ul>
+            <li><b>Historical context</b>: Key events and milestones that have shaped the conservation and management 
+            of the area.</li>
+            <li><b>Socio-economic context</b>: The role of the protected area in local livelihoods, economic activities 
+            and community interactions.</li>
+            <li><b>Political context (country level)</b>: Governance structures, policy frameworks and political influences 
+            affecting decision making.</li>
+            <li><b>Legal and institutional context</b>: Relevant laws, regulations and institutions that apply to the 
+            protected area.</li>
+            <li><b>Institutional context</b>: The roles and responsibilities of key institutions involved in the management
+            and governance of the area.</li>
+            </ul>
+            These elements define the broader framework within which the protected area operates.'
     ],
 
     'GeographicalLocation' => [

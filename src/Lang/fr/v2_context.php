@@ -196,6 +196,21 @@ return [
             'Contexte juridique',
             'Contexte institutionnel'
         ],
+        'module_info' =>
+            'Cette section présente un aperçu des principaux facteurs contextuels affectant l\'aire protégée. Elle comprend:
+            <ul>
+            <li><b>Contexte historique</b>: événements et étapes clés qui ont façonné la conservation et la gestion de 
+            l\'aire.</li>
+            <li><b>Contexte socio-économique</b>: rôle de l\'aire protégée dans les moyens de subsistance locaux, les 
+            activités économiques et les interactions communautaires.</li>
+            <li><b>Contexte politique (au niveau du pays)</b>: structures de gouvernance, cadres politiques et influences 
+            politiques influençant la prise de décision.</li>
+            <li><b>Contexte juridique et institutionnel</b>: lois, réglementations et institutions pertinentes qui 
+            s\'appliquent à l\'aire protégée.</li>
+            <li><b>Contexte institutionnel</b>: rôles et responsabilités des principales institutions impliquées dans 
+            la gestion et la gouvernance de l\'aire.</li>
+            </ul>
+            Ces éléments définissent le cadre général dans lequel l\'aire protégée évolue.'
     ],
 
     'GeographicalLocation' => [
