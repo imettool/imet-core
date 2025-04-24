@@ -241,7 +241,11 @@ return [
             'PercentageLandscapeNetwork' => 'Superficie % de paisaje/red',
             'Index' => 'Índice de configuración <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bueno 1 - 1.5; promedio 1.5 - 2; bajo > 2',
             'Observations' => 'Notas',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha 
+            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões, 
+            transfronteiriças e de conservação da paisagem, destacando o seu papel em esforços de conservação mais amplos.'
     ],
 
     'Sectors' => [

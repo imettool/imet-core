@@ -83,6 +83,8 @@ class Areas extends Modules\Component\ImetModule
             ],
         ];
 
+        $this->module_info = trans('imet-core::v2_context.Areas.module_info');
+
         parent::__construct($attributes);
     }
 

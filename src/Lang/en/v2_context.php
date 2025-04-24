@@ -241,7 +241,11 @@ return [
             'PercentageLandscapeNetwork' => 'Surface % of landscape/network',
             'Index' => 'Configuration index [Shape index<br />&radic;(3.14)/(6.28)*perimeter/&radic;(area) =<br /> good 1 - 1.5; average 1.5 - 2; low > 2]',
             'Observations' => 'Notes',
-        ]
+        ],
+        'module_info' =>
+            'This section provides key data on the size, boundary length, terrestrial and marine coverage and spatial 
+            configuration of the property. It also situates the property within national, ecoregional, transboundary and 
+            landscape conservation networks, highlighting its role in wider conservation efforts.'
     ],
 
     'Sectors' => [

@@ -239,7 +239,11 @@ return [
             'PercentageLandscapeNetwork' => '% da Superficie da paisagens/rede',
             'Index' => 'Índice de configuração <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bom 1 - 1.5; média 1.5 - 2; baixo > 2',
             'Observations' => 'Observaçoes',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha 
+            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões, 
+            transfronteiriças e de conservação da paisagem, destacando o seu papel em esforços de conservação mais amplos.'
     ],
 
     'Sectors' => [

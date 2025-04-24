@@ -244,7 +244,12 @@ return [
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
             'Index' => 'Indice de forme <br />&radic;(3.14)/(6.28)*périmètre/&radic;(superficie) =<br /> bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2',
             'Observations' => 'Observations',
-        ]
+        ],
+        'module_info' =>
+            'Cette section fournit des données clés sur la superficie, la longueur des limites, la couverture terrestre 
+            et marine et la configuration spatiale du bien. Elle situe également le bien au sein des réseaux de conservation 
+            nationaux, écorégionaux, transfrontaliers et paysagers, soulignant son rôle dans les efforts de conservation 
+            plus vastes.'
     ],
 
     'Sectors' => [
