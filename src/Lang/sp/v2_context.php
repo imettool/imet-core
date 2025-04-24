@@ -166,13 +166,13 @@ return [
         'module_info' =>
             'Esta sección presenta el marco estratégico del área protegida, incluyendo su visión, misión y objetivos 
             de gestión.<ul>
-            <li>Visión del área protegida: La visión es básicamente un plan sobre cómo debería ser el AP en el futuro,
+            <li><b>Visión del área protegida</b>: La visión es básicamente un plan sobre cómo debería ser el AP en el futuro,
              abarcando la ecología, la sociedad y la gobernanza. Es el gran objetivo que guía todo lo que hacemos para 
              conservar y gestionar el área.</li>
-            <li>Misión del área protegida: La misión explica lo que el AP intenta hacer y cómo se integra con la visión. 
+            <li><b>Misión del área protegida</b>: La misión explica lo que el AP intenta hacer y cómo se integra con la visión. 
             Indica cuáles son nuestras responsabilidades, cómo gestionaremos las cosas y las normas que rigen el uso del 
             área de una manera beneficiosa para el medio ambiente y la población local.</li>
-            <li>Objetivos a largo plazo del área protegida: Los objetivos a largo plazo son como una hoja de ruta que 
+            <li><b>Objetivos a largo plazo del área protegida</b>: Los objetivos a largo plazo son como una hoja de ruta que 
             convierte la visión y la misión en metas específicas que guían las iniciativas de gestión durante los próximos 
             10 a 20 años. Estos objetivos se basan en las áreas clave de conservación, gobernanza y sostenibilidad, 
             garantizando que el AP cumpla su función en términos de ecología y economía.</li>

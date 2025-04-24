@@ -164,13 +164,13 @@ return [
             'This section presents the strategic framework for the protected area, including its vision, mission and 
             management objectives.: 
             <ul>
-            <li>Vision of the protected area: The vision is basically a plan for how the PA should be in the future, 
+            <li><b>Vision of the protected area</b>: The vision is basically a plan for how the PA should be in the future, 
             covering ecology, society and governance. It\'s the big goal that guides everything we do to conserve and 
             manage the area.</li>
-            <li>Mission of the protected area: The mission explains what the PA is trying to do and how it fits in with 
+            <li><b>Mission of the protected area</b>: The mission explains what the PA is trying to do and how it fits in with 
             the vision. It says what we\'re responsible for, how we\'ll manage things, and the rules for how we\'ll use 
             the area in a way that\'s good for the environment and the local people.</li>
-            <li>Long-Term objectives of the protected area: The long-term objectives are like a roadmap, turning the 
+            <li><b>Long-Term objectives of the protected area</b>: The long-term objectives are like a roadmap, turning the 
             vision and mission into specific goals that guide management efforts over the next 10 to 20 years. These 
             objectives are based on the key areas of conservation, governance, and sustainability, making sure that 
             the PA does its job in terms of ecology and the economy.</li>

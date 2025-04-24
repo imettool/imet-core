@@ -166,13 +166,13 @@ return [
         'module_info' =>
             'Cette section présente le cadre stratégique de l\'aire protégée, notamment sa vision, sa mission et ses 
             objectifs de gestion.<ul>
-            <li>Vision de l\'aire protégée: La vision est un plan d\'action pour l\'avenir de l\'AP, couvrant les 
+            <li><b>Vision de l\'aire protégée</b>: La vision est un plan d\'action pour l\'avenir de l\'AP, couvrant les 
             aspects écologiques, sociaux et de gouvernance. C\'est l\'objectif principal qui guide toutes nos actions de 
             conservation et de gestion de l\'aire.</li>
-            <li>Mission de l\'aire protégée: La mission explique les objectifs de l\'AP et leur intégration à la vision.
+            <li><b>Mission de l\'aire protégée</b>: La mission explique les objectifs de l\'AP et leur intégration à la vision.
              Elle précise nos responsabilités, notre mode de gestion et les règles d\'utilisation de l\'aire, respectueuses 
              de l\'environnement et des populations locales.</li>
-             <li>Objectifs à long terme de l\'aire protégée: Les objectifs à long terme sont une sorte de feuille de 
+             <li><b>Objectifs à long terme de l\'aire protégée</b>: Les objectifs à long terme sont une sorte de feuille de 
              route, transformant la vision et la mission en objectifs précis qui guideront les efforts de gestion pour 
              les 10 à 20 prochaines années. Ces objectifs s\'appuient sur les domaines clés de la conservation, de la 
              gouvernance et de la durabilité, garantissant que l\'AP remplit sa mission en termes d\'écologie et 
