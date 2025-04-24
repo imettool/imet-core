@@ -64,6 +64,9 @@ class Equipments extends Modules\Component\ImetModule
 
     }
 
+    /**
+     * Override
+     */
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
@@ -72,7 +75,11 @@ class Equipments extends Modules\Component\ImetModule
         return $record;
     }
 
-    public static function getAverages($form_id){
+    /**
+     * Calculate the average adequacy level for each group
+     */
+    public static function getAverages($form_id): array
+    {
         $records = Equipments::getModuleRecords($form_id)['records'];
 
         $averages = [];
