@@ -58,7 +58,7 @@ return [
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée? (Fournir une liste, puis une brève description)',
         ],
         'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories
-            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé. 
+            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé.
             Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
             de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez
             préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est
@@ -337,12 +337,12 @@ return [
         'fields' => [
             'Currency' => 'Devise',
             'ReferenceYear' => 'Année de référence',
-            'ManagementFinancialPlanCosts' => 'Coûts de fonctionnement annuel estimés à partir du Plan financier pluriannuel [$ ou €/an]',
-            'OperationalWorkPlanCosts' => 'Coûts de fonctionnement estimés à partir du Plan de travail annuel [$ ou €/an]',
+            'ManagementFinancialPlanCosts' => 'Budget total annuel estimés à partir du Plan financier pluriannuel [$ ou €/an]',
+            'OperationalWorkPlanCosts' => 'Budget total estimés à partir du Plan de travail annuel [$ ou €/an]',
             'TotalBudget' => 'Budget total annuel effectivement disponible [$ ou €/an]',
         ],
         'amount'                        => 'Montant',
-        'functioning_costs'             => 'Coûts de fonctionnement ($ ou €/Km²/an)',
+        'functioning_costs'             => 'Budget total ($ ou €/Km²/an)',
         'estimation_financial_plan'     => '% du Plan financier (budget annuel)',
         'estimation_operational_plan'   => '% du Plan de travail (budget annuel)',
         'module_info' => 'Coûts totaux estimés à partir du Plan financier'
@@ -361,8 +361,8 @@ return [
         ],
         "predefined_values" => [
             "Budget total annuel disponible",
-            "Budget total annuel disponible pour le fonctionnement",
-            "Budget total annuel disponible pour les investissements"
+            "Budget total annuel disponible pour les Dépenses d'Exploitation (OpEx)",
+            "Budget total annuel disponible pour les Dépenses d'Investissement (CapEx)"
         ],
         'module_info' => 'Montants dans la même devise spécifiée dans le module <b>CTX 3.2.1</b>',
         'sum_error' => 'Le total doit correspondre au budget total déclaré dans le module <b>CTX 3.2.1</b>.'
