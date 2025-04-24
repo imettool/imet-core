@@ -219,7 +219,11 @@ return [
             'Coordinates' => 'Geographic coordinates (baseline for or key point in the park)',
             'SourceCoords' => 'Source',
             'AdministrativeLocation' => 'Administrative location of the protected area (province, region, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'This section provides information on the geographical location of the protected area. It includes its 
+            coordinates, administrative location of the protected areas. The description highlights the position of the 
+            protected areas within a wider territorial context.'
     ],
 
     'Areas' => [

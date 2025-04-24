@@ -222,7 +222,11 @@ return [
             'Coordinates' => 'Coordonnées géographiques (préciser s’il s’agit d’une référence WDPA ou une référence SIG d’un autre point clé du parc)',
             'SourceCoords' => 'Source des coordonnées',
             'AdministrativeLocation' => 'Localisation administrative de la zone protégée (province, région, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Cette section fournit des informations sur la situation géographique de l\'aire protégée. Elle comprend ses 
+            coordonnées et sa localisation administrative. La description met en évidence la position de l\'aire protégée
+            dans un contexte territorial plus large.'
     ],
 
     'Areas' => [

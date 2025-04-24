@@ -217,7 +217,11 @@ return [
             'Coordinates' => 'Coordenadas Geográficas (dados de base para ou ponto chave do parque)',
             'Source Coords' => 'Fonte',
             'Administrative Location' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece informações sobre a localização geográfica da área protegida. Inclui as suas coordenadas 
+            e localização administrativa das áreas protegidas. A descrição destaca a posição das áreas protegidas dentro 
+            de um contexto territorial mais vasto.'
     ],
 
     'Areas' => [

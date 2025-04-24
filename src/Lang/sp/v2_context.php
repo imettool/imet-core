@@ -220,7 +220,10 @@ return [
             'Coordinates' => 'Coordenadas geográficas (línea base o punto clave del área protegida)',
             'SourceCoords' => 'Fuente',
             'AdministrativeLocation' => 'Ubicación administrativa del área protegida (provincia, región, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección proporciona información sobre la ubicación geográfica del área protegida. Incluye sus coordenadas 
+            y su ubicación administrativa. La descripción destaca su ubicación dentro de un contexto territorial más amplio.'
     ],
 
     'Areas' => [
