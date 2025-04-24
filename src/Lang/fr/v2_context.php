@@ -264,16 +264,24 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'module_info' => 'Patrouilles : pour une gestion efficace, certaines études et directives de gestion des parcs suggèrent une moyenne de 1 à 4
-            jours de patrouille par kilomètre carré par an. Cela signifie que pour chaque kilomètre carré de zone protégée,
-            les gardes devraient idéalement passer entre 1 et 4 jours de patrouille par an.<br />Intensité plus élevée dans les
-            zones à forte menace : dans les zones à forte pression de braconnage ou à biodiversité importante, le taux recommandé peut augmenter
-            à 5 à 10 jours de patrouille par kilomètre carré par an ou même plus (Parc national Kruger, Afrique du Sud : en
-            raison des menaces intenses de braconnage des rhinocéros, certaines parties du Kruger connaissent des intensités de patrouille de 10
-            jours de patrouille par kilomètre carré par an ou plus). Intensité plus faible dans les zones à faible risque : en revanche, les régions à faible risque ou
-            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, éventuellement moins d\'un jour de patrouille par
-            kilomètre carré par an.',
-            'area_percentage'               => '% de la surface',
+        'module_info' =>
+            '<b>Nombre moyen de jours de patrouille par kilomètre carré dans les parcs nationaux africains - Pratique courante</b>:
+            Pour une gestion efficace, <b>certaines études et directives de gestion des parcs suggèrent une moyenne de 
+            1 à 4 jours de patrouille par kilomètre carré et par an</b>. Cela signifie que pour chaque kilomètre carré 
+            d\'aire protégée, les gardes devraient idéalement consacrer entre 1 et 4 jours de patrouille par an.
+            <ul>
+            <li><b>Intensité accrue dans les zones à forte menace</b>: Dans les zones à forte pression de braconnage ou 
+            présentant une biodiversité importante, le rythme recommandé peut atteindre 5 à 10 jours de patrouille par 
+            kilomètre carré et par an, voire plus. Cet effort de patrouille accru est essentiel pour dissuader les 
+            braconniers et réagir rapidement aux menaces.</li>
+            <li><b>Intensité réduite dans les zones à faible risque</b>: En revanche, les zones à faible risque ou celles 
+            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, peut-être moins d\'une journée 
+            de patrouille par kilomètre carré et par an.</li>
+            </ul>
+            <b>Note sur le parc national Kruger, en Afrique du Sud</b>: En raison de la forte menace du braconnage 
+            des rhinocéros, certaines zones du parc Kruger ont des intensités de patrouille de 10 jours de patrouille 
+            par kilomètre carré et par an, voire plus.',
+        'area_percentage'               => '% de la surface',
         'average_time'                  => 'Patrouille moyenne * j * Km² de secteur'
     ],
 

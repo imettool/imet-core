@@ -258,15 +258,23 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
-        'module_info' => 'Patrulhamento: Para uma gestão eficaz, alguns estudos e diretrizes de gestão de parques sugerem uma média de 1-4
-            dias de patrulha por quilômetro quadrado por ano. Isso significa que para cada quilômetro quadrado de área protegida,
-            os guardas florestais devem, idealmente, passar entre 1 a 4 dias patrulhando a cada ano.<br />Maior intensidade em áreas de alta
-            ameaça: Em áreas com alta pressão de caça furtiva ou biodiversidade significativa, a taxa recomendada pode aumentar
-            para 5-10 dias de patrulha por quilômetro quadrado por ano ou até mais (Parque Nacional Kruger, África do Sul: Devido a
-            intensas ameaças de caça furtiva de rinocerontes, partes do Kruger experimentam intensidades de patrulha de 10 dias de patrulha por
-            quilômetro quadrado por ano ou mais). Menor intensidade em áreas de menor risco: Em contraste, regiões com riscos menores ou
-            onde as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha por
-            quilômetro quadrado por ano.',
+        'module_info' =>
+            '<b>Dia médio de patrulha-km² nos parques nacionais africanos - prática padrão</b>:
+            Para uma gestão eficaz, <b>alguns estudos e orientações de gestão de parques sugerem uma média de 1 a 4 dias 
+            de patrulha por quilómetro quadrado por ano</b>. Isto significa que, por cada quilómetro quadrado de área 
+            protegida, os guardas florestais deveriam, idealmente, passar entre 1 a 4 dias a patrulhar todos os anos.
+            <ul>
+            <li><b>Maior intensidade em áreas de alto risco</b>: Em áreas com elevada pressão de caça ilegal ou 
+            biodiversidade significativa, a taxa recomendada pode aumentar para 5 a 10 dias de patrulha por quilómetro 
+            quadrado por ano, ou até mais. Este aumento do esforço de patrulha é essencial para dissuadir os caçadores 
+            ilegais e responder rapidamente às ameaças.
+            <li><b>Menor intensidade em áreas de baixo risco</b>: Em contraste, as áreas de menor risco ou as áreas onde 
+            as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha 
+            por quilómetro quadrado por ano.</li>
+            </ul>
+            <b>Observação sobre o Parque Nacional Kruger, África do Sul</b>: Devido à elevada ameaça de caça ilegal de 
+            rinocerontes, partes do Kruger têm intensidades de patrulha de 10 dias de patrulha por quilómetro quadrado
+             por ano ou mais.',
         'area_percentage' => '% da area',
         'average_time' => 'Patrulhamento médio * d * km² do setor',
     ],

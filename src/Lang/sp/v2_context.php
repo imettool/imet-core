@@ -260,15 +260,23 @@ return [
             'Source' => 'Fuente',
             'Observations' => 'Notas',
         ],
-        'module_info' => 'Patrullaje: Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a 4
-            días de patrullaje por kilómetro cuadrado por año. Esto significa que por cada kilómetro cuadrado de área protegida,
-            lo ideal es que los guardabosques pasen entre 1 y 4 días patrullando cada año.<br />Mayor intensidad en áreas de alto 
-            riesgo: En áreas con alta presión de caza furtiva o biodiversidad significativa, la tasa recomendada puede aumentar
-            a 5-10 días de patrullaje por kilómetro cuadrado por año o incluso más (Parque Nacional Kruger, Sudáfrica: Debido a 
-            las intensas amenazas de caza furtiva de rinocerontes, algunas partes de Kruger experimentan intensidades de patrullaje 
-            de 10 días de patrullaje por kilómetro cuadrado por año o más). Menor intensidad en áreas de menor riesgo: En cambio, 
-            las regiones con menores riesgos o donde las amenazas a la vida silvestre son mínimas podrían requerir menos patrullajes, 
-            posiblemente menos de 1 día de patrullaje por kilómetro cuadrado por año.',
+        'module_info' =>
+            'Promedio de días de patrullaje por km² en parques nacionales africanos: práctica estándar:
+            Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a 
+            4 días de patrullaje por kilómetro cuadrado al año. Esto significa que, por cada kilómetro cuadrado de
+             área protegida, los guardabosques deberían dedicar idealmente entre 1 y 4 días de patrullaje al año.
+            <ul>
+            <li>Mayor intensidad en zonas de alta amenaza: En zonas con alta presión de caza furtiva o con una biodiversidad 
+            significativa, la tasa recomendada puede aumentar a 5-10 días de patrullaje por kilómetro cuadrado al año, 
+            o incluso más. Este mayor esfuerzo de patrullaje es fundamental para disuadir a los cazadores furtivos y responder 
+            con rapidez a las amenazas.</li>
+            <li><b>Menor intensidad en zonas de bajo riesgo</b>: Por el contrario, las zonas de menor riesgo o las zonas 
+            donde las amenazas a la fauna silvestre son mínimas pueden requerir menos patrullajes, posiblemente menos de 
+            un día de patrullaje por kilómetro cuadrado al año.</li>
+            </ul>
+            <b>Nota sobre el Parque Nacional Kruger, Sudáfrica</b>: Debido a la alta amenaza de la caza furtiva de 
+            rinocerontes, en algunas zonas de Kruger la intensidad de los patrullajes es de 10 días de patrullaje por 
+            kilómetro cuadrado al año o más.',
         'area_percentage'               => '% de área',
         'average_time'                  => 'Patrullaje promedio * d * km² del sector',
     ],

@@ -261,15 +261,19 @@ return [
             'Observations' => 'Notes',
         ],
         'module_info' =>
-            'Patrolling: For effective management, some studies and park management guidelines suggest an average of 1-4 
-            patrol-days per square kilometer per year. This means that for every square kilometer of protected area, 
-            rangers should ideally spend between 1 to 4 days patrolling each year.<br />Higher intensity in high-threat 
-            areas: In areas with high poaching pressure or significant biodiversity, the recommended rate may increase 
-            to 5-10 patrol-days per square kilometer per year or even higher (Kruger National Park, South Africa: Due to 
-            intense rhino poaching threats, parts of Kruger experience patrol intensities of 10 patrol-days per square 
-            kilometer per year or more). Lower intensity in lower-risk areas: In contrast, regions with lower risks or 
-            where wildlife threats are minimal might require fewer patrols, possibly less than 1 patrol-day per square 
-            kilometer per year.',
+            '<b>Average Patrol Day-Km² in African National Parks - Standard Practice</b>:
+            For effective management, <b>some studies and park management guidelines suggest an average of 1-4 patrol 
+            days per square kilometre per year</b>. This means that for every square kilometre of protected area, rangers 
+            should ideally spend between 1 and 4 days patrolling each year.
+            <ul>
+            <li><b>Higher intensity in high threat areas</b>: In areas with high poaching pressure or significant 
+            biodiversity, the recommended rate may increase to 5-10 patrol days per square kilometre per year, or even 
+            higher. This increased patrol effort is critical to deterring poachers and responding quickly to threats.</li>
+            <li><b>Lower intensity in low-risk areas</b>: In contrast, lower risk areas or areas where wildlife threats 
+            are minimal may require fewer patrols, possibly less than 1 patrol day per square kilometre per year.</li>
+            </ul>
+            <b>Note on Kruger National Park, South Africa</b>: Due to the high threat of rhino poaching, parts of Kruger 
+            have patrol intensities of 10 patrol days per square kilometre per year or more.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
     ],
