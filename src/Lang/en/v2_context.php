@@ -276,8 +276,7 @@ return [
             have patrol intensities of 10 patrol days per square kilometre per year or more.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
-    ],<<<<
-
+    ],
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context (Landscape) of the Protected Area',
         'fields' => [
