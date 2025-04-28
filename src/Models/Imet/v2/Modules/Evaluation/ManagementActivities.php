@@ -72,7 +72,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if(empty($imet_version) or $imet_version < 'v2.7.6b'){

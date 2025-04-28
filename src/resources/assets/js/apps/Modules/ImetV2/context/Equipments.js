@@ -12,9 +12,19 @@ export default class Equipments extends ModuleImet {
             return setup_obj.calculateGroupsAverages('AdequacyLevel');
         });
 
+        const averages_percentage = computed(() => {
+            let percentages = {};
+            Object.entries(averages.value).forEach(([key, value]) => {
+                percentages[key] = value/3*100;
+            });
+
+            return percentages;
+        });
+
         return {
             ...setup_obj,
-            averages
+            averages,
+            averages_percentage
         };
 
     }

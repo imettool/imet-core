@@ -94,11 +94,17 @@ return [
             'PartnershipsType1' => 'A parceria mais importante: primeira',
             'PartnershipsType2' => 'segunda',
             'PartnershipsType3' => 'terceira',
-            'Type' => 'Modelo de Governação',
-            'Comments' => 'Informação adicional sobre o modelo de governação (se necessário)',
+            'GovernanceModel' => 'Modelo de Governação',
+            'SubGovernanceModel' => 'Modelo de subgovernação',
+            'AdditionalInfo' => 'Informação adicional sobre o modelo de governação (se necessário)',
         ],
         'governance' => 'Governação',
         'partnership' => 'Parceria ',
+        'module_info' =>
+            'Esta secção descreve a estrutura de governação existente e as parcerias com as partes interessadas dentro 
+            da área protegida. Descreve as principais instituições envolvidas, os tipos de processos de tomada de 
+            decisão, os papéis das partes interessadas e o nível de coordenação entre os intervenientes. Destaca 
+            também as parcerias atuais que apoiam os esforços de conservação e o seu papel na implementação da gestão.'
     ],
 
     'SpecialStatus' => [
@@ -116,7 +122,13 @@ return [
             'networks' => 'Membro de uma rede internacional reconhecida (MAB, RAPAC etc.)',
             'conservation' => 'Designação para o estado da importancia da conservação pelos organismos internacionais (IBA, AZE, etc.)',
             'marine_pa' => 'Designação das áreas protegidas marinhas',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção descreve as designações oficiais dadas à área protegida, tais como Sítios do Património Mundial, 
+            Reservas do Homem e da Biosfera (MAB), Sítios Ramsar, Áreas Importantes para Aves (IBA), Áreas Especialmente 
+            Protegidas de Importância Mediterrânica (SPAMI) e Áreas Marinhas Geridas Localmente (LMMA). Estas designações 
+            reflectem a importância ecológica da área e influenciam a sua estrutura de gestão, as prioridades de conservação 
+            e as obrigações internacionais.'
     ],
 
     'Networks' => [
@@ -146,7 +158,21 @@ return [
             'InternationalSource' => 'Fonte',
             'InternationalManagementPlan' => 'Arquivo (Plano de Gestão)',
             'Observation' => 'Observação',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção apresenta a estrutura estratégica para a área protegida, incluindo a sua visão, missão e 
+            objectivos de gestão.<ul>
+            <li><b>Visão da área protegida</b>: A visão é basicamente um plano de como a AP deverá ser no futuro, abrangendo a 
+            ecologia, a sociedade e a governação. É o grande objetivo que orienta tudo o que fazemos para conservar e 
+            gerir a área.</li>
+            <li><b>Missão da área protegida</b>: a missão explica o que a AP está a tentar fazer e como se enquadra na visão. 
+            Define quais são as nossas responsabilidades, como vamos gerir as coisas e as regras sobre como vamos utilizar 
+            a área de uma forma que seja boa para o ambiente e para a população local.</li>
+            <li><b>Objectivos a longo prazo da área protegida</b>: Os objectivos a longo prazo são como um roteiro, transformando 
+            a visão e a missão em metas específicas que orientam os esforços de gestão nos próximos 10 a 20 anos. Estes 
+            objectivos baseiam-se nas principais áreas de conservação, governação e sustentabilidade, garantindo que a 
+            AP cumpre o seu papel em termos de ecologia e economia.</li>
+            </ul>'
     ],
 
     'Contexts' => [
@@ -165,7 +191,21 @@ return [
             'Contexto legal',
             'Contexto institucional'
         ],
-        'module_info' => 'Dados ao nivel nacional com verifição ao nivel local'
+        'module_info' =>
+            'Esta secção fornece uma visão geral dos principais fatores contextuais que afetam a área protegida. Inclui
+            <ul>
+            <li><b>Enquadramento histórico</b>: Principais acontecimentos e marcos que moldaram a conservação e a gestão 
+            da área.</li>
+            <li><b>Contexto socioeconómico</b>: O papel da área protegida nos meios de subsistência locais, nas atividades 
+            económicas e nas interações comunitárias.</li>
+            <li><b>Contexto político (nível dos países)</b>: Estruturas de governação, estruturas políticas e influências 
+            políticas que afectam a tomada de decisões.</li>
+            <li><b>Contexto jurídico e institucional</b>: Leis, regulamentos e instituições relevantes que se aplicam à 
+            área protegida.</li>
+            <li><b>Contexto institucional</b>: Os papéis e as responsabilidades das principais instituições envolvidas na 
+            gestão e governação da área.</li>
+            </ul>
+            Estes elementos definem a estrutura mais ampla dentro da qual a área protegida opera.'
     ],
 
     'GeographicalLocation' => [
@@ -177,7 +217,11 @@ return [
             'Coordinates' => 'Coordenadas Geográficas (dados de base para ou ponto chave do parque)',
             'Source Coords' => 'Fonte',
             'Administrative Location' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece informações sobre a localização geográfica da área protegida. Inclui as suas coordenadas 
+            e localização administrativa das áreas protegidas. A descrição destaca a posição das áreas protegidas dentro 
+            de um contexto territorial mais vasto.'
     ],
 
     'Areas' => [
@@ -195,7 +239,11 @@ return [
             'PercentageLandscapeNetwork' => '% da Superficie da paisagens/rede',
             'Index' => 'Índice de configuração <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bom 1 - 1.5; média 1.5 - 2; baixo > 2',
             'Observations' => 'Observaçoes',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha 
+            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões, 
+            transfronteiriças e de conservação da paisagem, destacando o seu papel em esforços de conservação mais amplos.'
     ],
 
     'Sectors' => [
@@ -210,15 +258,23 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
-        'module_info' => 'Patrulhamento: Para uma gestão eficaz, alguns estudos e diretrizes de gestão de parques sugerem uma média de 1-4
-            dias de patrulha por quilômetro quadrado por ano. Isso significa que para cada quilômetro quadrado de área protegida,
-            os guardas florestais devem, idealmente, passar entre 1 a 4 dias patrulhando a cada ano.<br />Maior intensidade em áreas de alta
-            ameaça: Em áreas com alta pressão de caça furtiva ou biodiversidade significativa, a taxa recomendada pode aumentar
-            para 5-10 dias de patrulha por quilômetro quadrado por ano ou até mais (Parque Nacional Kruger, África do Sul: Devido a
-            intensas ameaças de caça furtiva de rinocerontes, partes do Kruger experimentam intensidades de patrulha de 10 dias de patrulha por
-            quilômetro quadrado por ano ou mais). Menor intensidade em áreas de menor risco: Em contraste, regiões com riscos menores ou
-            onde as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha por
-            quilômetro quadrado por ano.',
+        'module_info' =>
+            '<b>Dia médio de patrulha-km² nos parques nacionais africanos - prática padrão</b>:
+            Para uma gestão eficaz, <b>alguns estudos e orientações de gestão de parques sugerem uma média de 1 a 4 dias 
+            de patrulha por quilómetro quadrado por ano</b>. Isto significa que, por cada quilómetro quadrado de área 
+            protegida, os guardas florestais deveriam, idealmente, passar entre 1 a 4 dias a patrulhar todos os anos.
+            <ul>
+            <li><b>Maior intensidade em áreas de alto risco</b>: Em áreas com elevada pressão de caça ilegal ou 
+            biodiversidade significativa, a taxa recomendada pode aumentar para 5 a 10 dias de patrulha por quilómetro 
+            quadrado por ano, ou até mais. Este aumento do esforço de patrulha é essencial para dissuadir os caçadores 
+            ilegais e responder rapidamente às ameaças.
+            <li><b>Menor intensidade em áreas de baixo risco</b>: Em contraste, as áreas de menor risco ou as áreas onde 
+            as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha 
+            por quilómetro quadrado por ano.</li>
+            </ul>
+            <b>Observação sobre o Parque Nacional Kruger, África do Sul</b>: Devido à elevada ameaça de caça ilegal de 
+            rinocerontes, partes do Kruger têm intensidades de patrulha de 10 dias de patrulha por quilómetro quadrado
+             por ano ou mais.',
         'area_percentage' => '% da area',
         'average_time' => 'Patrulhamento médio * d * km² do setor',
     ],

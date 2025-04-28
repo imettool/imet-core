@@ -32,6 +32,8 @@ class SpecialStatus extends Modules\Component\ImetModule
             'marine_pa'     => trans('imet-core::v2_context.SpecialStatus.groups.marine_pa'),
         ];
 
+        $this->module_info = trans('imet-core::v2_context.SpecialStatus.module_info');
+
         parent::__construct($attributes);
 
     }

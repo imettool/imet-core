@@ -2,6 +2,7 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
+use Exception;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Input\SelectionList;
 use ImetCore\Models\Imet\v2\Modules;
@@ -27,14 +28,20 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.Comments')],
+            ['name' => 'GovernanceModel',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.GovernanceModel')],
+            ['name' => 'SubGovernanceModel',   'type' => 'dropdown-ImetV2_SubGovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
+            ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
+
+        $this->module_info =  trans('imet-core::v2_context.Governance.module_info');
 
         parent::__construct($attributes);
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    /**
+     * @throws Exception
+     */
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // #### not in predefined lists ####
         $record['InstitutionType'] = static::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');
@@ -42,6 +49,10 @@ class Governance extends Modules\Component\ImetModule
         $record['PartnershipsType2'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
         $record['PartnershipsType3'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
         $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType');
+
+        // v2.13.7 -> v3.*
+        $record = static::renameField($record, 'Type', 'GovernanceModel');
+        $record = static::renameField($record, 'Comments', 'AdditionalInfo');
 
         return $record;
     }

@@ -57,7 +57,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Program',

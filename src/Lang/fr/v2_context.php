@@ -98,11 +98,17 @@ return [
             'PartnershipsType1' => 'Type de partenariat le plus important: première',
             'PartnershipsType2' => 'deuxième',
             'PartnershipsType3' => 'troisième',
-            'Type' => 'Typologie de gouvernance de l\'aire protégée',
-            'Comments' => 'Précisions sur la typologie de gouvernance (si nécessaire) ',
+            'GovernanceModel' => 'Typologie de gouvernance de l\'aire protégée',
+            'SubGovernanceModel' => 'Sous-modèle de gouvernance',
+            'AdditionalInfo' => 'Précisions sur la typologie de gouvernance (si nécessaire) ',
         ],
         'governance' => 'Gouvernance',
         'partnership' => 'Partenariats',
+        'module_info' =>
+            'Cette section décrit la structure de gouvernance et les partenariats existants au sein de \'aire protégée. 
+            Elle décrit les principales institutions impliquées, les types de processus décisionnels, les rôles des 
+            parties prenantes et le niveau de coordination entre les acteurs. Elle met également en évidence les 
+            partenariats actuels soutenant les efforts de conservation et leur rôle dans la mise en œuvre de la gestion.'
     ],
 
     'SpecialStatus' => [
@@ -121,7 +127,12 @@ return [
             'conservation'  => 'Site désigné par des organismes internationaux (IBA, AZE, etc.) pour son intérêt en matière de conservation',
             'marine_pa'     => 'Statut des aires protégées marines'
         ],
-        'module_info' => 'La liste indicative, mais pas exhaustive est disponible dans la guide du formulaire'
+        'module_info' =>
+            'Cette section présente les désignations officielles attribuées à l\'aire protégée, telles que les sites du
+             patrimoine mondial, les réserves de biosphère (MAB), les sites Ramsar, les zones importantes pour la 
+             conservation des oiseaux (ZICO), les aires spécialement protégées d\'importance méditerranéenne (ASPIM) 
+             et les aires marines gérées localement (AMGL). Ces désignations reflètent l\'importance écologique de la 
+             zone et influencent son cadre de gestion, ses priorités de conservation et ses obligations internationales.'
     ],
 
     'Networks' => [
@@ -151,7 +162,22 @@ return [
             'InternationalSource' => 'Source',
             'InternationalManagementPlan' => 'Fichier (Plan d\'aménagement)',
             'Observation' => 'Observation',
-        ]
+        ],
+        'module_info' =>
+            'Cette section présente le cadre stratégique de l\'aire protégée, notamment sa vision, sa mission et ses 
+            objectifs de gestion.<ul>
+            <li><b>Vision de l\'aire protégée</b>: La vision est un plan d\'action pour l\'avenir de l\'AP, couvrant les 
+            aspects écologiques, sociaux et de gouvernance. C\'est l\'objectif principal qui guide toutes nos actions de 
+            conservation et de gestion de l\'aire.</li>
+            <li><b>Mission de l\'aire protégée</b>: La mission explique les objectifs de l\'AP et leur intégration à la vision.
+             Elle précise nos responsabilités, notre mode de gestion et les règles d\'utilisation de l\'aire, respectueuses 
+             de l\'environnement et des populations locales.</li>
+             <li><b>Objectifs à long terme de l\'aire protégée</b>: Les objectifs à long terme sont une sorte de feuille de 
+             route, transformant la vision et la mission en objectifs précis qui guideront les efforts de gestion pour 
+             les 10 à 20 prochaines années. Ces objectifs s\'appuient sur les domaines clés de la conservation, de la 
+             gouvernance et de la durabilité, garantissant que l\'AP remplit sa mission en termes d\'écologie et 
+             d\'économie.</li>
+            </ul>'
     ],
 
     'Contexts' => [
@@ -170,6 +196,21 @@ return [
             'Contexte juridique',
             'Contexte institutionnel'
         ],
+        'module_info' =>
+            'Cette section présente un aperçu des principaux facteurs contextuels affectant l\'aire protégée. Elle comprend:
+            <ul>
+            <li><b>Contexte historique</b>: événements et étapes clés qui ont façonné la conservation et la gestion de 
+            l\'aire.</li>
+            <li><b>Contexte socio-économique</b>: rôle de l\'aire protégée dans les moyens de subsistance locaux, les 
+            activités économiques et les interactions communautaires.</li>
+            <li><b>Contexte politique (au niveau du pays)</b>: structures de gouvernance, cadres politiques et influences 
+            politiques influençant la prise de décision.</li>
+            <li><b>Contexte juridique et institutionnel</b>: lois, réglementations et institutions pertinentes qui 
+            s\'appliquent à l\'aire protégée.</li>
+            <li><b>Contexte institutionnel</b>: rôles et responsabilités des principales institutions impliquées dans 
+            la gestion et la gouvernance de l\'aire.</li>
+            </ul>
+            Ces éléments définissent le cadre général dans lequel l\'aire protégée évolue.'
     ],
 
     'GeographicalLocation' => [
@@ -181,7 +222,11 @@ return [
             'Coordinates' => 'Coordonnées géographiques (préciser s’il s’agit d’une référence WDPA ou une référence SIG d’un autre point clé du parc)',
             'SourceCoords' => 'Source des coordonnées',
             'AdministrativeLocation' => 'Localisation administrative de la zone protégée (province, région, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Cette section fournit des informations sur la situation géographique de l\'aire protégée. Elle comprend ses 
+            coordonnées et sa localisation administrative. La description met en évidence la position de l\'aire protégée
+            dans un contexte territorial plus large.'
     ],
 
     'Areas' => [
@@ -199,7 +244,12 @@ return [
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
             'Index' => 'Indice de forme <br />&radic;(3.14)/(6.28)*périmètre/&radic;(superficie) =<br /> bon 1 - 1,5; moyen de 1,5 - 2;  faible > 2',
             'Observations' => 'Observations',
-        ]
+        ],
+        'module_info' =>
+            'Cette section fournit des données clés sur la superficie, la longueur des limites, la couverture terrestre 
+            et marine et la configuration spatiale du bien. Elle situe également le bien au sein des réseaux de conservation 
+            nationaux, écorégionaux, transfrontaliers et paysagers, soulignant son rôle dans les efforts de conservation 
+            plus vastes.'
     ],
 
     'Sectors' => [
@@ -214,16 +264,24 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'module_info' => 'Patrouilles : pour une gestion efficace, certaines études et directives de gestion des parcs suggèrent une moyenne de 1 à 4
-            jours de patrouille par kilomètre carré par an. Cela signifie que pour chaque kilomètre carré de zone protégée,
-            les gardes devraient idéalement passer entre 1 et 4 jours de patrouille par an.<br />Intensité plus élevée dans les
-            zones à forte menace : dans les zones à forte pression de braconnage ou à biodiversité importante, le taux recommandé peut augmenter
-            à 5 à 10 jours de patrouille par kilomètre carré par an ou même plus (Parc national Kruger, Afrique du Sud : en
-            raison des menaces intenses de braconnage des rhinocéros, certaines parties du Kruger connaissent des intensités de patrouille de 10
-            jours de patrouille par kilomètre carré par an ou plus). Intensité plus faible dans les zones à faible risque : en revanche, les régions à faible risque ou
-            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, éventuellement moins d\'un jour de patrouille par
-            kilomètre carré par an.',
-            'area_percentage'               => '% de la surface',
+        'module_info' =>
+            '<b>Nombre moyen de jours de patrouille par kilomètre carré dans les parcs nationaux africains - Pratique courante</b>:
+            Pour une gestion efficace, <b>certaines études et directives de gestion des parcs suggèrent une moyenne de 
+            1 à 4 jours de patrouille par kilomètre carré et par an</b>. Cela signifie que pour chaque kilomètre carré 
+            d\'aire protégée, les gardes devraient idéalement consacrer entre 1 et 4 jours de patrouille par an.
+            <ul>
+            <li><b>Intensité accrue dans les zones à forte menace</b>: Dans les zones à forte pression de braconnage ou 
+            présentant une biodiversité importante, le rythme recommandé peut atteindre 5 à 10 jours de patrouille par 
+            kilomètre carré et par an, voire plus. Cet effort de patrouille accru est essentiel pour dissuader les 
+            braconniers et réagir rapidement aux menaces.</li>
+            <li><b>Intensité réduite dans les zones à faible risque</b>: En revanche, les zones à faible risque ou celles 
+            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, peut-être moins d\'une journée 
+            de patrouille par kilomètre carré et par an.</li>
+            </ul>
+            <b>Note sur le parc national Kruger, en Afrique du Sud</b>: En raison de la forte menace du braconnage 
+            des rhinocéros, certaines zones du parc Kruger ont des intensités de patrouille de 10 jours de patrouille 
+            par kilomètre carré et par an, voire plus.',
+        'area_percentage'               => '% de la surface',
         'average_time'                  => 'Patrouille moyenne * j * Km² de secteur'
     ],
 

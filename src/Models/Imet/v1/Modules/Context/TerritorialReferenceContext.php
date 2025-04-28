@@ -32,7 +32,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
     }
 
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
         $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
