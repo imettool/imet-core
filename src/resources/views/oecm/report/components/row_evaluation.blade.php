@@ -13,10 +13,19 @@ $additional_classes = $additional_classes ?? null;
 $threats            = $threats ?? false;
 $colspan            = isset($colspan) ? "colspan=".$colspan : "";
 $color_scores       = $color_scores ?? true;
+$constraints = $constraints ?? false;
 
-$classes =$color_scores ? $threats
-    ? ApiController::score_class_threats($assessment_value)
-    : ApiController::score_class($assessment_value) : '';
+$classes = '';
+if ($color_scores) {
+    if ($threats) {
+        $classes = ApiController::score_class_threats($assessment_value);
+    } elseif ($constraints) {
+        $classes = ApiController::score_class_threats($assessment_value, 'score_constraints_success');
+    } else {
+        $classes = ApiController::score_class($assessment_value);
+    }
+}
+
 
 ?>
 

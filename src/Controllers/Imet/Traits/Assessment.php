@@ -43,18 +43,16 @@ trait Assessment
         return $class;
     }
 
-    public static function score_class_threats($value): string
+    public static function score_class_threats($value, string $score_success_color = 'score_success'): string
     {
         if($value===null){
             $class = 'score_no';
         } elseif($value<-51){
-            $class = 'score_danger';
-        } elseif($value<-34){
-            $class = 'score_alert';
+            $class = 'score_threat_danger';
         } elseif($value<-1){
-            $class = 'score_warning';
+            $class = 'score_threat_medium_danger';
         } else {
-            $class = 'score_success';
+            $class = $score_success_color;
         }
         return $class;
     }
