@@ -335,12 +335,12 @@ return [
         'fields' => [
             'Currency' => 'Moeda',
             'ReferenceYear' => 'Ano de Referencia',
-            'ManagementFinancialPlanCosts' => 'Custo operacional estimado no plano de gestão/plano financeiro ($ ou EUR/ano)',
-            'OperationalWorkPlanCosts' => 'Custos de funcionamento estimados a partir do plano operacional/plano de trabalho (orçamentados anualmente)',
+            'ManagementFinancialPlanCosts' => 'Orçamento total estimado no plano de gestão/plano financeiro ($ ou EUR/ano)',
+            'OperationalWorkPlanCosts' => 'Orçamento total estimados a partir do plano operacional/plano de trabalho (orçamentados anualmente)',
             'TotalBudget' => 'Orçamento anual total disponível',
         ],
         'amount' => 'Total',
-        'functioning_costs' => 'Custos de Funcionamento ($ ou €/km2/year)',
+        'functioning_costs' => 'Orçamento total ($ ou €/km2/year)',
         'estimation_financial_plan' => '% de recursos exigidos pelo plano financeiro/plano de trabalho (orçamentados anualmente)',
         'estimation_operational_plan' => '% dos recursos exigidos pelo plano de trabalho (orçamentados anualmente)',
         'module_info' => 'Custos totais estimados no plano de gestao/Financeiro'
