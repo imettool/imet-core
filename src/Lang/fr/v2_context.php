@@ -58,7 +58,7 @@ return [
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée? (Fournir une liste, puis une brève description)',
         ],
         'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories
-            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé. 
+            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé.
             Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
             de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez
             préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est
@@ -395,12 +395,12 @@ return [
         'fields' => [
             'Currency' => 'Devise',
             'ReferenceYear' => 'Année de référence',
-            'ManagementFinancialPlanCosts' => 'Coûts de fonctionnement annuel estimés à partir du Plan financier pluriannuel [$ ou €/an]',
-            'OperationalWorkPlanCosts' => 'Coûts de fonctionnement estimés à partir du Plan de travail annuel [$ ou €/an]',
+            'ManagementFinancialPlanCosts' => 'Budget total annuel estimés à partir du Plan financier pluriannuel [$ ou €/an]',
+            'OperationalWorkPlanCosts' => 'Budget total estimés à partir du Plan de travail annuel [$ ou €/an]',
             'TotalBudget' => 'Budget total annuel effectivement disponible [$ ou €/an]',
         ],
         'amount'                        => 'Montant',
-        'functioning_costs'             => 'Coûts de fonctionnement ($ ou €/Km²/an)',
+        'functioning_costs'             => 'Budget total ($ ou €/Km²/an)',
         'estimation_financial_plan'     => '% du Plan financier (budget annuel)',
         'estimation_operational_plan'   => '% du Plan de travail (budget annuel)',
         'module_info' => 'Coûts totaux estimés à partir du Plan financier'
@@ -504,6 +504,7 @@ return [
         'title' => 'Espèces animales (espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) choisis comme éléments clés de l’aire protégée et nécessitant un suivi dans le temps',
         'fields' => [
             'SpeciesID' => 'Espèce',
+            'CommonName' => 'Nom commun',
             'FlagshipSpecies' => 'PHA',
             'EndangeredSpecies' => 'MEN',
             'EndemicSpecies' => 'END',
@@ -563,6 +564,7 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
+            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',

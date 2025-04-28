@@ -276,7 +276,7 @@ return [
             have patrol intensities of 10 patrol days per square kilometre per year or more.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
-    ],
+    ],<<<<
 
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context (Landscape) of the Protected Area',
@@ -385,12 +385,12 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on multiannual Financial plan ($ or €/year)',
-            'OperationalWorkPlanCosts' => 'Operating costs estimated on Working plan (budgeted annually)',
+            'ManagementFinancialPlanCosts' => 'Total budget estimated on multiannual Financial plan ($ or €/year)',
+            'OperationalWorkPlanCosts' => 'Total budget estimated on Working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget actually available',
         ],
         'amount'                        => 'Total',
-        'functioning_costs'             => 'Operating costs ($ or €/km2/year)',
+        'functioning_costs'             => 'Total budget ($ or €/km2/year)',
         'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
         'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
         'module_info' => 'Estimated total costs based on Financial plan'
@@ -494,6 +494,7 @@ return [
         'title' => 'Animal species (flagship, endangered, endemic, exploited, invasive, etc.) used as indicators for the state of the protected area and requiring monitoring over time',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Common name',
             'FlagshipSpecies' => 'FLA',
             'EndangeredSpecies' => 'EDG',
             'EndemicSpecies' => 'EDM',
@@ -539,6 +540,7 @@ return [
         'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Type of habitat',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Description of the status or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Favourable conservation status',

@@ -393,12 +393,12 @@ return [
         'fields' => [
             'Currency' => 'Tipo de moneda',
             'ReferenceYear' => 'Año de referencia',
-            'ManagementFinancialPlanCosts' => 'Gastos de funcionamiento estimados en el Plan de gestión/plan financiero ($ o €/año)',
-            'OperationalWorkPlanCosts' => 'Gastos de funcionamiento estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
+            'ManagementFinancialPlanCosts' => 'Presupuesto total estimados en el Plan de gestión/plan financiero ($ o €/año)',
+            'OperationalWorkPlanCosts' => 'Presupuesto total estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
             'TotalBudget' => 'Presupuesto anual total disponible',
         ],
         'amount'                        => 'Total',
-        'functioning_costs'             => 'Costos de operación ($ o euros/km2/año)',
+        'functioning_costs'             => 'Presupuesto total ($ o euros/km2/año)',
         'estimation_financial_plan'     => 'Porcentaje de recursos requeridos por el plan financiero/plan de trabajo (presupuestado anualmente)',
         'estimation_operational_plan'   => 'Porcentaje de los recursos requeridos por el plan de trabajo (presupuestado anualmente)',
         'module_info' => 'Costos totales estimados sobre la base del Plan de gestión/plan financiero'
@@ -502,6 +502,7 @@ return [
         'title' => 'Especies animales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado de conservación del área protegida y que requieren ser monitoreadas a lo largo del tiempo',
         'fields' => [
             'SpeciesID' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
             'EndemicSpecies' => 'EDM',
@@ -547,6 +548,7 @@ return [
         'title' => 'Hábitats seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
         'fields' => [
             'EcosystemType' => 'Tipo de hábitat',
+            'TerrestrialOrMarine' => '¿Terrestres o marinos?',
             'Value' => 'Descripción del estado o valor',
             'Area' => 'Superficie (ha)',
             'DesiredConservationStatus' => 'Estado de conservación favorable',

@@ -391,12 +391,12 @@ return [
         'fields' => [
             'Currency' => 'Moeda',
             'ReferenceYear' => 'Ano de Referencia',
-            'ManagementFinancialPlanCosts' => 'Custo operacional estimado no plano de gestão/plano financeiro ($ ou EUR/ano)',
-            'OperationalWorkPlanCosts' => 'Custos de funcionamento estimados a partir do plano operacional/plano de trabalho (orçamentados anualmente)',
+            'ManagementFinancialPlanCosts' => 'Orçamento total estimado no plano de gestão/plano financeiro ($ ou EUR/ano)',
+            'OperationalWorkPlanCosts' => 'Orçamento total estimados a partir do plano operacional/plano de trabalho (orçamentados anualmente)',
             'TotalBudget' => 'Orçamento anual total disponível',
         ],
         'amount' => 'Total',
-        'functioning_costs' => 'Custos de Funcionamento ($ ou €/km2/year)',
+        'functioning_costs' => 'Orçamento total ($ ou €/km2/year)',
         'estimation_financial_plan' => '% de recursos exigidos pelo plano financeiro/plano de trabalho (orçamentados anualmente)',
         'estimation_operational_plan' => '% dos recursos exigidos pelo plano de trabalho (orçamentados anualmente)',
         'module_info' => 'Custos totais estimados no plano de gestao/Financeiro'
@@ -500,6 +500,7 @@ return [
         'title' => 'Espécies animais (emblemáticas, ameaçadas, endémicas, exploradas, invasivas, etc.) utilizadas como indicadores do estado da área protegida e que requerem monitorização ao longo do tempo',
         'fields' => [
             'SpeciesID' => 'Espécies',
+            'CommonName' => 'Nome comum',
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',
@@ -545,6 +546,7 @@ return [
         'title' => 'Habitats seleccionados como indicadores para a área protegida e que terão de ser monitorizados ao longo do tempo',
         'fields' => [
             'EcosystemType' => 'Tipo de habitat',
+            'TerrestrialOrMarine' => 'Terrestre ou marinho?',
             'Value' => 'Descricao do estado ou valor',
             'Area' => 'Superficie da area (ha)',
             'DesiredConservationStatus' => 'Estado de conservação favorável',
