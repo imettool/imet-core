@@ -411,6 +411,7 @@ return [
         'title' => 'Ecosystem and habitats with important and significant features of the protected area',
         'fields' => [
             'EcosystemType' => 'Type of ecosystem or habitat',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Characteristic or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Desired conservation status',

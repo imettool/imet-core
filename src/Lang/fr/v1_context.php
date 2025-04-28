@@ -438,6 +438,7 @@ return [
         'title' => 'Ecosystèmes et habitats à caractéristiques importantes et significatives de l’aire protégée',
         'fields' => [
             'EcosystemType' => 'Type d\'écosystème ou d\'habitat',
+            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Caractéristique ou valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',

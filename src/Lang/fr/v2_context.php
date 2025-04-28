@@ -506,6 +506,7 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
+            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',
