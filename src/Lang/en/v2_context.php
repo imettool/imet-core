@@ -441,6 +441,7 @@ return [
         'title' => 'Animal species (flagship, endangered, endemic, exploited, invasive, etc.) used as indicators for the state of the protected area and requiring monitoring over time',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Common name',
             'FlagshipSpecies' => 'FLA',
             'EndangeredSpecies' => 'EDG',
             'EndemicSpecies' => 'EDM',

@@ -446,6 +446,7 @@ return [
         'title' => 'Espèces animales (espèces phares, menacées, endémiques, exploitées, envahissantes, etc.) choisis comme éléments clés de l’aire protégée et nécessitant un suivi dans le temps',
         'fields' => [
             'SpeciesID' => 'Espèce',
+            'CommonName' => 'Nom commun',
             'FlagshipSpecies' => 'PHA',
             'EndangeredSpecies' => 'MEN',
             'EndemicSpecies' => 'END',

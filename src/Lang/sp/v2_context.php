@@ -448,6 +448,7 @@ return [
         'title' => 'Especies animales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado de conservación del área protegida y que requieren ser monitoreadas a lo largo del tiempo',
         'fields' => [
             'SpeciesID' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
             'EndemicSpecies' => 'EDM',

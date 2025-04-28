@@ -357,6 +357,7 @@ return [
                                     amphibians, reptiles and fish) selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Common name',
             'FlagshipSpecies' => 'PHA',
             'EndangeredSpecies' => 'MEN',
             'EndemicSpecies' => 'END',
