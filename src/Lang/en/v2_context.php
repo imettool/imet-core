@@ -212,14 +212,14 @@ return [
             'Observations' => 'Notes',
         ],
         'module_info' =>
-            'Patrolling: For effective management, some studies and park management guidelines suggest an average of 1-4 
-            patrol-days per square kilometer per year. This means that for every square kilometer of protected area, 
-            rangers should ideally spend between 1 to 4 days patrolling each year.<br />Higher intensity in high-threat 
-            areas: In areas with high poaching pressure or significant biodiversity, the recommended rate may increase 
-            to 5-10 patrol-days per square kilometer per year or even higher (Kruger National Park, South Africa: Due to 
-            intense rhino poaching threats, parts of Kruger experience patrol intensities of 10 patrol-days per square 
-            kilometer per year or more). Lower intensity in lower-risk areas: In contrast, regions with lower risks or 
-            where wildlife threats are minimal might require fewer patrols, possibly less than 1 patrol-day per square 
+            'Patrolling: For effective management, some studies and park management guidelines suggest an average of 1-4
+            patrol-days per square kilometer per year. This means that for every square kilometer of protected area,
+            rangers should ideally spend between 1 to 4 days patrolling each year.<br />Higher intensity in high-threat
+            areas: In areas with high poaching pressure or significant biodiversity, the recommended rate may increase
+            to 5-10 patrol-days per square kilometer per year or even higher (Kruger National Park, South Africa: Due to
+            intense rhino poaching threats, parts of Kruger experience patrol intensities of 10 patrol-days per square
+            kilometer per year or more). Lower intensity in lower-risk areas: In contrast, regions with lower risks or
+            where wildlife threats are minimal might require fewer patrols, possibly less than 1 patrol-day per square
             kilometer per year.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
@@ -332,12 +332,12 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on multiannual Financial plan ($ or €/year)',
-            'OperationalWorkPlanCosts' => 'Operating costs estimated on Working plan (budgeted annually)',
+            'ManagementFinancialPlanCosts' => 'Total budget estimated on multiannual Financial plan ($ or €/year)',
+            'OperationalWorkPlanCosts' => 'Total budget estimated on Working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget actually available',
         ],
         'amount'                        => 'Total',
-        'functioning_costs'             => 'Operating costs ($ or €/km2/year)',
+        'functioning_costs'             => 'Total budget ($ or €/km2/year)',
         'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
         'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
         'module_info' => 'Estimated total costs based on Financial plan'

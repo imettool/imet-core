@@ -216,12 +216,12 @@ return [
         ],
         'module_info' => 'Patrullaje: Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a 4
             días de patrullaje por kilómetro cuadrado por año. Esto significa que por cada kilómetro cuadrado de área protegida,
-            lo ideal es que los guardabosques pasen entre 1 y 4 días patrullando cada año.<br />Mayor intensidad en áreas de alto 
+            lo ideal es que los guardabosques pasen entre 1 y 4 días patrullando cada año.<br />Mayor intensidad en áreas de alto
             riesgo: En áreas con alta presión de caza furtiva o biodiversidad significativa, la tasa recomendada puede aumentar
-            a 5-10 días de patrullaje por kilómetro cuadrado por año o incluso más (Parque Nacional Kruger, Sudáfrica: Debido a 
-            las intensas amenazas de caza furtiva de rinocerontes, algunas partes de Kruger experimentan intensidades de patrullaje 
-            de 10 días de patrullaje por kilómetro cuadrado por año o más). Menor intensidad en áreas de menor riesgo: En cambio, 
-            las regiones con menores riesgos o donde las amenazas a la vida silvestre son mínimas podrían requerir menos patrullajes, 
+            a 5-10 días de patrullaje por kilómetro cuadrado por año o incluso más (Parque Nacional Kruger, Sudáfrica: Debido a
+            las intensas amenazas de caza furtiva de rinocerontes, algunas partes de Kruger experimentan intensidades de patrullaje
+            de 10 días de patrullaje por kilómetro cuadrado por año o más). Menor intensidad en áreas de menor riesgo: En cambio,
+            las regiones con menores riesgos o donde las amenazas a la vida silvestre son mínimas podrían requerir menos patrullajes,
             posiblemente menos de 1 día de patrullaje por kilómetro cuadrado por año.',
         'area_percentage'               => '% de área',
         'average_time'                  => 'Patrullaje promedio * d * km² del sector',
@@ -339,12 +339,12 @@ return [
         'fields' => [
             'Currency' => 'Tipo de moneda',
             'ReferenceYear' => 'Año de referencia',
-            'ManagementFinancialPlanCosts' => 'Gastos de funcionamiento estimados en el Plan de gestión/plan financiero ($ o €/año)',
-            'OperationalWorkPlanCosts' => 'Gastos de funcionamiento estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
+            'ManagementFinancialPlanCosts' => 'Presupuesto total estimados en el Plan de gestión/plan financiero ($ o €/año)',
+            'OperationalWorkPlanCosts' => 'Presupuesto total estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
             'TotalBudget' => 'Presupuesto anual total disponible',
         ],
         'amount'                        => 'Total',
-        'functioning_costs'             => 'Costos de operación ($ o euros/km2/año)',
+        'functioning_costs'             => 'Presupuesto total ($ o euros/km2/año)',
         'estimation_financial_plan'     => 'Porcentaje de recursos requeridos por el plan financiero/plan de trabajo (presupuestado anualmente)',
         'estimation_operational_plan'   => 'Porcentaje de los recursos requeridos por el plan de trabajo (presupuestado anualmente)',
         'module_info' => 'Costos totales estimados sobre la base del Plan de gestión/plan financiero'

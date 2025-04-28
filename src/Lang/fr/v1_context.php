@@ -279,12 +279,12 @@ return [
         'fields' => [
             'Currency' => 'Devise',
             'ReferenceYear' => 'Année de référence',
-            'ManagementFinancialPlanCosts' => 'Coûts de fonctionnement annuel estimés à partir du Plan de gestion/Plan financier [devise/an]',
-            'OperationalWorkPlanCosts' => 'Coûts de fonctionnement estimés à partir du plan opérationnel/plan de travail budgétisé annuellement [devise/an]',
+            'ManagementFinancialPlanCosts' => 'Budget total annuel estimés à partir du Plan de gestion/Plan financier [devise/an]',
+            'OperationalWorkPlanCosts' => 'Budget total estimés à partir du plan opérationnel/plan de travail budgétisé annuellement [devise/an]',
             'TotalBudget' => 'Budget total annuel - previsions [devise/an]',
         ],
         'amount'                        => 'Montant',
-        'functioning_costs'             => 'Coûts de fonctionnement (devise/Km²/an)',
+        'functioning_costs'             => 'Budget total (devise/Km²/an)',
         'estimation_financial_plan'     => '% des estimations du plan financier / plan de travail budgétisé annuellement',
         'estimation_operational_plan'   => '% des estimations du plan opérationnel / plan de travail budgétisé annuellement',
         'module_info' => 'Coûts totaux estimés à partir du Plan de gestion/Plan financier'
