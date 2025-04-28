@@ -58,7 +58,7 @@ return [
             'ReferenceTextValues' => 'Quelle est l’importance de l’aire protégée et les principales valeurs pour lesquelles elle a été désignée? (Fournir une liste, puis une brève description)',
         ],
         'module_info' => '<b>Introduction à la typologie</b>: Introduction à la typologie: IMET identifie trois catégories
-            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé. 
+            d’aires protégées: (1) Terrestres (2) Marines et côtières (3) Espace conservé.
             Dans la section Gouvernance (CTX 1.2), vous pouvez affiner la typologie de gestion et de gouvernance
             de ces trois typologies d’aires protégées. Si vous analysez une aire protégée et conservée (APC), vous pouvez
             préciser le contexte territorial dans le CTX 2.4. Aire protégée (définition générale): Une aire protégée est
@@ -505,6 +505,7 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
+            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',

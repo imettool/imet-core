@@ -212,14 +212,14 @@ return [
             'Observations' => 'Notes',
         ],
         'module_info' =>
-            'Patrolling: For effective management, some studies and park management guidelines suggest an average of 1-4 
-            patrol-days per square kilometer per year. This means that for every square kilometer of protected area, 
-            rangers should ideally spend between 1 to 4 days patrolling each year.<br />Higher intensity in high-threat 
-            areas: In areas with high poaching pressure or significant biodiversity, the recommended rate may increase 
-            to 5-10 patrol-days per square kilometer per year or even higher (Kruger National Park, South Africa: Due to 
-            intense rhino poaching threats, parts of Kruger experience patrol intensities of 10 patrol-days per square 
-            kilometer per year or more). Lower intensity in lower-risk areas: In contrast, regions with lower risks or 
-            where wildlife threats are minimal might require fewer patrols, possibly less than 1 patrol-day per square 
+            'Patrolling: For effective management, some studies and park management guidelines suggest an average of 1-4
+            patrol-days per square kilometer per year. This means that for every square kilometer of protected area,
+            rangers should ideally spend between 1 to 4 days patrolling each year.<br />Higher intensity in high-threat
+            areas: In areas with high poaching pressure or significant biodiversity, the recommended rate may increase
+            to 5-10 patrol-days per square kilometer per year or even higher (Kruger National Park, South Africa: Due to
+            intense rhino poaching threats, parts of Kruger experience patrol intensities of 10 patrol-days per square
+            kilometer per year or more). Lower intensity in lower-risk areas: In contrast, regions with lower risks or
+            where wildlife threats are minimal might require fewer patrols, possibly less than 1 patrol-day per square
             kilometer per year.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
@@ -486,6 +486,7 @@ return [
         'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Type of habitat',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Description of the status or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Favourable conservation status',
