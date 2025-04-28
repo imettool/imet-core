@@ -307,6 +307,7 @@ return [
         'title' => 'Animal species (exploited, protected, disappearing, invasive)',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Common name',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',

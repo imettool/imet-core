@@ -385,6 +385,7 @@ return [
                                 (Mammifères, Oiseaux, Amphibiens, Reptiles, Poissons) choisies comme indicateurs de l’aire protégée',
         'fields' => [
             'SpeciesID' => 'Espèce',
+            'CommonName' => 'Nom commun',
             'FlagshipSpecies' => 'PHA',
             'EndangeredSpecies' => 'MEN',
             'EndemicSpecies' => 'END',

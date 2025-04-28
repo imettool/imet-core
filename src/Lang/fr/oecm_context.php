@@ -300,6 +300,7 @@ return [
         'title' => 'Espèces animales (exploitées, protégées, en voie de disparition, envahissantes)',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Nom commun',
             'ExploitedSpecies' => 'EXP',
             'ProtectedSpecies' => 'PRT',
             'DisappearingSpecies' => 'DSG',
