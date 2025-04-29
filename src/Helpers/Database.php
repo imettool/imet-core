@@ -21,25 +21,31 @@ class Database
     static public function getTableAndConnection($requested_table, $requested_schema = null): array
     {
         $is_offline = is_offline_environment();
-        $connection = config('database.default');
 
-        // Set Schema
+        // Set Connection
         if($is_offline){
             if($requested_schema === static::IMET_SCHEMA){
-                $schema = 'imet_';
+                $connection = static::IMET_CONNECTION;
             } elseif($requested_schema === static::OECM_SCHEMA){
-                $schema = 'oecm_';
+                $connection = static::OECM_CONNECTION;
             } else {
-                $schema = 'public_';
+                $connection = static::COMMON_CONNECTION;
             }
         } else {
-            $schema = $requested_schema===null
-                ? static::COMMON_IMET_SCHEMA . '.'
-                : $requested_schema . '.';
+            $connection = config('database.default');
         }
 
+        // Set Schema
+        $schema = $is_offline
+            ? ''
+            :  ($requested_schema===null
+                    ? static::COMMON_IMET_SCHEMA . '.'
+                    : $requested_schema . '.');
+
         // Set Table
-        $table = $schema . $requested_table;
+        $table = $is_offline
+            ? $requested_table
+            : $schema . $requested_table;
 
         return [$table, $connection];
     }
