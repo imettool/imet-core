@@ -2,9 +2,12 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
+    protected $connection = Database::COMMON_CONNECTION;
+
     /**
      * Run the migrations.
      */
