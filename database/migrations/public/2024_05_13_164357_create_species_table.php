@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
@@ -12,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('species', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table) {
             $table->increments('id');
             $table->string('kingdom', 100)->nullable();
             $table->string('phylum', 100)->nullable();
@@ -39,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('species');
+        Schema::dropIfExists(Database::getTable(Database::COMMON_SCHEMA, 'species'));
     }
 };

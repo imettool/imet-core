@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('context_habitats', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_habitats'), function (Blueprint $table) {
             $table->string('TerrestrialOrMarine', 50)->nullable()->after('EcosystemType');
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('context_habitats', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_habitats'), function (Blueprint $table) {
             $table->dropColumn('TerrestrialOrMarine');
         });
     }

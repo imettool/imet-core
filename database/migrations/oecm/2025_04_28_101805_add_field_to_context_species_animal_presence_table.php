@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('context_species_animal_presence', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
             $table->string('CommonName', 255)->nullable()->after('SpeciesID');
         });
     }
@@ -22,7 +22,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('context_species_animal_presence', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
             $table->dropColumn('CommonName');
         });
     }
