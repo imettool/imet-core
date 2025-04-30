@@ -3,6 +3,7 @@
 namespace  ImetCore\Helpers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Database
 {
@@ -18,7 +19,7 @@ class Database
      */
     public static function getTable(string $schema, string $table): string
     {
-        return DB::getDriverName() === self::DRIVER_SQLITE
+        return DB::getDriverName() === self::DRIVER_SQLITE && !Str::startsWith($table, $schema)
             ? $schema . '_' . $table
             : $schema . '.' . $table;
     }
