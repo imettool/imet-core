@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
+    
 
     /**
      * Run the migrations.

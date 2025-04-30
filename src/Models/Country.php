@@ -24,15 +24,17 @@ use Illuminate\Support\Facades\App;
  */
 class Country extends BaseCountry
 {
-    protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $table = 'imet_countries';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'countries';
     public $primaryKey = 'iso3';
     public static $foreign_key = 'region_id';
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**

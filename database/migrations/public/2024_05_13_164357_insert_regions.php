@@ -6,7 +6,6 @@ use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
-    protected $connection = Database::COMMON_CONNECTION;
 
     /**
      * Run the migrations.
@@ -24,7 +23,7 @@ return new class extends Migration
         ];
 
         foreach ($records as $record) {
-            DB::table('imet_regions')
+            DB::table(Database::getTable(Database::COMMON_SCHEMA, 'regions'))
                 ->insert(array_combine($fields, $record));
         }
     }
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('imet_regions')->truncate();
+        DB::table(Database::getTable(Database::COMMON_SCHEMA, 'regions'))->truncate();
     }
 };

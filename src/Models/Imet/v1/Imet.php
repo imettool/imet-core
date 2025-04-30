@@ -3,7 +3,6 @@
 namespace ImetCore\Models\Imet\v1;
 
 use ImetCore\Helpers\Database;
-use ImetCore\Models\Imet\v1\Encoder;
 use ImetCore\Models\Imet\Imet as BaseImetForm;
 use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
@@ -13,7 +12,6 @@ class Imet extends BaseImetForm
 {
     public const version = 'v1';
     protected string $schema = Database::IMET_SCHEMA;
-    protected $connection = Database::IMET_CONNECTION;
     protected $table = 'imet_form';
 
     public static $modules = [

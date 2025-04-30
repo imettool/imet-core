@@ -54,10 +54,12 @@ abstract class Imet extends Form
 
     public static $modules = [];
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**

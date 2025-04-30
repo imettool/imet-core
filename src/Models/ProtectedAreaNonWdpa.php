@@ -20,8 +20,8 @@ use ModularForms\Models\BaseModel;
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
-    protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $table = 'imet_pas_non_wdpa';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'protected_areas_non_wdpa';
 
     public const LABEL = 'name';
 
@@ -31,10 +31,12 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     protected $appends = ['wdpa_id'];
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**

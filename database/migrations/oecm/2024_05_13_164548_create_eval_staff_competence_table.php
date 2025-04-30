@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::OECM_CONNECTION;
     
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('eval_staff_competence', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'eval_staff_competence'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -39,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eval_staff_competence');
+        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'eval_staff_competence'));
     }
 };

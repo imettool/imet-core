@@ -7,14 +7,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
-    
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('context_encoding_responsables_interviewees', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_encoding_responsables_interviewees'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('context_encoding_responsables_interviewees');
+        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'context_encoding_responsables_interviewees'));
     }
 };

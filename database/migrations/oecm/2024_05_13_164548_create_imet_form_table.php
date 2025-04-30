@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::OECM_CONNECTION;
     
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('imet_form', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'imet_form'), function (Blueprint $table) {
             $table->increments('FormID');
             $table->integer('Year')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('imet_form');
+        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'imet_form'));
     }
 };

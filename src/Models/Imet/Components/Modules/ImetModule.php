@@ -38,10 +38,12 @@ class ImetModule extends Module
     public $module_info_EvaluationQuestion = null;
     public $module_info_Rating = null;
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**
