@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'imet_report'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'report'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->text('analysis')->nullable();
@@ -113,7 +113,7 @@ return new class extends Migration
 
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
-                ->on('imet_form')
+                ->on(Database::getTable(Database::OECM_SCHEMA, 'forms'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
@@ -124,6 +124,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'imet_report'));
+        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'report'));
     }
 };

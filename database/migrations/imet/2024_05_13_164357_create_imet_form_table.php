@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'imet_form'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'forms'), function (Blueprint $table) {
             $table->increments('FormID');
             $table->integer('Year')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'imet_form'));
+        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'forms'));
     }
 };

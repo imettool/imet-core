@@ -8,7 +8,7 @@ use ImetCore\Models\Imet\Components\Report as BaseReport;
 class Report extends BaseReport
 {
     protected string $schema = Database::OECM_SCHEMA;
-    protected $table = 'imet_report';
+    protected $table = 'report';
 
     protected static array $report_fields = [
         'analysis',

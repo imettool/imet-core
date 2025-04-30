@@ -22,7 +22,7 @@ class Imet extends BaseImetForm
 {
     public const version = 'oecm';
     protected string $schema = Database::OECM_SCHEMA;
-    protected $table = 'imet_form';
+    protected $table = 'forms';
 
     public static $modules = [
 

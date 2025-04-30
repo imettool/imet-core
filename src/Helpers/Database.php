@@ -11,7 +11,7 @@ class Database
 
     // Schemas: used as schema for PostGreSQL and as prefix for SQLite
     public const COMMON_SCHEMA = 'imet_common';
-    public const IMET_SCHEMA = 'imet';
+    public const IMET_SCHEMA = 'imet_v1v2';
     public const OECM_SCHEMA = 'imet_oecm';
 
     /**
@@ -19,6 +19,7 @@ class Database
      */
     public static function getTable(string $schema, string $table): string
     {
+
         return DB::getDriverName() === self::DRIVER_SQLITE && !Str::startsWith($table, $schema)
             ? $schema . '_' . $table
             : $schema . '.' . $table;

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class Create extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_form';
+    protected $table = 'forms';
     protected $primaryKey = 'FormID';
 
     public static $rules = [

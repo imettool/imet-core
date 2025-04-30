@@ -43,7 +43,7 @@ abstract class Imet extends Form
     const IMET_OECM = 'oecm';
 
     protected string $schema;
-    protected $table = 'imet_form';
+    protected $table = 'forms';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';

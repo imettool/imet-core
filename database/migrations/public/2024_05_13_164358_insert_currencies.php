@@ -302,7 +302,7 @@ return new class extends Migration
         ];
 
         foreach ($records as $record) {
-            DB::table(Database::getTable(Database::COMMON_SCHEMA, 'imet_currencies'))
+            DB::table(Database::getTable(Database::COMMON_SCHEMA, 'currencies'))
                 ->insert(array_combine($fields, $record));
         }
     }
@@ -312,6 +312,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table(Database::getTable(Database::COMMON_SCHEMA, 'imet_currencies'))->truncate();
+        DB::table(Database::getTable(Database::COMMON_SCHEMA, 'currencies'))->truncate();
     }
 };

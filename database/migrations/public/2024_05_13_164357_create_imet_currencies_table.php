@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'imet_currencies'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'currencies'), function (Blueprint $table) {
             $table->text('iso')->primary();
             $table->text('name_fr')->nullable();
             $table->text('name_en')->nullable();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Database::getTable(Database::COMMON_SCHEMA, 'imet_currencies'));
+        Schema::dropIfExists(Database::getTable(Database::COMMON_SCHEMA, 'currencies'));
     }
 };

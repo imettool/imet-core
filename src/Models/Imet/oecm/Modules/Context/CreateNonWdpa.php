@@ -7,7 +7,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 
 class CreateNonWdpa extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_form';
+    protected $table = 'forms';
     protected $primaryKey = 'FormID';
 
     public static $rules = [

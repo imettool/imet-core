@@ -23,6 +23,12 @@ return new class extends Migration
             $table->boolean('IncludeInStatistics')->nullable();
             $table->text('Comments')->nullable();
             $table->boolean('SignificativeClassification')->nullable();
+
+            $table->foreign(['FormID'], 'FormID_fk')
+                ->references(['FormID'])
+                ->on(Database::getTable(Database::OECM_SCHEMA, 'forms'))
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
-                ->on('imet_form')
+                ->on(Database::getTable(Database::OECM_SCHEMA, 'forms'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             });
