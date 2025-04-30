@@ -19,9 +19,8 @@ class Database
      */
     public static function getTable(string $schema, string $table): string
     {
-
-        return DB::getDriverName() === self::DRIVER_SQLITE && !Str::startsWith($table, $schema)
-            ? $schema . '_' . $table
-            : $schema . '.' . $table;
+        return DB::getDriverName() === self::DRIVER_SQLITE
+            ? (Str::startsWith($table, $schema.'_') ? $table : $schema . '_' . $table)
+            : (Str::startsWith($table, $schema.'.') ? $table : $schema . '.' . $table);
     }
 }
