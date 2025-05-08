@@ -1,16 +1,22 @@
 {
     "name": "andreamarelli/imet-core",
     "description": "Imet core package",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Andrea Marelli",
-            "email": "andrea.marelli.dev@gmail.com"
+            "email": "andrea.marelli@ext.ec.europa.eu"
+        },
+        {
+            "name": "Panagiotis Politopoulos",
+            "email": "panagiotis.politopoulos@ext.ec.europa.eu"
         }
     ],
+    "license": "EUPL-1.2",
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "dev-main"
+        "andreamarelli/modular-forms": "^1.0"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0"
@@ -38,6 +44,11 @@
                 "ImetUser": "ImetCore\\Models\\User"
             }
         }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "php notice-generator.php"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
