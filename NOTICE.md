@@ -8,7 +8,7 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__andreamarelli/modular-forms 1.x-dev__
+__andreamarelli/modular-forms 1.0.0__
   * git@github.com:andreamarelli/modular-forms
   * License: EUPL-1.2
   * Copyright: 
