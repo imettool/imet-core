@@ -1,7 +1,6 @@
 {
     "type": "module",
     "name": "imet-core",
-    "version": "0.0.0",
     "dependencies": {
         "dropzone-vue3": "1.0.2",
         "echarts": "^5.5.1",
