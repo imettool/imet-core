@@ -14,7 +14,7 @@ use ModularForms\Helpers\Input\Input;
                     <guidance :text="'imet-core::analysis_report.guidance.custom_names'"></guidance>
                     <div class="max-w-7xl mx-auto mt-4">
                         @foreach ($protected_areas['models'] as $key => $pa)
-                            <div class="flex items-center space-x-4 mb-2">
+                            <div class="flex items-center gap-x-4 mb-2">
                                 <div class="text-right flex-1">{!! Input::label('name', $pa->name, 'exclude-element') !!}</div>
                                 <div class="text-left flex-1">{!! Input::text($pa->FormID, $custom_names[$pa->FormID]) !!}</div>
                                 <div class="text-left flex-1">

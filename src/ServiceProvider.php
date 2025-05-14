@@ -12,7 +12,6 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
-
     const BASE_PATH = __DIR__ . '/../';
 
     /**

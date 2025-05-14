@@ -34,7 +34,7 @@ const updateContent = (value) => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .text-editor-edit {
     @media print {
         display: none;

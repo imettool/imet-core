@@ -11,6 +11,7 @@ use ImetCore\Controllers\SpeciesController;
 use ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use ImetCore\Middleware\SetLocale;
 
 const IMET_PREFIX = Imet\Controller::ROUTE_PREFIX;
 const V1_ROUTE_PREFIX = v1\Controller::ROUTE_PREFIX;
@@ -18,7 +19,7 @@ const V2_ROUTE_PREFIX = v2\Controller::ROUTE_PREFIX;
 const OECM_ROUTE_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 
-Route::group(['middleware' => ['setLocale', 'web']], function () {
+Route::middleware([SetLocale::class, 'web'])->group(function () {
 
     // Old routes: to be kept for the moment to ensure backwards compatibility
     Route::get('/{url}', function ($url) {

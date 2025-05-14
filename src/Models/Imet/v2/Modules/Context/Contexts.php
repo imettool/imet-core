@@ -30,6 +30,8 @@ class Contexts extends Modules\Component\ImetModule
             'values' => trans('imet-core::v2_context.Contexts.predefined_values')
         ];
 
+        $this->module_info = trans('imet-core::v2_context.Contexts.module_info');
+
         parent::__construct($attributes);
     }
 

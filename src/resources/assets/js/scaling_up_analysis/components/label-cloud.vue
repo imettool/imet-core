@@ -15,7 +15,7 @@
         <div class="m-4 flex flex-row justify-center gap-4">
             <div  class="" v-for="selection in selections" :key="selection.id"
                  v-on:click="remove_item(selection)">
-                <div class="p-2 bg-yellow-100 rounded border border-yellow-200">
+                <div class="p-2 bg-yellow-100 rounded-sm border border-yellow-200">
                     <strong>{{ selection.value }}</strong>
                     <button type="button"><span aria-hidden="true">&times;</span></button>
                 </div>
@@ -133,7 +133,7 @@ function update() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 .results-cloud {
     max-height: 300px;
     overflow: auto;

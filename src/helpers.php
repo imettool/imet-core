@@ -11,12 +11,14 @@ use Illuminate\Support\Str;
 function is_imet_environment(): bool
 {
     return Str::contains(App::environment(), 'imet')
+        || Str::contains(App::environment(), 'local')
         || Str::contains(App::environment(), 'builder');
 }
 
 function is_offline_environment(): bool
 {
     return Str::contains(App::environment(), 'offline')
+        || Str::contains(App::environment(), 'local')
         || Str::contains(App::environment(), 'builder');
 }
 

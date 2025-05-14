@@ -45,7 +45,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
     }
 
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.2 -> v2.3 ####
         $record = static::addField($record, 'FunctionalHasNoTakeArea');

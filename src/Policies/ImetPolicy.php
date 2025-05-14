@@ -13,10 +13,6 @@ class ImetPolicy
 
     /**
      * Perform pre-authorization checks
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param string $ability
-     * @return void|bool
      */
     public function before($user, string $ability)
     {
@@ -30,9 +26,6 @@ class ImetPolicy
     /**
      * Determine whether the user can INDEX
      * Every role can access the index route but the list will be filtered accordingly
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @return bool
      */
     public function viewAny($user): bool
     {
@@ -41,10 +34,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can VIEW
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function view($user, $form = null): bool
     {
@@ -57,10 +46,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can EDIT
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function edit($user, $form = null): bool
     {
@@ -74,10 +59,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can UPDATE
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function update($user, $form = null): bool
     {
@@ -87,9 +68,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can CREATE
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @return bool
      */
     public function create($user): bool
     {
@@ -99,10 +77,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can DESTROY
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function destroy($user, $form = null): bool
     {
@@ -112,10 +86,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can view the EXPORT button
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function export_button($user, $form = null): bool
     {
@@ -127,10 +97,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can EXPORT
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function export($user, $form = null): bool
     {
@@ -144,10 +110,6 @@ class ImetPolicy
 
     /**
      * Determine whether the user can export ALL the assessments
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param $form
-     * @return bool
      */
     public function exportAll($user, $form = null): bool
     {
@@ -156,9 +118,7 @@ class ImetPolicy
     }
 
     /**
-     * @param $user
-     * @param $form
-     * @return bool
+     * Determine whether the user can view api_assessment
      */
     public function api_assessment($user, $form = null): bool
     {
@@ -167,13 +127,18 @@ class ImetPolicy
     }
 
     /**
-     * @param $user
-     * @param $form
-     * @return bool
+     * Determine whether the user can view api_scaling_up
      */
     public function api_scaling_up($user, $form = null): bool
     {
         return $this->role_national_or_observatory() && Role::isWdpaAllowed($form->wdpa_id, $user);
+    }
+
+    /**
+     * Determine whether the user is a national authority or an observatory
+     */
+    public function scaling_up(): bool{
+        return $this->role_national_or_observatory();
     }
 
     /**
@@ -185,11 +150,7 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can api views
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param null $form
-     * @param null $model
-     * @return bool
+     * Determine whether the user can view api_details
      */
     public function api_details($user, $form = null, $model = null): bool
     {

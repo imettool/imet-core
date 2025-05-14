@@ -36,7 +36,7 @@ use \ImetCore\Models\Imet\Imet;
         <div class="flex">
             <form target="_blank" ref="filterForm" method="POST"
                   action="{{ route($route_prefix . 'export_batch') }}">
-                <button type="submit" class="btn-nav rounded" :disabled="exportDisabled">Export
+                <button type="submit" class="btn-nav rounded-sm" :disabled="exportDisabled">Export
                 </button>
                 {{ csrf_field() }}
                 <input type='hidden' name="selection" v-model="checkboxes">

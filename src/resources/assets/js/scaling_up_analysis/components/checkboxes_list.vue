@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-2 gap-4 pb-4 pt-4">
         <template v-if="pas.length > 0">
-            <div v-for="(selection, i) in pas" :key="i" class="p-2 bg-yellow-100 rounded border border-yellow-200">
+            <div v-for="(selection, i) in pas" :key="i" class="p-2 bg-yellow-100 rounded-sm border border-yellow-200">
                 <input type="checkbox" :checked="is_checked(selection.FormID)" class="vue-checkboxes" :data-name="selection.name"
                     @click="selectValue(selection.FormID)" :value="selection.FormID">
                 <strong>&nbsp;{{ selection.name }}</strong>

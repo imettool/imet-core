@@ -25,6 +25,8 @@ class GeographicalLocation extends Modules\Component\ImetModule
             ['name' => 'AdministrativeLocation',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeographicalLocation.fields.AdministrativeLocation')],
         ];
 
+        $this->module_info = trans('imet-core::v2_context.GeographicalLocation.module_info');
+
         parent::__construct($attributes);
     }
 }

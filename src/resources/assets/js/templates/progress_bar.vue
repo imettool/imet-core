@@ -9,7 +9,9 @@
 
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
+
+    @import "tailwindcss";
 
     .progress-bar{
         position: relative;

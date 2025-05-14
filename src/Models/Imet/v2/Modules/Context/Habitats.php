@@ -27,6 +27,7 @@ class Habitats extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.Habitats.title');
         $this->module_fields = [
             ['name' => 'EcosystemType',             'type' => 'suggestion-ImetV2_Habitats',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemType')],
+            ['name' => 'TerrestrialOrMarine',       'type' => 'dropdown-ImetV2_TerrestrialOrMarine',   'label' => trans('imet-core::v2_context.Habitats.fields.TerrestrialOrMarine')],
             ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Value')],
             ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.Area')],
             ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.DesiredConservationStatus')],
@@ -40,7 +41,7 @@ class Habitats extends Modules\Component\ImetModule
 
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.8 -> v2.10 (revised habitat list)  ####
         $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest temperate','forest_temperate_boreal');

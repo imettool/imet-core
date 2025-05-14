@@ -59,7 +59,7 @@ const removeItem = (evt, item) => {
 };
 </script>
 
-<style scoped>
+<style lang="postcss" scoped>
 .default-zone-element {
     background-color: #fff;
     margin-bottom: 5px;

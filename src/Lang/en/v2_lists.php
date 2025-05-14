@@ -129,6 +129,13 @@ return [
         'Other'
     ],
 
+    'SubGovernanceModel' => [
+        'Collaborative governance',
+        'Joint governance',
+        'Other',
+        'Transboundary governance'
+    ],
+
     'TerrestrialOrMarine' => [
         'terrestrial' => 'Terrestrial',
         'marine' => 'Marine',

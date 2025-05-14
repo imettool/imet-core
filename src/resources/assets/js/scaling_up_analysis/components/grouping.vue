@@ -94,7 +94,7 @@
         </div>
     </div>
 </template>
-<style scoped>
+<style lang="postcss" scoped>
 
 .legend_radars {
     width: 200px;

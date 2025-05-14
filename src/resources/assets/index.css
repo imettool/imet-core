@@ -1,5 +1,11 @@
-@import 'sass/components/common.scss';
-@import 'sass/components/header.scss';
-@import 'sass/components/module.scss';
-@import 'sass/components/custom.scss';
 
+/* Importing local css files */
+@import './css/components/common.css';
+@import './css/components/header.css';
+@import './css/components/module.css';
+@import './css/components/custom.css';
+
+/* Tailwindcss configuration */
+@import "tailwindcss";
+@source "../**/*.vue";
+@source "../**/*.blade.php";

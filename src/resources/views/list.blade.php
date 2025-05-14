@@ -40,40 +40,42 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
     @can('edit', $form_class)
         {{-- Create new IMET --}}
-        <a class="btn-nav rounded"
+        <a class="btn-nav rounded-sm"
            href="{{ route($route_prefix.'create') }}">
             {!! Template::icon('plus-circle', 'white') !!}
             {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
         </a>
-        <a class="btn-nav rounded"
+        <a class="btn-nav rounded-sm"
            href="{{ route($route_prefix.'create_non_wdpa') }}">
             {!! Template::icon('plus-circle', 'white') !!}
             {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
         </a>
         {{-- Import json IMETs --}}
-        <a class="btn-nav rounded"
+        <a class="btn-nav rounded-sm"
            href="{{ route($route_prefix.'import') }}">
             {!! Template::icon('file-import', 'white') !!}
             {{ ucfirst(trans('modular-forms::common.import')) }}
         </a>
-        @if($scaling_up_enable)
+    @endcan
+
+    @if($scaling_up_enable)
+        @can('scaling_up', $form_class)
             &nbsp;&nbsp;
             &nbsp;&nbsp;
             {{-- Scaling Up --}}
-            <a class="btn-nav rounded"
+            <a class="btn-nav rounded-sm"
                href="{{ route('imet-core::scaling_up_index') }}">
                 {!! Template::icon('chart-bar', 'white') !!}
                 {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
             </a>
-        @endif
-
-    @endcan
+            @endcan
+    @endif
 
     @can('exportAll', $form_class)
         &nbsp;&nbsp;
         &nbsp;&nbsp;
         {{-- Export json IMETs --}}
-        <a class="btn-nav rounded"
+        <a class="btn-nav rounded-sm"
            href="{{ route($route_prefix.'export_view') }}">
             {!! Template::icon('file-export', 'white') !!}
 {{--            {{ ucfirst(trans('modular-forms::common.export')) }}--}}

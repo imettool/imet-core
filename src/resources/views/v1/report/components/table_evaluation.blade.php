@@ -14,7 +14,11 @@ use ImetCore\Controllers\Imet\ApiController;
             <div class="badge {!! ApiController::score_class($scores['context']['avg_indicator']) !!}">{{ $scores['context']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['context']['C1'], 'assessment_label' => $labels['C1']])
-        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['context']['C2'], 'assessment_label' => $labels['C2']])
+        @include('imet-core::v2.report.components.row_evaluation', [
+            'assessment_value' => $scores['context']['C2'],
+            'assessment_label' => $labels['C2'],
+            'constraints' => true
+        ])
         @include('imet-core::v2.report.components.row_evaluation', [
             'assessment_value' => $scores['context']['C3'],
             'assessment_label' => $labels['C3'],

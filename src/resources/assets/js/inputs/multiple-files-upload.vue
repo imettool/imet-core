@@ -12,7 +12,7 @@
         >
 
             <div class="dropzone-custom-content">
-                <h3 class="dropzone-custom-title">{{ Locale.getLabel('imet-core::common.dropzone.multiple_files_description') }}</h3>
+                <h3 class="dropzone-custom-title">{{ Locale.getLabel('modular-forms::common.upload.multiple_files_description') }}</h3>
             </div>
 
         </vue-dropzone>
@@ -113,11 +113,11 @@ function fileAdded(file) {
 
 function uploadError(file, message) {
     files_uploaded.value++;
-    let errorMessage = Locale.getLabel('imet-core::common.dropzone.upload_error');
+    let errorMessage = Locale.getLabel('modular-forms::common.upload.upload_error');
     if (message['message']) {
         errorMessage += message['message'];
     } else if (!formatTypes.includes(file.type)) {
-        errorMessage = Locale.getLabel('imet-core::common.dropzone.not_valid_format');
+        errorMessage = Locale.getLabel('modular-forms::common.upload.not_valid_format');
     } else {
         errorMessage += message;
     }
@@ -125,12 +125,12 @@ function uploadError(file, message) {
 }
 
 function processing(file) {
-    progressBarConfiguration(file, Locale.getLabel('imet-core::common.dropzone.uploading'));
+    progressBarConfiguration(file, Locale.getLabel('modular-forms::common.upload.uploading'));
 }
 
 function uploadedSuccessfully(file, response) {
     files_uploaded.value++;
-    let message = Locale.getLabel('imet-core::common.dropzone.uploaded');
+    let message = Locale.getLabel('modular-forms::common.upload.uploaded');
     if (response.length > 1) {
         let filesDidNotUploaded = 0;
         response.forEach((r => {
@@ -139,28 +139,16 @@ function uploadedSuccessfully(file, response) {
             }
         }))
         const totalFiles = response.length;
-        message += Locale.getLabel('imet-core::common.dropzone.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
+        message += Locale.getLabel('modular-forms::common.upload.not_all_imported').replace("{{filesDidNotUploaded}}", filesDidNotUploaded).replace("{{totalFiles}}", totalFiles);
     }
     progressBarConfiguration(file, message, "green");
 }
 
 
-
-//
-// export default {
-//
-//     mounted: function () {
-//         window.confirm = function () {
-//             return true;
-//         };
-//     },
-//
-// }
-
 </script>
 
 
-<style lang="scss">
+<style>
 
 #dropzone {
     display: inline-block;
@@ -206,41 +194,4 @@ function uploadedSuccessfully(file, response) {
     display: none;
 }
 
-//
-//
-//#dropzone {
-//    display: inline-block;
-//    height: 300px;
-//    max-height:300px;
-//    overflow:auto;
-//    background:#fff;
-//    width: 100%;
-//
-//    .dropzone-custom-content{
-//        margin: 0 30px;
-//        .dropzone-custom-title{
-//            @apply text-base;
-//        }
-//    }
-//
-//    //.files{
-//    //    display: flex;
-//    //    gap: 30px;
-//    //
-//    //    .file-details{
-//    //        flex-grow: 1;
-//    //        display: flex;
-//    //        flex-direction: row;
-//    //        align-items: center;
-//    //        gap: 15px;
-//    //
-//
-//    //    }
-//    //}
-//
-//    a.dz-remove{
-//        display: none;
-//    }
-//
-//}
 </style>

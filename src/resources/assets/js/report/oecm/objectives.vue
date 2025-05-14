@@ -153,4 +153,3 @@ const clearSelections = () => {
 
 
 </script>
-<style scoped></style>

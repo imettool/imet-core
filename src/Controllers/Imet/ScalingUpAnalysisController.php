@@ -333,13 +333,19 @@ class ScalingUpAnalysisController extends __Controller
     {
         $files = [];
         $scaling_ups = Basket::where('scaling_up_id', $scaling_id)->get();
+        if(config('app.asset_url')){
+            $asset_url = ltrim(config('app.asset_url'),"/");
+        } else {
+            $asset_url = "";
+        }
+
         if (count($scaling_ups) > 0) {
             $item = ModelScalingUpAnalysis::where('id', $scaling_id)->first();
 
             $this->auth_saved(explode(',', $item->wdpas));
 
             foreach ($scaling_ups as $record) {
-                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . str_replace($asset_url, "" ,$record->item);
             }
 
             if (count($files) > 1) {

@@ -32,12 +32,12 @@ class Basket extends Model
         $image = str_replace(' ', '+', $image);
 
         $record = BasketModel::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
-        $imageName = $record->id . '.png';
+        $imageName = hash('sha256', $record->id . time()) . '.png';
 
         $disk = Storage::disk(self::BASKET_DISK);
         $image_path = self::BASKET_FOLDER . $imageName;
         if ($disk->put($image_path, base64_decode($image))) {
-            $record->item = $image_path;// BasketModel::create(["item" => $imageName, "order" => 1]);
+            $record->item = config('app.asset_url') ? ltrim(config('app.asset_url'), '/') . ltrim($image_path, '/') : $image_path;
             $record->comment = $item['comment'];
             $record->save();
             return json_encode($record);

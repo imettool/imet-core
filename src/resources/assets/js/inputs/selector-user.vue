@@ -59,7 +59,7 @@
 
 </template>
 
-<style lang="scss" scoped>
+<style lang="postcss" scoped>
 
     .module-container .selector-user{
 

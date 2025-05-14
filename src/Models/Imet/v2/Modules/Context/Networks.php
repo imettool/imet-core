@@ -54,7 +54,7 @@ class Networks extends Modules\Component\ImetModule
         return $models;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ### Update "ProtectedAreas" to comma-separated list of WDPA ids ###
         if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '_')){

@@ -136,6 +136,27 @@ nav.steps a.step.cross-analysis-warnings {
     -webkit-print-color-adjust: exact;
   }
 
+  .score_threat_danger {
+    color: white;
+    background-color: #FFBFD6 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_threat_medium_danger {
+    color: white;
+    background-color: #FFA9A9 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_constraints_success {
+    color: white;
+    background-color: #FF8686 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
   .swot {
     width: 99%;
     display: grid;

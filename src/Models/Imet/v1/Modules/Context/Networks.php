@@ -55,7 +55,7 @@ class Networks extends Modules\Component\ImetModule
         return $models;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
 
         if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '[')){

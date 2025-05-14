@@ -231,7 +231,7 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="postcss" scoped>
 @media print {
     .add-item {
         display: none !important;
