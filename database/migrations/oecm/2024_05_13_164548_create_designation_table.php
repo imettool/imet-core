@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::OECM_CONNECTION;
     
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('designation', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'designation'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -24,6 +23,12 @@ return new class extends Migration
             $table->boolean('IncludeInStatistics')->nullable();
             $table->text('Comments')->nullable();
             $table->boolean('SignificativeClassification')->nullable();
+
+            $table->foreign(['FormID'], 'FormID_fk')
+                ->references(['FormID'])
+                ->on(Database::getTable(Database::OECM_SCHEMA, 'forms'))
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -32,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('designation');
+        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'designation'));
     }
 };

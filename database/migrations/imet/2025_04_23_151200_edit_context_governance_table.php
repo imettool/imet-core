@@ -7,14 +7,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
-    
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('context_governance', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table) {
             $table->renameColumn('Type', 'GovernanceModel');
             $table->renameColumn('Comments', 'AdditionalInfo');
             $table->string('SubGovernanceModel', 250)->nullable();
@@ -26,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('context_governance', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table) {
             $table->dropColumn('SubGovernanceModel');
             $table->renameColumn('GovernanceModel', 'Type');
             $table->renameColumn('AdditionalInfo', 'Comments');

@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class User extends BaseUser
 {
-    protected $connection = Database::COMMON_CONNECTION;
-
     /**
      * Override: set the fillable attributes
      * @var string[]

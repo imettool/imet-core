@@ -43,7 +43,7 @@ abstract class Imet extends Form
     const IMET_OECM = 'oecm';
 
     protected string $schema;
-    protected $table = 'imet_form';
+    protected $table = 'forms';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -54,10 +54,12 @@ abstract class Imet extends Form
 
     public static $modules = [];
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**

@@ -7,15 +7,16 @@ use ModularForms\Models\Utils\Animal as BaseAnimal;
 
 class Animal extends BaseAnimal
 {
-    protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $connection = Database::COMMON_CONNECTION;
+    protected string $schema = Database::COMMON_SCHEMA;
     protected $table = 'species';
     protected $primaryKey = 'id';
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     public static function getScientificName($taxonomy): ?string {

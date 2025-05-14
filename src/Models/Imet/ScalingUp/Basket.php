@@ -16,7 +16,6 @@ class Basket extends Model
 
     public $timestamps = false;
     protected string $schema = Database::IMET_SCHEMA;
-    protected $connection = Database::IMET_CONNECTION;
     protected $table = 'scaling_up_basket';
     protected $fillable = ['item', 'order', 'comment', 'scaling_up_id'];
 

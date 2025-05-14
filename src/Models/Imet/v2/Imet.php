@@ -22,8 +22,7 @@ class Imet extends BaseImetForm
 {
     public const version = 'v2';
     protected string $schema = Database::IMET_SCHEMA;
-    protected $connection = Database::IMET_CONNECTION;
-    protected $table = 'imet_form';
+    protected $table = 'forms';
 
     public static $modules = [
 

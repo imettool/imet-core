@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Region extends BaseModel
 {
-    protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $table = 'imet_regions';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'regions';
     protected $keyType = 'string';
 
 }

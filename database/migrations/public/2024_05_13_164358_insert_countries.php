@@ -3,9 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
      */
@@ -47,7 +49,7 @@ return new class extends Migration
 
         // Upsert data into the database
         foreach ($data as $chunk) {
-            DB::table('imet_countries')
+            DB::table(Database::getTable(Database::COMMON_SCHEMA, 'countries'))
                 ->upsert($chunk, ['iso3'],
                     ['iso2', 'iso3', 'iso', 'name_fr', 'name_en', 'name_sp', 'name_pt', 'region_id']);
         }
@@ -58,7 +60,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('imet_countries')->truncate();
+        DB::table(Database::getTable(Database::COMMON_SCHEMA, 'countries'))->truncate();
     }
 
     /**
