@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
+    
 
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('context_habitats', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_habitats'), function (Blueprint $table) {
             $table->string('TerrestrialOrMarine', 50)->nullable()->after('EcosystemType');
         });
     }
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('context_habitats', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_habitats'), function (Blueprint $table) {
             $table->dropColumn('TerrestrialOrMarine');
         });
     }

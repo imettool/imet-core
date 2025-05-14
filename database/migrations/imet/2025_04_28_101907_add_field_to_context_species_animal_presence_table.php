@@ -6,14 +6,14 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    protected $connection = Database::IMET_CONNECTION;
+    
 
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('context_species_animal_presence', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
             $table->string('CommonName', 255)->nullable()->after('SpeciesID');
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('context_species_animal_presence', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
             $table->dropColumn('CommonName');
         });
     }

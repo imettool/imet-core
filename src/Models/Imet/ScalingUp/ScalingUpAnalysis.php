@@ -31,7 +31,6 @@ class ScalingUpAnalysis extends Model
     protected static $ttl = 2;
 
     protected string $schema = Database::IMET_SCHEMA;
-    protected $connection = Database::IMET_CONNECTION;
     protected $table = 'scaling_up';
 
     protected $fillable = ['wdpas'];
@@ -39,10 +38,12 @@ class ScalingUpAnalysis extends Model
     public static $scaling_id = null;
     public const UNDEFINED_VALUE = -99999999;
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**

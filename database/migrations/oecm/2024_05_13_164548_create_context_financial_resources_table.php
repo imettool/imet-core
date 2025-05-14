@@ -7,14 +7,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::OECM_CONNECTION;
     
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('context_financial_resources', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'context_financial_resources'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -24,7 +23,7 @@ return new class extends Migration
 
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
-                ->on('imet_form')
+                ->on(Database::getTable(Database::OECM_SCHEMA, 'forms'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             });
@@ -36,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('context_financial_resources');
+        Schema::dropIfExists(Database::getTable(Database::OECM_SCHEMA, 'context_financial_resources'));
     }
 };

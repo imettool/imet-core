@@ -7,14 +7,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
-    
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('context_non_sustainable_usage', function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_non_sustainable_usage'), function (Blueprint $table) {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
@@ -31,7 +29,7 @@ return new class extends Migration
 
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
-                ->on('imet_form')
+                ->on(Database::getTable(Database::IMET_SCHEMA, 'forms'))
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             });
@@ -43,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('context_non_sustainable_usage');
+        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'context_non_sustainable_usage'));
     }
 };
