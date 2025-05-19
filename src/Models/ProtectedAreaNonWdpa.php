@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 namespace ImetCore\Models;
 
@@ -20,8 +29,8 @@ use ModularForms\Models\BaseModel;
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
-    protected string $schema = Database::COMMON_IMET_SCHEMA;
-    protected $table = 'imet_pas_non_wdpa';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'protected_areas_non_wdpa';
 
     public const LABEL = 'name';
 
@@ -31,10 +40,12 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     protected $appends = ['wdpa_id'];
 
-    public function __construct(array $attributes = [])
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
     {
-        parent::__construct($attributes);
-        [$this->table, $this->connection] = Database::getTableAndConnection($this->table,$this->schema);
+        return Database::getTable($this->schema, $this->table);
     }
 
     /**
