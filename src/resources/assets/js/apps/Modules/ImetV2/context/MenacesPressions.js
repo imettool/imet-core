@@ -5,7 +5,6 @@ import { ref, computed } from "vue";
 export default class MenacesPressions extends ModuleImet {
 
     constructor(input_data = {}) {
-
         const custom_props = {
             marine_predefined: {
                 type: Array,
@@ -14,6 +13,10 @@ export default class MenacesPressions extends ModuleImet {
             groupsByCategory: {
                 type: Object,
                 default: () => input_data.groupsByCategory
+            },
+            categoriesVisibility: {
+                type: Object,
+                default: () => input_data.categoriesVisibility || {}
             }
         };
 
@@ -23,6 +26,15 @@ export default class MenacesPressions extends ModuleImet {
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
+
+        const categoryVisibility = ref(input_data.categoriesVisibility.initialVisibility);
+
+        function isSubCategoryVisibly(categoryIndex) {
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                return false;
+            }
+            return categoryVisibility.value[categoryIndex];
+        }
 
         /**
          * Calculate stats for each record
@@ -111,7 +123,8 @@ export default class MenacesPressions extends ModuleImet {
             recordStats,
             groupStats,
             categoryStats,
-            is_marine
+            is_marine,
+            isSubCategoryVisibly
         };
 
     }

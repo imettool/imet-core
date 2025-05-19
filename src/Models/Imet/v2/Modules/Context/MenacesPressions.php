@@ -6,6 +6,8 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
+use Wa72\HtmlPageDom\Helpers;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class MenacesPressions extends Modules\Component\ImetModule
 {
@@ -42,12 +44,13 @@ class MenacesPressions extends Modules\Component\ImetModule
         $this->module_code = 'CTX 5.1';
         $this->module_title = trans('imet-core::v2_context.MenacesPressions.title');
         $this->module_fields = [
-            ['name' => 'Value',         'type' => 'text-area',               'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
+            ['name' => 'Value',         'type' => 'text-area',          'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
             ['name' => 'Impact',        'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
             ['name' => 'Extension',     'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
             ['name' => 'Duration',      'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
             ['name' => 'Trend',         'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
             ['name' => 'Probability',   'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
+            ['name' => 'Comments',      'type' => 'text-area',          'label' => trans('imet-core::v2_context.MenacesPressions.fields.Comments')],
         ];
 
         $this->module_groups = [
@@ -237,6 +240,35 @@ class MenacesPressions extends Modules\Component\ImetModule
             $groups['group4'],
             $groups['group11']
         ];
+    }
+
+    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title): string
+    {
+        $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '"';
+        $textToAdd = '<h3 class="group_title_' . $module_key . '_' . $beforeGroup . '">' . $title . '</h3>';
+        return str_replace($searchFor, $textToAdd . $searchFor, $view);
+    }
+
+    /**
+     * Inject
+     *
+     * @param $view
+     * @param $parent
+     * @param $groups
+     * @return string
+     */
+    public static function injectShowHideCategories($view, $parent, $groups): string
+    {
+        $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
+        $vue_if_directive = 'isSubCategoryVisibly(' . $parent . ')';
+        $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
+        foreach ($groups as $i => $group) {
+            foreach($elements as $k => $element) {
+                $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vue_if_directive);
+            }
+        }
+
+        return $dom->saveHTML();
     }
 
 }
