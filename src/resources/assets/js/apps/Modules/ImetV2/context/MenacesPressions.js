@@ -49,7 +49,6 @@ export default class MenacesPressions extends ModuleImet {
         }
 
         function toggleCategoryVisibility(categoryIndex) {
-            debugger;
             if (categoryVisibility.value[categoryIndex] === undefined) {
                 categoryVisibility.value[categoryIndex] = true;
             } else {
