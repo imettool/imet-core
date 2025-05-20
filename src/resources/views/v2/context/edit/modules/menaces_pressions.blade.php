@@ -37,7 +37,9 @@ $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupT
     @foreach(MenacesPressions::$groupsByCategory as $i => $category)
         <div class="histogram-row">
             <div class="histogram-row__checkbox">
-                <input type="checkbox" v-model="categoryVisibility[{{ $i }}]" @change="toggleCategory({{ $i }})">
+                <checkbox-boolean :value="1"
+                                  :func="toggleCategoryVisibility"
+                                  :id="{{$i}}"></checkbox-boolean>
             </div>
             <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
             <div

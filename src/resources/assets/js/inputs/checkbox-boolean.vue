@@ -25,6 +25,7 @@ const props = defineProps({
     dataRules: { type: String, default: '' },
     dataNumeric: { type: Boolean, default: false },
     label: { type: String, default: null },
+    func: { type: Function, default: null },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -41,7 +42,11 @@ watch(() => props.value, (newValue) => {
 
 const checkChange = () => {
     inputValue.value = !inputValue.value;
-    setModuleValue();
+    if (props.func) {
+        props.func(props.id);
+    } else {
+        setModuleValue();
+    }
 };
 
 const emitValue = (value) => {

@@ -269,12 +269,14 @@ class MenacesPressions extends Modules\Component\ImetModule
     public static function injectShowHideCategories($view, $parent, $groups): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
-        $vue_if_directive = 'isSubCategoryVisibly(' . $parent . ')';
+        $vueIfDirective = 'isSubCategoryVisibly(' . $parent . ')';
         $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
         foreach ($groups as $i => $group) {
             foreach($elements as $k => $element) {
-                $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vue_if_directive);
+                $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vueIfDirective);
             }
+            $dom->filter('table[id*="_' . $group . '"] + br')->setAttribute('v-if', $vueIfDirective);
+            $dom->filter('table[id*="_' . $group . '"] + br + br')->setAttribute('v-if', $vueIfDirective);
         }
 
         return $dom->saveHTML();

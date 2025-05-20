@@ -9,6 +9,7 @@
  */
 
 import ModuleImet from "../../../Module.js";
+import checkbox_boolean from "../../../../inputs/checkbox-boolean.vue";
 
 import { ref, computed } from "vue";
 
@@ -30,7 +31,8 @@ export default class MenacesPressions extends ModuleImet {
             }
         };
 
-        return super(input_data, custom_props);
+        super(input_data, custom_props)
+            .component('checkbox-boolean', checkbox_boolean);
     }
 
     setupApp(props, input_data) {
@@ -44,6 +46,15 @@ export default class MenacesPressions extends ModuleImet {
                 return false;
             }
             return categoryVisibility.value[categoryIndex];
+        }
+
+        function toggleCategoryVisibility(categoryIndex) {
+            debugger;
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                categoryVisibility.value[categoryIndex] = true;
+            } else {
+                categoryVisibility.value[categoryIndex] = !categoryVisibility.value[categoryIndex];
+            }
         }
 
         /**
@@ -134,7 +145,8 @@ export default class MenacesPressions extends ModuleImet {
             groupStats,
             categoryStats,
             is_marine,
-            isSubCategoryVisibly
+            isSubCategoryVisibly,
+            toggleCategoryVisibility
         };
 
     }
