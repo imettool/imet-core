@@ -24,7 +24,7 @@ use function view;
 
 class EvalController extends BaseEvalController
 {
-    protected static ?string $form_clas = Imet_Eval::class;
+    protected static ?string $form_class = Imet_Eval::class;
     protected static ?string $form_view_prefix = 'imet-core::v2.evaluation';
 
     /**

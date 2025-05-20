@@ -26,6 +26,6 @@ class ImetModule extends BaseImetModule
 
     protected string $schema = Database::OECM_SCHEMA;
 
-    protected static ?string $form_clas = Imet::class;
+    protected static ?string $form_class = Imet::class;
 
 }

@@ -22,7 +22,7 @@ use ImetCore\Services\Reports\OECM;
 
 class ReportController extends BaseReportController
 {
-    protected static ?string $form_clas = Imet::class;
+    protected static ?string $form_class = Imet::class;
     protected static ?string $form_view_prefix = 'imet-core::oecm.report';
 
     /**

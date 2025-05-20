@@ -43,7 +43,7 @@ abstract class Controller extends __Controller
 
     public const ROUTE_PREFIX = 'imet-core::';
 
-    protected static ?string $form_clas = Imet::class;
+    protected static ?string $form_class = Imet::class;
     protected static ?string $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
