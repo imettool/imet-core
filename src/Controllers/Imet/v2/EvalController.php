@@ -66,7 +66,7 @@ class EvalController extends BaseEvalController
     public function edit($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
-        $this->authorize('view', $imet);
+        $this->authorize('edit', $imet);
 
         $step = $step == null ? 'context' : $step;
         list($warnings, $classes) = $this->get_cross_analysis($imet);

@@ -19,9 +19,8 @@ class ContextController extends Controller
 
     public function print_sa($item)
     {
-        if(static::AUTHORIZE_BY_POLICY){
-            $this->authorize('view', (static::$form_class)::find($item));
-        }
+        $this->authorize('view', (static::$form_class)::find($item));
+
         $form = new static::$form_class();
         $form = $form->find($item);
         return view(static::$form_view_prefix.'.print_sa', [

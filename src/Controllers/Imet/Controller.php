@@ -18,18 +18,13 @@ use ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use ImetCore\Controllers\Imet\Traits\Merge;
 use ImetCore\Controllers\Imet\Traits\Pame;
 use ImetCore\Models\Imet\Imet;
-use ModularForms\Helpers\File\File;
 use ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\URL;
-use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
 use function view;
 
 
@@ -94,9 +89,7 @@ abstract class Controller extends __Controller
      */
     public function destroy($item): RedirectResponse
     {
-        if(static::AUTHORIZE_BY_POLICY) {
-            $this->authorize('destroy', (static::$form_class)::find($item));
-        }
+        $this->authorize('destroy', (static::$form_class)::find($item));
         $form = new static::$form_class();
         $form = $form->find($item);
         $form->delete();
