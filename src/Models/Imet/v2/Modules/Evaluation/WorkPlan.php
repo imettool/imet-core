@@ -65,7 +65,7 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         return parent::updateModule($request);
     }
 
-    public static function importModule($form_id, $data)
+    public static function importModule($form_id, $data): void
     {
         $data = static::ensureNullValues($data);
         parent::importModule($form_id, $data);

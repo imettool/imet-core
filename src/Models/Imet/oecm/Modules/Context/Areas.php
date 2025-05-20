@@ -18,7 +18,7 @@ use ImetCore\Helpers\Template;
 class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'context_areas';
-    public $label_width = 6;
+    public int $label_width = 6;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
