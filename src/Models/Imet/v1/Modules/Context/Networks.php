@@ -11,6 +11,7 @@
 
 namespace ImetCore\Models\Imet\v1\Modules\Context;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
@@ -45,11 +46,8 @@ class Networks extends Modules\Component\ImetModule
 
     /**
      * Override: upgrade module records during retrieving
-     *
-     * @param int|null $form_id
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public static function getModule(int $form_id = null)
+    public static function getModule(int $form_id = null): Collection|\Illuminate\Support\Collection
     {
         $models = parent::getModule($form_id);
 
