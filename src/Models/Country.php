@@ -36,7 +36,7 @@ class Country extends BaseCountry
     protected string $schema = Database::COMMON_SCHEMA;
     protected $table = 'countries';
     public $primaryKey = 'iso3';
-    public static $foreign_key = 'region_id';
+    public static ?string $foreign_key = 'region_id';
 
     /**
      * Override: get the table name with schema

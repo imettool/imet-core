@@ -14,8 +14,8 @@ namespace ImetCore\Controllers\Imet\oecm;
 
 class ContextController extends Controller
 {
-    protected static $form_view_prefix = 'imet-core::oecm.context';
-    protected static $form_default_step = 'general_info';
+    protected static ?string $form_view_prefix = 'imet-core::oecm.context';
+    protected static ?string $form_default_step = 'general_info';
 
     public function print_sa($item)
     {

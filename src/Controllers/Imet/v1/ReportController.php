@@ -24,8 +24,8 @@ use ReflectionException;
 
 class ReportController extends BaseReportController
 {
-    protected static $form_class = Imet::class;
-    protected static $form_view_prefix = 'imet-core::v1.report';
+    protected static ?string $form_clas = Imet::class;
+    protected static ?string $form_view_prefix = 'imet-core::v1.report';
 
     /**
      * Retrieve data to populate report view

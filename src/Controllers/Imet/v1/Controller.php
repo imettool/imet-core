@@ -19,7 +19,7 @@ class Controller extends BaseController
 {
     public const ROUTE_PREFIX = 'imet-core::v1.';
 
-    protected static $form_view_prefix = 'imet-core::v1';
-    protected static $form_class = Imet::class;
+    protected static ?string $form_view_prefix = 'imet-core::v1';
+    protected static ?string $form_clas = Imet::class;
 
 }

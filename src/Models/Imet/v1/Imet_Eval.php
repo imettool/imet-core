@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\v1;
 
 class Imet_Eval extends Imet{
 
-    public static $modules = [
+    public static ?array $modules = [
         'context' => [
             Modules\Evaluation\ImportanceGovernance::class,
             Modules\Evaluation\ObjectivesGovernance::class,

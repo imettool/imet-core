@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers;
 
+use ModularForms\Models\Form;
 use ModularForms\Models\Traits\Payload;
 use ImetCore\Models\User\Role;
 use Illuminate\Contracts\Foundation\Application;
@@ -23,8 +24,8 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends __Controller
 {
-    protected static $form_class = Role::class;
-    protected static $form_view_prefix = 'imet-core::users/';
+    protected static ?Form $form_class = Role::class;
+    protected static ?string $form_view_prefix = 'imet-core::users/';
 
     /**
      * Manage "list_by_role" route

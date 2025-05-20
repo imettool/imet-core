@@ -33,7 +33,7 @@ class Imet extends BaseImetForm
     protected string $schema = Database::IMET_SCHEMA;
     protected $table = 'forms';
 
-    public static $modules = [
+    public static ?array $modules = [
 
         'general_info' => [
             Modules\Context\ResponsablesInterviewers::class,

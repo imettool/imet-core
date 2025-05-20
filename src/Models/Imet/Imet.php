@@ -61,7 +61,7 @@ abstract class Imet extends Form
     public static $sortBy = 'Year';
     public static $sortDirection = 'desc';
 
-    public static $modules = [];
+    public static ?array $modules = [];
 
     /**
      * Override: get the table name with schema

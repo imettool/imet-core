@@ -54,7 +54,7 @@ use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
 class Imet_Eval extends Imet
 {
 
-    public static $modules = [
+    public static ?array $modules = [
         'context' => [
             Designation::class,
             SupportsAndConstraints::class,

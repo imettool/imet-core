@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c13';
-    protected $fixed_rows = true;
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
