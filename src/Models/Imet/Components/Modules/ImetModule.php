@@ -25,7 +25,7 @@ class ImetModule extends Module
     use InjectInView;
     use Dependencies;
 
-    protected static $form_class;
+    protected static ?string $form_clas;
 
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -40,7 +40,7 @@ class ImetModule extends Module
 
     protected string $schema;
     protected $primaryKey = 'id';
-    public static $foreign_key = 'FormID';
+    public static ?string $foreign_key = 'FormID';
 
     public $ratingLegend = null;
     public $module_subTitle = null;

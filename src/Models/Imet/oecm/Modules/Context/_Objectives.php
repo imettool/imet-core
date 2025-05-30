@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 abstract class _Objectives extends Modules\Component\ImetModule
 {
 
-    public static $rules = [
+    public static array $rules = [
         'ShortOrLongTerm'       => 'required'
     ];
 

@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 class Stakeholders extends Modules\Component\ImetModule
 {
     protected $table = 'context_stakeholders_natural_resources';
-    protected $fixed_rows = false;
+    protected bool $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -33,7 +33,7 @@ class Stakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
     ];
 
-    public static $rules = [
+    public static array $rules = [
         'Element' => 'required',
         'UsesCategories' => 'required_with:Element',
         'LevelEngagement' => 'required_unless:GeographicalProximity,true',

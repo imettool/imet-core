@@ -11,12 +11,15 @@
 
 namespace ImetCore;
 
+use Illuminate\Support\Facades\Gate;
 use ImetCore\Commands\CalculateScores;
 use ImetCore\Commands\ConvertSQLite;
 use ImetCore\Commands\Export;
 use ImetCore\Commands\Import;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Policies\ImetPolicy;
 
 
 class ServiceProvider extends BaseServiceProvider
@@ -29,6 +32,7 @@ class ServiceProvider extends BaseServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(static::BASE_PATH . 'config/config.php', 'imet-core');
+        Gate::policy(Imet::class, ImetPolicy::class);
     }
 
     /**

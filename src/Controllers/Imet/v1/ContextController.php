@@ -14,8 +14,8 @@ namespace ImetCore\Controllers\Imet\v1;
 
 class ContextController extends Controller
 {
-    protected static $form_view_prefix = 'imet-core::v1.context';
-    protected static $form_default_step = 'general_info';
+    protected static ?string $form_view_prefix = 'imet-core::v1.context';
+    protected static ?string $form_default_step = 'general_info';
 
     protected static $total_budget = 0;
     protected static $financial_available_resources_totals = 0;

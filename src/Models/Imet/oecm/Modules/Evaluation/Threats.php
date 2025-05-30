@@ -19,7 +19,7 @@ use ImetCore\Services\ThreatsService;
 class Threats extends Modules\Component\ImetModule_Eval {
 
     protected $table = 'eval_threats';
-    protected $fixed_rows = true;
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

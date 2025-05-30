@@ -20,7 +20,7 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public static $rules = [
+    public static array $rules = [
         'Boundaries'       => 'required'
     ];
 

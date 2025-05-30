@@ -23,8 +23,8 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends __Controller
 {
-    protected static $form_class = Role::class;
-    protected static $form_view_prefix = 'imet-core::users/';
+    protected static ?string $form_class = Role::class;
+    protected static ?string $form_view_prefix = 'imet-core::users/';
 
     /**
      * Manage "list_by_role" route

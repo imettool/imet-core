@@ -17,7 +17,7 @@ use ImetCore\Models\User\Role;
 class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_equipment_maintenance';
-    protected $fixed_rows = true;
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

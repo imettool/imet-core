@@ -19,7 +19,7 @@ class CreateNonWdpa extends Modules\Component\ImetModule
     protected $table = 'forms';
     protected $primaryKey = 'FormID';
 
-    public static $rules = [
+    public static array $rules = [
         'Year' => 'required',
         'wdpa_id' => 'required',
         'language' => 'required'

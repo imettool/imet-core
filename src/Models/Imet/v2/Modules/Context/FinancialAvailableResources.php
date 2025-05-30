@@ -11,13 +11,14 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
 class FinancialAvailableResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_available_resources';
-    protected $fixed_rows = true;
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -50,11 +51,8 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
     /**
      * Override: force Currency from CTX 3.2.1
-     *
-     * @param null $form_id
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public static function getModule($form_id = null)
+    public static function getModule($form_id = null): Collection|\Illuminate\Support\Collection
     {
         return parent::getModule($form_id)
             ->map(
@@ -65,7 +63,10 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
             );
     }
 
-    public static function copyCurrencyFromCTX213($data)
+    /**
+     * Copy currency from CTX 3.2.1
+     */
+    public static function copyCurrencyFromCTX213($data): array
     {
         if(!empty($data['FinancialResources'])){
             $currency = $data['FinancialResources'][0]['Currency'];

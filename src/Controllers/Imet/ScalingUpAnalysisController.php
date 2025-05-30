@@ -34,8 +34,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ScalingUpAnalysisController extends __Controller
 {
-    protected static $form_class = Imet::class;
-    protected static $form_view_prefix = 'imet-core::';
+    protected static ?string $form_class = Imet::class;
+    protected static ?string $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
 

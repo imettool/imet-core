@@ -21,7 +21,7 @@ use ImetCore\Models\User\Role;
 class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints_integration';
-    protected $fixed_rows = true;
+    protected bool $fixed_rows = true;
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
