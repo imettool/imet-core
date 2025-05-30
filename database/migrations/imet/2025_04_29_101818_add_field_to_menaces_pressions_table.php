@@ -7,14 +7,12 @@ use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
-    protected $connection = Database::IMET_CONNECTION;
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('menaces_pressions', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'menaces_pressions'), function (Blueprint $table) {
             $table->string('Comments', 50)->nullable()->after('Probability');
         });
     }
@@ -24,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('menaces_pressions', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'menaces_pressions'), function (Blueprint $table) {
             $table->dropColumn('Comments');
         });
     }
