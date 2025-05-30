@@ -9,13 +9,13 @@
  */
 
 import ModuleImet from "../../../Module.js";
+import checkbox_boolean from "../../../../inputs/checkbox-boolean.vue";
 
 import { ref, computed } from "vue";
 
 export default class MenacesPressions extends ModuleImet {
 
     constructor(input_data = {}) {
-
         const custom_props = {
             marine_predefined: {
                 type: Array,
@@ -24,15 +24,37 @@ export default class MenacesPressions extends ModuleImet {
             groupsByCategory: {
                 type: Object,
                 default: () => input_data.groupsByCategory
+            },
+            categoriesVisibility: {
+                type: Object,
+                default: () => input_data.categoriesVisibility || {}
             }
         };
 
-        return super(input_data, custom_props);
+        super(input_data, custom_props)
+            .component('checkbox-boolean', checkbox_boolean);
     }
 
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
+
+        const categoryVisibility = ref(input_data.categoriesVisibility.initialVisibility);
+
+        function isSubCategoryVisibly(categoryIndex) {
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                return false;
+            }
+            return categoryVisibility.value[categoryIndex];
+        }
+
+        function toggleCategoryVisibility(categoryIndex) {
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                categoryVisibility.value[categoryIndex] = true;
+            } else {
+                categoryVisibility.value[categoryIndex] = !categoryVisibility.value[categoryIndex];
+            }
+        }
 
         /**
          * Calculate stats for each record
@@ -121,7 +143,9 @@ export default class MenacesPressions extends ModuleImet {
             recordStats,
             groupStats,
             categoryStats,
-            is_marine
+            is_marine,
+            isSubCategoryVisibly,
+            toggleCategoryVisibility
         };
 
     }

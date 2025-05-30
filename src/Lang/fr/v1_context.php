@@ -568,7 +568,7 @@ return [
             'Value' => 'Valeurs',
             'Impact' => 'Impact/ Séverité',
             'Extension' => 'Ampleur/ Etendue',
-            'Duration' => 'Durée/ Irreversibilité',
+            'Duration' => 'Durée',
             'Trend' => 'Au cour des dernières années cette menace/ pression',
             'Probability' => 'Probabilité à l\'avenir',
         ],

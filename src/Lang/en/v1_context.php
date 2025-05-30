@@ -541,7 +541,7 @@ return [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',
             'Extension' => 'Scale/ Extent',
-            'Duration' => 'How long/ Irreversibility',
+            'Duration' => 'How long',
             'Trend' => 'Over the last years',
             'Probability' => 'Probability of a future threat',
         ],

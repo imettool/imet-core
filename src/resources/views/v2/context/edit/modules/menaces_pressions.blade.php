@@ -1,6 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
+
 /** @var Mixed $vueData */
 
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
@@ -17,28 +18,36 @@ $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule:
 // Inject marine/terrestrial icon on title
 $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
 
-    // Inject titles
-    foreach(MenacesPressions::$groupsByCategory as $i => $category){
-        $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle(
-            $view_groupTable, $definitions['module_key'], $category[0],
-            ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
-    }
+// Inject titles
+foreach (MenacesPressions::$groupsByCategory as $i => $category) {
 
-    // inject column with row stats
-    $searchFor = '<input type="hidden" v-model="records[index].group_key"';
-    $textToAdd = '<div class="field-preview field-numeric">{{ recordStats[index] }}</div>';
-    $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTable);
+    $view_groupTable = MenacesPressions::injectGroupTitle(
+        $view_groupTable, $definitions['module_key'], $category[0],
+        ($i + 1) . '. ' . trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i + 1)));
+    $view_groupTable = MenacesPressions::injectShowHideCategories($view_groupTable, $i, $category);
+}
+
+// inject column with row stats
+$searchFor = '<input type="hidden" v-model="records[index].group_key"';
+$textToAdd = '<div class="field-preview field-numeric">{{ recordStats[index] }}</div>';
+$view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupTable);
 ?>
 
 <div>
     @foreach(MenacesPressions::$groupsByCategory as $i => $category)
         <div class="histogram-row">
+            <div class="histogram-row__checkbox">
+                <checkbox-boolean :value="1"
+                                  :func="toggleCategoryVisibility"
+                                  :id="{{$i}}"></checkbox-boolean>
+            </div>
             <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
-            <div class="histogram-row__title text-left">@lang('imet-core::v2_context.MenacesPressions.categories.title'.($i+1))</div>
+            <div
+                class="histogram-row__title text-left">@lang('imet-core::v2_context.MenacesPressions.categories.title'.($i+1))</div>
             <div class="histogram-row__value text-right" style="margin-right: 20px;">
                 <b v-html="categoryStats[{{ $i }}] || '-'"></b>
             </div>
-            <div class="histogram-row__progress-bar"  v-if="categoryStats['{{ $i }}']!==null">
+            <div class="histogram-row__progress-bar" v-if="categoryStats['{{ $i }}']!==null">
                 <imet_score_bar
                     :value=categoryStats[{{ $i }}]
                     color="#87c89b"
@@ -47,15 +56,27 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, MenacesPress
         </div>
     @endforeach
 </div>
-<br />
-<br />
+<br/>
+<br/>
 
 {!! $view_groupTable !!}
 @include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions(@json($vueData)))
+        const initialVisibility = {
+            @foreach(MenacesPressions::$groupsByCategory as $i => $category)
+            '{{ $i }}': true,
+            @endforeach
+        };
+        const categories = {
+            @foreach(MenacesPressions::$groupsByCategory as $i => $category)
+            '{{ $i }}': '{{implode(',', $category)}}'.split(','),
+            @endforeach
+        }
+        const categoriesVisibility = {initialVisibility, categories};
+
+        (new window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions({...@json($vueData), categoriesVisibility}))
             .mount('#module_{{ $definitions['module_key'] }}');
     </script>
 @endpush

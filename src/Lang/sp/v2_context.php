@@ -114,9 +114,9 @@ return [
         'governance' => 'Gobernanza',
         'partnership' => 'Asociación',
         'module_info' =>
-            'Esta sección describe la estructura de gobernanza existente y las alianzas con las partes interesadas dentro 
-            del área protegida. Describe las instituciones clave involucradas, los tipos de procesos de toma de decisiones, 
-            los roles de las partes interesadas y el nivel de coordinación entre los actores. También destaca las alianzas 
+            'Esta sección describe la estructura de gobernanza existente y las alianzas con las partes interesadas dentro
+            del área protegida. Describe las instituciones clave involucradas, los tipos de procesos de toma de decisiones,
+            los roles de las partes interesadas y el nivel de coordinación entre los actores. También destaca las alianzas
             actuales que apoyan los esfuerzos de conservación y su papel en la implementación de la gestión.'
     ],
 
@@ -137,10 +137,10 @@ return [
             'marine_pa'    => 'Designación de áreas marinas protegidas',
         ],
         'module_info' =>
-            'Esta sección describe las designaciones oficiales otorgadas al área protegida, como Sitios de Patrimonio 
-            Mundial, Reservas del Hombre y de la Biosfera (MAB), Sitios Ramsar, Áreas Importantes para la Conservación 
-            de las Aves (IBA), Zonas Especialmente Protegidas de Importancia para el Mediterráneo (ZEPIM) y Áreas Marinas 
-            de Gestión Local (AMG). Estas designaciones reflejan la importancia ecológica del área e influyen en su marco 
+            'Esta sección describe las designaciones oficiales otorgadas al área protegida, como Sitios de Patrimonio
+            Mundial, Reservas del Hombre y de la Biosfera (MAB), Sitios Ramsar, Áreas Importantes para la Conservación
+            de las Aves (IBA), Zonas Especialmente Protegidas de Importancia para el Mediterráneo (ZEPIM) y Áreas Marinas
+            de Gestión Local (AMG). Estas designaciones reflejan la importancia ecológica del área e influyen en su marco
             de gestión, sus prioridades de conservación y sus obligaciones internacionales.'
     ],
 
@@ -173,17 +173,17 @@ return [
             'Observation' => 'Observaciones',
         ],
         'module_info' =>
-            'Esta sección presenta el marco estratégico del área protegida, incluyendo su visión, misión y objetivos 
+            'Esta sección presenta el marco estratégico del área protegida, incluyendo su visión, misión y objetivos
             de gestión.<ul>
             <li><b>Visión del área protegida</b>: La visión es básicamente un plan sobre cómo debería ser el AP en el futuro,
-             abarcando la ecología, la sociedad y la gobernanza. Es el gran objetivo que guía todo lo que hacemos para 
+             abarcando la ecología, la sociedad y la gobernanza. Es el gran objetivo que guía todo lo que hacemos para
              conservar y gestionar el área.</li>
-            <li><b>Misión del área protegida</b>: La misión explica lo que el AP intenta hacer y cómo se integra con la visión. 
-            Indica cuáles son nuestras responsabilidades, cómo gestionaremos las cosas y las normas que rigen el uso del 
+            <li><b>Misión del área protegida</b>: La misión explica lo que el AP intenta hacer y cómo se integra con la visión.
+            Indica cuáles son nuestras responsabilidades, cómo gestionaremos las cosas y las normas que rigen el uso del
             área de una manera beneficiosa para el medio ambiente y la población local.</li>
-            <li><b>Objetivos a largo plazo del área protegida</b>: Los objetivos a largo plazo son como una hoja de ruta que 
-            convierte la visión y la misión en metas específicas que guían las iniciativas de gestión durante los próximos 
-            10 a 20 años. Estos objetivos se basan en las áreas clave de conservación, gobernanza y sostenibilidad, 
+            <li><b>Objetivos a largo plazo del área protegida</b>: Los objetivos a largo plazo son como una hoja de ruta que
+            convierte la visión y la misión en metas específicas que guían las iniciativas de gestión durante los próximos
+            10 a 20 años. Estos objetivos se basan en las áreas clave de conservación, gobernanza y sostenibilidad,
             garantizando que el AP cumpla su función en términos de ecología y economía.</li>
             </ul>'
     ],
@@ -205,16 +205,16 @@ return [
             'Contexto institucional'
         ],
         'module_info' =>
-            'Esta sección ofrece una visión general de los factores contextuales clave que afectan al área protegida. Incluye: 
+            'Esta sección ofrece una visión general de los factores contextuales clave que afectan al área protegida. Incluye:
             <ul>
             <li><b>Contexto histórico</b>: Eventos e hitos clave que han definido la conservación y la gestión del área.</li>
-            <li><b>Contexto socioeconómico</b>: El papel del área protegida en los medios de vida locales, las actividades 
+            <li><b>Contexto socioeconómico</b>: El papel del área protegida en los medios de vida locales, las actividades
             económicas y las interacciones comunitarias.</li>
             <li><b>Contexto político (a nivel de país): Estructuras de gobernanza, marcos de políticas e influencias políticas
              que afectan la toma de decisiones.</li>
-            <li><b>Contexto legal e institucional</b>: Leyes, reglamentos e instituciones pertinentes que se aplican al área 
+            <li><b>Contexto legal e institucional</b>: Leyes, reglamentos e instituciones pertinentes que se aplican al área
             protegida.</li>
-            <li><b>Contexto institucional</b>: Las funciones y responsabilidades de las instituciones clave involucradas en 
+            <li><b>Contexto institucional</b>: Las funciones y responsabilidades de las instituciones clave involucradas en
             la gestión y la gobernanza del área.</li>
             </ul>
             Estos elementos definen el marco general en el que opera el área protegida.'
@@ -231,7 +231,7 @@ return [
             'AdministrativeLocation' => 'Ubicación administrativa del área protegida (provincia, región, etc.)',
         ],
         'module_info' =>
-            'Esta sección proporciona información sobre la ubicación geográfica del área protegida. Incluye sus coordenadas 
+            'Esta sección proporciona información sobre la ubicación geográfica del área protegida. Incluye sus coordenadas
             y su ubicación administrativa. La descripción destaca su ubicación dentro de un contexto territorial más amplio.'
     ],
 
@@ -252,8 +252,8 @@ return [
             'Observations' => 'Notas',
         ],
         'module_info' =>
-            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha 
-            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões, 
+            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha
+            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões,
             transfronteiriças e de conservação da paisagem, destacando o seu papel em esforços de conservação mais amplos.'
     ],
 
@@ -271,20 +271,20 @@ return [
         ],
         'module_info' =>
             'Promedio de días de patrullaje por km² en parques nacionales africanos: práctica estándar:
-            Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a 
+            Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a
             4 días de patrullaje por kilómetro cuadrado al año. Esto significa que, por cada kilómetro cuadrado de
              área protegida, los guardabosques deberían dedicar idealmente entre 1 y 4 días de patrullaje al año.
             <ul>
-            <li>Mayor intensidad en zonas de alta amenaza: En zonas con alta presión de caza furtiva o con una biodiversidad 
-            significativa, la tasa recomendada puede aumentar a 5-10 días de patrullaje por kilómetro cuadrado al año, 
-            o incluso más. Este mayor esfuerzo de patrullaje es fundamental para disuadir a los cazadores furtivos y responder 
+            <li>Mayor intensidad en zonas de alta amenaza: En zonas con alta presión de caza furtiva o con una biodiversidad
+            significativa, la tasa recomendada puede aumentar a 5-10 días de patrullaje por kilómetro cuadrado al año,
+            o incluso más. Este mayor esfuerzo de patrullaje es fundamental para disuadir a los cazadores furtivos y responder
             con rapidez a las amenazas.</li>
-            <li><b>Menor intensidad en zonas de bajo riesgo</b>: Por el contrario, las zonas de menor riesgo o las zonas 
-            donde las amenazas a la fauna silvestre son mínimas pueden requerir menos patrullajes, posiblemente menos de 
+            <li><b>Menor intensidad en zonas de bajo riesgo</b>: Por el contrario, las zonas de menor riesgo o las zonas
+            donde las amenazas a la fauna silvestre son mínimas pueden requerir menos patrullajes, posiblemente menos de
             un día de patrullaje por kilómetro cuadrado al año.</li>
             </ul>
-            <b>Nota sobre el Parque Nacional Kruger, Sudáfrica</b>: Debido a la alta amenaza de la caza furtiva de 
-            rinocerontes, en algunas zonas de Kruger la intensidad de los patrullajes es de 10 días de patrullaje por 
+            <b>Nota sobre el Parque Nacional Kruger, Sudáfrica</b>: Debido a la alta amenaza de la caza furtiva de
+            rinocerontes, en algunas zonas de Kruger la intensidad de los patrullajes es de 10 días de patrullaje por
             kilómetro cuadrado al año o más.',
         'area_percentage'               => '% de área',
         'average_time'                  => 'Patrullaje promedio * d * km² del sector',
@@ -578,7 +578,7 @@ return [
             'Value' => 'Valores',
             'Impact' => 'Impacto/Severidad',
             'Extension' => 'Escala/Extensión',
-            'Duration' => 'Cuánto tiempo/Irreversibilidad',
+            'Duration' => 'Cuánto tiempo',
             'Trend' => 'Tendencia',
             'Probability' => 'Probabilidad de una amenaza en el futuro',
         ],

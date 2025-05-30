@@ -112,8 +112,8 @@ return [
         'partnership' => 'Partnerships',
         'module_info' =>
             'This section describes the existing governance structure and stakeholder partnerships within the protected
-             area. It outlines the key institutions involved, kind of decision-making processes, stakeholder roles and 
-             the level of coordination between actors. It also highlights the current partnerships supporting conservation 
+             area. It outlines the key institutions involved, kind of decision-making processes, stakeholder roles and
+             the level of coordination between actors. It also highlights the current partnerships supporting conservation
              efforts and their role in management implementation.'
     ],
 
@@ -134,10 +134,10 @@ return [
             'marine_pa'    => 'Designation of marine protected areas',
         ],
         'module_info' =>
-            'This section outlines the official designations given to the protected area, such as World Heritage Sites, 
-            Man and Biosphere Reserves (MAB), Ramsar Sites, Important Bird Areas (IBA), Specially Protected Areas of 
-            Mediterranean Importance (SPAMI) and Locally Managed Marine Areas (LMMA). These designations reflect the 
-            ecological importance of the area and influence its management framework, conservation priorities and 
+            'This section outlines the official designations given to the protected area, such as World Heritage Sites,
+            Man and Biosphere Reserves (MAB), Ramsar Sites, Important Bird Areas (IBA), Specially Protected Areas of
+            Mediterranean Importance (SPAMI) and Locally Managed Marine Areas (LMMA). These designations reflect the
+            ecological importance of the area and influence its management framework, conservation priorities and
             international obligations.'
     ],
 
@@ -170,18 +170,18 @@ return [
             'Observation' => 'Observation',
         ],
         'module_info' =>
-            'This section presents the strategic framework for the protected area, including its vision, mission and 
-            management objectives.: 
+            'This section presents the strategic framework for the protected area, including its vision, mission and
+            management objectives.:
             <ul>
-            <li><b>Vision of the protected area</b>: The vision is basically a plan for how the PA should be in the future, 
-            covering ecology, society and governance. It\'s the big goal that guides everything we do to conserve and 
+            <li><b>Vision of the protected area</b>: The vision is basically a plan for how the PA should be in the future,
+            covering ecology, society and governance. It\'s the big goal that guides everything we do to conserve and
             manage the area.</li>
-            <li><b>Mission of the protected area</b>: The mission explains what the PA is trying to do and how it fits in with 
-            the vision. It says what we\'re responsible for, how we\'ll manage things, and the rules for how we\'ll use 
+            <li><b>Mission of the protected area</b>: The mission explains what the PA is trying to do and how it fits in with
+            the vision. It says what we\'re responsible for, how we\'ll manage things, and the rules for how we\'ll use
             the area in a way that\'s good for the environment and the local people.</li>
-            <li><b>Long-Term objectives of the protected area</b>: The long-term objectives are like a roadmap, turning the 
-            vision and mission into specific goals that guide management efforts over the next 10 to 20 years. These 
-            objectives are based on the key areas of conservation, governance, and sustainability, making sure that 
+            <li><b>Long-Term objectives of the protected area</b>: The long-term objectives are like a roadmap, turning the
+            vision and mission into specific goals that guide management efforts over the next 10 to 20 years. These
+            objectives are based on the key areas of conservation, governance, and sustainability, making sure that
             the PA does its job in terms of ecology and the economy.</li>
             </ul>'
     ],
@@ -205,13 +205,13 @@ return [
         'module_info' =>
             'This section provides an overview of the key contextual factors affecting the protected area. It includes
             <ul>
-            <li><b>Historical context</b>: Key events and milestones that have shaped the conservation and management 
+            <li><b>Historical context</b>: Key events and milestones that have shaped the conservation and management
             of the area.</li>
-            <li><b>Socio-economic context</b>: The role of the protected area in local livelihoods, economic activities 
+            <li><b>Socio-economic context</b>: The role of the protected area in local livelihoods, economic activities
             and community interactions.</li>
-            <li><b>Political context (country level)</b>: Governance structures, policy frameworks and political influences 
+            <li><b>Political context (country level)</b>: Governance structures, policy frameworks and political influences
             affecting decision making.</li>
-            <li><b>Legal and institutional context</b>: Relevant laws, regulations and institutions that apply to the 
+            <li><b>Legal and institutional context</b>: Relevant laws, regulations and institutions that apply to the
             protected area.</li>
             <li><b>Institutional context</b>: The roles and responsibilities of key institutions involved in the management
             and governance of the area.</li>
@@ -230,8 +230,8 @@ return [
             'AdministrativeLocation' => 'Administrative location of the protected area (province, region, etc.)',
         ],
         'module_info' =>
-            'This section provides information on the geographical location of the protected area. It includes its 
-            coordinates, administrative location of the protected areas. The description highlights the position of the 
+            'This section provides information on the geographical location of the protected area. It includes its
+            coordinates, administrative location of the protected areas. The description highlights the position of the
             protected areas within a wider territorial context.'
     ],
 
@@ -252,8 +252,8 @@ return [
             'Observations' => 'Notes',
         ],
         'module_info' =>
-            'This section provides key data on the size, boundary length, terrestrial and marine coverage and spatial 
-            configuration of the property. It also situates the property within national, ecoregional, transboundary and 
+            'This section provides key data on the size, boundary length, terrestrial and marine coverage and spatial
+            configuration of the property. It also situates the property within national, ecoregional, transboundary and
             landscape conservation networks, highlighting its role in wider conservation efforts.'
     ],
 
@@ -271,17 +271,17 @@ return [
         ],
         'module_info' =>
             '<b>Average Patrol Day-Km² in African National Parks - Standard Practice</b>:
-            For effective management, <b>some studies and park management guidelines suggest an average of 1-4 patrol 
-            days per square kilometre per year</b>. This means that for every square kilometre of protected area, rangers 
+            For effective management, <b>some studies and park management guidelines suggest an average of 1-4 patrol
+            days per square kilometre per year</b>. This means that for every square kilometre of protected area, rangers
             should ideally spend between 1 and 4 days patrolling each year.
             <ul>
-            <li><b>Higher intensity in high threat areas</b>: In areas with high poaching pressure or significant 
-            biodiversity, the recommended rate may increase to 5-10 patrol days per square kilometre per year, or even 
+            <li><b>Higher intensity in high threat areas</b>: In areas with high poaching pressure or significant
+            biodiversity, the recommended rate may increase to 5-10 patrol days per square kilometre per year, or even
             higher. This increased patrol effort is critical to deterring poachers and responding quickly to threats.</li>
-            <li><b>Lower intensity in low-risk areas</b>: In contrast, lower risk areas or areas where wildlife threats 
+            <li><b>Lower intensity in low-risk areas</b>: In contrast, lower risk areas or areas where wildlife threats
             are minimal may require fewer patrols, possibly less than 1 patrol day per square kilometre per year.</li>
             </ul>
-            <b>Note on Kruger National Park, South Africa</b>: Due to the high threat of rhino poaching, parts of Kruger 
+            <b>Note on Kruger National Park, South Africa</b>: Due to the high threat of rhino poaching, parts of Kruger
             have patrol intensities of 10 patrol days per square kilometre per year or more.',
         'area_percentage'               => '% of the area',
         'average_time'                  => 'Average patrol * d * km² of the sector'
@@ -569,9 +569,10 @@ return [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',
             'Extension' => 'Scale/ Extent',
-            'Duration' => 'Duration/ Irreversibility',
+            'Duration' => 'Duration',
             'Trend' => 'Trend',
             'Probability' => 'Probability for the threat in future',
+            'Comments' =>       'Comments'
         ],
         'groups' => [
             'group0' => 'Commercial and residential',
@@ -614,7 +615,8 @@ return [
                 'Shifting cultivation',
                 'Smallholder farming',
                 'Large agro-industrial enterprises',
-                'Production fruits/ vegetable garden'
+                'Production fruits/ vegetable garden',
+                'Extraction of fertilizer for agriculture'
             ],
             'group2' => [
                 'Small plantations',
@@ -646,11 +648,15 @@ return [
             ],
             'group8' => [
                 'Hunting of land animals',
-                'Harvesting of live animals'
+                'Harvesting of live animals',
+                'Collecting small animals as insects or their products as honey'
             ],
             'group9' => [
                 'Plant gathering',
-                'Plant harvesting'
+                'Plant harvesting',
+                'Harvesting food vegetal as tubers, fruits, etc.',
+                'Harvesting plants for medicines',
+                'Harvesting Stems - fibres (palms, kenaf, kapok, coco, etc.)'
             ],
             'group10' => [
                 'Small-scale lumber operations',
@@ -669,6 +675,8 @@ return [
                 'Overfishing and destructive fishing',
                 'Endangered species exploitation',
                 'Trawlers/purse-seiners',
+                'Harvesting ornamental and aquarium resources (seeds, shells and fishes’ collection',
+                'Harvesting alga'
             ],
             'group12' => [
                 'Recreational activities',
@@ -699,7 +707,11 @@ return [
                 'Underground water abstraction (usage unknown)',
                 'Small dams',
                 'Large dams',
-                'Dams (size unknown)'
+                'Dams (size unknown)',
+                'Dams for energy'
+            ],
+            'group' => [
+                'Harvesting sand from the beaches'
             ],
             'group16' => [
                 'Invasive introduced species or diseases',
