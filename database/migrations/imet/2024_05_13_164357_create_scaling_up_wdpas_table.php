@@ -37,7 +37,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreign(['scaling_id'], 'scaling_id_fkey')
                 ->references(['id'])
-                ->on('scaling_up')
+                ->on(Database::getTable(Database::IMET_SCHEMA, 'scaling_up'))
                 ->onUpdate('no action')
                 ->onDelete('cascade');
         });
