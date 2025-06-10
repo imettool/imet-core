@@ -1,16 +1,26 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
+namespace ImetCore\Models\Imet\v1\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Type\JSON;
+use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Type\JSON;
 use Illuminate\Support\Str;
 
 class Networks extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_networks';
+    protected $table = 'context_networks';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
@@ -36,11 +46,8 @@ class Networks extends Modules\Component\ImetModule
 
     /**
      * Override: upgrade module records during retrieving
-     *
-     * @param int|null $form_id
-     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */
-    public static function getModule(int $form_id = null)
+    public static function getModule(int $form_id = null): Collection|\Illuminate\Support\Collection
     {
         $models = parent::getModule($form_id);
 
@@ -55,7 +62,7 @@ class Networks extends Modules\Component\ImetModule
         return $models;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
 
         if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '[')){

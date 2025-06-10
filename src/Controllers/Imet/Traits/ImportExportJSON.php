@@ -1,17 +1,28 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet\Traits;
+namespace ImetCore\Controllers\Imet\Traits;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ModularForms\Helpers\Module;
-use AndreaMarelli\ModularForms\Helpers\ModuleKey;
-use AndreaMarelli\ModularForms\Models\Traits\Upload;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Services\Scores\OecmScores;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\File\Zip;
+use ModularForms\Helpers\HTTP;
+use ModularForms\Helpers\Module;
+use ModularForms\Helpers\ModuleKey;
+use ModularForms\Models\Traits\Upload;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -27,7 +38,6 @@ use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use Throwable;
-use function imet_offline_version;
 use function report;
 use function response;
 use function trans;
@@ -35,6 +45,8 @@ use function trans;
 
 trait ImportExportJSON
 {
+    use Upload;
+
     /**
      * Upload file
      *
@@ -49,23 +61,23 @@ trait ImportExportJSON
         $files = [];
         try {
             //upload file
-            $uploaded = Upload::uploadFile($file);
+            $uploaded = static::uploadFile($file);
             $import = new static();
             //and then check if is zip or json
-            if (in_array($ext, ['zip'])) {
+            if ($ext == 'zip') {
                 $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path($uploaded['temp_filename']);
                 $extractFiles = Zip::extract($uploaded_path);
                 $num_extracted = 0;
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
-                        $json = json_decode(Upload::getUploadFileContent(['temp_filename' => $item]), true);
+                        $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
                         $files[] = $import->import(new Request(), $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
-                $json = json_decode(Upload::getUploadFileContent($uploaded), true);
+                $json = json_decode(static::getUploadFileContent($uploaded), true);
                 $files[] = $import->import(new Request(), $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
@@ -102,6 +114,7 @@ trait ImportExportJSON
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
         return view(static::$form_view_prefix . '.export', [
+            'controller' => static::class,
             'route_prefix' => static::ROUTE_PREFIX,
             'list' => $filtered_list,
             'request' => $request,
@@ -143,9 +156,6 @@ trait ImportExportJSON
 
     /**
      * return modules list for export
-     *
-     * @param Request $request
-     * @return Application|Factory|View
      */
     public function exportListCSV(Request $request): View
     {
@@ -244,28 +254,30 @@ trait ImportExportJSON
         }
 
         $imet_form = $imet
-            ->makeHidden(['FormID', 'UpdateBy', 'protected_area_global_id'])
+            ->makeHidden(['FormID', 'UpdateDate', 'UpdateBy', 'protected_area_global_id', 'sync_unique_id', 'synced'])
             ->toArray();
 
-        $imet_form['imet_version'] = imet_offline_version();
+        $imet_form['imet_version'] = function_exists('imet_offline_tool_version')
+            ? imet_offline_tool_version()
+            : 'online';
 
         // #####  IMET V1  #####
         if ($imet_form['version'] === Imet\Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Encoders' => Imet\v1\Encoder::exportModule($imet_id),
                 'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\Report::export($imet_id)
+                'Report' => Imet\v1\Report::export($imet_id)
             ];
         } // #####  IMET V2  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\Encoder::exportModule($imet_id),
+                'Encoders' => Imet\v2\Encoder::exportModule($imet_id),
                 'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\Report::export($imet_id)
+                'Report' => Imet\v2\Report::export($imet_id)
             ];
         } // #####  IMET OECM  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
@@ -296,7 +308,7 @@ trait ImportExportJSON
 
     public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array
     {
-       return $this->export($item, true);
+        return $this->export($item, true);
     }
 
     /**
@@ -327,20 +339,18 @@ trait ImportExportJSON
     {
         try {
             if ($json === null) {
-                $fileContent = Upload::getUploadFileContent($request->get('json_file'));
+                $fileContent = static::getUploadFileContent($request->get('json_file'));
                 $json = json_decode($fileContent, True);
             }
 
-
-            if ($json['Imet']['version'] === Imet\Imet::IMET_V1) {
+            $version = $json['Imet']['version'];
+            if ($version === Imet\Imet::IMET_V1) {
                 $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_V2) {
+            } else if ($version === Imet\Imet::IMET_V2) {
                 $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($json['Imet']['version'] === Imet\Imet::IMET_OECM) {
+            } else if ($version === Imet\Imet::IMET_OECM) {
                 $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
             }
-
-            $this->authorize('view', $imet);
 
             $response = ['status' => 'success', 'modules' => []];
 
@@ -357,8 +367,16 @@ trait ImportExportJSON
 
             DB::commit();
 
+            // Force refresh scores
+            if ($version === Imet\Imet::IMET_V1 ||
+                $version === Imet\Imet::IMET_V2) {
+                ImetScores::refresh_scores($formID);
+            } else if ($version === Imet\Imet::IMET_OECM) {
+                OecmScores::refresh_scores($formID);
+            }
+
             // backup in JSON
-            (new static)->backup($formID, $json['Imet']['version']);
+            (new static)->backup($formID, $version);
 
             $response['modules'] = $modules_imported;
         } catch (Exception $e) {
@@ -395,18 +413,18 @@ trait ImportExportJSON
             $formID = Imet\v1\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v1\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            Imet\v1\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\Report::import($formID, $json['Report'] ?? null);
+                Imet\v1\Report::import($formID, $json['Report'] ?? null);
             }
         } // #####  IMET V2  #####
         elseif ($version === Imet\Imet::IMET_V2) {
             $formID = Imet\v2\Imet::importForm($json['Imet']);
             $modules_imported['Context'] = Imet\v2\Imet::importModules($json['Context'], $formID, $imet_version);
             $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            Imet\v2\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\Report::import($formID, $json['Report'] ?? null);
+                Imet\v2\Report::import($formID, $json['Report'] ?? null);
             }
         } // #####  IMET OECM  #####
         elseif ($version === Imet\Imet::IMET_OECM) {

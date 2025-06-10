@@ -1,17 +1,27 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2;
+namespace ImetCore\Models\Imet\v2;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\Encoder;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\Habitats;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Controllers\Imet\v2\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\v2\Encoder;
+use ImetCore\Models\Imet\Imet as BaseImetForm;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialAvailableResources;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesBudgetLines;
+use ImetCore\Models\Imet\v2\Modules\Context\FinancialResourcesPartners;
+use ImetCore\Models\Imet\v2\Modules\Context\Habitats;
+use ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewees;
+use ImetCore\Models\Imet\v2\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,8 +30,10 @@ use Illuminate\Support\Facades\Auth;
 class Imet extends BaseImetForm
 {
     public const version = 'v2';
+    protected string $schema = Database::IMET_SCHEMA;
+    protected $table = 'forms';
 
-    public static $modules = [
+    public static ?array $modules = [
 
         'general_info' => [
             Modules\Context\ResponsablesInterviewers::class,
@@ -34,14 +46,14 @@ class Imet extends BaseImetForm
             Modules\Context\Contexts::class,
             Modules\Context\Objectives1::class
         ],
-        'areas'                 => [
+        'areas' => [
             Modules\Context\GeographicalLocation::class,
             Modules\Context\Areas::class,
             Modules\Context\Sectors::class,
             Modules\Context\TerritorialReferenceContext::class,
             Modules\Context\Objectives2::class,
         ],
-        'resources'             => [
+        'resources' => [
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\ManagementStaffCommunities::class,
@@ -52,25 +64,25 @@ class Imet extends BaseImetForm
             Modules\Context\Equipments::class,
             Modules\Context\Objectives3::class,
         ],
-        'key_elements'          => [
+        'key_elements' => [
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
             Modules\Context\Objectives4::class,
         ],
-        'threats'               => [
+        'threats'  => [
             Modules\Context\MenacesPressions::class,
             Modules\Context\Objectives5::class,
         ],
-        'climate'               => [
+        'climate'  => [
             Modules\Context\ClimateChange::class,
             Modules\Context\Objectives6::class,
         ],
-        'ecosystem_services'    => [
+        'ecosystem_services' => [
             Modules\Context\EcosystemServices::class,
             Modules\Context\Objectives7::class,
         ],
-        'objectives'            => [
+        'objectives' => [
             Modules\Context\Objectives1::class,
             Modules\Context\Objectives2::class,
             Modules\Context\Objectives3::class,
@@ -118,7 +130,7 @@ class Imet extends BaseImetForm
      * Get IMET available years for the given PA
      *
      * @param $wdpa_id
-     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
+     * @return \ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getYears($wdpa_id)
     {

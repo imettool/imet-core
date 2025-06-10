@@ -1,13 +1,22 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_territorial_reference_context';
+    protected $table = 'context_territorial_reference_context';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
@@ -27,15 +36,15 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
             ['name' => 'SpillOverKm2',  'type' => 'numeric',   'label' => ''],
             ['name' => 'SpillOverKm',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
-            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'imet-core::rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'imet-core::rating-Minus2to0', 'label' => '']
+            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
+            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => '']
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
@@ -45,7 +54,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
     }
 
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.2 -> v2.3 ####
         $record = static::addField($record, 'FunctionalHasNoTakeArea');

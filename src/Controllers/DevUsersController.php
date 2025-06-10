@@ -1,26 +1,34 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\User\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use \ImetUser as User;
 
 
 class DevUsersController extends __Controller {
 
     /**
      * Create DEV users (in dev env)
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function create_dev_users(): RedirectResponse
     {
         if(App::environment('imetglobal_dev')){
+            
+            $userClass = (config('imet-core.user'))::class;
 
             // ######  Logout  ######
             Auth::logout();
@@ -28,18 +36,18 @@ class DevUsersController extends __Controller {
             DB::beginTransaction();
 
             // ######  Destroy DEV users if already exists  ######
-            User::destroy(99999);
-            User::destroy(99998);
-            User::destroy(99997);
-            User::destroy(99996);
-            User::destroy(99995);
-            User::destroy(99994);
-            User::destroy(99993);
+            $userClass::destroy(99999);
+            $userClass::destroy(99998);
+            $userClass::destroy(99997);
+            $userClass::destroy(99996);
+            $userClass::destroy(99995);
+            $userClass::destroy(99994);
+            $userClass::destroy(99993);
 
             // ######  Create new DEV users (one for each ROLE type)  ######
 
             // Administrator
-            User::create([
+            $userClass::create([
                 'id' => 99999,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Administrator',
@@ -49,7 +57,7 @@ class DevUsersController extends __Controller {
             ]);
 
             // National Authority
-            $user = User::create([
+            $user = $userClass::create([
                 'id' => 99998,
                 'first_name' =>  'TestUser',
                 'last_name' => 'National Authority',
@@ -61,7 +69,7 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['wdpa' => '61707']);
 
             // Regional Authority
-            $user = User::create([
+            $user = $userClass::create([
                 'id' => 99997,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Regional Authority',
@@ -75,7 +83,7 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['country' => 'COG']);
 
             // Observatory
-            $user = User::create([
+            $user = $userClass::create([
                  'id' => 99996,
                  'first_name' =>  'TestUser',
                  'last_name' => 'Observatory',
@@ -84,7 +92,7 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['country' => 'BDI']);
 
             // International institution
-            $user = User::create([
+            $user = $userClass::create([
                  'id' => 99995,
                  'first_name' =>  'TestUser',
                  'last_name' => 'International institution',
@@ -94,7 +102,7 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['country' => 'GAB']);
 
             // Donor
-            $user = User::create([
+            $user = $userClass::create([
                  'id' => 99994,
                  'first_name' =>  'TestUser',
                  'last_name' => 'Donor',
@@ -103,7 +111,7 @@ class DevUsersController extends __Controller {
             $user->imet_roles()->create(['country' => 'GAB']);
 
             // Encoder
-            $user = User::create([
+            $user = $userClass::create([
                 'id' => 99993,
                 'first_name' =>  'TestUser',
                 'last_name' => 'Encoder',
@@ -128,11 +136,8 @@ class DevUsersController extends __Controller {
 
     /**
      * Route to change user (in dev env)
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function change_user(Request $request)
+    public function change_user(Request $request): RedirectResponse
     {
         // Create test users
         if(App::environment('imetglobal_dev')){

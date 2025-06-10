@@ -1,15 +1,26 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Helpers\ScalingUp;
+namespace ImetCore\Helpers\ScalingUp;
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Services\Scores\ImetScores;
+use Illuminate\Support\Facades\Cache;
 
 class Common
 {
 
-    private static $protected_areas_ids = [];
+    private static array $protected_areas_ids = [];
 
     /**
      * @return string
@@ -37,17 +48,17 @@ class Common
             return 0;
         }
 
-        return (float)number_format(round($val, $round), 1);
+        return (float)number_format(round($val, $round), 2);
     }
 
     /**
      * @param array $array
      * @param int $items_number
-     * @return float|int
+     * @return float|null
      */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) use (&$items_number){
+        array_walk($array, function (&$item, $key) use (&$items_number) {
             if ((string)$item === "-") {
                 $item = 0;
             }
@@ -95,7 +106,7 @@ class Common
      * @param string $search_with
      * @param string $in_value
      * @param string $add_value
-     * @return mixed|string
+     * @return string
      */
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
@@ -118,9 +129,9 @@ class Common
     }
 
     /**
-     * @return void
+     *
      */
-    public static function reset_areas_ids()
+    public static function reset_areas_ids(): void
     {
         static::$protected_areas_ids = [];
     }
@@ -132,11 +143,11 @@ class Common
      */
     public static function values_correction(string $indicator, $value)
     {
-        if ($indicator === "c3") {
+        if ($indicator === 'C3') {
             if ($value < 0 && !is_string($value)) {
                 return static::round_number((100 + $value), 3);
             }
-        } else if (in_array($indicator, ["c2", "oc2", "oc3"])) {
+        } else if (in_array($indicator, ['C2', 'OC2', 'OC3'])) {
             return static::round_number(50 + ((float)$value / 2), 3);
         }
 
@@ -164,13 +175,10 @@ class Common
         //use it only for process indicators
         if ($indicator && isset($process_indicators[$indicator])) {
             $length_to_divide = array_sum($process_indicators);
-            // dd($length_to_divide, $process_indicators, $value, $indicator);
-           // print_r($process_indicators);
-           // echo $value."_".$length_to_divide."x".static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2)."-\n";
             return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
-        //echo $value ."\n";
-        return static::round_number($value / $length_to_divide, 3);
+
+        return static::round_number($value / $length_to_divide, 2);
     }
 
     /**
@@ -191,16 +199,8 @@ class Common
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
-            if ($filtered[$form_id] && $add_synthetic_indicator) {
-                $filtered[$form_id][$type] = static::round_number($results[$form_id]['avg_indicator']);
-            }
-
-            array_walk($filtered[$form_id], function (&$item, $key) {
-                if ((string)$item !== "") {
-                    $item = $item;
-                } else {
-                    $item = "-";
-                }
+            array_walk($filtered[$form_id], function (&$item) {
+                $item = ((string)$item !== "") ? $item : "-";
             });
 
             $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
@@ -210,11 +210,12 @@ class Common
             //loop through imet sub indicators to create an average value in order to sort in the ranking
             //and pass the correct value where needed
             $average = static::get_average($filtered[$form_id], $number_of_indicators);
-            if($average !== null){
-                $filtered[$form_id]['avg'] = static::round_number($average);
-            } else {
-                $filtered[$form_id]['avg'] = "-";
+
+            if ($filtered[$form_id] && $add_synthetic_indicator) {
+                $filtered[$form_id][$type] = static::round_number($results[$form_id]['avg_indicator']);
             }
+
+            $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : "-";
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
 
@@ -226,7 +227,7 @@ class Common
      * if names are duplicate add the year
      * @param int $form_id
      * @param bool $show_original_names
-     * @return \AndreaMarelli\ImetCore\Models\Imet\v2\Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
+     * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false)
     {
@@ -262,28 +263,6 @@ class Common
     }
 
     /**
-     * get protected area custom names with all the information
-     * @param array $form_ids
-     * @param bool $show_original_names
-     * @return Imet[]|bool|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|mixed
-     * @throws \ReflectionException
-     */
-    public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
-    {
-        $protected_area = [];
-        $categories = [];
-        foreach ($form_ids as $form_id) {
-            $protected_area[$form_id] = static::protected_areas_duplicate_fixes($form_id, $show_original_names);
-            $general_info = Modules\Context\GeneralInfo::getVueData($form_id);
-            if ($general_info['records'][0]) {
-                $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
-            }
-        }
-
-        return ["models" => $protected_area, "categories" => $categories];
-    }
-
-    /**
      * @param array $form_ids
      * @param int $scaling_id
      * @return array|array[]
@@ -300,29 +279,50 @@ class Common
         ];
 
         $assessments = [];
+        $i = 0;
+        $assessments[$i] = ['name' => trans('imet-core::analysis_report.average')];
+        $assessments[$i] = array_merge($assessments[$i], array_fill_keys($indicators, 0));
+        $i++;
         foreach ($form_ids as $k => $form_id) {
 
-            $assessments[$k] = ImetScores::get_radar($form_id);
+            $assessments[$i] = ImetScores::get_radar($form_id);
 
             $name = static::get_pa_name($form_id, $scaling_id);
 
-            $assessments[$k]['name'] = $name->name;
-            $assessments[$k]['color'] = $name->color;
-            $assessments[$k]['wdpa_id'] = $name->wdpa_id;
-            $assessments[$k]['formid'] = (int)$form_id;
-            $assessments[$k]['year'] = (int)$name->Year;
+            $assessments[$i]['name'] = $name->name;
+            $assessments[$i]['color'] = $name->color;
+            $assessments[$i]['wdpa_id'] = $name->wdpa_id;
+            $assessments[$i]['formid'] = (int)$form_id;
+            $assessments[$i]['year'] = (int)$name->Year;
 
-            $assessments[$k]['imet_index'] = static::round_number($assessments[$k]['imet_index']);
+            $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
             foreach ($indicators as $key => $indicator) {
-                $assessments[$k][$indicator] = static::round_number($assessments[$k][$indicator]);
+                $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
             }
+            $i++;
+        }
+
+        foreach ($indicators as $item) {
+            $sum = 0;
+            $count = 0;
+            foreach ($assessments as $key => $assessment) {
+                if ($key > 0) {
+                    $sum += (float)$assessment[$item];
+                    $count++;
+                }
+            }
+            $assessments[0][$item] = static::round_number($sum / $count);
         }
 
         uasort($assessments, function ($a, $b) {
             return $b['name'] <=> $a['name'];
         });
 
-        return ['status' => 'success', 'data' => ['assessments' => $assessments]];
+        $assessments_without_average = array_values(array_filter($assessments, function ($value) {
+            return $value['name'] !== trans('imet-core::analysis_report.average');
+        }));
+
+        return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
     }
 
     public static function get_pa_name(int $id, int $scaling_id = 0)
@@ -334,91 +334,103 @@ class Common
         return static::protected_areas_duplicate_fixes($id, true);
     }
 
+    public static function get_all_indicator_labels_cached()
+    {
+        $cache_key = 'all_labels_indicator';
+        if (($cache_value = Cache::get($cache_key)) !== null) {
+            return $cache_value;
+        }
+
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
+        Cache::put($cache_key, $labels, 30*60*60*24);
+        return $labels;
+    }
+
     /**
      * @param $indicator
      * @return string[]
      */
     public static function get_labels_by_indicator($indicator): array
     {
+        $labels =  ImetScores::indicators_labels(ImetAlias::IMET_V2);
         $indicators = [
             'management_context' => [
-                'c1' => 'C1: ' . trans('imet-core::analysis_report.assessment.c1'),
-                'c2' => 'C2: ' . trans('imet-core::analysis_report.assessment.c2'),
-                'c3' => 'C3: ' . trans('imet-core::analysis_report.assessment.c3')
+                'C1' => 'C1: ' . $labels['C1'],
+                'C2' => 'C2: ' . $labels['C2'],
+                'C3' => 'C3: ' . $labels['C3']
             ],
             'value_and_importance_sub_indicators' => [
-                'c11' => 'C1.1: ' . trans('imet-core::analysis_report.assessment.c11'),
-                'c12' => 'C1.2: ' . trans('imet-core::analysis_report.assessment.c12'),
-                'c13' => 'C1.3: ' . trans('imet-core::analysis_report.assessment.c13'),
-                'c14' => 'C1.4: ' . trans('imet-core::analysis_report.assessment.c14'),
-                'c15' => 'C1.5: ' . trans('imet-core::analysis_report.assessment.c15')
+                'C11' => 'C1.1: ' . $labels['C11'],
+                'C12' => 'C1.2: ' . $labels['C12'],
+                'C13' => 'C1.3: ' . $labels['C13'],
+                'C14' => 'C1.4: ' . $labels['C14'],
+                'C15' => 'C1.5: ' . $labels['C15']
             ],
             'planning' => [
-                'p1' => 'P1: ' . trans('imet-core::analysis_report.assessment.p1'),
-                'p2' => 'P2: ' . trans('imet-core::analysis_report.assessment.p2'),
-                'p3' => 'P3: ' . trans('imet-core::analysis_report.assessment.p3'),
-                'p4' => 'P4: ' . trans('imet-core::analysis_report.assessment.p4'),
-                'p5' => 'P5: ' . trans('imet-core::analysis_report.assessment.p5'),
-                'p6' => 'P6: ' . trans('imet-core::analysis_report.assessment.p6')
+                'P1' => 'P1: ' . $labels['P1'],
+                'P2' => 'P2: ' . $labels['P2'],
+                'P3' => 'P3: ' . $labels['P3'],
+                'P4' => 'P4: ' . $labels['P4'],
+                'P5' => 'P5: ' . $labels['P5'],
+                'P6' => 'P6: ' . $labels['P6']
             ],
             'inputs' => [
-                'i1' => 'I1: ' . trans('imet-core::analysis_report.assessment.i1'),
-                'i2' => 'I2: ' . trans('imet-core::analysis_report.assessment.i2'),
-                'i3' => 'I3: ' . trans('imet-core::analysis_report.assessment.i3'),
-                'i4' => 'I4: ' . trans('imet-core::analysis_report.assessment.i4'),
-                'i5' => 'I5: ' . trans('imet-core::analysis_report.assessment.i5')
+                'I1' => 'I1: ' . $labels['I1'],
+                'I2' => 'I2: ' . $labels['I2'],
+                'I3' => 'I3: ' . $labels['I3'],
+                'I4' => 'I4: ' . $labels['I4'],
+                'I5' => 'I5: ' . $labels['I5']
             ],
             'outputs' => [
-                'op1' => 'O/P1: ' . trans('imet-core::analysis_report.assessment.op1'),
-                'op2' => 'O/P2: ' . trans('imet-core::analysis_report.assessment.op2'),
-                'op3' => 'O/P3: ' . trans('imet-core::analysis_report.assessment.op3'),
-                'op4' => 'O/P4: ' . trans('imet-core::analysis_report.assessment.op4')
+                'OP1' => 'O/P1: ' . $labels['OP1'],
+                'OP2' => 'O/P2: ' . $labels['OP2'],
+                'OP3' => 'O/P3: ' . $labels['OP3'],
+                'OP4' => 'O/P4: ' . $labels['OP4']
             ],
             'outcomes' => [
-                'oc1' => 'O/C1: ' . trans('imet-core::analysis_report.assessment.oc1'),
-                'oc2' => 'O/C2: ' . trans('imet-core::analysis_report.assessment.oc2'),
-                'oc3' => 'O/C3: ' . trans('imet-core::analysis_report.assessment.oc3'),
+                'OC1' => 'O/C1: ' . $labels['OC1'],
+                'OC2' => 'O/C2: ' . $labels['OC2'],
+                'OC3' => 'O/C3: ' . $labels['OC3'],
             ],
             'process' => [
-                'pr15_16' => 'PR A: ' . trans('imet-core::analysis_report.assessment.pr15_16'),
-                'pr10_12' => 'PR B: ' . trans('imet-core::analysis_report.assessment.pr10_12'),
-                'pr13_14' => 'PR C: ' . trans('imet-core::analysis_report.assessment.pr13_14'),
-                'pr17_18' => 'PR D: ' . trans('imet-core::analysis_report.assessment.pr17_18'),
-                'pr1_6' => 'PR E: ' . trans('imet-core::analysis_report.assessment.pr1_6'),
-                'pr7_9' => 'PR F: ' . trans('imet-core::analysis_report.assessment.pr7_9')
+                'PRA' => 'PR A: ' . $labels['PRA'],
+                'PRB' => 'PR B: ' . $labels['PRB'],
+                'PRC' => 'PR C: ' . $labels['PRC'],
+                'PRD' => 'PR D: ' . $labels['PRD'],
+                'PRE' => 'PR E: ' . $labels['PRE'],
+                'PRF' => 'PR F: ' . $labels['PRF']
             ],
             'process_internal_management_indicators' => [
-                'pr1' => 'PR1: ' . trans('imet-core::analysis_report.assessment.pr1'),
-                'pr2' => 'PR2: ' . trans('imet-core::analysis_report.assessment.pr2'),
-                'pr3' => 'PR3: ' . trans('imet-core::analysis_report.assessment.pr3'),
-                'pr4' => 'PR4: ' . trans('imet-core::analysis_report.assessment.pr4'),
-                'pr5' => 'PR5: ' . trans('imet-core::analysis_report.assessment.pr5'),
-                'pr6' => 'PR6: ' . trans('imet-core::analysis_report.assessment.pr6')
+                'PR1' => 'PR1: ' . $labels['PR1'],
+                'PR2' => 'PR2: ' . $labels['PR2'],
+                'PR3' => 'PR3: ' . $labels['PR3'],
+                'PR4' => 'PR4: ' . $labels['PR4'],
+                'PR5' => 'PR5: ' . $labels['PR5'],
+                'PR6' => 'PR6: ' . $labels['PR6']
             ],
             'process_management_protection_indicators' => [
-                'pr7' => 'PR7: ' . trans('imet-core::analysis_report.assessment.pr7'),
-                'pr8' => 'PR8: ' . trans('imet-core::analysis_report.assessment.pr8'),
-                'pr9' => 'PR9: ' . trans('imet-core::analysis_report.assessment.pr9')
+                'PR7' => 'PR7: ' . $labels['PR7'],
+                'PR8' => 'PR8: ' . $labels['PR8'],
+                'PR9' => 'PR9: ' . $labels['PR9']
             ],
             'process_stakeholders_relationships_indicators' => [
-                'pr10' => 'PR10: ' . trans('imet-core::analysis_report.assessment.pr10'),
-                'pr11' => 'PR11: ' . trans('imet-core::analysis_report.assessment.pr11'),
-                'pr12' => 'PR12: ' . trans('imet-core::analysis_report.assessment.pr12')
+                'PR10' => 'PR10: ' . $labels['PR10'],
+                'PR11' => 'PR11: ' . $labels['PR11'],
+                'PR12' => 'PR12: ' . $labels['PR12']
             ],
             'process_tourism_management_indicators' => [
-                'pr13' => 'PR13: ' . trans('imet-core::analysis_report.assessment.pr13'),
-                'pr14' => 'PR14: ' . trans('imet-core::analysis_report.assessment.pr14'),
+                'PR13' => 'PR13: ' . $labels['PR13'],
+                'PR14' => 'PR14: ' . $labels['PR14'],
             ],
             'process_monitoring_and_research_indicators' => [
-                'pr15' => 'PR15: ' . trans('imet-core::analysis_report.assessment.pr15'),
-                'pr16' => 'PR16: ' . trans('imet-core::analysis_report.assessment.pr16'),
+                'PR15' => 'PR15: ' . $labels['PR15'],
+                'PR16' => 'PR16: ' . $labels['PR16'],
             ],
             'process_effects_of_climate_change_indicators' => [
-                'pr17' => 'PR17: ' . trans('imet-core::analysis_report.assessment.pr17'),
-                'pr18' => 'PR18: ' . trans('imet-core::analysis_report.assessment.pr18'),
+                'PR17' => 'PR17: ' . $labels['PR17'],
+                'PR18' => 'PR18: ' . $labels['PR18'],
             ]
         ];
-
         return $indicators[$indicator];
     }
 

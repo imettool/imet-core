@@ -1,11 +1,20 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\User;
+namespace ImetCore\Models\User;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\BaseModel;
+use ImetCore\Models\Country;
+use ImetCore\Models\ProtectedArea;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,11 +85,23 @@ class Role extends BaseModel
         ];
     }
 
+    public static function select_all_roles(): array
+    {
+        return [
+            Role::ROLE_ADMINISTRATOR => 'Administrator',
+            Role::ROLE_NATIONAL_AUTHORITY => 'National Authority',
+            Role::ROLE_REGIONAL_AUTHORITY => 'Regional Authority',
+            Role::ROLE_REGIONAL_OBSERVATORY => 'Regional Observatory',
+            Role::ROLE_INTERNATIONAL_INSTITUTIION => 'International Institution',
+            Role::ROLE_DONOR => 'Role Donor',
+            Role::ROLE_ENCODER => 'Role Encoder'
+        ];
+    }
     /**
      * Retrieve roles by user id
      *
      * @param $user_id
-     * @return \AndreaMarelli\ImetCore\Models\User\Role[]|\Illuminate\Database\Eloquent\Collection
+     * @return \ImetCore\Models\User\Role[]|\Illuminate\Database\Eloquent\Collection
      */
     public static function getByUser($user_id)
     {
@@ -147,7 +168,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_wdpa
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return \ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
     {
@@ -189,7 +210,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_iso
-     * @return \AndreaMarelli\ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return \ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
     {

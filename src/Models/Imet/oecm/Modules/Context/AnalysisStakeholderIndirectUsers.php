@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
 use Illuminate\Http\Request;
 
 /**
@@ -11,7 +20,7 @@ use Illuminate\Http\Request;
  */
 class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
-    protected $table = 'imet_oecm.context_analysis_stakeholders_indirect_users';
+    protected $table = 'context_analysis_stakeholders_indirect_users';
 
     public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
@@ -24,11 +33,11 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
             ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Description')],
             ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Illegal')],
-            ['name' => 'Support',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Support')],
+            ['name' => 'Support',       'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Support')],
             ['name' => 'Guidelines',    'type' => 'suggestion-ImetOECM_Guidelines', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Guidelines')],
             ['name' => 'LackOfCollaboration',  'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.LackOfCollaboration')],
-            ['name' => 'Status',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Status')],
-            ['name' => 'Trend',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Trend')],
+            ['name' => 'Status',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Status')],
+            ['name' => 'Trend',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Trend')],
             ['name' => 'Threats',      'type' => 'dropdown_multiple-ImetOECM_Threats', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Threats')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderIndirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],

@@ -1,9 +1,21 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components\Modules;
+namespace ImetCore\Models\Imet\Components\Modules;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Module;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Dependencies;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Module;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use ReflectionException;
 
@@ -11,6 +23,9 @@ use ReflectionException;
 class ImetModule extends Module
 {
     use InjectInView;
+    use Dependencies;
+
+    protected static ?string $form_clas;
 
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -23,13 +38,31 @@ class ImetModule extends Module
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    protected string $schema;
     protected $primaryKey = 'id';
-    public static $foreign_key = 'FormID';
+    public static ?string $foreign_key = 'FormID';
 
     public $ratingLegend = null;
     public $module_subTitle = null;
     public $module_info_EvaluationQuestion = null;
     public $module_info_Rating = null;
+
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
+    {
+        return Database::getTable($this->schema, $this->table);
+    }
+
+    /**
+     * Relation to IMET form
+     * @return BelongsTo
+     */
+    public function imet(): BelongsTo
+    {
+        return $this->belongsTo(static::$form_class, 'FormID');
+    }
 
     /**
      * Override: additional info labels
@@ -52,61 +85,41 @@ class ImetModule extends Module
 
     /**
      * Override: Get predefined_values according to form language
-     * @param null $form_id
-     * @return null
      */
-    protected static function getPredefined($form_id = null)
+    protected static function getPredefined($form_id = null): ?array
     {
         static::forceLanguage($form_id);
         return parent::getPredefined($form_id);
     }
 
+
+    /**
+     * Override: Check for "warning_on_save" labels
+     */
+    public static function getVueData($form_id, $records, $definitions): array
+    {
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        return static::warningOnSave($vue_data);
+    }
+
+    /**
+     * Override: update dependent modules
+     */
+    public static function updateModuleRecords($records, $form_id): void
+    {
+        static::updateDependencies($records, $form_id);
+        parent::updateModuleRecords($records, $form_id);
+    }
+
     /**
      * Force locale to IMET language in order to retrieve correct label from lang
-     * @param null $form_id
      */
-    public static function forceLanguage($form_id = null)
+    public static function forceLanguage($form_id = null): void
     {
         if($form_id!==null){
             $FormLang = (static::$form_class)::getLanguage($form_id);
             if($FormLang != App::getLocale()){
                 App::setLocale($FormLang);
-            }
-        }
-    }
-
-    /**
-     * Compare updated records with existing (in DB) and drop from dependant modules
-     * @param $form_id
-     * @param $updatedRecords
-     * @param $dependencyClasses
-     */
-    public static function dropFromDependencies($form_id, $updatedRecords, $dependencyClasses)
-    {
-        $reference_field = (new static())->module_fields[0]['name'];
-        $toBeDropped = static::getModule($form_id)->pluck($reference_field)->diff(
-            collect($updatedRecords)->pluck($reference_field)
-        )->all();
-        $toBeDropped = array_values($toBeDropped);
-
-        foreach ($dependencyClasses as $class){
-            /** @var ImetModule $class */
-            $class::dropListed($form_id, $toBeDropped);
-        }
-    }
-
-
-    /**
-     * Drop all records where first field is listed in the given reference list (use for dependent modules, ex: CTX -> Evaluation)
-     * @param $form_id
-     * @param $reference_list
-     */
-    public static function dropListed($form_id, $reference_list)
-    {
-        $reference_field = (new static())->module_fields[0]['name'];
-        foreach (static::getModuleRecords($form_id)['records'] as $record) {
-            if(in_array($record[$reference_field], $reference_list)){
-                static::destroy($record[(new static())->primaryKey]);
             }
         }
     }

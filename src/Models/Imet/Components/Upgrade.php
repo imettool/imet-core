@@ -1,21 +1,27 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\Components;
+namespace ImetCore\Models\Imet\Components;
 
-use AndreaMarelli\ImetCore\Models\Currency;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use Exception;
+use ImetCore\Models\Currency;
+use ModularForms\Helpers\Input\SelectionList;
 
 Trait Upgrade
 {
 
     /**
      * Upgrade module record from a previous version (need to be instantiated wherever necessary)
-     *
-     * @param $records
-     * @param null $imet_version
-     * @return mixed
      */
-    public static function upgradeModuleRecords($records, $imet_version = null)
+    public static function upgradeModuleRecords($records, $imet_version = null): array
     {
         foreach ($records as $i=>$record){
             $records[$i] = static::upgradeModule($record, $imet_version);
@@ -25,24 +31,16 @@ Trait Upgrade
 
     /**
      * Upgrade module record from a previous version (need to be instantiated wherever necessary)
-     *
-     * @param $record
-     * @param null $imet_version
-     * @return mixed
      */
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         return $record;
     }
 
     /**
      * Add a field to the given record (added in newer version)
-     *
-     * @param $record
-     * @param $field
-     * @return mixed
      */
-    protected static function addField($record, $field)
+    protected static function addField($record, $field): array
     {
         if(!array_key_exists($field, $record)){
             $record[$field] = null;
@@ -52,12 +50,8 @@ Trait Upgrade
 
     /**
      * Drop a field from the given record (removed in newer version)
-     *
-     * @param $record
-     * @param $field
-     * @return mixed
      */
-    protected static function dropField($record, $field)
+    protected static function dropField($record, $field): array
     {
         if(array_key_exists($field, $record)){
             unset($record[$field]);
@@ -70,13 +64,8 @@ Trait Upgrade
 
     /**
      * Rename a field in the given record
-     *
-     * @param $record
-     * @param $from
-     * @param $to
-     * @return mixed
      */
-    protected static function renameField($record, $from, $to)
+    protected static function renameField($record, $from, $to): array
     {
         if(array_key_exists($from, $record)){
             $record = static::addField($record, $to);
@@ -93,14 +82,8 @@ Trait Upgrade
 
     /**
      * Replace an obsolete predefined value with a newer one
-     *
-     * @param $record
-     * @param $field
-     * @param $old_value
-     * @param $new_value
-     * @return mixed
      */
-    protected static function replacePredefinedValue($record, $field, $old_value, $new_value)
+    protected static function replacePredefinedValue($record, $field, $old_value, $new_value): array
     {
         $record[$field] = $record[$field]===$old_value ? $new_value : $record[$field];
         return $record;
@@ -108,27 +91,33 @@ Trait Upgrade
 
     /**
      * Drop a record if predefined value had been removed
-     *
-     * @param $record
-     * @param $field
-     * @param $old_value
-     * @return mixed|null
      */
-    protected static function dropIfPredefinedValueObsolete($record, $field, $old_value)
+    protected static function dropIfPredefinedValueObsolete($record, $field, $old_value): ?array
     {
-        return $record!==null && $record[$field]===$old_value ? null : $record;
+        return $record!==null && $record[$field]===$old_value
+            ? null
+            : $record;
     }
 
     /**
      * Drop a value if not in predefined list
      *
-     * @param $value
-     * @param $list_key
-     * @return mixed
-     * @throws \Exception
+     * @throws Exception
      */
-    protected static function dropIfValueNotInPredefinedList($value, $list_key)
+    protected static function dropIfValueNotInPredefinedList($value, $list_key): ?string
     {
+        // if value is a JSON string, decode it and check each value
+        if(json_encode(json_decode($value))===$value){
+            $value = '["Community-based conservation (CBC)","CBM (Community-based management (CBM)","CBA (Conservation Based Area)", "wieugfviweub (bla)"]';
+            $values = json_decode($value, true);
+            foreach ($values as $idx => $v){
+                if(!in_array($v, array_keys(SelectionList::getList('ImetV2_'.$list_key)))){
+                    unset($values[$idx]);
+                }
+            }
+            return json_encode($values);
+        }
+
         return in_array($value, array_keys(SelectionList::getList('ImetV2_'.$list_key)))
             ? $value
             : null;
@@ -136,13 +125,8 @@ Trait Upgrade
 
     /**
      * Force amount value to the given currency
-     *
-     * @param $record
-     * @param $field_currency
-     * @param $fields_to_exchange
-     * @return mixed
      */
-    protected static function forceCurrency($record, $field_currency, $fields_to_exchange)
+    protected static function forceCurrency($record, $field_currency, $fields_to_exchange): array
     {
         if($record[$field_currency]!==null && !in_array($record[$field_currency], Currency::MINIMAL_CURRENCIES)){
             $currency = $record[$field_currency]==='CFA' ? 'XAF' : $record[$field_currency];
@@ -154,7 +138,7 @@ Trait Upgrade
         return $record;
     }
 
-    protected static function replaceGroup($record, $group_field, $old_group, $new_group)
+    protected static function replaceGroup($record, $group_field, $old_group, $new_group): array
     {
         $record[$group_field] = $record[$group_field]===$old_group ? $new_group : $record[$group_field];
         return $record;

@@ -1,0 +1,153 @@
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+import ModuleImet from "../../../Module.js";
+import checkbox_boolean from "../../../../inputs/checkbox-boolean.vue";
+
+import { ref, computed } from "vue";
+
+export default class MenacesPressions extends ModuleImet {
+
+    constructor(input_data = {}) {
+        const custom_props = {
+            marine_predefined: {
+                type: Array,
+                default: () => input_data.marine_predefined
+            },
+            groupsByCategory: {
+                type: Object,
+                default: () => input_data.groupsByCategory
+            },
+            categoriesVisibility: {
+                type: Object,
+                default: () => input_data.categoriesVisibility || {}
+            }
+        };
+
+        super(input_data, custom_props)
+            .component('checkbox-boolean', checkbox_boolean);
+    }
+
+    setupApp(props, input_data) {
+
+        let setup_obj = super.setupApp(props, input_data);
+
+        const categoryVisibility = ref(input_data.categoriesVisibility.initialVisibility);
+
+        function isSubCategoryVisibly(categoryIndex) {
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                return false;
+            }
+            return categoryVisibility.value[categoryIndex];
+        }
+
+        function toggleCategoryVisibility(categoryIndex) {
+            if (categoryVisibility.value[categoryIndex] === undefined) {
+                categoryVisibility.value[categoryIndex] = true;
+            } else {
+                categoryVisibility.value[categoryIndex] = !categoryVisibility.value[categoryIndex];
+            }
+        }
+
+        /**
+         * Calculate stats for each record
+         */
+        const recordStats = computed(() => {
+            let stats = [];
+            let fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
+            setup_obj.records.forEach(function(record){
+                let record_values = [];
+                fields.forEach(function (field) {
+                    record_values.push(record[field]);
+                });
+                stats.push(calculateStats(record_values, true));
+            });
+            return stats;
+        });
+
+        /**
+         * Calculate stats for each group
+         */
+        const groupStats = computed(() => {
+            let stats = {};
+            Object.keys(props.groups).forEach(function(group){
+                let group_stats = [];
+                setup_obj.records.forEach(function(record, index){
+                    if(record[props.group_key_field] === group) {
+                        group_stats.push(recordStats.value[index]);
+                    }
+                });
+                stats[group] = calculateStats(group_stats);
+            });
+            return stats;
+        });
+
+        /**
+         * Calculate stats for each category
+         */
+        const categoryStats = computed(() => {
+            let stats = [];
+            props.groupsByCategory.forEach(function (groups_by_category) {
+                let category_stats = [];
+                Object.entries(groupStats.value).forEach(([group_key, group_stats]) => {
+                    if(groups_by_category.includes(group_key)){
+                        category_stats.push(group_stats);
+                    }
+
+                });
+                if(category_stats.every(function(v) { return v === null; })){
+                    stats.push(null);
+                } else {
+                    stats.push(
+                        (calculateStats(category_stats) * 100 / 3.0).toFixed(2)
+                    );
+                }
+            });
+            return stats;
+        });
+
+        function is_marine(value){
+            return props.marine_predefined.includes(value);
+        }
+
+        function calculateStats(values, rows=false){
+
+            let numCategories = 4;
+            let prod = 1;
+            let count = 0;
+
+            values.forEach(function(value, index){
+                if(value!==null){
+                    if(index===3 && rows===true){
+                        prod *= (numCategories+1)/2 - parseFloat(value)*(numCategories-1)/4;
+                    } else {
+                        prod *= numCategories - parseFloat(value);
+                    }
+
+                    count++;
+                }
+            });
+
+            return count>0 ? (4 - Math.pow(prod, 1/(count))).toFixed(2) : null;
+        }
+
+        return {
+            ...setup_obj,
+            recordStats,
+            groupStats,
+            categoryStats,
+            is_marine,
+            isSubCategoryVisibly,
+            toggleCategoryVisibility
+        };
+
+    }
+
+}

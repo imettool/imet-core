@@ -1,19 +1,35 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_importance_c13';
-    protected $fixed_rows = true;
+    protected $table = 'eval_importance_c13';
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Aspect';
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
+        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -21,8 +37,8 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C1.2';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceSpecies.title');
         $this->module_fields = [
-            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.EvaluationScore')],
+            ['name' => 'Aspect',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',      'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Aspect')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.EvaluationScore')],
             ['name' => 'SignificativeSpecies',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.SignificativeSpecies')],
             ['name' => 'IncludeInStatistics',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.IncludeInStatistics')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ImportanceSpecies.fields.Comments')],
@@ -43,59 +59,21 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
-
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Aspect',
-            'values' => [
+        $predefined_values = $form_id!==null
+            ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray(),
                 'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray()
             ]
+            : [];
+
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $predefined_values
         ];
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
-    }
-
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_evaluation.ImportanceSpecies.warning_on_save');
-        return $vue_data;
-    }
-
-    /**
-     * Check if the required number of items had been selected
-     * @param Request $request
-     * @return array
-     * @throws \Exception
-     */
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-        $num_valid_records = collect($records)->filter(function($item){
-            return $item['IncludeInStatistics'];
-        })->count();
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
     }
 
     /**

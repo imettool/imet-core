@@ -1,14 +1,24 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\Assessment;
+namespace ImetCore\Models\Imet\API\Assessment;
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\Areas;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\DOPA;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Report;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Models\Imet\v1\Modules\Context\Areas;
+use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
+use ModularForms\Helpers\API\DOPA\DOPA;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\v1\Report;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
@@ -33,8 +43,8 @@ class ReportV1
 
         $api_available = DOPA::apiAvailable();
         if ($api_available) {
-            $dopa_radar = DOPA::get_wdpa_radarplot($form->wdpa_id, true);
-            $dopa_indicators = DOPA::get_wdpa_all_inds($form->wdpa_id);
+            $dopa_radar = DOPA::get_wdpa_radarplot($form->wdpa_id, true)->records;
+            $dopa_indicators = DOPA::get_wdpa_all_inds($form->wdpa_id)->records;
         }
 
         $general_info = static::get_general_info($form_id);
@@ -51,7 +61,8 @@ class ReportV1
         return [
             'data' => [
                 'key_elements' => static::get_key_elements($form_id),
-                'assessment' => ImetScores::get_all($form_id),
+                'scores' => ImetScores::get_all($form_id),
+                'labels' => ImetScores::indicators_labels(Imet::IMET_V1),
                 'report' => $report,
                 'dopa_radar' => $dopa_radar,
                 'dopa_indicators' => $dopa_indicators[0] ?? null,
@@ -89,7 +100,7 @@ class ReportV1
      */
     protected static function get_general_info(int $form_id): ?array
     {
-        $general_info = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $general_info = static::$general_info_class::getModuleRecords($form_id)[][0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
@@ -104,7 +115,7 @@ class ReportV1
      */
     protected static function get_vision(int $form_id): ?array
     {
-        $vision = static::$general_info_class::getVueData($form_id)['records'][0] ?? null;
+        $vision = static::$general_info_class::getModuleRecords($form_id)[0] ?? null;
         if ($vision) {
             return static::remove_fields($vision, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }
@@ -163,7 +174,7 @@ class ReportV1
      * @param array $fields_to_extract
      * @return array
      */
-    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'formid' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
+    protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'form_id' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
     {
         return array_diff_key($values, $fields_to_extract);
     }

@@ -1,13 +1,22 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
 class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_work_program_implementation';
+    protected $table = 'eval_work_program_implementation';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
@@ -21,7 +30,7 @@ class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
             ['name' => 'Category', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Category')],
             ['name' => 'Activity', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Activity')],
             ['name' => 'TargetedActivity', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.TargetedActivity')],
-            ['name' => 'EvaluationScore', 'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore', 'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.EvaluationScore')],
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_evaluation.WorkProgramImplementation.fields.Comments')],
         ];
 

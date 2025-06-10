@@ -1,70 +1,28 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Component;
+namespace ImetCore\Models\Imet\v1\Modules\Component;
 
-use AndreaMarelli\ImetCore\Models\Imet\Components\Upgrade;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Module;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Imet;
-use Illuminate\Support\Facades\App;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
+use ImetCore\Models\Imet\Components\Upgrade;
+use ImetCore\Models\Imet\v1\Imet;
 
 
-class ImetModule extends Module
+class ImetModule extends BaseImetModule
 {
     use Upgrade;
     use ConvertSQLite;
 
-    protected static $form_class = Imet::class;
+    protected string $schema = Database::IMET_SCHEMA;
 
-    public const CREATED_AT = 'UpdateDate';
-    public const UPDATED_AT = 'UpdateDate';
-    public const UPDATED_BY = 'UpdateBy';
-
-    protected $primaryKey = 'id';
-    public static $foreign_key = 'FormID';
-
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
-
-    public $ratingLegend = null;
-    public $module_subTitle = null;
-    public $module_info_EvaluationQuestion = null;
-    public $module_info_Rating = null;
-
-    /**
-     * Relation to IMET form
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function imet()
-    {
-        return $this->belongsTo(Imet::class, 'FormID');
-    }
-
-    public static function getDefinitions($form_id = null): array
-    {
-        $definitions = parent::getDefinitions($form_id);
-        $model = new static();
-        $definitions['ratingLegend'] = $model->ratingLegend;
-        $definitions['module_subTitle'] = $model->module_subTitle;
-        $definitions['module_info_EvaluationQuestion'] = $model->module_info_EvaluationQuestion;
-        $definitions['module_info_Rating'] = $model->module_info_Rating;
-        return $definitions;
-    }
-
-    /**
-     * Get predefined_values according to form language
-     * @param null $form_id
-     * @return null
-     */
-    protected static function getPredefined($form_id = null)
-    {
-        // Force Language
-        if($form_id!==null){
-            $FormLang = Imet::getLanguage($form_id);
-            if($FormLang != App::getLocale()){
-                App::setLocale($FormLang);
-            }
-        }
-        return parent::getPredefined($form_id);
-    }
-
+    protected static ?string $form_class = Imet::class;
 }

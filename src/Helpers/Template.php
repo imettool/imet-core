@@ -1,10 +1,19 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Helpers;
+namespace ImetCore\Helpers;
 
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\Components\Modules\ImetModule;
-use AndreaMarelli\ModularForms\Helpers\Template as BaseTemplate;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ModularForms\Helpers\Template as BaseTemplate;
 
 class Template{
 
@@ -19,8 +28,8 @@ class Template{
         if($iso!=''){
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
-            $label = '&nbsp;'.$country->Name;
-            return BaseTemplate::flag($iso, $country->Name).$label;
+            $label = '&nbsp;'.$country->name;
+            return BaseTemplate::flag($iso, $country->name).$label;
         }
         return '';
     }
@@ -37,7 +46,7 @@ class Template{
         if($iso!=''){
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
-            return BaseTemplate::flag($iso, $country->Name);
+            return BaseTemplate::flag($iso);
         }
         return '';
     }
@@ -50,15 +59,10 @@ class Template{
      */
     public static function module_scope($scope): string
     {
-        $common_attributes = 'data-toggle="tooltip" data-placement="top"';
-        if($scope === ImetModule::TERRESTRIAL_AND_MARINE){
-            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />
-                        <img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
-        } elseif ($scope === ImetModule::TERRESTRIAL){
-            return '<img src="/assets/images/tree.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.terrestrial')) . '" />';
-        } elseif ($scope === ImetModule::MARINE){
-            return '<img src="/assets/images/fish.png" '.$common_attributes.' data-original-title="' . ucfirst(trans('imet-core::common.marine')) . '" />';
+        if($scope !== null){
+            return "<scope-icon scope='" . $scope . "'></scope-icon>";
         }
+
         return '';
     }
 

@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
 
@@ -47,7 +56,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeSpecies' => 'Highly representative specie',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
@@ -84,7 +93,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'EvaluationScore2'=> 'Regional and global value/importance',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -121,7 +130,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -154,7 +163,7 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -264,7 +273,7 @@ return [
         'title' => 'Threats',
         'fields' => [
             'Aspect' => 'Threats evaluation (automatically reported from CTX 5.1)',
-            'IncludeInStatistics' => 'To prioritise in management',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'module_info_EvaluationQuestion' => [

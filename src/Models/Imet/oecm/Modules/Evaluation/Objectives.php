@@ -1,14 +1,23 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
 class Objectives extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_objectives';
+    protected $table = 'eval_objectives';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
@@ -27,7 +36,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Objective',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Objective')],
             ['name' => 'Existence',  'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Existence')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.Objectives.fields.Comments')],
         ];
 
@@ -40,7 +49,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         if (static::$cache_predefined_values === null) {
             $key_elements = $form_id != null

@@ -1,12 +1,24 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\Utils\Country as BaseCountry;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\Utils\Country as BaseCountry;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use AndreaMarelli\ImetCore\Models\Region;
+use ImetCore\Models\Region;
+use Illuminate\Support\Facades\App;
 
 
 /**
@@ -17,13 +29,22 @@ use AndreaMarelli\ImetCore\Models\Region;
  * @property string $name
  * @property string $Name
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class Country extends BaseCountry
 {
-    protected $table = 'imet.imet_countries';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'countries';
     public $primaryKey = 'iso3';
-    public static $foreign_key = 'region_id';
+    public static ?string $foreign_key = 'region_id';
+
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
+    {
+        return Database::getTable($this->schema, $this->table);
+    }
 
     /**
      * Get the region associated with the country.
@@ -35,17 +56,14 @@ class Country extends BaseCountry
 
     /**
      * Get country by regions
-     *
-     * @param $region
-     * @return \AndreaMarelli\ModularForms\Models\Utils\Country|\Illuminate\Database\Eloquent\Model|object|null
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function getByRegion($region)
+    public static function getByRegion($region): array
     {
         if(strlen($region)==2){
             return static::where('region_id', $region)->pluck('iso3')->toArray();
         }else {
-            throw new \Exception('Wrong size for region: '. $region);
+            throw new Exception('Wrong size for region: '. $region);
         }
     }
 

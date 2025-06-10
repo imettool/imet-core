@@ -1,4 +1,14 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
 return [
 
     'id'                    => 'ID',
@@ -167,5 +177,19 @@ return [
             'EncodingDuration' => 'Tempo levado para a Avaliação (horas)',
         ]
     ],
+
+    'dropzone' => [
+        'dict_default_message' => 'Arrastar e largar para carregar ficheiros json/zip',
+        'dict_fallback_message' => 'O seu navegador não suporta carregamentos de ficheiros de arrastar e largar.',
+        'dict_fallback_text' => 'Por favor, use o formulário abaixo para carregar os seus ficheiros como nos velhos tempos.',
+        'dict_file_too_big' => 'O ficheiro é demasiado grande ({{filesize}}MiB). Tamanho máximo dos ficheiros: {{maxFilesize}}MiB.',
+        'dict_invalid_file_type' => 'Não se pode carregar ficheiros deste tipo.',
+        'dict_response_error' => 'O servidor respondeu com o código {{statusCode}}.',
+        'dict_cancel_upload' => 'Cancelar carregamento',
+        'dict_upload_canceled' => 'Upload cancelado',
+        'dict_cancel_upload_confirmation' => 'Tem a certeza de que quer cancelar este carregamento?',
+        'dict_remove_file'  => 'Remover ficheiro',
+        'dictMaxFilesExceeded' => 'Excedeu o máximo de ficheiros para carregamento. Por favor remova os ficheiros para carregar mais',
+    ]
 
 ];

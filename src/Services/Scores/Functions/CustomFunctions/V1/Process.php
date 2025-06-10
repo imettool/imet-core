@@ -1,10 +1,19 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ActorsRelations;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\Control;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ActorsRelations;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\Control;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
 
 trait Process {
 
@@ -72,7 +81,7 @@ trait Process {
             })
             ->map(function($record){
                 $record['eval'] =
-                    $record['EvaluationScore']==='-99'
+                    $record['EvaluationScore']===-99
                         ? null
                         : $record['EvaluationScore'];
                 return $record;

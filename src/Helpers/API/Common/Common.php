@@ -1,14 +1,23 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Helpers\API\Common;
+namespace ImetCore\Helpers\API\Common;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOecm;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ErrorException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use AndreaMarelli\ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Controllers\Imet\ApiController;
 use Illuminate\Validation\Rule;
 
 class Common
@@ -146,12 +155,12 @@ class Common
             throw new ErrorException(trans('imet-core::api.error_messages.wdpa_ids_missing'));
         }
 
-        if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2 . '__') > -1) {
-            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V2;
-        } else if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1 . '__') > -1) {
-            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_V1;
-        } else if ($query_key && stripos($query_key, 'imet__' . \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM . '__') > -1) {
-            $key = \AndreaMarelli\ImetCore\Models\Imet\Imet::IMET_OECM;
+        if ($query_key && stripos($query_key, 'imet__' . \ImetCore\Models\Imet\Imet::IMET_V2 . '__') > -1) {
+            $key = \ImetCore\Models\Imet\Imet::IMET_V2;
+        } else if ($query_key && stripos($query_key, 'imet__' . \ImetCore\Models\Imet\Imet::IMET_V1 . '__') > -1) {
+            $key = \ImetCore\Models\Imet\Imet::IMET_V1;
+        } else if ($query_key && stripos($query_key, 'imet__' . \ImetCore\Models\Imet\Imet::IMET_OECM . '__') > -1) {
+            $key = \ImetCore\Models\Imet\Imet::IMET_OECM;
         }
 
         if ($query_years) {

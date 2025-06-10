@@ -1,18 +1,27 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet;
+namespace ImetCore\Models\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\Controller;
-use AndreaMarelli\ImetCore\Models\Country;
-use AndreaMarelli\ImetCore\Models\Imet\Encoder;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\Imet\v1;
-use AndreaMarelli\ImetCore\Models\Imet\v2;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ModularForms\Helpers\Type\Chars;
-use AndreaMarelli\ModularForms\Models\Form;
+use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Country;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\Imet\v1;
+use ImetCore\Models\Imet\v2;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\User\Role;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\Type\Chars;
+use ModularForms\Models\Form;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,14 +45,14 @@ use function session;
  * @property string $Year
  *
  */
-class Imet extends Form
+abstract class Imet extends Form
 {
     const IMET_V1 = 'v1';
     const IMET_V2 = 'v2';
     const IMET_OECM = 'oecm';
 
-
-    protected $table = 'imet.imet_form';
+    protected string $schema;
+    protected $table = 'forms';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
     public const UPDATED_AT = 'UpdateDate';
@@ -52,7 +61,15 @@ class Imet extends Form
     public static $sortBy = 'Year';
     public static $sortDirection = 'desc';
 
-    public static $modules = [];
+    public static ?array $modules = [];
+
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
+    {
+        return Database::getTable($this->schema, $this->table);
+    }
 
     /**
      * Relation to Country
@@ -278,9 +295,12 @@ class Imet extends Form
         $external = $version === static::IMET_V1
             ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
             : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
+        $encoders = $version === static::IMET_V1
+            ? v1\Encoder::getNames($form_id)
+            : v2\Encoder::getNames($form_id);
 
         return [
-            'encoders' => Encoder::getNames($form_id),
+            'encoders' => $encoders,
             'internal' => $internal,
             'external' => $external
         ];
@@ -418,6 +438,14 @@ class Imet extends Form
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
                 foreach ($records[$module_class::getShortClassName()] as $record) {
+
+                    if(Str::contains($module_class, "\ImetCore\Models\Imet\v2\Modules\Context\Contexts")
+                        || Str::contains($module_class, "\ImetCore\Models\Imet\v2\Modules\Context\GeographicalLocation")
+                    ){
+
+                        dd($module_class, $record);
+                    }
+
                     $module_class::importModule($formID, $record);
                 }
             }
@@ -489,17 +517,12 @@ class Imet extends Form
      */
     public static function foundDuplicates(): array
     {
-        $haveDuplicates = [];
-        static::selectRaw('json_agg("FormID")')
-            ->groupBy("Year", "wdpa_id", 'version')
+        return static::select("FormID")
+            ->groupBy("FormID", "Year", "wdpa_id", 'version')
             ->havingRaw('count(*) > ?', [1])
             ->get()
-            ->pluck('json_agg')
-            ->map(function ($item) use (&$haveDuplicates) {
-                $haveDuplicates = array_merge($haveDuplicates, json_decode($item));
-                return $item;
-            });
-        return $haveDuplicates;
+            ->plucK('FormID')
+            ->toArray();
     }
 
     /**

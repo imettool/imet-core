@@ -1,32 +1,38 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore;
+namespace ImetCore;
 
-use AndreaMarelli\ImetCore\Commands\ApplySQL;
-use AndreaMarelli\ImetCore\Commands\CalculateScores;
-use AndreaMarelli\ImetCore\Commands\ConvertSQLite;
-use AndreaMarelli\ImetCore\Commands\Export;
-use AndreaMarelli\ImetCore\Commands\GetSerialNumber;
-use AndreaMarelli\ImetCore\Commands\Import;
-use AndreaMarelli\ImetCore\Commands\InitDB;
-use AndreaMarelli\ImetCore\Commands\PopulateMetadata;
-use AndreaMarelli\ImetCore\Commands\PopulateSpecies;
-use AndreaMarelli\ImetCore\Commands\SetSerialNumber;
-use AndreaMarelli\ImetCore\Commands\UpdateOFAC;
-use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasAPI;
-use AndreaMarelli\ImetCore\Commands\UpdateProtectedAreasCSV;
+use Illuminate\Support\Facades\Gate;
+use ImetCore\Commands\CalculateScores;
+use ImetCore\Commands\ConvertSQLite;
+use ImetCore\Commands\Export;
+use ImetCore\Commands\Import;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Policies\ImetPolicy;
 
 
 class ServiceProvider extends BaseServiceProvider
 {
+    const BASE_PATH = __DIR__ . '/../';
+
     /**
      * Register services.
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'imet-core');
+        $this->mergeConfigFrom(static::BASE_PATH . 'config/config.php', 'imet-core');
+        Gate::policy(Imet::class, ImetPolicy::class);
     }
 
     /**
@@ -34,40 +40,44 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot(): void
     {
+
+        // Migrations
+        $this->loadMigrationsFrom([
+            static::BASE_PATH . 'database/migrations/public',
+            static::BASE_PATH . 'database/migrations/imet',
+            static::BASE_PATH . 'database/migrations/oecm',
+        ]);
+
         // Views
-        $this->loadViewsFrom(__DIR__.'/../src/Views', 'imet-core');
-        $this->publishes([__DIR__.'/../src/Views' => resource_path('views/vendor/imet-core')], 'views');
+        $this->loadViewsFrom(static::BASE_PATH . 'src/resources/views', 'imet-core');
+        $this->publishes([
+            static::BASE_PATH . 'src/resources/views/vendor/modular-forms' =>
+                resource_path('views/vendor/modular-forms') // Override ModularForms views
+        ], 'imet-core');
 
         // Routes
-        Route::group($this->routeConfiguration('web'), function () {
-            $this->loadRoutesFrom(__DIR__.'/../src/Routes/web.php');
+        Route::group($this->routeConfiguration('web'), function (){
+            $this->loadRoutesFrom(static::BASE_PATH . 'src/Routes/web.php');
         });
-        Route::group($this->routeConfiguration('api'), function () {
-            $this->loadRoutesFrom(__DIR__.'/../src/Routes/api.php');
+        Route::group($this->routeConfiguration('api'), function (){
+            $this->loadRoutesFrom(static::BASE_PATH . 'src/Routes/api.php');
         });
 
         // Config
-        $this->publishes([__DIR__.'/../config/config.php' => config_path('imet-core.php')], 'config');
+        $this->publishes([
+            static::BASE_PATH . 'config/config.php' => config_path('imet-core.php')
+        ], 'imet-core');
 
         //Lang
-        $this->loadTranslationsFrom(__DIR__.'/../src/Lang', 'imet-core');
+        $this->loadTranslationsFrom(static::BASE_PATH . 'src/Lang', 'imet-core');
 
         // Commands
         if ($this->app->runningInConsole()) {
             $this->commands([
-                ApplySQL::class,
                 CalculateScores::class,
                 ConvertSQLite::class,
                 Export::class,
-                GetSerialNumber::class,
-                Import::class,
-                InitDB::class,
-                PopulateMetadata::class,
-                PopulateSpecies::class,
-                SetSerialNumber::class,
-                UpdateOFAC::class,
-                UpdateProtectedAreasAPI::class,
-                UpdateProtectedAreasCSV::class
+                Import::class
             ]);
         }
     }

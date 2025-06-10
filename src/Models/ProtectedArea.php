@@ -1,10 +1,20 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models;
+namespace ImetCore\Models;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Locale;
-use AndreaMarelli\ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Locale;
+use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
@@ -20,22 +30,32 @@ use Illuminate\Support\Str;
  * @property string $creation_date
  * @property numeric $area
  *
- * @package AndreaMarelli\ImetCore\Models
+ * @package ImetCore\Models
  */
 class ProtectedArea extends BaseProtectedArea
 {
-
-    protected $table = 'imet.imet_pas';
+    protected string $schema = Database::COMMON_SCHEMA;
+    protected $table = 'protected_areas';
     public $primaryKey = 'global_id';
+
+    public const CREATED_AT = null;
+    public const UPDATED_AT = null;
+    public const UPDATED_BY = null;
+    public const CREATED_BY = null;
+
+    /**
+     * Override: get the table name with schema
+     */
+    public function getTable(): string
+    {
+        return Database::getTable($this->schema, $this->table);
+    }
 
     /**
      * @deprecated
      * Get by global_id
-     *
-     * @param $global_id
-     * @return \AndreaMarelli\ImetCore\Models\ProtectedArea|\Illuminate\Database\Eloquent\Model|object|null
      */
-    public static function getByGlobalId($global_id)
+    public static function getByGlobalId($global_id) : ?ProtectedArea
     {
         return static::where('global_id', '=', $global_id)
             ->first();
@@ -43,11 +63,8 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Parse for over-national WDPAs
-     *
-     * @param array $countries
-     * @return array
      */
-    public static function parseISOs(array $countries)
+    public static function parseISOs(array $countries): array
     {
         $parsed_isos = [];
         foreach ($countries as $iso) {
@@ -67,13 +84,12 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Get protected areas' countries ISO
-     *
-     * @param \Closure|null $custom_where
-     * @return array
      */
     public static function getCountriesISO(\Closure $custom_where = null): array
     {
-        return (new ProtectedArea)->selectRaw('regexp_split_to_table(country, \'\;\') as iso3')
+        $iso3s = [];
+
+        ProtectedArea::select('country')
             ->distinct()
             ->where(function ($query)  use ($custom_where){
                 if($custom_where !== null){
@@ -81,16 +97,17 @@ class ProtectedArea extends BaseProtectedArea
                 }
             })
             ->get()
-            ->pluck('iso3')
+            ->pluck('country')
             ->sort()
-            ->toArray();
+            ->each(function($iso) use (&$iso3s){
+                $iso3s = array_merge($iso3s, explode(';', $iso));
+            });
+
+        return $iso3s;
     }
 
     /**
      * Get protected areas' countries
-     *
-     * @param bool $only_allowed
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function getCountries(bool $only_allowed = true): Collection
     {
@@ -109,10 +126,6 @@ class ProtectedArea extends BaseProtectedArea
 
     /**
      * Search by key or country
-     *
-     * @param string|null $search_key
-     * @param string|null $country
-     * @return \Illuminate\Database\Eloquent\Collection
      */
     public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
     {

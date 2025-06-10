@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
     'general_elements' => 'Elementos gerais',
@@ -49,11 +58,6 @@ return [
         'proposed_long_objectives' => 'Objetivos a longo prazo propostos',
         'proposed_short_objectives' => 'Objetivos a curto prazo propostos',
     ],
-
-    'pr1_5' => 'Sistemas e processos internos de gestão',
-    'pr6_7' => 'Gestão/Proteção dos valores',
-    'pr8_10' => 'Relações com partes interessadas',
-    'pr11_12' => 'Turismo/Monitoramento - Pesquisa',
     'general_planning' => [
         'name' => 'Planejamento geral',
         'priority' => 'Prioridade',

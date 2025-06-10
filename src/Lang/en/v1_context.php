@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
 
@@ -255,12 +264,12 @@ return [
         'fields' => [
             'Currency' => 'Currency',
             'ReferenceYear' => 'Baseline year',
-            'ManagementFinancialPlanCosts' => 'Operating cost estimated on Management plan/Financial plan ($ or currency/year)',
-            'OperationalWorkPlanCosts' => 'Operating costs estimated from the operational plan / working plan (budgeted annually)',
+            'ManagementFinancialPlanCosts' => 'Total budget estimated on Management plan/Financial plan ($ or currency/year)',
+            'OperationalWorkPlanCosts' => 'Total budget estimated from the operational plan / working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget - Forecasts',
         ],
         'amount'                        => 'Montant',
-        'functioning_costs'             => 'Operating costs ($/km2/year or currency/km2/year)',
+        'functioning_costs'             => 'Total budget ($/km2/year or currency/km2/year)',
         'estimation_financial_plan'     => '% of estimates in financial plan / working plan (budgeted annually)',
         'estimation_operational_plan'   => '% of estimation of the working plan (budgeted annually)',
         'module_info' => 'Estimated total costs based on Management plan/Financial plan'
@@ -357,6 +366,7 @@ return [
                                     amphibians, reptiles and fish) selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'SpeciesID' => 'Species',
+            'CommonName' => 'Common name',
             'FlagshipSpecies' => 'PHA',
             'EndangeredSpecies' => 'MEN',
             'EndemicSpecies' => 'END',
@@ -410,6 +420,7 @@ return [
         'title' => 'Ecosystem and habitats with important and significant features of the protected area',
         'fields' => [
             'EcosystemType' => 'Type of ecosystem or habitat',
+            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Characteristic or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Desired conservation status',
@@ -530,7 +541,7 @@ return [
             'Value' => 'Values',
             'Impact' => 'Impact/ Severity',
             'Extension' => 'Scale/ Extent',
-            'Duration' => 'How long/ Irreversibility',
+            'Duration' => 'How long',
             'Trend' => 'Over the last years',
             'Probability' => 'Probability of a future threat',
         ],

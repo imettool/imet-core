@@ -1,15 +1,25 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
+namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\v2\Modules;
 
 class Group
 {
     /**
      * @param array $parameters
      * @param array $assessments
+     * @param int $scaling_id
      * @return array
      */
     public static function get_calculation_grouping_analysis(array $parameters, array $assessments = [], int $scaling_id = 0): array
@@ -62,7 +72,7 @@ class Group
             foreach ($assessments['data']['assessments'] as $assessment) {
                 foreach ($parameters as $form) {
 
-                    if ($form['id'] === $assessment['formid']) {
+                    if ($form['id'] === $assessment['form_id']) {
 
                         $indicator[$indi][$form['group']][] = $assessment[$indi];
                     }

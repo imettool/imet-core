@@ -1,16 +1,25 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
 
 class Stakeholders extends Modules\Component\ImetModule
 {
-    protected $table = 'imet_oecm.context_stakeholders_natural_resources';
-    protected $fixed_rows = false;
+    protected $table = 'context_stakeholders_natural_resources';
+    protected bool $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -24,7 +33,7 @@ class Stakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
     ];
 
-    public static $rules = [
+    public static array $rules = [
         'Element' => 'required',
         'UsesCategories' => 'required_with:Element',
         'LevelEngagement' => 'required_unless:GeographicalProximity,true',
@@ -42,9 +51,9 @@ class Stakeholders extends Modules\Component\ImetModule
             ['name' => 'GeographicalProximity', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.GeographicalProximity')],
             ['name' => 'UsesCategories',        'type' => 'dropdown_multiple-ImetOECM_UsesCategories', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.UsesCategories')],
             ['name' => 'DirectUser',            'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.DirectUser')],
-            ['name' => 'LevelEngagement',       'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelEngagement')],
-            ['name' => 'LevelInterest',         'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelInterest')],
-            ['name' => 'LevelExpertise',        'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelExpertise')],
+            ['name' => 'LevelEngagement',       'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelEngagement')],
+            ['name' => 'LevelInterest',         'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelInterest')],
+            ['name' => 'LevelExpertise',        'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.LevelExpertise')],
             ['name' => 'Comments',              'type' => 'text-area', 'label' => trans('imet-core::oecm_context.Stakeholders.fields.Comments')],
         ];
 
@@ -57,15 +66,9 @@ class Stakeholders extends Modules\Component\ImetModule
 
     /**
      * Remove all empty records: where "Element" is empty
-     *
-     * @param $records
-     * @param $form_id
-     * @return array|void
-     * @throws FileNotFoundException
      */
-    public static function updateModuleRecords($records, $form_id)
+    public static function updateModuleRecords($records, $form_id): void
     {
-
         foreach ($records as $index => $record){
             // Ensure no "newline" (or other not allowed entities) are saved
             $record['Element'] = Str::replace("\n", '', $record['Element']);
@@ -78,7 +81,8 @@ class Stakeholders extends Modules\Component\ImetModule
                 unset($records[$index]);
             }
         }
-        return parent::updateModuleRecords($records, $form_id);
+
+        parent::updateModuleRecords($records, $form_id);
     }
 
     public const ALL_USERS = 0;

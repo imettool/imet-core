@@ -1,4 +1,14 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
 return [
 
     '_Objectives' => [
@@ -17,7 +27,7 @@ return [
             'Aspect' => 'Critères - Concept mesuré - Variable',
             'EvaluationScore' => 'Intégration',
             'SignificativeClassification' => 'Désignation hautement significative',
-            'IncludeInStatistics' => 'Fixer des priorités dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explications',
         ],
         'ratingLegend' => [
@@ -41,7 +51,7 @@ return [
             'Aspect' => 'Key element / service',
             'Importance' => 'Importance',
             'EvaluationScore' => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -107,7 +117,7 @@ return [
         'fields' => [
             'Partie prenante'       => 'Partie prenante',
             'Intégration'       => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments'          => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -245,7 +255,7 @@ return [
         'fields' => [
             'Threat'       => 'Menace',
             'Intégration'       => 'Intégration',
-            'IncludeInStatistics' => 'À prioriser dans la gestion',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments'          => 'Commentaires/Explication',
         ],
         'ratingLegend' => [

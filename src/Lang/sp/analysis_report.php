@@ -1,5 +1,13 @@
 <?php
-
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
     'variability' => 'Variabilidade',
@@ -110,14 +118,16 @@ return [
                 'radar' => 'Visualización por radar de los sistemas y procesos de gestión interna',
                 'ranking' => 'Clasificación de los sistemas y procesos de gestión interna',
                 'average_contribution' => 'Contribución media y variabilidad de los sistemas y procesos de gestión interna',
-                'datatable' => 'Cuadro de datos de los sistemas y procesos de gestión interna'
+                'datatable' => 'Cuadro de datos de los sistemas y procesos de gestión interna',
+                'datatable_average' => 'Sistemas y procesos de gestión interna'
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Gestión/Protección de los valores',
                 'radar' => 'Visualización por radar de la gestión/protección de los valores',
                 'ranking' => 'Clasificación de la gestión/protección de los valores',
                 'average_contribution' => 'Contribución media y variabilidad de la Gestión/Protección de los valores',
-                'datatable' => 'Tabla de datos de Gestión/Protección de los valores'
+                'datatable' => 'Tabla de datos de Gestión/Protección de los valores',
+                'datatable_average' => 'Gestión/Protección de los valores'
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Relaciones con las partes interesadas',
@@ -125,24 +135,28 @@ return [
                 'ranking' => 'Clasificación de las relaciones con las partes interesadas',
                 'average_contribution' => 'Contribución media y variabilidad de las relaciones con los grupos de interés',
                 'datatable' => 'Tabla de datos de las relaciones con las partes interesadas',
+                'datatable_average' => 'Relaciones con las partes interesadas'
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Gestión del turismo',
                 'ranking' => 'Clasificación de la gestión del turismo',
                 'average_contribution' => 'Contribución media y variabilidad de la gestión del turismo',
                 'datatable' => 'Tabla de datos de la gestión del turismo',
+                'datatable_average' => 'Gestión del turismo'
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Seguimiento e investigación',
                 'ranking' => 'Clasificación del seguimiento y la investigación',
                 'average_contribution' => 'Contribución media y variabilidad del seguimiento y la investigación',
                 'datatable' => 'Tabla de datos de seguimiento e Investigación',
+                'datatable_average' => 'Seguimiento e investigación'
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas',
                 'ranking' => 'Clasificación de la gestión de los efectos del cambio climático y los servicios de los ecosistemas',
                 'average_contribution' => 'Contribución media y variabilidad de la gestión de los efectos del cambio climático y los servicios de los ecosistemas',
                 'datatable' => 'Tabla de datos de gestión de los efectos del cambio climático y servicios de los ecosistemas',
+                'datatable_average' => 'Gestión de los efectos del cambio climático y de los servicios de los ecosistemas'
             ]
 
         ],
@@ -334,77 +348,23 @@ return [
         'negative_positive' => ' - escala (mínimo: -100, máximo: 100)',
         'zero_negative' => ' - escala (mínimo: -100, máximo: 0)'
     ],
-    'assessment' => [
-        'ctx101' => 'Responsabilidad de rellenar el formulario: Equipo directivo y socios y apoyo externo para el análisis y la evaluación de la gestión',
-        'ctx102' => 'Responsabilidad de la cumplimentación del formulario: Equipo directivo y socios y apoyo externo para el análisis y la evaluación de la gestión',
-        'c11' => 'Designaciones especiales',
-        'c12' => 'Especies clave',
-        'c13' => 'Hábitats terrestres y marinos',
-        'c14' => 'El cambio climático',
-        'c15' => 'Servicios de los ecosistemas',
-        'c1' => 'Valor e importancia',
-        'c2' => 'Limitaciones o apoyos externos',
-        'c3' => 'Amenazas',
-        'p1' => 'Adecuación de las disposiciones legales y reglamentarias',
-        'p2' => 'Diseño y disposición de la zona protegida',
-        'p3' => 'Demarcación de la zona protegida',
-        'p4' => 'Plan de gestión',
-        'p5' => 'Plan de trabajo/acción',
-        'p6' => 'Objetivos de la zona protegida',
-        'i1' => 'Información básica',
-        'i2' => 'Personal',
-        'i3' => 'Presupuesto actual',
-        'i4' => 'Asegurar el presupuesto',
-        'i5' => 'Infraestructura, equipamiento e instalaciones',
-        'pr1' => 'Programa de capacidades y formación del personal',
-        'pr2' => 'Políticas y procedimientos de gestión de recursos humanos',
-        'pr3' => 'Analizar el grado de motivación del personal (adecuación al puesto)',
-        'pr4' => 'Orientación de la gestión del área protegida',
-        'pr5' => 'Gestión presupuestaria y financiera',
-        'pr6' => 'Mantenimiento de infraestructuras, equipos e instalaciones',
-        'pr7' => 'Gestionar los valores y elementos clave del área protegida con acciones específicas',
-        'pr8' => 'Gestión de las patrullas de guardabosques (aplicación de la ley)',
-        'pr9' => 'Inteligencia/investigaciones/desarrollo de casos/gestión de acusaciones (Fuerzas de seguridad)',
-        'pr10' => 'Cooperación con las partes interesadas',
-        'pr11' => 'Beneficios/ayuda adecuados para las comunidades locales',
-        'pr12' => 'Educación ambiental y sensibilización del público',
-        'pr13' => 'Gestión de las instalaciones y servicios de los visitantes',
-        'pr14' => 'Gestión del impacto de los visitantes',
-        'pr15' => 'Sistemas de vigilancia de los recursos naturales y culturales',
-        'pr16' => 'Investigación y biomonitorización',
-        'pr17' => 'Gestión de los efectos del cambio climático',
-        'pr18' => 'Servicios de los ecosistemas',
-        'op1' => 'Ejecución del plan de trabajo/acción',
-        'op2' => 'Resultados anuales - objetivos - logros',
-        'op3' => 'Dominio de la zona',
-        'op4' => 'Aplicación de la ley en la AMP',
-        'oc1' => 'Consecución de los objetivos de conservación a largo plazo de la gestión',
-        'oc2' => 'Condiciones y tendencias de los elementos clave de conservación del área protegida',
-        'oc3' => 'Efectos y resultados para los interesados en la calidad de vida',
-        'pr1_6' => 'Sistemas y procesos internos de gestión',
-        'pr7_9' => 'Gestión/Protección de los valores',
-        'pr10_12' => 'Relaciones con las partes interesadas',
-        'pr13_14' => 'Gestión del turismo',
-        'pr15_16' => 'Seguimiento e investigación',
-        'pr17_18' => 'Gestión de los efectos del cambio climático y de los servicios de los ecosistemas'
-    ],
     'legends' => [
-        'pr1_6' => [
+        'PRA' => [
             'PR A'
         ],
-        'pr7_9' => [
+        'PRB' => [
             'PR B'
         ],
-        'pr10_12' => [
+        'PRC' => [
             'PR C'
         ],
-        'pr13_14' => [
+        'PRD' => [
             'PR D'
         ],
-        'pr15_16' => [
+        'PRE' => [
             'PR E'
         ],
-        'pr17_18' => [
+        'PRF' => [
             'PR F'
         ]
     ],
@@ -476,12 +436,12 @@ return [
             'overall' => [
                 'intro' => 'Seis subelementos del proceso',
                 'info' => ''],
-            'pr1_pr6' => ['intro' => 'PR A: Sistemas y procesos de gestión interna', 'info' => ''],
-            'pr7_pr9' => ['intro' => 'PR B: Gestión/Protección de los valores', 'info' => ''],
-            'pr10_pr12' => ['intro' => 'PR C: Relaciones con las partes interesadas', 'info' => ''],
-            'pr13_pr14' => ['intro' => 'PR D: Gestión del turismo', 'info' => ''],
-            'pr15_pr16' => ['intro' => 'PR E: Seguimiento e investigación', 'info' => ''],
-            'pr17_pr18' => ['intro' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas', 'info' => ''],
+            'PRA' => ['intro' => 'PR A: Sistemas y procesos de gestión interna', 'info' => ''],
+            'PRB' => ['intro' => 'PR B: Gestión/Protección de los valores', 'info' => ''],
+            'PRC' => ['intro' => 'PR C: Relaciones con las partes interesadas', 'info' => ''],
+            'PRD' => ['intro' => 'PR D: Gestión del turismo', 'info' => ''],
+            'PRE' => ['intro' => 'PR E: Seguimiento e investigación', 'info' => ''],
+            'PRF' => ['intro' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas', 'info' => ''],
         ],
         'outputs' => [
             'main' => [

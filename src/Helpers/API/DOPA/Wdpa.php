@@ -1,8 +1,17 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Helpers\API\DOPA;
+namespace ImetCore\Helpers\API\DOPA;
 
-use AndreaMarelli\ModularForms\Helpers\API\DOPA\Wdpa as BaseWdpa;
+use ModularForms\Helpers\API\DOPA\Wdpa as BaseWdpa;
 
 trait Wdpa
 {
@@ -13,9 +22,9 @@ trait Wdpa
    * @param $wdpa
    * @return array
    */
-    public static function get_wdpa_copernicus($wdpa)
+    public static function get_wdpa_copernicus($wdpa): object
     {
-         return self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
+         return self::request(self::API_URL . 'd6dopa/dopa_41/get_de_wdpa_lc_copernicus', [
             'format' => 'json',
             'wdpaid' => $wdpa,
             'agg' => 2
@@ -28,9 +37,9 @@ trait Wdpa
      * @param $wdpa
      * @return array
      */
-    public static function get_de_wdpa_all_inds($wdpa)
+    public static function get_de_wdpa_all_inds($wdpa): object
     {
-        return self::request(self::URL_PREFIX . 'd6dopa/dopa_41/get_de_wdpa_all_inds', [
+        return self::request(self::API_URL . 'd6dopa/dopa_41/get_de_wdpa_all_inds', [
             'format' => 'json',
             'wdpaid' => $wdpa
         ]);

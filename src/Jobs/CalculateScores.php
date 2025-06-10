@@ -1,15 +1,24 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Jobs;
+namespace ImetCore\Jobs;
 
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
+use ImetCore\Services\Scores\ImetScores;
+use ImetCore\Services\Scores\OecmScores;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Imet as ImetOECM;
+use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Models\Imet\oecm\Imet as ImetOECM;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
@@ -39,7 +48,7 @@ class CalculateScores implements ShouldQueue
     public function handle(): void
     {
         // IMETs
-        $IMETs = Imet::select(['FormID', 'version'])->get();
+        $IMETs = ImetV2::select(['FormID', 'version'])->get();
         foreach($IMETs as $imet){
             ImetScores::refresh_scores($imet);
             Log::info('IMET #' . $imet . ' scores updated');
@@ -48,8 +57,8 @@ class CalculateScores implements ShouldQueue
         // OECM
         $OECMs = ImetOECM::select(['FormID'])->get();
         foreach($OECMs as $oecm){
-            OecmScores::refresh_scores($oecm->FormID);
-            Log::info('OECM #' . $oecm->FormID . ' scores updated');
+            OecmScores::refresh_scores($oecm);
+            Log::info('OECM #' . $oecm . ' scores updated');
         }
 
     }

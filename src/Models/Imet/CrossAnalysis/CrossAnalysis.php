@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\CrossAnalysis;
+namespace ImetCore\Models\Imet\CrossAnalysis;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Services\Scores\ImetScores;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
@@ -11,24 +20,24 @@ class CrossAnalysis extends Model
     private static $threshold = 34.0;
 
     private static array $indicators = [
-        'context' => ['c12', 'c2', 'c14', 'c15'],
-        'process' => ['pr2', 'pr4', 'pr5', 'pr6', 'pr7', 'pr8', 'pr11', 'pr17', 'pr18'],
-        'inputs' => ['i2', 'i5'],
-        'planning' => ['p1', 'p4'],
-        'outcomes' => ['oc3'],
-        'outputs' => ['op3']
+        'context' => ['C12', 'C2', 'C14', 'C15'],
+        'process' => ['PR2', 'PR4', 'PR5', 'PR6', 'PR7', 'PR8', 'PR11', 'PR17', 'PR18'],
+        'inputs' => ['I2', 'I5'],
+        'planning' => ['P1', 'P4'],
+        'outcomes' => ['OC3'],
+        'outputs' => ['OP3']
     ];
 
     private static array $compares = [
-        ['c12', 'pr7'],
-        ['c2', 'p1'],
-        ['i2', 'pr2'],
-        ['c14', 'pr17'],
-        ['i5', 'pr6'],
-        ['pr8', 'op3'],
-        ['p4', 'pr4', 'pr5'],
-        ['pr11', 'oc3'],
-        ['c15', 'pr18']
+        ['C12', 'PR7'],
+        ['C2', 'P1'],
+        ['I2', 'PR2'],
+        ['C14', 'PR17'],
+        ['I5', 'PR6'],
+        ['PR8', 'OP3'],
+        ['P4', 'PR4', 'PR5'],
+        ['PR11', 'OC3'],
+        ['C15', 'PR18']
     ];
 
     /**

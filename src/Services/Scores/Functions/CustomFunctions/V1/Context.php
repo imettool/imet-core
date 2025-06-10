@@ -1,13 +1,22 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V1;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceClassification;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceHabitats;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceSpecies;
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceClassification;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceHabitats;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\ImportanceSpecies;
+use ImetCore\Models\Imet\v1\Modules\Evaluation\SupportsAndConstraints;
 
 trait Context
 {
@@ -23,6 +32,9 @@ trait Context
             });
 
         $numerator = $values->sum(function ($item){
+            $item['SignificativeClassification'] = is_string($item['SignificativeClassification'])
+                ? (boolval($item['SignificativeClassification']) ? 1 : 0)
+                : $item['SignificativeClassification'];
             return (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore'];
         });
         $denominator = $values->sum(function ($item){
@@ -54,9 +66,15 @@ trait Context
             });
 
         $numerator = $values->sum(function ($item){
+            $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
+                ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
+                : $item['SignificativeSpecies'];
             return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
         });
         $denominator = $values->sum(function ($item){
+            $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
+                ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
+                : $item['SignificativeSpecies'];
             return (1 + 2 * $item['SignificativeSpecies']);
         });
 

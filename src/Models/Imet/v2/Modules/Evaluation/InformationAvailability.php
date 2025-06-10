@@ -1,16 +1,27 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_information_availability';
-    protected $fixed_rows = true;
+    protected $table = 'eval_information_availability';
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+
+    protected static $DEPENDENCY_ON = 'Element';
 
     public function __construct(array $attributes = []) {
 
@@ -18,8 +29,8 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         $this->module_code = 'I1';
         $this->module_title = trans('imet-core::v2_evaluation.InformationAvailability.title');
         $this->module_fields = [
-            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.show_species',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Element')],
-            ['name' => 'EvaluationScore',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.EvaluationScore')],
+            ['name' => 'Element',  'type' => 'blade-imet-core::v2.evaluation.fields.key_element',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Element')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.EvaluationScore')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.InformationAvailability.fields.Comments')],
         ];
 
@@ -41,46 +52,36 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
-
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'] && $item['group_key']==="group0";
-                            })->pluck('Aspect')->toArray(),
-                'group1' =>Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'] && $item['group_key']==="group1";
-                            })->pluck('Aspect')->toArray(),
-                'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'];
-                            })->pluck('Aspect')->toArray(),
-                'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'];
-                            })->pluck('Aspect')->toArray(),
-                'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'];
-                            })->pluck('Aspect')->toArray(),
-                'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
-                                return $item['IncludeInStatistics'];
-                            })->pluck('Aspect')->toArray(),
-            ]
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? [
+                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'] && $item['group_key']==="group0";
+                    })->pluck('Aspect')->toArray(),
+                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'] && $item['group_key']==="group1";
+                    })->pluck('Aspect')->toArray(),
+                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                ]
+                : []
         ];
-
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
     }
-
 
     /**
      * Override

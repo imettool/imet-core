@@ -1,17 +1,34 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class ClimateChange extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_climate_change_changements';
+    protected $table = 'context_climate_change_changements';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceClimateChange::class, 'Value'],
+        [Modules\Evaluation\InformationAvailability::class, 'Value'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Value'],
+        [Modules\Evaluation\ManagementActivities::class, 'Value'],
+        [Modules\Evaluation\ClimateChangeMonitoring::class, 'Value']
+    ];
 
     public function __construct(array $attributes = []) {
 
@@ -21,7 +38,7 @@ class ClimateChange extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Value',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Value')],
             ['name' => 'Description',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Description')],
-            ['name' => 'Trend',  'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Trend')],
+            ['name' => 'Trend',  'type' => 'rating-0to3',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Trend')],
             ['name' => 'Notes',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ClimateChange.fields.Notes')],
         ];
 
@@ -42,28 +59,4 @@ class ClimateChange extends Modules\Component\ImetModule
 
     }
 
-    public static function getVueData($form_id, $collection = null): array
-    {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.ClimateChange.warning_on_save');
-        return $vue_data;
-    }
-
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceClimateChange::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-            Modules\Evaluation\ClimateChangeMonitoring::class,
-        ]);
-
-        return parent::updateModule($request);
-    }
 }

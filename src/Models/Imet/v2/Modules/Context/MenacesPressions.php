@@ -1,19 +1,37 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
+use Wa72\HtmlPageDom\Helpers;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class MenacesPressions extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_menaces_pressions';
+    protected $table = 'context_menaces_pressions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public static $groupByCategory = [
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\Menaces::class, 'Value'],
+        [Modules\Evaluation\InformationAvailability::class, 'Value'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Value'],
+        [Modules\Evaluation\ManagementActivities::class, 'Value'],
+    ];
+
+    public static $groupsByCategory = [
             ['group0'],
             ['group1', 'group2', 'group3', 'group4', 'group5'],
             ['group6'],
@@ -35,12 +53,13 @@ class MenacesPressions extends Modules\Component\ImetModule
         $this->module_code = 'CTX 5.1';
         $this->module_title = trans('imet-core::v2_context.MenacesPressions.title');
         $this->module_fields = [
-            ['name' => 'Value',         'type' => 'text-area',               'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
-            ['name' => 'Impact',        'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
-            ['name' => 'Extension',     'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
-            ['name' => 'Duration',      'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
-            ['name' => 'Trend',         'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
-            ['name' => 'Probability',   'type' => 'imet-core::rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
+            ['name' => 'Value',         'type' => 'text-area',          'label' => trans('imet-core::v2_context.MenacesPressions.fields.Value')],
+            ['name' => 'Impact',        'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Impact')],
+            ['name' => 'Extension',     'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Extension')],
+            ['name' => 'Duration',      'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Duration')],
+            ['name' => 'Trend',         'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v2_context.MenacesPressions.fields.Trend')],
+            ['name' => 'Probability',   'type' => 'rating-0to3',        'label' => trans('imet-core::v2_context.MenacesPressions.fields.Probability')],
+            ['name' => 'Comments',      'type' => 'text-area',          'label' => trans('imet-core::v2_context.MenacesPressions.fields.Comments')],
         ];
 
         $this->module_groups = [
@@ -109,32 +128,14 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['groupByCategory'] = static::$groupByCategory;
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.MenacesPressions.warning_on_save');
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
         return $vue_data;
     }
 
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\Menaces::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-        ]);
-
-        return parent::updateModule($request);
-    }
-
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
@@ -173,7 +174,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupByCategory as $index=>$groups){
+        foreach (static::$groupsByCategory as $index=>$groups){
             $valuesByCategory[$index] = [];
             foreach ($groups as $group){
                 $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
@@ -185,9 +186,8 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         return [
-            'row_stats' => $row_stats,
-            'group_stats' => $group_stats,
-            'category_stats' => $category_stats,
+            'rowStats' => $row_stats,
+            'categoryStats' => $category_stats,
         ];
     }
 
@@ -237,7 +237,8 @@ class MenacesPressions extends Modules\Component\ImetModule
             $groups['group2'],
             $groups['group3'],
             $groups['group8'],
-            $groups['group9']
+            $groups['group9'],
+            $groups['group10']
         ];
     }
 
@@ -248,6 +249,37 @@ class MenacesPressions extends Modules\Component\ImetModule
             $groups['group4'],
             $groups['group11']
         ];
+    }
+
+    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title): string
+    {
+        $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '"';
+        $textToAdd = '<h3 class="group_title_' . $module_key . '_' . $beforeGroup . '">' . $title . '</h3>';
+        return str_replace($searchFor, $textToAdd . $searchFor, $view);
+    }
+
+    /**
+     * Inject
+     *
+     * @param $view
+     * @param $parent
+     * @param $groups
+     * @return string
+     */
+    public static function injectShowHideCategories($view, $parent, $groups): string
+    {
+        $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
+        $vueIfDirective = 'isSubCategoryVisibly(' . $parent . ')';
+        $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
+        foreach ($groups as $i => $group) {
+            foreach($elements as $k => $element) {
+                $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vueIfDirective);
+            }
+            $dom->filter('table[id*="_' . $group . '"] + br')->setAttribute('v-if', $vueIfDirective);
+            $dom->filter('table[id*="_' . $group . '"] + br + br')->setAttribute('v-if', $vueIfDirective);
+        }
+
+        return $dom->saveHTML();
     }
 
 }

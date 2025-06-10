@@ -1,13 +1,22 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
+namespace ImetCore\Models\Imet\v1\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\User\Role;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_species_animal_presence';
+    protected $table = 'context_species_animal_presence';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
@@ -17,7 +26,8 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->module_code = 'CTX 4.1';
         $this->module_title = trans('imet-core::v1_context.AnimalSpecies.title');
         $this->module_fields = [
-            ['name' => 'species',                 'type' => 'imet-core::selector-species_animal',   'label' => trans('imet-core::v1_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'species',                   'type' => 'selector-species_animal',   'label' => trans('imet-core::v1_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'CommonName',                'type' => 'text-area',          'label' => trans('imet-core::v1_context.AnimalSpecies.fields.CommonName')],
             ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v1_context.AnimalSpecies.fields.FlagshipSpecies')],
             ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::v1_context.AnimalSpecies.fields.EndangeredSpecies')],
             ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::v1_context.AnimalSpecies.fields.EndemicSpecies')],

@@ -1,5 +1,15 @@
 <?php
-namespace AndreaMarelli\ImetCore\Helpers;
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+namespace ImetCore\Helpers;
 
 use Illuminate\Support\Str;
 
@@ -10,15 +20,12 @@ class ModuleKey{
 
     /**
      * Return ClassName from module key
-     *
-     * @param $module_key
-     * @return string
      */
     public static function KeyToClassName($module_key): ?string
     {
         $items = explode(self::separator, $module_key);
 
-        $module_class = 'AndreaMarelli\\ImetCore\\Models';
+        $module_class = 'ImetCore\\Models';
         foreach ($items as $index => $item) {
             if($index===1){
                 $module_class .= '\\' . $item; // Version
@@ -35,19 +42,11 @@ class ModuleKey{
 
     /**
      * Return view for the given module
-     *
-     * @param $module_key
-     * @param null $view_type (null, or 'show')
-     * @return string|null
      */
-    public static function KeyToView($module_key, $view_type = null): ?string
+    public static function KeyToView($module_key, $view_mode = null): ?string
     {
-        $path = $view_type == 'show'
-            ? 'modules_show'
-            : 'modules';
-
-        $view = Str::replaceLast(\AndreaMarelli\ImetCore\Helpers\ModuleKey::separator, '.' . $path . '.', $module_key);
-        $view = str_replace(\AndreaMarelli\ImetCore\Helpers\ModuleKey::separator, '.', $view);
+        $view = Str::replaceLast(ModuleKey::separator, '.' . $view_mode . '.modules.', $module_key);
+        $view = str_replace(ModuleKey::separator, '.', $view);
         $view = Str::replaceFirst('imet.', 'imet-core::', $view);
         if(view()->exists($view)){
             return $view;

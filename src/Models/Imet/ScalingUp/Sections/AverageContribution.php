@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
+namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\v2\Modules;
 
 class AverageContribution
 {
@@ -24,18 +33,20 @@ class AverageContribution
         $data = [];
         foreach ($form_ids as $j => $form_id) {
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
+
             if (count($indicators) === 0) {
-                foreach ($protected_areas[$j]['category_stats'] as $c => $value) {
+
+                foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($c + 1), []);
                     array_unshift($indicators, $name);
                     $indicators_average_contribution[] = $name;
                 }
             }
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+            foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 if ($protected_area === "") {
                     $value = "-";
                 } else {
-                    $value = Common::round_number((-1 * (double)$protected_area));
+                    $value = Common::round_number((-1 * (float)$protected_area));
                 }
                 $data[$k][] = $valuesIndicators[$k][] = $value;
             }
@@ -53,7 +64,7 @@ class AverageContribution
 
         if (array_key_exists('data', $average_contribution)) {
             usort($average_contribution['data']['Average'], function ($a, $b) {
-                return -($a['value'] <=> $b['value']);
+                return - ($a['value'] <=> $b['value']);
             });
         }
 
@@ -74,15 +85,15 @@ class AverageContribution
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", string $origType = ''): array
     {
         $data = [$type => []];
-        $radar_negative_indicators = ["c2", "oc2", "oc3"];
-        $radar_zero_negative_indicators = ["c3"];
+        $radar_negative_indicators = ['C2', 'OC2', 'OC3'];
+        $radar_zero_negative_indicators = ['C3'];
         $legends_match = [
-            'pr1_pr6' => 'pr1_6',
-            'pr7_pr9' => 'pr7_9',
-            'pr10_pr12' => 'pr10_12',
-            'pr13_pr14' => 'pr13_14',
-            'pr15_pr16' => 'pr15_16',
-            'pr17_pr18' => 'pr17_18'
+            'process_PRA' => 'PRA',
+            'process_PRB' => 'PRB',
+            'process_PRC' => 'PRC',
+            'process_PRD' => 'PRD',
+            'process_PRE' => 'PRE',
+            'process_PRF' => 'PRF'
         ];
 
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $table_indicators);
@@ -111,8 +122,7 @@ class AverageContribution
         $average_contribution['options'] = count($options) ? $options : null;
         if (strpos($origType, "_") !== false) {
             $name = explode("_", $origType);
-            $legend_name = trans('imet-core::analysis_report.assessment.' . $legends_match[$name[1] . "_" . $name[2]]);
-
+            $legend_name = trans('imet-core::analysis_report.assessment.' . $legends_match[$origType]);
         } else {
             $legend_name = trans('imet-core::common.steps_eval.' . $origType);
         }
@@ -147,7 +157,7 @@ class AverageContribution
                 });
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
                 $percentile_90 = Common::round_number(Common::get_percentile($values, 90));
-                $average_value = count($values) ? Common::round_number(array_sum($values) / count($values)) : 0;//check
+                $average_value = count($values) ? Common::round_number(array_sum($values) / count($values)) : 0; //check
                 $average[] = $average_value;
                 $average_contribution = self::getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, $colors, $average_contribution, $i, $index, $label, $type);
             }
@@ -184,9 +194,9 @@ class AverageContribution
             $average_contribution['data']['Average'][$i]["indicator"] = trans($label . ($v), []);
         } else {
             if ($type === "process" && stripos($v, "_") === true) {
-                $average_contribution['data']['Average'][$i]["indicator"] = Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
+                $average_contribution['data']['Average'][$i]["indicator"] = Common::get_all_indicator_labels_cached()[$v] . " " . trans('imet-core::analysis_report.legends.' . $v); //Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
             } else {
-                $average_contribution['data']['Average'][$i]["indicator"] = Common::indicator_label($v, $label);
+                $average_contribution['data']['Average'][$i]["indicator"] = Common::get_all_indicator_labels_cached()[$v]; //Common::indicator_label($v, $label);
             }
         }
         return $average_contribution;

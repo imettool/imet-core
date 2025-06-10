@@ -1,18 +1,25 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
+namespace ImetCore\Models\Imet\oecm;
 
-use \AndreaMarelli\ImetCore\Models\Imet\Report as BaseReportModel;
-use AndreaMarelli\ImetCore\Services\Reports\OECM;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\Report as BaseReport;
 
-class Report extends BaseReportModel
+class Report extends BaseReport
 {
-    /**
-     * @var string[]
-     */
-    protected $table = 'imet_oecm.imet_report';
+    protected string $schema = Database::OECM_SCHEMA;
+    protected $table = 'report';
 
-    protected static $report_fields = [
+    protected static array $report_fields = [
         'analysis',
         'key_elements_comment',
         'strengths_swot',
@@ -115,8 +122,6 @@ class Report extends BaseReportModel
         'outcome2_year3',
         'outcome2_year4',
         'outcome2_year5',
-
-
     ];
 
     /**

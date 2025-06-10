@@ -1,15 +1,24 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Services\Scores\Functions\CustomFunctions\V2;
+namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
-use AndreaMarelli\ImetCore\Services\Scores\Functions\V1Scores;
+use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Process
 {
@@ -102,10 +111,10 @@ trait Process
 
         $values = $records
             ->map(function($record){
-                $record['numerator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['numerator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
-                $record['denominator'] = $record['EvaluationScore']==="-99" || $record['EvaluationScore']===null
+                $record['denominator'] = $record['EvaluationScore']===-99 || $record['EvaluationScore']===null
                     ? null
                     : $record['AdequacyLevel'];
                 $record['denominator'] = $record['denominator'] ?? 0;
@@ -159,7 +168,7 @@ trait Process
         $values = $records
             ->sortBy("Element")
             ->map(function($record){
-                $record['score'] = $record['Cooperation'] === "-99" ? 0 : $record['Cooperation'];
+                $record['score'] = $record['Cooperation'] === -99 ? 0 : $record['Cooperation'];
                 $record['weight'] =
                     ($record['MPInvolvement'] ?? 0) +
                     ($record['BAInvolvement'] ?? 0) +
@@ -204,7 +213,7 @@ trait Process
     {
         $records = EcosystemServices::getModule($imet_id);
         $scores = $records->map(function($record) {
-            return $record['EvaluationScore'] === "-99" ? null : $record['EvaluationScore'];
+            return $record['EvaluationScore'] === -99 ? null : $record['EvaluationScore'];
         });
 
         $score = $scores->isNotEmpty()

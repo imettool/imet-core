@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
 
@@ -47,7 +56,7 @@ return [
             'Aspect' => 'Criterio - Conceito Medido - Variável',
             'EvaluationScore' => 'Integração',
             'SignificativeSpecies' => 'Espécies altamente representativas',
-            'IncludeInStatistics' => 'Dar prioridade na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
@@ -84,7 +93,7 @@ return [
             'Aspect' => 'Critério - Conceito medido - Variável',
             'EvaluationScore' => 'Integração',
             'EvaluationScore2' => 'Valor/importância regional e global',
-            'IncludeInStatistics' => 'Dar prioridade na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'ratingLegend' => [
@@ -121,7 +130,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterio – Conceito medido – Variável',
             'EvaluationScore' => 'integração',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Commentários/Explicação',
         ],
         'ratingLegend' => [
@@ -154,7 +163,7 @@ return [
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Classificação',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Commentário/Explicação',
         ],
         'ratingLegend' => [
@@ -264,7 +273,7 @@ return [
         'title' => 'Ameaçada',
         'fields' => [
             'Aspect' => 'Avaliação das ameaças (automaticamente reportado de CTX 5.1)',
-            'IncludeInStatistics' => 'Para priorizar na gestão',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicação',
         ],
         'module_info_EvaluationQuestion' => [

@@ -1,30 +1,34 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Backup;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ConvertSQLite;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\ImportExportJSON;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Merge;
-use AndreaMarelli\ImetCore\Controllers\Imet\Traits\Pame;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
+use ImetCore\Controllers\__Controller;
+use ImetCore\Controllers\Imet\Traits\Backup;
+use ImetCore\Controllers\Imet\Traits\ConvertSQLite;
+use ImetCore\Controllers\Imet\Traits\ImportExportJSON;
+use ImetCore\Controllers\Imet\Traits\Merge;
+use ImetCore\Controllers\Imet\Traits\Pame;
+use ImetCore\Models\Imet\Imet;
+use ModularForms\Helpers\HTTP;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\URL;
-use Spatie\Browsershot\Exceptions\CouldNotTakeBrowsershot;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
 use function view;
 
 
-class Controller extends __Controller
+abstract class Controller extends __Controller
 {
     use Backup;
     use ConvertSQLite;
@@ -34,8 +38,8 @@ class Controller extends __Controller
 
     public const ROUTE_PREFIX = 'imet-core::';
 
-    protected static $form_class = Imet::class;
-    protected static $form_view_prefix = 'imet-core::';
+    protected static ?string $form_class = Imet::class;
+    protected static ?string $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
 
@@ -47,12 +51,8 @@ class Controller extends __Controller
 
     /**
      * Override index route
-     *
-     * @param Request $request
-     * @return Application|Factory|View
-     * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $this->authorize('viewAny', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
@@ -89,9 +89,7 @@ class Controller extends __Controller
      */
     public function destroy($item): RedirectResponse
     {
-        if(static::AUTHORIZE_BY_POLICY) {
-            $this->authorize('destroy', (static::$form_class)::find($item));
-        }
+        $this->authorize('destroy', (static::$form_class)::find($item));
         $form = new static::$form_class();
         $form = $form->find($item);
         $form->delete();

@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections;
+namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\v2\Modules;
 
 class Radar
 {
@@ -16,8 +25,8 @@ class Radar
         $indicators = [];
         $upperLimit = [];
         $lowerLimit = [];
-        $radar_negative_indicators = ["c2", "oc2", "oc3"];
-        $radar_zero_negative_indicators = ["c3"];
+        $radar_negative_indicators = ['C2', 'OC2', 'OC3'];
+        $radar_zero_negative_indicators = ['C3'];
         $radar_indicators_for_negative = [];
         $radar_indicators_zero_negative = [];
         $radar_average = [];
@@ -39,9 +48,9 @@ class Radar
             foreach ($values as $v => $value) {
                 if ($v !== "avg") {
                     if ($type === "process" && stripos($v, "_") === true) {
-                        $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.', 'imet-core::analysis_report.legends.');
+                        $name = Common::get_all_indicator_labels_cached()[$v]." ".trans('imet-core::analysis_report.legends.'.$v);
                     } else {
-                        $name = Common::indicator_label($v, 'imet-core::analysis_report.assessment.');
+                        $name = Common::get_all_indicator_labels_cached()[$v];
                     }
 
                     $indicators[$i] = $name;
@@ -104,10 +113,10 @@ class Radar
      * @param string $colors
      * @param array $options
      * @param string $label
-     * @param int $scaling_id
+     * @param int|null $scaling_id
      * @return array
      */
-    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", int $scaling_id = 0)
+    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0): array
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
@@ -134,10 +143,10 @@ class Radar
      * @param bool $width
      * @param array $assessments
      * @param bool $overall
-     * @param int $scaling_id
+     * @param ?int $scaling_id
      * @return array
      */
-    public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, int $scaling_id = 0): array
+    public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, ?int $scaling_id = 0): array
     {
         $start_time = microtime(true);
         $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
@@ -242,13 +251,13 @@ class Radar
 
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
             if (count($indicators) === 0) {
-                foreach ($protected_areas[$j]['category_stats'] as $c => $value) {
+                foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($c + 1), []);
                     array_unshift($indicators, $name);
 
                 }
             }
-            foreach ($protected_areas[$j]['category_stats'] as $k => $protected_area) {
+            foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 if ($protected_area === "") {
                     $value = "-";
                 } else {

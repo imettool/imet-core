@@ -1,10 +1,19 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -13,8 +22,8 @@ use Illuminate\Http\Request;
  */
 class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_threats_integration';
-    protected $fixed_rows = true;
+    protected $table = 'eval_threats_integration';
+    protected bool $fixed_rows = true;
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -30,7 +39,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsIntegration.title');
         $this->module_fields = [
             ['name' => 'Threat',           'type' => 'blade-imet-core::oecm.evaluation.fields.threat_with_ranking',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Threat')],
-            ['name' => 'Integration',       'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Integration')],
+            ['name' => 'Integration',       'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Integration')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.ThreatsIntegration.fields.Comments')],
         ];

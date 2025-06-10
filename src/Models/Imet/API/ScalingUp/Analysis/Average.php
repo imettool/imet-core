@@ -1,8 +1,17 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\API\ScalingUp\Analysis;
+namespace ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
+use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 
 trait Average
 {
@@ -64,9 +73,9 @@ trait Average
     public static function management_context_average(array $items): array
     {
         $indicators = [
-            'c1' => [],
-            'c2' => [],
-            'c3' => []
+            'C1' => [],
+            'C2' => [],
+            'C3' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators);
@@ -81,11 +90,11 @@ trait Average
     public static function value_and_importance_sub_indicators_average(array $items): array
     {
         $indicators = [
-            'c11' => [],
-            'c12' => [],
-            'c13' => [],
-            'c14' => [],
-            'c15' => []
+            'C11' => [],
+            'C12' => [],
+            'C13' => [],
+            'C14' => [],
+            'C15' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators);
@@ -100,12 +109,12 @@ trait Average
     public static function planning_indicators_average(array $items): array
     {
         $indicators = [
-            'p1' => [],
-            'p2' => [],
-            'p3' => [],
-            'p4' => [],
-            'p5' => [],
-            'p6' => []
+            'P1' => [],
+            'P2' => [],
+            'P3' => [],
+            'P4' => [],
+            'P5' => [],
+            'P6' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'planning');
@@ -120,11 +129,11 @@ trait Average
     public static function inputs_indicators_average(array $items): array
     {
         $indicators = [
-            'i1' => [],
-            'i2' => [],
-            'i3' => [],
-            'i4' => [],
-            'i5' => []
+            'I1' => [],
+            'I2' => [],
+            'I3' => [],
+            'I4' => [],
+            'I5' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'inputs');
@@ -139,9 +148,9 @@ trait Average
     public static function outputs_indicators_average(array $items): array
     {
         $indicators = [
-            'op1' => [],
-            'op2' => [],
-            'op3' => []
+            'OP1' => [],
+            'OP2' => [],
+            'OP3' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'outputs');
@@ -156,9 +165,9 @@ trait Average
     public static function outcomes_indicators_average(array $items): array
     {
         $indicators = [
-            'oc1' => [],
-            'oc2' => [],
-            'oc3' => []
+            'OC1' => [],
+            'OC2' => [],
+            'OC3' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'outcomes');
@@ -173,12 +182,12 @@ trait Average
     public static function process_indicators_average(array $items): array
     {
         $indicators = [
-            'pr15_16' => [],
-            'pr10_12' => [],
-            'pr13_14' => [],
-            'pr17_18' => [],
-            'pr1_6' => [],
-            'pr7_9' => [],
+            'PRA' => [],
+            'PRB' => [],
+            'PRC' => [],
+            'PRD' => [],
+            'PRE' => [],
+            'PRF' => [],
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -193,12 +202,12 @@ trait Average
     public static function process_internal_management_indicators_average(array $items): array
     {
         $indicators = [
-            'pr1' => [],
-            'pr2' => [],
-            'pr3' => [],
-            'pr4' => [],
-            'pr5' => [],
-            'pr6' => [],
+            'PR1' => [],
+            'PR2' => [],
+            'PR3' => [],
+            'PR4' => [],
+            'PR5' => [],
+            'PR6' => [],
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -213,9 +222,9 @@ trait Average
     public static function process_management_protection_indicators_average(array $items): array
     {
         $indicators = [
-            'pr7' => [],
-            'pr8' => [],
-            'pr9' => []
+            'PR7' => [],
+            'PR8' => [],
+            'PR9' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -230,9 +239,9 @@ trait Average
     public static function process_stakeholders_relationships_indicators_average(array $items): array
     {
         $indicators = [
-            'pr10' => [],
-            'pr11' => [],
-            'pr12' => []
+            'PR10' => [],
+            'PR11' => [],
+            'PR12' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -247,8 +256,8 @@ trait Average
     public static function process_tourism_management_indicators_average(array $items): array
     {
         $indicators = [
-            'pr13' => [],
-            'pr14' => []
+            'PR13' => [],
+            'PR14' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -263,8 +272,8 @@ trait Average
     public static function process_monitoring_and_research_indicators_average(array $items): array
     {
         $indicators = [
-            'pr15' => [],
-            'pr16' => []
+            'PR15' => [],
+            'PR16' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');
@@ -279,8 +288,8 @@ trait Average
     public static function process_effects_of_climate_change_indicators_average(array $items): array
     {
         $indicators = [
-            'pr17' => [],
-            'pr18' => []
+            'PR17' => [],
+            'PR18' => []
         ];
 
         list($api) = static::retrieve_average($items, $indicators, 'process');

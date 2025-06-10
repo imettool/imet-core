@@ -1,16 +1,27 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class KeyConservationTrend extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_key_conservation_trends';
-    protected $fixed_rows = true;
+    protected $table = 'eval_key_conservation_trends';
+    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCY_ON = 'Element';
 
     public function __construct(array $attributes = []) {
 
@@ -18,9 +29,9 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/C2';
         $this->module_title = trans('imet-core::v2_evaluation.KeyConservationTrend.title');
         $this->module_fields = [
-            ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.show_species',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
-            ['name' => 'Condition', 'type' => 'imet-core::rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
-            ['name' => 'Trend',     'type' => 'imet-core::rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
+            ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.key_element',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
+            ['name' => 'Condition', 'type' => 'rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
+            ['name' => 'Trend',     'type' => 'rating-Minus3to3WithNA',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
             ['name' => 'Reliability',  'type' => 'dropdown-ImetV2_SpeciesReliability',   'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Reliability'), 'class' => 'width100px'],
             ['name' => 'Comments',  'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Comments')],
         ];
@@ -44,46 +55,36 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
     }
 
     /**
-     * Preload data from CTX
-     * @param $form_id
-     * @param null $collection
-     * @return array
+     * Prefill from CTX
      */
-    public static function getModuleRecords($form_id, $collection = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
-
-        $module_records = parent::getModuleRecords($form_id, $collection);
-        $empty_record = static::getEmptyRecord($form_id);
-
-        $records = $module_records['records'];
-        $preLoaded = [
-            'field' => 'Element',
-            'values' => [
-                'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group0";
-                })->pluck('Aspect')->toArray(),
-                'group1' =>Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'] && $item['group_key']==="group1";
-                })->pluck('Aspect')->toArray(),
-                'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-            ]
+        return [
+            'field' => static::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? [
+                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'] && $item['group_key']==="group0";
+                    })->pluck('Aspect')->toArray(),
+                    'group1' =>Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'] && $item['group_key']==="group1";
+                    })->pluck('Aspect')->toArray(),
+                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                        return $item['IncludeInStatistics'];
+                    })->pluck('Aspect')->toArray(),
+                ]
+                : []
         ];
-
-        $module_records['records'] =  static::arrange_records($preLoaded, $records, $empty_record);
-        return $module_records;
     }
-
 
     /**
      * Override

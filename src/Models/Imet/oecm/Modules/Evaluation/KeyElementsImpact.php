@@ -1,17 +1,26 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Evaluation;
+namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Animal;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Models\Animal;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
 class KeyElementsImpact extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet_oecm.eval_key_elements_impact';
-    protected $fixed_rows = true;
+    protected $table = 'eval_key_elements_impact';
+    protected bool $fixed_rows = true;
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -25,13 +34,13 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElementsImpact.title');
         $this->module_fields = [
             ['name' => 'KeyElement',    'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.KeyElement')],
-            ['name' => 'StatusSH',      'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH')],
-            ['name' => 'TrendSH',       'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH')],
+            ['name' => 'StatusSH',      'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusSH')],
+            ['name' => 'TrendSH',       'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendSH')],
             ['name' => 'EffectSH',      'type' => 'disabled',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.EffectSH')],
             ['name' => 'ReliabilitySH', 'type' => 'dropdown-ImetOECM_Reliability',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.ReliabilitySH')],
             ['name' => 'CommentsSH',    'type' => 'text-area',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.CommentsSH')],
-            ['name' => 'StatusER',      'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusER')],
-            ['name' => 'TrendER',       'type' => 'imet-core::rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendER')],
+            ['name' => 'StatusER',      'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.StatusER')],
+            ['name' => 'TrendER',       'type' => 'rating-Minus2to2',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.TrendER')],
             ['name' => 'EffectER',      'type' => 'disabled',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.EffectER')],
             ['name' => 'ReliabilityER', 'type' => 'dropdown-ImetOECM_Reliability',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.ReliabilityER')],
             ['name' => 'CommentsER',    'type' => 'text-area',    'label' => trans('imet-core::oecm_evaluation.KeyElementsImpact.fields.CommentsER')],
@@ -50,7 +59,7 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): array
+    protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
             ? [

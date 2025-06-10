@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context;
+namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\oecm\Modules;
 use Illuminate\Http\Request;
 
 /**
@@ -11,7 +20,7 @@ use Illuminate\Http\Request;
  */
 class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 {
-    protected $table = 'imet_oecm.context_analysis_stakeholders_direct_users';
+    protected $table = 'context_analysis_stakeholders_direct_users';
 
     public static $USER_MODE = Stakeholders::ONLY_DIRECT;
 
@@ -21,14 +30,14 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
         $this->module_code = 'SA 2.1';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'blade-imet-core::oecm.context.fields.AnalysisStakeholdersElement', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Element',       'type' => 'dropdown-ImetOecm_AnalysisStakeholders', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
             ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Illegal')],
-            ['name' => 'Dependence',    'type' => 'imet-core::rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
+            ['name' => 'Dependence',    'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
             ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Access')],
             ['name' => 'Rivalry',       'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Rivalry')],
-            ['name' => 'Quality',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quality')],
-            ['name' => 'Quantity',    'type' => 'imet-core::rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quantity')],
+            ['name' => 'Quality',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quality')],
+            ['name' => 'Quantity',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quantity')],
             ['name' => 'Threats',      'type' => 'dropdown_multiple-ImetOECM_Threats', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Threats')],
             ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Comments')],
             ['name' => 'Stakeholder',    'type' => 'hidden', 'label' =>''],

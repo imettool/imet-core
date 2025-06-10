@@ -1,15 +1,24 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Evaluation;
+namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class WorkPlan extends Modules\Component\ImetModule_Eval
 {
-    protected $table = 'imet.eval_work_plan';
+    protected $table = 'eval_work_plan';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
@@ -23,8 +32,8 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
             ['name' => 'PlanUptoDate',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanUptoDate')],
             ['name' => 'PlanApproved',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanApproved')],
             ['name' => 'PlanImplemented',     'type' => 'toggle-yes_no',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanImplemented')],
-            ['name' => 'VisionAdequacy',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.VisionAdequacy')],
-            ['name' => 'PlanAdequacyScore',     'type' => 'imet-core::rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanAdequacyScore')],
+            ['name' => 'VisionAdequacy',     'type' => 'rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.VisionAdequacy')],
+            ['name' => 'PlanAdequacyScore',     'type' => 'rating-0to3',    'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.PlanAdequacyScore')],
             ['name' => 'Comments',              'type' => 'text-area',           'label' => trans('imet-core::v2_evaluation.WorkPlan.fields.Comments')],
         ];
 
@@ -38,11 +47,12 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
     private static function ensureNullValues($data)
     {
         if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
-            $data['PlanUptoDate'] = false;
-            $data['PlanApproved'] = false;
-            $data['PlanImplemented'] = false;
-            $data['VisionAdequacy'] = 0;
-            $data['PlanAdequacyScore'] = 0;
+            $data['PlanUptoDate'] = null;
+            $data['PlanApproved'] = null;
+            $data['PlanImplemented'] = null;
+            $data['VisionAdequacy'] = null;
+            $data['PlanAdequacyScore'] = null;
+            $data['Comments'] = null;
         }
         return $data;
     }
@@ -55,7 +65,7 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         return parent::updateModule($request);
     }
 
-    public static function importModule($form_id, $data)
+    public static function importModule($form_id, $data): void
     {
         $data = static::ensureNullValues($data);
         parent::importModule($form_id, $data);

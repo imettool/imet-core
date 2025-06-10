@@ -1,15 +1,25 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\oecm;
+namespace ImetCore\Models\Imet\oecm;
 
-use AndreaMarelli\ImetCore\Controllers\Imet\oecm\Controller;
-use AndreaMarelli\ImetCore\Models\Imet\Imet as BaseImetForm;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
-use AndreaMarelli\ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ImetCore\Services\Scores\OecmScores;
-use AndreaMarelli\ModularForms\Helpers\Type\Chars;
+use ImetCore\Controllers\Imet\oecm\Controller;
+use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Imet as BaseImetForm;
+use ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewees;
+use ImetCore\Models\Imet\oecm\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\User\Role;
+use ImetCore\Services\Scores\OecmScores;
+use ModularForms\Helpers\Type\Chars;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
@@ -19,11 +29,11 @@ use Illuminate\Support\Str;
 
 class Imet extends BaseImetForm
 {
-    protected $table = 'imet_oecm.imet_form';
-
     public const version = 'oecm';
+    protected string $schema = Database::OECM_SCHEMA;
+    protected $table = 'forms';
 
-    public static $modules = [
+    public static ?array $modules = [
 
         'general_info' => [
             Modules\Context\ResponsablesInterviewers::class,
@@ -144,9 +154,9 @@ class Imet extends BaseImetForm
      */
     public static function get_assessments_list_with_extras(Request $request)
     {
-        $hasDuplicates = static::foundDuplicates();
+        $duplicates = static::foundDuplicates();
         $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item)  use ($hasDuplicates) {
+            ->map(function ($item)  use ($duplicates) {
 
                 // Add encoders
                 $item->encoders_responsibles = [
@@ -167,7 +177,7 @@ class Imet extends BaseImetForm
                 $item['last_update'] = $item->getLastUpdate();
 
                 // has duplicates
-                $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+                $item['has_duplicates'] = in_array($item->getKey(), $duplicates);
 
                 return $item;
             })

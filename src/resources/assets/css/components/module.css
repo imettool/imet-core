@@ -1,0 +1,185 @@
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+.imet_modules {
+  .module-header{
+    .module-title{
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.nothing_to_evaluate{
+  font-weight: 600;
+  line-height: 1.2em;
+  @apply text-gray-400;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+nav.steps a.step.cross-analysis-warnings {
+  color: red !important;
+}
+
+#imet_report {
+  #map {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  #radar {
+    margin-right: 20px;
+    width: 400px;
+    text-align: center;
+  }
+
+  #buttons {
+    text-align: right;
+  }
+
+  @media print {
+    #buttons {
+      display: none;
+    }
+  }
+
+  table td, table th {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: white;
+  }
+
+  table th,
+  .bordered {
+    border: 1px solid #ccc;
+  }
+
+  table td.avg_index {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+  }
+
+  table td.avg_sub_index {
+    font-weight: bold;
+    color: black;
+  }
+
+  table#global_scores th,
+  table#global_scores td {
+    font-weight: bold;
+  }
+
+  table#detailed_scores {
+    font-size: 0.9em;
+    table-layout: fixed;
+    width: 100%;
+
+    td {
+      word-break: break-word;
+    }
+  }
+
+  .score_no {
+    color: black;
+    background-color: grey !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_success {
+    color: white;
+    background-color: #00A74B !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_warning {
+    color: black;
+    background-color: yellow !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_alert {
+    color: black;
+    background-color: orange !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_danger {
+    color: white;
+    background-color: darkred !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_danger_warning {
+    color: white;
+    background-color: indianred !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_danger_alert {
+    color: white;
+    background-color: red !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_danger_failed {
+    color: white;
+    background-color: orangered !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_threat_danger {
+    color: white;
+    background-color: #FFBFD6 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_threat_medium_danger {
+    color: white;
+    background-color: #FFA9A9 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .score_constraints_success {
+    color: white;
+    background-color: #FF8686 !important;
+    border: 1px solid #ccc;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .swot {
+    width: 99%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  div.dopa_not_available {
+    width: 100%;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 60px 0;
+    color: #00A74B;
+  }
+}

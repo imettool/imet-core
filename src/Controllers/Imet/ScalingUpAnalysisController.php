@@ -1,29 +1,41 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers\Imet;
+namespace ImetCore\Controllers\Imet;
 
-use AndreaMarelli\ImetCore\Controllers\__Controller;
-use AndreaMarelli\ImetCore\Helpers\ScalingUp\Common;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\Basket;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use AndreaMarelli\ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use AndreaMarelli\ImetCore\Models\Imet\Imet;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\File\File;
-use AndreaMarelli\ModularForms\Helpers\File\Zip;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
+use ImetCore\Controllers\__Controller;
+use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\Basket;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Helpers\File\File;
+use ModularForms\Helpers\File\Zip;
+use ModularForms\Helpers\HTTP;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 
 class ScalingUpAnalysisController extends __Controller
 {
-    protected static $form_class = Imet::class;
-    protected static $form_view_prefix = 'imet-core::';
+    protected static ?string $form_class = Imet::class;
+    protected static ?string $form_view_prefix = 'imet-core::';
 
     protected const PAGINATE = false;
 
@@ -35,91 +47,89 @@ class ScalingUpAnalysisController extends __Controller
 
     private $indicators = [
         'context' => [
-            'c1' => [],
-            'c2' => [],
-            'c3' => []
+            'C1' => [],
+            'C2' => [],
+            'C3' => []
         ],
         'context_value_and_importance' => [
-            'c11' => [],
-            'c12' => [],
-            'c13' => [],
-            'c14' => [],
-            'c15' => []
+            'C11' => [],
+            'C12' => [],
+            'C13' => [],
+            'C14' => [],
+            'C15' => []
         ],
         'planning' => [
-            'p1' => [],
-            'p2' => [],
-            'p3' => [],
-            'p4' => [],
-            'p5' => [],
-            'p6' => []
+            'P1' => [],
+            'P2' => [],
+            'P3' => [],
+            'P4' => [],
+            'P5' => [],
+            'P6' => []
         ],
         'inputs' => [
-            'i1' => [],
-            'i2' => [],
-            'i3' => [],
-            'i4' => [],
-            'i5' => []
+            'I1' => [],
+            'I2' => [],
+            'I3' => [],
+            'I4' => [],
+            'I5' => []
         ],
         'process' => [],
         'process_sub_indicators' => [
-            'pr15_16' => [],
-            'pr10_12' => [],
-            'pr13_14' => [],
-            'pr17_18' => [],
-            'pr1_6' => [],
-            'pr7_9' => [],
+            'PRE' => [],
+            'PRC' => [],
+            'PRD' => [],
+            'PRF' => [],
+            'PRA' => [],
+            'PRB' => [],
         ],
         'process_internal_management' => [
-            'pr1' => [],
-            'pr2' => [],
-            'pr3' => [],
-            'pr4' => [],
-            'pr5' => [],
-            'pr6' => [],
+            'PR1' => [],
+            'PR2' => [],
+            'PR3' => [],
+            'PR4' => [],
+            'PR5' => [],
+            'PR6' => [],
         ],
-        'process_pr7_pr9' => [
-            'pr7' => [],
-            'pr8' => [],
-            'pr9' => []
+        'process_PRB' => [
+            'PR7' => [],
+            'PR8' => [],
+            'PR9' => []
         ],
-        'process_pr10_pr12' => [
-            'pr10' => [],
-            'pr11' => [],
-            'pr12' => []
+        'process_PRC' => [
+            'PR10' => [],
+            'PR11' => [],
+            'PR12' => []
         ],
-        'process_pr13_pr14' => [
-            'pr13' => [],
-            'pr14' => []
+        'process_PRD' => [
+            'PR13' => [],
+            'PR14' => []
         ],
-        'process_pr15_pr16' => [
-            'pr15' => [],
-            'pr16' => []
+        'process_PRE' => [
+            'PR15' => [],
+            'PR16' => []
         ],
-        'process_pr17_pr18' => [
-            'pr17' => [],
-            'pr18' => []
+        'process_PRF' => [
+            'PR17' => [],
+            'PR18' => []
         ],
         'outputs' => [
-            'op1' => [],
-            'op2' => [],
-            'op3' => []
+            'OP1' => [],
+            'OP2' => [],
+            'OP3' => []
         ],
         'outcomes' => [
-            'oc1' => [],
-            'oc2' => [],
-            'oc3' => []
+            'OC1' => [],
+            'OC2' => [],
+            'OC3' => []
         ]
     ];
 
     /**
      * Index route for scaling up
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
-    public function index(Request $request)
+    public function index(Request $request): Application|View|Factory
     {
         HTTP::sanitize($request, self::sanitization_rules);
 
@@ -127,8 +137,8 @@ class ScalingUpAnalysisController extends __Controller
         $filter_selected = !empty(array_filter($request->except('_token')));
 
         // retrieve IMET list
-        $filtered_list = Imet::get_assessments_list_with_extras($request);
-        $full_list = Imet::get_assessments_list(new Request(), ['country']);
+        $filtered_list = (static::$form_class)::get_assessments_list_with_extras($request);
+        $full_list = (static::$form_class)::get_assessments_list(new Request(), ['country']);
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
@@ -146,6 +156,7 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @param Request $request
      * @return array
+     * @throws AuthorizationException
      */
     public function analysis(Request $request): array
     {
@@ -156,12 +167,13 @@ class ScalingUpAnalysisController extends __Controller
         ModelScalingUpAnalysis::$scaling_id = $request->input(('scaling_id'));
 
         foreach ($parameters as $value) {
-            if(is_array($value)){
+            if (is_array($value)) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value['id']));
             } else if ((int)$value > 0) {
                 $this->authorize('api_scaling_up', (static::$form_class)::find($value));
             }
         }
+
         $response = ModelScalingUpAnalysis::$action($parameters);
         App::setLocale($locale);
         return $response;
@@ -214,7 +226,7 @@ class ScalingUpAnalysisController extends __Controller
      * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     public function report(Request $request, $items = null)
     {
@@ -232,7 +244,7 @@ class ScalingUpAnalysisController extends __Controller
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {
             if (is_numeric($value)) {
-                if (Imet::where('FormID', $value)->count() === 0) {
+                if ((static::$form_class)::where('FormID', $value)->count() === 0) {
                     return false;
                 }
             } else {
@@ -279,16 +291,20 @@ class ScalingUpAnalysisController extends __Controller
         $custom_names = array_map(function ($v) {
             return $v->name;
         }, $custom_items);
+
         $custom_colors = array_map(function ($v) {
             return $v->color;
         }, $custom_items);
+
 
         $protected_areas_names = implode(', ', $custom_names);
 
         uasort($protected_areas['models'], function ($a, $b) {
             return $a['name'] > $b['name'];
         });
+
         App::setLocale($locale);
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         $templates_names = [
             ['name' => "protected_areas", 'title' => trans('imet-core::analysis_report.sections.list_of_names'), 'snapshot_id' => "protected_areas", 'exclude_elements' => '', 'code' => '0'],
             ['name' => "map_view", 'title' => trans('imet-core::analysis_report.sections.first'), 'snapshot_id' => "map_view", 'exclude_elements' => '', 'code' => '1'],
@@ -302,9 +318,9 @@ class ScalingUpAnalysisController extends __Controller
             ['name' => "digital_information_per_protected_area", 'title' => trans('imet-core::analysis_report.sections.ninth'), 'snapshot_id' => "digital_information_per_protected_area", 'exclude_elements' => '', 'code' => '9'],
         ];
 
-
-        return view('imet-core::scaling_up.report', [
+        return view(static::$form_view_prefix .'scaling_up.report', [
             'templates' => $templates_names,
+            'labels' => $labels,
             'pa_ids' => $pa_ids,
             'protected_areas_names' => $protected_areas_names,
             'scaling_up_id' => $scaling_up_id,
@@ -326,13 +342,19 @@ class ScalingUpAnalysisController extends __Controller
     {
         $files = [];
         $scaling_ups = Basket::where('scaling_up_id', $scaling_id)->get();
+        if(config('app.asset_url')){
+            $asset_url = ltrim(config('app.asset_url'),"/");
+        } else {
+            $asset_url = "";
+        }
+
         if (count($scaling_ups) > 0) {
             $item = ModelScalingUpAnalysis::where('id', $scaling_id)->first();
 
             $this->auth_saved(explode(',', $item->wdpas));
-            $path = (config('app.asset_url') ? ltrim(config('app.asset_url'), '/') : '');
+
             foreach ($scaling_ups as $record) {
-                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . str_replace($path, '', $record->item);
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . str_replace($asset_url, "" ,$record->item);
             }
 
             if (count($files) > 1) {
@@ -354,6 +376,7 @@ class ScalingUpAnalysisController extends __Controller
     {
         $areas_names_concat = "";
         $records = ModelScalingUpAnalysis::where('id', $id)->first();
+        $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
             $this->auth_saved(explode(',', $records->wdpas));
             ModelScalingUpAnalysis::$scaling_id = $id;
@@ -368,8 +391,9 @@ class ScalingUpAnalysisController extends __Controller
             $areas_names_concat = implode(', ', $areas_names);
         }
 
-        return view('imet-core::scaling_up.preview_template', [
+        return view(static::$form_view_prefix .'scaling_up.preview_template', [
             "scaling_up_id" => $id,
+            'labels' => $labels,
             'protected_areas' => $areas_names_concat
         ]);
     }

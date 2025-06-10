@@ -1,19 +1,36 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
+use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
 class EcosystemServices extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_ecosystem_services';
+    protected $table = 'context_ecosystem_services';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public static $groupByCategory = [
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ImportanceEcosystemServices::class, 'Element'],
+        [Modules\Evaluation\InformationAvailability::class, 'Element'],
+        [Modules\Evaluation\KeyConservationTrend::class, 'Element'],
+        [Modules\Evaluation\ManagementActivities::class, 'Element'],
+        [Modules\Evaluation\EcosystemServices::class, 'Element'],
+    ];
+
+    public static $groupsByCategory = [
         ['group0', 'group1', 'group2'],
         ['group3', 'group4'],
         ['group5', 'group6', 'group7', 'group8'],
@@ -28,8 +45,8 @@ class EcosystemServices extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'Element',               'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Element')],
             ['name' => 'Importance',            'type' => 'toggle-ImetV2_EcosystemServicesImportance',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.Importance')],
-            ['name' => 'ImportanceRegional',    'type' => 'imet-core::rating-0to3',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional')],
-            ['name' => 'ImportanceGlobal',      'type' => 'imet-core::rating-Minus2to2',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal')],
+            ['name' => 'ImportanceRegional',    'type' => 'rating-0to3',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional')],
+            ['name' => 'ImportanceGlobal',      'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal')],
             ['name' => 'Observations',          'type' => 'text-area',          'label' => trans('imet-core::v2_context.EcosystemServices.fields.Observations')],
         ];
 
@@ -69,15 +86,14 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
-        $vue_data['groupByCategory'] = static::$groupByCategory;
-        $vue_data['warning_on_save'] =  trans('imet-core::v2_context.EcosystemServices.warning_on_save');
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
         $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other');
@@ -87,30 +103,12 @@ class EcosystemServices extends Modules\Component\ImetModule
         return $record;
     }
 
-    public static function updateModule(Request $request): array
-    {
-        static::forceLanguage($request->input('form_id'));
-
-        $records = Payload::decode($request->input('records_json'));
-        $form_id = $request->input('form_id');
-
-        static::dropFromDependencies($form_id, $records, [
-            Modules\Evaluation\ImportanceEcosystemServices::class,
-            Modules\Evaluation\InformationAvailability::class,
-            Modules\Evaluation\KeyConservationTrend::class,
-            Modules\Evaluation\ManagementActivities::class,
-            Modules\Evaluation\EcosystemServices::class,
-        ]);
-
-        return parent::updateModule($request);
-    }
-
     public static function getStats($form_id)
     {
         $records = static::getModuleRecords($form_id)['records'];
         $category_stats = [];
 
-        foreach (static::$groupByCategory as $category_index=>$groups){
+        foreach (static::$groupsByCategory as $category_index=>$groups){
             $category_sum = 0;
             $category_count = 0;
             foreach ($records as $record){

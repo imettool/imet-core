@@ -1,35 +1,40 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ModularForms\Models\Traits\Payload;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ModularForms\Models\Traits\Payload;
+use ImetCore\Models\User\Role;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use \ImetUser as User;
 
 
 class UsersController extends __Controller
 {
-    protected static $form_class = Role::class;
-    protected static $form_view_prefix = 'imet-core::users/';
-
+    protected static ?string $form_class = Role::class;
+    protected static ?string $form_view_prefix = 'imet-core::users/';
 
     /**
-     * Manage "list" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param $role_type
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * Manage "list_by_role" route
      */
-    public function index(Request $request, $role_type = null)
+    public function list_by_role(Request $request, $role_type = null): Application|View|Factory
     {
         $this->authorize('manage', static::$form_class);
 
         $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
-        $users = User::where('imet_role', $role_type)
+        $users = (config('imet-core.user'))::where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
             ->map(function ($item){
@@ -61,27 +66,18 @@ class UsersController extends __Controller
 
     /**
      * Manage "search" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function search(Request $request): JsonResponse
     {
         $list = $request->filled('search_key')
-            ? User::searchByKey($request->input('search_key'))
+            ? (config('imet-core.user'))::searchByKey($request->input('search_key'))
             : collect();
 
-        return response()->json([
-                                    'records' => $list->toArray()
-                                ]);
+        return static::sendAPIResponse($list->toArray());
     }
 
     /**
      * Manage "update_roles" route
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return string[]
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update_roles(Request $request): array
     {
@@ -98,13 +94,13 @@ class UsersController extends __Controller
                 if($record['user']){
                     // Remove any eventual role and set user's imet_role
                     Role::where('user_id', $record['user']['id'])->delete();
-                    User::find($record['user']['id'])->update(['imet_role' => $role_type]);
+                    (config('imet-core.user'))::find($record['user']['id'])->update(['imet_role' => $role_type]);
                     $defined_users[] = $record['user']['id'];
                 }
             }
             // Set imet_role to null for any user with the given role which is not in the provided list
             if(!empty($defined_users)){
-                User::where('imet_role', $role_type)
+                (config('imet-core.user'))::where('imet_role', $role_type)
                     ->whereNotIn('id', $defined_users)
                     ->update(['imet_role' => null]);
             }

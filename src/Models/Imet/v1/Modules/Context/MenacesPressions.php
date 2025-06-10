@@ -1,17 +1,26 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v1\Modules\Context;
+namespace ImetCore\Models\Imet\v1\Modules\Context;
 
-use AndreaMarelli\ImetCore\Models\Imet\v1\Modules;
-use AndreaMarelli\ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\User\Role;
 
 class MenacesPressions extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_menaces_pressions';
+    protected $table = 'context_menaces_pressions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public static $groupByCategory = [
+    public static $groupsByCategory = [
             ['group0'],
             ['group1', 'group2', 'group3', 'group4', 'group5'],
             ['group6'],
@@ -106,11 +115,11 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getDefinitions($form_id = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $definitions = parent::getDefinitions($form_id);
-        $definitions['groupByCategory'] = static::$groupByCategory;
-        return $definitions;
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        return $vue_data;
     }
 
     public static function getStats($form_id)
@@ -137,7 +146,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupByCategory as $index=>$groups){
+        foreach (static::$groupsByCategory as $index=>$groups){
             $valuesByCategory[$index] = [];
             foreach ($groups as $group){
                 $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;

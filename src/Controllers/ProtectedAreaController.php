@@ -1,9 +1,18 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ModularForms\Controllers\Controller;
+use ImetCore\Models\ProtectedArea;
+use ModularForms\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,9 +22,6 @@ class ProtectedAreaController extends Controller
 
     /**
      * Search by search string or country
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public static function search(Request $request): JsonResponse
     {
@@ -25,46 +31,35 @@ class ProtectedAreaController extends Controller
                 $request->input('search_key'),
                 $request->input('country'));
         }
-        return response()->json(
-            [
-                'records' => $list->toArray(),
-                'countries' => $list->pluck('country_name', 'country')
-                    ->sort()
-                    ->toArray()
-            ]
-        );
+
+        return static::sendAPIResponse($list->toArray(), null, 200, [
+            'countries' => $list->pluck('country_name', 'country')
+                ->sort()
+                ->toArray()
+        ]);
     }
 
     /**
      *  Get list of pairs of id/label as JSON
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
-    public static function get_pairs(Request $request): JsonResponse
+    public static function get_labels(Request $request): JsonResponse
     {
-        $result = [];
-        if($request->filled('ids')){
-            $pas = explode(',', $request->input(['ids']));
-            foreach ($pas as $pa){
-                if(is_numeric($pa)){
-                    $result[] = [
-                        'id' => $pa,
-                        'label' => ProtectedArea
-                            ::select(['wdpa_id', 'name'])
-                            ->where('wdpa_id', $pa)
-                            ->firstOrFail()
-                            ->name
-                    ];
-                } else {
-                    $result[] = [
-                        'id' => $pa,
-                        'label' => $pa
-                    ];
-                }
-            }
+        $pairs = [];
+
+        if($request->filled('id')){
+
+            // Retrieve IDs list: can be comma separated string or json array
+            $ids = $request->input(['id']);
+            $pas = json_validate($ids)
+                ? json_decode($ids)
+                : explode(',', $ids);
+
+            $pairs = ProtectedArea::select(['wdpa_id', 'name'])
+                ->whereIn('wdpa_id', $pas)
+                ->get();
         }
-        return response()->json($result);
+
+        return static::sendAPIResponse($pairs);
     }
 
 }

@@ -1,5 +1,13 @@
 <?php
-
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
     'variability' => 'Variability',
@@ -40,6 +48,7 @@ return [
     'add_all' => 'Add all',
     'close' => 'Close',
     'remove_all' => 'Remove all',
+    'average' => 'Average',
     'sections' => [
         'first' => 'Location of the selected protected areas',
         'second' => 'General Information of the protected areas',
@@ -68,6 +77,7 @@ return [
                 'ranking' => '6.1.2.1 Ranking of Value and Importance sub-indicators',
                 'average_contribution' => '6.1.2.2 Average contribution and variability of the Value and Importance sub-indicators',
                 'datatable' => '6.1.2.4 Data table for the Value and Importance sub-indicators',
+                'datatable_average' => 'Value and Importance sub-indicators',
             ]
         ],
         'threats' => [
@@ -111,14 +121,16 @@ return [
                 'radar' => 'Radar visualization of Internal management systems and processes',
                 'ranking' => 'Ranking of Internal management systems and processes',
                 'average_contribution' => 'Average score and variability of Internal management systems and processes indicators',
-                'datatable' => 'Data table of Internal management systems and processes'
+                'datatable' => 'Data table of Internal management systems and processes',
+                'datatable_average' => 'Internal management systems and processes'
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Management / Protection of the values',
                 'radar' => 'Radar visualization of Management / Protection of the values',
                 'ranking' => 'Ranking of Management / Protection of the values',
                 'average_contribution' => 'Average score and variability of Management/Protection of the values indicators',
-                'datatable' => 'Data table of Management / Protection of the values'
+                'datatable' => 'Data table of Management / Protection of the values',
+                'datatable_average' => 'Management / Protection of the values'
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Stakeholder relations',
@@ -126,24 +138,28 @@ return [
                 'ranking' => 'Ranking of Stakeholder relations',
                 'average_contribution' => 'Average score and variability of Stakeholder relations indicators',
                 'datatable' => 'Data table of Stakeholder relations',
+                'datatable_average' => 'Stakeholder relations'
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Tourism management',
                 'ranking' => 'Ranking of Tourism management',
                 'average_contribution' => 'Average score and variability of Tourism management indicators',
                 'datatable' => 'Data table of Tourism management',
+                'datatable_average' => 'Tourism management'
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Monitoring and Research',
                 'ranking' => 'Ranking of Monitoring and Research',
                 'average_contribution' => 'Average score and variability of Monitoring and Research indicators',
                 'datatable' => 'Data table of Monitoring and Research',
+                'datatable_average' => 'Monitoring and Research'
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Management of the effects of climate change and ecosystem services',
                 'ranking' => 'Ranking of the indicators of Management of the effects of climate change and ecosystem services',
                 'average_contribution' => 'Average score and variability of the indicators of Management of the effects of climate change and ecosystem services',
                 'datatable' => 'Data table of Management of the effects of climate change and ecosystem services',
+                'datatable_average' => 'Management of the effects of climate change and ecosystem services'
             ]
 
         ],
@@ -344,77 +360,23 @@ return [
         'negative_positive' => ' - scale (min: -100, max: 100)',
         'zero_negative' => ' - scale (min: -100, max: 0)'
     ],
-    'assessment' => [
-        'ctx101' => 'Responsibility for filling in the form: Management team and partners providing external support for analysis and management evaluation',
-        'ctx102' => 'Responsibility for completing the form: Management team and partners providing support for analysis and management evaluation',
-        'c11' => 'Special Designations',
-        'c12' => 'Key Species',
-        'c13' => 'Terrestrial and marine habitats',
-        'c14' => 'Climate Change',
-        'c15' => 'Ecosystem services',
-        'c1' => 'Value and Importance',
-        'c2' => 'External constraints or supporting',
-        'c3' => 'Threats',
-        'p1' => 'Adequacy of legal and regulatory provisions',
-        'p2' => 'Design and layout of the protected area',
-        'p3' => 'Demarcation of the protected area',
-        'p4' => 'Management plan',
-        'p5' => 'Work/Action plan',
-        'p6' => 'Objectives of the protected area',
-        'i1' => 'Basic information',
-        'i2' => 'Staff',
-        'i3' => 'Current budget',
-        'i4' => 'Securing the budget',
-        'i5' => 'Infrastructure, equipment and facilities',
-        'pr1' => 'Staff capabilities programme and training',
-        'pr2' => 'Human resource management policies and procedures',
-        'pr3' => 'Analyse the degree of staff motivation (job suitability)',
-        'pr4' => 'Management orientation of the protected area',
-        'pr5' => 'Budget and financial management',
-        'pr6' => 'Maintenance of infrastructure, equipment and facilities',
-        'pr7' => 'Managing the values and key elements of the protected area with specific actions',
-        'pr8' => 'Ranger patrols management (Law enforcement)',
-        'pr9' => 'Intelligence / investigations / case development /charging management (Law enforcement)',
-        'pr10' => 'Cooperation with the stakeholders',
-        'pr11' => 'Appropriate benefits/assistance for local communities',
-        'pr12' => 'Environmental education and public awareness',
-        'pr13' => 'Management of visitors\' facilities and services',
-        'pr14' => 'Management of visitors’ impact',
-        'pr15' => 'Monitoring systems for natural and cultural resources',
-        'pr16' => 'Research and biomonitoring',
-        'pr17' => 'Management of the effects of climate change',
-        'pr18' => 'Ecosystem services',
-        'op1' => 'Implementation of the work/action plan',
-        'op2' => 'Annual outputs – targets – achievement',
-        'op3' => 'Area domination',
-        'op4' => 'Enforcement in MPA',
-        'oc1' => 'Achievement of long-term objectives of the conserved area management and governance',
-        'oc2' => 'Conditions and trends of the key conservation elements of the protected area',
-        'oc3' => 'Effects and outcomes for stakeholders on quality of life',
-        'pr1_6' => 'Internal management systems and processes',
-        'pr7_9' => 'Management / Protection of the values',
-        'pr10_12' => 'Stakeholder relations',
-        'pr13_14' => 'Tourism management',
-        'pr15_16' => 'Monitoring and Research',
-        'pr17_18' => 'Management of the effects of climate change and ecosystem services'
-    ],
     'legends' => [
-        'pr1_6' => [
+        'PRA' => [
             'PR A',
         ],
-        'pr7_9' => [
+        'PRB' => [
             'PR B'
         ],
-        'pr10_12' => [
+        'PRC' => [
             'PR C'
         ],
-        'pr13_14' => [
+        'PRD' => [
             'PR D'
         ],
-        'pr15_16' => [
+        'PRE' => [
             'PR E'
         ],
-        'pr17_18' => [
+        'PRF' => [
             'PR F'
         ]
     ],
@@ -486,12 +448,12 @@ return [
             'overall' => [
                 'intro' => 'Six Sub Elements of the Process',
                 'info' => ''],
-            'pr1_pr6' => ['intro' => 'PR A: Internal management systems and processes', 'info' => ''],
-            'pr7_pr9' => ['intro' => 'PR B: Management / Protection of the values', 'info' => ''],
-            'pr10_pr12' => ['intro' => 'PR C: Stakeholder relations', 'info' => ''],
-            'pr13_pr14' => ['intro' => 'PR D: Tourism management', 'info' => ''],
-            'pr15_pr16' => ['intro' => 'PR E: Monitoring and Research', 'info' => ''],
-            'pr17_pr18' => ['intro' => 'PR F: Management of the effects of climate change and ecosystem services', 'info' => ''],
+            'PRA' => ['intro' => 'PR A: Internal management systems and processes', 'info' => ''],
+            'PRB' => ['intro' => 'PR B: Management / Protection of the values', 'info' => ''],
+            'PRC' => ['intro' => 'PR C: Stakeholder relations', 'info' => ''],
+            'PRD' => ['intro' => 'PR D: Tourism management', 'info' => ''],
+            'PRE' => ['intro' => 'PR E: Monitoring and Research', 'info' => ''],
+            'PRF' => ['intro' => 'PR F: Management of the effects of climate change and ecosystem services', 'info' => ''],
         ],
         'outputs' => [
             'main' => [

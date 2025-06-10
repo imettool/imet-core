@@ -1,4 +1,14 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
 return [
 
     'id'                    => 'ID',
@@ -167,5 +177,19 @@ return [
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
         ]
     ],
+
+    'dropzone' => [
+        'dict_default_message' => 'Glisser-déposer pour télécharger des fichiers json/zip',
+        'dict_fallback_message' => 'Votre navigateur ne prend pas en charge le téléchargement de fichiers par l\'opération glisser-déposer.',
+        'dict_fallback_text' => 'Veuillez utiliser le formulaire alternatif ci-dessous pour télécharger vos fichiers comme avant',
+        'dict_file_too_big' => 'Le fichier est trop volumineux ({{filesize}}MiB). Taille maximale du fichier : {{maxFilesize}}MiB.',
+        'dict_invalid_file_type' => 'Vous ne pouvez pas télécharger de fichiers de ce type.',
+        'dict_response_error' => 'Le serveur a répondu avec le code {{statusCode}}.',
+        'dict_cancel_upload' => 'Annuler le téléchargement',
+        'dict_upload_canceled' => 'téléchargement annulé',
+        'dict_cancel_upload_confirmation' => 'Êtes-vous sûr de vouloir annuler ce téléchargement ?',
+        'dict_remove_file'  => 'Supprimer le fichier',
+        'dictMaxFilesExceeded' => 'Vous avez dépassé le nombre maximum de fichiers pour le téléchargement. Veuillez supprimer des fichiers afin d\'en télécharger d\'autres',
+    ]
 
 ];

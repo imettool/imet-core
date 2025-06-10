@@ -1,10 +1,19 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Controllers;
+namespace ImetCore\Controllers;
 
-use AndreaMarelli\ModularForms\Controllers\Controller;
-use AndreaMarelli\ModularForms\Helpers\HTTP;
-use AndreaMarelli\ImetCore\Models\Animal;
+use ModularForms\Controllers\Controller;
+use ModularForms\Helpers\HTTP;
+use ImetCore\Models\Animal;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -13,9 +22,6 @@ class SpeciesController extends Controller
 {
     /**
      * Search Species by key
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public static function search(Request $request): JsonResponse
     {
@@ -53,10 +59,9 @@ class SpeciesController extends Controller
                 ->toArray();
         }
 
-        return response()->json([
-                                    'records' => $species->toArray(),
-                                    'classes' => array_keys($ordersByClass),
-                                    'orders' => $ordersByClass
-                                ]);
+        return static::sendAPIResponse($species->toArray(), null, 200, [
+            'classes' => array_keys($ordersByClass),
+            'orders' => $ordersByClass
+        ]);
     }
 }

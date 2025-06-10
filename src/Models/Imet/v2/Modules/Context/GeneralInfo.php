@@ -1,22 +1,31 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
-namespace AndreaMarelli\ImetCore\Models\Imet\v2\Modules\Context;
+namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use AndreaMarelli\ImetCore\Helpers\Template;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Imet;
-use AndreaMarelli\ImetCore\Models\ProtectedArea;
-use AndreaMarelli\ImetCore\Models\ProtectedAreaNonWdpa;
-use AndreaMarelli\ImetCore\Models\User\Role;
-use AndreaMarelli\ModularForms\Helpers\Input\SelectionList;
-use AndreaMarelli\ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Models\Imet\v2\Modules;
 
 class GeneralInfo extends Modules\Component\ImetModule
 {
-    protected $table = 'imet.context_general_info';
+    protected $table = 'context_general_info';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public static $rules = [
+    public static array $rules = [
         'Type' => 'required',
         'Country' => 'required',
     ];
@@ -53,9 +62,9 @@ class GeneralInfo extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $collection = null): array
+    public static function getVueData($form_id, $records, $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $collection);
+        $vue_data = parent::getVueData($form_id, $records, $definitions);
 
         $imet = Imet::find($vue_data['form_id']);
         $pa = Imet::getProtectedArea($imet->wdpa_id);
@@ -71,7 +80,7 @@ class GeneralInfo extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-    public static function upgradeModule($record, $imet_version = null)
+    public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');

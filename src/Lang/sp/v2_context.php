@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
 
@@ -98,11 +107,17 @@ return [
             'PartnershipsType1' => 'La asociación más importante: Primero',
             'PartnershipsType2' => 'Segunda',
             'PartnershipsType3' => 'Tercera',
-            'Type' => 'Modelo de gestión',
-            'Comments' => 'Información adicional sobre el modelo de gobernanza (si es necesario)',
+            'GovernanceModel' => 'Modelo de gestión',
+            'SubGovernanceModel' => 'Modelo de subgestión',
+            'AdditionalInfo' => 'Información adicional sobre el modelo de gobernanza (si es necesario)',
         ],
         'governance' => 'Gobernanza',
         'partnership' => 'Asociación',
+        'module_info' =>
+            'Esta sección describe la estructura de gobernanza existente y las alianzas con las partes interesadas dentro
+            del área protegida. Describe las instituciones clave involucradas, los tipos de procesos de toma de decisiones,
+            los roles de las partes interesadas y el nivel de coordinación entre los actores. También destaca las alianzas
+            actuales que apoyan los esfuerzos de conservación y su papel en la implementación de la gestión.'
     ],
 
     'SpecialStatus' => [
@@ -120,7 +135,13 @@ return [
             'networks'     => 'Pertenencia a una red internacional reconocida oficialmente (MAB, RAPAC, Red Parques, Lista Verde, etc.)',
             'conservation' => 'Designación del estado de importancia de la conservación por los organismos internacionales (IBA, AZE, etc.)',
             'marine_pa'    => 'Designación de áreas marinas protegidas',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección describe las designaciones oficiales otorgadas al área protegida, como Sitios de Patrimonio
+            Mundial, Reservas del Hombre y de la Biosfera (MAB), Sitios Ramsar, Áreas Importantes para la Conservación
+            de las Aves (IBA), Zonas Especialmente Protegidas de Importancia para el Mediterráneo (ZEPIM) y Áreas Marinas
+            de Gestión Local (AMG). Estas designaciones reflejan la importancia ecológica del área e influyen en su marco
+            de gestión, sus prioridades de conservación y sus obligaciones internacionales.'
     ],
 
     'Networks' => [
@@ -150,7 +171,21 @@ return [
             'InternationalSource' => 'Fuente',
             'InternationalManagementPlan' => 'Archivo (Plan de manejo o gestión)',
             'Observation' => 'Observaciones',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección presenta el marco estratégico del área protegida, incluyendo su visión, misión y objetivos
+            de gestión.<ul>
+            <li><b>Visión del área protegida</b>: La visión es básicamente un plan sobre cómo debería ser el AP en el futuro,
+             abarcando la ecología, la sociedad y la gobernanza. Es el gran objetivo que guía todo lo que hacemos para
+             conservar y gestionar el área.</li>
+            <li><b>Misión del área protegida</b>: La misión explica lo que el AP intenta hacer y cómo se integra con la visión.
+            Indica cuáles son nuestras responsabilidades, cómo gestionaremos las cosas y las normas que rigen el uso del
+            área de una manera beneficiosa para el medio ambiente y la población local.</li>
+            <li><b>Objetivos a largo plazo del área protegida</b>: Los objetivos a largo plazo son como una hoja de ruta que
+            convierte la visión y la misión en metas específicas que guían las iniciativas de gestión durante los próximos
+            10 a 20 años. Estos objetivos se basan en las áreas clave de conservación, gobernanza y sostenibilidad,
+            garantizando que el AP cumpla su función en términos de ecología y economía.</li>
+            </ul>'
     ],
 
     'Contexts' => [
@@ -169,7 +204,20 @@ return [
             'Contexto jurídico',
             'Contexto institucional'
         ],
-        'module_info' => 'Datos a nivel nacional con verificación a nivel local'
+        'module_info' =>
+            'Esta sección ofrece una visión general de los factores contextuales clave que afectan al área protegida. Incluye:
+            <ul>
+            <li><b>Contexto histórico</b>: Eventos e hitos clave que han definido la conservación y la gestión del área.</li>
+            <li><b>Contexto socioeconómico</b>: El papel del área protegida en los medios de vida locales, las actividades
+            económicas y las interacciones comunitarias.</li>
+            <li><b>Contexto político (a nivel de país): Estructuras de gobernanza, marcos de políticas e influencias políticas
+             que afectan la toma de decisiones.</li>
+            <li><b>Contexto legal e institucional</b>: Leyes, reglamentos e instituciones pertinentes que se aplican al área
+            protegida.</li>
+            <li><b>Contexto institucional</b>: Las funciones y responsabilidades de las instituciones clave involucradas en
+            la gestión y la gobernanza del área.</li>
+            </ul>
+            Estos elementos definen el marco general en el que opera el área protegida.'
     ],
 
     'GeographicalLocation' => [
@@ -181,7 +229,10 @@ return [
             'Coordinates' => 'Coordenadas geográficas (línea base o punto clave del área protegida)',
             'SourceCoords' => 'Fuente',
             'AdministrativeLocation' => 'Ubicación administrativa del área protegida (provincia, región, etc.)',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección proporciona información sobre la ubicación geográfica del área protegida. Incluye sus coordenadas
+            y su ubicación administrativa. La descripción destaca su ubicación dentro de un contexto territorial más amplio.'
     ],
 
     'Areas' => [
@@ -199,7 +250,11 @@ return [
             'PercentageLandscapeNetwork' => 'Superficie % de paisaje/red',
             'Index' => 'Índice de configuración <br />&radic;(3.14)/(6.28)*perímetro/&radic;(área) =<br /> bueno 1 - 1.5; promedio 1.5 - 2; bajo > 2',
             'Observations' => 'Notas',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção fornece dados importantes sobre o tamanho, a extensão do limite, a cobertura terrestre e marinha
+            e a configuração espacial da propriedade. Situa também a propriedade dentro de redes nacionais, eco-regiões,
+            transfronteiriças e de conservação da paisagem, destacando o seu papel em esforços de conservação mais amplos.'
     ],
 
     'Sectors' => [
@@ -214,6 +269,23 @@ return [
             'Source' => 'Fuente',
             'Observations' => 'Notas',
         ],
+        'module_info' =>
+            'Promedio de días de patrullaje por km² en parques nacionales africanos: práctica estándar:
+            Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a
+            4 días de patrullaje por kilómetro cuadrado al año. Esto significa que, por cada kilómetro cuadrado de
+             área protegida, los guardabosques deberían dedicar idealmente entre 1 y 4 días de patrullaje al año.
+            <ul>
+            <li>Mayor intensidad en zonas de alta amenaza: En zonas con alta presión de caza furtiva o con una biodiversidad
+            significativa, la tasa recomendada puede aumentar a 5-10 días de patrullaje por kilómetro cuadrado al año,
+            o incluso más. Este mayor esfuerzo de patrullaje es fundamental para disuadir a los cazadores furtivos y responder
+            con rapidez a las amenazas.</li>
+            <li><b>Menor intensidad en zonas de bajo riesgo</b>: Por el contrario, las zonas de menor riesgo o las zonas
+            donde las amenazas a la fauna silvestre son mínimas pueden requerir menos patrullajes, posiblemente menos de
+            un día de patrullaje por kilómetro cuadrado al año.</li>
+            </ul>
+            <b>Nota sobre el Parque Nacional Kruger, Sudáfrica</b>: Debido a la alta amenaza de la caza furtiva de
+            rinocerontes, en algunas zonas de Kruger la intensidad de los patrullajes es de 10 días de patrullaje por
+            kilómetro cuadrado al año o más.',
         'area_percentage'               => '% de área',
         'average_time'                  => 'Patrullaje promedio * d * km² del sector',
     ],
@@ -330,12 +402,12 @@ return [
         'fields' => [
             'Currency' => 'Tipo de moneda',
             'ReferenceYear' => 'Año de referencia',
-            'ManagementFinancialPlanCosts' => 'Gastos de funcionamiento estimados en el Plan de gestión/plan financiero ($ o €/año)',
-            'OperationalWorkPlanCosts' => 'Gastos de funcionamiento estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
+            'ManagementFinancialPlanCosts' => 'Presupuesto total estimados en el Plan de gestión/plan financiero ($ o €/año)',
+            'OperationalWorkPlanCosts' => 'Presupuesto total estimados a partir del plan operativo / plan de trabajo (presupuestados anualmente)',
             'TotalBudget' => 'Presupuesto anual total disponible',
         ],
         'amount'                        => 'Total',
-        'functioning_costs'             => 'Costos de operación ($ o euros/km2/año)',
+        'functioning_costs'             => 'Presupuesto total ($ o euros/km2/año)',
         'estimation_financial_plan'     => 'Porcentaje de recursos requeridos por el plan financiero/plan de trabajo (presupuestado anualmente)',
         'estimation_operational_plan'   => 'Porcentaje de los recursos requeridos por el plan de trabajo (presupuestado anualmente)',
         'module_info' => 'Costos totales estimados sobre la base del Plan de gestión/plan financiero'
@@ -439,6 +511,7 @@ return [
         'title' => 'Especies animales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado de conservación del área protegida y que requieren ser monitoreadas a lo largo del tiempo',
         'fields' => [
             'SpeciesID' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
             'EndemicSpecies' => 'EDM',
@@ -484,6 +557,7 @@ return [
         'title' => 'Hábitats seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
         'fields' => [
             'EcosystemType' => 'Tipo de hábitat',
+            'TerrestrialOrMarine' => '¿Terrestres o marinos?',
             'Value' => 'Descripción del estado o valor',
             'Area' => 'Superficie (ha)',
             'DesiredConservationStatus' => 'Estado de conservación favorable',
@@ -504,7 +578,7 @@ return [
             'Value' => 'Valores',
             'Impact' => 'Impacto/Severidad',
             'Extension' => 'Escala/Extensión',
-            'Duration' => 'Cuánto tiempo/Irreversibilidad',
+            'Duration' => 'Cuánto tiempo',
             'Trend' => 'Tendencia',
             'Probability' => 'Probabilidad de una amenaza en el futuro',
         ],

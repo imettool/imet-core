@@ -1,4 +1,13 @@
 <?php
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
 
 return [
     'general_elements' => 'Éléments généraux',
@@ -51,11 +60,6 @@ return [
         'proposed_long_objectives' => 'Objectifs à long terme proposés',
         'proposed_short_objectives' => 'Objectifs à court terme proposés',
     ],
-
-    'pr1_5' => 'Systèmes et processus de gestion interne',
-    'pr6_7' => 'Gestion / Protection des valeurs',
-    'pr8_10' => 'Relations avec les parties prenantes',
-    'pr11_12' => 'Tourisme / Surveillance - Recherche',
     'general_planning' => [
         'name' => 'Planification générale',
         'priority' => 'Priorité',
@@ -70,7 +74,7 @@ return [
         'intervention_context' => 'Contexte d’intervention',
         'management_evaluation' => 'Évaluation de la gestion',
         'objectives_title' => 'Liste des objectifs à court et à long terme pour l’élément',
-        'prioritize_in_management' => 'À prioriser dans la gestion'
+        'prioritize_in_management' => 'Doit-il être prioritaire dans la gestion?'
     ],
     'stakeholder_users_managing_oecm' => 'Utilisateurs des parties prenantes et gestion de l’espace conservé',
     'stakeholder_direct_users' => 'Utilisateurs directs des parties prenantes',
