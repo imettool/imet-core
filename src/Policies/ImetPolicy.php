@@ -153,13 +153,6 @@ class ImetPolicy
     /**
      * @return bool
      */
-    public function scaling_up(): bool{
-        return $this->role_national_or_observatory();
-    }
-
-    /**
-     * @return bool
-     */
     public function role_national_or_observatory(): bool
     {
         return (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY));
