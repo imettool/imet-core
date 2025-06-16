@@ -123,12 +123,12 @@ const bar_options = computed(() => {
                 if (raw_values) {
                     params.forEach(function (item) {
                         const value = item.value;
-                        if (value == -99999999) {
+                        if (value === -99999999) {
                             tooltip_text += `${item.marker} ${item.seriesName} : -</div> <br/>`;
                         } else {
                             let percent = percent_values[item.seriesName][item.dataIndex];
                             let raw_value = raw_values[item.dataIndex][item.componentIndex];
-                            if (percent == -99999999) {
+                            if (percent === -99999999) {
                                 percent = '-';
                                 raw_value = '-';
                             } else {
@@ -140,7 +140,7 @@ const bar_options = computed(() => {
                 } else {
                     params.forEach(function (item) {
                         const value = item.value;
-                        if (value == -99999999) {
+                        if (value === -99999999) {
                             tooltip_text += `${item.marker} ${item.seriesName} : - </div> <br/>`;
                         } else {
                             tooltip_text += `${item.marker} ${item.seriesName} : ${value}</div> <br/>`;
@@ -190,7 +190,7 @@ function series() {
                 focus: 'series'
             },
             data: value[1].map((item, idx) => {
-                if (item == -99999999) {
+                if (item === -99999999) {
                     return 0
                 }
 

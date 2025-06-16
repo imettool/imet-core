@@ -11,6 +11,7 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
+use ImetCore\Models\Imet\ScalingUp\Sections\Thematic;
 use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Helpers\API\DOPA\DOPA;
 use ImetCore\Helpers\Database;
@@ -85,6 +86,48 @@ class ScalingUpAnalysis extends Model
         return ['status' => 'success', 'data' => $items];
     }
 
+    /**
+     * @param array $form_ids
+     * @return array
+     */
+    public static function get_climate_change(array $form_ids): array
+    {
+        $thematic_areas = [];
+        $scores = [];
+        $form_ids = array_filter($form_ids);
+
+        foreach ($form_ids as $form_id) {
+            $thematic_areas[$form_id] = Thematic::getClimateChange($form_id, static::$scaling_id);
+        }
+        foreach ($thematic_areas as $k => $thematic_area) {
+            $scores[$thematic_area['name']] = $thematic_area['score'] ?? '';
+            $colors[$thematic_area['name']] = $thematic_area['colors'] ?? '';
+        }
+        return ['status' => 'success', 'data' => ['items' => $thematic_areas, 'scores' => $scores, 'colors' => $colors]];
+    }
+
+
+    /**
+     * @param array $form_ids
+     * @return array
+     */
+    public static function get_ecosystem_services(array $form_ids): array
+    {
+        $thematic_areas = [];
+        $scores = [];
+        $ranks = [];
+        $form_ids = array_filter($form_ids);
+        foreach ($form_ids as $form_id) {
+            $thematic_areas[$form_id] = Thematic::getEcosystemServices($form_id, static::$scaling_id);
+        }
+        foreach ($thematic_areas as $k => $thematic_area) {
+            $scores[$thematic_area['name']] = $thematic_area['score'];
+            $ranks[$thematic_area['name']] = $thematic_area['ranks'];
+            $colors[$thematic_area['name']] = $thematic_area['colors'];
+        }
+        return ['status' => 'success', 'data' => ['items' => $thematic_areas, 'scores' => $scores,
+            'colors' => $colors, 'ranks' => $ranks]];
+    }
 
     /**
      * get protected area custom names with all the information

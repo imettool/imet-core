@@ -43,7 +43,7 @@ class ScalingUpWdpa extends BaseModel
         return json_encode($record);
     }
 
-    public static function save_pas($scaling_id, $areas)
+    public static function save_pas(int $scaling_id, array $areas): array
     {
         $saved_pas = [];
         foreach ($areas as $k => $area) {
