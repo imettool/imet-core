@@ -243,8 +243,6 @@ trait ImportExportJSON
      */
     public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
     {
-        $this->authorize('export', (static::$form_class)::find($item));
-
         if ($item instanceof Imet\Imet) {
             $imet_id = $item->getKey();
             $imet = $item;
@@ -252,6 +250,8 @@ trait ImportExportJSON
             $imet_id = $item;
             $imet = (static::$form_class)::find($item);
         }
+
+        $this->authorize('export', $imet);
 
         $imet_form = $imet
             ->makeHidden(['FormID', 'UpdateDate', 'UpdateBy', 'protected_area_global_id', 'sync_unique_id', 'synced'])
