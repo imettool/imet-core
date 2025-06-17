@@ -3,7 +3,7 @@ use ImetCore\Models\User\Role;
 
 ?>
 
-@if(\App::environment('imetglobal_dev'))
+@if(is_imet_global_dev())
 
     <li>
         <a>{!! \ModularForms\Helpers\Template::icon('random', '', '', 'fa-lg') !!} Change USER</a>

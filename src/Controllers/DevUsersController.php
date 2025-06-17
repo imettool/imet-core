@@ -26,7 +26,7 @@ class DevUsersController extends __Controller {
      */
     public function create_dev_users(): RedirectResponse
     {
-        if(App::environment('imetglobal_dev')){
+        if(is_imet_global_dev()){
             
             $userClass = (config('imet-core.user'))::class;
 
@@ -140,7 +140,7 @@ class DevUsersController extends __Controller {
     public function change_user(Request $request): RedirectResponse
     {
         // Create test users
-        if(App::environment('imetglobal_dev')){
+        if(is_imet_global_dev()){
 
             $role = $request->input('imet_role');
             Auth::logout();

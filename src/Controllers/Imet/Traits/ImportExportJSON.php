@@ -382,7 +382,7 @@ trait ImportExportJSON
         } catch (Exception $e) {
             DB::rollback();
             $response = ['status' => 'error'];
-            if (!App::environment('production')) {
+            if (!App::environment('production') || is_imet_offline_tool()) {
                 throw $e;
             }
         }
