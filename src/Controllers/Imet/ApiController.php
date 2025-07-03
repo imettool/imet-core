@@ -134,7 +134,7 @@ class ApiController extends Controller
                 $records = $request->attributes->get('records');
 
                 $model = ModuleKey::KeyToClassName($slug);
-                //$this->authorize('api_details', [$records[0], $model]);
+                $this->authorize('api_details', [$records[0], $model]);
 
                 if (count($records) > 1) {
                     throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));

@@ -10,139 +10,87 @@
 
 <template>
 
-    <modal-selector
-        class="selector-user"
-        :parent-id=id
-        :anchor-label=anchorLabel
-    >
+  <selector-dialog
+      v-model="inputValue"
+      :parent-id=id
+      :search-url=searchUrl
+      :label-url=labelUrl
+      :multiple=multiple
+      :with-id=true
+      ref="selectorDialogComponent"
+  >
 
-        <!-- Modal anchor -->
-        <template v-slot:modal_anchor>
-            <div class="field-preview" v-html="anchorLabel"></div>
-        </template>
+    <!-- api search - result header -->
+    <template v-slot:searchResultHeader>
+      <th>{{ Locale.getLabel('imet-core::users.attributes.name') }}</th>
+      <th>{{ Locale.getLabel('imet-core::users.attributes.email') }}</th>
+      <th>{{ Locale.getLabel('imet-core::users.attributes.country') }}</th>
+      <th>{{ Locale.getLabel('imet-core::users.attributes.organization') }}</th>
+    </template>
 
-        <!-- Modal anchor -->
-        <template v-slot:disabled_modal_anchor>
-            <div class="field-preview" v-html="anchorLabel"></div>
-            &nbsp;
-            <button class="btn-nav small red" v-on:click="revokeRole"><i class="fa fa-times"></i></button>
-        </template>
-
-        <!-- Modal -->
-        <template v-slot:modal_content>
-
-            <modal_api_search
-                :parent-id=id
-                :search-url=searchUrl
-            >
-                <template v-slot:resultItem="{ item }">
-                    <td class="result_left">
-                        <b>{{ item.name }}</b>
-                    </td>
-                    <td>
-                        {{ item.email }}
-                    </td>
-                    <td>
-                        <span v-if="item.country !== null">
+    <!-- api search - result items -->
+    <template #searchResultItem="{ item }">
+      <td><span class="result_left"><b>{{ item.first_name }}</b></span></td>
+      <td>
+        <span v-if="item.country !== null">
                             <flag :iso2=item.country.iso2></flag>&nbsp;&nbsp;<i>{{ item.country.name }}</i>
                         </span>
-                    </td>
-                    <td>
-                        {{ item.organisation }}
-                    </td>
-                </template>
+      </td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.organization }}</td>
+    </template>
 
-            </modal_api_search>
-
-            <div class="modal-footer">
-                <button type="button"
-                        class="btn-nav dark small"
-                        :disabled="selectedValue===null"
-                        v-on:click="confirmSelection" >
-                    {{ Locale.getLabel('modular-forms::common.confirm_select') }}
-                </button>
-            </div>
-
-        </template>
-
-    </modal-selector>
-
+  </selector-dialog>
 </template>
 
 <style lang="postcss" scoped>
 
-    .module-container .selector-user{
+.module-container .selector-user{
 
-        .field-preview{
-            width: 450px;
-            display: inline-block;
-        }
+  .field-preview{
+    width: 450px;
+    display: inline-block;
+  }
 
-    }
+}
 
 </style>
 
-<script>
+<script setup>
+import {provide, ref, watch} from "vue";
+const selectorDialog = window.ModularForms.Components.selectorDialog;
+const Locale = window.ModularForms.Helpers.Locale;
 
-export default {
+const props = defineProps({
+  id: {
+    type: String,
+    default: null
+  },
+  searchUrl: {
+    type: String,
+    default: null
+  },
+  labelUrl: {
+    type: String,
+    default: null
+  },
+  multiple: {
+    type: Boolean,
+    default: false,
+  }
+});
 
-    components: {
-        'flag': window.ModularForms.Template.flag,
-        'modal-selector': window.ModularForms.Input.modalSelector,
-        'modal_api_search': window.ModularForms.Input.modalApiSearch
-    },
+const selectorDialogComponent = ref(null);
+provide('setLabel', setLabel);
+provide('setValue', setValue);
 
-    mixins: [
-        window.ModularForms.MixinsVue.values
-    ],
+const inputValue = defineModel();
 
-    props: {
-        searchUrl: {
-            type: String,
-            default: ''
-        }
-    },
-
-    data (){
-        return {
-            Locale: window.Locale,
-            inputValue: null,
-            selectedValue: null
-        }
-    },
-
-    computed:{
-        anchorLabel(){
-            return this.value!==null && Object.keys(this.value).length
-                ? '<b>' + this.value.name + '</b>'
-                + (this.value.organisation!==null && this.value.organisation!=='' ? ' - ' + this.value.organisation : '')
-                : '';
-        }
-    },
-
-    mounted(){
-        this.modalComponent = this.$children[0];
-        this.searchComponent = null;    // will be populated from modalComponent when modal opens
-    },
-
-    methods: {
-
-        resultTableHeader(){
-            return [
-                '',
-                Locale.getLabel('imet-core::users.attributes.name'),
-                Locale.getLabel('imet-core::users.attributes.email'),
-                Locale.getLabel('imet-core::users.attributes.country'),
-                Locale.getLabel('imet-core::users.attributes.organisation')
-            ]
-        },
-
-        confirmSelection(){
-            this.emitValue(this.selectedValue);
-            this.modalComponent.closeModal();
-        },
-
-    }
+function setLabel(item) {
+  return item?.name
 }
 
+function setValue(item){
+  return item?.id;
+}
 </script>

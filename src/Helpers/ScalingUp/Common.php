@@ -292,7 +292,7 @@ class Common
             $assessments[$i]['name'] = $name->name;
             $assessments[$i]['color'] = $name->color;
             $assessments[$i]['wdpa_id'] = $name->wdpa_id;
-            $assessments[$i]['formid'] = (int)$form_id;
+            $assessments[$i]['form_id'] = (int)$form_id;
             $assessments[$i]['year'] = (int)$name->Year;
 
             $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
