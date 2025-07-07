@@ -171,6 +171,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
 
             Route::group(['prefix' => 'users'], function () {
                 Route::post('search', [UsersController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX . 'selector.users.search');
+                Route::post('labels', [UsersController::class, 'get_labels'])->name('selector.user.labels');
             });
         });
 

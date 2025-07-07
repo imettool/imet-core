@@ -71,6 +71,7 @@ class UsersController extends __Controller
      */
     public function search(Request $request): JsonResponse
     {
+        $this->authorize('manage', static::$form_class);
         $list = $request->filled('search_key')
             ? (config('imet-core.user'))::searchByKey($request->input('search_key'))
             : collect();
@@ -82,8 +83,9 @@ class UsersController extends __Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public static function get_labels(Request $request): JsonResponse
+    public function get_labels(Request $request): JsonResponse
     {
+        $this->authorize('manage', static::$form_class);
         $pairs = [];
 
         if($request->filled('id')){

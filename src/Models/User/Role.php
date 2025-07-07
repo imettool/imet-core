@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
  */
 class Role extends BaseModel
 {
-    protected $table = 'user_roles_imet';
+    protected $table = 'user_roles';
 
     const ROLE_ADMINISTRATOR = 'administrator';
     const ROLE_NATIONAL_AUTHORITY = 'national_authority';
