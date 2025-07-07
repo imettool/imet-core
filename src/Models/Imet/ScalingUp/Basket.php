@@ -13,12 +13,12 @@ namespace ImetCore\Models\Imet\ScalingUp;
 
 use ImetCore\Helpers\Database;
 use ModularForms\Helpers\File\File;
-use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use ImetCore\Models\Imet\Components\BaseModel;
 
 
-class Basket extends Model
+class Basket extends BaseModel
 {
     public const BASKET_DISK = 'public_folder';
     public const BASKET_FOLDER = 'basket/';
@@ -38,7 +38,7 @@ class Basket extends Model
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);
 
-        $record = BasketModel::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
+        $record = static::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
         $imageName = hash('sha256', $record->id . time()) . '.png';
 
         $disk = Storage::disk(self::BASKET_DISK);
