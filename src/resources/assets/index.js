@@ -50,6 +50,9 @@ window.ImetCore.Apps.Analysis = Analysis;
 import OECMAnalysis from "./js/apps/Modules/Oecm/OECMAnalysis.js";
 window.ImetCore.Apps.OECMAnalysis = OECMAnalysis;
 
+import ExportApp from "./js/apps/Export.js";
+window.ImetCore.Apps.ExportApp = ExportApp;
+
 // ############################################
 // #############  Custom Modules  #############
 // ############################################
