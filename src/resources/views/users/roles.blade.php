@@ -11,7 +11,6 @@ use \ImetCore\Models\User\Role;
 @extends('modular-forms::layouts.forms')
 
 @section('content')
-    @include('imet-core::users.menu')
     @include('imet-core::users.__menu', ['selected' => $role])
 
     <div id="users" class="module-container">

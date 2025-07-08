@@ -35,7 +35,7 @@ class UsersController extends __Controller
     {
         $this->authorize('manage', static::$form_class);
 
-        $role_type = $role_type ?? Role::ROLE_NATIONAL_AUTHORITY;
+        $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
         $users = (config('imet-core.user'))::select(['id'])->where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
