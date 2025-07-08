@@ -13,22 +13,28 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
 /**
- * Check if App::environment is IMET related (ex. imetoffline or imetglobal)
- *
- * @return bool
+ * Check if the current environment is IMET related (ex. Imet Offline Tool or imetglobal)
  */
 function is_imet_environment(): bool
 {
     return Str::contains(App::environment(), 'imet')
-        || Str::contains(App::environment(), 'local')
-        || Str::contains(App::environment(), 'builder');
+        || is_imet_offline_tool();
 }
 
-function is_offline_environment(): bool
+/**
+ * Check if the current environment is the IMET Offline Tool
+ */
+function is_imet_offline_tool(): bool
 {
-    return Str::contains(App::environment(), 'offline')
-        || Str::contains(App::environment(), 'local')
-        || Str::contains(App::environment(), 'builder');
+    return function_exists('imet_offline_tool_version');
+}
+
+/**
+ * Check if the current environment is the development env of IMET Global Tool
+ */
+function is_imet_global_dev(): bool
+{
+    return App::environment('imetglobal_dev');
 }
 
 /**

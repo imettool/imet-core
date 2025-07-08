@@ -32,7 +32,7 @@ trait Backup{
      */
     public function backup($item, string $version)
     {
-        if(App::environment('imetoffline')){
+        if(is_imet_offline_tool()){
 
             if($version === Imet\Imet::IMET_V1){
                 $form = (new Imet\v1\Imet())->find($item);
