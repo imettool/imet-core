@@ -56,4 +56,12 @@ class EvalController extends __Controller
             'step' => $step
         ]);
     }
+
+    public function get_csv(int $form_id, string $slug)
+    {
+        $imet = (static::$form_class)::find($form_id);
+        $this->authorize('view', $imet);
+
+        parent::get_csv($form_id, $slug);
+    }
 }

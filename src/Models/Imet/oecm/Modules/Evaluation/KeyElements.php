@@ -30,6 +30,8 @@ class KeyElements extends Modules\Component\ImetModule_Eval
         [Modules\Evaluation\ManagementActivities::class, 'Aspect']
     ];
 
+    protected static array $extra_raw_fields = ['Ranking' => '__score'];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';

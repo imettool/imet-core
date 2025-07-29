@@ -32,6 +32,8 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         [Modules\Evaluation\InformationAvailability::class, 'Stakeholder']
     ];
 
+    protected static array $extra_raw_fields = ['Ranking' => '__score'];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_TABLE';

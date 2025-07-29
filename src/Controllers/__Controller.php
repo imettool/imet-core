@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers;
 
+use ImetCore\Services\Api\ImetDetails;
 use ModularForms\Controllers\FormController as BaseFormController;
 
 /**
@@ -21,4 +22,16 @@ use ModularForms\Controllers\FormController as BaseFormController;
 class __Controller extends BaseFormController
 {
     public const AUTHORIZE_BY_POLICY = true;
+
+    public function get_csv(int $imet, string $slug)
+    {
+        $csv_content = ImetDetails::getImetDetailsCsv($slug, $imet);
+        $filename = 'imet_' . $slug . '_' . $imet . '_' . date('Y-m-d') . '.csv';
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        echo $csv_content;
+        exit;
+    }
 }
