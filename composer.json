@@ -16,7 +16,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "^2.0"
+        "andreamarelli/modular-forms": "dev-csv_extract",
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"
