@@ -87,4 +87,25 @@ class Networks extends Modules\Component\ImetModule
 
         return $record;
     }
+
+    protected function customValue(array $record, array $field): string|array|null
+    {
+        $value = $record[$field['name']] ?? null;
+        if ($field['name'] === 'ProtectedAreas') {
+            $pas = explode(',', $value);
+            $value = "";
+            $pas_length = count($pas);
+            for($index = 0; $index < $pas_length; $index++) {
+                $model = ProtectedArea::where('wdpa_id','=',$pas[$index])->get()->toArray();
+                if(!empty($model)) {
+                    if($index === 0) {
+                        $value .= $model[0]['name'];
+                    } else {
+                        $value .= ", {$model[0]['name']}";
+                    }
+                }
+            }
+        }
+        return $value;
+    }
 }

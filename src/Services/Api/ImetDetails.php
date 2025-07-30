@@ -66,21 +66,27 @@ class ImetDetails
         return $value;
     }
 
-    public static function getImetDetailsCsv(string $slug, int $form_id, bool $download = true): string
+    /**
+     * Generates a CSV string representation of IMET details for the specified slug and form ID.
+     *
+     * @param string $slug The identifier used to fetch specific IMET details.
+     * @param int $form_id The ID of the form associated with the IMET details.
+     * @return string Returns a CSV formatted string containing the details and data for the specified IMET.
+     */
+    public static function getImetDetailsCsv(string $slug, int $form_id): string
     {
-        $items = static::getImetDetails($slug, $form_id);
-        $labels = $items['labels'];
-        $data = $items['data'];
+        $model = ModuleKey::KeyToClassName($slug);
+        $instance = new $model();
+        $data = $instance->extractRawData($form_id);
+        $header = implode(';', array_keys($data[0])) . "\n";
 
-        $header = implode(',', array_values($labels)) . "\n";
-
+        // Prepare CSV rows
         $rows = [];
         foreach ($data as $row) {
-            $rows[] = implode(',', array_map(function ($value) {
-                return '"' . str_replace('"', '""', $value) . '"'; // Escape double quotes
+            $rows[] = implode(';', array_map(function ($value) {
+                return '"' . str_replace('"', '""', $value) . '"';
             }, $row));
         }
-
         return $header . implode("\n", $rows);
     }
 }
