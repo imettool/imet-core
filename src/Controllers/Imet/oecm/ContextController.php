@@ -28,7 +28,7 @@ class ContextController extends Controller
         ]);
     }
 
-    public function get_csv(int $imet, string $slug): \Illuminate\Http\Response
+    public function get_csv(int $imet, string $slug)
     {
         $imet = (static::$form_class)::find($imet);
         $this->authorize('view', $imet);

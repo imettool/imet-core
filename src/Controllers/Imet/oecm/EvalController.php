@@ -19,7 +19,7 @@ class EvalController extends BaseEvalController
     protected static ?string $form_class = Imet_Eval::class;
     protected static ?string $form_view_prefix = 'imet-core::oecm.evaluation';
 
-    public function get_csv(int $imet, string $slug): \Illuminate\Http\Response
+    public function get_csv(int $imet, string $slug)
     {
         $imet = (static::$form_class)::find($imet);
         $this->authorize('view', $imet);
