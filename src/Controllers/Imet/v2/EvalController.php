@@ -102,12 +102,12 @@ class EvalController extends BaseEvalController
         ]);
     }
 
-    public function get_csv(int $imet, string $slug)
+    public function get_csv(int $item, string $slug)
     {
-        $imet = (static::$form_class)::find($imet);
+        $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($imet, $slug);
+        parent::get_csv($item, $slug);
     }
 
 }

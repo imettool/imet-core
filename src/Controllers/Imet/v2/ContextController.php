@@ -19,12 +19,12 @@ class ContextController extends Controller
     protected static ?string $form_view_prefix = 'imet-core::v2.context';
     protected static ?string $form_default_step = 'general_info';
 
-    public function get_csv(int $imet, string $slug)
+    public function get_csv(int $item, string $slug)
     {
-        $imet = (static::$form_class)::find($imet);
+        $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($imet, $slug);
+        parent::get_csv($item, $slug);
     }
 
 }

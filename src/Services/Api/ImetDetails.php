@@ -73,11 +73,11 @@ class ImetDetails
      * @param int $imet The ID of the form associated with the IMET details.
      * @return string Returns a CSV formatted string containing the details and data for the specified IMET.
      */
-    public static function getImetDetailsCsv(string $slug, int $imet): string
+    public static function getImetDetailsCsv(string $slug, int $item): string
     {
         $model = ModuleKey::KeyToClassName($slug);
         $instance = new $model();
-        $data = $instance->extractRawData($imet);
+        $data = $instance->extractRawData($item);
         $header = implode(';', array_keys($data[0])) . "\n";
 
         // Prepare CSV rows
