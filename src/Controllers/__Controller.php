@@ -26,7 +26,7 @@ class __Controller extends BaseFormController
     public function get_csv(int $item, string $slug)
     {
         $csv_content = ImetDetails::getImetDetailsCsv($slug, $item);
-        $filename = 'imet_' . $slug . '_' . $item . '_' . date('Y-m-d') . '.csv';
+        $filename = $slug . '_' . $item . '_' . date('Y-m-d') . '.csv';
         header('Content-Type: text/csv; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $filename . '"');
         header('Pragma: no-cache');
