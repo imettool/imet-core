@@ -30,6 +30,13 @@ class Menaces extends Modules\Component\ImetModule_Eval
         [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
     ];
 
+    protected static array $extra_raw_fields = ['rank' => '_rank',
+        'Impact' => '_Impact',
+        'Extension' => '_Extension',
+        'Duration' => '_Duration',
+        'Trend' => '_Trend',
+        'Probability' => '_Probability'];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';

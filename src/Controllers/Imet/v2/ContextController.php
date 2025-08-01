@@ -12,19 +12,20 @@
 namespace ImetCore\Controllers\Imet\v2;
 
 
-use ImetCore\Services\Api\ImetDetails;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
 
 class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::v2.context';
     protected static ?string $form_default_step = 'general_info';
 
-    public function get_csv(int $item, string $slug)
+    public function get_csv(int $item, string $slug): BinaryFileResponse
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($item, $slug);
+        return parent::get_csv($item, $slug);
     }
 
 }

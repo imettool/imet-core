@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\oecm;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ContextController extends Controller
 {
@@ -28,12 +29,12 @@ class ContextController extends Controller
         ]);
     }
 
-    public function get_csv(int $item, string $slug)
+    public function get_csv(int $item, string $slug): BinaryFileResponse
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($item, $slug);
+        return parent::get_csv($item, $slug);
     }
 
 }

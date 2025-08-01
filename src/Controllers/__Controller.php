@@ -13,6 +13,8 @@ namespace ImetCore\Controllers;
 
 use ImetCore\Services\Api\ImetDetails;
 use ModularForms\Controllers\FormController as BaseFormController;
+use ModularForms\Helpers\File\File;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class FormController
@@ -23,15 +25,10 @@ class __Controller extends BaseFormController
 {
     public const AUTHORIZE_BY_POLICY = true;
 
-    public function get_csv(int $item, string $slug)
+    public function get_csv(int $item, string $slug): BinaryFileResponse
     {
         $csv_content = ImetDetails::getImetDetailsCsv($slug, $item);
         $filename = $slug . '_' . $item . '_' . date('Y-m-d') . '.csv';
-        header('Content-Type: text/csv; charset=utf-8');
-        header('Content-Disposition: attachment; filename="' . $filename . '"');
-        header('Pragma: no-cache');
-        header('Expires: 0');
-        echo $csv_content;
-        exit;
+        return File::exportToCSV($filename, $csv_content);
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function view;
 
@@ -102,12 +103,12 @@ class EvalController extends BaseEvalController
         ]);
     }
 
-    public function get_csv(int $item, string $slug)
+    public function get_csv(int $item, string $slug): BinaryFileResponse
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($item, $slug);
+        return parent::get_csv($item, $slug);
     }
 
 }

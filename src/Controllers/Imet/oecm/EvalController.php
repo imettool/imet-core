@@ -13,17 +13,18 @@ namespace ImetCore\Controllers\Imet\oecm;
 
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\oecm\Imet_Eval;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class EvalController extends BaseEvalController
 {
     protected static ?string $form_class = Imet_Eval::class;
     protected static ?string $form_view_prefix = 'imet-core::oecm.evaluation';
 
-    public function get_csv(int $item, string $slug)
+    public function get_csv(int $item, string $slug): BinaryFileResponse
     {
         $imet = (static::$form_class)::find($item);
         $this->authorize('view', $imet);
 
-        parent::get_csv($item, $slug);
+        return parent::get_csv($item, $slug);
     }
 }

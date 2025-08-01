@@ -77,16 +77,6 @@ class ImetDetails
     {
         $model = ModuleKey::KeyToClassName($slug);
         $instance = new $model();
-        $data = $instance->extractRawData($item);
-        $header = implode(';', array_keys($data[0])) . "\n";
-
-        // Prepare CSV rows
-        $rows = [];
-        foreach ($data as $row) {
-            $rows[] = implode(';', array_map(function ($value) {
-                return '"' . str_replace('"', '""', $value) . '"';
-            }, $row));
-        }
-        return $header . implode("\n", $rows);
+        return $instance->extractRawData($item);
     }
 }
