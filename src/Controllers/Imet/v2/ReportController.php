@@ -15,7 +15,7 @@ use ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Imet\v2\Modules;
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
@@ -59,7 +59,7 @@ class ReportController extends BaseReportController
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->map(function ($item) {
-                    return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
+                    return Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item;
                 })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];

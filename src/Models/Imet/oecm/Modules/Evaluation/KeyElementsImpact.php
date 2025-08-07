@@ -11,7 +11,7 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Input\SelectionList;

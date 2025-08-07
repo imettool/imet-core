@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp;
 use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Helpers\API\DOPA\DOPA;
 use ImetCore\Helpers\Database;
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet\API\Comments\Comments;
 use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
@@ -206,7 +206,7 @@ class ScalingUpAnalysis extends Model
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->map(function ($item) {
-                    return [$item['group_key'] => Animal::getPlainNameByTaxonomy($item['Aspect'])];
+                    return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
                 })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];

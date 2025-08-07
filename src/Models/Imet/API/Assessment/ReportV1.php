@@ -11,7 +11,7 @@
 
 namespace ImetCore\Models\Imet\API\Assessment;
 
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Models\Imet\v1\Modules\Context\Areas;
@@ -133,7 +133,7 @@ class ReportV1
             'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                 return $item['IncludeInStatistics'];
             })->pluck('Aspect')->map(function ($item) {
-                return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
+                return Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item;
             })->toArray(),
             'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                 return $item['IncludeInStatistics'];

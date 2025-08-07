@@ -11,7 +11,7 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
 use Illuminate\Support\Str;
@@ -65,7 +65,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
         // ### replace values with labels ###
         foreach ($to_be_dropped as $index => $item){
             if(Str::contains('|', $item)){
-                $to_be_dropped[$index] = Animal::getScientificName($item);
+                $to_be_dropped[$index] = Species::getScientificName($item);
             }
         }
 
@@ -84,7 +84,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
             ->pluck('species')
             ->map(function ($item) {
                 return Str::contains($item, '|')
-                    ? Animal::getScientificName($item)
+                    ? Species::getScientificName($item)
                     : $item;
             })
             ->toArray();
