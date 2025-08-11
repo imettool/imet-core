@@ -15,7 +15,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
@@ -61,8 +61,8 @@ class AnimalSpecies extends Modules\Component\ImetModule
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if ($value && Animal::isTaxonomy($value)) {
-            $taxonomy = Animal::parseTaxonomy($value);
+        if ($value && Species::isTaxonomy($value)) {
+            $taxonomy = Species::parseTaxonomy($value);
             return $taxonomy['genus'] . ' ' . $taxonomy['species'];
         }
         return $value;

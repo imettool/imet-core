@@ -11,8 +11,8 @@
 
 namespace ImetCore\Services\Api;
 
+use ImetCore\Models\Species;
 use ModularForms\Helpers\ModuleKey;
-use ImetCore\Models\Animal;
 
 class ImetDetails
 {
@@ -59,8 +59,8 @@ class ImetDetails
      */
     private static function animalScientificName(string $value): string
     {
-        if (Animal::isTaxonomy($value)) {
-            $taxonomy = Animal::parseTaxonomy($value);
+        if (Species::isTaxonomy($value)) {
+            $taxonomy = Species::parseTaxonomy($value);
             return $taxonomy['genus'] . ' ' . $taxonomy['species'];
         }
         return $value;

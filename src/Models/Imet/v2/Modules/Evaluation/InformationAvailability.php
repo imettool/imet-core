@@ -12,8 +12,8 @@
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
-use \ImetCore\Models\Animal;
 
 class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
@@ -106,8 +106,8 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if (Animal::isTaxonomy($value)) {
-            $taxonomy = Animal::parseTaxonomy($value);
+        if (Species::isTaxonomy($value)) {
+            $taxonomy = Species::parseTaxonomy($value);
             return $taxonomy['genus'] . ' ' . $taxonomy['species'];
         }
         return $value;

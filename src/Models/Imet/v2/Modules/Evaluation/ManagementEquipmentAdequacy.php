@@ -11,7 +11,6 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use ImetCore\Models\Animal;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 

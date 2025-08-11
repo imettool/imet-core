@@ -12,10 +12,8 @@
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
-use \ImetCore\Models\Animal;
 
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
@@ -101,8 +99,8 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if ($value && Animal::isTaxonomy($value)) {
-            $taxonomy = Animal::parseTaxonomy($value);
+        if ($value && Species::isTaxonomy($value)) {
+            $taxonomy = Species::parseTaxonomy($value);
             return $taxonomy['genus'] . ' ' . $taxonomy['species'];
         }
         return $value;
