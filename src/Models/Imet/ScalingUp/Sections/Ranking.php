@@ -293,10 +293,17 @@ class Ranking
             foreach ($indicators as $ind => $indicator) {
                 $label = trans('imet-core::common.steps_eval.' . $ind);
                 $percent['legends'][$ind] = $label;
-                $percent_value = Common::round_number(($indicator / $total_values[$name]) * 100);
-                $percent['percent_values'][$label][] = $percent_value;
-                $percent['values'][$label][] = $collect_values_for_sorting[] = Common::round_number(($percent_value / 100) * $assessment['imet_index']);
+                if($total_values[$name] === 0){
+                    $percent_value = "-";
+                    $percent['percent_values'][$label][] = "-";
+                    $percent['values'][$label][] = $collect_values_for_sorting[] = "-";
+                } else {
+                    $percent_value = Common::round_number(($indicator / $total_values[$name]) * 100);
+                    $percent['percent_values'][$label][] = $percent_value;
+                    $percent['values'][$label][] = $collect_values_for_sorting[] = Common::round_number(($percent_value / 100) * $assessment['imet_index']);
+                }
                 $percent['actual_value'][$label][] = Common::round_number($indicator);
+
             }
         }
 

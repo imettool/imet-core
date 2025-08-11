@@ -24,17 +24,19 @@ use Illuminate\Support\Facades\DB;
 class UsersController extends __Controller
 {
     protected static ?string $form_class = Role::class;
-    protected static ?string $form_view_prefix = 'imet-core::users/';
+    protected static ?string $form_view_prefix = 'imet-core::users';
 
     /**
-     * Manage "list_by_role" route
+     * @param Request $request
+     * @param $role_type
+     * @return Application|View|Factory
      */
     public function list_by_role(Request $request, $role_type = null): Application|View|Factory
     {
         $this->authorize('manage', static::$form_class);
 
         $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
-        $users = (config('imet-core.user'))::where('imet_role', $role_type)
+        $users = (config('imet-core.user'))::select(['id'])->where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
             ->map(function ($item){
@@ -50,14 +52,14 @@ class UsersController extends __Controller
                 }
                 unset($item['imet_roles']);
                 return [
-                    'user' => $item,
+                    'user' => $item['id'],
                     'role_isos' => json_encode($role_isos),
-                    'role_wdpas' => implode(',', $role_wdpas),
+                    'role_wdpas' => json_encode($role_wdpas),
                     'changed' => false
                 ];
             });
 
-        return view(static::$form_view_prefix . 'roles', [
+        return view(static::$form_view_prefix . '.roles', [
             'controller' => static::class,
             'role' => $role_type,
             'users_and_roles' => $users
@@ -69,11 +71,37 @@ class UsersController extends __Controller
      */
     public function search(Request $request): JsonResponse
     {
+        $this->authorize('manage', static::$form_class);
         $list = $request->filled('search_key')
             ? (config('imet-core.user'))::searchByKey($request->input('search_key'))
             : collect();
 
         return static::sendAPIResponse($list->toArray());
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function get_labels(Request $request): JsonResponse
+    {
+        $this->authorize('manage', static::$form_class);
+        $pairs = [];
+
+        if($request->filled('id')){
+
+            $id = $request->input(['id']);
+            $pairs = (config('imet-core.user'))::select(['id', 'first_name', 'last_name'])
+                ->where('id', $id)
+                ->get()
+                ->map(function($user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => [$user->getName()]
+                    ];
+                });
+        }
+        return static::sendAPIResponse($pairs);
     }
 
     /**
@@ -93,9 +121,9 @@ class UsersController extends __Controller
             foreach ($records as $record){
                 if($record['user']){
                     // Remove any eventual role and set user's imet_role
-                    Role::where('user_id', $record['user']['id'])->delete();
-                    (config('imet-core.user'))::find($record['user']['id'])->update(['imet_role' => $role_type]);
-                    $defined_users[] = $record['user']['id'];
+                    Role::where('user_id', $record['user'])->delete();
+                    (config('imet-core.user'))::find($record['user'])->update(['imet_role' => $role_type]);
+                    $defined_users[] = $record['user'];
                 }
             }
             // Set imet_role to null for any user with the given role which is not in the provided list
@@ -108,9 +136,8 @@ class UsersController extends __Controller
 
             foreach ($records as $record){
                 if($record['user'] !== null){
-
-                    $user_id = $record['user']['id'];
-                    $wdpas = explode(',', $record['role_wdpas']) ?? [];
+                    $user_id = $record['user'];
+                    $wdpas = json_decode($record['role_wdpas']) ?? [];
                     $isos = json_decode($record['role_isos']) ?? [];
 
                     $wdpas = array_unique(array_filter($wdpas));
@@ -119,7 +146,7 @@ class UsersController extends __Controller
                     // Create/update provided roles
                     if(!empty($wdpas)){
                         foreach ($wdpas as $wdpa){
-                            $attributes = [ 'user_id' => $user_id, 'wdpa' => $wdpa, 'country' => null ];
+                            $attributes = [ 'user_id' => $user_id, 'wdpa' => $wdpa, 'country' => null];
                             Role::updateOrCreate($attributes, $attributes);
                         }
                     }
@@ -129,7 +156,6 @@ class UsersController extends __Controller
                             Role::updateOrCreate($attributes, $attributes);
                         }
                     }
-
                     // Remove any extra role
                     Role::where('user_id', $user_id)
                         ->whereNull('country')
