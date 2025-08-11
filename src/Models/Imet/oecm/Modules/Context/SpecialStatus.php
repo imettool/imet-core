@@ -20,6 +20,7 @@ class SpecialStatus extends Modules\Component\ImetModule
     protected $table = 'context_special_status';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    protected static array $exclude_raw_fields = ['upload'];
 
     public function __construct(array $attributes = []) {
 

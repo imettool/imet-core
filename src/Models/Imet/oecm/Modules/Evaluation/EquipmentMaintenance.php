@@ -90,4 +90,15 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
         return $result;
     }
+
+    public function customValue(array $record, array $field): string|array|null
+    {
+        $value = $record[$field['name']] ?? null;
+        if($field['name'] === 'Equipment') {
+            $list = trans('imet-core::oecm_context.Equipments.groups');
+            return $list[$value] ?? null;
+        }
+
+        return $value;
+    }
 }

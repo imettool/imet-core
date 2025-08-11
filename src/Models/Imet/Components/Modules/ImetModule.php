@@ -42,6 +42,8 @@ class ImetModule extends Module
     protected $primaryKey = 'id';
     public static ?string $foreign_key = 'FormID';
 
+    protected bool $enable_raw_export = true;
+
     public $ratingLegend = null;
     public $module_subTitle = null;
     public $module_info_EvaluationQuestion = null;

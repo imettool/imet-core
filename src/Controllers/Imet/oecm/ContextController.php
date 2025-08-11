@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\oecm;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ContextController extends Controller
 {

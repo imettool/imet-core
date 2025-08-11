@@ -1,6 +1,6 @@
 <?php
 
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ModularForms\Helpers\Input\SelectionList;
 use Illuminate\Support\Str;
 
@@ -14,24 +14,24 @@ $only_label = $only_label ?? false;
 ?>
 
 @if(Str::contains($type, 'selector-wdpa_multiple'))
-    <?php
-        if($value !== null){
+        <?php
+        if ($value !== null) {
             $values = array_map(function ($value) use ($type) {
                 return SelectionList::getLabel('Imet_ProtectedArea', str_replace('OFAC_', '', $value));
             }, explode(',', $value));
             $value = implode(',', $values);
         }
-    ?>
+        ?>
     <div class="field-preview">
         {!! $value ?? '&nbsp;' !!}
     </div>
 
 @elseif(Str::contains($type, 'selector-species_animal'))
-    <?php
-        if($value !== null){
-            $value = Animal::getPlainNameByTaxonomy($value);
+        <?php
+        if ($value !== null) {
+            $value = Species::getPlainNameByTaxonomy($value);
         }
-    ?>
+        ?>
     <div class="field-preview">
         {!! $value ?? '&nbsp;' !!}
     </div>

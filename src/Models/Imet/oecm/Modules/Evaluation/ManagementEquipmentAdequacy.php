@@ -89,4 +89,16 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         return $result;
     }
 
+    protected function customValue(array $record, array $field): string|array|null
+    {
+        $value = $record[$field['name']] ?? null;
+        if($field['type'] === 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy'){
+            return $record['__predefined_label'];
+        }
+        if($field['type'] === 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy_score'){
+            return $record['__adequacy'];
+        }
+        return $value;
+    }
+
 }

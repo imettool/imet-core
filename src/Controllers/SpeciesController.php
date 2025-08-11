@@ -13,7 +13,7 @@ namespace ImetCore\Controllers;
 
 use ModularForms\Controllers\Controller;
 use ModularForms\Helpers\HTTP;
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ class SpeciesController extends Controller
             ]);
 
             // Perform search query
-            $species = Animal::searchSpecies($request->input('search_key'))
+            $species = Species::searchSpecies($request->input('search_key'))
                 ->map(function ($item){
                     if($item['iucn_redlist_category']==="LR/nt"){
                         $item['iucn_redlist_category'] = 'NT';

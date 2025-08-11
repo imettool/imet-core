@@ -12,7 +12,7 @@
 namespace ImetCore\Models\Imet\API\ScalingUp;
 
 
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 
@@ -41,7 +41,7 @@ trait KeyElements
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->map(function ($item) {
-                    return [$item['group_key'] => Animal::getPlainNameByTaxonomy($item['Aspect'])];
+                    return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
                 })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];

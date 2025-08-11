@@ -21,6 +21,8 @@ class Contexts extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
+    protected static array $exclude_raw_fields = ['file'];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'ACCORDION';

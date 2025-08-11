@@ -17,7 +17,7 @@ use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\API\DOPA\DOPA;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Models\Imet\v1\Modules;
-use ImetCore\Models\Animal;
+use ImetCore\Models\Species;
 use Illuminate\Support\Str;
 use ReflectionException;
 
@@ -58,7 +58,7 @@ class ReportController extends BaseReportController
             'key_elements' => [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
                     ->pluck('Aspect')->map(function ($item) {
-                        return Str::contains('|', $item) ? Animal::getByTaxonomy($item)->binomial : $item;
+                        return Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item;
                     })->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
                     ->pluck('Aspect')->toArray(),

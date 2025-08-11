@@ -19,7 +19,7 @@ class GeographicalLocation extends Modules\Component\ImetModule
     protected $table = 'context_localization';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
-
+    protected static array $exclude_raw_fields = ['Shapefile'];
     public function __construct(array $attributes = []) {
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.1';
