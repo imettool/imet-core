@@ -1,6 +1,6 @@
 imet-core
 
-version: 2.0.16
+version: 2.0.17
 
 Copyright (C) 2025 European Union
 
