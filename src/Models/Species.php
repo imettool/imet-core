@@ -46,30 +46,71 @@ class Species extends Animal
     }
 
     /**
-     * Filter a collection to search by string: Replacement for PostgreSQL unaccent() function
+     * Search Species by given string
      */
-    public static function filterBySearchString(Collection $collection, string $search_key): Collection
+    public static function searchSpecies(string $search_key): Collection
+    {
+        // Query the database for species matching the search key
+        $species = static::query()
+            ->whereLike('phylum', '%' . $search_key . '%')
+            ->orWhereLike('class', '%' . $search_key . '%')
+            ->orWhereLike('order', '%' . $search_key . '%')
+            ->orWhereLike('family', '%' . $search_key . '%')
+            ->orWhereLike('genus', '%' . $search_key . '%')
+            ->orWhereLike('species', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_eng', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_spa', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_por', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_fra', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_rus', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_deu', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_ita', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_jpn', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_zho', '%' . $search_key . '%')
+            ->orWhereLike('vernacular_names_kor', '%' . $search_key . '%')
+            ->orderBy('phylum')
+            ->orderBy('class')
+            ->orderBy('order')
+            ->orderBy('family')
+            ->orderBy('genus')
+            ->orderBy('species')
+            ->limit(99)
+            ->get();
+
+        // Sort by Levenshtein distance
+        $species =  static::sortByLevenshteinDistance($species, $search_key);
+
+        return $species;
+    }
+
+    /**
+     * Calculate Levenshtein distance for each species
+     */
+    private static function sortByLevenshteinDistance(Collection $collection, string $search_key): Collection
     {
         return $collection
-            ->filter(function($item) use ($search_key){
-                return Chars::case_and_accent_insensitive_contains($item['phylum'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['class'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['order'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['family'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['genus'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['species'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_eng'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_spa'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_por'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_fra'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_rus'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_deu'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_ita'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_jpn'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_zho'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['vernacular_names_kor'], $search_key)
-                    || Chars::case_and_accent_insensitive_contains($item['common_name_sp'], $search_key);
-            });
+            ->map(function ($item) use($search_key) {
+                $item['__levenshtein'] = max(
+                    levenshtein($item['phylum'], $search_key),
+                    levenshtein($item['class'], $search_key),
+                    levenshtein($item['order'], $search_key),
+                    levenshtein($item['family'], $search_key),
+                    levenshtein($item['genus'], $search_key),
+                    levenshtein($item['species'], $search_key),
+                    levenshtein($item['vernacular_names_eng'], $search_key),
+                    levenshtein($item['vernacular_names_spa'], $search_key),
+                    levenshtein($item['vernacular_names_por'], $search_key),
+                    levenshtein($item['vernacular_names_fra'], $search_key),
+                    levenshtein($item['vernacular_names_rus'], $search_key),
+                    levenshtein($item['vernacular_names_deu'], $search_key),
+                    levenshtein($item['vernacular_names_ita'], $search_key),
+                    levenshtein($item['vernacular_names_jpn'], $search_key),
+                    levenshtein($item['vernacular_names_zho'], $search_key),
+                    levenshtein($item['vernacular_names_kor'], $search_key)
+                );
+                return $item;
+            })
+            ->sortBy('__levenshtein');
     }
-    
+
 }

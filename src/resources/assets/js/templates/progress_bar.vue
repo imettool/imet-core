@@ -21,7 +21,7 @@
 
 <style scoped>
 
-    @import "tailwindcss";
+    @reference "@modular-forms/index.css";
 
     .progress-bar{
         position: relative;

@@ -26,7 +26,7 @@ $only_label = $only_label ?? false;
         {!! $value ?? '&nbsp;' !!}
     </div>
 
-@elseif(Str::contains($type, 'selector-species_animal'))
+@elseif(Str::contains($type, 'selector-species'))
         <?php
         if ($value !== null) {
             $value = Species::getPlainNameByTaxonomy($value);

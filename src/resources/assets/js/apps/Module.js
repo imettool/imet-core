@@ -11,6 +11,7 @@
 import Module from "@modular-forms/js/apps/Module.js";
 
 import scopeIcon from "../templates/scope_icon.vue";
+import selectorSpecies from "../inputs/selector-species.vue";
 import selectorWdpa from "../inputs/selector-wdpa.vue";
 import imetScoreBar from "../templates/imet_score_bar.vue";
 
@@ -22,6 +23,7 @@ export default class ModuleImet extends Module {
 
             // Register components
             .component('selector-wdpa', selectorWdpa)
+            .component('selector-species', selectorSpecies)
             .component('scope-icon', scopeIcon)
             .component('imet_score_bar', imetScoreBar);
     }

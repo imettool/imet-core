@@ -162,8 +162,8 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
         // ###### Selectors ######
         Route::group(['prefix' => 'selector'], function () {
 
-            Route::group(['prefix' => 'animal'], function () {
-                Route::post('search', [SpeciesController::class, 'search'])->name('selector.animal.search');
+            Route::group(['prefix' => 'species'], function () {
+                Route::post('search', [SpeciesController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX . 'selector.species.search');
             });
 
             Route::group(['prefix' => 'pas'], function () {

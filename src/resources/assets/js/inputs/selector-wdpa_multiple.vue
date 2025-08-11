@@ -47,7 +47,7 @@
 
 <style scoped>
 
-    @import "tailwindcss";
+    @reference "@modular-forms/index.css";
 
     .result_left{
       text-align: left;

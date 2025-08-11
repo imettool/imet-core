@@ -32,16 +32,16 @@ return new class extends Migration
             ]);
             $table->dropUnique(['order', 'family', 'genus', 'species']);
 
-            $table->string('vernacular_names_eng', 250)->nullable();
-            $table->string('vernacular_names_spa', 250)->nullable();
-            $table->string('vernacular_names_por', 250)->nullable();
-            $table->string('vernacular_names_fra', 250)->nullable();
-            $table->string('vernacular_names_rus', 250)->nullable();
-            $table->string('vernacular_names_deu', 250)->nullable();
-            $table->string('vernacular_names_ita', 250)->nullable();
-            $table->string('vernacular_names_jpn', 250)->nullable();
-            $table->string('vernacular_names_zho', 250)->nullable();
-            $table->string('vernacular_names_kor', 250)->nullable();
+            $table->string('vernacular_names_eng', 500)->nullable();
+            $table->string('vernacular_names_spa', 500)->nullable();
+            $table->string('vernacular_names_por', 500)->nullable();
+            $table->string('vernacular_names_fra', 500)->nullable();
+            $table->string('vernacular_names_rus', 500)->nullable();
+            $table->string('vernacular_names_deu', 500)->nullable();
+            $table->string('vernacular_names_ita', 500)->nullable();
+            $table->string('vernacular_names_jpn', 500)->nullable();
+            $table->string('vernacular_names_zho', 500)->nullable();
+            $table->string('vernacular_names_kor', 500)->nullable();
             $table->string('authorship', 250)->nullable();
             $table->string('col_id', 25)->nullable();
             $table->string('environment', 250)->nullable();

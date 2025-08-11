@@ -37,6 +37,13 @@ $other_attributes = $other ?? '';
         {!! $vue_attributes !!}
     ></selector-wdpa>
 
+@elseif(Str::contains($type, 'selector-species'))
+    <selector-species
+            {!! $vue_attributes !!}
+            search-url="{{ route('imet-core::selector.species.search') }}"
+            :with-insert={{ Str::contains($type, 'withInsert') ? 'true' : 'false' }}
+    ></selector-species>
+
 
 @endif
 

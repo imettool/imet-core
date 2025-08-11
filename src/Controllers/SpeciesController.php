@@ -36,16 +36,7 @@ class SpeciesController extends Controller
             ]);
 
             // Perform search query
-            $species = Species::searchSpecies($request->input('search_key'))
-                ->map(function ($item){
-                    if($item['iucn_redlist_category']==="LR/nt"){
-                        $item['iucn_redlist_category'] = 'NT';
-                    }
-                    if($item['iucn_redlist_category']==="LR/lc"){
-                        $item['iucn_redlist_category'] = 'LC';
-                    }
-                    return $item;
-                });
+            $species = Species::searchSpecies($request->input('search_key'));
 
             // Organize order by classes
             $ordersByClass = $species
