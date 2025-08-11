@@ -32,11 +32,10 @@ use \ImetCore\Models\Imet\Imet;
     <br/>
 
     <div id="export_list">
-
         <div class="flex">
             <form target="_blank" ref="filterForm" method="POST"
                   action="{{ route($route_prefix . 'export_batch') }}">
-                <button type="submit" class="btn-nav rounded-sm" :disabled="exportDisabled">Export
+                <button type="submit" class="btn-nav rounded-sm mr-2 mt-2" :disabled="exportDisabled">Export
                 </button>
                 {{ csrf_field() }}
                 <input type='hidden' name="selection" v-model="checkboxes">
@@ -101,43 +100,9 @@ use \ImetCore\Models\Imet\Imet;
 @endsection
 
 @push('scripts')
-
-    <script>
-
-        new Vue({
-            el: '#export_list',
-
-            data: {
-                checkboxes: [],
-                list: @json($list),
-                status: 'idle',
-                error_message: null,
-                isCheckAll: false,
-                exportDisabled: true,
-            },
-            computed: {
-                items() {
-                    return this.list;
-                },
-                totalCount() {
-                    return this.list.length;
-                }
-            },
-            methods: {
-                exportToggle: function () {
-                    this.exportDisabled = this.checkboxes.length === 0;
-                },
-                checkAll: function () {
-                    if (!this.isCheckAll) {
-                        for (const item in this.list) {
-                            this.checkboxes.push(this.list[item].FormID);
-                        }
-                    } else {
-                        this.checkboxes = [];
-                    }
-                    this.exportDisabled = this.checkboxes.length === 0;
-                }
-            }
-        })
+    <script type="module">
+        (new window.ImetCore.Apps.ExportApp({
+            list: @json($list),
+        })).mount('#export_list');
     </script>
 @endpush
