@@ -11,11 +11,11 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
+use ImetCore\Models\Animal;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
@@ -56,6 +56,16 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $this->validation_min3 = trans('imet-core::v2_context.AnimalSpecies.validation_min3');
 
         parent::__construct($attributes);
+    }
+
+    protected function customValue(array $record, array $field): string|array|null
+    {
+        $value = $record[$field['name']] ?? null;
+        if ($value && Animal::isTaxonomy($value)) {
+            $taxonomy = Animal::parseTaxonomy($value);
+            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+        }
+        return $value;
     }
 
 }

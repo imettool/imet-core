@@ -20,6 +20,8 @@ class SpecialStatus extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
+    protected static array $exclude_raw_fields = ['upload'];
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'GROUP_ACCORDION';
@@ -46,4 +48,5 @@ class SpecialStatus extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
+
 }

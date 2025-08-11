@@ -11,6 +11,7 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use ImetCore\Models\Animal;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
@@ -84,6 +85,17 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         }
 
         return $result;
+    }
+
+    protected function customValue(array $record, array $field): string|array|null
+    {
+        if ($field['name'] === 'Equipment') {
+            return $record['__predefined_label'];
+        }
+        if ($field['name'] === 'EvaluationScore') {
+            return $record['__adequacy'];
+        }
+        return $record[$field['name']];
     }
 
 }

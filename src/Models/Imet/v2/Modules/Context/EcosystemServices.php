@@ -13,6 +13,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Traits\Payload;
 use Illuminate\Http\Request;
 
@@ -133,6 +134,17 @@ class EcosystemServices extends Modules\Component\ImetModule
                 + ((2-floatval($record['ImportanceGlobal']))/4);
         }
         return $stat;
+    }
+
+    public function customValue(array $record, array $field): string|array|null
+    {
+        $value = $record[$field['name']] ?? null;
+        if($field['type'] === 'toggle-ImetV2_EcosystemServicesImportance') {
+            $list = SelectionList::getList('ImetV2_EcosystemServicesImportance');
+            return $list[$value] ?? null;
+        }
+
+        return $value;
     }
 
 }

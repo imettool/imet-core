@@ -31,6 +31,13 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         [Modules\Evaluation\EcosystemServices::class, 'Aspect'],
     ];
 
+    protected static array $extra_raw_fields = ['rank' => '_rank',
+        'Importance' => '_Importance',
+        'ImportanceRegional' => '_ImportanceRegional',
+        'ImportanceGlobal' => '_ImportanceGlobal'];
+
+
+
     public function __construct(array $attributes = []) {
 
         $this->module_type = 'TABLE';
