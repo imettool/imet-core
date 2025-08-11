@@ -103,12 +103,4 @@ class EvalController extends BaseEvalController
         ]);
     }
 
-    public function get_csv(int $item, string $slug): BinaryFileResponse
-    {
-        $imet = (static::$form_class)::find($item);
-        $this->authorize('view', $imet);
-
-        return parent::get_csv($item, $slug);
-    }
-
 }

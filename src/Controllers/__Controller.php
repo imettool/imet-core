@@ -25,10 +25,4 @@ class __Controller extends BaseFormController
 {
     public const AUTHORIZE_BY_POLICY = true;
 
-    public function get_csv(int $item, string $slug): BinaryFileResponse
-    {
-        $csv_content = ImetDetails::getImetDetailsCsv($slug, $item);
-        $filename = $slug . '_' . $item . '_' . date('Y-m-d') . '.csv';
-        return File::exportToCSV($filename, $csv_content);
-    }
 }

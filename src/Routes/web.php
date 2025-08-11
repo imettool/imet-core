@@ -117,14 +117,14 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
                 Route::get('{item}/edit/{step?}',[v2\ContextController::class, 'edit'])->name(v2\Controller::ROUTE_PREFIX . 'context_edit');
                 Route::get('{item}/show/{step?}',[v2\ContextController::class, 'show'])->name(v2\Controller::ROUTE_PREFIX . 'context_show');
                 Route::patch('{item}',           [v2\ContextController::class, 'update']);
-                Route::get('{item}/{slug}',[v2\ContextController::class, 'get_csv']);
+                Route::get('raw_export/{item}/{slug}',[v2\ContextController::class, 'raw_export']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
                 Route::get('{item}/edit/{step?}',[v2\EvalController::class, 'edit'])->name(v2\Controller::ROUTE_PREFIX . 'evaluation_edit');
                 Route::get('{item}/show/{step?}',[v2\EvalController::class, 'show'])->name(v2\Controller::ROUTE_PREFIX . 'evaluation_show');
                 Route::get('{item}/print',       [v2\EvalController::class, 'print']);
                 Route::patch('{item}',           [v2\EvalController::class, 'update']);
-                Route::get('{item}/{slug}',[v2\EvalController::class, 'get_csv']);
+                Route::get('raw_export/{item}/{slug}',[v2\EvalController::class, 'raw_export']);
             });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit',   [v2\ReportController::class, 'report'])->name(v2\Controller::ROUTE_PREFIX . 'report_edit');
@@ -209,14 +209,14 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
             Route::get('{item}/show/{step?}',[oecm\ContextController::class, 'show'])->name(oecm\Controller::ROUTE_PREFIX . 'context_show');
             Route::patch('{item}',           [oecm\ContextController::class, 'update']);
             Route::get('{item}/print_sa',           [oecm\ContextController::class, 'print_sa'])->name(oecm\Controller::ROUTE_PREFIX . 'print_sa');
-            Route::get('{item}/{slug}',[oecm\ContextController::class, 'get_csv']);
+            Route::get('raw_export/{item}/{slug}',[oecm\ContextController::class, 'raw_export']);
         });
         Route::group(['prefix' => 'evaluation'], function () {
             Route::get('{item}/edit/{step?}',   [oecm\EvalController::class, 'edit'])->name(oecm\Controller::ROUTE_PREFIX . 'evaluation_edit');
             Route::get('{item}/show/{step?}',   [oecm\EvalController::class, 'show'])->name(oecm\Controller::ROUTE_PREFIX . 'evaluation_show');
             Route::get('{item}/print',          [oecm\EvalController::class, 'print']);
             Route::patch('{item}',              [oecm\EvalController::class, 'update']);
-            Route::get('{item}/{slug}',[oecm\EvalController::class, 'get_csv']);
+            Route::get('raw_export/{item}/{slug}',[oecm\EvalController::class, 'raw_export']);
         });
         Route::group(['prefix' => 'report'], function () {
             Route::get('{item}/edit',   [oecm\ReportController::class, 'report'])->name(oecm\Controller::ROUTE_PREFIX . 'report_edit');
