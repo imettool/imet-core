@@ -17,6 +17,7 @@ return [
     'country'               => 'country',
     'language'              => 'language',
     'version'               => 'version',
+    'link'                  => 'link|links',
 
     'staff' => [
         'first_name'            => 'first name',
@@ -190,6 +191,27 @@ return [
         'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
         'dict_remove_file'  => 'Remove file',
         'dictMaxFilesExceeded' => 'You exceeded the maximum files for upload. Please remove files in order to upload more',
+    ],
+
+    'species' => [
+        'species'           => 'species|species',
+        'common_names'      => 'common names',
+        'taxonomy' => [
+            'taxonomy'      => 'taxonomy',
+            'domain'        => 'domain',
+            'kingdom'       => 'kingdom',
+            'phylum'        => 'phylum',
+            'class'         => 'class',
+            'order'         => 'order',
+            'family'        => 'family',
+            'genus'         => 'genus',
+            'species'       => 'species',
+            'authority'     => 'authority'
+        ],
+        'links' => [
+            'iucn_red_list' => 'IUCN Red List',
+            'col'           => 'Catalogue of Life',
+        ],
     ]
 
 ];

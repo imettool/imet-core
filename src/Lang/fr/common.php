@@ -16,7 +16,8 @@ return [
     'year'                  => 'année',
     'country'               => 'pays',
     'language'              => 'langue',
-    'version'           => 'version',
+    'version'               => 'version',
+    'link'                  => 'lien|liens',
 
     'staff' => [
         'first_name'            => 'prénom',
@@ -190,6 +191,27 @@ return [
         'dict_cancel_upload_confirmation' => 'Êtes-vous sûr de vouloir annuler ce téléchargement ?',
         'dict_remove_file'  => 'Supprimer le fichier',
         'dictMaxFilesExceeded' => 'Vous avez dépassé le nombre maximum de fichiers pour le téléchargement. Veuillez supprimer des fichiers afin d\'en télécharger d\'autres',
+    ],
+
+    'species' => [
+        'species'           => 'espèce|espèces',
+        'common_names'      => 'Noms communs',
+        'taxonomy' => [
+            'taxonomy'      => 'Taxonomie',
+            'domain'        => 'Domaine',
+            'kingdom'       => 'Règne',
+            'phylum'        => 'Division',
+            'class'         => 'Classe',
+            'order'         => 'Ordre',
+            'family'        => 'Famille',
+            'genus'         => 'Genre',
+            'species'       => 'Espèce',
+            'authority'     => 'Autorité'
+        ],
+        'links' => [
+            'iucn_red_list' => 'Liste rouge de l’UICN',
+            'col'           => 'Catalogue de la vie',
+        ]
     ]
 
 ];

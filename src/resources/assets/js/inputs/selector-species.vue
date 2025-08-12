@@ -21,13 +21,13 @@
         <!-- api search - result search filters -->
         <template v-slot:searchResultFilters>
             <i>{{ Locale.getLabel('modular-forms::common.filter_results') }}: </i>&nbsp;&nbsp;
-            {{ Locale.getLabel('modular-forms::entities.biodiversity.taxonomy.class') }}
+            {{ Locale.getLabel('imet-core::common.species.taxonomy.class') }}
             <select v-model=filterByClass v-on:change="filterList(true)" class="field-edit filterByClass">
                 <option v-for="option in classes">
                     {{ option }}
                 </option>
             </select>
-            {{ Locale.getLabel('modular-forms::entities.biodiversity.taxonomy.order') }}
+            {{ Locale.getLabel('imet-core::common.species.taxonomy.order') }}
             <select v-model=filterByOrder v-on:change="filterList(false)" class="field-edit filterByOrder">
                 <option v-for="option in orderByClass()">
                     {{ option }}
@@ -37,12 +37,16 @@
 
         <!-- api search - result header -->
         <template v-slot:searchResultHeader>
-            <th>{{ Locale.getLabel('modular-forms::entities.biodiversity.species', 1) }}</th>
+            <th class="">{{ Locale.getLabel('imet-core::common.species.species', 1) }}</th>
+            <th class="w-1/3">{{ Locale.getLabel('imet-core::common.species.taxonomy.taxonomy') }}</th>
+            <th class="w-1/4">{{ Locale.getLabel('imet-core::common.link', 2) }}</th>
         </template>
 
         <!-- api search - result items -->
         <template #searchResultItem="{ item }">
-            <td><span class="result_left" v-html="getSpeciesDescription(item)"></span></td>
+            <td><span class="result_left" v-html="highlightText(getName(item))"></span></td>
+            <td><span class="result_left" v-html="highlightText(getTaxonomy(item))"></span></td>
+            <td><span class="result_left" v-html="getLinks(item)"></span></td>
         </template>
 
     </selector-dialog>
@@ -50,7 +54,7 @@
 
 </template>
 
-<style lang="css" scoped>
+<style lang="css">
     .result_left{
         text-align: left;
     }
@@ -58,6 +62,10 @@
     .field-edit.filterByOrder{
         width: 200px;
         margin: 0 5px;
+    }
+    .searchHighlight{
+        background-color: yellow;
+        font-weight: bold;
     }
 </style>
 
@@ -124,24 +132,51 @@
         return item;
     }
 
-    function getSpeciesDescription(item) {
-        let description = '<div>' + item.class + ' ' + item.order + ' ' + item.family + ' <b>' + item.genus + ' ' + item.species + '</b>' + '</div>';
+    function getName(item) {
+       return '<div class="highlight font-bold">' + item.species + '</div>' + getCommonNames(item);
+    }
+
+    function getTaxonomy(item) {
+        return '<span><i>' + Locale.getLabel('imet-core::common.species.taxonomy.kingdom') + '</i>: ' + item.kingdom + '</span>, ' +
+            '<span><i>' + Locale.getLabel('imet-core::common.species.taxonomy.phylum') + '</i>: ' + item.phylum + '</span>, ' +
+            '<span><i>' + Locale.getLabel('imet-core::common.species.taxonomy.class') + '</i>: ' + item.class + '</span>, ' +
+            '<span><i>' + Locale.getLabel('imet-core::common.species.taxonomy.order') + '</i>: ' + item.order + '</span>, ' +
+            '<span><i>' + Locale.getLabel('imet-core::common.species.taxonomy.family') + '</i>: ' + item.family + '</span>, ';
+    }
+
+    function getCommonNames(item){
+        let common_names = '';
         if (hasCommonNames(item)) {
-            description += '<div class="common_names"><b><i>' + Locale.getLabel('modular-forms::entities.biodiversity.common_names') + ':</i></b>';
-            description += '<ul class="ml-5">';
+            common_names += '<div class="common_names"><b><i>' + Locale.getLabel('imet-core::common.species.common_names') + ':</i></b>';
+            common_names = '<ul class="list-inside ml-2">';
             props.languages.forEach(function(language){
                 if (typeof item['vernacular_names_' + language] !== undefined
                     && item['vernacular_names_' + language] !== null
                     && item['vernacular_names_' + language] !== ''
                     && item['vernacular_names_' + language].toLowerCase() !== 'null'
                 ) {
-                    description += '<li>' +item['vernacular_names_' + language].replace(/\,/g, ', ') + '</li>'
+                    let name = item['vernacular_names_' + language].replace(/\,/g, ', ');
+                    name = name.charAt(0).toUpperCase() + name.slice(1);
+                    common_names += '<li>' + name + '</li>'
                 }
             });
-            description += '</ul>';
-            description += '</div>';
+            common_names += '</ul>';
+            common_names += '</div>';
         }
-        return description;
+        return common_names;
+    }
+
+    function getLinks(item){
+        let species = item.species.replace(' ', '%20');
+        let links = '<ul class="list-inside ml-3">';
+        // IUCN Red List
+        links += '<li><a href="https://www.iucnredlist.org/search?query='  + species + '&searchType=species" target="_blank" rel="noopener noreferrer">' +
+            Locale.getLabel('imet-core::common.species.links.iucn_red_list') + '</a></li>';
+        // Catalogue of Life
+        links += '<li><a href="https://www.catalogueoflife.org/data/search?q=' + species + '" target="_blank" rel="noopener noreferrer">' +
+            Locale.getLabel('imet-core::common.species.links.col') + '</a></li>';
+        links += '</ul>'
+        return links;
     }
 
     function hasCommonNames(item) {
@@ -153,6 +188,12 @@
             }
         })
         return hasCommonNames;
+    }
+
+    function highlightText(text) {
+        let searchTerm = selectorDialogComponent.value.searchKey;
+        const regex = new RegExp(`(${searchTerm})`, 'gi');
+        return text.replace(regex, '<span class="searchHighlight">$1</span>');
     }
 
     function afterSearch(data){
