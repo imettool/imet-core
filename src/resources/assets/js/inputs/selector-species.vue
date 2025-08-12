@@ -130,7 +130,11 @@
             description += '<div class="common_names"><b><i>' + Locale.getLabel('modular-forms::entities.biodiversity.common_names') + ':</i></b>';
             description += '<ul class="ml-5">';
             props.languages.forEach(function(language){
-                if (item['vernacular_names_' + language] !== null && item['vernacular_names_' + language].toLowerCase() !== 'null' && item['vernacular_names_' + language] !== '') {
+                if (typeof item['vernacular_names_' + language] !== undefined
+                    && item['vernacular_names_' + language] !== null
+                    && item['vernacular_names_' + language] !== ''
+                    && item['vernacular_names_' + language].toLowerCase() !== 'null'
+                ) {
                     description += '<li>' +item['vernacular_names_' + language].replace(/\,/g, ', ') + '</li>'
                 }
             });
