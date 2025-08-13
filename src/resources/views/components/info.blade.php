@@ -68,24 +68,26 @@
         <div class="icon blue">
             {!! \ModularForms\Helpers\Template::icon('star', '', '1.4em') !!}
         </div>
-        <div class="message">
+        <div class="message flex flex-row gap-5">
             @foreach($definitions['ratingLegend'] as $field_name => $ratingLegend)
-
-                @foreach ($definitions['fields'] as $field)
-                    @if($field_name === $field['name'])
-                        <b class="blue">{{ $field['label'] }}</b>:
-                    @endif
-                @endforeach
-                @foreach ($definitions['common_fields'] as $field)
-                    @if($field_name === $field['name'])
-                        <b class="blue">{{ $field['label'] }}</b>:
-                    @endif
-                @endforeach
-                <ul>
-                    @foreach($ratingLegend as $rating=>$label)
-                        <li><i><b>{{ $rating }}</b></i>: {{ $label }}</li>
+                <div class="rating-container flex-col">
+                    @foreach ($definitions['fields'] as $field)
+                        @if($field_name === $field['name'])
+                            <div class="blue">{{ $field['label'] }}</div>
+                        @endif
                     @endforeach
-                </ul>
+                    @foreach ($definitions['common_fields'] as $field)
+                        @if($field_name === $field['name'])
+                            <div class="blue">{{ $field['label'] }}</div>:
+                        @endif
+                    @endforeach
+                    @foreach($ratingLegend as $rating=>$label)
+                        <div class="flex flex-row gap-2">
+                            <div class="rating field-edit @if(\Illuminate\Support\Str::contains($rating, 'N')) ratingNa @else ratingNum @endif">{{ $rating }}</div>
+                            <div class="font-normal">{{ $label }}</div>
+                        </div>
+                    @endforeach
+                </div>
             @endforeach
         </div>
     </div>

@@ -1,6 +1,6 @@
 imet-core
 
-version: 2.0.19
+version: 2.0.20
 
 Copyright (C) 2025 European Union
 
@@ -8,7 +8,7 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__andreamarelli/modular-forms 2.0.7__
+__andreamarelli/modular-forms 2.0.8__
   * git@github.com:andreamarelli/modular-forms
   * License: EUPL-1.2
   * Copyright: 
@@ -32,7 +32,7 @@ __html-to-image 1.11.1__
   * Copyright: 
     * Copyright (c) 2017 W.Y. 
 
-__maplibre-gl 5.5.0__
+__maplibre-gl 5.6.2__
   * https://maplibre.org/
   * License: BSD-3-Clause
   * Copyright: 

@@ -19,3 +19,8 @@
 @import "tailwindcss";
 @source "../**/*.vue";
 @source "../**/*.blade.php";
+
+:root{
+    --ui-font: 'Varela Round', sans-serif;
+    --input-font: 'Varela Round', sans-serif;
+}
