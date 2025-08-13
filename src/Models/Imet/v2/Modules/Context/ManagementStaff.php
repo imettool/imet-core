@@ -29,6 +29,7 @@ class ManagementStaff extends Modules\Component\ImetModule
             ['name' => 'Function',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ManagementStaff.fields.Function')],
             ['name' => 'ExpectedPermanent',  'type' => 'integer',   'label' => trans('imet-core::v2_context.ManagementStaff.fields.ExpectedPermanent')],
             ['name' => 'ActualPermanent',  'type' => 'integer',   'label' => trans('imet-core::v2_context.ManagementStaff.fields.ActualPermanent')],
+            ['name' => 'ActualPermanentPartnersOrCommunities',  'type' => 'integer',   'label' => trans('imet-core::v2_context.ManagementStaff.fields.ActualPermanentPartnersOrCommunities')],
             ['name' => 'Observations',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.ManagementStaff.fields.Observations')],
         ];
 

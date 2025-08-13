@@ -11,22 +11,15 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
-use ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Process
 {
-    protected static function staff_weights(int $imet_id): array
-    {
-        $records = ManagementStaff::getModule($imet_id);
-        return V1Scores::staff_weights($imet_id, $records);
-    }
 
     protected static function score_pr1(int $imet_id): ?float
     {

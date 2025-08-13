@@ -370,7 +370,8 @@ return [
         'fields' => [
             'Function' => 'Funciones',
             'ExpectedPermanent' => 'Personal planificado o adecuado *',
-            'ActualPermanent' => 'Personal actual',
+            'ActualPermanent' => 'Dotación de personal actual (Autoridad Nacional)',
+            'ActualPermanentPartnersOrCommunities' => 'Dotación de personal actual (Socios/Comunidades)',
             'Observations' => 'Notas',
             'difference' => 'Diferencia',
             'Source' => 'Fuente',

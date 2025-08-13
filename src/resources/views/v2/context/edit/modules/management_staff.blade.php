@@ -18,7 +18,7 @@ $table_id = 'table_'.$definitions['module_key'];
                 <th class="text-center">
                     {{ ucfirst($field['label'] ?? '') }}
                 </th>
-                @if($field['name']==="ActualPermanent")
+                @if($field['name']==="ActualPermanentPartnersOrCommunities")
                     <th class="text-center">
                         @uclang('imet-core::v2_context.ManagementStaff.fields.difference')
                     </th>
@@ -43,7 +43,7 @@ $table_id = 'table_'.$definitions['module_key'];
                     'group_key' => $group_key
                 ])
 
-                @if($field['name']==="ActualPermanent")
+                @if($field['name']==="ActualPermanentPartnersOrCommunities")
                     </td>
                     <td>
                         <input type="text" disabled="disabled" style="width: 80px;"

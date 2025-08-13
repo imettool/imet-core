@@ -361,7 +361,8 @@ return [
         'fields' => [
             'Function' => 'Functions',
             'ExpectedPermanent' => 'Planned or adequate staffing *',
-            'ActualPermanent' => 'Current actual staffing',
+            'ActualPermanent' => 'Current actual staffing (National authority)',
+            'ActualPermanentPartnersOrCommunities' => 'Current actual staffing (from partners/communities)',
             'Observations' => 'Notes',
             'difference' => 'Difference',
             'Source' => 'Source',

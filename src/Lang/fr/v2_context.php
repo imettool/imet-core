@@ -372,7 +372,8 @@ return [
         'fields' => [
             'Function' => 'Fonctions',
             'ExpectedPermanent' => 'Effectifs prévus ou adéquats',
-            'ActualPermanent' => 'Effectifs actuels',
+            'ActualPermanent' => 'Effectifs actuels (Autorité nationale)',
+            'ActualPermanentPartnersOrCommunities' => 'Effectifs actuels (partenaires/communautés)',
             'Observations' => 'Observations',
             'difference' => 'Différence',
             'Source' => 'Source',

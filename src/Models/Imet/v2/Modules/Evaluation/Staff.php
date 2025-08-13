@@ -55,7 +55,9 @@ class Staff extends Modules\Component\ImetModule_Eval
             $collection = Modules\Context\ManagementStaff::getModule($form_id);
             $predefined_values['values'] = $collection->pluck('Function')->toArray();
             $predefined_values['additional_values'] = $collection->map(function ($item) {
-                return static::calculateStaffStatus($item['ActualPermanent'], $item['ExpectedPermanent']);
+                return static::calculateStaffStatus(
+                    $item['ActualPermanent'] + $item['ActualPermanentPartnersOrCommunities'],
+                    $item['ExpectedPermanent']);
             })->toArray();
         }
 

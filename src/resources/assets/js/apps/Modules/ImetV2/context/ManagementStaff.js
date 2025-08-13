@@ -22,8 +22,12 @@ export default class ManagementStaff extends ModuleImet {
             let diffs = [];
             setup_obj.records.forEach(function (item, index) {
                 diffs[index] = null;
-                if (item['ExpectedPermanent'] !== null && item['ActualPermanent']!== null) {
-                    diffs[index] = parseInt(item['ActualPermanent']) - parseInt(item['ExpectedPermanent']);
+                if (item['ExpectedPermanent'] !== null &&
+                    (item['ActualPermanent']!== null || item['ActualPermanentPartnersOrCommunities'] !== null)) {
+                    let actual = item['ActualPermanent']!== null ? item['ActualPermanent'] : 0;
+                    actual += item['ActualPermanentPartnersOrCommunities']!== null ? item['ActualPermanentPartnersOrCommunities'] : 0;
+                    diffs[index] = actual
+                        - parseInt(item['ExpectedPermanent']);
                 }
             });
             return diffs;

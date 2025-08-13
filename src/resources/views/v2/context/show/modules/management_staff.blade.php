@@ -18,7 +18,7 @@ $table_dom->filter('tbody tr')->each(function ($tr, $index) use($records) {
         '<td>'.
             \Illuminate\Support\Facades\View::make('modular-forms::module.show.field', [
                 'type' => 'integer',
-                'value' => intval($records[$index]['ActualPermanent']) - intval($records[$index]['ExpectedPermanent'])
+                'value' => intval($records[$index]['ActualPermanent']) + intval($records[$index]['ActualPermanentPartnersOrCommunities']) - intval($records[$index]['ExpectedPermanent'])
             ]).
         '</td>'
     );

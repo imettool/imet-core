@@ -21,6 +21,34 @@ use ImetCore\Models\Imet\v2\Modules\Evaluation\Staff;
 trait Inputs
 {
 
+    public static function staff_weights(int $imet_id, $staff = null): array
+    {
+        $records = $staff ?? ManagementStaff::getModule($imet_id);
+
+        return $records
+            ->map(function($record){
+                $expected = intval($record['ExpectedPermanent'])== 0 ? null : $record['ExpectedPermanent'];
+                $record['ratio'] = $expected!==null
+                    ? min(1, (($record['ActualPermanent'] ?? 0) + ($record['ActualPermanentPartnersOrCommunities'] ?? 0)) / ($expected))
+                    : 1;
+                $record['ratio03'] = $record['ratio']===0
+                    ? 0
+                    : ($record['ratio']>0
+                        ? ceil($record['ratio'] * 4 -1)
+                        : null);
+                $record['w_avg'] = $expected!==null
+                    ? 1 + log($expected)
+                    : null;
+                return $record;
+            })
+            ->keyBy('Function')
+            ->map(function($record){
+                return collect($record)->only(['Function', 'ActualPermanent', 'ActualPermanentPartnersOrCommunities', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']);
+            })
+            ->toArray();
+    }
+
+
     protected static function score_i2(int $imet_id): ?float
     {
         $values = Staff::getModule($imet_id)
