@@ -295,7 +295,7 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexto territorial de base (Paisagem) da Área Protegida',
         'fields' => [
-            'FunctionalHasNoTakeArea' => 'será a área funcional do ecossistema correspondente a área de proibição de colecta de recursos?',
+            'FunctionalHasNoTakeArea' => 'A zona funcional do ecossistema corresponde à área protegida?',
             'FunctionalArea' => 'Estimativar da área funcional do ecossistema importante para a manutenção dos serviços biodiversidade da área protegida (por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas): a) em Km² e b) como largura da faixa exterior.',
             'FunctionalPopulation' => 'Estimativa da dimensão da população local que vive dentro da área funcional do ecossistema',
             'EcologicalAspects' => 'Estimativa da presença de factores ambientais, por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas (em km2) (Km2)',

@@ -297,7 +297,7 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexto territorial de referencia (Paisaje) del Área Protegida',
         'fields' => [
-            'FunctionalHasNoTakeArea' => '¿El área funcional del ecosistema corresponde al área de veda?',
+            'FunctionalHasNoTakeArea' => '¿La zona del ecosistema funcional corresponde al área protegida?',
             'FunctionalArea' => 'Estimación del área funcional del ecosistema que es importante para el mantenimiento de la biodiversidad del área protegida: a) en Km² y b) como ancho de la franja exterior.',
             'FunctionalPopulation' => 'Estimación del tamaño de la población local que vive dentro del área funcional del ecosistema',
             'EcologicalAspects' => 'Estimación de la presencia de los factores ambientales, por ejemplo, las áreas de distribución de las especies emblemáticas (en Km2) (Km2)',

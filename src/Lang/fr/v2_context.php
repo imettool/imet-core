@@ -301,7 +301,7 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Contexte territorial de référence (paysage) de l’Aire Protégée',
         'fields' => [
-            'FunctionalHasNoTakeArea' => 'L’aire de l’écosystème fonctionnel correspond-elle à la zone de non-prélèvement ?',
+            'FunctionalHasNoTakeArea' => 'La zone d’écosystème fonctionnel correspond-elle à l’aire protégée ?',
             'FunctionalArea' => 'Estimer la superficie de l’écosystème fonctionnel importante pour le maintien de la biodiversité de l’aire protégée (habitats, espèces clés, etc.): a) en Km² et b) en Km de largeur de la bande extérieure',
             'FunctionalPopulation' => 'Estimer la population humaine vivant dans l’aire de l’écosystème fonctionnel',
             'EcologicalAspects' => 'Préciser l’éventuelle présence de facteurs écologiques qui doivent être pris en considération dans la gestion de l’aire protégée (p.ex. domaines vitaux des espèces phare) et estimer la surface en km2',

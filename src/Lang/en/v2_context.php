@@ -293,7 +293,7 @@ return [
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context (Landscape) of the Protected Area',
         'fields' => [
-            'FunctionalHasNoTakeArea' => 'Is the functional ecosystem area correspondent to the no-take area?',
+            'FunctionalHasNoTakeArea' => 'Does the functional ecosystem zone correspond to the protected area?',
             'FunctionalArea' => 'Estimate the functional ecosystem area that is important for the maintenance of biodiversity of the protected area (e.g. home ranges of flagship species ): a) in Km² and b) in Km as width of the outer strip',
             'FunctionalPopulation' => 'Estimate the size of local population living within the functional ecosystem area',
             'EcologicalAspects' => 'Estimate the presence of the environmental factors, e.g. home ranges of flagship species (in km2) (Km2)',
