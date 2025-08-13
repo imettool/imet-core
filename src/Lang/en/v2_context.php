@@ -151,7 +151,11 @@ return [
             'group0' => 'Transboundary network',
             'group1' => 'Landscape network (terrestrial and marine protected areas) - Network (marine network)',
             'group2' => 'Other networks',
-        ]
+        ],
+        'module_info' =>
+            'This section describes the protected area\'s membership of various management networks at local, transboundary 
+            and landscape levels. It identifies links with other protected areas within these networks and highlights 
+            collaborative frameworks for conservation and management relevant to the protected area'
     ],
 
     'Missions' => [

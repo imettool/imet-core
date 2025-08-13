@@ -150,7 +150,11 @@ return [
             'group0' => 'Rede Transfronteiricas',
             'group1' => 'Rede paisagistica (áreas protegidas terrestres e marinhas) - Rede (rede marinha)',
             'group2' => 'Outras redes',
-        ]
+        ],
+        'module_info' =>
+            'Esta secção descreve a participação da área protegida em diversas redes de gestão a nível local, transfronteiriço 
+            e paisagístico. Identifica ligações com outras áreas protegidas dentro destas redes e destaca 
+            estruturas colaborativas para a conservação e gestão relevantes para a área protegida.'
     ],
 
     'Missions' => [

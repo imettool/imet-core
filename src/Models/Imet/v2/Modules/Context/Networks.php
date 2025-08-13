@@ -40,6 +40,8 @@ class Networks extends Modules\Component\ImetModule
             'group2' => trans('imet-core::v2_context.Networks.groups.group2'),
         ];
 
+        $this->module_info = trans('imet-core::v2_context.Networks.module_info');
+
         parent::__construct($attributes);
     }
 

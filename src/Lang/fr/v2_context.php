@@ -154,7 +154,11 @@ return [
             'group0' => 'Réseau transfrontalier',
             'group1' => 'Paysage terrestre - Landscape (réseau des AP terrestres) - Paysage marin - seascape (réseau des AP marines)',
             'group2' => 'Autre réseau',
-        ]
+        ],
+        'module_info' =>
+            'Cette section décrit l\'appartenance de l\'aire protégée à divers réseaux de gestion aux niveaux local, 
+            transfrontalier et paysager. Elle identifie les liens avec d\'autres aires protégées au sein de ces réseaux 
+            et met en évidence les cadres collaboratifs de conservation et de gestion pertinents pour l\'aire protégée.'
     ],
 
     'Missions' => [

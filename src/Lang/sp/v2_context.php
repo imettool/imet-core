@@ -154,7 +154,11 @@ return [
             'group0' => 'Red transfronteriza',
             'group1' => 'Red de paisaje (áreas protegidas terrestres y marinas) - Red (red marina)',
             'group2' => 'Otras redes',
-        ]
+        ],
+        'module_info' =>
+            'Esta sección describe la pertenencia del área protegida a diversas redes de gestión a nivel local, 
+            transfronterizo y paisajístico. Identifica vínculos con otras áreas protegidas dentro de estas redes y 
+            destaca los marcos de colaboración para la conservación y la gestión relevantes para el área protegida.'
     ],
 
     'Missions' => [
