@@ -224,10 +224,11 @@ class Role extends BaseModel
                 ->toArray();
         } else {
             // Unfiltered: retrieve all ISOs from ProtectedArea
-            $allowed_isos = ProtectedArea::all()
+            $allowed_isos = ProtectedArea::select('country')
+                ->distinct('country')
+                ->orderBy('country')
+                ->get()
                 ->pluck('country')
-                ->unique()
-                ->sort()
                 ->toArray();
         }
 
