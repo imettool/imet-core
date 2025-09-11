@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 # Update
 RUN apk update
@@ -7,25 +7,20 @@ RUN apk update
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod +x /usr/local/bin/install-php-extensions && sync
 
-# Install required packages
-RUN apk add --no-cache git
-
 # Install PHP Extensions (Laravel requirements)
 RUN install-php-extensions bcmath
 # ALREADY in image: ctype fileinfo json mbstring openssl pdo tokenizer xml
 
 # Install optional PHP Extensions
 RUN install-php-extensions \
-    exif \
-    gd \
-    imagick \
     pdo_pgsql \
     zip
 
-# Set INI file
-RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
-
 WORKDIR /var/www/html
+
+# Set php.ini configurarion
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+COPY ./docker/php.ini /usr/local/etc/php/conf.d
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

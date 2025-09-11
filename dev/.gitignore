@@ -1,0 +1,15 @@
+# Development/Envirnoment
+composer
+.env
+composer.lock
+package-lock.json
+/public/build/
+/public/hot
+/public/storage
+/public/basket
+/storage/
+database/database.sqlite
+
+# Modules & Libraries
+/vendor/
+/node_modules/
