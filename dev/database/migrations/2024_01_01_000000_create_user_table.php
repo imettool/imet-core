@@ -9,7 +9,6 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-use ImetCore\Models\User\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -36,14 +35,6 @@ return new class extends Migration
             $table->char('country', 3)->nullable();
             $table->string('imet_role', 25)->nullable();
         });
-
-        DB::table('users')
-            ->insert([
-                'id' => 0,
-                'first_name' => 'Offline',
-                'last_name' => 'User',
-                'imet_role' => Role::ROLE_ADMINISTRATOR,
-            ]);
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
