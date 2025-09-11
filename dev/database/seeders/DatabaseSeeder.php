@@ -55,7 +55,6 @@ class DatabaseSeeder extends Seeder
         // Seed forms with modules
         $pas = ProtectedArea::all()->random(10);
         for($i=1; $i<=self::NUM_FORMS; $i++){
-            $pa = $pas->random();
             DevDatabaseSeeder::seedForm($pas->random());
         }
 

@@ -9,10 +9,12 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace App\Http\Middleware;
+namespace ImetCore\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Contracts\Auth\Factory as Auth;
+use Illuminate\Support\Facades\Auth as AuthFacade;
+use ImetCore\Helpers\ImetEnv;
 
 class Authenticate extends Middleware
 {
@@ -22,9 +24,9 @@ class Authenticate extends Middleware
      */
     public function __construct(Auth $auth)
     {
-        // Force Authentication of user 0
-        if(!\Illuminate\Support\Facades\Auth::check()){
-            \Illuminate\Support\Facades\Auth::loginUsingId(0, true);
+        // Force Authentication of user 0 in DEV and offline environments
+        if((ImetEnv::isDevEnv() || ImetEnv::isImetOfflineEnv()) && !AuthFacade::check()){
+            AuthFacade::loginUsingId(0, true);
         }
 
         parent::__construct($auth);

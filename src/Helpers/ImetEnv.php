@@ -42,4 +42,10 @@ class ImetEnv {
         return App::environment('imetglobal_dev');
     }
 
+    public static function isDevEnv(): bool
+    {
+        $env = Str::lower(App::environment());
+        return Str::contains($env, 'dev') || Str::contains($env, 'local');
+    }
+
 }
