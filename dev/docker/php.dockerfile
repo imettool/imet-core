@@ -26,7 +26,7 @@ COPY ./docker/php.ini /usr/local/etc/php/conf.d
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Add github token for composer
-ENV COMPOSER_HOME /var/www/.composer
+ENV COMPOSER_HOME=/var/www/.composer
 ARG COMPOSER_GITHUB_TOKEN
 RUN composer config -g github-oauth.github.com ${COMPOSER_GITHUB_TOKEN}
 
