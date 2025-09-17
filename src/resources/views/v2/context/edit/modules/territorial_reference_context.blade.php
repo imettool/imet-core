@@ -237,7 +237,11 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 @endforeach
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>
 
 @push('scripts')
     <style>

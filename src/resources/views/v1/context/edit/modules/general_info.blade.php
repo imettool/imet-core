@@ -23,6 +23,13 @@
 
 ?>
 
-@include('modular-forms::module.edit.body', compact(['collection', 'vueData', 'definitions']))
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.body
+    :controller="$controller"
+    :collection="$collection"
+    :vueData="$vueData"
+    :definitions="$definitions"
+    :records="$records"
+    :formId="$formId"
+    :mode="$mode"
+></x-modular-forms::module.components.body>

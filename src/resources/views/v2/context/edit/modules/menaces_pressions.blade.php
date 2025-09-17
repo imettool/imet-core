@@ -37,9 +37,9 @@ $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupT
     @foreach(MenacesPressions::$groupsByCategory as $i => $category)
         <div class="histogram-row">
             <div class="histogram-row__checkbox">
-                <checkbox-boolean :value="1"
+                <checkbox-boolean value="1"
                                   :func="toggleCategoryVisibility"
-                                  :id="{{$i}}"></checkbox-boolean>
+                                  id="{{$i}}"></checkbox-boolean>
             </div>
             <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
             <div
@@ -66,12 +66,12 @@ $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupT
     <script type="module">
         const initialVisibility = {
             @foreach(MenacesPressions::$groupsByCategory as $i => $category)
-            '{{ $i }}': true,
+                '{{ $i }}': true,
             @endforeach
         };
         const categories = {
             @foreach(MenacesPressions::$groupsByCategory as $i => $category)
-            '{{ $i }}': '{{implode(',', $category)}}'.split(','),
+                '{{ $i }}': '{{implode(',', $category)}}'.split(','),
             @endforeach
         }
         const categoriesVisibility = {initialVisibility, categories};

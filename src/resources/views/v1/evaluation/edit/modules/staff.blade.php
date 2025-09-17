@@ -5,6 +5,8 @@
 $group_key = '';
 $table_id = 'table_'.$definitions['module_key'];
 
+$status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
+
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -35,11 +37,11 @@ $table_id = 'table_'.$definitions['module_key'];
         </td>
 
         <td>
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'disabled',
-                'v_value' => 'records[index].__status',
-                'id' => "'".$definitions['module_key']."_'+index+'___status'"
-            ])
+            <x-modular-forms::module.components.field.input
+                type="disabled"
+                value="records[index].__status"
+                :id="$status_id"
+            ></x-modular-forms::module.components.field.input>
         </td>
 
         <td>
@@ -65,16 +67,16 @@ $table_id = 'table_'.$definitions['module_key'];
         <td>
             {{-- group_key_field (for GROUP_TABLE)  --}}
             @if($definitions['module_type']==='GROUP_TABLE')
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'hidden',
-                    'v_value' => 'item.'.$definitions['group_key_field']
-                ])
+                <x-modular-forms::module.components.field.input
+                    type="hidden"
+                    :value="'item.'.$definitions['group_key_field']"
+                ></x-modular-forms::module.components.field.input>
             @endif
             {{-- record id  --}}
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'hidden',
-                'v_value' => 'item.'.$definitions['primary_key']
-            ])
+            <x-modular-forms::module.components.field.input
+                type="hidden"
+                :value="'item.'.$definitions['primary_key']"
+            ></x-modular-forms::module.components.field.input>
         </td>
     <tr>
     </tbody>
@@ -82,4 +84,8 @@ $table_id = 'table_'.$definitions['module_key'];
 
 </table>
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>

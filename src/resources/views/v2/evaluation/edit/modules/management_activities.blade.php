@@ -1,7 +1,3 @@
-<?php
-/** @var Mixed $definitions */
-?>
-
 @foreach($definitions['groups'] as $group_key => $group_label)
 
     <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
@@ -28,11 +24,15 @@
                     @foreach($definitions['fields'] as $i => $field)
                         <td>
                             @if($i===0 && $group_key==='group6')
-                                @include('modular-forms::module.edit.field.vue', [
-                                     'type' => 'text-area',
-                                     'v_value' => 'records[\''.$group_key.'\'][index].'.$field['name'],
-                                     'id' => "'".$definitions['module_key']."_".$group_key."_'+index+'_".$field['name']."'"
-                                 ])
+                                @php
+                                    $activity_id = "'".$definitions['module_key']."_".$group_key."_'+index+'_".$field['name']."'";
+                                    $activity_value = 'records[\''.$group_key.'\'][index].'.$field['name'];
+                                @endphp
+                                <x-modular-forms::module.components.field.input
+                                    type="text-area"
+                                    :value="$activity_value"
+                                    :id="$activity_id"
+                                ></x-modular-forms::module.components.field.input>
                             @else
                                 @include('modular-forms::module.edit.field.module-to-vue', [
                                     'definitions' => $definitions,
@@ -45,10 +45,10 @@
                     @endforeach
                     <td>
                         {{-- record id  --}}
-                        @include('modular-forms::module.edit.field.vue', [
-                            'type' => 'hidden',
-                            'v_value' => 'item.'.$definitions['primary_key']
-                        ])
+                        <x-modular-forms::module.components.field.input
+                            type="hidden"
+                            :value="'item.'.$definitions['primary_key']"
+                        ></x-modular-forms::module.components.field.input>
                         @if($group_key==='group6')
                             <span v-if="typeof item.__predefined === 'undefined'">
                                 <x-modular-forms::module.components.buttons.delete-item />
@@ -79,5 +79,9 @@
 
 @endforeach
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>
 

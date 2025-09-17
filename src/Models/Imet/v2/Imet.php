@@ -43,8 +43,8 @@ class Imet extends BaseImetForm
             Modules\Context\SpecialStatus::class,
             Modules\Context\Networks::class,
             Modules\Context\Missions::class,
-            Modules\Context\Contexts::class,
-            Modules\Context\Objectives1::class
+//            Modules\Context\Contexts::class,
+//            Modules\Context\Objectives1::class
         ],
         'areas' => [
             Modules\Context\GeographicalLocation::class,

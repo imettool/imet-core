@@ -138,10 +138,10 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                 @endforeach
                                                 <td>
                                                     {{-- record id  --}}
-                                                    @include('modular-forms::module.edit.field.vue', [
-                                                        'type' => 'hidden',
-                                                        'v_value' => 'item.'.$definitions['primary_key']
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input
+                                                        type="hidden"
+                                                        :value="'item.'.$definitions['primary_key']"
+                                                    ></x-modular-forms::module.components.field.input>
                                                     <span v-if="typeof item.__predefined === 'undefined'">
                                                          <button type="button" class="btn-nav small red" v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
                                                              {!! Template::icon('trash', 'white') !!}

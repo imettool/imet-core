@@ -9,15 +9,15 @@
 
 ?>
 
-@include('modular-forms::module.edit.field.vue', [
-    'type' => 'disabled',
-    'v_value' => $v_value,
-    'id' => $id,
-    'class' => $class,
-    'rules' => $rules,
-    'other' => $other,
-    'module_key' => $definitions['module_key']
-])
+<x-modular-forms::module.components.field.input
+    type="disabled"
+    :value="$v_value"
+    :id="$id"
+    :class="$class"
+    :rules="$rules"
+    :other="$other"
+    :module_key="$definitions['module_key']"
+></x-modular-forms::module.components.field.input>
 
 <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
     <div v-if=records[index]['__score']!==null>

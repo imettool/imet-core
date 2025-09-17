@@ -1,8 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
-
 use \Illuminate\Support\Facades\View;
 use \Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -16,5 +12,3 @@ $dom->filter('.module-row')->eq(5)->before('<h4>'.trans('imet-core::v2_context.M
 ?>
 
 {!! $dom->saveHTML() !!}
-
-@include('imet-core::components.module.show.script', compact(['definitions']))

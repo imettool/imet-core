@@ -58,10 +58,10 @@ $table_id = 'table_'.$definitions['module_key'];
         </td>
         <td>
             {{-- record id  --}}
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'hidden',
-                'v_value' => 'item.'.$definitions['primary_key']
-            ])
+            <x-modular-forms::module.components.field.input
+                type="hidden"
+                :value="'item.'.$definitions['primary_key']"
+            ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
                 <x-modular-forms::module.components.buttons.delete-item />
             </span>
