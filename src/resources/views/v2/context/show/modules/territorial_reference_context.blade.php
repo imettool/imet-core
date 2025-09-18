@@ -25,15 +25,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
             {{-- input field --}}
             <div  class="module-row__input" style="display: flex; align-items: center;">
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i]['type'],
-                    'value' => $records[0][$definitions['fields'][$i]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i]['type']"
+                    :value="$records[0][$definitions['fields'][$i]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i+1]['type'],
-                    'value' => $records[0][$definitions['fields'][$i+1]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i+1]['type']"
+                    :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km]
             </div>
 
@@ -52,15 +52,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
             {{-- input field --}}
             <div  class="module-row__input" style="display: flex; align-items: center;">
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i]['type'],
-                    'value' => $records[0][$definitions['fields'][$i]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i]['type']"
+                    :value="$records[0][$definitions['fields'][$i]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i+1]['type'],
-                    'value' => $records[0][$definitions['fields'][$i+1]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i+1]['type']"
+                    :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km]
             </div>
 
@@ -78,15 +78,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
             {{-- input field --}}
             <div  class="module-row__input" style="display: flex; align-items: center;">
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i]['type'],
-                    'value' => $records[0][$definitions['fields'][$i]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i]['type']"
+                    :value="$records[0][$definitions['fields'][$i]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
-                @include('modular-forms::module.show.field', [
-                    'type' => $definitions['fields'][$i+1]['type'],
-                    'value' => $records[0][$definitions['fields'][$i+1]['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][$i+1]['type']"
+                    :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km]
             </div>
 
@@ -96,10 +96,10 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
         <div class="font-weight-bold">{{ $field['label'] }}</div>
         <div class="BenefitSocioEconomicAspects">
-            @include('modular-forms::module.show.field', [
-               'type' => $field['type'],
-               'value' => $records[0][$field['name']]
-          ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$records[0][$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         </div>
 
     @elseif($field['name'] === 'SpillOverEvalPredatory0_500')
@@ -125,67 +125,64 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
                 <tr>
                     <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.predatory') !!}</td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                            'type' => $definitions['fields'][$i]['type'],
-                            'value' => $records[0][$definitions['fields'][$i]['name']]
-                       ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i]['type']"
+                            :value="$records[0][$definitions['fields'][$i]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+1]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+1]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+1]['type']"
+                            :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+2]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+2]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+2]['type']"
+                            :value="$records[0][$definitions['fields'][$i+2]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                 </tr>
                 <tr>
                     <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.composition') !!}</td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+3]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+3]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+3]['type']"
+                            :value="$records[0][$definitions['fields'][$i+3]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+4]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+4]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+4]['type']"
+                            :value="$records[0][$definitions['fields'][$i+4]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+5]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+5]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+5]['type']"
+                            :value="$records[0][$definitions['fields'][$i+5]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                 </tr>
                 <tr>
                     <td>{!! trans('imet-core::v2_context.TerritorialReferenceContext.info.distance') !!}</td>
                     <td>
-
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+6]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+6]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+5]['type']"
+                            :value="$records[0][$definitions['fields'][$i+6]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+7]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+7]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+7]['type']"
+                            :value="$records[0][$definitions['fields'][$i+7]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                     <td>
-
-                        @include('modular-forms::module.show.field', [
-                              'type' => $definitions['fields'][$i+8]['type'],
-                              'value' => $records[0][$definitions['fields'][$i+8]['name']]
-                         ])
+                        <x-modular-forms::module.components.field.input-preview
+                            :type="$definitions['fields'][$i+8]['type']"
+                            :value="$records[0][$definitions['fields'][$i+8]['name']]"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                 </tr>
             </tbody>
@@ -203,10 +200,10 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             ])
 
             {{-- input field --}}
-            @include('modular-forms::module.show.field', [
-                'type' => $field['type'],
-                'value' => $records[0][$field['name']]
-           ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$records[0][$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
 
         @endcomponent
 

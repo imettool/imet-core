@@ -28,53 +28,51 @@ if(floatval($area)>0 && floatval($record['BoundaryLength'])>0){
         @if($f_index<3)
 
             <div style="display: flex; justify-content: space-between;">
-                @include('modular-forms::module.show.field', [
-                   'type' => $field['type'],
-                   'value' => $record[$field['name']]
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[ha]</div>
 
-                @include('modular-forms::module.show.field', [
-                   'type' => $field['type'],
-                   'value' => $record[$field['name']]/100
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$record[$field['name']]/100"
+                ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[km2]</div>
             </div>
 
         @elseif($f_index===3)
 
             {{-- input field --}}
-            @include('modular-forms::module.show.field', [
-               'type' => $field['type'],
-               'value' => $record[$field['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$record[$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
             [km]
 
         @elseif($f_index===4 || $f_index===5)
 
             {{-- input field --}}
-            @include('modular-forms::module.show.field', [
-               'type' => $field['type'],
-               'value' => $record[$field['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$record[$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
             [km2]
 
         @elseif($f_index<10)
 
             {{-- input field --}}
-            @include('modular-forms::module.show.field', [
-               'type' => $field['type'],
-               'value' => $record[$field['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$record[$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
             %
 
         @elseif($f_index===10)
-
-            @include('modular-forms::module.show.field', [
-                'type' =>'disabled',
-                'value' => $calc
-             ])
-
+            <x-modular-forms::module.components.field.input-preview
+                type="disabled"
+                :value="$calc"
+            ></x-modular-forms::module.components.field.input-preview>
         @endif
 
     @endcomponent

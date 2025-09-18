@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $page = \Illuminate\Support\Facades\View::make('imet-core::components.module.show.table_with_nothing_to_evaluate', compact(['definitions', 'records']))->render();
 $dom = HtmlPageCrawler::create(

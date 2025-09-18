@@ -61,24 +61,24 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $f_index=>$field)
                 <td>
-                    @include('modular-forms::module.show.field', [
-                        'type' => $field['type'],
-                        'value' => $record[$field['name']]
-                   ])
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$field['type']"
+                        :value="$record[$field['name']]"
+                    ></x-modular-forms::module.components.field.input-preview>
                 </td>
                 @if($f_index==2)
                     <td>
-                        @include('modular-forms::module.show.field', [
-                            'type' => 'numeric',
-                            'value' => $area_percentage
-                       ])
+                        <x-modular-forms::module.components.field.input-preview
+                            type="numeric"
+                            :value="$area_percentage"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                 @elseif($f_index==4)
                     <td>
-                        @include('modular-forms::module.show.field', [
-                            'type' => 'numeric',
-                            'value' => $average_time
-                       ])
+                        <x-modular-forms::module.components.field.input-preview
+                            type="numeric"
+                            :value="$average_time"
+                        ></x-modular-forms::module.components.field.input-preview>
                     </td>
                 @endif
 
@@ -90,23 +90,23 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
         <td></td>
         <td></td>
         <td>
-            @include('modular-forms::module.show.field', [
-                'type' => 'numeric',
-                'value' => $sumUnderControlArea
-           ])
+            <x-modular-forms::module.components.field.input-preview
+                type="numeric"
+                :value="$sumUnderControlArea"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td></td>
         <td>
-            @include('modular-forms::module.show.field', [
-                'type' => 'numeric',
-                'value' => $UnderControlPatrolKm
-           ])
+            <x-modular-forms::module.components.field.input-preview
+                type="numeric"
+                :value="$UnderControlPatrolKm"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td>
-            @include('modular-forms::module.show.field', [
-                'type' => 'numeric',
-                'value' => $UnderControlPatrolManDay
-           ])
+            <x-modular-forms::module.components.field.input-preview
+                type="numeric"
+                :value="$UnderControlPatrolManDay"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td></td>
     </tr>

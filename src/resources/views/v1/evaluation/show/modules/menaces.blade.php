@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 /** @var array $item */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['collection', 'records', 'definitions']))->render();
 

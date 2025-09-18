@@ -114,15 +114,15 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                         @foreach($definitions['fields'] as $f_index=>$field)
                                             <td>
                                                 @if($field['name'] === 'Element')
-                                                    @include('modular-forms::module.show.field', [
-                                                       'type' => 'text-area',
-                                                       'value' => $record[$field['name']]
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input-preview
+                                                        type="text-area"
+                                                        :value="$record[$field['name']]"
+                                                    ></x-modular-forms::module.components.field.input-preview>
                                                 @else
-                                                    @include('modular-forms::module.show.field', [
-                                                       'type' => $field['type'],
-                                                       'value' => $record[$field['name']]
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input-preview
+                                                        :type="$field['type']"
+                                                        :value="$record[$field['name']]"
+                                                    ></x-modular-forms::module.components.field.input-preview>
                                                 @endif
                                             </td>
                                         @endforeach

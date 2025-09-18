@@ -14,6 +14,7 @@ namespace ImetCore\View;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\Species;
 use ModularForms\View\Module\Components\Field\InputPreview;
 
 class CustomInputPreview extends InputPreview
@@ -38,9 +39,12 @@ class CustomInputPreview extends InputPreview
 
             // Species selector
             else if(Str::contains($this->type, 'selector-species')){
-//                return view('imet-core::components.inputs.selector-species');
+                $name = null;
+                if(!empty($this->value)){
+                    $name = Species::getPlainNameByTaxonomy($this->value);
+                }
+                return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
             }
-            dd('TO DO (CustomInputPreview)' . $this->type);
 
         }
 

@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 
 use \Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $original_view = View::make('modular-forms::module.show.body', compact(['collection', 'records', 'definitions']))->render();
 
