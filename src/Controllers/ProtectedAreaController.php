@@ -49,10 +49,14 @@ class ProtectedAreaController extends Controller
         if($request->filled('id')){
 
             // Retrieve IDs list: can be comma separated string or json array
-            $ids = $request->input(['id']);
-            $pas = json_validate($ids)
-                ? json_decode($ids)
-                : explode(',', $ids);
+            $ids = $request->input('id');
+            if(is_int($ids)){
+                $pas = [$ids];  // force array if single integer
+            } else {
+                $pas = json_validate($ids)
+                    ? json_decode($ids)
+                    : explode(',', $ids);
+            }
 
             $pairs = ProtectedArea::select(['wdpa_id', 'name'])
                 ->whereIn('wdpa_id', $pas)

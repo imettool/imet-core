@@ -27,7 +27,9 @@ class SelectionList {
             || Str::startsWith($type, 'ImetV2')
             || Str::startsWith($type, 'Imet_')
             || Str::startsWith($type, 'OECM_')
-            || Str::startsWith($type, 'ImetOECM_')) {
+            || Str::startsWith($type, 'ImetOECM_')
+            || Str::startsWith($type, 'ImetOecm_')
+        ) {
             preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
             if ($matches[2] == "ProtectedArea") {
