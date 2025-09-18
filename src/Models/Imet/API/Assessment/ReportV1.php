@@ -43,8 +43,8 @@ class ReportV1
 
         $api_available = DOPA::apiAvailable();
         if ($api_available) {
-            $dopa_radar = DOPA::get_wdpa_radarplot($form->wdpa_id, true)->records;
-            $dopa_indicators = DOPA::get_wdpa_all_inds($form->wdpa_id)->records;
+            $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true)?->records ?? null;
+            $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id)?->records ?? null;
         }
 
         $general_info = static::get_general_info($form_id);
