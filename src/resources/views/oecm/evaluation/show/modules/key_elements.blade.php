@@ -1,12 +1,42 @@
 <?php
-
 use Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-/** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+function appendScoresToFirstTd($tr, $group, $group_stakeholders, $num_stakeholders_direct, $num_stakeholders_indirect, $score): void
+{
+    $score_text = '';
+    if($group_stakeholders !== null) {
+        $score_text .=
+            '<div>
+                ' . trans('imet-core::oecm_evaluation.KeyElements.from_group') . '
+                <b>' . $group_stakeholders . '</b>
+            </div>';
+    }
+    if ($group === 'group0') {
+        if ($num_stakeholders_direct !== null || $num_stakeholders_indirect !== null) {
+            $score_text .=
+                '<div>
+                    ' . trans( 'imet-core::oecm_evaluation.KeyElements.num_stakeholders',
+                    [
+                        'num_dir' => '<b>' . $num_stakeholders_direct . '</b>',
+                        'num_ind' => '<b>' . $num_stakeholders_indirect . '</b>'
+                    ]). '
+                </div>';
+        }
+    } elseif ($group === 'group1' && $score !== null) {
+        $score_text .=
+            '<div>
+                <b>' . trans('imet-core::oecm_evaluation.KeyElements.ranking') . '</b>: ' . $score . '
+            </div>';
+    }
+
+    $tr->filter('td')->first()->each(function ($td, $_) use($score_text) {
+        $td->append('<div class="text-left text-xs" style="padding: 4px 4px 0 4px;">
+            ' . $score_text .
+            '</div>');
+    });
+}
 
 $original_definitions = $definitions;
 
@@ -19,7 +49,27 @@ $definitions['groups'] = array_slice($original_definitions['groups'], 1);
 $definitions['fields'][1]['type'] = 'hidden';
 $second_group = View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
 
+// Load the view into a DOM parser
 $dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
+foreach (['group0', 'group1'] as $group) {
+
+    // Filter records by group
+    $group_records = array_values(array_filter($records, function ($r) use ($group) {
+        return ($r['group_key'] == $group);
+    }));
+
+    // Inject scores into group table
+    $dom->filter('table#group_table_imet__oecm__evaluation__key_elements_' . $group . ' tr')->each(function ($tr, $index) use ($group, $group_records) {
+        if($index>0){
+            $group_stakeholders = $group_records[$index - 1]['__group_stakeholders'];   // -1 because of header row
+            $num_stakeholders_direct = $group_records[$index - 1]['__num_stakeholders_direct'];
+            $num_stakeholders_indirect = $group_records[$index - 1]['__num_stakeholders_indirect'];
+            $score = $group_records[$index - 1]['__score'];
+            appendScoresToFirstTd($tr, $group, $group_stakeholders, $num_stakeholders_direct, $num_stakeholders_indirect, $score);
+        }
+    });
+
+}
 
 ?>
 
