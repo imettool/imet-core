@@ -65,7 +65,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                             @php
                                 $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
                                 $element_list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
-                                $element_list = array_combine($element_list, $element_list);
+                                $element_list = gettype($element_list) === 'string' ? [] : array_combine($element_list, $element_list);
                             @endphp
 
                             @if(

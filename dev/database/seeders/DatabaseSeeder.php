@@ -11,6 +11,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use ImetCore\Helpers\Dev\FormSeeder as DevDatabaseSeeder;
 use ImetCore\Models\ProtectedArea;
@@ -55,8 +56,10 @@ class DatabaseSeeder extends Seeder
         // Seed forms with modules
         $pas = ProtectedArea::all()->random(10);
         for($i=1; $i<=self::NUM_FORMS; $i++){
-            DevDatabaseSeeder::seedFormImetV2($pas->random());
-            DevDatabaseSeeder::seedFormImetOecm($pas->random());
+            $language = collect(['en', 'fr', 'sp', 'pt'])->random();
+            App::setLocale($language);
+            DevDatabaseSeeder::seedFormImetV2($pas->random(), $language);
+            DevDatabaseSeeder::seedFormImetOecm($pas->random(), $language);
         }
 
     }

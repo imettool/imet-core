@@ -12,7 +12,9 @@
 namespace ImetCore\Helpers\Dev;
 
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use ImetCore\Helpers\SelectionList as ImetSelectionList;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
@@ -27,18 +29,16 @@ class FormSeeder
      * Create a new form (IMETV 2) for the given (or random) protected area and populate it with fake data
      * @throws Exception
      */
-    public static function seedFormImetV2(?ProtectedArea $protected_area = null): void
+    public static function seedFormImetV2(ProtectedArea $protected_area, string $language): void
     {
-        $protected_area = $protected_area ?? ProtectedArea::inRandomOrder()->first();
-
         $form_id = Imet\v2\Imet::insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
             'version' => Imet\v2\Imet::version,
-            'language' => collect(['en', 'fr', 'sp', 'pt'])->random(),
+            'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
-            'UpdateDate' => now(),
+            'UpdateDate' => now()->toDateTimeString(),
             'UpdateBy' => 0,
         ]);
 
@@ -54,18 +54,16 @@ class FormSeeder
      * Create a new form (IMET OECM) for the given (or random) protected area and populate it with fake data
      * @throws Exception
      */
-    public static function seedFormImetOecm(?ProtectedArea $protected_area = null): void
+    public static function seedFormImetOecm(ProtectedArea $protected_area, string $language): void
     {
-        $protected_area = $protected_area ?? ProtectedArea::inRandomOrder()->first();
-
         $form_id = Imet\oecm\Imet::insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
             'version' => Imet\oecm\Imet::version,
-            'language' => collect(['en', 'fr', 'sp', 'pt'])->random(),
+            'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
-            'UpdateDate' => now(),
+            'UpdateDate' => now()->toDateTimeString(),
             'UpdateBy' => 0,
         ]);
 
@@ -89,20 +87,51 @@ class FormSeeder
                 ? 4
                 : 1;
 
-            try {
-                if (Str::contains($module_type, 'GROUP')) {
-                    foreach (collect((new $module)->module_groups)->keys() as $group_key) {
-                        for ($y = 1; $y <= $num_records; $y++) {
-                            static::insertRecord($module, $form_id, $group_key);
-                        }
-                    }
-                } else {
+            $records = [];
+
+            if (Str::contains($module_type, 'GROUP')) {
+                foreach (collect((new $module)->module_groups)->keys() as $group_key) {
                     for ($y = 1; $y <= $num_records; $y++) {
-                        static::insertRecord($module, $form_id);
+                        $records[] = static::createRecord($module, $form_id, $group_key);
                     }
                 }
+            } else {
+                for ($y = 1; $y <= $num_records; $y++) {
+                    $records[] = static::createRecord($module, $form_id);
+                }
+            }
+
+            try {
+
+//                // Rearrange records
+//                $records = $module::arrange_records_with_predefined(
+//                    $form_id,
+//                    $records,
+//                    $module::getEmptyRecord($form_id)
+//                );
+//
+//                // Clean records before insert
+//                foreach ($records as $record){
+//
+//                    // Remove auxiliary fields (starting with _)
+//                    $record = array_filter($record, function ($key) use($record) {
+//                        return !Str::startsWith($key, '_');
+//                    }, ARRAY_FILTER_USE_KEY);
+//
+//                    // Convert array values to null (to avoid issues with insert)
+//                    $record = array_map(function($value) use($records) {
+//                        return is_array($value) ? null : $value;
+//                    }, $record);
+//
+//                    $module::insert($record);
+//                }
+
+
+                DB::table((new $module)->getTable())->insert($records);
+
             } catch (Exception $e){
-                Log::critical('Seed failed at module: ' . $module);
+                dump($records);
+                Log::critical('Seed failed at module: ' . $module, ['module' => $module, 'records' => $records]);
                 throw $e;
             }
 
@@ -113,11 +142,11 @@ class FormSeeder
      * Insert a record in the given module
      * @throws Exception
      */
-    private static function insertRecord(string $module, int $form_id, ?string $group_key = null): void
+    private static function createRecord(string $module, int $form_id, ?string $group_key = null): array
     {
         $values = [
             'FormID' => $form_id,
-            'UpdateDate' => now(),
+            'UpdateDate' => now()->toDateTimeString(),
             'UpdateBy' => 0,
         ];
 
@@ -128,10 +157,17 @@ class FormSeeder
             $values[$predefined['field']] = null;
             if($predefined['values']!==null && count($predefined['values']) > 0){
                 if(Str::contains((new $module)->module_type, 'GROUP')){
-                    $random_group = collect($predefined['values'])->random();
-                    $random_predefined_value = !empty($random_group)
-                        ? collect($random_group)->random()
+
+                    $random_predefined_value
+                        = array_key_exists($group_key, $predefined['values'])
+                            && count($predefined['values'][$group_key])>0
+                        ? collect($predefined['values'][$group_key])->random()
                         : null;
+
+//                    $random_group = collect($predefined['values'])->random();
+//                    $random_predefined_value = !empty($random_group)
+//                        ? collect($random_group)->random()
+//                        : null;
                 } else {
                     $random_predefined_value = collect($predefined['values'])->random();
                 }
@@ -142,7 +178,7 @@ class FormSeeder
         // Generate fake values (fields)
         foreach((new $module)->module_fields as $field){
             if(!array_key_exists($field['name'], $values)){
-                $values[$field['name']] = self::fakeValueByType($field['type']);
+                $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id);
             }
         }
 
@@ -150,7 +186,7 @@ class FormSeeder
         if((new $module)->module_common_fields!==null) {
             foreach ((new $module)->module_common_fields as $field) {
                 if (!array_key_exists($field['name'], $values)) {
-                    $values[$field['name']] = self::fakeValueByType($field['type']);
+                    $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id);
                 }
             }
         }
@@ -165,16 +201,19 @@ class FormSeeder
             $values['IncludeInStatistics'] = '1';
         }
 
-        $module::insert($values);
+        return $values;
     }
 
     /**
      * Generate a fake value for a given field type
      * @throws Exception
      */
-    private static function fakeValueByType(string $type): mixed
+    private static function fakeValueByType(string $type, string $name, string $module, int $form_id): mixed
     {
         // CUSTOM
+        if(Str::contains($type, 'ctx11_type')){
+            return array_rand(ImetSelectionList::getCustomList('Imet_PaType'));
+        } else
         if(Str::contains($type, '_EcosystemServicesImportance')){
             return collect([0, 1])->random();
         } else if (Str::contains($type, '.SubGovernanceModel')
@@ -186,6 +225,10 @@ class FormSeeder
             $group_key = array_rand(trans('imet-core::oecm_context.AnalysisStakeholders.lists'));
             $list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
             $list = array_combine($list, $list);
+            return collect($list)->random();
+        }
+        elseif($name === 'Stakeholder' && $type === 'hidden' && Str::contains($module, 'AnalysisStakeholder')){
+            $list = Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id);
             return collect($list)->random();
         }
 

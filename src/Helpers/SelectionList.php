@@ -37,6 +37,12 @@ class SelectionList {
                 $list = Country::selectionList();
             } elseif ($matches[2] == "Currency") {
                 $list = Currency::imetV1List();
+            } elseif ($matches[2] == "PaType") {
+                $list = [
+                    'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),
+                    'marine_and_coastal' => trans('imet-core::oecm_lists.PaType.marine_and_coastal'),
+                    'mixed' => trans('imet-core::oecm_lists.PaType.mixed')
+                ];
             }
 
             // Fallback to lang lists:
