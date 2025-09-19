@@ -22,7 +22,6 @@ class SelectionList {
     public static function getCustomList(string $type): array
     {
         $list = [];
-
         if (Str::startsWith($type, 'ImetV1')
             || Str::startsWith($type, 'ImetV2')
             || Str::startsWith($type, 'Imet_')
@@ -38,7 +37,12 @@ class SelectionList {
                 $list = Country::selectionList();
             } elseif ($matches[2] == "Currency") {
                 $list = Currency::imetV1List();
-            } elseif ($matches[1] != "") {
+            }
+
+            // Fallback to lang lists:
+            // $matches[1] = V1, V2, OECM
+            // $matches[2] = list name
+            elseif ($matches[1] != "") {
                 $list = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);
             }
 

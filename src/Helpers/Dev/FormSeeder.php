@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
+use Log;
 use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Module;
 
@@ -23,10 +24,10 @@ class FormSeeder
 {
 
     /**
-     * Create a new form for the given (or random) protected area and populate it with fake data
+     * Create a new form (IMETV 2) for the given (or random) protected area and populate it with fake data
      * @throws Exception
      */
-    public static function seedForm(?ProtectedArea $protected_area = null)
+    public static function seedFormImetV2(?ProtectedArea $protected_area = null): void
     {
         $protected_area = $protected_area ?? ProtectedArea::inRandomOrder()->first();
 
@@ -41,36 +42,68 @@ class FormSeeder
             'UpdateBy' => 0,
         ]);
 
-        static::seedFormModules($form_id);
+        $modules = array_merge(
+            Imet\v2\Imet::allModules(),
+            Imet\v2\Imet_Eval::allModules()
+        );
+
+        static::seedFormModules($form_id, $modules);
+    }
+
+    /**
+     * Create a new form (IMET OECM) for the given (or random) protected area and populate it with fake data
+     * @throws Exception
+     */
+    public static function seedFormImetOecm(?ProtectedArea $protected_area = null): void
+    {
+        $protected_area = $protected_area ?? ProtectedArea::inRandomOrder()->first();
+
+        $form_id = Imet\oecm\Imet::insertGetId([
+            'Country' => $protected_area->country,
+            'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
+            'version' => Imet\oecm\Imet::version,
+            'language' => collect(['en', 'fr', 'sp', 'pt'])->random(),
+            'wdpa_id' => $protected_area->wdpa_id,
+            'name' => $protected_area->name,
+            'UpdateDate' => now(),
+            'UpdateBy' => 0,
+        ]);
+
+        $modules = array_merge(
+            Imet\oecm\Imet::allModules(),
+            Imet\oecm\Imet_Eval::allModules()
+        );
+
+        static::seedFormModules($form_id, $modules);
     }
 
     /**
      * Populate all the form's modules with fake data
      * @throws Exception
      */
-    private static function seedFormModules(int $form_id): void
+    private static function seedFormModules(int $form_id, array $modules): void
     {
-        $modules = array_merge(
-            Imet\v2\Imet::allModules(),
-            Imet\v2\Imet_Eval::allModules()
-        );
-
         foreach ($modules as $module){
             $module_type = (new $module)->module_type;
             $num_records = (Str::contains($module_type, 'TABLE') || Str::contains($module_type, 'ACCORDION'))
                 ? 4
                 : 1;
 
-            if(Str::contains($module_type, 'GROUP')){
-                foreach (collect((new $module)->module_groups)->keys() as $group_key){
-                    for($y=1; $y<=$num_records; $y++){
-                        static::insertRecord($module, $form_id, $group_key);
+            try {
+                if (Str::contains($module_type, 'GROUP')) {
+                    foreach (collect((new $module)->module_groups)->keys() as $group_key) {
+                        for ($y = 1; $y <= $num_records; $y++) {
+                            static::insertRecord($module, $form_id, $group_key);
+                        }
+                    }
+                } else {
+                    for ($y = 1; $y <= $num_records; $y++) {
+                        static::insertRecord($module, $form_id);
                     }
                 }
-            } else {
-                for($y=1; $y<=$num_records; $y++){
-                    static::insertRecord($module, $form_id);
-                }
+            } catch (Exception $e){
+                Log::critical('Seed failed at module: ' . $module);
+                throw $e;
             }
 
         }
@@ -92,14 +125,18 @@ class FormSeeder
         /** @var $module Module */
         $predefined = $module::getPredefined($form_id);
         if($predefined!==null){
-            $values[$predefined['field']] =
-                $predefined['values']!==null && count($predefined['values']) > 0
-                    ? (
-                Str::contains((new $module)->module_type, 'GROUP')
-                    ? collect(collect($predefined['values'])->random())->random()
-                    : collect($predefined['values'])->random()
-                )
-                    : null;
+            $values[$predefined['field']] = null;
+            if($predefined['values']!==null && count($predefined['values']) > 0){
+                if(Str::contains((new $module)->module_type, 'GROUP')){
+                    $random_group = collect($predefined['values'])->random();
+                    $random_predefined_value = !empty($random_group)
+                        ? collect($random_group)->random()
+                        : null;
+                } else {
+                    $random_predefined_value = collect($predefined['values'])->random();
+                }
+                $values[$predefined['field']] = $random_predefined_value;
+            }
         }
 
         // Generate fake values (fields)
@@ -140,11 +177,21 @@ class FormSeeder
         // CUSTOM
         if(Str::contains($type, '_EcosystemServicesImportance')){
             return collect([0, 1])->random();
+        } else if (Str::contains($type, '.SubGovernanceModel')
+            && Str::contains(Str::lower($type), 'oecm')) {
+            $list = SelectionList::getList('ImetOECM_SubGovernanceModel');
+            $random_group = collect($list)->random();
+            return collect($random_group)->random();
+        } elseif(Str::contains($type, 'ImetOECM_AnalysisStakeholders')) {
+            $group_key = array_rand(trans('imet-core::oecm_context.AnalysisStakeholders.lists'));
+            $list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
+            $list = array_combine($list, $list);
+            return collect($list)->random();
         }
 
         // Standard
         if ($type === 'text') {
-            return fake()->words(3);
+            return fake()->words(3, true);
         } elseif ($type === 'textarea' || $type === 'text-area') {
             return fake()->words(4, true);
         } elseif ($type === "url") {
