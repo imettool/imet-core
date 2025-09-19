@@ -103,30 +103,6 @@ class FormSeeder
 
             try {
 
-//                // Rearrange records
-//                $records = $module::arrange_records_with_predefined(
-//                    $form_id,
-//                    $records,
-//                    $module::getEmptyRecord($form_id)
-//                );
-//
-//                // Clean records before insert
-//                foreach ($records as $record){
-//
-//                    // Remove auxiliary fields (starting with _)
-//                    $record = array_filter($record, function ($key) use($record) {
-//                        return !Str::startsWith($key, '_');
-//                    }, ARRAY_FILTER_USE_KEY);
-//
-//                    // Convert array values to null (to avoid issues with insert)
-//                    $record = array_map(function($value) use($records) {
-//                        return is_array($value) ? null : $value;
-//                    }, $record);
-//
-//                    $module::insert($record);
-//                }
-
-
                 DB::table((new $module)->getTable())->insert($records);
 
             } catch (Exception $e){
@@ -157,28 +133,24 @@ class FormSeeder
             $values[$predefined['field']] = null;
             if($predefined['values']!==null && count($predefined['values']) > 0){
                 if(Str::contains((new $module)->module_type, 'GROUP')){
-
                     $random_predefined_value
                         = array_key_exists($group_key, $predefined['values'])
                             && count($predefined['values'][$group_key])>0
                         ? collect($predefined['values'][$group_key])->random()
                         : null;
-
-//                    $random_group = collect($predefined['values'])->random();
-//                    $random_predefined_value = !empty($random_group)
-//                        ? collect($random_group)->random()
-//                        : null;
                 } else {
                     $random_predefined_value = collect($predefined['values'])->random();
                 }
-                $values[$predefined['field']] = $random_predefined_value;
+                if($random_predefined_value !== null){
+                    $values[$predefined['field']] = $random_predefined_value;
+                }
             }
         }
 
         // Generate fake values (fields)
         foreach((new $module)->module_fields as $field){
             if(!array_key_exists($field['name'], $values)){
-                $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id);
+                $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id, $group_key);
             }
         }
 
@@ -186,7 +158,7 @@ class FormSeeder
         if((new $module)->module_common_fields!==null) {
             foreach ((new $module)->module_common_fields as $field) {
                 if (!array_key_exists($field['name'], $values)) {
-                    $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id);
+                    $values[$field['name']] = self::fakeValueByType($field['type'], $field['name'], $module, $form_id, $group_key);
                 }
             }
         }
@@ -208,7 +180,7 @@ class FormSeeder
      * Generate a fake value for a given field type
      * @throws Exception
      */
-    private static function fakeValueByType(string $type, string $name, string $module, int $form_id): mixed
+    private static function fakeValueByType(string $type, string $name, string $module, int $form_id, ?string $group_key): mixed
     {
         // CUSTOM
         if(Str::contains($type, 'ctx11_type')){
@@ -216,20 +188,42 @@ class FormSeeder
         } else
         if(Str::contains($type, '_EcosystemServicesImportance')){
             return collect([0, 1])->random();
-        } else if (Str::contains($type, '.SubGovernanceModel')
+        }
+        else if (Str::contains($type, '.SubGovernanceModel')
             && Str::contains(Str::lower($type), 'oecm')) {
             $list = SelectionList::getList('ImetOECM_SubGovernanceModel');
             $random_group = collect($list)->random();
             return collect($random_group)->random();
-        } elseif(Str::contains($type, 'ImetOECM_AnalysisStakeholders')) {
+        }
+        else if(Str::contains($type, 'ImetOECM_AnalysisStakeholders')) {
             $group_key = array_rand(trans('imet-core::oecm_context.AnalysisStakeholders.lists'));
             $list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
             $list = array_combine($list, $list);
             return collect($list)->random();
         }
-        elseif($name === 'Stakeholder' && $type === 'hidden' && Str::contains($module, 'AnalysisStakeholder')){
+        else if($name === 'Stakeholder' && $type === 'hidden' && Str::contains($module, 'AnalysisStakeholder')){
             $list = Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id);
             return collect($list)->random();
+        }
+        else if(Str::contains($module, 'SupportsAndConstraintsIntegration') && $name === 'Stakeholder'){
+            if($group_key === 'group0'){
+                return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_DIRECT))
+                    ->random();
+            } elseif($group_key === 'group1'){
+                return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_INDIRECT))
+                    ->random();
+            }
+        }
+        else if(Str::contains($module, 'KeyElements') && $name === 'Aspect'){
+            if($group_key === 'group0'){
+                $key_elements = collect(Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id))
+                    ->keyBy('element');
+                return $key_elements->keys()->random();
+            } elseif($group_key === 'group1'){
+                $biodiversity_key_elements =  collect(Imet\oecm\Modules\Evaluation\ThreatsBiodiversity::calculateRanking($form_id))
+                    ->sortBy('_score');
+                return $biodiversity_key_elements->pluck('Criteria')->random();
+            }
         }
 
         // Standard
