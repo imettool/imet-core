@@ -1,8 +1,7 @@
 <?php
-/** @var Mixed $definitions */
 
-$equipment_id = "'" . $definitions['module_key'] . "_'+index+'_Equipment'";
-$equipment_predefined_label_id = "'".$definitions['module_key']."_'+index+'_Equipment-predefined_label'";
+$equipment_id = "'" . $module_key . "_'+index+'_Equipment'";
+$equipment_predefined_label_id = "'".$module_key."_'+index+'_Equipment-predefined_label'";
 
 ?>
 

@@ -26,12 +26,13 @@ $vue_record_index = '0';
                 'vue_directives' => '@input=convertToKm("' . $field['name'] . '")'
             ])
             <span class="ml-2 mr-4">[ha]</span>
+
             <x-modular-forms::module.components.field.input
                 :type="$field['type']"
                 :value="$field['name'].'_km2'"
-                :id="$definitions['module_key'].\ModularForms\Helpers\ModuleKey::separator.$field['name'].'_km2'"
                 :other="'@input=convertToHa('.$field['name'].')'"
             ></x-modular-forms::module.components.field.input>
+
             <span class="ml-2">[km2]</span>
 
         @else

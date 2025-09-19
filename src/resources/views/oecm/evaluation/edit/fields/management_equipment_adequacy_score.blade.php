@@ -1,5 +1,5 @@
 <?php
-$adequacy_id = "'" . $definitions['module_key'] . "_'+index+'___adequacy'";
+$adequacy_id = "'" . $module_key . "_'+index+'___adequacy'";
 ?>
 
 <x-modular-forms::module.components.field.input
