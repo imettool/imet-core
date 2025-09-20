@@ -11,6 +11,8 @@
 
 namespace ImetCore\Models\Imet;
 
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\DB;
 use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Country;
@@ -509,11 +511,18 @@ abstract class Imet extends Form
      */
     public static function foundDuplicates(): array
     {
-        return static::select("FormID")
-            ->groupBy("FormID", "Year", "wdpa_id", 'version')
-            ->havingRaw('count(*) > ?', [1])
-            ->get()
-            ->plucK('FormID')
+        $table = (new static)->getTable();
+
+        $duplicates_query = static::select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
+            ->groupBy('Year', 'wdpa_id', 'version')
+            ->having('count', '>', 1);
+
+        return static::joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table){
+            $join->on($table.'.Year', '=', 'dp.Year')
+                ->on($table.'.wdpa_id', '=', 'dp.wdpa_id')
+                ->on($table.'.version', '=', 'dp.version');
+        })
+            ->pluck($table.'.FormID')
             ->toArray();
     }
 
