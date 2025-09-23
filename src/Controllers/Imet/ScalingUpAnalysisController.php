@@ -12,17 +12,13 @@
 namespace ImetCore\Controllers\Imet;
 
 use ImetCore\Controllers\__Controller;
-use ImetCore\Helpers\ScalingUp\Common;
-use ImetCore\Models\Imet\Imet as ImetAlias;
-use ImetCore\Models\Imet\ScalingUp\Basket;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Services\ScalingUp\DownloadScalingUp;
 use ImetCore\Services\ScalingUp\PreviewScalingUp;
 use ImetCore\Services\ScalingUp\ReportScalingUp;
-use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\File\File;
 use ModularForms\Helpers\File\Zip;
 use ModularForms\Helpers\HTTP;
