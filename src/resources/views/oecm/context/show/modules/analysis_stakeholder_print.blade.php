@@ -79,25 +79,25 @@ $categories = $categories !== null ? json_decode($categories) : [];
                                     @if($field['name'] === 'Comments')
                                         <div class="field-preview" style="max-width: none; height: 120px;"></div>
                                     @elseif($field['name'] === 'Access')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Access',
-                                            'value' => []
-                                         ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Access"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Threats')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Threats',
-                                            'value' => []
-                                         ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Threats"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Guidelines')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Guidelines',
-                                            'value' => []
-                                         ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Guidelines"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @else
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => $field['type'],
-                                            'value' => null
-                                       ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            :type="$field['type']"
+                                            :value="null"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @endif
 
                                     @if($field['name'] === 'Element')

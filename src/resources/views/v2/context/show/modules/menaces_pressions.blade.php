@@ -6,8 +6,8 @@
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
-use \Wa72\HtmlPageDom\Helpers;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\Helpers;
 
 $page = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
 

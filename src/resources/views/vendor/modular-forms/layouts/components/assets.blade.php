@@ -1,1 +1,0 @@
-@include('imet-core::layouts.components.assets')

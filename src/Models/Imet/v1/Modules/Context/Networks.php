@@ -47,7 +47,7 @@ class Networks extends Modules\Component\ImetModule
     /**
      * Override: upgrade module records during retrieving
      */
-    public static function getModule(int $form_id = null): Collection|\Illuminate\Support\Collection
+    public static function getModule(int $form_id = null): Collection
     {
         $models = parent::getModule($form_id);
 

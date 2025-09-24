@@ -27,12 +27,9 @@ trait Merge
 {
     /**
      * Open the merge tool view
-     *
-     * @param $item
-     * @return Factory|View
      * @throws AuthorizationException
      */
-    public function merge_view($item)
+    public function merge_view($item): View
     {
         $form = (static::$form_class)::find($item);
         $this->authorize('edit', $form);

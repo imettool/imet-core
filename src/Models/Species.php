@@ -12,15 +12,26 @@
 namespace ImetCore\Models;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use ImetCore\Factories\SpeciesFactory;
 use ImetCore\Helpers\Database;
-use ModularForms\Helpers\Type\Chars;
 use ModularForms\Models\Utils\Animal;
 
 class Species extends Animal
 {
+    use HasFactory;
+
     protected string $schema = Database::COMMON_SCHEMA;
     protected $table = 'species';
     protected $primaryKey = 'id';
+
+    /**
+     * Override: cannot respect namespace convention for model factories
+     */
+    protected static function newFactory(): SpeciesFactory
+    {
+        return SpeciesFactory::new();
+    }
 
     /**
      * Override: get the table name with schema

@@ -22,10 +22,10 @@ $PlanExistence = boolval($records['PlanExistence']);
 
             {{-- input --}}
             <div class="module-row__input">
-                @include('modular-forms::module.show.field', [
-                    'type' => $field['type'],
-                    'value' => $records[$field['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$records[$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             </div>
 
         </div>

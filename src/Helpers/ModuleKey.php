@@ -45,11 +45,13 @@ class ModuleKey{
      */
     public static function KeyToView($module_key, $view_mode = null): ?string
     {
-        $view = Str::replaceLast(ModuleKey::separator, '.' . $view_mode . '.modules.', $module_key);
-        $view = str_replace(ModuleKey::separator, '.', $view);
-        $view = Str::replaceFirst('imet.', 'imet-core::', $view);
-        if(view()->exists($view)){
-            return $view;
+        if (Str::startsWith($module_key, 'imet')) {
+            $view = Str::replaceLast(ModuleKey::separator, '.' . $view_mode . '.modules.', $module_key);
+            $view = str_replace(ModuleKey::separator, '.', $view);
+            $view = Str::replaceFirst('imet.', 'imet-core::', $view);
+            if ($view !== null && view()->exists($view)) {
+                return $view;
+            }
         }
 
         return null;

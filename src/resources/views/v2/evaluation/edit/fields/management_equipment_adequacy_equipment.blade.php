@@ -1,18 +1,19 @@
 <?php
-/** @var Mixed $definitions */
 
-$table_id = 'table_'.$definitions['module_key'];
+$equipment_id = "'" . $module_key . "_'+index+'_Equipment'";
+$equipment_predefined_label_id = "'".$module_key."_'+index+'_Equipment-predefined_label'";
 
 ?>
 
-@include('modular-forms::module.edit.field.vue', [
-                'type' => 'hidden',
-                'v_value' => 'records[index].Equipment',
-                'id' => "'".$definitions['module_key']."_'+index+'_Equipment'"
-            ])
-@include('modular-forms::module.edit.field.vue', [
-    'type' => 'disabled',
-    'v_value' => 'records[index].__predefined_label',
-    'id' => "'".$definitions['module_key']."_'+index+'_Equipment-predefined_label'",
-    'class' => 'field-disabled'
-])
+<x-modular-forms::module.components.field.input
+    type="hidden"
+    value="records[index].Equipment"
+    :id="$equipment_id"
+></x-modular-forms::module.components.field.input>
+
+<x-modular-forms::module.components.field.input
+    type="disabled"
+    value="records[index].__predefined_label"
+    :id="$equipment_predefined_label_id"
+    class="field-disabled"
+></x-modular-forms::module.components.field.input>

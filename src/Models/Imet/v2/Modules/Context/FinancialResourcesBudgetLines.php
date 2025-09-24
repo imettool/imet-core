@@ -44,7 +44,7 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
     /**
      * Override: force Currency from CTX 3.2.1
      */
-    public static function getModule($form_id = null): Collection|\Illuminate\Support\Collection
+    public static function getModule($form_id = null): Collection
     {
         return parent::getModule($form_id)
             ->map(

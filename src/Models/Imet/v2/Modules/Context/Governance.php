@@ -57,9 +57,13 @@ class Governance extends Modules\Component\ImetModule
         $record['PartnershipsType1'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
         $record['PartnershipsType2'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
         $record['PartnershipsType3'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
-        $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType');
+        if (array_key_exists('Type', $record)){
+            $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType'); // until v2.13.7
+        } else if (array_key_exists('GovernanceType', $record)){
+            $record['GovernanceModel'] = static::dropIfValueNotInPredefinedList($record['GovernanceModel'], 'GovernanceType'); // after v3.*
+        }
 
-        // v2.13.7 -> v3.*
+        // ####  v2.13.7 -> v3.*  ####
         $record = static::renameField($record, 'Type', 'GovernanceModel');
         $record = static::renameField($record, 'Comments', 'AdditionalInfo');
 

@@ -115,7 +115,7 @@
         }
         else if(item.split("|").length>3){
             let taxonomy = item.split("|");
-            return taxonomy[4] + ' ' + taxonomy[5]
+            return taxonomy[taxonomy.length - 2] + ' ' + taxonomy[taxonomy.length - 1]
         }
         return item;
     }
@@ -155,7 +155,7 @@
                     && item['vernacular_names_' + language] !== ''
                     && item['vernacular_names_' + language].toLowerCase() !== 'null'
                 ) {
-                    let name = item['vernacular_names_' + language].replace(/\,/g, ', ');
+                    let name = item['vernacular_names_' + language].replace(/,/g, ', ');
                     name = name.charAt(0).toUpperCase() + name.slice(1);
                     common_names += '<li>' + name + '</li>'
                 }

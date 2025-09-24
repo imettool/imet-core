@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
+use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
@@ -382,7 +383,7 @@ trait ImportExportJSON
         } catch (Exception $e) {
             DB::rollback();
             $response = ['status' => 'error'];
-            if (!App::environment('production') || is_imet_offline_tool()) {
+            if (!App::environment('production') || ImetEnv::isImetOfflineEnv()) {
                 throw $e;
             }
         }
