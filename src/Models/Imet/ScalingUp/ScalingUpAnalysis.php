@@ -11,12 +11,9 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
-use ImetCore\Controllers\Imet\ApiController;
-use ImetCore\Helpers\API\DOPA\DOPA;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Species;
 use ImetCore\Models\Country;
-use ImetCore\Models\Imet\API\Comments\Comments;
 use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 use ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
 use ImetCore\Models\Imet\ScalingUp\Sections\Group;
@@ -322,7 +319,6 @@ class ScalingUpAnalysis extends Model
         $time_start = microtime(true);
         $assessments = [];
         $synthetic_indicators_table = Common::get_assessments($form_ids, static::$scaling_id);
-        //dd($synthetic_indicators_table);
         $assessments['data'] = $synthetic_indicators_table['data'];
         // filter out and reindex the assessments starting from 0
 
@@ -610,66 +606,6 @@ class ScalingUpAnalysis extends Model
         );
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_total_carbon(array $form_ids): array
-    {
-        $dopa_stats['diagram'] = ['values' => [],
-            'keys' => []];
-        $dopa_stats = static::get_dopa_pa_all_indicators($form_ids, false);
-
-        foreach ($form_ids as $key => $form_id) {
-            $custom = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-            $name = array_key_first($dopa_stats['data'][$form_id]);
-            $dopa_stats['diagram']['labels'][] = $custom->name;
-            $dopa_stats['diagram']['keys'][] = $custom->name;
-            $dopa_stats['diagram']['values'][$custom->name] = count($dopa_stats['data'][$form_id][$name]) > 0 ? $dopa_stats['data'][$form_id][$name][0]->carbon_tot_c_mg : 0;
-        }
-
-        uasort($dopa_stats['diagram']['values'], function ($a, $b) {
-            return $b - $a;
-        });
-
-        usort($dopa_stats['data'], function ($a, $b) {
-            $key1 = array_key_first($a);
-            $key2 = array_key_first($b);
-            return $key1 > $key2;
-        });
-
-        return ['status' => 'success', 'data' => $dopa_stats];
-    }
-
-    /**
-     * @param array $form_ids
-     * @param bool $sorting
-     * @return array
-     */
-    public static function get_dopa_pa_all_indicators(array $form_ids, bool $sorting = true): array
-    {
-        $dopa_stats = [];
-        $api_available = DOPA::apiAvailable();
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $wdpa_id = $protected_area['wdpa_id'];
-                $dopa_stats[$form_id] = [$protected_area['name'] => static::get_all_indicators_without_nulls($wdpa_id)];
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        if ($sorting) {
-            usort($dopa_stats, function ($a, $b) {
-                $key1 = array_key_first($a);
-                $key2 = array_key_first($b);
-                return $key1 > $key2;
-            });
-        }
-
-        return ['status' => 'success', 'data' => $dopa_stats];
-    }
 
 
     /**
@@ -701,126 +637,6 @@ class ScalingUpAnalysis extends Model
     }
 
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_dopa_pa_ecoregions_terrestial_stats(array $form_ids): array
-    {
-        $dopa_pa_ecoregions_stats = [];
-        $api_available = DOPA::apiAvailable();
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $areas = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id'])->records;
-                $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($areas, function ($value) {
-                    return !$value->marine;
-                });
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        ksort($dopa_pa_ecoregions_stats);
-
-        return ['status' => 'success', 'data' => $dopa_pa_ecoregions_stats];
-    }
-
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_dopa_pa_ecoregions_marine_stats(array $form_ids): array
-    {
-        $dopa_pa_ecoregions_stats = [];
-        $api_available = DOPA::apiAvailable();
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $area = DOPA::get_wdpa_ecoregions($protected_area['wdpa_id'])->records;
-                $dopa_pa_ecoregions_stats[$protected_area['name']] = array_filter($area, function ($value) {
-                    return $value->marine;
-                });
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        ksort($dopa_pa_ecoregions_stats);
-
-        return ['status' => 'success', 'data' => $dopa_pa_ecoregions_stats];
-    }
-
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_dopa_copernicus_land_cover_stats(array $form_ids): array
-    {
-        $dopa_stats = [];
-        $api_available = DOPA::apiAvailable();
-
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $dopa_stats[$protected_area['name']] = DOPA::get_wdpa_copernicus($protected_area['wdpa_id'])->records;
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        ksort($dopa_stats);
-
-        return ['status' => 'success', 'data' => $dopa_stats];
-    }
-
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function get_dopa_wdpa_indicators(array $form_ids): array
-    {
-        $dopa_stats = [];
-        $api_available = DOPA::apiAvailable();
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $dopa_stats[$protected_area['name']] = static::get_all_indicators_without_nulls($protected_area['wdpa_id']);
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        ksort($dopa_stats);
-
-        return ['status' => 'success', 'data' => $dopa_stats];
-    }
-
-    /**
-     * @param array $form_ids
-     * @return array
-     * @throws Exception
-     */
-    public static function get_dopa_country_indicators(array $form_ids): array
-    {
-        $dopa_stats = [];
-        $api_available = DOPA::apiAvailable();
-        if ($api_available) {
-            foreach ($form_ids as $key => $form_id) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
-                $country = Country::getByISO($protected_area['Country']);
-                $country_name = $country->name_en;
-                if (!isset($dopa_stats[$country_name])) {
-                    $dopa_stats[$country_name] = DOPA::get_country_all_inds($protected_area['Country'])->records;
-                }
-            }
-        } else {
-            return ['status' => false];
-        }
-
-        return ['status' => 'success', 'data' => $dopa_stats];
-    }
-
 
     /**
      * @param array $form_ids
@@ -833,22 +649,6 @@ class ScalingUpAnalysis extends Model
             $protected_area[$k] = ScalingUpWdpa::getByFormID(static::$scaling_id, $form_id);
         }
         return $protected_area;
-    }
-
-    /**
-     * @param int $wdpa_id
-     * @return array
-     */
-    private static function get_all_indicators_without_nulls(int $wdpa_id): array
-    {
-        return array_map(function ($i) {
-            foreach ($i as $key => $item) {
-                if ($i->$key === null) {
-                    $i->$key = 0;
-                }
-            }
-            return $i;
-        }, DOPA::get_de_wdpa_all_inds($wdpa_id)->records);
     }
 
     /**
