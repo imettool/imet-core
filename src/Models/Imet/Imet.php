@@ -515,7 +515,7 @@ abstract class Imet extends Form
 
         $duplicates_query = static::select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
             ->groupBy('Year', 'wdpa_id', 'version')
-            ->having('count', '>', 1);
+            ->having(DB::raw('COUNT(*)'), '>', 1);
 
         return static::joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table){
             $join->on($table.'.Year', '=', 'dp.Year')
