@@ -165,7 +165,7 @@ trait ImportExportJSON
         $temp_array = [];
 
         //retrieve all form records and manipulate array result
-        $results = Imet\Imet::select('FormID')->distinct()->commonSearchWithWdpa($request);
+        $results = Imet\Imet::select('FormID')->distinct()->commonSearchWithWdpa($request)->get();
 
         //add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
@@ -344,16 +344,8 @@ trait ImportExportJSON
                 $json = json_decode($fileContent, True);
             }
 
-            $version = $json['Imet']['version'];
-            if ($version === Imet\Imet::IMET_V1) {
-                $imet = (new Imet\v1\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($version === Imet\Imet::IMET_V2) {
-                $imet = (new Imet\v2\Imet($json['Imet']))->fill($json['Imet']);
-            } else if ($version === Imet\Imet::IMET_OECM) {
-                $imet = (new Imet\oecm\Imet($json['Imet']))->fill($json['Imet']);
-            }
-
             $response = ['status' => 'success', 'modules' => []];
+            $version = $json['Imet']['version'];
 
             DB::beginTransaction();
 

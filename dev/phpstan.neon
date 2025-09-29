@@ -1,0 +1,11 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    level: 1
+    paths:
+        - app
+        - package/imet-core/config
+        - package/imet-core/database
+        - package/imet-core/src

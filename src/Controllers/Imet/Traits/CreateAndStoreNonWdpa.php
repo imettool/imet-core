@@ -47,7 +47,7 @@ trait CreateAndStoreNonWdpa
      *
      * @throws AuthorizationException|Throwable
      */
-    public function store(Request $request): View|array
+    public function store(Request $request): array
     {
         $this->authorize('create', static::$form_class);
 

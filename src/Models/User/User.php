@@ -20,6 +20,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class User
+ * @property string $first_name
+ * @property string $last_name
+ * @property string $organisation
+ * @property string $function
+ * @property string $imet_role
  */
 class User extends BaseUser
 {
@@ -43,7 +48,6 @@ class User extends BaseUser
 
     /**
      * Relation to Role
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function imet_roles(): HasMany
     {
@@ -52,8 +56,6 @@ class User extends BaseUser
 
     /**
      * Relation to Country
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
     public function country(): HasOne
     {
@@ -62,8 +64,6 @@ class User extends BaseUser
 
     /**
      * Get the user's full name.
-     *
-     * @return string
      */
     public function getNameAttribute(): string
     {

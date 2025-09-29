@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Imet extends BaseImetForm
 {
     public const version = 'v1';
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'forms';
 
     public static ?array $modules = [
