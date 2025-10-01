@@ -24,7 +24,7 @@ use ImetCore\Policies\ImetPolicy;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    const BASE_PATH = __DIR__ . '/../';
+    const BASE_PATH = __DIR__ . '/';
 
     /**
      * Register services.
@@ -49,18 +49,18 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         // Views
-        $this->loadViewsFrom(static::BASE_PATH . 'src/resources/views', 'imet-core');
+        $this->loadViewsFrom(static::BASE_PATH . 'resources/views', 'imet-core');
         $this->publishes([
-            static::BASE_PATH . 'src/resources/views/vendor/modular-forms' =>
+            static::BASE_PATH . 'resources/views/vendor/modular-forms' =>
                 resource_path('views/vendor/modular-forms') // Override ModularForms views
         ], 'imet-core');
 
         // Routes
         Route::group($this->routeConfiguration('web'), function (){
-            $this->loadRoutesFrom(static::BASE_PATH . 'src/Routes/web.php');
+            $this->loadRoutesFrom(static::BASE_PATH . 'Routes/web.php');
         });
         Route::group($this->routeConfiguration('api'), function (){
-            $this->loadRoutesFrom(static::BASE_PATH . 'src/Routes/api.php');
+            $this->loadRoutesFrom(static::BASE_PATH . 'Routes/api.php');
         });
 
         // Config
@@ -69,7 +69,7 @@ class ServiceProvider extends BaseServiceProvider
         ], 'imet-core');
 
         //Lang
-        $this->loadTranslationsFrom(static::BASE_PATH . 'src/Lang', 'imet-core');
+        $this->loadTranslationsFrom(static::BASE_PATH . 'Lang', 'imet-core');
 
         // Commands
         if ($this->app->runningInConsole()) {

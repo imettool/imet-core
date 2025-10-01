@@ -1,10 +1,6 @@
-# git
 .git/
 
 # folders
-config/
-database/
-dist/
 node_modules/
 src/
 vendor/
