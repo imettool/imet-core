@@ -24,7 +24,7 @@ class Basket extends BaseModel
     public const BASKET_FOLDER = 'basket/';
 
     public $timestamps = false;
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'scaling_up_basket';
     protected $fillable = ['item', 'order', 'comment', 'scaling_up_id'];
 

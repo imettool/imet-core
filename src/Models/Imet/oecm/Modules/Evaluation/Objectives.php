@@ -61,6 +61,8 @@ class Objectives extends Modules\Component\ImetModule_Eval
                 )
                 : [];
 
+            $key_elements = array_filter($key_elements);
+
 
             static::$cache_predefined_values = [
                 'field' => static::$DEPENDENCY_ON,

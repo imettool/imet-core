@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
+use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ trait Backup{
      */
     public function backup($item, string $version)
     {
-        if(is_imet_offline_tool()){
+        if(ImetEnv::isImetOfflineEnv()){
 
             if($version === Imet\Imet::IMET_V1){
                 $form = (new Imet\v1\Imet())->find($item);

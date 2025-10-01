@@ -55,14 +55,4 @@ $stats = collect(\ImetCore\Services\ThreatsService::calculateRanking($records))
     @endforeach
 </div>
 
-
 {!! $dom->saveHTML() !!}
-
-@push('scripts')
-    <script>
-        new Vue({
-            el: '#threat_histograms',
-        });
-    </script>
-@endpush
-

@@ -1,7 +1,7 @@
 <?php
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Support\Facades\View;
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /** @var Collection $collection */
 /** @var Mixed $definitions */
@@ -27,4 +27,8 @@ $dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
 
 {!! $dom->saveHTML() !!}
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>

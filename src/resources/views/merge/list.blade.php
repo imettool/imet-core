@@ -20,7 +20,8 @@ if($primary_form->version===Imet\Imet::IMET_V1){
     $imet_class = v1\Imet::class;
     $merge_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX.'merge';
     $merge_view_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX.'merge_view';
-} elseif($primary_form->version===Imet\Imet::IMET_V2){
+}
+elseif($primary_form->version===Imet\Imet::IMET_V2){
     $all_modules = Module::getModulesList([
         v2\Imet::$modules,
         v2\Imet_Eval::$modules,
@@ -28,14 +29,15 @@ if($primary_form->version===Imet\Imet::IMET_V1){
     $imet_class = v2\Imet::class;
     $merge_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX.'merge';
     $merge_view_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX.'merge_view';
-} elseif($primary_form->version===Imet\Imet::IMET_OECM){
+}
+elseif($primary_form->version===Imet\Imet::IMET_OECM){
     $all_modules = Module::getModulesList([
         oecm\Imet::$modules,
         oecm\Imet_Eval::$modules,
     ]);
+    $imet_class = oecm\Imet::class;
     $merge_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX.'merge';
     $merge_view_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX.'merge_view';
-    $imet_class = oecm\Imet::class;
 }
 
 if(!function_exists('get_quoted_responsible')){
@@ -168,10 +170,10 @@ if(!function_exists('get_quoted_responsible')){
 
 @endsection
 
-@push('scripts')
-    <script>
-        new Vue({
-            el: '#merge_table',
-        });
-    </script>
-@endpush
+{{--@push('scripts')--}}
+{{--    <script>--}}
+{{--        new Vue({--}}
+{{--            el: '#merge_table',--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endpush--}}

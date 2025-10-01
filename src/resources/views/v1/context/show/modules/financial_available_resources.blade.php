@@ -56,10 +56,10 @@ foreach ($records as $index => $record) {
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $idx => $field)
                 <td>
-                    @include('modular-forms::module.show.field', [
-                      'type' =>$definitions['fields'][$idx]['type'],
-                         'value' => $record[$definitions['fields'][$idx]['name']]
-                    ])
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$definitions['fields'][$idx]['type']"
+                        :value="$record[$definitions['fields'][$idx]['name']]"
+                    ></x-modular-forms::module.components.field.input-preview>
                 </td>
             @endforeach
             <td>

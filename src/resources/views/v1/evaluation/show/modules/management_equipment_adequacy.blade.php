@@ -24,28 +24,28 @@ $table_id = 'table_' . $definitions['module_key'];
     @foreach($records as $index => $record)
         <tr class="module-table-item">
             <td>
-                @include('modular-forms::module.show.field', [
-                   'type' =>$definitions['fields'][0]['type'],
-                    'value' => $record[$definitions['fields'][0]['name']]
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][0]['type']"
+                    :value="$record[$definitions['fields'][0]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>
-                @include('modular-forms::module.show.field', [
-                    'value' => $record['__adequacy'],
-                        'type' => 'disabled'
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    type="disabled"
+                    :value="$record['__adequacy_type']"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>
-                @include('modular-forms::module.show.field', [
-                    'type' =>$definitions['fields'][1]['type'],
-                    'value' => $record[$definitions['fields'][1]['name']]
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][1]['type']"
+                    :value="$record[$definitions['fields'][1]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>
-                @include('modular-forms::module.show.field', [
-                   'type' =>$definitions['fields'][2]['type'],
-                    'value' => $record[$definitions['fields'][2]['name']]
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$definitions['fields'][2]['type']"
+                    :value="$record[$definitions['fields'][2]['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>
             </td>

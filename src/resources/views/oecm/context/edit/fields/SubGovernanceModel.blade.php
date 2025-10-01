@@ -1,15 +1,8 @@
 <?php
-/** @var String $type */
-/** @var String $v_value */
-/** @var String $id */
-/** @var String $class */
-/** @var String $rules */
-/** @var String $other */
-/** @var Mixed $definitions */
+use ModularForms\Helpers\DOM;
 
-
-$vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($id, $v_value);
-$rules_attribute = \ModularForms\Helpers\DOM::rulesAttribute($rules);
+$vue_attributes = DOM::vueAttributes($id, $v_value);
+$rules_attribute = DOM::rulesAttribute($rules);
 $other_attributes = $other ?? '';
 
 ?>

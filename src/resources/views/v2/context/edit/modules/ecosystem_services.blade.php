@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
 $fistGroupPerCategory = array_map(function($category){

@@ -101,6 +101,6 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
             return $record['__predefined_label'];
         }
 
-        return $record[$field['name']] ?? null;;
+        return $record[$field['name']] ?? null;
     }
 }

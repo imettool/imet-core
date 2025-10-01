@@ -30,7 +30,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
         $this->module_code = 'SA 2.1';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
         $this->module_fields = [
-            ['name' => 'Element',       'type' => 'dropdown-ImetOecm_AnalysisStakeholders', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Element',       'type' => 'dropdown-ImetOECM_AnalysisStakeholders', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
             ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Illegal')],
             ['name' => 'Dependence',    'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],

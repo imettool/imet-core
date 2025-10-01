@@ -11,12 +11,15 @@
 
 namespace ImetCore\Models;
 
+use Closure;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
+use ImetCore\Factories\ProtectedAreaFactory;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
 use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Str;
 
 
 /**
@@ -34,7 +37,9 @@ use Illuminate\Support\Str;
  */
 class ProtectedArea extends BaseProtectedArea
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    use HasFactory;
+
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'protected_areas';
     public $primaryKey = 'global_id';
 
@@ -44,11 +49,19 @@ class ProtectedArea extends BaseProtectedArea
     public const CREATED_BY = null;
 
     /**
+     * Override: cannot respect namespace convention for model factories
+     */
+    protected static function newFactory(): ProtectedAreaFactory
+    {
+        return ProtectedAreaFactory::new();
+    }
+
+    /**
      * Override: get the table name with schema
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**
@@ -85,7 +98,7 @@ class ProtectedArea extends BaseProtectedArea
     /**
      * Get protected areas' countries ISO
      */
-    public static function getCountriesISO(\Closure $custom_where = null): array
+    public static function getCountriesISO(?Closure $custom_where = null): array
     {
         $iso3s = [];
 
@@ -127,7 +140,7 @@ class ProtectedArea extends BaseProtectedArea
     /**
      * Search by key or country
      */
-    public static function searchByKeyOrCountry(?string $search_key = null, string $country = null): Collection
+    public static function searchByKeyOrCountry(?string $search_key = null, ?string $country = null): Collection
     {
         // Retrieve allowed WDPAs
         $allowed_wdpas = Role::allowedWdpas();

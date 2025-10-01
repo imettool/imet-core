@@ -38,7 +38,7 @@ class ImetModule extends Module
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    protected string $schema;
+    protected static ?string $schema = null;
     protected $primaryKey = 'id';
     public static ?string $foreign_key = 'FormID';
 
@@ -49,12 +49,20 @@ class ImetModule extends Module
     public $module_info_EvaluationQuestion = null;
     public $module_info_Rating = null;
 
+    // Override modular-forms views
+    public const MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
+    public const MODULE_INFO_BAR_VIEW = 'imet-core::components.module.components.bars.info';
+    public const MODULE_SCRIPT_EDIT_VIEW = 'imet-core::components.module.edit.script';
+    public const MODULE_SCRIPT_SHOW_VIEW = 'imet-core::components.module.show.script';
+
     /**
      * Override: get the table name with schema
      */
-    public function getTable(): string
+    public function getTable(): ?string
     {
-        return Database::getTable($this->schema, $this->table);
+        return static::$schema !== null ?
+            Database::getTable(static::$schema, $this->table)
+            : null;
     }
 
     /**

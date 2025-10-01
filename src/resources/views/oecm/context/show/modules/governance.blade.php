@@ -14,10 +14,10 @@
                 'label' => $field['label'] ?? '',
                 'label_width' => 4
             ])
-            @include('modular-forms::module.show.field', [
-                'type' => $field['type'],
-                'value' => $records[0][$field['name']]
-           ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$records[0][$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         @endcomponent
 
     @endif
@@ -36,10 +36,10 @@
                     'label' => $field['label'] ?? '',
                     'label_width' => 5
                 ])
-                @include('modular-forms::module.show.field', [
-                    'type' => $field['type'],
-                    'value' => $records[0][$field['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             @endcomponent
 
         @endif

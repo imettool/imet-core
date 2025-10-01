@@ -9,15 +9,15 @@
 
 ?>
 
-@include('modular-forms::module.edit.field.vue', [
-    'type' => 'text-area',
-    'v_value' => $v_value,
-    'id' => $id,
-    'class' => $class,
-    'rules' => $rules,
-    'other' => $other,
-    'module_key' => $definitions['module_key']
-])
+<x-modular-forms::module.components.field.input
+    type="text-area"
+    :value="$v_value"
+    :id="$id"
+    :class="$class"
+    :rules="$rules"
+    :other="$other"
+    :module_key="$definitions['module_key']"
+></x-modular-forms::module.components.field.input>
 
 
 <ul class="text-xs" style="margin-top: 10px; padding-inline-start: 30px;">

@@ -1,4 +1,10 @@
-@if(!is_imet_environment())
+<?php
+
+use ImetCore\Helpers\ImetEnv;
+
+?>
+
+@if(!ImetEnv::isImetEnv())
 
     {{-- website breadcrums --}}
     @section('admin_breadcrumbs')

@@ -4,7 +4,7 @@
 /** @var Mixed $vueData */
 /** @var String $group_key (optional - only for GROUP_TABLE) */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
 $group_key = $group_key ?? '';

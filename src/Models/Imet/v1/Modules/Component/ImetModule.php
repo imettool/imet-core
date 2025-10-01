@@ -22,7 +22,7 @@ class ImetModule extends BaseImetModule
     use Upgrade;
     use ConvertSQLite;
 
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
 
     protected static ?string $form_class = Imet::class;
 }

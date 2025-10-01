@@ -11,10 +11,10 @@
 
 namespace ImetCore\Controllers;
 
+use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\User\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,8 +26,8 @@ class DevUsersController extends __Controller {
      */
     public function create_dev_users(): RedirectResponse
     {
-        if(is_imet_global_dev()){
-            
+        if(ImetEnv::isImetGlobalDevEnv()){
+
             $userClass = (config('imet-core.user'))::class;
 
             // ######  Logout  ######
@@ -140,7 +140,7 @@ class DevUsersController extends __Controller {
     public function change_user(Request $request): RedirectResponse
     {
         // Create test users
-        if(is_imet_global_dev()){
+        if(ImetEnv::isImetGlobalDevEnv()){
 
             $role = $request->input('imet_role');
             Auth::logout();

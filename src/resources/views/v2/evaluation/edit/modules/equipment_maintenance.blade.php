@@ -5,6 +5,8 @@
 
 $table_id = 'table_'.$definitions['module_key'];
 
+$equipment_id = "'" . $definitions['module_key'] . "_'+index+'_Equipment'";
+
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -25,16 +27,16 @@ $table_id = 'table_'.$definitions['module_key'];
 
             {{--  fields  --}}
             <td>
-                @include('modular-forms::module.edit.field.vue', [
-                   'type' => 'hidden',
-                   'v_value' => 'records[index].Equipment',
-                   'id' => "'".$definitions['module_key']."_'+index+'_Equipment'"
-               ])
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'disabled',
-                    'v_value' => 'records[index].__predefined_label',
-                    'class' => 'field-disabled'
-                ])
+                <x-modular-forms::module.components.field.input
+                    type="hidden"
+                    value="records[index].Equipment"
+                    :id="$equipment_id"
+                ></x-modular-forms::module.components.field.input>
+                <x-modular-forms::module.components.field.input
+                    type="disabled"
+                    value="records[index].__predefined_label"
+                    class="field-disabled"
+                ></x-modular-forms::module.components.field.input>
             </td>
 
             <td>
@@ -63,10 +65,10 @@ $table_id = 'table_'.$definitions['module_key'];
 
             <td>
                 {{-- record id  --}}
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'hidden',
-                    'v_value' => 'item.'.$definitions['primary_key']
-                ])
+                <x-modular-forms::module.components.field.input
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
+                ></x-modular-forms::module.components.field.input>
                 @if(!$definitions['fixed_rows'])
                     <span v-if="typeof item.__predefined === 'undefined'">
                         <x-modular-forms::module.components.buttons.delete-item />
@@ -78,4 +80,8 @@ $table_id = 'table_'.$definitions['module_key'];
 
 </table>
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>

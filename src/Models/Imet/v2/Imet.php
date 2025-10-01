@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Auth;
 class Imet extends BaseImetForm
 {
     public const version = 'v2';
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'forms';
 
     public static ?array $modules = [

@@ -16,7 +16,7 @@
     "require": {
         "php": ">=8.2",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "^2.0.7"
+        "andreamarelli/modular-forms": "^3.3.0"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"
@@ -30,10 +30,7 @@
     "autoload": {
         "psr-4": {
             "ImetCore\\": "src"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
+        }
     },
     "extra": {
         "laravel": {

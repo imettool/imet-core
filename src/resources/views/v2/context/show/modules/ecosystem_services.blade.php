@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $stats = array_key_exists('FormID', $records[0]) ? \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::getStats($records[0]['FormID']) : null;
 $fistGroupPerCategory = array_map(function($category){

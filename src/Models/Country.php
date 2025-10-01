@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\App;
  */
 class Country extends BaseCountry
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'countries';
     public $primaryKey = 'iso3';
     public static ?string $foreign_key = 'region_id';
@@ -43,7 +43,7 @@ class Country extends BaseCountry
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**
