@@ -12,7 +12,8 @@
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "opcodesio/log-viewer": "^3.19"
+        "opcodesio/log-viewer": "^3.19",
+        "rector/rector": "^2.1"
     },
     "repositories": {
         "andreamarelli/modular-forms": {
