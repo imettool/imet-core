@@ -12,7 +12,6 @@
 namespace ImetCore\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
 
 /**
