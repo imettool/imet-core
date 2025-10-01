@@ -4,15 +4,16 @@ services:
 
     php:
         build:
-            dockerfile: ./docker/php.dockerfile
+            dockerfile: docker/php.dockerfile
             args:
                 - COMPOSER_GITHUB_TOKEN=${COMPOSER_GITHUB_TOKEN}
                 - UID=${UID-}
         image: imet-core_php_image
         restart: unless-stopped
         volumes:
-            - ./:/var/www/html
-            - ../:/var/www/html/package/imet-core
+            - ./dev/:/var/www/html
+            - ./:/var/www/html/package/imet-core
+            - /var/www/html/package/imet-core/dev   # exclude dev from mounted
 
     nginx:
         image: nginx:stable-alpine
@@ -20,8 +21,9 @@ services:
         ports:
             - "${HTTP_PORT}:80"
         volumes:
-            - .:/var/www/html
-            - ../:/var/www/html/package/imet-core
+            - ./dev/:/var/www/html
+            - ./:/var/www/html/package/imet-core
+            - /var/www/html/package/imet-core/dev   # exclude dev from mounted
             - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
             - ./docker/logs/nginx:/var/log/nginx
         depends_on:
@@ -34,8 +36,9 @@ services:
         profiles:
             - development # this ensures the container is not created when launching "docker-compose up"
         volumes:
-            - ./:/var/www/html
-            - ../:/var/www/html/package/imet-core
+            - ./dev/:/var/www/html
+            - ./:/var/www/html/package/imet-core
+            - /var/www/html/package/imet-core/dev   # exclude dev from mounted
         entrypoint: [ 'composer' ]
           # NOTE:  It is possible to launch composer command using this container.
         # Ex. docker-compose run --rm composer update
@@ -47,20 +50,21 @@ services:
         profiles:
             - development
         volumes:
-            - ./:/var/www/html
-            - ../:/var/www/html/package/imet-core
+            - ./dev/:/var/www/html
+            - ./:/var/www/html/package/imet-core
+            - /var/www/html/package/imet-core/dev   # exclude dev from mounted
         entrypoint: [ 'php', 'artisan' ]
 
 
     npm:
         build:
-            context: .
             dockerfile: docker/node.dockerfile
             args:
                 - UID=${UID-}
         volumes:
-            - ./:/var/www/html
-            - ../:/var/www/html/package/imet-core
+            - ./dev/:/var/www/html
+            - ./:/var/www/html/package/imet-core
+            - /var/www/html/package/imet-core/dev   # exclude dev from mounted
         profiles:
             - development
         ports:

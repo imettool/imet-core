@@ -38,7 +38,7 @@ class ImetModule extends Module
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    protected string $schema;
+    protected static ?string $schema = null;
     protected $primaryKey = 'id';
     public static ?string $foreign_key = 'FormID';
 
@@ -58,9 +58,11 @@ class ImetModule extends Module
     /**
      * Override: get the table name with schema
      */
-    public function getTable(): string
+    public function getTable(): ?string
     {
-        return Database::getTable($this->schema, $this->table);
+        return static::$schema !== null ?
+            Database::getTable(static::$schema, $this->table)
+            : null;
     }
 
     /**

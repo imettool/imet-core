@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Config;
  */
 class Currency extends BaseCurrency
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'currencies';
     protected $primaryKey = 'iso';
 
@@ -38,7 +38,7 @@ class Currency extends BaseCurrency
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**

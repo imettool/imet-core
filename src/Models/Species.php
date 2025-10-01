@@ -21,7 +21,7 @@ class Species extends Animal
 {
     use HasFactory;
 
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'species';
     protected $primaryKey = 'id';
 
@@ -38,7 +38,7 @@ class Species extends Animal
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     public static function getScientificName($taxonomy): ?string {

@@ -16,13 +16,13 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseModel extends Model
 {
-    protected string $schema;
+    protected static ?string $schema = null;
 
     /**
      * Override: get the table name with schema
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 }

@@ -39,7 +39,7 @@ class ProtectedArea extends BaseProtectedArea
 {
     use HasFactory;
 
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'protected_areas';
     public $primaryKey = 'global_id';
 
@@ -61,7 +61,7 @@ class ProtectedArea extends BaseProtectedArea
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**

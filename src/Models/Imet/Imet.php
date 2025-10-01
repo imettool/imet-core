@@ -11,6 +11,7 @@
 
 namespace ImetCore\Models\Imet;
 
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Facades\DB;
 use ImetCore\Controllers\Imet\Controller;
@@ -53,7 +54,7 @@ abstract class Imet extends Form
     const IMET_V2 = 'v2';
     const IMET_OECM = 'oecm';
 
-    protected string $schema;
+    protected static ?string $schema = null;
     protected $table = 'forms';
     protected $primaryKey = 'FormID';
     public const CREATED_AT = 'UpdateDate';
@@ -70,7 +71,7 @@ abstract class Imet extends Form
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**
@@ -102,8 +103,8 @@ abstract class Imet extends Form
             ? Role::allowedWdpas()
             : null;
 
-        $list_v1 = v1\Imet
-            ::filterList($request)
+        $list_v1 = v1\Imet::query()
+            ->filterList($request->all())
             ->with($relations)
             ->where(function ($query) use ($allowed_wdpas, $countries) {
                 if ($allowed_wdpas !== null) {
@@ -123,8 +124,8 @@ abstract class Imet extends Form
                return true;
             });
 
-        $list_v2 = v2\Imet
-            ::filterList($request)
+        $list_v2 = v2\Imet::query()
+            ->filterList($request->all())
             ->with($relations)
             ->where(function ($query) use ($allowed_wdpas, $countries) {
                 if ($allowed_wdpas !== null) {
@@ -189,58 +190,51 @@ abstract class Imet extends Form
 
     /**
      * Common search filters with wdpa
-     *
-     * @param Builder $query
-     * @param Request $request
-     * @return Builder[]|Collection
+     * @param Builder<static> $query
+     * @param array<string, scalar> $params
      */
-    public function scopeCommonSearchWithWdpa(Builder $query, Request $request): Collection
+    #[Scope]
+    public function commonSearchWithWdpa(Builder $query, array $params): void
     {
-        $this->commonFilters($query, $request);
-        if ($request->filled('wdpa')) {
-            $query->where('wdpa_id', $request->input('wdpa'));
+        $this->commonFilters($query, $params);
+        if (array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
+            $query->where('wdpa_id', $params['wdpa']);
         }
-        return $query->get();
     }
 
     /**
      * Common method to use it in various searches queries
-     *
-     * @param Builder $query
-     * @param Request $request
+     * @param Builder<static> $query
+     * @param array<string, scalar> $params
      */
-    private function commonFilters(Builder $query, Request $request)
+    #[Scope]
+    private function commonFilters(Builder $query, array $params): void
     {
-        if ($request->filled('country')) {
-            $query->where('Country', $request->input('country'));
+        if (array_key_exists('country', $params) && $params['country'] !== null) {
+            $query->where('Country', $params['country']);
         }
-        if ($request->filled('year')) {
-            $query->where('Year', $request->input('year'));
+        if (array_key_exists('year', $params) && $params['year'] !== null) {
+            $query->where('Year', $params['year']);
         }
-        if ($request->filled('wdpa_id')) {
-            $query->where('wdpa_id', $request->input('wdpa_id'));
+        if (array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null) {
+            $query->where('wdpa_id', $params['wdpa_id']);
         }
     }
 
     /**
-     * Override scopeFilterList()
-     *
-     * @param Builder $query
-     * @param Request $request
-     * @return Builder
+     * Override filterList()
+     * @
      */
-    public function scopeFilterList(Builder $query, Request $request): Builder
+    #[Scope]
+    public function filterList(Builder $query, array $params): void
     {
         // filters
-        $this->commonFilters($query, $request);
+        $this->commonFilters($query, $params);
         $query->where('version', static::version);
 
         // sort
-        $query
-            ->orderBy(static::$sortBy, static::$sortDirection)
+        $query->orderBy(static::$sortBy, static::$sortDirection)
             ->orderBy('name', 'desc');
-
-        return $query;
     }
 
     /**

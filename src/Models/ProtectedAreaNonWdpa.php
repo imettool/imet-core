@@ -29,7 +29,7 @@ use ModularForms\Models\BaseModel;
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'protected_areas_non_wdpa';
 
     public const LABEL = 'name';
@@ -45,7 +45,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**

@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\Components\BaseModel;
 class ScalingUpWdpa extends BaseModel
 {
 
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'scaling_up_wdpas';
 
     protected $fillable = ['scaling_id', 'FormID', 'name', 'Country', 'wdpa_id', 'color'];

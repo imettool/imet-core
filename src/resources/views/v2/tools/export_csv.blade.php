@@ -70,7 +70,7 @@
                             @foreach($step as $module_key => $module)
                                 <tr class="module-table-item" >
                                     @include('imet-core::v2.tools.components.module_export_csv', [
-                                            'moduleClass' => new $module(),
+                                        'moduleClass' => $module
                                     ])
                                 </tr>
                             @endforeach

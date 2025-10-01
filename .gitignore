@@ -1,5 +1,6 @@
 # Development/Envirnoment
 .idea/
+.env
 composer
 composer.lock
 package-lock.json

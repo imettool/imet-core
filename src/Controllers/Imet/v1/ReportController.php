@@ -40,12 +40,12 @@ class ReportController extends BaseReportController
 
         if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_api = true;
-            $api_available = DOPA::apiAvailable();
-            if ($api_available) {
-                $wdpa_extent = [];
-                $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true)?->records ?? null;
-                $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id)?->records ?? null;
-            }
+//            $api_available = DOPA::apiAvailable();
+//            if ($api_available) {
+//                $wdpa_extent = [];
+//                $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true)?->records ?? null;
+//                $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id)?->records ?? null;
+//            }
         } else {
             $show_non_wdpa = true;
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();

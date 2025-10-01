@@ -11,17 +11,14 @@
 
 namespace ImetCore\Controllers;
 
-use ImetCore\Services\Api\ImetDetails;
-use ModularForms\Controllers\FormController as BaseFormController;
-use ModularForms\Helpers\File\File;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use ModularForms\Controllers\FormController;
 
 /**
  * Class FormController
  *
  * @package ImetCore\Controllers
  */
-class __Controller extends BaseFormController
+class __Controller extends FormController
 {
     public const AUTHORIZE_BY_POLICY = true;
 

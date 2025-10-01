@@ -15,17 +15,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use ImetCore\Models\User\Role;
 use ImetCore\Models\User\User as ImetUser;
-use ModularForms\Exceptions\ValidationException;
-use ModularForms\Models\Module;
 
-/**
- * @property string first_name
- * @property string last_name
- * @property string organisation
- * @property string function
- */
+
 class User extends ImetUser
 {
+    /** @phpstan-var array<string, string> $rules */
     public static array $rules = [
         'first_name' => 'required|string|max:255',
         'last_name' => 'required|string|max:255',
@@ -34,21 +28,32 @@ class User extends ImetUser
         'country' => 'required|string|max:3',
     ];
 
-    public function update_offline(array $attributes): Model|array
+    /**
+     * @phpstan-param array<string, string> $attributes
+     * @phpstan-return ?User
+     */
+    public function update_offline(array $attributes): ?User
     {
-        $item = (new User)->find($attributes['id']);
-        $item->fill($attributes);
-        if ($item->imet_role == null) {
-            $item->imet_role = Role::ROLE_ADMINISTRATOR;
-        }
-        if ($item->isDirty()) {
-            $item->touch();
-            $item->save();
+        $item = User::query()->find($attributes['id']);
+
+        if($item !== null) {
+            $item->fill($attributes);
+            if ($item->imet_role == null) {
+                $item->imet_role = Role::ROLE_ADMINISTRATOR;
+            }
+            if ($item->isDirty()) {
+                $item->touch();
+                $item->save();
+            }
         }
 
         return $item;
     }
 
+    /**
+     * @param array<string, string> $attributes
+     * @return array<string, array<int, string>>
+     */
     public function validate(array $attributes): array
     {
         $validator = Validator::make($attributes, static::$rules);
