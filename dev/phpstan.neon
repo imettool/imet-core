@@ -3,11 +3,9 @@ includes:
     - vendor/nesbot/carbon/extension.neon
 
 parameters:
-    level: 2
+    level: 1
     paths:
         - app
-        - package/imet-core/config
-        - package/imet-core/database
         - package/imet-core/src
 
     # Ignore errors in custom blade views: for some reason, PHPStan is not able to detect @var PHPDoc tags
