@@ -13,13 +13,13 @@ namespace Database\Seeders;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use ImetCore\Factories\ProtectedAreaFactory;
+use ImetCore\Factories\SpeciesFactory;
 use ImetCore\Helpers\Dev\FormSeeder as DevDatabaseSeeder;
 use ImetCore\Models\ProtectedArea;
 use Auth;
 use Exception;
 use Illuminate\Database\Seeder;
-use ImetCore\Models\Imet;
-use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
 class DatabaseSeeder extends Seeder
@@ -48,10 +48,10 @@ class DatabaseSeeder extends Seeder
         Auth::loginUsingId(0);
 
         // Seed protected areas
-        ProtectedArea::factory()->count(50)->create();
+        ProtectedAreaFactory::new()->count(50)->create();
 
         // Seed species
-        Species::factory()->count(1000)->create();
+        SpeciesFactory::new()->count(1000)->create();
 
         // Seed forms with modules
         $pas = ProtectedArea::all()->random(10);
