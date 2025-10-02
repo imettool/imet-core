@@ -54,7 +54,7 @@ class OECMScores extends _Scores
     public static function getAsModel($imet): Imet
     {
         if (is_int($imet) or is_string($imet)) {
-            $imet = Imet::find($imet);
+            $imet = Imet::query()->find($imet);
         }
         return $imet;
     }

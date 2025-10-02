@@ -30,7 +30,7 @@ class Basket extends BaseModel
 
     public static function retrieve_by_scaling_id($id)
     {
-        return static::where('scaling_up_id', $id)->orderBy('id','asc')->get();
+        return static::query()->where('scaling_up_id', $id)->orderBy('id','asc')->get();
     }
 
     public static function save_item($item)
@@ -38,7 +38,7 @@ class Basket extends BaseModel
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);
 
-        $record = static::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
+        $record = static::query()->create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
         $imageName = hash('sha256', $record->id . time()) . '.png';
 
         $disk = Storage::disk(self::BASKET_DISK);

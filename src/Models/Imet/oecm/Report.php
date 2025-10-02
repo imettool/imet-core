@@ -133,7 +133,7 @@ class Report extends BaseReport
     #[\Override]
     public static function getByForm($form_id): array
     {
-        $report = Report::where('FormID', $form_id)->get();
+        $report = Report::query()->where('FormID', $form_id)->get();
 
         return $report->isEmpty()
             ? [static::getSchema()]
@@ -156,7 +156,7 @@ class Report extends BaseReport
     public static function updateByForm($form_id, $data)
     {
 
-        Report::where('FormID', $form_id)->delete();
+        Report::query()->where('FormID', $form_id)->delete();
         foreach ($data as $key => $value) {
             $report = new Report();
             $data[$key]['FormID'] = $form_id;

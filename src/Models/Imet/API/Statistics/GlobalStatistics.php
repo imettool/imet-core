@@ -35,8 +35,8 @@ class GlobalStatistics
     {
         $wdpa_ids = [];
         $imet_index_average = [];
-        $list_v2 = v2\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
-        $list_v1 = v1\Imet::whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
+        $list_v2 = v2\Imet::query()->whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
+        $list_v1 = v1\Imet::query()->whereIn('FormID', $form_ids)->select(['wdpa_id', 'FormID', 'version'])->get();
 
         $list = $list_v1->merge($list_v2);
 
@@ -59,7 +59,7 @@ class GlobalStatistics
             return $item;
         };
 
-        ProtectedArea::select('wdpa_id', 'iucn_category')
+        \ImetCore\Models\ProtectedArea::query()->select('wdpa_id', 'iucn_category')
             ->whereIn('wdpa_id', array_keys($wdpa_ids))
             ->get()
             ->map($fn);
@@ -81,10 +81,10 @@ class GlobalStatistics
     public static function get_pa_number_per_iucn_categories(array $form_ids): array
     {
 
-        $list_v1 = Imet::whereIn('FormID', $form_ids)->select()->pluck('wdpa_id')
+        $list_v1 = \ImetCore\Models\Imet\Imet::query()->whereIn('FormID', $form_ids)->select()->pluck('wdpa_id')
             ->toArray();
 
-        $number_of_pas_per_iucn_categories = ProtectedArea::select(DB::raw('iucn_category'), DB::raw('count("iucn_category") as total'));
+        $number_of_pas_per_iucn_categories = \ImetCore\Models\ProtectedArea::query()->select(DB::raw('iucn_category'), DB::raw('count("iucn_category") as total'));
 
         if (count($list_v1) > 0) {
             $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories->whereIn('wdpa_id', $list_v1);
@@ -108,7 +108,7 @@ class GlobalStatistics
      */
     public static function get_pa_number_of_marines_and_terrestrials(array $form_ids): array
     {
-        $pa_number_or_marines_and_terrestrials = GeneralInfo::select(DB::raw('"Type"'), DB::raw('count("Type") as total'));
+        $pa_number_or_marines_and_terrestrials = GeneralInfo::query()->select(DB::raw('"Type"'), DB::raw('count("Type") as total'));
 
         if (count($form_ids) > 0) {
             $pa_number_or_marines_and_terrestrials = $pa_number_or_marines_and_terrestrials->whereIn('FormID', $form_ids);
@@ -151,7 +151,7 @@ class GlobalStatistics
      */
     public static function get_pa_areas_large(array $form_ids, string $order = 'desc', int $limit = 5): array
     {
-        $pa_areas = Areas::select(['WDPAArea', 'FormID']);
+        $pa_areas = \ImetCore\Models\Imet\v2\Modules\Context\Areas::query()->select(['WDPAArea', 'FormID']);
 
         if (count($form_ids) > 0) {
             $pa_areas = $pa_areas->whereIn('FormID', $form_ids);
@@ -173,12 +173,12 @@ class GlobalStatistics
     public static function get_number_of_assessments_by_region(array $form_ids, string $language = 'en'): array
     {
         $list = [];
-        $regions = Region::select()->get();
+        $regions = \ImetCore\Models\Region::query()->select()->get();
         foreach($regions as $region){
 
             $countries = Country::getByRegion($region['id']);
 
-            $list[$region['name']] = Imet::select('FormID')->whereIn('Country', $countries)->get()->count();
+            $list[$region['name']] = \ImetCore\Models\Imet\Imet::query()->select('FormID')->whereIn('Country', $countries)->get()->count();
         }
         return ['data' => $list];
     }
@@ -189,8 +189,7 @@ class GlobalStatistics
      */
     public static function get_total_number_of_assessments(array $form_ids): array
     {
-        $number_of_pas = Imet::
-        select(DB::raw('count("FormID") as total'));
+        $number_of_pas = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('count("FormID") as total'));
 
         if (count($form_ids) > 0) {
             $number_of_pas = $number_of_pas->whereIn('FormID', $form_ids);
@@ -207,7 +206,7 @@ class GlobalStatistics
      */
     public static function get_assessments_performed_by_year(array $form_ids): array
     {
-        $number_of_pas_by_year = Imet::select(DB::raw('"Year"'), DB::raw('count("Year") as total'));
+        $number_of_pas_by_year = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('"Year"'), DB::raw('count("Year") as total'));
 
         if (count($form_ids) > 0) {
             $number_of_pas_by_year = $number_of_pas_by_year->whereIn('FormID', $form_ids);
@@ -292,8 +291,8 @@ class GlobalStatistics
         $country_fields = 'country:iso3,' . $name;
 
         $i = 0;
-        $list_of_pas_rating_v2 = v2\Imet::whereIn('FormID', $form_ids)->where('version', 'v2')->with($country_fields);
-        $list_of_pas_rating_v1 = v1\Imet::whereIn('FormID', $form_ids)->where('version', 'v1')->with($country_fields);
+        $list_of_pas_rating_v2 = v2\Imet::query()->whereIn('FormID', $form_ids)->where('version', 'v2')->with($country_fields);
+        $list_of_pas_rating_v1 = v1\Imet::query()->whereIn('FormID', $form_ids)->where('version', 'v1')->with($country_fields);
 
         $list_of_pas_rating_v2 = $list_of_pas_rating_v2->get()
             ->map(function ($item) use ($name, &$i, $all_scores) {
@@ -332,10 +331,10 @@ class GlobalStatistics
         $form_ids = [];
         $records = null;
         if ($year !== null || $version !== null || $country !== null) {
-            $records = new Imet();
+            $records = new v2\Imet();
 
             if ($year !== null) {
-                $records = $records::where('Year', $year);
+                $records = $records::query()->where('Year', $year);
 
             }
             if ($version !== null) {
@@ -348,7 +347,7 @@ class GlobalStatistics
         }
 
         if (count($form_ids) > 0 && $type !== null) {
-            $form_ids = GeneralInfo::where('Type', $type)
+            $form_ids = GeneralInfo::query()->where('Type', $type)
                 ->whereIn('FormID', $form_ids)
                 ->pluck('FormID')
                 ->toArray();

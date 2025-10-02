@@ -11,14 +11,14 @@
 
 namespace ImetCore\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
 use ModularForms\Models\Utils\Country as BaseCountry;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\Region;
-use Illuminate\Support\Facades\App;
+use Override;
 
 
 /**
@@ -41,7 +41,7 @@ class Country extends BaseCountry
     /**
      * Override: get the table name with schema
      */
-    #[\Override]
+    #[Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, $this->table);
@@ -50,7 +50,7 @@ class Country extends BaseCountry
     /**
      * Get the region associated with the country.
      */
-    public function region()
+    public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
@@ -62,7 +62,7 @@ class Country extends BaseCountry
     public static function getByRegion($region): array
     {
         if(strlen($region)==2){
-            return static::where('region_id', $region)->pluck('iso3')->toArray();
+            return static::query()->where('region_id', $region)->pluck('iso3')->toArray();
         }else {
             throw new Exception('Wrong size for region: '. $region);
         }
@@ -75,11 +75,11 @@ class Country extends BaseCountry
      * @param array $fields
      * @return array
      */
-    #[\Override]
-    public static function selectionList($type = 'PAIRS', ?Collection $collection = null, $fields = []): array
+    #[Override]
+    public static function selectionList(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
     {
         $allowed_countries = Role::allowedCountries();
-        $collection = static::select(['iso3', 'name_'.Locale::lower()])
+        $collection = static::query()->select(['iso3', 'name_'.Locale::lower()])
             ->where(function ($query) use ($allowed_countries){
                 if($allowed_countries!==null){
                     $query->whereIn('iso3', array_values($allowed_countries));

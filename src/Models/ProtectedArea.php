@@ -60,7 +60,7 @@ class ProtectedArea extends BaseProtectedArea
      */
     public static function getByGlobalId($global_id) : ?ProtectedArea
     {
-        return static::where('global_id', '=', $global_id)
+        return static::query()->where('global_id', '=', $global_id)
             ->first();
     }
 
@@ -92,7 +92,7 @@ class ProtectedArea extends BaseProtectedArea
     {
         $iso3s = [];
 
-        ProtectedArea::select('country')
+        ProtectedArea::query()->select('country')
             ->distinct()
             ->where(function ($query)  use ($custom_where){
                 if($custom_where !== null){
@@ -118,7 +118,7 @@ class ProtectedArea extends BaseProtectedArea
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
-        return Country::select(['iso3', 'iso2', 'name_'.Locale::lower()])
+        return Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
             ->where(function ($query) use ($countries){
                 if($countries!==null){
                     $query->whereIn('iso3', array_values($countries));
@@ -136,8 +136,7 @@ class ProtectedArea extends BaseProtectedArea
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::
-        where(function($query) use($search_key, $country){
+        $protected_areas = static::query()->where(function($query) use($search_key, $country){
             $query = $query->like($search_key);
             if($country != null){
                 $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
@@ -157,7 +156,7 @@ class ProtectedArea extends BaseProtectedArea
         );
 
         // Retrieve country names
-        $countries = Country::select(['iso3', 'name_'.Locale::lower()])
+        $countries = Country::query()->select(['iso3', 'name_'.Locale::lower()])
             ->whereIn('iso3', $protected_areas_countries)
             ->pluck('name_'.Locale::lower(), 'iso3')
             ->sort()

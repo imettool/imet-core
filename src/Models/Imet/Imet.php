@@ -245,14 +245,14 @@ abstract class Imet extends Form
      */
     public static function checkMissingPaData()
     {
-        static::where('Country', null)
+        static::query()->where('Country', null)
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
             ->map(function ($imet) {
                 /** @var Imet $imet */
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
-                    ? ProtectedAreaNonWdpa::find($imet->wdpa_id)
+                    ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
                     : ProtectedArea::getByWdpa($imet->wdpa_id);
                 $imet->Country = $pa->country;
                 $imet->name = $pa->name;
@@ -271,7 +271,7 @@ abstract class Imet extends Form
         $session_key = 'imet_language_' . $form_id;
         $language = session($session_key, null);
         if ($language === null || $language === "") {
-            $language = strtolower(static::find($form_id)->language);
+            $language = strtolower(static::query()->find($form_id)->language);
             session([$session_key => $language]);
         }
         return $language;
@@ -311,7 +311,7 @@ abstract class Imet extends Form
      */
     public static function getVersion($form_id)
     {
-        $form = static::find($form_id);
+        $form = static::query()->find($form_id);
         return $form ? $form->version : null;
     }
 
@@ -324,7 +324,7 @@ abstract class Imet extends Form
     public static function getFieldsSplitToArrays(array $fields = ['Country', 'Year', 'wdpa_id', 'FormID']): array
     {
 
-        $getRecords = static::select($fields)
+        $getRecords = static::query()->select($fields)
             ->distinct()
             ->get()
             ->toArray();
@@ -347,7 +347,7 @@ abstract class Imet extends Form
      */
     private static function getDistinctField(string $field): array
     {
-        return static::select($field)
+        return static::query()->select($field)
             ->distinct()
             ->orderBy($field)
             ->get()
@@ -375,7 +375,7 @@ abstract class Imet extends Form
     public static function getProtectedArea($wdpa_id)
     {
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
-            $pa = ProtectedAreaNonWdpa::find($wdpa_id);
+            $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($wdpa_id);
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
             $pa->iucn_category = null;
@@ -492,7 +492,7 @@ abstract class Imet extends Form
      */
     public function getDuplicates(): array
     {
-        $query = static::select('FormID')
+        $query = static::query()->select('FormID')
             ->where($this->getKeyName(), '!=', $this->getKey())
             ->where('version', $this->version)
             ->where('Year', $this->Year)
@@ -509,11 +509,11 @@ abstract class Imet extends Form
     {
         $table = (new static)->getTable();
 
-        $duplicates_query = static::select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
+        $duplicates_query = static::query()->select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
             ->groupBy('Year', 'wdpa_id', 'version')
             ->having(DB::raw('COUNT(*)'), '>', 1);
 
-        return static::joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table){
+        return static::query()->joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table){
             $join->on($table.'.Year', '=', 'dp.Year')
                 ->on($table.'.wdpa_id', '=', 'dp.wdpa_id')
                 ->on($table.'.version', '=', 'dp.version');

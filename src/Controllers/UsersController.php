@@ -121,7 +121,7 @@ class UsersController extends __Controller
             foreach ($records as $record){
                 if($record['user']){
                     // Remove any eventual role and set user's imet_role
-                    Role::where('user_id', $record['user'])->delete();
+                    Role::query()->where('user_id', $record['user'])->delete();
                     (config('imet-core.user'))::find($record['user'])->update(['imet_role' => $role_type]);
                     $defined_users[] = $record['user'];
                 }
@@ -147,23 +147,23 @@ class UsersController extends __Controller
                     if(!empty($wdpas)){
                         foreach ($wdpas as $wdpa){
                             $attributes = [ 'user_id' => $user_id, 'wdpa' => $wdpa, 'country' => null];
-                            Role::updateOrCreate($attributes, $attributes);
+                            Role::query()->updateOrCreate($attributes, $attributes);
                         }
                     }
                     if(!empty($isos)){
                         foreach ($isos as $iso){
                             $attributes = [ 'user_id' => $user_id, 'wdpa' => null, 'country' => $iso ];
-                            Role::updateOrCreate($attributes, $attributes);
+                            Role::query()->updateOrCreate($attributes, $attributes);
                         }
                     }
                     // Remove any extra role
-                    Role::where('user_id', $user_id)
+                    Role::query()->where('user_id', $user_id)
                         ->whereNull('country')
                         ->whereNotNull('wdpa')
                         ->whereNotIn('wdpa', $wdpas)
                         ->delete();
 
-                    Role::where('user_id', $user_id)
+                    Role::query()->where('user_id', $user_id)
                         ->whereNull('wdpa')
                         ->whereNotNull('country')
                         ->whereNotIn('country', $isos)

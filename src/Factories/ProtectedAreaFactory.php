@@ -39,7 +39,7 @@ class ProtectedAreaFactory extends Factory
             'global_id' => $country . '_' . $wdpaId,
             'country' => $country,
             'wdpa_id' => $wdpaId,
-            'name' => fake()->city . ' ' . $suffixes[array_rand($suffixes)],
+            'name' => fake()->city() . ' ' . $suffixes[array_rand($suffixes)],
         ];
     }
 }

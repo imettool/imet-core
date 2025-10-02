@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet;
 
+use Illuminate\Http\JsonResponse;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet\API\Assessment\ReportV1;
@@ -28,6 +29,8 @@ use Illuminate\Http\Request;
 use ErrorException;
 use Illuminate\Support\Facades\App;
 use ImetCore\Services\Api\ImetDetails;
+use ReflectionException;
+use Throwable;
 
 
 class ApiController extends Controller
@@ -39,13 +42,9 @@ class ApiController extends Controller
 
 
     /**
-     * @param Request $request
-     * @param string $lang
-     * @param int $wdpa_id
-     * @param int|null $year
-     * @return \Illuminate\Http\JsonResponse
      * @throws ErrorException
-     * @throws \ReflectionException
+     * @throws ReflectionException
+     * @throws Throwable
      */
     public function get_assessment_report(Request $request, string $lang, int $wdpa_id, ?int $year = null): object
     {
@@ -56,12 +55,10 @@ class ApiController extends Controller
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
-        if (count($records) > 1) {
-            throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
-        }
+        throw_if(count($records) > 1, new ErrorException(trans('imet-core::api.error_messages.multiple_records_found')));
 
         $form_id = $records[0]['FormID'] ?? null;
-        $form = Imet\Imet::find($form_id);
+        $form = Imet\Imet::query()->find($form_id);
         if ($form['version'] == Imet\Imet::IMET_V1) {
             $data = ReportV1::get_assessment_report($request, $form);
         } else {
@@ -75,7 +72,7 @@ class ApiController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function get_global_average_scores(Request $request): object
     {
@@ -125,6 +122,7 @@ class ApiController extends Controller
      * @return object
      * @throws ErrorException
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws Throwable
      */
     public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, ?int $year = null): object
     {
@@ -136,14 +134,10 @@ class ApiController extends Controller
         $model = ModuleKey::KeyToClassName($slug);
         $this->authorize('api_details', [$records[0], $model]);
 
-        if (count($records) > 1) {
-            throw new ErrorException(trans('imet-core::api.error_messages.multiple_records_found'));
-        }
+        throw_if(count($records) > 1, new ErrorException(trans('imet-core::api.error_messages.multiple_records_found')));
 
         $form_id = $records[0]['FormID'] ?? null;
-        if ($form_id === null) {
-            throw new ErrorException(trans('imet-core::api.error_messages.no_records_found'));
-        }
+        throw_if($form_id === null, new ErrorException(trans('imet-core::api.error_messages.no_records_found')));
         $api = ImetDetails::getImetDetails($slug, $form_id);
         $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year']];
         return static::sendAPIResponse($api);
@@ -221,7 +215,7 @@ class ApiController extends Controller
             if ($language !== "en") {
                 $region_name .= "_" . $language;
             }
-            $item['Type'] = GeneralInfo::where('FormID', $item['FormID'])->pluck('Type')->first();
+            $item['Type'] = \ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo::query()->where('FormID', $item['FormID'])->pluck('Type')->first();
             if (!$hasType || (!$type && $item['Type'] === null) || $type === $item['Type']) {
                 if ($item->country->region) {
                     $region_item = [

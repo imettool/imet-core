@@ -105,7 +105,7 @@ class Role extends BaseModel
      */
     public static function getByUser($user_id)
     {
-        return static::where('user_id', $user_id)->get();
+        return static::query()->where('user_id', $user_id)->get();
     }
 
     /**
@@ -168,7 +168,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_wdpa
-     * @return \ImetCore\Models\ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
     {
@@ -210,7 +210,7 @@ class Role extends BaseModel
      *
      * @param null $user
      * @param bool $only_iso
-     * @return \ImetCore\Models\Country[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return Country[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
     {
@@ -224,7 +224,7 @@ class Role extends BaseModel
                 ->toArray();
         } else {
             // Unfiltered: retrieve all ISOs from ProtectedArea
-            $allowed_isos = ProtectedArea::select('country')
+            $allowed_isos = ProtectedArea::query()->select('country')
                 ->distinct('country')
                 ->orderBy('country')
                 ->get()
@@ -237,7 +237,7 @@ class Role extends BaseModel
 
         return $only_iso
             ? $parsed_isos
-            : Country::select(['iso3', 'iso2', 'name_' . Locale::lower()])
+            : Country::query()->select(['iso3', 'iso2', 'name_' . Locale::lower()])
                 ->whereIn('iso3', $parsed_isos)
                 ->get();
     }

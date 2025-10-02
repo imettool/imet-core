@@ -18,7 +18,7 @@ class PreviewScalingUp
     public static function preview(int $id): array
     {
         $areas_names_concat = "";
-        $records = ModelScalingUpAnalysis::where('id', $id)->first();
+        $records = ModelScalingUpAnalysis::query()->where('id', $id)->first();
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
             $wdpas = explode(',', $records->wdpas);

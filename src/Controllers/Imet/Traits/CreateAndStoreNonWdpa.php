@@ -128,17 +128,17 @@ trait CreateAndStoreNonWdpa
 
         $form_id = $form->getKey();
         $non_wdpa_id = Payload::decode($request->input('records_json'))[0]['wdpa_id'];
-        $non_wdpa = ProtectedAreaNonWdpa::find($non_wdpa_id);
+        $non_wdpa = ProtectedAreaNonWdpa::query()->find($non_wdpa_id);
 
         if($records[0]['version'] == Imet::version){
-            V2GeneralInfo::create([
+            V2GeneralInfo::query()->create([
                 'FormID' => $form_id,
                 'CompleteName' => $non_wdpa->name,
                 'Country' => $non_wdpa->country,
                 'CreationYear' => $non_wdpa->status_year
             ]);
         } else {
-            OecmGeneralInfo::create([
+            OecmGeneralInfo::query()->create([
                 'FormID' => $form_id,
                 'CompleteName' => $non_wdpa->name,
                 'Country' => $non_wdpa->country,

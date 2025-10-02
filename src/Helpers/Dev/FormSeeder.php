@@ -13,12 +13,12 @@ namespace ImetCore\Helpers\Dev;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use ImetCore\Helpers\SelectionList as ImetSelectionList;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
-use Log;
 use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Module;
 
@@ -31,7 +31,7 @@ class FormSeeder
      */
     public static function seedFormImetV2(ProtectedArea $protected_area, string $language): void
     {
-        $form_id = Imet\v2\Imet::insertGetId([
+        $form_id = Imet\v2\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
             'version' => Imet\v2\Imet::version,
@@ -56,7 +56,7 @@ class FormSeeder
      */
     public static function seedFormImetOecm(ProtectedArea $protected_area, string $language): void
     {
-        $form_id = Imet\oecm\Imet::insertGetId([
+        $form_id = Imet\oecm\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
             'version' => Imet\oecm\Imet::version,
@@ -232,11 +232,11 @@ class FormSeeder
         } elseif ($type === 'textarea' || $type === 'text-area') {
             return fake()->words(4, true);
         } elseif ($type === "url") {
-            return fake()->url;
+            return fake()->url();
         } elseif ($type === "email") {
-            return fake()->email;
+            return fake()->email();
         } elseif ($type === "password") {
-            return fake()->password;
+            return fake()->password();
         } elseif ($type === "integer"
             || $type === "code"
             || $type === "numeric") {
@@ -245,11 +245,11 @@ class FormSeeder
             || $type === "currency") {
             return fake()->randomFloat(2);
         } elseif ($type === "date") {
-            return fake()->date;
+            return fake()->date();
         } elseif ($type === "dateMaxToday") {
             return fake()->dateTimeBetween('-4 years', 'now');
         } elseif ($type === "year") {
-            return fake()->year;
+            return fake()->year();
         } elseif ($type === "yearMaxCurrent"
             || $type === "yearMaxPrev") {
             return fake()->dateTimeBetween('-4 years', '-1 year')->format('Y');
@@ -289,7 +289,7 @@ class FormSeeder
         }
 
         elseif (Str::contains($type, "selector-species")) {
-            $species = Species::inRandomOrder()->first();
+            $species = Species::query()->inRandomOrder()->first();
             return $species->phylum
                 . '|' . $species->class
                 . '|' . $species->order
@@ -299,9 +299,9 @@ class FormSeeder
 
         } elseif (Str::contains($type, "selector-wdpa")){
             if(Str::contains($type, 'multiple')){
-                return implode(',', ProtectedArea::inRandomOrder()->limit(rand(2,5))->get()->pluck('wdpa_id')->toArray());
+                return implode(',', ProtectedArea::query()->inRandomOrder()->limit(rand(2,5))->get()->pluck('wdpa_id')->toArray());
             }
-            return ProtectedArea::inRandomOrder()->first()->wdpa_id;
+            return ProtectedArea::query()->inRandomOrder()->first()->wdpa_id;
         }
 
         return null;

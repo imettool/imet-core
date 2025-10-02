@@ -30,7 +30,6 @@ class ReportController extends BaseReportController
 
     /**
      * Retrieve data to populate the report view
-     * @throws ReflectionException
      * @throws ConnectionException
      */
     protected function __retrieve_report_data(Imet $item): array
@@ -46,7 +45,7 @@ class ReportController extends BaseReportController
 
         } else {
             $show_non_wdpa = true;
-            $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
+            $non_wdpa = ProtectedAreaNonWdpa::query()->find($item->wdpa_id)->toArray();
         }
 
         $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);

@@ -133,7 +133,7 @@ trait Inputs
 
     protected static function score_i5(int $imet_id): ?float
     {
-        $imet_locale = Imet::find($imet_id)->language;
+        $imet_locale = Imet::query()->find($imet_id)->language;
         $current_locale = App::getLocale();
 
         App::setLocale($imet_locale);

@@ -46,7 +46,7 @@ class ReportController extends BaseReportController
             $show_general_info = true;
         } else {
             $show_non_wdpa = true;
-            $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
+            $non_wdpa = ProtectedAreaNonWdpa::query()->find($item->wdpa_id)->toArray();
         }
 
         $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);

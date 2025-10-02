@@ -113,7 +113,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                             ->map(function ($item) {
                                 return $item['__weighted_importance'];
                             })
-                            ->average();
+                            ->avg();
                         return [
                             'Element' => $group_stakeholder[0]['Element'],
                             'Stakeholder' => $group_stakeholder[0]['Stakeholder'],

@@ -19,11 +19,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use ImetCore\Controllers\Imet\ApiController;
 use Illuminate\Validation\Rule;
+use Throwable;
 
 class Common
 {
     private static int $max_id = 999999999;
 
+    /**
+     * @throws Throwable
+     */
     private static function validate_wdpa(Request $request)
     {
         $year = date("Y");
@@ -46,9 +50,7 @@ class Common
 
         $wdpa_ids_params_size = count($parameters['wdpa_id']);
         $years_params_size = count($parameters['years']);
-        if ($years_params_size > 1 && $wdpa_ids_params_size !== $years_params_size) {
-            throw new ErrorException(trans('imet-core::api.error_messages.mismatch_wdpa_ids_years'));
-        }
+        throw_if($years_params_size > 1 && $wdpa_ids_params_size !== $years_params_size, new ErrorException(trans('imet-core::api.error_messages.mismatch_wdpa_ids_years')));
 
         $rules = [
             'wdpa_id' => 'required|array' . $wdpa_size,
@@ -96,9 +98,7 @@ class Common
             if (isset($parameters[$key_group]) && isset($parameters[$key_year])) {
                 $group_ids_params_size = count($parameters[$key_group]);
                 $years_params_size = count($parameters[$key_year]);
-                if ($years_params_size > 1 && $group_ids_params_size !== $years_params_size) {
-                    throw new ErrorException(trans('imet-core::api.error_messages.mismatch_group_ids_years'));
-                }
+                throw_if($years_params_size > 1 && $group_ids_params_size !== $years_params_size, new ErrorException(trans('imet-core::api.error_messages.mismatch_group_ids_years')));
             }
         }
 
@@ -211,9 +211,9 @@ class Common
     {
         $ids_size = count($ids);
         if ($key === Imet::IMET_OECM) {
-            $records = ImetOecm::select($fields)->whereIn('FormID', $ids);
+            $records = ImetOecm::query()->select($fields)->whereIn('FormID', $ids);
         } else {
-            $records = Imet::select($fields)->whereIn('wdpa_id', $ids);
+            $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids);
         }
         if ($key) {
             $records = $records->where(['version' => $key]);
@@ -234,9 +234,9 @@ class Common
     {
         $ids_size = count($ids);
         if ($key === Imet::IMET_OECM) {
-            $records = ImetOecm::select($fields)->whereIn('FormID', $ids)->where('Year', $years[0]);
+            $records = ImetOecm::query()->select($fields)->whereIn('FormID', $ids)->where('Year', $years[0]);
         } else {
-            $records = Imet::select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
+            $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
         }
         if ($key) {
             $records = $records->where(['version' => $key]);
@@ -262,9 +262,9 @@ class Common
 
         foreach ($ids as $ikey => $id) {
             if ($key === Imet::IMET_OECM) {
-                $record = ImetOecm::select($fields)->whereIn('FormID', $id)->where('Year', $years[$ikey]);
+                $record = ImetOecm::query()->select($fields)->whereIn('FormID', $id)->where('Year', $years[$ikey]);
             } else {
-                $record = Imet::select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
+                $record = Imet::query()->select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
             }
             if ($key) {
                 $record = $record->where(['version' => $key]);

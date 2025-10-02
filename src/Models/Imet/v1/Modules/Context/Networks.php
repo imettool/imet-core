@@ -73,7 +73,7 @@ class Networks extends Modules\Component\ImetModule
 
             // Convert local_id to wdpa
             $pas = collect($pas)->map(function ($pa) {
-                $model = ProtectedArea::find('OFAC_'.$pa);
+                $model = ProtectedArea::query()->find('OFAC_'.$pa);
                 return $model->wdpa_id ?? null;
             })->toArray();
             $pas = array_filter($pas);

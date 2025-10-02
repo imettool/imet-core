@@ -11,7 +11,7 @@
 
 namespace ImetCore\Commands;
 
-use ImetCore\Controllers\Imet\Controller as ImetController;
+use ImetCore\Controllers\Imet\v2\Controller as ImetController;
 use ImetCore\Models\Imet\Imet;
 use Illuminate\Console\Command;
 
@@ -50,10 +50,10 @@ class Export extends Command
     public function handle(): int
     {
         $i=0;
-        $imets = Imet::orderBy('name')->orderBy('Year')->get();
+        $imets = Imet::query()->orderBy('name')->orderBy('Year')->get();
         $this->info($imets->count() . ' IMETS found.');
         foreach ($imets as $imet){
-            (new ImetController())->export($imet, false, true);
+            new ImetController()->export($imet, false, true);
             $this->info($imet->name . ' (' . $imet->Year . ') exported.');
             $i++;
         }

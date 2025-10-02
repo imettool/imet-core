@@ -38,7 +38,7 @@ abstract class _Scores
     public static function getAsModel(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
     {
         if(is_int($imet) or is_string($imet)){
-            $imet = Imet::find($imet);
+            $imet = Imet::query()->find($imet);
         }
         return $imet;
     }

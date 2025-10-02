@@ -37,7 +37,7 @@ abstract class Encoder extends BaseModel
     public static function touchOnFormUpdate($formId, $user_info)
     {
         // Insert encoder (if not present in the day)
-        $encoder = static::where('first_name', $user_info['first_name'])
+        $encoder = static::query()->where('first_name', $user_info['first_name'])
             ->where('last_name', $user_info['last_name'])
             ->where('FormID', $formId)
             ->whereDate(static::UPDATED_AT, Carbon::today())
@@ -45,7 +45,7 @@ abstract class Encoder extends BaseModel
         if($encoder){
             $encoder->touch();
         } else {
-            static::create(array_merge(
+            static::query()->create(array_merge(
                 $user_info,
                 [
                     'FormID' => $formId
@@ -59,7 +59,7 @@ abstract class Encoder extends BaseModel
      */
     public static function exportModule($form_id): array
     {
-        return static::where('FormID', $form_id)
+        return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['FormID', 'id'])
             ->map(function ($item){
@@ -100,7 +100,7 @@ abstract class Encoder extends BaseModel
      */
     public static function getNames($form_id): array {
         return array_values(
-            static::where('FormID', $form_id)
+            static::query()->where('FormID', $form_id)
                 ->orderBy('UpdateDate', 'desc')
                 ->get()
                 ->map->only(['name', 'organisation', 'function'])

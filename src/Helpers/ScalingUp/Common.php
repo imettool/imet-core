@@ -248,7 +248,7 @@ class Common
     private static function get_protected_area_data($form_id, bool $show_original_names = false)
     {
         if ($show_original_names) {
-            $protected_area = Imet::where('FormID', $form_id)->get();
+            $protected_area = Imet::query()->where('FormID', $form_id)->get();
             if (count($protected_area)) {
                 return $protected_area[0];
             }

@@ -104,7 +104,7 @@ class User extends BaseUser
      */
     public static function searchByKey($search_key)
     {
-        return static::where('first_name', '~~*', '%' . $search_key . '%')
+        return static::query()->where('first_name', '~~*', '%' . $search_key . '%')
             ->orWhere('last_name', '~~*', '%' . $search_key . '%')
             ->orderBy('last_name')
             ->orderBy('first_name')

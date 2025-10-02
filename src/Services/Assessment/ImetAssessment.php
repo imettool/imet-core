@@ -28,10 +28,10 @@ class ImetAssessment
     private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
         if(is_int($imet) or is_string($imet)) {
-            $imet_model = ImetV2::find($imet);
+            $imet_model = ImetV2::query()->find($imet);
             return $imet_model->version===ImetV2::version
                 ? $imet_model
-                : ImetV1::find($imet);
+                : ImetV1::query()->find($imet);
         }
         return $imet;
     }
@@ -69,7 +69,7 @@ class ImetAssessment
      */
     public static function getLast($wdpa_id): ?ImetV2
     {
-        return ImetV2::where('wdpa_id', $wdpa_id)
+        return ImetV2::query()->where('wdpa_id', $wdpa_id)
             ->orderBy('Year', 'DESC')
             ->first();
     }
@@ -79,8 +79,7 @@ class ImetAssessment
      */
     public static function getAvailableYears($wdpa_id): Collection
     {
-        return ImetV2
-            ::where('wdpa_id', $wdpa_id)
+        return ImetV2::query()->where('wdpa_id', $wdpa_id)
             ->orderBy('Year','DESC')
             ->get();
     }
@@ -90,7 +89,7 @@ class ImetAssessment
      */
     public static function getAssessmentByCountry($country, bool $with_scores = true): array
     {
-        return ImetV2::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
+        return ImetV2::query()->select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()

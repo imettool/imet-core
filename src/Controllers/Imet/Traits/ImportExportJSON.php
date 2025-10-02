@@ -165,7 +165,7 @@ trait ImportExportJSON
         $temp_array = [];
 
         //retrieve all form records and manipulate array result
-        $results = Imet\Imet::select('FormID')->distinct()->commonSearchWithWdpa($request)->get();
+        $results = Imet\Imet::query()->select('FormID')->distinct()->commonSearchWithWdpa($request)->get();
 
         //add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
@@ -375,9 +375,7 @@ trait ImportExportJSON
         } catch (Exception $e) {
             DB::rollback();
             $response = ['status' => 'error'];
-            if (!App::environment('production') || ImetEnv::isImetOfflineEnv()) {
-                throw $e;
-            }
+            throw_if(!App::environment('production') || ImetEnv::isImetOfflineEnv(), $e);
         }
 
         if (!$returnJson) {

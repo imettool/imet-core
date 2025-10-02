@@ -48,14 +48,14 @@ class CalculateScores implements ShouldQueue
     public function handle(): void
     {
         // IMETs
-        $IMETs = ImetV2::select(['FormID', 'version'])->get();
+        $IMETs = ImetV2::query()->select(['FormID', 'version'])->get();
         foreach($IMETs as $imet){
             ImetScores::refresh_scores($imet);
             Log::info('IMET #' . $imet . ' scores updated');
         }
 
         // OECM
-        $OECMs = ImetOECM::select(['FormID'])->get();
+        $OECMs = ImetOECM::query()->select(['FormID'])->get();
         foreach($OECMs as $oecm){
             OecmScores::refresh_scores($oecm);
             Log::info('OECM #' . $oecm . ' scores updated');

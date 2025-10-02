@@ -77,7 +77,7 @@ class Networks extends Modules\Component\ImetModule
             // Convert global_id to wdpa
             $pas = collect($pas)->map(function ($pa) {
                 if(Str::startsWith($pa, 'OFAC_')){
-                    $model = ProtectedArea::find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
+                    $model = \ImetCore\Models\ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
                     return $model->wdpa_id ?? null;
                 } else{
                     return explode('_', $pa)[1]; // for other regions: global_id is region + wdpa
@@ -100,7 +100,7 @@ class Networks extends Modules\Component\ImetModule
             $value = "";
             $pas_length = count($pas);
             for($index = 0; $index < $pas_length; $index++) {
-                $model = ProtectedArea::where('wdpa_id','=',$pas[$index])->get()->toArray();
+                $model = \ImetCore\Models\ProtectedArea::query()->where('wdpa_id', '=', $pas[$index])->get()->toArray();
                 if(!empty($model)) {
                     if($index === 0) {
                         $value .= $model[0]['name'];

@@ -130,7 +130,7 @@ class Areas extends Modules\Component\ImetModule
         $records = parent::getModuleRecords($form_id, $collection);
 
         if($records['records'][0] === $records['empty_record']){
-            $wdpa_id = Imet::find($form_id)->wdpa_id;
+            $wdpa_id = Imet::query()->find($form_id)->wdpa_id;
             $pa_area_km2 = ProtectedArea::getByWdpa($wdpa_id)->area;
             if($pa_area_km2 !== null && $pa_area_km2 > 0){
                 $pa_area_ha = $pa_area_km2 * 100; // km2 -> ha

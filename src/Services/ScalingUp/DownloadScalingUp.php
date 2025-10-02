@@ -17,9 +17,9 @@ class DownloadScalingUp
     public static function zipFile(int $scaling_id): string|BinaryFileResponse
     {
         $files = [];
-        $scaling_ups = Basket::where('scaling_up_id', $scaling_id)->get();
+        $scaling_ups = Basket::query()->where('scaling_up_id', $scaling_id)->get();
         if (count($scaling_ups) > 0) {
-            $item = ModelScalingUpAnalysis::where('id', $scaling_id)->first();
+            $item = ModelScalingUpAnalysis::query()->where('id', $scaling_id)->first();
 
             static::checkAuthorization(explode(',', $item->wdpas));
 

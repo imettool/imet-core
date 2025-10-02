@@ -35,7 +35,7 @@ trait KeyElements
         ];
 
         foreach ($items as $form_id) {
-            $protected_area = Imet::where(['FormID' => $form_id])->first();
+            $protected_area = Imet::query()->where(['FormID' => $form_id])->first();
 
             $retrieve_key_elements = [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {

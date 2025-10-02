@@ -4,9 +4,9 @@
 /** @var Mixed $vueData */
 
 
-    $imet = \ImetCore\Models\Imet\v1\Imet::find($vueData['form_id']);
+    $imet = \ImetCore\Models\Imet\v1\Imet::query()->find($vueData['form_id']);
     if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
-        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::find($imet->wdpa_id);
+        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id);
     } else {
         $pa = \ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
     }

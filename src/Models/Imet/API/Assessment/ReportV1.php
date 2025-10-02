@@ -90,7 +90,7 @@ class ReportV1
      */
     protected static function get_general_info(int $form_id): ?array
     {
-        $general_info = static::$general_info_class::getModuleRecords($form_id)[][0] ?? null;
+        $general_info = static::$general_info_class::getModuleRecords($form_id)[0] ?? null;
         if ($general_info) {
             return static::remove_fields($general_info, ['WDPA' => '', 'id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
         }

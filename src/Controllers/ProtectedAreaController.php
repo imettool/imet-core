@@ -58,7 +58,7 @@ class ProtectedAreaController extends Controller
                     : explode(',', $ids);
             }
 
-            $pairs = ProtectedArea::select(['wdpa_id', 'name'])
+            $pairs = ProtectedArea::query()->select(['wdpa_id', 'name'])
                 ->whereIn('wdpa_id', $pas)
                 ->get();
         }

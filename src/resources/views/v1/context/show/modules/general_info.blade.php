@@ -4,7 +4,7 @@
 /** @var Mixed $item */
 
     if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
-        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::find($item->wdpa_id);
+        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($item->wdpa_id);
     } else {
         $pa = \ImetCore\Models\ProtectedArea::getByWdpa($item->wdpa_id);
     }

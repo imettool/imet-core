@@ -63,7 +63,7 @@ trait ConvertSQLite{
 
         // Valid WDPA found
         if(!empty($wdpa)
-            && $pa = ProtectedArea::where('wdpa_id', $wdpa)->first()){
+            && $pa = ProtectedArea::query()->where('wdpa_id', $wdpa)->first()){
             return [$wdpa, $pa->name];
         }
 

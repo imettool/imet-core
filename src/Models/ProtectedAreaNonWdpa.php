@@ -67,7 +67,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public static function generate_fake_wdpa(?int $max_id = null)
     {
-        $max_id = $max_id ?? ProtectedAreaNonWdpa::max('id');
+        $max_id = $max_id ?? ProtectedAreaNonWdpa::query()->max('id');
         return $max_id===null || !static::isNonWdpa($max_id)
             ? static::START_FAKE_ID
             : intval($max_id) + 1;
@@ -91,7 +91,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public static function export($id): array
     {
-        $pa = static::findOrNew($id);
+        $pa = static::query()->findOrNew($id);
         $pa->id = $pa->id ?? $id;
         return $pa
             ->makeHidden([static::UPDATED_AT, static::UPDATED_BY])
@@ -108,7 +108,7 @@ class ProtectedAreaNonWdpa extends BaseModel
         unset($data['wdpa_id']);
         unset($data['id']);
 
-        $pa = ProtectedAreaNonWdpa::firstOrNew($data);
+        $pa = ProtectedAreaNonWdpa::query()->firstOrNew($data);
         if($pa->isDirty()){
             $pa->id = ProtectedAreaNonWdpa::generate_fake_wdpa();
             $pa->save();

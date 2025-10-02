@@ -45,7 +45,7 @@ abstract class Report extends BaseModel
      */
     public static function getByForm($form_id): array
     {
-        $report = static::where('FormID', $form_id)->first();
+        $report = static::query()->where('FormID', $form_id)->first();
 
         if($report===null){
             $report = array_fill_keys(static::$report_fields, "");
@@ -70,7 +70,7 @@ abstract class Report extends BaseModel
      */
     public static function updateByForm($form_id, $data)
     {
-        $report = static::where('FormID', $form_id)->first();
+        $report = static::query()->where('FormID', $form_id)->first();
         if($report==null){
             $report = new static();
         }
@@ -89,7 +89,7 @@ abstract class Report extends BaseModel
      */
     public static function export($form_id)
     {
-        return static::where('FormID', $form_id)
+        return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['id', 'FormID'])
             ->toArray()[0]

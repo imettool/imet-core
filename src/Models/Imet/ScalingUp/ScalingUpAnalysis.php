@@ -58,7 +58,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_scaling_up_by_wdpas(string $wdpas)
     {
-        return static::where('wdpas', $wdpas)->get();
+        return static::query()->where('wdpas', $wdpas)->get();
     }
 
     /**
@@ -196,7 +196,7 @@ class ScalingUpAnalysis extends Model
             if (static::$scaling_id !== null) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
             } else {
-                $protected_area = Imet::where(['FormID' => $form_id])->first();
+                $protected_area = \ImetCore\Models\Imet\v2\Imet::query()->where(['FormID' => $form_id])->first();
             }
 
             $name = $protected_area['name'];

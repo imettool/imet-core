@@ -87,7 +87,7 @@ class ReportScalingUp
         $item = ModelScalingUpAnalysis::get_scaling_up_by_wdpas($items);
 
         if ($item->count() === 0) {
-            $item = ModelScalingUpAnalysis::create(["wdpas" => $items]);
+            $item = ModelScalingUpAnalysis::query()->create(["wdpas" => $items]);
             if (isset($item)) {
                 $areas = $item['wdpas'];
                 $scaling_up_id = $item['id'];
@@ -120,13 +120,11 @@ class ReportScalingUp
 
         //check if the parameters are an array of numbers and pa exist in the db
         $filtered_array = array_filter($items_array, function ($value) {
-            return is_numeric($value) && Imet::where('FormID', $value)->exists();
+            return is_numeric($value) && Imet::query()->where('FormID', $value)->exists();
         });
 
         // if not return 404
-        if (count($items_array) === 0 || (count($filtered_array) !== count($items_array))) {
-            abort(404);
-        }
+        abort_if(count($items_array) === 0 || (count($filtered_array) !== count($items_array)), 404);
 
         list($areas, $scaling_up_id) = static::loadItemsAndScalingUpID($items);
 

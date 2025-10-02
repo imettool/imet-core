@@ -27,7 +27,7 @@ class ScalingUpBasketController extends __Controller
 
     public function delete($id)
     {
-        $item = BasketModel::find($id);
+        $item = BasketModel::query()->find($id);
         if ($item) {
             Storage::disk(BasketModel::BASKET_DISK)->delete($item->item);
             return BasketModel::destroy($item->id);
@@ -38,7 +38,7 @@ class ScalingUpBasketController extends __Controller
 
     public function retrieve(Request $request)
     {
-        $item = BasketModel::find($request->id);
+        $item = BasketModel::query()->find($request->id);
         return json_encode($item);
     }
 
@@ -54,7 +54,7 @@ class ScalingUpBasketController extends __Controller
     {
         $id = $request->input('id');
 
-        $records = BasketModel::where('scaling_up_id', $id)->get();
+        $records = BasketModel::query()->where('scaling_up_id', $id)->get();
 
         foreach ($records as $e) {
 
