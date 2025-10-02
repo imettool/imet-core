@@ -2,7 +2,6 @@
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\Imet;
 use \ImetCore\Models\ProtectedAreaNonWdpa;
-use \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 
 /** @var Imet $item */
 
@@ -36,7 +35,7 @@ $last_update = $item->getLastUpdate();
         {{ $item->name }}
         @if(!ProtectedAreaNonWdpa::isNonWdpa( $item->wdpa_id))
             (<a target="_blank"
-                href="{{ ProtectedPlanet::WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>
+                href="{{ PROTECTEDPLANET_WEBSITE_URL  }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>
             )
         @endif
     </div>

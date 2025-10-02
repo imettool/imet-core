@@ -11,7 +11,9 @@
 
 namespace ImetCore\Controllers\Imet\v1;
 
+use Illuminate\Http\Client\ConnectionException;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
+use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Models\Imet\v1\Imet;
@@ -19,7 +21,6 @@ use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\Species;
 use Illuminate\Support\Str;
 use ReflectionException;
-use ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 
 
 class ReportController extends BaseReportController
@@ -30,6 +31,7 @@ class ReportController extends BaseReportController
     /**
      * Retrieve data to populate the report view
      * @throws ReflectionException
+     * @throws ConnectionException
      */
     protected function __retrieve_report_data(Imet $item): array
     {
@@ -37,7 +39,7 @@ class ReportController extends BaseReportController
 
         $show_general_info = false;
         $wdpa_extent = null;
-        $connection = ProtectedPlanet::apiAvailable(ProtectedPlanet::WEBSITE_URL);
+        $connection = ImetEnv::isConnectionAvailable();
 
         if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_general_info = true;
