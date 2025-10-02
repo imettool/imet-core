@@ -39,7 +39,7 @@ return [
     'terrestrial' => 'terrestrial',
     'marine' => 'marine and coastal',
 
-    'dopa_not_available' => 'DOPA services not available',
+    'connection_not_available' => 'Connection not available',
     'no' => 'No',
     'yes' => 'Yes',
 
