@@ -87,6 +87,7 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     }
 
+    #[\Override]
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
@@ -136,6 +137,7 @@ class EcosystemServices extends Modules\Component\ImetModule
         return $stat;
     }
 
+    #[\Override]
     public function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;

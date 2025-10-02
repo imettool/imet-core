@@ -19,6 +19,7 @@ use ModularForms\View\Module\Components\Field\InputPreview;
 
 class CustomInputPreview extends InputPreview
 {
+    #[\Override]
     public function render(): View
     {
 

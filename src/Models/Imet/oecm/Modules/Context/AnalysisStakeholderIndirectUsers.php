@@ -52,6 +52,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function updateModule(Request $request): array
     {
         $return = parent::updateModule($request);
@@ -65,6 +66,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         $isEmpty = true;

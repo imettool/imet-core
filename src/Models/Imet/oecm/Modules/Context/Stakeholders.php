@@ -67,6 +67,7 @@ class Stakeholders extends Modules\Component\ImetModule
     /**
      * Remove all empty records: where "Element" is empty
      */
+    #[\Override]
     public static function updateModuleRecords($records, $form_id): void
     {
         foreach ($records as $index => $record){

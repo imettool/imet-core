@@ -148,6 +148,7 @@ class Imet extends BaseImetForm
      * @return mixed
      * @throws \Exception
      */
+    #[\Override]
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
@@ -175,6 +176,7 @@ class Imet extends BaseImetForm
      * @param null $imet_version
      * @return array
      */
+    #[\Override]
     public static function upgradeModules($data, $imet_version = null): array
     {
         if(array_key_exists('FinancialResources', $data)){

@@ -58,6 +58,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;

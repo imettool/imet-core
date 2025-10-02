@@ -85,6 +85,7 @@ class ReportController extends BaseReportController
      * @return string[]
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
+    #[\Override]
     public function report_update($item, Request $request): array
     {
         $this->authorize('edit', (static::$form_class)::find($item));

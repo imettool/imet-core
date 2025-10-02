@@ -50,6 +50,7 @@ class OECMScores extends _Scores
      * @param $imet
      * @return Imet
      */
+    #[\Override]
     public static function getAsModel($imet): Imet
     {
         if (is_int($imet) or is_string($imet)) {

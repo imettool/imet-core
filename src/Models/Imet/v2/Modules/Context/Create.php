@@ -42,6 +42,7 @@ class Create extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function updateModule(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));

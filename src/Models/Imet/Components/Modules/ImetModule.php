@@ -58,6 +58,7 @@ class ImetModule extends Module
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): ?string
     {
         return static::$schema !== null ?
@@ -81,6 +82,7 @@ class ImetModule extends Module
      * @return array
      * @throws ReflectionException
      */
+    #[\Override]
     public static function getDefinitions($form_id = null): array
     {
         $definitions = parent::getDefinitions($form_id);
@@ -106,6 +108,7 @@ class ImetModule extends Module
     /**
      * Override: Check for "warning_on_save" labels
      */
+    #[\Override]
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
@@ -115,6 +118,7 @@ class ImetModule extends Module
     /**
      * Override: update dependent modules
      */
+    #[\Override]
     public static function updateModuleRecords($records, $form_id): void
     {
         static::updateDependencies($records, $form_id);

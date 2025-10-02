@@ -45,6 +45,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
@@ -86,6 +87,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         $isEmpty = true;

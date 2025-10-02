@@ -55,6 +55,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         return [
@@ -90,6 +91,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         $isEmpty = true;
@@ -103,6 +105,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
         return $isEmpty;
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;

@@ -51,6 +51,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         if($record['EvaluationScore']!==null || $record['InManagementPlan']!==null || $record['Comments']!==null){
@@ -59,6 +60,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         return true;
     }
 
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         return [

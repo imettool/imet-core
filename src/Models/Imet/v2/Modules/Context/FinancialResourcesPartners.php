@@ -47,6 +47,7 @@ class FinancialResourcesPartners extends Modules\Component\ImetModule
     /**
      * Override: force Currency from CTX 3.2.1
      */
+    #[\Override]
     public static function getModule($form_id = null): Collection
     {
         return parent::getModule($form_id)

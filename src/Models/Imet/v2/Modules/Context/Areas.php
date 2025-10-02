@@ -124,6 +124,7 @@ class Areas extends Modules\Component\ImetModule
     /**
      * Override: retrieve the PA area (only when the module is empty)
      */
+    #[\Override]
     public static function getModuleRecords($form_id, $collection = null): array
     {
         $records = parent::getModuleRecords($form_id, $collection);

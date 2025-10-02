@@ -75,6 +75,7 @@ class User extends BaseUser
      *
      * @return string
      */
+    #[\Override]
     public function getName(): string
     {
         return $this->name ;
@@ -84,6 +85,7 @@ class User extends BaseUser
      * Retrieve user's personal info (requires to be overridden)
      * @return array
      */
+    #[\Override]
     public function getInfo(): array
     {
         return $this->only([

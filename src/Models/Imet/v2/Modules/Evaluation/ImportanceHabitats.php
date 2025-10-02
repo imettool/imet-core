@@ -56,6 +56,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = $form_id!==null
@@ -74,6 +75,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         $isEmpty = true;

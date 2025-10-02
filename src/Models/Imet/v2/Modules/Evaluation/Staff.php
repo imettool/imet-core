@@ -47,6 +47,7 @@ class Staff extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         $predefined_values = parent::getPredefined($form_id);

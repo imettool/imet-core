@@ -69,6 +69,7 @@ abstract class Imet extends Form
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, $this->table);
@@ -425,6 +426,7 @@ abstract class Imet extends Form
      * @return array
      * @throws FileNotFoundException
      */
+    #[\Override]
     public static function importModules($records, $formID, $imet_version = null): array
     {
         $records = static::upgradeModules($records, $imet_version);

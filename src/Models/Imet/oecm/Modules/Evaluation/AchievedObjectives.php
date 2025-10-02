@@ -46,6 +46,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
      * @param $form_id
      * @return array
      */
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         $p6_values = $form_id!==null

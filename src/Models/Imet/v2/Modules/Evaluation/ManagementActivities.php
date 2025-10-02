@@ -55,6 +55,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         return [
@@ -92,6 +93,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         return $record;
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;

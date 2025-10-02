@@ -130,6 +130,7 @@ class Report extends BaseReport
      * @param $form_id
      * @return array
      */
+    #[\Override]
     public static function getByForm($form_id): array
     {
         $report = Report::where('FormID', $form_id)->get();
@@ -151,6 +152,7 @@ class Report extends BaseReport
      * @param $data
      * @return void
      */
+    #[\Override]
     public static function updateByForm($form_id, $data)
     {
 

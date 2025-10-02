@@ -27,6 +27,7 @@ class ReportV2 extends ReportV1
     /**
      * @return array
      */
+    #[\Override]
     protected static function get_labels(): array
     {
         $general_info_labels = trans('imet-core::v2_context.GeneralInfo.fields');

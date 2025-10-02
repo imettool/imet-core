@@ -52,6 +52,7 @@ abstract class Controller extends __Controller
     /**
      * Override index route
      */
+    #[\Override]
     public function index(Request $request): View
     {
         $this->authorize('viewAny', static::$form_class);
@@ -87,6 +88,7 @@ abstract class Controller extends __Controller
      * @return RedirectResponse
      * @throws AuthorizationException
      */
+    #[\Override]
     public function destroy($item): RedirectResponse
     {
         $this->authorize('destroy', (static::$form_class)::find($item));

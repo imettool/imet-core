@@ -51,6 +51,7 @@ class Networks extends Modules\Component\ImetModule
      * @param int|null $form_id
      * @return Collection
      */
+    #[\Override]
     public static function getModule(int $form_id = null): Collection
     {
         $models = parent::getModule($form_id);
@@ -90,6 +91,7 @@ class Networks extends Modules\Component\ImetModule
         return $record;
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;

@@ -128,6 +128,7 @@ class ScalingUpAnalysisController extends __Controller
      *
      * @throws AuthorizationException
      */
+    #[\Override]
     public function index(Request $request): View|Factory
     {
         HTTP::sanitize($request, self::sanitization_rules);

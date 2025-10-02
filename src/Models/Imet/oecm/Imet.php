@@ -121,6 +121,7 @@ class Imet extends BaseImetForm
     /**
      * Retrieve the OECM assessments list (clean, without statistics)
      */
+    #[\Override]
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
         $allowed_wdpas = $only_allowed_wdpas
@@ -152,6 +153,7 @@ class Imet extends BaseImetForm
      * @param Request $request
      * @return mixed
      */
+    #[\Override]
     public static function get_assessments_list_with_extras(Request $request)
     {
         $duplicates = static::foundDuplicates();
@@ -186,6 +188,7 @@ class Imet extends BaseImetForm
         return $list;
     }
 
+    #[\Override]
     public static function getResponsibles($form_id, $version): array
     {
         $internal = ResponsablesInterviewers::getNames($form_id);
@@ -206,6 +209,7 @@ class Imet extends BaseImetForm
      * @return mixed
      * @throws \Exception
      */
+    #[\Override]
     public static function updateModuleAndForm($item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);

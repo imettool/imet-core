@@ -17,6 +17,7 @@ use ModularForms\View\Module\Components\Field\Input;
 
 class CustomInput extends Input
 {
+    #[\Override]
     public function render(): View
     {
 

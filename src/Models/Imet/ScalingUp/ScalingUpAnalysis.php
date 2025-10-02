@@ -46,6 +46,7 @@ class ScalingUpAnalysis extends Model
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, $this->table);

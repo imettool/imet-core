@@ -24,6 +24,7 @@ class Species extends Animal
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, $this->table);
@@ -47,6 +48,7 @@ class Species extends Animal
     /**
      * Search Species by given string
      */
+    #[\Override]
     public static function searchSpecies(string $search_key): Collection
     {
         // Query the database for species matching the search key

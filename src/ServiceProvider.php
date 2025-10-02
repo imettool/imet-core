@@ -29,6 +29,7 @@ class ServiceProvider extends BaseServiceProvider
     /**
      * Register services.
      */
+    #[\Override]
     public function register(): void
     {
         $this->mergeConfigFrom(static::BASE_PATH . 'config/config.php', 'imet-core');

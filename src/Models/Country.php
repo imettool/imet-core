@@ -41,6 +41,7 @@ class Country extends BaseCountry
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, $this->table);
@@ -74,6 +75,7 @@ class Country extends BaseCountry
      * @param array $fields
      * @return array
      */
+    #[\Override]
     public static function selectionList($type = 'PAIRS', Collection $collection = null, $fields = []): array
     {
         $allowed_countries = Role::allowedCountries();

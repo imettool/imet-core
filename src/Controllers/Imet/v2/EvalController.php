@@ -64,6 +64,7 @@ class EvalController extends BaseEvalController
      *
      * @throws AuthorizationException
      */
+    #[\Override]
     public function edit($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
@@ -86,6 +87,7 @@ class EvalController extends BaseEvalController
      *
      * @throws AuthorizationException
      */
+    #[\Override]
     public function show($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);

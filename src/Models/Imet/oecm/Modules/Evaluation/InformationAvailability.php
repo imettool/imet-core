@@ -50,6 +50,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
      * @param null $foreign_key
      * @return bool
      */
+    #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
     {
         if($record['EvaluationScore']!==null || $record['Comments']!==null){
@@ -59,6 +60,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     }
 
 
+    #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
         $key_elements = $form_id!==null

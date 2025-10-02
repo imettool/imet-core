@@ -56,6 +56,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         return $data;
     }
 
+    #[\Override]
     public static function updateModule(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));
@@ -64,6 +65,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         return parent::updateModule($request);
     }
 
+    #[\Override]
     public static function importModule($form_id, $data): void
     {
         $data = static::ensureNullValues($data);

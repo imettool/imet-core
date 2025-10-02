@@ -128,6 +128,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
