@@ -76,7 +76,7 @@ class Country extends BaseCountry
      * @return array
      */
     #[\Override]
-    public static function selectionList($type = 'PAIRS', Collection $collection = null, $fields = []): array
+    public static function selectionList($type = 'PAIRS', ?Collection $collection = null, $fields = []): array
     {
         $allowed_countries = Role::allowedCountries();
         $collection = static::select(['iso3', 'name_'.Locale::lower()])

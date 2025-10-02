@@ -106,7 +106,7 @@ class ImetScores
     /**
      * Retrieve the radar labels
      */
-    public static function labels(string $version = null, bool $only_abbreviations = false): array
+    public static function labels(?string $version = null, bool $only_abbreviations = false): array
     {
         return static::get_labels($version, $only_abbreviations);
     }
@@ -114,7 +114,7 @@ class ImetScores
     /**
      * Retrieve the indicators labels
      */
-    public static function indicators_labels(string $version = null, bool $only_abbreviations = false): array
+    public static function indicators_labels(?string $version = null, bool $only_abbreviations = false): array
     {
         return static::get_scores_labels($version);
     }

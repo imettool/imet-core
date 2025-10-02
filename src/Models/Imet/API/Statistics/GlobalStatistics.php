@@ -327,7 +327,7 @@ class GlobalStatistics
      * @param string|null $type
      * @return array
      */
-    public static function from_year_get_form_ids(Request $request, string $year = null, string $version = null, array $country = null, string $type = null): array
+    public static function from_year_get_form_ids(Request $request, ?string $year = null, ?string $version = null, ?array $country = null, ?string $type = null): array
     {
         $form_ids = [];
         $records = null;

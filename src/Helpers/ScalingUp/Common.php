@@ -161,7 +161,7 @@ class Common
      * @param string|null $indicator
      * @return float
      */
-    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], string $indicator = null)
+    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], ?string $indicator = null)
     {
         if ($value === 0) {
             return 0;

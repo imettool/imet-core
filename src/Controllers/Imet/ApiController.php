@@ -47,7 +47,7 @@ class ApiController extends Controller
      * @throws ErrorException
      * @throws \ReflectionException
      */
-    public function get_assessment_report(Request $request, string $lang, int $wdpa_id, int $year = null): object
+    public function get_assessment_report(Request $request, string $lang, int $wdpa_id, ?int $year = null): object
     {
         $api = ['data' => [], 'labels' => []];
 
@@ -126,7 +126,7 @@ class ApiController extends Controller
      * @throws ErrorException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, int $year = null): object
+    public function get_imet(Request $request, string $lang, string $slug, int $wdpa_id, ?int $year = null): object
     {
 
         $api = ['data' => [], 'labels' => []];
@@ -157,7 +157,7 @@ class ApiController extends Controller
      * @param int|null $year
      * @return object
      */
-    public function get_imet_statistics_radar(Request $request, string $lang, int $wdpa_id, int $year = null): object
+    public function get_imet_statistics_radar(Request $request, string $lang, int $wdpa_id, ?int $year = null): object
     {
         $api = [];
         $labels = [];

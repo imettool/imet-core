@@ -97,7 +97,7 @@ trait Dependencies{
      *
      * @throws MissingDependencyConfigurationException
      */
-    public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, string $dependency_on = null): void
+    public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, ?string $dependency_on = null): void
     {
         if($dependency_on==null && static::$DEPENDENCY_ON === null){
             throw new MissingDependencyConfigurationException(static::class);

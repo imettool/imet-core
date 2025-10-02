@@ -50,7 +50,7 @@ class Currency extends BaseCurrency
      * @param array $fields
      * @return array
      */
-    public static function imetV1List(string $type = 'PAIRS', Collection $collection = null, array $fields = []): array
+    public static function imetV1List(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
     {
         $lang = App::getLocale() ?? Config::get('app.locale');
         return parent::selectionList('FIELDS', $collection, ['name_'.$lang, 'iso3']);

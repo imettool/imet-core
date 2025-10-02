@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
 
 trait Labels{
 
-    protected static function get_labels(string $version = null, $only_abbreviations = false): array
+    protected static function get_labels(?string $version = null, $only_abbreviations = false): array
     {
         $labels = static::all_labels();
 

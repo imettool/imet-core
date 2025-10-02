@@ -52,7 +52,7 @@ class Networks extends Modules\Component\ImetModule
      * @return Collection
      */
     #[\Override]
-    public static function getModule(int $form_id = null): Collection
+    public static function getModule(?int $form_id = null): Collection
     {
         $models = parent::getModule($form_id);
 
