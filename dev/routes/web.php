@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 use ModularForms\Controllers\UploadFileController;
 
 
-Route::middleware(['web'])->group(function () {
+Route::middleware(['web'])->group(function (): void {
 
-    Route::get('/', function () {return view('index');})->name('home');
+    Route::get('/', fn(): View => view('index'))->name('home');
 
     // Debug/dev
-    Route::get('info', function () {return phpinfo();})->name('info');
+    Route::get('info', fn(): true => phpinfo())->name('info');
 
     // ###### File upload/download ######
     Route::post('file/upload', [UploadFileController::class, 'upload'])->name('upload.file');

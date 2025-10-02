@@ -6,6 +6,7 @@
         "ext-zip": "*",
         "andreamarelli/imet-core": "*",
         "barryvdh/laravel-ide-helper": "3.6.0",
+        "driftingly/rector-laravel": "^2.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "*",
         "laravel/framework": "^12.0",

@@ -19,6 +19,7 @@ use ImetCore\Models\User\User as ImetUser;
 
 class User extends ImetUser
 {
+    use \Illuminate\Database\Eloquent\Factories\HasFactory;
     /** @phpstan-var array<string, string> $rules */
     public static array $rules = [
         'first_name' => 'required|string|max:255',
@@ -41,6 +42,7 @@ class User extends ImetUser
             if ($item->imet_role == null) {
                 $item->imet_role = Role::ROLE_ADMINISTRATOR;
             }
+
             if ($item->isDirty()) {
                 $item->touch();
                 $item->save();
