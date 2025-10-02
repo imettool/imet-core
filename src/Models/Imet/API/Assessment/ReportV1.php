@@ -16,7 +16,6 @@ use ImetCore\Models\Imet\Imet;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Models\Imet\v1\Modules\Context\Areas;
 use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use ModularForms\Helpers\API\DOPA\DOPA;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\Imet\v1\Report;
 use Illuminate\Support\Facades\App;
@@ -39,13 +38,6 @@ class ReportV1
     public static function get_assessment_report(Request $request, $form): array
     {
         $form_id = $form->getKey();
-        $dopa_radar = null;
-
-//        $api_available = DOPA::apiAvailable();
-//        if ($api_available) {
-//            $dopa_radar = DOPA::get_wdpa_radarplot($form->wdpa_id, true)?->records ?? null;
-//            $dopa_indicators = DOPA::get_wdpa_all_inds($form->wdpa_id)?->records ?? null;
-//        }
 
         $general_info = static::get_general_info($form_id);
 
@@ -64,8 +56,6 @@ class ReportV1
                 'scores' => ImetScores::get_all($form_id),
                 'labels' => ImetScores::indicators_labels(Imet::IMET_V1),
                 'report' => $report,
-                'dopa_radar' => $dopa_radar,
-                'dopa_indicators' => $dopa_indicators[0] ?? null,
                 'general_info' => $general_info,
                 'vision' => $vision,
                 'area' => static::get_area($form_id)

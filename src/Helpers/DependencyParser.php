@@ -12,6 +12,7 @@
 namespace ImetCore\Helpers;
 
 use ModularForms\Helpers\DependencyParser as BaseDependencyParser;
+use Override;
 
 
 class DependencyParser extends BaseDependencyParser
@@ -19,17 +20,19 @@ class DependencyParser extends BaseDependencyParser
     /**
      * Override: exclude modular-forms from the list of NPM dependencies
      */
+    #[Override]
     protected static function getNpmDirectDependencyList(bool $includeDev): array
     {
         $dependencies = parent::getNpmDirectDependencyList($includeDev);
         return array_filter($dependencies, function ($dependency) {
-            return $dependency != 'modular-forms';
+            return $dependency !== 'modular-forms';
         });
     }
 
     /**
      * Override: hardcode copyright for specific packages
      */
+    #[Override]
     protected static function retrieveCopyright(array $packageInfo, string $mode): ?string
     {
         $copyright = parent::retrieveCopyright($packageInfo, $mode);
@@ -49,6 +52,7 @@ class DependencyParser extends BaseDependencyParser
     /**
      * Override: hardcode version for modular-forms
      */
+    #[Override]
     protected static function retrieveVersion(array $packageInfo): string
     {
         $version = parent::retrieveVersion($packageInfo);
@@ -65,6 +69,7 @@ class DependencyParser extends BaseDependencyParser
     /**
      * Override: hardcode license for modular-forms
      */
+    #[Override]
     protected static function retrieveLicense(array $packageInfo): array
     {
         $license = parent::retrieveLicense($packageInfo);
@@ -80,6 +85,7 @@ class DependencyParser extends BaseDependencyParser
     /**
      * Override: hardcode URL for modular-forms
      */
+    #[Override]
     protected static function retrievePackageUrl(array $packageInfo, string $mode): ?string
     {
         $url = parent::retrievePackageUrl($packageInfo, $mode);
