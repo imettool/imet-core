@@ -13,7 +13,7 @@
         <div v-if="!no_internet_connection" style="width:100%; height: 700px">
             <div id="map-load" class="ml-3" style="width:100%; height: 650px"></div>
         </div>
-        <div v-else class="dopa_not_available">
+        <div v-else class="connection_not_available">
             {{ error_message }}
         </div>
     </div>

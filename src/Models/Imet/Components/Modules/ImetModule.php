@@ -94,7 +94,7 @@ class ImetModule extends Module
     /**
      * Override: Get predefined_values according to form language
      */
-    protected static function getPredefined($form_id = null): ?array
+    public static function getPredefined($form_id = null): ?array
     {
         static::forceLanguage($form_id);
         return parent::getPredefined($form_id);

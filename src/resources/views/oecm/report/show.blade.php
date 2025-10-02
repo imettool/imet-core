@@ -9,7 +9,6 @@
 /** @var array $report */
 /** @var array $wdpa_extent */
 /** @var array $area */
-/** @var bool  $show_api */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
 ?>

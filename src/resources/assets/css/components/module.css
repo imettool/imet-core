@@ -175,7 +175,7 @@ nav.steps a.step.cross-analysis-warnings {
     grid-row-gap: 10px;
   }
 
-  div.dopa_not_available {
+  div.connection_not_available {
     width: 100%;
     font-size: 1.3em;
     text-align: center;

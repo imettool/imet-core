@@ -11,9 +11,6 @@
 import { createApp, ref, reactive, watch, onMounted } from "vue";
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import dopa_indicators_table from './../../../templates/dopa/indicators_table.vue';
-import dopa_chart_bar from './../../../templates/dopa/chart_bar.vue';
-import dopa_radar from './../../../templates/dopa/chart_radar.vue';
 import editor from '@modular-forms/js/inputs/text-editor.vue';
 import report_editor from './../../../inputs/editor.vue';
 import BiopamaWDPA from './../../../helpers/biopamaWDPA';
@@ -134,11 +131,8 @@ export default class Analysis {
     createApp(options, input_data) {
 
         return createApp(options, input_data)
-            .component('dopa_indicators_table', dopa_indicators_table)
             .component('editor', editor)
             .component('report-editor', report_editor)
-            .component('dopa_radar', dopa_radar)
-            .component('dopa_chart_bar', dopa_chart_bar)
             .component('imet_radar', imet_radar);
     }
 }

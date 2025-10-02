@@ -288,26 +288,7 @@ return [
             'outcomes' => 'Contribución media de los indicadores de resultados'
         ]
     ],
-    'terrestial_ecoregions' => [
-        'name' => 'Nombre',
-        'area' => 'superficie de la ecorregión [km2]',
-        'ecoregion_pa_sqkm' => 'ecorregión protegida [km2]',
-        'ecoregion_protected_tot_sqkm' => 'superficie total protegida [km2]',
-        'protected_in_ecoregion' => 'superficie protegida en la ecorregión [km2]'
-    ],
-    'marine_ecoregions' => [
-        'name' => 'Nombre',
-        'area' => 'superficie de la ecorregión [km2]',
-        'ecoregion_pa_sqkm' => 'ecorregión protegida [km2]',
-        'ecoregion_protected_tot_sqkm' => 'superficie total protegida [km2]',
-        'protected_in_ecoregion' => 'superficie protegida en la ecorregión [km2]'
-    ],
-    'copernicus' => [
-        'label' => 'Clase de cobertura del suelo',
-        'percent' => '% Cubierto',
-        'area' => 'Superficie calculada',
-        'color' => 'Mapa de colores'
-    ],
+
     'protected_area' => [
         'name' => 'Nombre',
         'gis_area' => 'Superficie [km2]',
@@ -317,25 +298,7 @@ return [
         'fields' => [
             'area_prot_terr_perc' => 'Terrenos protegidos',
             'protconn' => 'Terrenos protegidos conectados'
-        ],
-        'dopa_indicators' => [
-            'terrestial_area' => [
-                'title_table' => 'Área terrestre',
-                'area_terr_perc' => 'Cobertura [%]',
-                'area_prot_terr_km2' => 'Superficie terrestre protegida [km2]',
-                'area_terr_km2' => 'Superficie total del terreno [km2]',
-                'carbon_stdev_c_mg' => 'Arco Terrestre 11 umbrales'
-
-            ],
-            'marine_indicators' => [
-                'title_table' => 'Área marina',
-                'area_mar_perc' => 'Cobertura [%]',
-                'area_prot_mar_km2' => 'Zona marina protegida [km2]',
-                'area_mar_km2' => 'Superficie marina total [km2]',
-                'carbon_stdev_c_mg' => 'Arco Terrestre 11 umbral'
-            ]
-        ],
-
+        ]
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Clasificación del indicador IMET',
@@ -454,36 +417,6 @@ return [
         'relative_performance' => [
             'intro' => 'Esta sección permite comparar las puntuaciones de los 6 elementos del ciclo de gestión de un área protegida con el valor medio de todas las áreas protegidas.',
             'info' => '<b>Orientación adicional</b>: La sección presenta dos tipos diferentes de análisis que comparan la situación de un área protegida y la situación media de otras áreas protegidas: (1) Vista de radar de los promedios de los indicadores sintéticos del IMET para todas las áreas protegidas y el área seleccionada, (2) Tabla de datos de los promedios de los indicadores sintéticos del IMET de todas las áreas protegidas y el área seleccionada. Tenga en cuenta que la sección no permite comparar un área protegida con otras áreas protegidas seleccionadas para el análisis de ampliación.'],
-        'digital_information' => [
-            'main' => [
-                'intro' => ': La sección 9 contiene 7 subsecciones para reforzar los análisis. Para ello, se aportan elementos adicionales basados en la información de los observatorios digitales  (Dopa Explorer. <a href="http://dopa.jrc.ec.europa.eu/1" target="_blank">http://dopa.jrc.ec.europa.eu/</a>) La información de estos observatorios digitales (ver fuentes) se actualiza constantemente y puede cambiar con el tiempo.La información proporcionada sobre las zonas protegidas de años anteriores podría no ser correcta.',
-                'info' => ''],
-            'total_carbon' => [
-                'intro' => 'Esta subsección presenta cómo contribuye cada área protegida al almacenamiento de carbono expresado en Mg/ha (1 tonelada/ha = 1.000 Kg/ha) y, por tanto, cómo compensa los impactos de las emisiones de combustibles fósiles para la mitigación del clima. ',
-                'info' => '<b>Orientación adicional</b>: Los bosques representan uno de los mayores depósitos de carbono orgánico terrestre y contribuyen de forma significativa a la regulación del ciclo global del carbono. Los cambios en el uso y la cobertura del suelo pueden disminuir las reservas de carbono sobre el suelo (AGC) y las emisiones de carbono relacionadas, que son una de las mayores fuentes de emisiones de carbono causadas por el hombre a la atmósfera. Las áreas protegidas pueden contribuir a la retención de biomasa y carbono y, por tanto, a reducir las emisiones netas de gases de efecto invernadero responsables del cambio climático.<br/><br/><br/> <b>Fuente(s)</b>: <a href="http://globbiomass.org/products/global-mapping/" target="_blank">http://globbiomass.org/products/global-mapping/</a> y <a href="http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map" target="_blank">http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map</a>'],
-            'terestial_ecoregions' => [
-                'intro' => 'Esta subsección muestra las ecorregiones terrestres a las que pertenece cada área protegida. El número, el tipo y la extensión de las diferentes ecorregiones dentro de un área protegida es un importante indicador de la diversidad ecológica de la zona. ',
-                'info' => '<b>Orientación adicional</b>: Las ecorregiones cubren áreas relativamente grandes de tierra o agua, y contienen conjuntos característicos y geográficamente distintos de comunidades naturales y especies. La información sobre la ecorregión ayuda a comprender cómo contribuye el área protegida a una red de áreas protegidas ecológicamente representativa a escala nacional, regional y mundial. Esto es especialmente importante cuando el área protege una proporción sustancial de una ecorregión, o es la única área protegida, o una de las pocas que ofrece protección a una ecorregión. Esta información influye en su gestión, planificación, seguimiento y presentación de informes.<br/><br/><br/> <b>Fuente(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'marine_ecoregions' => [
-                'intro' => 'Esta subsección muestra las ecorregiones marinas a las que pertenece cada área protegida. El número, el tipo y la extensión de las diferentes ecorregiones dentro de un área protegida es un importante indicador de la diversidad ecológica de la zona.',
-                'info' => '<b>Orientación adicional</b>: Las ecorregiones cubren áreas relativamente grandes de tierra o agua, y contienen conjuntos característicos y geográficamente distintos de comunidades naturales y especies. La información sobre la ecorregión ayuda a comprender cómo contribuye el área protegida a una red de áreas protegidas ecológicamente representativa a escala nacional, regional y mundial. Esto es especialmente importante cuando el área protege una proporción sustancial de una ecorregión, o es la única área protegida, o una de las pocas que ofrece protección a una ecorregión. Esta información influye en su gestión, planificación, seguimiento y presentación de informes.<br/><br/><br/> <b>Fuente(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'copernicus' => [
-                'intro' => 'Esta subsección muestra la extensión de los diferentes tipos de cobertura del suelo y los cambios antropogénicos en cada una de las áreas protegidas analizadas. ',
-                'info' => '<b>Orientación adicional</b>: Dado que las presiones humanas suelen aumentar, es importante vigilar las consecuencias de los cambios asociados del medio ambiente, en particular dentro y alrededor de las áreas protegidas para garantizar la conservación de los ecosistemas naturales. Comparando los mapas de cambio de la cubierta del suelo a nivel de país, de ecorregión y de área protegida, se pueden medir los cambios en el uso del suelo y predecirlos para el futuro. <br/><br/> <b>Fuente(s)</b>: <a href="https://lcviewer.vito.be/2015" target="_blank">https://lcviewer.vito.be/2015</a>'],
-            'forest_cover' => [
-                'intro' => 'Esta subsección muestra las estadísticas de la cubierta forestal, la pérdida de bosques (en rojo) y la ganancia de bosques (en azul) expresadas en km2 y en porcentaje. ',
-                'info' => '<b>Orientación adicional</b>: Los bosques son uno de los hábitats terrestres más importantes y un sumidero de carbono que debe conservarse para cumplir los objetivos de conservación de la biodiversidad y mitigación del cambio climático. Al informar sobre las tendencias de la cubierta forestal y su distribución espacial, es posible destacar países, ecorregiones o áreas protegidas específicas con tendencias preocupantes de pérdida de bosques, así como otros en los que la cubierta forestal se mantiene bien o incluso aumenta a lo largo del tiempo, ya sea de forma natural o mediante la forestación.<br/><br/><br/> <b>Fuente(s)</b>: Cobertura forestal 2000 y cambio para el periodo 2001-2019 (a nivel de país, ecorregión y área protegida) <br/><br/>Hansen et al. (2013) <ul><li>Disponible en: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a></li><li> Más detalles sobre la versión de este conjunto de datos utilizada en DOPA Explorer están disponibles en: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html</a></li>'],
-            'protected_area_coverage_and_connectivity' => [
-                'intro' => 'Esta subsección muestra la cobertura de áreas protegidas y la conectividad expresada en km² y en porcentaje por país.',
-                'info' => '<b>Orientación adicional</b>: La cobertura de las áreas protegidas y la conectividad (véase el cuadro siguiente) se define como el porcentaje de un país cubierto por tierras protegidas y conectadas. La conectividad de las áreas protegidas tiene en cuenta tanto la conectividad dentro de las áreas protegidas como la de las áreas interprotegidas, es decir, tiene en cuenta tanto la cantidad de tierra protegida que está disponible dentro de las áreas protegidas individuales como la que se puede alcanzar moviéndose entre diferentes áreas protegidas.',
-                'table' => '<b>Conectividad de la caja</b> <br/><br/>El mantenimiento y la restauración de la integridad de los ecosistemas requieren una conservación a escala de paisaje. Esto puede lograrse a través de sistemas de áreas protegidas centrales que estén funcionalmente vinculadas y amortiguadas de manera que mantengan los procesos de los ecosistemas y permitan que las especies sobrevivan y se desplacen, asegurando así que las poblaciones sean viables y que los ecosistemas y las personas puedan adaptarse a la transformación y el cambio de la tierra (Fuente: UICN)',
-                'extra_info' => '<b>Fuente(s)</b>: El método descrito utiliza los siguientes conjuntos de datos de entrada:<br/><br/><ul>
-                                    <li>Áreas protegidas, WDPA de enero de 2021 (PNUMA-WCMC & UICN, 2021), www.protectedplanet.net</li>
-                                    <li>Ecorregiones terrestres del mundo, TEOW (2001). Ecorregiones terrestres del mundo (Olson et al., 2001). https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</li>
-                                    <li>Límites de los países: Global Administrative Unit Layers (GAUL), revisión 2015 (2017-02-02). <a href="http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691" target="_blank">http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691</a></li></ul>'],
-            'land_degradation' => [
-                'intro' => 'Esta subsección muestra los cambios que se han producido en los últimos años en la salud y la capacidad productiva de la tierra dentro del área protegida (el lapso de tiempo puede cambiar; en la actualidad los cambios en la degradación de la tierra se evalúan en un período de 15 años - 1999-2013). ',
-                'info' => '<b>Orientación adicional</b>: La degradación de la tierra limita gravemente la sostenibilidad de los servicios de los ecosistemas. También puede indicar la degradación de la producción agrícola alrededor de un área protegida. La evolución de la degradación de la tierra se presenta como un anillo gráfico con seis categorías, todas ellas medidas en Km² (1) Sin biomasa, (2) Disminución grave y persistente de la productividad, (3) Disminución moderada y persistente de la productividad, (4) Estable pero estresada; fuertes variaciones interanuales persistentes de la productividad, (5) Productividad estable, (6) Aumento persistente de la productividad.<br/><br/><br/> <b>Fuente(s)</b>: https://wad.jrc.ec.europa.eu/landproductivity']],
         'additional_options' => [
             'main' => [
                 'intro' => 'La sección 8 contiene dos subsecciones que ayudan a sintetizar los aspectos de la gestión (1) Análisis de la eficacia de la gestión, (2) Síntesis de los elementos clave que afectan a los elementos de la gestión.',
