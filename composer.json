@@ -30,7 +30,10 @@
     "autoload": {
         "psr-4": {
             "ImetCore\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {

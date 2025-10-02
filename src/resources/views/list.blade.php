@@ -2,7 +2,6 @@
 
 use \ImetCore\Controllers;
 use \ImetCore\Models\Imet;
-use \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 use \ModularForms\Helpers\Template;
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Http\Request;
@@ -117,7 +116,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                         <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id!==null)
-                            (<a target="_blank" href="{{ ProtectedPlanet::WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                            (<a target="_blank" href="{{ PROTECTEDPLANET_WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
                         @endif
                         <br/>
                         {{-- country --}}
