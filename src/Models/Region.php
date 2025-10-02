@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Region extends BaseModel
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'regions';
     protected $keyType = 'string';
 

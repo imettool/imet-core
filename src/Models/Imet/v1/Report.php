@@ -16,6 +16,6 @@ use ImetCore\Models\Imet\Components\Report as BaseReport;
 
 class Report extends BaseReport
 {
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'report';
 }

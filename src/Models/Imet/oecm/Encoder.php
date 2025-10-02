@@ -16,6 +16,6 @@ use ImetCore\Models\Imet\Components\Encoder as BaseEncoder;
 
 class Encoder extends BaseEncoder
 {
-    protected string $schema = Database::OECM_SCHEMA;
+    protected static ?string $schema = Database::OECM_SCHEMA;
     protected $table = 'encoders';
 }

@@ -7,11 +7,13 @@
         "andreamarelli/imet-core": "*",
         "barryvdh/laravel-ide-helper": "3.6.0",
         "fakerphp/faker": "^1.23",
+        "larastan/larastan": "*",
         "laravel/framework": "^12.0",
         "laravel/pint": "^1.24",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "opcodesio/log-viewer": "^3.19"
+        "opcodesio/log-viewer": "^3.19",
+        "rector/rector": "^2.1"
     },
     "repositories": {
         "andreamarelli/modular-forms": {
@@ -45,7 +47,9 @@
             "php artisan ide-helper:generate",
             "php artisan ide-helper:meta",
             "php artisan log-viewer:publish"
-        ]
+        ],
+        "phpstan": " ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit 512M",
+        "rector": " ./vendor/bin/rector process"
     },
     "extra": {
         "laravel": {

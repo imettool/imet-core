@@ -25,7 +25,7 @@ class ImetModule_Eval extends BaseImetEvalModule
 
     public const MODULE_SCOPE = null;
 
-    protected string $schema = Database::OECM_SCHEMA;
+    protected static ?string $schema = Database::OECM_SCHEMA;
 
     protected static ?string $form_class = Imet::class;
 

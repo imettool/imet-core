@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
 class Imet extends BaseImetForm
 {
     public const version = 'oecm';
-    protected string $schema = Database::OECM_SCHEMA;
+    protected static ?string $schema = Database::OECM_SCHEMA;
     protected $table = 'forms';
 
     public static ?array $modules = [
@@ -127,8 +127,8 @@ class Imet extends BaseImetForm
             ? Role::allowedWdpas()
             : null;
 
-        return Imet
-            ::filterList($request)
+        return Imet::query()
+            ->filterList($request->all())
             ->with($relations)
             ->where(function ($query) use ($allowed_wdpas) {
                 if ($allowed_wdpas !== null) {

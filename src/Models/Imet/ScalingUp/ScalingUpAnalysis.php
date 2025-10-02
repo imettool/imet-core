@@ -35,7 +35,7 @@ class ScalingUpAnalysis extends Model
 {
     protected static $ttl = 2;
 
-    protected string $schema = Database::IMET_SCHEMA;
+    protected static ?string $schema = Database::IMET_SCHEMA;
     protected $table = 'scaling_up';
 
     protected $fillable = ['wdpas'];
@@ -48,7 +48,7 @@ class ScalingUpAnalysis extends Model
      */
     public function getTable(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return Database::getTable(static::$schema, $this->table);
     }
 
     /**
