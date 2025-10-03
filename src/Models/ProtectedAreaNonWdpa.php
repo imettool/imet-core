@@ -51,8 +51,6 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Append "wdpa_id" as id alias
-     *
-     * @return string
      */
     public function getWdpaIdAttribute(): string
     {
@@ -62,7 +60,6 @@ class ProtectedAreaNonWdpa extends BaseModel
     /**
      * Generate a fake wdpa id
      *
-     * @param int|null $max_id
      * @return int|mixed|string
      */
     public static function generate_fake_wdpa(?int $max_id = null)
@@ -77,7 +74,6 @@ class ProtectedAreaNonWdpa extends BaseModel
      * Check if the given id is a fake WDPA or not
      *
      * @param $wdpa_id
-     * @return bool
      */
     public static function isNonWdpa($wdpa_id): bool
     {
@@ -86,8 +82,6 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Export to JSON
-     *
-     * @return array
      */
     public static function export($id): array
     {

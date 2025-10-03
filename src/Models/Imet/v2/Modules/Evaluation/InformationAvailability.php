@@ -88,8 +88,6 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     /**
      * Override
      * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
     #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool

@@ -44,8 +44,6 @@ class Habitats extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {

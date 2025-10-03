@@ -24,9 +24,6 @@ class ReportV2 extends ReportV1
     protected static string $general_info_class = GeneralInfo::class;
     protected static string $areas_class = Areas::class;
 
-    /**
-     * @return array
-     */
     #[\Override]
     protected static function get_labels(): array
     {

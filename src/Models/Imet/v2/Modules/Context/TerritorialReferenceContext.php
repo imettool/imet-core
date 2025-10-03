@@ -66,9 +66,8 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = static::addField($record, 'BenefitPopulation');
         $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
         $record = static::addField($record, 'SpillOverKm2');
-        $record = static::addField($record, 'SpillOverKm');
 
-        return $record;
+        return static::addField($record, 'SpillOverKm');
     }
 
 }

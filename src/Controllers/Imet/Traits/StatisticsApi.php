@@ -21,11 +21,7 @@ trait StatisticsApi
 {
 
     /**
-     * @param Request $request
-     * @param string $lang
-     * @param string $slug
      * @param string|null $year
-     * @return object
      */
     public function get_global_statistics(Request $request, string $lang, string $slug): object
     {

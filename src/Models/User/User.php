@@ -72,8 +72,6 @@ class User extends BaseUser
 
     /**
      * Override: Retrieve the name of the user
-     *
-     * @return string
      */
     #[\Override]
     public function getName(): string
@@ -83,7 +81,6 @@ class User extends BaseUser
 
     /**
      * Retrieve user's personal info (requires to be overridden)
-     * @return array
      */
     #[\Override]
     public function getInfo(): array

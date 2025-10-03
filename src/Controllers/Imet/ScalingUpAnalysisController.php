@@ -44,85 +44,6 @@ class ScalingUpAnalysisController extends __Controller
         'country' => 'min:3|max:3|alpha|nullable',
     ];
 
-    private $indicators = [
-        'context' => [
-            'C1' => [],
-            'C2' => [],
-            'C3' => []
-        ],
-        'context_value_and_importance' => [
-            'C11' => [],
-            'C12' => [],
-            'C13' => [],
-            'C14' => [],
-            'C15' => []
-        ],
-        'planning' => [
-            'P1' => [],
-            'P2' => [],
-            'P3' => [],
-            'P4' => [],
-            'P5' => [],
-            'P6' => []
-        ],
-        'inputs' => [
-            'I1' => [],
-            'I2' => [],
-            'I3' => [],
-            'I4' => [],
-            'I5' => []
-        ],
-        'process' => [],
-        'process_sub_indicators' => [
-            'PRE' => [],
-            'PRC' => [],
-            'PRD' => [],
-            'PRF' => [],
-            'PRA' => [],
-            'PRB' => [],
-        ],
-        'process_internal_management' => [
-            'PR1' => [],
-            'PR2' => [],
-            'PR3' => [],
-            'PR4' => [],
-            'PR5' => [],
-            'PR6' => [],
-        ],
-        'process_PRB' => [
-            'PR7' => [],
-            'PR8' => [],
-            'PR9' => []
-        ],
-        'process_PRC' => [
-            'PR10' => [],
-            'PR11' => [],
-            'PR12' => []
-        ],
-        'process_PRD' => [
-            'PR13' => [],
-            'PR14' => []
-        ],
-        'process_PRE' => [
-            'PR15' => [],
-            'PR16' => []
-        ],
-        'process_PRF' => [
-            'PR17' => [],
-            'PR18' => []
-        ],
-        'outputs' => [
-            'OP1' => [],
-            'OP2' => [],
-            'OP3' => []
-        ],
-        'outcomes' => [
-            'OC1' => [],
-            'OC2' => [],
-            'OC3' => []
-        ]
-    ];
-
     /**
      * Index route for scaling up
      *
@@ -154,8 +75,6 @@ class ScalingUpAnalysisController extends __Controller
 
 
     /**
-     * @param Request $request
-     * @return array
      * @throws AuthorizationException
      */
     public function analysis(Request $request): array
@@ -180,8 +99,6 @@ class ScalingUpAnalysisController extends __Controller
     }
 
     /**
-     * @param Request $request
-     * @param null $items
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \ReflectionException
      * @throws AuthorizationException
@@ -195,19 +112,12 @@ class ScalingUpAnalysisController extends __Controller
 
     /**
      * Export scaling up images in zip file
-     *
-     * @param int $scaling_id
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|string
      */
     public function download_zip_file(int $scaling_id): string|BinaryFileResponse
     {
         return DownloadScalingUp::zipFile($scaling_id);
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function preview_template(int $id): View|Factory
     {
         $result = PreviewScalingUp::preview($id);

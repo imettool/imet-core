@@ -49,8 +49,6 @@ class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -67,7 +65,6 @@ class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_
      *
      * @param $record
      * @param $sqlite_connection
-     * @return array
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

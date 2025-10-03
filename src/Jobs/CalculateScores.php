@@ -36,13 +36,6 @@ class CalculateScores implements ShouldQueue
     use Utils;
 
     /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct() {}
-
-    /**
      * Execute the job.
      */
     public function handle(): void

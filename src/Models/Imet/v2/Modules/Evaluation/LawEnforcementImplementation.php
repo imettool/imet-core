@@ -82,10 +82,9 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
         $record = static::replacePredefinedValue($record, 'Element',
                                                  'Não colaborativo (tecnologia: radar, infravermelho óptico, tecnologia de monitorização de rádio Vs mau desempenho, rangers fiscais qualificados)',
                                                  'Não colaborativo (tecnologia: dados digitais, monitoramento aéreo, etc Vs mau desempenho, rangers fiscais qualificados)');
-        $record = static::replacePredefinedValue($record, 'Element',
+
+        return static::replacePredefinedValue($record, 'Element',
                                                  'No colaborativo (tecnología: radar, óptico-infrarrojo, vigilancia por radio vs. tecnología de bajo rendimiento, guardaparques calificados)',
                                                  'No colaborativo (tecnología: datos digitales, vigilancia por aéreo, etc. vs. tecnología de bajo rendimiento, guardaparques calificados)');
-
-        return $record;
     }
 }

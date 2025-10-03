@@ -51,7 +51,6 @@ class Role extends BaseModel
 
     /**
      * Relation to ProtectedArea
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function wdpa_obj(): HasOne
     {
@@ -60,7 +59,6 @@ class Role extends BaseModel
 
     /**
      * Relation to Country
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function country_obj(): HasOne
     {
@@ -113,7 +111,6 @@ class Role extends BaseModel
      *
      * @param $role
      * @param $user
-     * @return bool
      */
     public static function isRole($role, $user = null): bool
     {
@@ -126,7 +123,6 @@ class Role extends BaseModel
      *
      * @param $role
      * @param $user
-     * @return bool
      */
     public static function isNotRole($role, $user = null): bool
     {
@@ -138,7 +134,6 @@ class Role extends BaseModel
      * Check whether the user is an administrator
      *
      * @param $user
-     * @return bool
      */
     public static function isAdmin($user = null): bool
     {
@@ -149,7 +144,6 @@ class Role extends BaseModel
      * Check whether the user has any valid role in IMET
      *
      * @param $user
-     * @return bool
      */
     public static function hasAnyRole($user = null): bool
     {
@@ -166,8 +160,6 @@ class Role extends BaseModel
     /**
      * Retrieve the allowed wdpas
      *
-     * @param null $user
-     * @param bool $only_wdpa
      * @return ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
@@ -208,8 +200,6 @@ class Role extends BaseModel
      * Retrieve the allowed countries
      * Returns NULL in case there are no limitations
      *
-     * @param null $user
-     * @param bool $only_iso
      * @return Country[]|array|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
@@ -247,7 +237,6 @@ class Role extends BaseModel
      *
      * @param $wdpa
      * @param $user
-     * @return bool
      */
     public static function isWdpaAllowed($wdpa, $user = null): bool
     {
@@ -264,8 +253,6 @@ class Role extends BaseModel
 
     /**
      * Retrieve the user access level to IMET (according to role)
-     *
-     * @return int
      */
     public static function accessLevel(): int
     {
@@ -298,7 +285,6 @@ class Role extends BaseModel
      * Check if user has the requested access level to the given IMET module
      *
      * @param $module
-     * @return bool
      */
     public static function hasRequiredAccessLevel($module): bool
     {

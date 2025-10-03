@@ -17,15 +17,11 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
 
 trait Group
 {
-    /**
-     * @param array $parameters
-     * @return array
-     */
     public static function get_grouping_analysis(array $parameters): array
     {
         $labels = [];
         $api = SectionGroup::get_calculation_grouping_analysis($parameters, []);
-        foreach ($api as $k => $indicators) {
+        foreach ($api as $indicators) {
             foreach ($indicators as $indi => $value) {
                 $labels[$indi] = trans('imet-core::common.steps_eval.' . $indi);
             }
@@ -34,10 +30,6 @@ trait Group
         return ['data' => $api, 'labels' => $labels];
     }
 
-    /**
-     * @param array $parameters
-     * @return array
-     */
     public static function get_grouping_analysis_by_indicators(array $parameters):array
     {
         $labels = [
@@ -49,7 +41,7 @@ trait Group
         $api = [];
 
         $data = Scatter::get_scatter_grouping_analysis($parameters, []);
-        foreach ($data['data']['scatter'] as $k => $item) {
+        foreach ($data['data']['scatter'] as $item) {
             $api[] = ['name' => $item['name'], 'value' => ['process' => $item['value'][0],
                 'context_planning_inputs' => $item['value'][1],
                 'outcomes_outputs' => $item ['value'][2]]];

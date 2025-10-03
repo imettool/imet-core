@@ -73,9 +73,8 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $record = static::dropIfPredefinedValueObsolete($record, 'Program', 'Research and long-term ecological monitoring of marine ecosystems and habitats');
         $record = static::dropIfPredefinedValueObsolete($record, 'Program', 'Recherche et surveillance écologique à long terme de la couverture terrestre, utilisation et occupation des sols');
         $record = static::dropIfPredefinedValueObsolete($record, 'Program', 'Investigação e monitorização ecológica a longo prazo dos ecossistemas e habitats marinhos');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Program', 'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas y hábitats marinos');
 
-        return $record;
+        return static::dropIfPredefinedValueObsolete($record, 'Program', 'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas y hábitats marinos');
     }
 
 }

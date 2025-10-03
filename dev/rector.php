@@ -41,7 +41,7 @@ return RectorConfig::configure()
     ->withSetProviders(LaravelSetProvider::class)
     ->withComposerBased(laravel: true)
     ->withPreparedSets(
-//        deadCode: true,
+        deadCode: true,
 //        codeQuality: true,
 //        codingStyle: true,
 //        typeDeclarations: true,
@@ -70,6 +70,5 @@ return RectorConfig::configure()
         AddOverrideAttributeToOverriddenMethodsRector::class,
         EmptyToBlankAndFilledFuncRector::class,
         ResponseHelperCallToJsonResponseRector::class,
-//        UseComponentPropertyWithinCommandsRector::class,
-//        UseForwardsCallsTraitRector::class,
+        UseForwardsCallsTraitRector::class,
     ]);

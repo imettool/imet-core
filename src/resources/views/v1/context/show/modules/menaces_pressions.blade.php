@@ -28,11 +28,11 @@ foreach (MenacesPressions::$groupsByCategory as $i => $category) {
 
 // inject row and group stats
 $allSpaces = '[\s\t\n\r]*';
-foreach (MenacesPressions::$groupsByCategory as $i => $category) {
+foreach (MenacesPressions::$groupsByCategory as $category) {
 
-    foreach ($category as $index => $group) {
+    foreach ($category as $group) {
         if (isset($stats['row_stats'][$group])) {
-            foreach ($stats['row_stats'][$group] as $r => $value) {
+            foreach ($stats['row_stats'][$group] as $value) {
                 preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", $view_groupTable, $matched1);
                 $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
                 if (count($matched1) > 0) {

@@ -19,10 +19,6 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 class Ranking
 {
     /**
-     * @param array $form_ids
-     * @param string $type
-     * @param array $indicators
-     * @param ?int $scaling_id
      * @return array[]|\array[][]
      */
     public static function ranking_indicators(array $form_ids, string $type, array $indicators, ?int $scaling_id = 0): array
@@ -95,14 +91,6 @@ class Ranking
         return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
-    /**
-     * @param array $ranking
-     * @param array $sum_values
-     * @param array $separated_values_by_pa
-     * @param array $percent_values
-     * @param array $items_to_calculate
-     * @return array
-     */
     private static function get_values_ranking(array $ranking, array $sum_values, array $separated_values_by_pa, array $percent_values, array $items_to_calculate = []): array
     {
         $new_ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
@@ -169,8 +157,6 @@ class Ranking
     }
 
     /**
-     * @param array $form_ids
-     * @param string $type
      * @return array[]
      */
     private static function process_subindicators_for_ranking_protected_areas(array $form_ids, string $type): array
@@ -205,7 +191,6 @@ class Ranking
     }
 
     /**
-     * @param array $form_ids
      * @param int|null $scaling_id
      * @return array[]|\array[][]
      */
@@ -249,8 +234,6 @@ class Ranking
     }
 
     /**
-     * @param array $form_ids
-     * @param array $assessment
      * @return array|array[]|\array[][]
      */
     public static function get_overall_ranking(array $form_ids, array $assessment = []): array
@@ -275,7 +258,7 @@ class Ranking
         });
 
         $i = 0;
-        foreach ($items['assessments'] as $key => $assessment) {
+        foreach ($items['assessments'] as $assessment) {
             $name = $assessment['name'];
             $total_values[$name] = 0;
             $form_ids[$name] = $assessment['wdpa_id'];

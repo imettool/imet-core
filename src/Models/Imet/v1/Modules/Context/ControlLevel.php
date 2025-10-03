@@ -40,8 +40,6 @@ class ControlLevel extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -58,7 +56,6 @@ class ControlLevel extends Modules\Component\ImetModule
     /**
      * @param $record
      * @param $area
-     * @return float|null
      */
     public static function areaPercentage($record, $area): ?float
     {
@@ -76,7 +73,6 @@ class ControlLevel extends Modules\Component\ImetModule
     /**
      * @param $record
      * @param $area
-     * @return float|null
      */
     public static function averageTime($record, $area): ?float
     {
@@ -93,7 +89,6 @@ class ControlLevel extends Modules\Component\ImetModule
     /**
      * @param $record
      * @param $area
-     * @return float|null
      */
     public static function areaPercentageConversion($record, $area): ?float
     {
@@ -110,7 +105,6 @@ class ControlLevel extends Modules\Component\ImetModule
     /**
      * @param $record
      * @param $area
-     * @return float|null
      */
     public static function averageTimeControlled($record, $area): ?float
     {
@@ -127,7 +121,6 @@ class ControlLevel extends Modules\Component\ImetModule
     /**
      * @param $record
      * @param $area
-     * @return float|null
      */
     public static function ecologicalMonitoringPatrolKmPercentage($record, $area): ?float
     {
@@ -143,7 +136,6 @@ class ControlLevel extends Modules\Component\ImetModule
 
     /**
      * @param $value
-     * @return bool
      */
     private static function isValid($value): bool
     {

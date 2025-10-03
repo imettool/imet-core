@@ -99,7 +99,6 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
      *
      * @param $form_id
      * @param $records
-     * @return array
      */
     public static function calculateRanking($form_id, $records = null): array
     {

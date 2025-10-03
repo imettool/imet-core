@@ -27,7 +27,6 @@ trait ConvertSQLite{
      *
      * @param $id
      * @param $sqlite_connection
-     * @return string|null
      */
     public static function wdpaBySqliteProtectedAreaID($id, $sqlite_connection): ?string
     {
@@ -79,8 +78,6 @@ trait ConvertSQLite{
      * Execute conversion of OLD SQLite IMET to array
      *
      * @param $imet_data
-     * @param \Illuminate\Database\ConnectionInterface $sqlite_connection
-     * @return array
      */
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {

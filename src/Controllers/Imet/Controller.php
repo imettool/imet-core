@@ -85,7 +85,6 @@ abstract class Controller extends __Controller
      * Manage "destroy" route
      *
      * @param $item
-     * @return RedirectResponse
      * @throws AuthorizationException
      */
     #[\Override]

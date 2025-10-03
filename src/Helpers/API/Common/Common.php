@@ -106,8 +106,6 @@ class Common
     }
 
     /**
-     * @param Request $request
-     * @return array
      * @throws ErrorException
      */
     public static function validateQuerystring(Request $request): array
@@ -135,7 +133,6 @@ class Common
     }
 
     /**
-     * @param Request $request
      * @return array[]
      * @throws ErrorException
      */
@@ -171,11 +168,6 @@ class Common
     }
 
     /**
-     * @param Request $request
-     * @param array $ids
-     * @param array $years
-     * @param string $key
-     * @return Collection
      * @throws ErrorException
      */
     public static function wdpa_id_and_year_to_form_id(Request $request, array $ids = [], array $years = [], string $key = ""): Collection
@@ -195,18 +187,10 @@ class Common
             return static::getRecordsByWdpaID($fields, $ids, $key);
         } else if ($years_size === 1) {
             return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
-        } else if ($years_size > 1) {
-            return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
-        }
+        } else return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
         throw new ErrorException(trans('imet-core::api.error_messages.something_went_wrong'));
     }
 
-    /**
-     * @param array $fields
-     * @param array $ids
-     * @param string $key
-     * @return Collection
-     */
     private static function getRecordsByWdpaID(array $fields, array $ids, string $key): Collection
     {
         $ids_size = count($ids);
@@ -224,10 +208,6 @@ class Common
     }
 
     /**
-     * @param array $fields
-     * @param array $ids
-     * @param string $key
-     * @param array $years
      * @return Imet[]|Collection
      */
     private static function getRecordsByWdpaIDAndSingleYear(array $fields, array $ids, string $key, array $years): Collection
@@ -247,11 +227,6 @@ class Common
     }
 
     /**
-     * @param array $fields
-     * @param array $ids
-     * @param string $key
-     * @param array $years
-     * @return Collection
      * @throws ErrorException
      */
     private static function getRecordByWdpaIdsAndYears(array $fields, array $ids, string $key, array $years): Collection
@@ -288,8 +263,6 @@ class Common
     }
 
     /**
-     * @param int $requested
-     * @param int $exists
      * @return void
      */
     private static function checkIfRequestedPAHaveImetRecords(int $requested, int $exists)
@@ -304,7 +277,6 @@ class Common
 
     /**
      * @param $items
-     * @return array
      */
     public static function retrieve_form_ids($items): array
     {
@@ -325,8 +297,6 @@ class Common
     }
 
     /**
-     * @param Request $request
-     * @return array
      * @throws ErrorException
      */
     public static function group_items(Request $request): array
@@ -362,11 +332,6 @@ class Common
         return [$items, $records];
     }
 
-    /**
-     * @param array $response
-     * @param array $records
-     * @return array
-     */
     public static function add_fields_to_response(array $response, array $records): array
     {
         foreach ($response['data'] as $k => $items) {

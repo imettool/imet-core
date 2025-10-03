@@ -45,8 +45,6 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -69,7 +67,6 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     /**
      * @param $records
-     * @return array
      */
     public static function diffs($records): array
     {

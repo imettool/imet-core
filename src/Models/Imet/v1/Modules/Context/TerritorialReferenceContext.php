@@ -46,15 +46,12 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
         $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
         $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
-        $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
 
-        return $record;
+        return static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
     }
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {

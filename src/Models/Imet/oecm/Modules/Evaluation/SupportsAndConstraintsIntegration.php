@@ -94,7 +94,6 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     /**
      * Provide the list of prioritized key elements
      * @param $form_id
-     * @return array
      */
     public static function getPrioritizedElements($form_id): array
     {

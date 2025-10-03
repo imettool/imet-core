@@ -16,14 +16,13 @@ use Illuminate\Support\Str;
 
 trait Dependencies{
 
-    protected static $DEPENDENCY_ON = null;
-    protected static $DEPENDENCIES = null;
+    protected static $DEPENDENCY_ON;
+    protected static $DEPENDENCIES;
 
     /**
      * Check for "warning_on_save" in labels end push to vue_data
      *
      * @param $vue_data
-     * @return array
      */
     public static function warningOnSave($vue_data): array
     {
@@ -59,7 +58,6 @@ trait Dependencies{
      *
      * @param $records
      * @param $form_id
-     * @return void
      */
     protected static function updateDependencies($records, $form_id): void
     {

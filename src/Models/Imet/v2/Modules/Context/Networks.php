@@ -47,9 +47,6 @@ class Networks extends Modules\Component\ImetModule
 
     /**
      * Override: upgrade module records during retrieving
-     *
-     * @param int|null $form_id
-     * @return Collection
      */
     #[\Override]
     public static function getModule(?int $form_id = null): Collection

@@ -20,7 +20,6 @@ class Template{
     /**
      * Return country flag + name from ISO
      * @param $iso
-     * @return string
      * @throws \Exception
      */
     public static function flag_and_name($iso): string
@@ -38,7 +37,6 @@ class Template{
      * Return country flag from ISO
      *
      * @param $iso
-     * @return string
      * @throws \Exception
      */
     public static function flag($iso): string
@@ -55,7 +53,6 @@ class Template{
      * Return scope icon (marine or terrestrial)
      *
      * @param $scope
-     * @return string
      */
     public static function module_scope($scope): string
     {

@@ -16,11 +16,6 @@ use ImetCore\Helpers\ScalingUp\Common;
 class DataTable
 {
     /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param ?int $scaling_id
-     * @param bool $add_synthetic_indicator
      * @return array|array[]
      */
     public static function get_datatable_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", ?int $scaling_id = 0, bool $add_synthetic_indicator = false): array

@@ -163,7 +163,6 @@ trait Inputs
             });
 
         $values = $equipment->map(function ($item, $index) use ($equipment_adequacy){
-            $importance = $equipment_adequacy[$index] ?? null;
             $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function - which is wrong)
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;

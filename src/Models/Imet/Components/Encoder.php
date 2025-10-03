@@ -22,13 +22,12 @@ abstract class Encoder extends BaseModel
 
     protected $guarded = [];
 
-    protected $table = null;
+    protected $table;
 
     protected $appends = ['name'];
 
     /**
      * Accessor to full name
-     * @return string
      */
     public function getNameAttribute(): string {
         return $this->attributes['last_name'].' '.$this->attributes['first_name'];
@@ -96,7 +95,6 @@ abstract class Encoder extends BaseModel
      * Retrieve the form encoders' list
      *
      * @param $form_id
-     * @return array
      */
     public static function getNames($form_id): array {
         return array_values(

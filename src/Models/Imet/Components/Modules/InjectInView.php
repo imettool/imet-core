@@ -24,7 +24,6 @@ trait InjectInView
      * @param $icon_type
      * @param $view
      * @param $vue_if
-     * @return string
      */
     public static function injectIconToPredefinedCriteriaWithVue($icon_type, $view, $vue_if): string
     {
@@ -50,7 +49,6 @@ trait InjectInView
      * @param $icon_type
      * @param $view
      * @param $predefined_with_icon
-     * @return string
      */
     public static function injectIconToPredefinedCriteria($icon_type, $view, $predefined_with_icon): string
     {

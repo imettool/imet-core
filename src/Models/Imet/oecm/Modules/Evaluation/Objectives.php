@@ -26,7 +26,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
         [AchievedObjectives::class, 'Objective']
     ];
 
-    private static $cache_predefined_values = null;
+    private static $cache_predefined_values;
 
     public function __construct(array $attributes = []) {
 

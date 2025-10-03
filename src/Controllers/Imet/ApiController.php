@@ -71,7 +71,6 @@ class ApiController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return JsonResponse
      */
     public function get_global_average_scores(Request $request): object
@@ -114,12 +113,6 @@ class ApiController extends Controller
     /**
      * retrieve imet data for a given wdpa_id
      *
-     * @param Request $request
-     * @param string $lang
-     * @param string $slug
-     * @param int $wdpa_id
-     * @param int|null $year
-     * @return object
      * @throws ErrorException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws Throwable
@@ -145,11 +138,6 @@ class ApiController extends Controller
 
     /**
      * get imet statistics for radar chart use
-     * @param Request $request
-     * @param string $lang
-     * @param int $wdpa_id
-     * @param int|null $year
-     * @return object
      */
     public function get_imet_statistics_radar(Request $request, string $lang, int $wdpa_id, ?int $year = null): object
     {
@@ -183,9 +171,6 @@ class ApiController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param string $language
-     * @return object
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function get_protected_areas_list(Request $request, string $language = 'en'): object

@@ -23,7 +23,6 @@ class RolePolicy
      * Perform pre-authorization checks
      *
      * @param \App\Models\User\User|\ImetUser $user
-     * @param string $ability
      * @return void|bool
      */
     public function before($user, string $ability)
@@ -38,7 +37,6 @@ class RolePolicy
      * Determine whether the user can manage Roles
      *
      * @param \App\Models\User\User|\ImetUser $user
-     * @return bool
      */
     public function manage($user): bool
     {

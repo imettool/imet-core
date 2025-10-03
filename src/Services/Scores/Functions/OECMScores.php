@@ -48,7 +48,6 @@ class OECMScores extends _Scores
      * Override: Ensure to return IMET model
      *
      * @param $imet
-     * @return Imet
      */
     #[\Override]
     public static function getAsModel($imet): Imet

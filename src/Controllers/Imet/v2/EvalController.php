@@ -32,7 +32,6 @@ class EvalController extends BaseEvalController
      * add extra step for cross analysis before the last one
      *
      * @param $form
-     * @return array
      */
     public static function steps($form): array
     {
@@ -47,7 +46,6 @@ class EvalController extends BaseEvalController
      * and also the classes to be used for indication in the menu
      *
      * @param $form
-     * @return array
      */
     protected function get_cross_analysis($form): array
     {

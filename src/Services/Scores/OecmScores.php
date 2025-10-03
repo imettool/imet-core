@@ -21,17 +21,6 @@ class OecmScores
 {
     use Labels;
 
-
-    /**
-     * Ensure to return IMET model
-     */
-    private static function getAsModel(ImetOecm|int|string $imet): Imet
-    {
-        return (is_int($imet) or is_string($imet))
-            ? ImetOecm::query()->find($imet)
-            : $imet;
-    }
-
     /**
      * Ensure to return IMET id
      */

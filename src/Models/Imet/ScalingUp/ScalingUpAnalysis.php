@@ -40,7 +40,7 @@ class ScalingUpAnalysis extends Model
 
     protected $fillable = ['wdpas'];
     public $timestamps = false;
-    public static $scaling_id = null;
+    public static $scaling_id;
     public const UNDEFINED_VALUE = -99999999;
 
     /**
@@ -53,7 +53,6 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
-     * @param string $wdpas
      * @return mixed
      */
     public static function get_scaling_up_by_wdpas(string $wdpas)
@@ -63,8 +62,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get the protected area country
-     * @param array $form_ids
-     * @return array
      * @throws Exception
      */
     public static function get_protected_area_with_countries(array $form_ids): array
@@ -86,9 +83,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get protected area custom names with all the information
-     * @param array $form_ids
-     * @param bool $show_original_names
-     * @return array
      */
     public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
     {
@@ -106,7 +100,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get general info of protected areas by form ids
-     * @param array $form_ids
      * @return \array[][]
      * @throws \ReflectionException
      */
@@ -168,7 +161,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get management context for protected areas by form ids
-     * @param array $form_ids
      * @return \array[][]
      */
     public static function get_management_context(array $form_ids): array
@@ -221,7 +213,7 @@ class ScalingUpAnalysis extends Model
             ];
 
             if (count($retrieve_key_elements['species'])) {
-                foreach ($retrieve_key_elements['species'] as $key => $array_species) {
+                foreach ($retrieve_key_elements['species'] as $array_species) {
                     foreach ($array_species as $group => $species) {
 
                         if (isset($species_count[$group][$species])) {
@@ -235,7 +227,7 @@ class ScalingUpAnalysis extends Model
             }
             foreach ($array_elements as $keys => $element) {
                 if (count($retrieve_key_elements[$keys])) {
-                    foreach ($retrieve_key_elements[$keys] as $key => $item) {
+                    foreach ($retrieve_key_elements[$keys] as $item) {
                         if (isset($array_elements_count[$keys . '_count'][$item])) {
                             $array_elements_count[$keys . '_count'][$item] += 1;
                         } else {
@@ -249,7 +241,7 @@ class ScalingUpAnalysis extends Model
 
         foreach ($array_elements as $keys => $element) {
 
-            foreach ($array_elements_count[$keys . '_count'] as $k => $value) {
+            foreach ($array_elements_count[$keys . '_count'] as $value) {
                 $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
                     return count($v[0]) > 1;
                 });
@@ -298,8 +290,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get the threats categories for the protected areas by form ids
-     * @param array $form_ids
-     * @return array
      */
     public static function get_threats_categories_per_protected_area(array $form_ids): array
     {
@@ -312,8 +302,6 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get all management effectiveness scores for the protected areas by form ids
-     * @param array $form_ids
-     * @return array
      */
     public static function get_overall_management_effectiveness_scores(array $form_ids): array
     {
@@ -350,10 +338,6 @@ class ScalingUpAnalysis extends Model
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function analysis_per_element_of_the_management_cycle(array $form_ids): array
     {
         $type = array_pop($form_ids);
@@ -487,7 +471,7 @@ class ScalingUpAnalysis extends Model
         $time_start = microtime(true);
         foreach ($table_indicators[$type] as $t => $array) {
             Common::reset_areas_ids();
-            $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type, $extra_type_words);
+            $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type);
         }
         $time_end = microtime(true);
         $execution_time = ($time_end - $time_start);
@@ -496,15 +480,9 @@ class ScalingUpAnalysis extends Model
 
 
     /**
-     * @param array $form_ids
-     * @param string $type
-     * @param array $table_indicators
-     * @param array $options
-     * @param string $custom_type
-     * @param string $extra_type_words
      * @return array|array[]
      */
-    private static function analysis_diagram_protected_areas(array $form_ids, string $type, array $table_indicators, array $options, string $custom_type, string $extra_type_words = ''): array
+    private static function analysis_diagram_protected_areas(array $form_ids, string $type, array $table_indicators, array $options, string $custom_type): array
     {
         $colors = [
             'context' => '#ffff00',
@@ -536,12 +514,6 @@ class ScalingUpAnalysis extends Model
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param array $assessments
-     * @param bool $overall
-     * @return array
-     */
     public static function get_protected_areas_diagram_compare(array $form_ids, array $assessments = [], bool $overall = false): array
     {
         $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, static::$scaling_id);
@@ -552,10 +524,6 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
-     * @param array $form_ids
-     * @param array $assessments
-     * @param bool $overall
-     * @param int $scaling_id
      * @return array[]
      */
     public static function get_averages_of_each_indicator_of_six_elements(array $form_ids, array $assessments = [], bool $overall = false, int $scaling_id = 0): array
@@ -588,13 +556,6 @@ class ScalingUpAnalysis extends Model
         return ['status' => 'success', 'data' => $response];
     }
 
-    /**
-     * @param array $form_ids
-     * @param bool $width
-     * @param array $assessments
-     * @param bool $overall
-     * @return array
-     */
     public static function get_upper_lower_protected_areas_diagram_compare(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true): array
     {
         $start_time = microtime(true);
@@ -609,11 +570,6 @@ class ScalingUpAnalysis extends Model
 
 
 
-    /**
-     * @param array $parameters
-     * @param array $assessments
-     * @return array
-     */
     public static function get_grouping_analysis(array $parameters, array $assessments = []): array
     {
         $average = Group::get_calculation_grouping_analysis($parameters, $assessments, static::$scaling_id);
@@ -627,9 +583,6 @@ class ScalingUpAnalysis extends Model
 
 
     /**
-     * @param array $parameters
-     * @param array $assessments
-     * @param bool $not_grouped
      * @return array|array[]
      */
     public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false): array
@@ -639,10 +592,6 @@ class ScalingUpAnalysis extends Model
 
 
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_wdpas_by_form_id(array $form_ids): array
     {
         $protected_area = [];
@@ -653,7 +602,6 @@ class ScalingUpAnalysis extends Model
     }
 
     /**
-     * @param array $form_ids
      * @return array|array[]
      */
     public static function get_assessments(array $form_ids): array

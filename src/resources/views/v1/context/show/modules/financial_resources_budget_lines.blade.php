@@ -12,8 +12,7 @@ $table_id = 'table_'.$definitions['module_key'];
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $totals = \ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
 $totalBudget = array_reduce($totals, function ($carry, $item) {
-    $carry += $item;
-    return $carry;
+    return $carry + $item;
 });
 
 $cost = [];

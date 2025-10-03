@@ -16,15 +16,6 @@ use ImetCore\Models\Imet\v2\Modules;
 
 class AverageContribution
 {
-    /**
-     * @param array $form_ids
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param string $type
-     * @param int $scaling_id
-     * @return array
-     */
     public static function average_contribution_calculations_threat(array $form_ids, string $colors = "", array $options = [], string $label = "", string $type = "", int $scaling_id = 0): array
     {
         $indicators = [];
@@ -73,13 +64,6 @@ class AverageContribution
     }
 
     /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param string $origType
      * @return array|array[]
      */
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", string $origType = ''): array
@@ -98,7 +82,7 @@ class AverageContribution
 
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $table_indicators);
 
-        foreach ($filtered as $id => $values) {
+        foreach ($filtered as $values) {
             unset($values['indicators_number']);
             foreach ($values as $v => $value) {
                 if ($v !== "avg") {
@@ -133,11 +117,6 @@ class AverageContribution
     }
 
     /**
-     * @param array $average_contribution
-     * @param array $data
-     * @param string $colors
-     * @param string $label
-     * @param string $type
      * @return array|mixed
      */
     private static function calculate_data_average_contribution(array $average_contribution, array $data, string $colors, string $label, string $type): array
@@ -172,13 +151,7 @@ class AverageContribution
      * @param $percentile_10
      * @param $percentile_90
      * @param $v
-     * @param string $colors
-     * @param array $average_contribution
-     * @param int $i
      * @param $index
-     * @param string $label
-     * @param string $type
-     * @return array
      */
     private static function getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, string $colors, array $average_contribution, int $i, $index, string $label, string $type): array
     {

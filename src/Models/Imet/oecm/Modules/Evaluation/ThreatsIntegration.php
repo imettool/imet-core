@@ -72,18 +72,15 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
             $records[$index]['__score'] = $threats_ranking[$record['Threat']];
         }
 
-        $records = collect($records)
+        return collect($records)
             ->sortBy('__score')
             ->values()
             ->toArray();
-
-        return $records;
     }
 
     /**
      * Provide the list of prioritized key elements
      * @param $form_id
-     * @return array
      */
     public static function getPrioritizedElements($form_id): array
     {

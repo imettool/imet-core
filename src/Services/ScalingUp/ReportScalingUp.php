@@ -34,7 +34,6 @@ class ReportScalingUp
     }
 
     /**
-     * @param Request $request
      * @param $items
      * @param $scaling_up_id
      */
@@ -48,10 +47,6 @@ class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @param array $areas
-     */
     private static function save_default_names(int $scaling_up_id, array $areas): void
     {
 
@@ -62,10 +57,6 @@ class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @return array
-     */
     private static function retrieve_custom_names(int $scaling_up_id): array
     {
         $custom_names = [];
@@ -76,10 +67,6 @@ class ReportScalingUp
         return $custom_names;
     }
 
-    /**
-     * @param string $items
-     * @return array
-     */
     private static function loadItemsAndScalingUpID(string $items): array
     {
         $areas = [];
@@ -101,9 +88,6 @@ class ReportScalingUp
     }
 
     /**
-     * @param Request $request
-     * @param string $items
-     * @return array
      * @throws AuthorizationException
      */
     public static function report(Request $request, string $items): array
@@ -160,12 +144,6 @@ class ReportScalingUp
         ];
     }
 
-    /**
-     * @param Request $request
-     * @param string $items
-     * @param int $scaling_up_id
-     * @return void
-     */
     private static function saveForm(Request $request, string $items, int $scaling_up_id): void
     {
         if ($request->input("save_form")) {
@@ -174,10 +152,6 @@ class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @return array
-     */
     private static function protectedAreaNames(int $scaling_up_id): array
     {
         $custom_items = static::retrieve_custom_names($scaling_up_id);

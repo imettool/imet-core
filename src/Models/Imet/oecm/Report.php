@@ -128,7 +128,6 @@ class Report extends BaseReport
      * Retrieve report
      *
      * @param $form_id
-     * @return array
      */
     #[\Override]
     public static function getByForm($form_id): array

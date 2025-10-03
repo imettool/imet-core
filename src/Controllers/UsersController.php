@@ -27,9 +27,7 @@ class UsersController extends __Controller
     protected static ?string $form_view_prefix = 'imet-core::users';
 
     /**
-     * @param Request $request
      * @param $role_type
-     * @return Application|View|Factory
      */
     public function list_by_role(Request $request, $role_type = null): Application|View|Factory
     {
@@ -79,10 +77,6 @@ class UsersController extends __Controller
         return static::sendAPIResponse($list->toArray());
     }
 
-    /**
-     * @param Request $request
-     * @return JsonResponse
-     */
     public function get_labels(Request $request): JsonResponse
     {
         $this->authorize('manage', static::$form_class);

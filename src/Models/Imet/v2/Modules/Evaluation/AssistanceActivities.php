@@ -103,11 +103,10 @@ class AssistanceActivities extends Modules\Component\ImetModule_Eval
         $record = static::replacePredefinedValue($record, 'Activity',
                  'Minimização dos conflitos e reforço da gestão e utilização sustentável dos serviços ecossistémicos',
                  'Minimização dos conflitos e reforço da gestão e utilização sustentável dos serviços ecossistémicos (abastecimento e cultura)');
-        $record = static::replacePredefinedValue($record, 'Activity',
+
+        return static::replacePredefinedValue($record, 'Activity',
                  'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas',
                  'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas (avituallamiento y cultura)');
-
-        return $record;
     }
 
 

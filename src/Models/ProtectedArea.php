@@ -80,9 +80,8 @@ class ProtectedArea extends BaseProtectedArea
             }
         }
         $parsed_isos = array_unique($parsed_isos);
-        $parsed_isos = array_values($parsed_isos);
 
-        return $parsed_isos;
+        return array_values($parsed_isos);
     }
 
     /**

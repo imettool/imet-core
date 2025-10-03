@@ -30,7 +30,7 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 
     // inject column with row stats
     $stats = array_key_exists('FormID', $records[0]) ? MenacesPressions::getStats($records[0]['FormID']) : null;
-    foreach(MenacesPressions::$groupsByCategory as $i => $category){
+    foreach(MenacesPressions::$groupsByCategory as $category){
         foreach ($category as $group){
             $dom->filter('table#group_table_imet__v2__context__menaces_pressions_'.$group.' > tbody > tr')
                 ->each(function ($tr, $index) use($group, $stats) {

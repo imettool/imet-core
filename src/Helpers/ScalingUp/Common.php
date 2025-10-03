@@ -22,9 +22,6 @@ class Common
 
     private static array $protected_areas_ids = [];
 
-    /**
-     * @return string
-     */
     public static function random_color(): string
     {
         return "#" . substr(md5(rand()), 0, 6);
@@ -32,7 +29,6 @@ class Common
 
     /**
      * @param $val
-     * @param int $round
      * @return float
      */
     public static function round_number($val, int $round = 1)
@@ -51,11 +47,6 @@ class Common
         return (float)number_format(round($val, $round), 2);
     }
 
-    /**
-     * @param array $array
-     * @param int $items_number
-     * @return float|null
-     */
     public static function get_average(array $array, int $items_number = 0): ?float
     {
         array_walk($array, function (&$item, $key) use (&$items_number) {
@@ -69,9 +60,6 @@ class Common
 
     /**
      * @param $id
-     * @param string $label
-     * @param string $path
-     * @return string
      */
     public static function indicator_label($id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
     {
@@ -79,7 +67,6 @@ class Common
     }
 
     /**
-     * @param array $array
      * @param $percentile
      * @return float|int|mixed
      */
@@ -103,10 +90,6 @@ class Common
 
     /**
      * use it when duplicate values to add a value in a parenthesis next to the name
-     * @param string $search_with
-     * @param string $in_value
-     * @param string $add_value
-     * @return string
      */
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
@@ -118,10 +101,6 @@ class Common
         return $in_value;
     }
 
-    /**
-     * @param array $general_info
-     * @return string
-     */
     public static function get_category_of_protected_area(array $general_info): string
     {
         $iucn_category = $general_info['IUCNCategory1'] === 'Not Reported' ? '' : "(" . $general_info['IUCNCategory1'] . ")";
@@ -137,7 +116,6 @@ class Common
     }
 
     /**
-     * @param string $indicator
      * @param $value
      * @return float
      */
@@ -156,9 +134,6 @@ class Common
 
     /**
      * @param $value
-     * @param int $length_to_divide
-     * @param array $process_indicators
-     * @param string|null $indicator
      * @return float
      */
     public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], ?string $indicator = null)
@@ -181,13 +156,6 @@ class Common
         return static::round_number($value / $length_to_divide, 2);
     }
 
-    /**
-     * @param array $form_ids
-     * @param string $type
-     * @param array $indicators
-     * @param bool $add_synthetic_indicator
-     * @return array
-     */
     public static function filtered_indicators_and_round_values(array $form_ids, string $type, array $indicators = [], bool $add_synthetic_indicator = false): array
     {
         $filtered = [];
@@ -225,8 +193,6 @@ class Common
 
     /**
      * if names are duplicate add the year
-     * @param int $form_id
-     * @param bool $show_original_names
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
     public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false)
@@ -242,7 +208,6 @@ class Common
 
     /**
      * @param $form_id
-     * @param bool $show_original_names
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     private static function get_protected_area_data($form_id, bool $show_original_names = false)
@@ -263,8 +228,6 @@ class Common
     }
 
     /**
-     * @param array $form_ids
-     * @param int $scaling_id
      * @return array|array[]
      */
     public static function get_assessments(array $form_ids, int $scaling_id = 0): array
@@ -283,7 +246,7 @@ class Common
         $assessments[$i] = ['name' => trans('imet-core::analysis_report.average')];
         $assessments[$i] = array_merge($assessments[$i], array_fill_keys($indicators, 0));
         $i++;
-        foreach ($form_ids as $k => $form_id) {
+        foreach ($form_ids as $form_id) {
 
             $assessments[$i] = ImetScores::get_radar($form_id);
 
@@ -296,7 +259,7 @@ class Common
             $assessments[$i]['year'] = (int)$name->Year;
 
             $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
-            foreach ($indicators as $key => $indicator) {
+            foreach ($indicators as $indicator) {
                 $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
             }
             $i++;

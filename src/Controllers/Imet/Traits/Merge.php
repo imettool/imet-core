@@ -44,8 +44,6 @@ trait Merge
     /**
      * Execute the merge of the given module
      *
-     * @param Request $request
-     * @return RedirectResponse
      * @throws Exception
      */
     public function merge(Request $request): RedirectResponse

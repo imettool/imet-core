@@ -18,11 +18,6 @@ use Illuminate\Http\Request;
 
 trait Pame{
 
-    /**
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public static function pame(Request $request): JsonResponse
     {
         $conditions = [];

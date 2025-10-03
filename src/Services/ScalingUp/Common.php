@@ -10,9 +10,6 @@ use Throwable;
 trait Common
 {
     /**
-     * @param array $wdpas
-     * @param string $ability
-     * @return void
      * @throws AuthorizationException
      * @throws Throwable
      */

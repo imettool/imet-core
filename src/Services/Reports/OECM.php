@@ -19,15 +19,10 @@ use ImetCore\Models\Imet\oecm\Report;
 
 class OECM
 {
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getElementImpacts(int $form_id): array
     {
         //dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
         return array_map(function ($item) {
-            ($item);
             $effects = ['EffectSH', 'EffectER'];
             $item['average'] = "";
             $total_effect = 0;
@@ -48,7 +43,6 @@ class OECM
     }
 
     /**
-     * @param int $form_id
      * @return array[]
      */
     public static function getStakeholderDirectIndirect(int $form_id): array
@@ -64,7 +58,6 @@ class OECM
     }
 
     /**
-     * @param int $form_id
      * @return array[]
      */
     public static function getStakeAnalysis(int $form_id): array
@@ -102,11 +95,6 @@ class OECM
         return ['global' => $chart_global, 'integration' => $chart_integration];
     }
 
-    /**
-     * @param array $values
-     * @param string $label
-     * @return array
-     */
     private static function getChartValues(array $values, string $label): array
     {
         $fields = [];
@@ -118,7 +106,7 @@ class OECM
             return ($a['__score'] > $b['__score']) ? -1 : 1;
         });
 
-        foreach ($values as $k => $value) {
+        foreach ($values as $value) {
             if ($value['__score'] !== null) {
                 $fields[$value[$label]] = round($value['__score'], 2);
             } else {
@@ -129,11 +117,6 @@ class OECM
         return ['values' => $values, 'chart' => ['values' => (($fields))]];
     }
 
-    /**
-     * @param array $threats
-     * @param bool $ecosystem
-     * @return array
-     */
     public static function getBiodiversityThreats(array $threats, bool $ecosystem = false): array
     {
         $fields = [];
@@ -157,7 +140,7 @@ class OECM
             return ($a[$score_field] > $b[$score_field]) ? -1 : 1;
         });
 
-        foreach ($threats as $k => $value) {
+        foreach ($threats as $value) {
             if ($value[$score_field] !== null) {
                 if (isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== "-") {
                     $fields[$value['Aspect'] . ' ' . $value['Comments']] = round($value['__score'], 2);
@@ -172,32 +155,19 @@ class OECM
         return ['values' => $threats, 'chart' => ['values' => (($fields))]];
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getThreatsIntegration(int $form_id): array
     {
         return collect(Modules\Evaluation\ThreatsIntegration::getModuleRecords($form_id)['records'])
             ->toArray();
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getThreats(int $form_id): array
     {
-        $fields = [];
         $trend_and_threats = static::getThreatsIntegration($form_id);
 
         return static::getChartValues($trend_and_threats, 'Threat');
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     public static function getKeyElementsEcosystems(array $values): array
     {
         return array_filter($values, function ($item) {
@@ -205,10 +175,6 @@ class OECM
         });
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     public static function getKeyElementsBiodiversity(array $values): array
     {
         return array_filter($values, function ($item) {
@@ -216,10 +182,6 @@ class OECM
         });
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getKeyElements(int $form_id): array
     {
         return collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
@@ -229,10 +191,6 @@ class OECM
             ->toArray();
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getObjectives(int $form_id): array
     {
 
@@ -258,7 +216,7 @@ class OECM
     private static function objectivesSchema($index, $label, $items): array
     {
         $elements = [];
-        foreach ($items as $key => $item) {
+        foreach ($items as $item) {
             if ($item["id"]) {
                 $elements[$label . "_" . $item['ShortOrLongTerm'] . "_" . $index . "_" . $item["id"]] = $item["Element"];
             }

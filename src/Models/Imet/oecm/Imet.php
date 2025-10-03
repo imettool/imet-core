@@ -87,8 +87,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to Encoder (only name)
-     *
-     * @return HasMany
      */
     public function encoder(): HasMany
     {
@@ -98,8 +96,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewees
-     *
-     * @return HasMany
      */
     public function responsible_interviewees(): HasMany
     {
@@ -109,8 +105,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewers
-     *
-     * @return HasMany
      */
     public function responsible_interviewers(): HasMany
     {
@@ -150,14 +144,14 @@ class Imet extends BaseImetForm
     /**
      * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
      *
-     * @param Request $request
      * @return mixed
      */
     #[\Override]
     public static function get_assessments_list_with_extras(Request $request)
     {
         $duplicates = static::foundDuplicates();
-        $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
+
+        return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
             ->map(function ($item)  use ($duplicates) {
 
                 // Add encoders
@@ -184,8 +178,6 @@ class Imet extends BaseImetForm
                 return $item;
             })
             ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
-
-        return $list;
     }
 
     #[\Override]
@@ -205,8 +197,6 @@ class Imet extends BaseImetForm
      * Extent parent method: save user as encoder
      *
      * @param $item
-     * @param Request $request
-     * @return mixed
      * @throws \Exception
      */
     #[\Override]

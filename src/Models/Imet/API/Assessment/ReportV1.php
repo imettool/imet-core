@@ -30,9 +30,7 @@ class ReportV1
     protected static string $areas_class = Areas::class;
 
     /**
-     * @param Request $request
      * @param $form
-     * @return array
      * @throws \ReflectionException
      */
     public static function get_assessment_report(Request $request, $form): array
@@ -65,7 +63,6 @@ class ReportV1
     }
 
     /**
-     * @param int $form_id
      * @return float|int|null
      */
     protected static function get_area(int $form_id)
@@ -73,10 +70,6 @@ class ReportV1
         return static::$areas_class::getArea($form_id);
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     protected static function get_report(int $form_id): array
     {
         $report = static::$report_class::getByForm($form_id);
@@ -84,7 +77,6 @@ class ReportV1
     }
 
     /**
-     * @param int $form_id
      * @return array
      * @throws \ReflectionException
      */
@@ -99,7 +91,6 @@ class ReportV1
     }
 
     /**
-     * @param int $form_id
      * @return array
      * @throws \ReflectionException
      */
@@ -113,10 +104,6 @@ class ReportV1
         return null;
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     protected static function get_key_elements(int $form_id): array
     {
         return [
@@ -140,9 +127,6 @@ class ReportV1
         ];
     }
 
-    /**
-     * @return array
-     */
     protected static function get_labels(): array
     {
         $general_info_labels = trans('imet-core::v1_context.GeneralInfo.fields');
@@ -159,11 +143,6 @@ class ReportV1
         return array_merge($steps_eval_labels, $general_info_labels, $mission_labels, $assessment_labels);
     }
 
-    /**
-     * @param array $values
-     * @param array $fields_to_extract
-     * @return array
-     */
     protected static function remove_fields(array $values, array $fields_to_extract = ['name' => '', 'iso3' => '', 'form_id' => '', 'wdpa_id' => '', 'year' => '', 'version' => '']): array
     {
         return array_diff_key($values, $fields_to_extract);

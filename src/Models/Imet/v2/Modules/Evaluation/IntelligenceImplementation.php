@@ -85,10 +85,9 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
         $record = static::replacePredefinedValue($record, 'Element',
                                                  'Unidades de inteligência e investigação que orientam as acções de patrulhamento dos fiscais',
                                                  'Unidades de inteligência e investigação que orientam e apoiam as acções de patrulhamento dos fiscais');
-        $record = static::replacePredefinedValue($record, 'Element',
+
+        return static::replacePredefinedValue($record, 'Element',
                                                  'Las unidades de seguimiento de indicios y cruce de información orientan las acciones de las patrullajes de los guardaparques',
                                                  'Las unidades de seguimiento de indicios y cruce de información orientan y apoyan las acciones de las patrullajes de los guardaparques');
-
-        return $record;
     }
 }

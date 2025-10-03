@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\App;
 trait GeneralInfo
 {
     /**
-     * @param array $parameters
-     * @param string $language
-     * @return array
      * @throws \ReflectionException
      */
     public static function get_general_info(array $parameters, string $language = 'en'): array

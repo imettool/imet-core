@@ -46,12 +46,11 @@ class ScalingUpWdpa extends BaseModel
     /**
      * @param $scaling_id
      * @param $areas
-     * @return array
      */
     public static function save_pas($scaling_id, $areas): array
     {
         $saved_pas = [];
-        foreach ($areas as $k => $area) {
+        foreach ($areas as $area) {
             $rand_color = "#" . substr(md5(rand()), 0, 6);//'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
             $saved_pas[] = static::query()->create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
         }
@@ -71,7 +70,6 @@ class ScalingUpWdpa extends BaseModel
     }
 
     /**
-     * @param int $form_id
      * @param $scaling_id
      * @return array
      */

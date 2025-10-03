@@ -114,9 +114,6 @@ class Stakeholders extends Modules\Component\ImetModule
      * Retrieve stakeholders' list (grouped or not)
      *
      * @param $form_id
-     * @param int $mode
-     * @param bool $with_categories
-     * @return array
      */
     public static function getStakeholders($form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
     {
@@ -154,8 +151,6 @@ class Stakeholders extends Modules\Component\ImetModule
      * Retrieve stakeholders' wights
      *
      * @param $form_id
-     * @param int $mode
-     * @return array
      */
     public static function calculateWeights($form_id, int $mode = self::ALL_USERS): array
     {

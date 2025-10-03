@@ -41,7 +41,6 @@ abstract class Report extends BaseModel
      * Retrieve report
      *
      * @param $form_id
-     * @return array
      */
     public static function getByForm($form_id): array
     {

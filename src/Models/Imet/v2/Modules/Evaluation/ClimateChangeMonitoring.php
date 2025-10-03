@@ -79,11 +79,10 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $record = static::replacePredefinedValue($record, 'Program',
          'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
         'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)');
-        $record = static::replacePredefinedValue($record, 'Program',
+
+        return static::replacePredefinedValue($record, 'Program',
          'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
         'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)');
-
-        return $record;
     }
 
 

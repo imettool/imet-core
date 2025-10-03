@@ -17,18 +17,12 @@ use ImetCore\Helpers\ScalingUp\Common;
 
 trait Data
 {
-    /**
-     * @param array $items
-     * @param array $indicators
-     * @param string $type
-     * @return array
-     */
     private static function retrieve_data(array $items, array $indicators, string $type = 'context'): array
     {
         $api = [];
         $table = ScalingUpDataTable::get_datatable_analysis_indicators($items, $indicators, $type);
 
-        foreach ($table['table'] as $key => $item) {
+        foreach ($table['table'] as $item) {
             $name = $item['name'];
             $id = $item['wdpa_id'];
             unset($item['name']);
@@ -44,16 +38,12 @@ trait Data
         return [$api];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function threats_table(array $items): array
     {
         $api = [];
         $data = Radar::get_threats_radar_indicators($items);
 
-        foreach ($data['total_categories'][0] as $key => $value) {
+        foreach ($data['total_categories'][0] as $value) {
             $api[] = [
                 'wdpa_id' => $value['id'],
                 'name' => $value['name'],
@@ -64,10 +54,6 @@ trait Data
         return ['data' => $api, 'labels' => $data['radar']['indicators']];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function management_context_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('management_context');
@@ -76,10 +62,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function value_and_importance_sub_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
@@ -88,10 +70,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function planning_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('planning');
@@ -100,10 +78,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function inputs_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('inputs');
@@ -112,10 +86,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function outputs_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outputs');
@@ -124,10 +94,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function outcomes_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outcomes');
@@ -136,10 +102,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process');
@@ -148,10 +110,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_internal_management_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
@@ -160,10 +118,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_management_protection_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
@@ -172,10 +126,6 @@ trait Data
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_stakeholders_relationships_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');

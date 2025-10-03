@@ -51,8 +51,6 @@ trait ImportExportJSON
     /**
      * Upload file
      *
-     * @param Request $request
-     * @return JsonResponse
      * @throws Throwable
      */
     public function upload(Request $request): JsonResponse
@@ -96,7 +94,6 @@ trait ImportExportJSON
 
     /**
      * return a list of Imet's for export in json/zip
-     * @param Request $request
      * @return Application|Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
      */
@@ -127,8 +124,6 @@ trait ImportExportJSON
     /**
      * export records for specific module to csv format
      *
-     * @param string $ids
-     * @param string $module_key
      * @return BinaryFileResponse|string|null
      */
     public function exportModuleToCsv(string $ids, string $module_key): ?BinaryFileResponse
@@ -179,7 +174,7 @@ trait ImportExportJSON
 
         //retrieve wdpa labels and ids in an array for selections
         $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id', 'name'], 'wdpa_id');
-        foreach ($wdpas as $k => $a) {
+        foreach ($wdpas as $a) {
             $wdpa_list[$a['wdpa_id']] = $a['name'];
         }
 
@@ -217,8 +212,6 @@ trait ImportExportJSON
     /**
      * Export IMET json in batch (zip file) or if only one is selected as json file
      *
-     * @param Request $request
-     * @return BinaryFileResponse
      * @throws AuthorizationException
      */
     public function export_batch(Request $request): BinaryFileResponse
@@ -331,7 +324,6 @@ trait ImportExportJSON
      *
      * @param Request|null $request
      * @param $json
-     * @param boolean $returnJson
      * @return array|JsonResponse|string[]
      * @throws FileNotFoundException
      * @throws Throwable
@@ -389,8 +381,6 @@ trait ImportExportJSON
      * Import all the IMET modules
      *
      * @param $json
-     * @param bool $with_report
-     * @return array
      * @throws FileNotFoundException
      */
     protected static function import_modules($json, bool $with_report = true): array

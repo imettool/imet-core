@@ -56,7 +56,6 @@ class AnimalSpecies extends Modules\Component\ImetModule
      * @param $records
      * @param $form_id
      * @param $dependency_on
-     * @return array
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {

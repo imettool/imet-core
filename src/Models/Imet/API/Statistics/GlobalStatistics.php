@@ -27,10 +27,6 @@ class GlobalStatistics
 {
     public static bool $hide_protected_area_info = true;
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_pa_average_score_per_iucn_categories(array $form_ids): array
     {
         $wdpa_ids = [];
@@ -74,10 +70,6 @@ class GlobalStatistics
         return ['data' => $imet_index_average];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_pa_number_per_iucn_categories(array $form_ids): array
     {
 
@@ -102,10 +94,6 @@ class GlobalStatistics
         return ['data' => $number_of_pas_per_iucn_categories];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_pa_number_of_marines_and_terrestrials(array $form_ids): array
     {
         $pa_number_or_marines_and_terrestrials = GeneralInfo::query()->select(DB::raw('"Type"'), DB::raw('count("Type") as total'));
@@ -131,10 +119,6 @@ class GlobalStatistics
         return ['data' => $pa_number_or_marines_and_terrestrials];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_pa_areas_small(array $form_ids): array
     {
         $pa_areas_large = static::get_pa_areas_large($form_ids, 'asc', 5);
@@ -143,11 +127,7 @@ class GlobalStatistics
     }
 
     /**
-     * @param array $form_ids
      * @param string $lang
-     * @param string $order
-     * @param int $limit
-     * @return array
      */
     public static function get_pa_areas_large(array $form_ids, string $order = 'desc', int $limit = 5): array
     {
@@ -165,9 +145,6 @@ class GlobalStatistics
     }
 
     /**
-     * @param array $form_ids
-     * @param string $language
-     * @return array
      * @throws \Exception
      */
     public static function get_number_of_assessments_by_region(array $form_ids, string $language = 'en'): array
@@ -183,10 +160,6 @@ class GlobalStatistics
         return ['data' => $list];
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_total_number_of_assessments(array $form_ids): array
     {
         $number_of_pas = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('count("FormID") as total'));
@@ -200,10 +173,6 @@ class GlobalStatistics
     }
 
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
     public static function get_assessments_performed_by_year(array $form_ids): array
     {
         $number_of_pas_by_year = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('"Year"'), DB::raw('count("Year") as total'));
@@ -219,11 +188,6 @@ class GlobalStatistics
         return ['data' => $number_of_pas_by_year];
     }
 
-    /**
-     * @param array $form_ids
-     * @param string $language
-     * @return array
-     */
     public static function get_assessments_performed_by_country(array $form_ids, string $language = 'en'): array
     {
         $name = 'name_' . $language;
@@ -248,8 +212,6 @@ class GlobalStatistics
     }
 
     /**
-     * @param array $form_ids
-     * @param string $language
      * @return array[]
      */
     public static function get_global_pas_rating(array $form_ids, string $language = 'en'): array
@@ -278,13 +240,6 @@ class GlobalStatistics
         return $api;
     }
 
-    /**
-     * @param array $form_ids
-     * @param string $language
-     * @param bool $only_top_rating
-     * @param bool $all_scores
-     * @return array
-     */
     public static function get_pas_rating(array $form_ids, string $language = 'en', bool $only_top_rating = true, bool $all_scores = false): array
     {
         $name = 'name_' . $language;
@@ -318,14 +273,6 @@ class GlobalStatistics
         return ['data' => $list_of_pas_rating];
     }
 
-    /**
-     * @param Request $request
-     * @param string|null $year
-     * @param string|null $version
-     * @param array|null $country
-     * @param string|null $type
-     * @return array
-     */
     public static function from_year_get_form_ids(Request $request, ?string $year = null, ?string $version = null, ?array $country = null, ?string $type = null): array
     {
         $form_ids = [];
@@ -356,13 +303,6 @@ class GlobalStatistics
         return $form_ids;
     }
 
-    /**
-     * @param Imet $item
-     * @param string $name
-     * @param int $i
-     * @param bool $global_scores
-     * @return array
-     */
     public static function pas_rating_fields(Imet $item, string $name, int $i = 1, bool $global_scores = false): array
     {
         $new_item = [];

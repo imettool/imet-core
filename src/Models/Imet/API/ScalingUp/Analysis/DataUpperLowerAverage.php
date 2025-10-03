@@ -16,19 +16,13 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Radar as ScalingUpRadar;
 
 trait DataUpperLowerAverage
 {
-    /**
-     * @param array $items
-     * @param array $indicators
-     * @param string $type
-     * @return array
-     */
     private static function retrieve_data_upper_low_average(array $items, array $indicators, string $type = 'context'): array
     {
         $keys = array_keys($indicators);
         $api = [];
         $radar = ScalingUpRadar::get_radar_analysis_indicators_data($items, $indicators, $type);
 
-        foreach ($radar['wdpas'] as $key => $wdpa) {
+        foreach ($radar['wdpas'] as $wdpa) {
             $name = $wdpa['name'];
             $values = $radar['values'][$name];
             $indicator_values = [];
@@ -72,10 +66,6 @@ trait DataUpperLowerAverage
     }
 
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function management_context_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('management_context');
@@ -84,10 +74,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function value_and_importance_sub_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
@@ -96,10 +82,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function planning_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('planning');
@@ -108,10 +90,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function inputs_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('inputs');
@@ -120,10 +98,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function outputs_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outputs');
@@ -132,10 +106,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function outcomes_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outcomes');
@@ -144,10 +114,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process');
@@ -156,10 +122,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_internal_management_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
@@ -168,10 +130,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_management_protection_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
@@ -180,10 +138,6 @@ trait DataUpperLowerAverage
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param array $items
-     * @return array
-     */
     public static function process_stakeholders_relationships_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');

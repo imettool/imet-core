@@ -44,10 +44,10 @@ class ImetModule extends Module
 
     protected bool $enable_raw_export = true;
 
-    public $ratingLegend = null;
-    public $module_subTitle = null;
-    public $module_info_EvaluationQuestion = null;
-    public $module_info_Rating = null;
+    public $ratingLegend;
+    public $module_subTitle;
+    public $module_info_EvaluationQuestion;
+    public $module_info_Rating;
 
     // Override modular-forms views
     public const MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
@@ -68,7 +68,6 @@ class ImetModule extends Module
 
     /**
      * Relation to IMET form
-     * @return BelongsTo
      */
     public function imet(): BelongsTo
     {
@@ -78,8 +77,6 @@ class ImetModule extends Module
     /**
      * Override: additional info labels
      *
-     * @param null $form_id
-     * @return array
      * @throws ReflectionException
      */
     #[\Override]

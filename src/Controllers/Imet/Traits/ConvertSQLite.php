@@ -26,7 +26,6 @@ trait ConvertSQLite{
      *
      * @param $imet
      * @param $sqlite_connection
-     * @return array
      */
     public static function convert($imet, $sqlite_connection): array
     {

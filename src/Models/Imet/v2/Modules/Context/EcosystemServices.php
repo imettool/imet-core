@@ -100,9 +100,8 @@ class EcosystemServices extends Modules\Component\ImetModule
         // ####  v2.0 -> v2.0b  ####
         $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other');
         $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
 
-        return $record;
+        return static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
     }
 
     public static function getStats($form_id)

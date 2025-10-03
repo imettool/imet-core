@@ -51,7 +51,6 @@ class ManagementStaff extends Modules\Component\ImetModule
      * Calculate weights
      *
      * @param $form_id
-     * @return array
      */
     public static function calculateWeights($form_id): array
     {

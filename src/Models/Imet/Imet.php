@@ -77,7 +77,6 @@ abstract class Imet extends Form
 
     /**
      * Relation to Country
-     * @return hasOne
      */
     public function country(): hasOne
     {
@@ -88,7 +87,6 @@ abstract class Imet extends Form
     /**
      * Mutator: ensure to retrieve in lowercase
      * @param $value
-     * @return string
      */
     public function getLanguageAttribute($value): string
     {
@@ -152,13 +150,13 @@ abstract class Imet extends Form
     /**
      * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
      *
-     * @param Request $request
      * @return mixed
      */
     public static function get_assessments_list_with_extras(Request $request)
     {
         $hasDuplicates = static::foundDuplicates();
-        $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
+
+        return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
             ->map(function ($item)  use ($hasDuplicates) {
 
             // Add encoders
@@ -185,8 +183,6 @@ abstract class Imet extends Form
             return $item;
         })
             ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
-
-        return $list;
     }
 
     /**
@@ -282,7 +278,6 @@ abstract class Imet extends Form
      *
      * @param $form_id
      * @param $version
-     * @return array
      */
     public static function getResponsibles($form_id, $version): array
     {
@@ -319,7 +314,6 @@ abstract class Imet extends Form
      * Retrieve specific fields and return them in different arrays in an array
      *
      * @param string[] $fields
-     * @return array
      */
     public static function getFieldsSplitToArrays(array $fields = ['Country', 'Year', 'wdpa_id', 'FormID']): array
     {
@@ -330,8 +324,8 @@ abstract class Imet extends Form
             ->toArray();
 
         $records = [];
-        foreach ($getRecords as $key => $field) {
-            foreach ($fields as $k => $f) {
+        foreach ($getRecords as $field) {
+            foreach ($fields as $f) {
                 $records[$f][$field[$f]] = $field[$f];
             }
         }
@@ -341,9 +335,6 @@ abstract class Imet extends Form
 
     /**
      * Retrieve an array of distinct values for the given field
-     *
-     * @param string $field
-     * @return array
      */
     private static function getDistinctField(string $field): array
     {
@@ -356,7 +347,6 @@ abstract class Imet extends Form
     }
 
     /**
-     * @return array
      * @deprecated
      * Retrieve years for existing IMETs
      *
@@ -422,8 +412,6 @@ abstract class Imet extends Form
      *
      * @param $records
      * @param $formID
-     * @param null $imet_version
-     * @return array
      * @throws FileNotFoundException
      */
     #[\Override]
@@ -447,8 +435,6 @@ abstract class Imet extends Form
      * Upgrade modules from previous versions
      *
      * @param $data
-     * @param null $imet_version
-     * @return array
      */
     public static function upgradeModules($data, $imet_version = null): array
     {
@@ -467,7 +453,6 @@ abstract class Imet extends Form
      * Generate a filename for exporting form
      *
      * @param $extension
-     * @return string
      */
     public function filename($extension): string
     {
@@ -487,8 +472,6 @@ abstract class Imet extends Form
 
     /**
      * Get the list of duplicates IMETs (same PA and year)
-     *
-     * @return array
      */
     public function getDuplicates(): array
     {
@@ -502,8 +485,6 @@ abstract class Imet extends Form
 
     /**
      *  Get the list of IMET ids which have duplicates (same PA and year)
-     *
-     * @return array
      */
     public static function foundDuplicates(): array
     {
@@ -524,8 +505,6 @@ abstract class Imet extends Form
 
     /**
      * Return array keys of modules
-     *
-     * @return array
      */
     public static function getModulesKeys(): array
     {
@@ -535,8 +514,6 @@ abstract class Imet extends Form
     /**
      * @deprecated Replace with get_assessments_list()
      *
-     * @param Request $request
-     * @param array $relations
      * @return mixed
      */
     protected static function retrieve_list(Request $request, array $relations = [])
@@ -547,7 +524,6 @@ abstract class Imet extends Form
     /**
      * @deprecated Replace with get_assessments_list_with_extras()
      *
-     * @param Request $request
      * @return mixed
      */
     protected static function get_list(Request $request)

@@ -72,22 +72,18 @@ class Habitats extends Modules\Component\ImetModule
         $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Temperate','desert');
         $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Cold','desert');
         $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert - Hot','desert');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Plantations','artificial');
 
-        return $record;
+        return static::replacePredefinedValue($record, 'EcosystemType', 'Plantations','artificial');
     }
 
     /**
      *  Update 2.7 -> v2.8 (marine pas): merge CTX 4.3.2 into 4.3 ####
-     *
-     * @param array $data
-     * @return array
      */
     public static function mergeFromCTX432(array $data): array
     {
         if(array_key_exists('HabitatsMarine', $data) && filled($data['HabitatsMarine'])){
 
-            foreach ($data['HabitatsMarine'] as $i=>$record){
+            foreach ($data['HabitatsMarine'] as $record){
 
                 // #### Updates inherited from CTX4.3.2 ####
                 $record['Presence'] = in_array($record['Presence'], [
@@ -112,14 +108,11 @@ class Habitats extends Modules\Component\ImetModule
 
     /**
      * Update 2.7 -> v2.8 (marine pas): merge CTX 4.4 into 4.3 ####
-     *
-     * @param array $data
-     * @return array
      */
     public static function mergeFromCTX44(array $data): array
     {
         if(array_key_exists('LandCover', $data) && filled($data['LandCover'])){
-            foreach ($data['LandCover'] as $i=>$record){
+            foreach ($data['LandCover'] as $record){
                 $data[static::getShortClassName()][] = [
                     static::UPDATED_AT => $record[static::UPDATED_AT],
                     static::UPDATED_BY => $record[static::UPDATED_BY],

@@ -95,8 +95,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to Encoder (only name)
-     *
-     * @return HasMany
      */
     public function encoder(): HasMany
     {
@@ -106,8 +104,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewees
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function responsible_interviewees(): HasMany
     {
@@ -117,8 +113,6 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewers
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function responsible_interviewers(): HasMany
     {
@@ -144,8 +138,6 @@ class Imet extends BaseImetForm
      * Extent parent method: save user as encoder
      *
      * @param $item
-     * @param Request $request
-     * @return mixed
      * @throws \Exception
      */
     #[\Override]
@@ -173,8 +165,6 @@ class Imet extends BaseImetForm
      * Override: apply changes
      *
      * @param $data
-     * @param null $imet_version
-     * @return array
      */
     #[\Override]
     public static function upgradeModules($data, $imet_version = null): array

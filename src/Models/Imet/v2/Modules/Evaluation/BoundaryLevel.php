@@ -85,12 +85,11 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
          'Adequacy',
      'Colaboração na demarcação dos limites',
      'Abordagem de colaboração, incluindo agências nacionais e partes interessadas relevantes na demarcação dos limites');
-        $record = static::replacePredefinedValue($record,
+
+        return static::replacePredefinedValue($record,
          'Adequacy',
      'Colaboración en la demarcación de fronteras',
      'Enfoque de colaboración que incluye agencias nacionales y partes interesadas relevantes en la demarcación de fronteras');
-
-        return $record;
     }
 
     public static function get_marine_predefined(): array

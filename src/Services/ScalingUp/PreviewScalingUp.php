@@ -11,8 +11,6 @@ class PreviewScalingUp
 {
     use Common;
     /**
-     * @param int $id
-     * @return array
      * @throws AuthorizationException
      */
     public static function preview(int $id): array

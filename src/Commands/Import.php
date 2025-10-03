@@ -51,7 +51,6 @@ class Import extends Command
     /**
      * Execute the console command.
      *
-     * @return int
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      * @throws \Throwable
      */

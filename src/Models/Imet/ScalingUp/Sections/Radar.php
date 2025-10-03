@@ -106,16 +106,6 @@ class Radar
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param int|null $scaling_id
-     * @return array
-     */
     public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0): array
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
@@ -138,14 +128,6 @@ class Radar
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param bool $width
-     * @param array $assessments
-     * @param bool $overall
-     * @param ?int $scaling_id
-     * @return array
-     */
     public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, ?int $scaling_id = 0): array
     {
         $start_time = microtime(true);
@@ -234,11 +216,6 @@ class Radar
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_threats_radar_indicators(array $form_ids, int $scaling_id = 0): array
     {
         $radar = ['values' => [], 'indicators' => []];
@@ -276,7 +253,7 @@ class Radar
                 return $a['value'] < $b['value'];
             });
             $total_categories[$k] = $cat;
-            foreach ($cat as $c => $v) {
+            foreach ($cat as $v) {
                 $name = $v['name'];
                 if (isset($radar['values'][$name])) {
                     array_unshift($radar['values'][$v['name']], $v['value']);

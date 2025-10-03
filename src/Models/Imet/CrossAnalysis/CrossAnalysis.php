@@ -43,7 +43,6 @@ class CrossAnalysis extends Model
     /**
      * retrieve all indicators data
      * @param $item
-     * @return array
      */
     public static function getIndicators($item): array
     {
@@ -77,7 +76,6 @@ class CrossAnalysis extends Model
     /**
      * compare values of indicators
      * @param $elements
-     * @return array
      */
     private static function compareValues($elements): array
     {

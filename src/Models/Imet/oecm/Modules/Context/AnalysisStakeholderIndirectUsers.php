@@ -63,8 +63,6 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     /**
      * Override
      * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
     #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool

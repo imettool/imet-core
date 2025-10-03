@@ -21,7 +21,6 @@ trait Overall
 
     /**
      * @param $items
-     * @return array
      */
     public static function overall_ranking($items): array
     {
@@ -54,7 +53,7 @@ trait Overall
         $api = [];
         $assessments = Common::get_assessments($items);
         $averages_six_elements = ScalingUpAnalysis::get_averages_of_each_indicator_of_six_elements($items, $assessments, true);
-        foreach ($averages_six_elements['data']['Average'] as $key => $average) {
+        foreach ($averages_six_elements['data']['Average'] as $average) {
             $api[] = [
                 'indicator' => $average['indicator'],
                 'values' => [
@@ -82,7 +81,7 @@ trait Overall
         ];
 
         $assessments = Common::get_assessments($items);
-        foreach ($assessments['data']['assessments'] as $key => $value) {
+        foreach ($assessments['data']['assessments'] as $value) {
             $api[] = [
                 'name' => $value['name'],
                 'wdpa_id' => $value['wdpa_id'],

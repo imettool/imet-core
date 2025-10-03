@@ -145,9 +145,8 @@ class MenacesPressions extends Modules\Component\ImetModule
         $record = static::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
         $record = static::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
         $record = static::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
 
-        return $record;
+        return static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
     }
 
     public static function getStats($form_id)
@@ -265,14 +264,13 @@ class MenacesPressions extends Modules\Component\ImetModule
      * @param $view
      * @param $parent
      * @param $groups
-     * @return string
      */
     public static function injectShowHideCategories($view, $parent, $groups): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         $vueIfDirective = 'isSubCategoryVisibly(' . $parent . ')';
         $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
-        foreach ($groups as $i => $group) {
+        foreach ($groups as $group) {
             foreach($elements as $k => $element) {
                 $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vueIfDirective);
             }

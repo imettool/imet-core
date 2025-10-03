@@ -59,8 +59,6 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     /**
      * Override
      * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
     #[\Override]
     public function isEmptyRecord($record, $foreign_key=null): bool
@@ -84,7 +82,6 @@ class KeyElements extends Modules\Component\ImetModule_Eval
      * @param $predefined_values
      * @param $records
      * @param $empty_record
-     * @return array
      */
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
@@ -138,7 +135,6 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     /**
      * Provide the list of prioritized key elements
      * @param $form_id
-     * @return array
      */
     public static function getPrioritizedElements($form_id): array {
         return collect(static::getModuleRecords($form_id)['records'])

@@ -28,8 +28,6 @@ trait Prefill
     /**
      * Retrieve existing previous forms
      *
-     * @param Request $request
-     * @return Collection
      * @throws AuthorizationException
      */
     public function retrieve_prev_years(Request $request): Collection
@@ -54,9 +52,7 @@ trait Prefill
     /**
      * Store a prefilled IMET (data retrieved from a previous year)
      *
-     * @param Request $request
      * @param $prev_year_selection
-     * @return array
      * @throws FileNotFoundException|Exception
      */
     private function store_prefilled(Request $request, $prev_year_selection): array

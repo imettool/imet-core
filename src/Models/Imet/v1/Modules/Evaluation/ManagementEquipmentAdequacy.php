@@ -101,8 +101,6 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {

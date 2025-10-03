@@ -44,11 +44,6 @@ class Currency extends BaseCurrency
 
     /**
      * Override: get locale of IMET form
-     *
-     * @param string $type
-     * @param Collection|null $collection
-     * @param array $fields
-     * @return array
      */
     public static function imetV1List(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
     {

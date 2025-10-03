@@ -92,10 +92,9 @@ class GeneralInfo extends Modules\Component\ImetModule
         $record = static::replacePredefinedValue($record, 'Type', 'Mixte', 'marine_and_coastal');
         $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
         $record = static::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
 
 
-        return $record;
+        return static::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
     }
 
 

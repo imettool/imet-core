@@ -95,14 +95,13 @@ class Objectives extends Modules\Component\ImetModule_Eval
         $record = static::replacePredefinedValue($record, 'Objective',
                                                  'Servicios y funciones ecosistémicas  - Cultural uso sostenible',
                                                  'Servicios y funciones ecosistémicas - Cultural (turismo, pesca tradicional, etc. uso sostenible)');
-        $record = static::replacePredefinedValue($record, 'Objective',
+
+
+
+
+        return static::replacePredefinedValue($record, 'Objective',
                                                  'Servicios y funciones ecosistémicas  - Soporte',
                                                  'Servicios y funciones ecosistémicas - Soporte (zonas de desove en el mar - hábitats de cría, etc.)');
-
-
-
-
-        return $record;
     }
 
 

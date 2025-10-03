@@ -65,9 +65,8 @@ class Governance extends Modules\Component\ImetModule
 
         // ####  v2.13.7 -> v3.*  ####
         $record = static::renameField($record, 'Type', 'GovernanceModel');
-        $record = static::renameField($record, 'Comments', 'AdditionalInfo');
 
-        return $record;
+        return static::renameField($record, 'Comments', 'AdditionalInfo');
     }
 
 }

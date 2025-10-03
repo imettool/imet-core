@@ -51,8 +51,6 @@ class SpecialStatus extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -69,7 +67,6 @@ class SpecialStatus extends Modules\Component\ImetModule
      *
      * @param $record
      * @param $sqlite_connection
-     * @return array
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

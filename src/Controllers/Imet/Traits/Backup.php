@@ -29,7 +29,6 @@ trait Backup{
      * Perform IMET backup if necessary (analyze existing ones)
      *
      * @param $item
-     * @param string $version
      */
     public function backup($item, string $version)
     {
@@ -81,7 +80,6 @@ trait Backup{
      *
      * @param $form
      * @param $now
-     * @return string
      */
     private function backup_filename($form, $now): string
     {
@@ -98,7 +96,6 @@ trait Backup{
      * Retrieve existing backups from filesystem
      *
      * @param $imet_id
-     * @return array
      */
     private function retrieve_existing_backups($imet_id): array
     {

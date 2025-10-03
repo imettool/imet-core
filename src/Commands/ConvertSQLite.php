@@ -54,7 +54,6 @@ class ConvertSQLite extends Command
     /**
      * Execute the console command.
      *
-     * @return int
      * @throws \Throwable
      */
     public function handle(): int
@@ -100,7 +99,6 @@ class ConvertSQLite extends Command
      *  Create connection to SQLITE file
      *
      * @param $filename
-     * @return \Illuminate\Database\ConnectionInterface
      */
     private function db_connection($filename): ConnectionInterface
     {

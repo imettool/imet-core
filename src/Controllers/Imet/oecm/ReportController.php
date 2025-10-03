@@ -69,7 +69,6 @@ class ReportController extends BaseReportController
     }
 
     /**
-     * @param int $form_id
      * @return array[]
      */
     public function get_objectives(int $form_id): array
@@ -81,7 +80,6 @@ class ReportController extends BaseReportController
      * Manage "report" update route
      *
      * @param $item
-     * @param \Illuminate\Http\Request $request
      * @return string[]
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

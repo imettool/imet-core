@@ -70,10 +70,6 @@ class Country extends BaseCountry
 
     /**
      * Override: get only allowed countries
-     * @param string $type
-     * @param Collection|null $collection
-     * @param array $fields
-     * @return array
      */
     #[Override]
     public static function selectionList(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
