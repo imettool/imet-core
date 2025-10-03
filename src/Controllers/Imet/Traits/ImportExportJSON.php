@@ -84,14 +84,14 @@ trait ImportExportJSON
             }
 
             if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
-                return response()->json(["message" => trans('modular-forms::common.upload.no_files_found')], 500);
+                return new JsonResponse(["message" => trans('modular-forms::common.upload.no_files_found')], 500);
             }
         } catch (Exception $e) {
             report($e);
-            return response()->json(["message" => $e->getMessage()], 500);
+            return new JsonResponse(["message" => $e->getMessage()], 500);
         }
 
-        return response()->json($files);
+        return new JsonResponse($files);
     }
 
     /**
@@ -382,7 +382,7 @@ trait ImportExportJSON
             return $response;
         }
 
-        return response()->json($response);
+        return new JsonResponse($response);
     }
 
     /**

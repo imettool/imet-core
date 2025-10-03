@@ -23,13 +23,13 @@ trait Assessment
     public static function scores($item): JsonResponse
     {
         $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
-        return response()->json($stats);
+        return new JsonResponse($stats);
     }
 
     public static function scores_oecm($item): JsonResponse
     {
         $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
-        return response()->json($stats);
+        return new JsonResponse($stats);
     }
 
     public static function score_class($value): string
