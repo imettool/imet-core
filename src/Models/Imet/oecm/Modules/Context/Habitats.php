@@ -76,7 +76,7 @@ class Habitats extends Modules\Component\ImetModule
         $to_be_dropped_new = [];
         foreach ($to_be_dropped as $type => $description){
             if(array_key_exists($type, $labels)){
-                $to_be_dropped_new[] = empty($description)
+                $to_be_dropped_new[] = blank($description)
                     ? $labels[$type]
                     : $labels[$type] . ' - ' .$description;
             }
@@ -93,14 +93,14 @@ class Habitats extends Modules\Component\ImetModule
     {
         return static::getModule($form_id)
             ->filter(function ($item) {
-                return !empty($item['EcosystemType']);
+                return filled($item['EcosystemType']);
             })
             ->map(function ($item) {
                 $labels = SelectionList::getList('ImetOECM_Habitats');
                 $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
                     $labels[$item['EcosystemType']]
                     : null;
-                return empty($item['EcosystemDescription'])
+                return blank($item['EcosystemDescription'])
                     ? $item['EcosystemType']
                     : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
             })

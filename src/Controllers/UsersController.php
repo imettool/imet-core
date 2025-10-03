@@ -127,7 +127,7 @@ class UsersController extends __Controller
                 }
             }
             // Set imet_role to null for any user with the given role which is not in the provided list
-            if(!empty($defined_users)){
+            if(filled($defined_users)){
                 (config('imet-core.user'))::where('imet_role', $role_type)
                     ->whereNotIn('id', $defined_users)
                     ->update(['imet_role' => null]);
@@ -144,13 +144,13 @@ class UsersController extends __Controller
                     $isos = array_unique(array_filter($isos));
 
                     // Create/update provided roles
-                    if(!empty($wdpas)){
+                    if(filled($wdpas)){
                         foreach ($wdpas as $wdpa){
                             $attributes = [ 'user_id' => $user_id, 'wdpa' => $wdpa, 'country' => null];
                             Role::query()->updateOrCreate($attributes, $attributes);
                         }
                     }
-                    if(!empty($isos)){
+                    if(filled($isos)){
                         foreach ($isos as $iso){
                             $attributes = [ 'user_id' => $user_id, 'wdpa' => null, 'country' => $iso ];
                             Role::query()->updateOrCreate($attributes, $attributes);

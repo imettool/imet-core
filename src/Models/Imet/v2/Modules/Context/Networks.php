@@ -101,7 +101,7 @@ class Networks extends Modules\Component\ImetModule
             $pas_length = count($pas);
             for($index = 0; $index < $pas_length; $index++) {
                 $model = \ImetCore\Models\ProtectedArea::query()->where('wdpa_id', '=', $pas[$index])->get()->toArray();
-                if(!empty($model)) {
+                if(filled($model)) {
                     if($index === 0) {
                         $value .= $model[0]['name'];
                     } else {

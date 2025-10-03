@@ -85,7 +85,7 @@ class Habitats extends Modules\Component\ImetModule
      */
     public static function mergeFromCTX432(array $data): array
     {
-        if(array_key_exists('HabitatsMarine', $data) && !empty($data['HabitatsMarine'])){
+        if(array_key_exists('HabitatsMarine', $data) && filled($data['HabitatsMarine'])){
 
             foreach ($data['HabitatsMarine'] as $i=>$record){
 
@@ -118,7 +118,7 @@ class Habitats extends Modules\Component\ImetModule
      */
     public static function mergeFromCTX44(array $data): array
     {
-        if(array_key_exists('LandCover', $data) && !empty($data['LandCover'])){
+        if(array_key_exists('LandCover', $data) && filled($data['LandCover'])){
             foreach ($data['LandCover'] as $i=>$record){
                 $data[static::getShortClassName()][] = [
                     static::UPDATED_AT => $record[static::UPDATED_AT],

@@ -59,7 +59,7 @@ abstract class Controller extends __Controller
         HTTP::sanitize($request, self::sanitization_rules);
 
         // set filter status
-        $filter_selected = !empty(array_filter($request->except('_token')));
+        $filter_selected = filled(array_filter($request->except('_token')));
 
         /** @var Imet $form_class */
         $form_class = static::$form_class;

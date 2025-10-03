@@ -29,7 +29,7 @@ class CustomInputPreview extends InputPreview
             // Wdpa selector
             if(Str::contains($this->type, 'selector-wdpa_multiple')){
                 $list = '';
-                if(!empty($this->value)){
+                if(filled($this->value)){
                     $list = array_map(function ($v){
                         return ProtectedArea::getByWdpa($v)->name;
                     }, explode(',', $this->value));
@@ -41,7 +41,7 @@ class CustomInputPreview extends InputPreview
             // Species selector
             else if(Str::contains($this->type, 'selector-species')){
                 $name = null;
-                if(!empty($this->value)){
+                if(filled($this->value)){
                     $name = Species::getPlainNameByTaxonomy($this->value);
                 }
                 return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);

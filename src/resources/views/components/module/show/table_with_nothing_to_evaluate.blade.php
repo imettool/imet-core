@@ -22,7 +22,7 @@ $original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.
 $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
-if(empty($records) || (isset($records[0]) && $records[0][$definitions['fields'][0]['name']]===null)){
+if(blank($records) || (isset($records[0]) && $records[0][$definitions['fields'][0]['name']]===null)){
     $tbody = HtmlPageCrawler::create($dom->filter('tbody'));
     $tbody->setInnerHtml($nothing_to_evaluate);
 }

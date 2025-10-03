@@ -79,7 +79,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     {
         return static::getModule($form_id)
             ->filter(function ($item) use ($dependency_field){
-                return !empty($item['species']);
+                return filled($item['species']);
             })
             ->pluck('species')
             ->map(function ($item) {

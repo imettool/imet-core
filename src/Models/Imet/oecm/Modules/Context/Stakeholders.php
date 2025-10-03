@@ -171,11 +171,11 @@ class Stakeholders extends Modules\Component\ImetModule
 
         return collect($records)
             ->filter(function($item){
-                return !empty($item['Element']);
+                return filled($item['Element']);
             })
             ->map(function($item){
 
-                $UsesCategories = !empty($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
+                $UsesCategories = filled($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
 
                 $sum = $item['GeographicalProximity'] ? 4 : 0;

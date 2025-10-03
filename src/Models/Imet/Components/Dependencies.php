@@ -151,7 +151,7 @@ trait Dependencies{
     {
         return static::getModule($form_id)
             ->filter(function ($item) use ($dependency_field){
-                return !empty($item[$dependency_field]);
+                return filled($item[$dependency_field]);
             })
             ->pluck($dependency_field)
             ->toArray();

@@ -20,7 +20,7 @@ trait Planning
         $records = BoundaryLevel::getModule($imet_id)
             ->toArray();
 
-        $value = !empty($records)
+        $value = filled($records)
             ? (int) $records[0]['EvaluationScore']
             : null;
 

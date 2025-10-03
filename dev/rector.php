@@ -68,7 +68,7 @@ return RectorConfig::configure()
     ])
     ->withRules([
         AddOverrideAttributeToOverriddenMethodsRector::class,
-//        EmptyToBlankAndFilledFuncRector::class,
+        EmptyToBlankAndFilledFuncRector::class,
 //        RemoveModelPropertyFromFactoriesRector::class,
 //        ResponseHelperCallToJsonResponseRector::class,
 //        UseComponentPropertyWithinCommandsRector::class,

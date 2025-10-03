@@ -64,7 +64,7 @@ class FinancialResourcesPartners extends Modules\Component\ImetModule
      */
     public static function copyCurrencyFromCTX213($data): array
     {
-        if(!empty($data['FinancialResources'])){
+        if(filled($data['FinancialResources'])){
             $currency = $data['FinancialResources'][0]['Currency'];
             if($currency!==null){
                 foreach ($data[static::getShortClassName()] as $i=>$record){

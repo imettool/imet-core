@@ -69,7 +69,7 @@ trait Inputs
         $records = BudgetAdequacy::getModule($imet_id)
             ->toArray();
 
-        $value = !empty($records)
+        $value = filled($records)
             ? (int) $records[0]['EvaluationScore']
             : null;
 
@@ -119,7 +119,7 @@ trait Inputs
                 $group_values = $group
                     ->pluck('AdequacyLevel')
                     ->toArray();
-                return !empty($group_values)
+                return filled($group_values)
                     ? static::average($group_values, null)
                     : null;
             });

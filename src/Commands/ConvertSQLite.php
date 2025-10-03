@@ -137,7 +137,7 @@ class ConvertSQLite extends Command
     {
         $json = Controller::convert($imet, $this->db_connection);
 
-        if(!empty($json)){
+        if(filled($json)){
 
             $output = $json['Imet']['name'];
             $output .= ProtectedAreaNonWdpa::isNonWdpa($json['Imet']['wdpa_id']) ? ' (No WDPA)' : ' (WDPA: ' .$json['Imet']['wdpa_id'] . ')';

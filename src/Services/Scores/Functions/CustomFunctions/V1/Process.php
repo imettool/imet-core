@@ -51,7 +51,7 @@ trait Process {
         $records = Control::getModule($imet_id)
             ->toArray();
 
-        $value = !empty($records)
+        $value = filled($records)
             ? (int) $records[0]['EvaluationScore']
             : null;
 

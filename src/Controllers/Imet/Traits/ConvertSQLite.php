@@ -39,12 +39,12 @@ trait ConvertSQLite{
         [$wdpa, $pa_name] = Modules\Component\ImetModule::identifySqlitePa($imet, $sqlite_connection);
 
         // no WDPA nor NAME found: cannot identify
-        if (empty($wdpa) && empty($pa_name)){
+        if (blank($wdpa) && blank($pa_name)){
             return [];
         }
 
         // Non-WDPA protected area
-        $wdpa = !empty($wdpa) ? $wdpa : ProtectedAreaNonWdpa::generate_fake_wdpa();
+        $wdpa = filled($wdpa) ? $wdpa : ProtectedAreaNonWdpa::generate_fake_wdpa();
 
         // Build JSON structure
         $json = [

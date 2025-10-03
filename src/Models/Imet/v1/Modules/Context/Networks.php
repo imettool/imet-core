@@ -111,7 +111,7 @@ class Networks extends Modules\Component\ImetModule
     {
         $record =  self::convertGroupLabelToKey($record, 'NetworkType');
 
-        if(!empty($record['ProtectedAreas'])){
+        if(filled($record['ProtectedAreas'])){
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
             $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
