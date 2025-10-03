@@ -17,6 +17,8 @@ use Override;
 
 class DependencyParser extends BaseDependencyParser
 {
+    protected const COPYRIGHT = 'Copyright (C) 2025 European Union';
+
     /**
      * Override: exclude modular-forms from the list of NPM dependencies
      */
@@ -43,7 +45,7 @@ class DependencyParser extends BaseDependencyParser
         } else if($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
             return 'Copyright 2017-2025 The Apache Software Foundation';
         } else if(str_contains($packageInfo['name'], 'modular-forms')) {
-            return self::COPYRIGHT;
+            return BaseDependencyParser::COPYRIGHT;
         }
 
         return $copyright;
@@ -92,7 +94,7 @@ class DependencyParser extends BaseDependencyParser
 
         // Hardcoded URLs
         if($packageInfo['name'] === 'modular-forms') {
-            return self::COPYRIGHT;
+            return BaseDependencyParser::COPYRIGHT;
         }
 
         return $url;
