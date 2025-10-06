@@ -111,7 +111,7 @@ class ReportScalingUp
         // keep the current locale to restore it at the end
         $locale = App::getLocale();
 
-        //create an  array with the pa ids sorted and then return it as a string
+        //create an array with the pa ids sorted and then return it as a string
         $items_array = explode(',', $items);
         sort($items_array);
 

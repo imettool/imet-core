@@ -46,11 +46,7 @@ class ImetPolicy
      */
     public function view($user, $form = null): bool
     {
-        if (is_null($form)) {
-            return Role::hasAnyRole($user);
-        } else {
-            return Role::isWdpaAllowed($form->wdpa_id, $user);
-        }
+        return true;
     }
 
     /**
@@ -58,12 +54,7 @@ class ImetPolicy
      */
     public function edit($user, $form = null): bool
     {
-        if (is_null($form)) {
-            return Role::isRole(Role::ROLE_ENCODER);
-        } else {
-            return Role::isRole(Role::ROLE_ENCODER)
-                && Role::isWdpaAllowed($form->wdpa_id, $user);
-        }
+       return true;
     }
 
     /**
@@ -93,28 +84,12 @@ class ImetPolicy
         return $this->edit($user, $form);
     }
 
-    /**
-     * Determine whether the user can view the EXPORT button
-     */
-    public function export_button($user, $form = null): bool
-    {
-        $user = $user ?? Auth::user();
-        return Role::isRole(Role::ROLE_ENCODER, $user) ||
-            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
-    }
-
-    /**
+   /**
      * Determine whether the user can EXPORT
      */
     public function export($user, $form = null): bool
     {
-        $user = $user ?? Auth::user();
-        return Role::isWdpaAllowed($form->wdpa_id, $user) && (
-                Role::isRole(Role::ROLE_ENCODER, $user) ||
-                Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-                Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
-            );
+        return true;
     }
 
     /**
@@ -127,44 +102,25 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can view api_assessment
+     * Determine whether the user can view wdpa_assessment
      */
-    public function api_assessment($user, $form = null): bool
+    public function wdpa_assessment($user, $form = null): bool
     {
-        return $this->role_national_or_observatory() &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
+        return true;
     }
 
     /**
-     * Determine whether the user can view api_scaling_up
+     * Determine whether the user can view wdpa_scaling_up
      */
-    public function api_scaling_up($user, $form = null): bool
+    public function wdpa_scaling_up($user, $form = null): bool
     {
-        return $this->role_national_or_observatory() && Role::isWdpaAllowed($form->wdpa_id, $user);
+        return true;
     }
 
     /**
      * Determine whether the user is a national authority or an observatory
      */
     public function scaling_up(): bool{
-        return $this->role_national_or_observatory();
+        return true;
     }
-
-    /**
-     * @return bool
-     */
-    public function role_national_or_observatory(): bool
-    {
-        return (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY));
-    }
-
-    /**
-     * Determine whether the user can view api_details
-     */
-    public function api_details($user, $form = null, $model = null): bool
-    {
-        return Role::hasRequiredAccessLevel($model) &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
-    }
-
 }
