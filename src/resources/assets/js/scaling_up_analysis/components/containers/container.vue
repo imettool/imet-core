@@ -17,11 +17,11 @@
         </div>
 
         <div v-else>
-            <div v-if="error_returned" class="dopa_not_available"
-                v-html="stores.BaseStore.localization('entities.dopa_not_available')"></div>
-            <div v-else-if="timeout" class="dopa_not_available"
-                v-html="stores.BaseStore.localization('entities.dopa_not_available')"></div>
-            <div v-else-if="error_wrong" class="dopa_not_available"
+            <div v-if="error_returned" class="connection_not_available"
+                v-html="stores.BaseStore.localization('entities.connection_not_available')"></div>
+            <div v-else-if="timeout" class="connection_not_available"
+                v-html="stores.BaseStore.localization('entities.connection_not_available')"></div>
+            <div v-else-if="error_wrong" class="connection_not_available"
                 v-html="stores.BaseStore.localization('imet-core::analysis_report.error_wrong')"></div>
             <div v-else class="container-menu">
                 <slot :props="data"></slot>

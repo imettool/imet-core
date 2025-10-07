@@ -270,14 +270,6 @@ return [
             'persistent_increase' => 'Persistent increase in productivity [km2]'
         ],
     ],
-    'total_carbon' => [
-        'title' => 'Total carbon',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Mean [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Sum [Mg]',
-        'std_dev' => 'Std. Dev.',
-    ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
             'context_sub_indicators' => 'Average contribution of the six sub-indicators to Value and Importance',
@@ -300,26 +292,6 @@ return [
             'outcomes_indicators' => 'Outcomes indicators'
         ]
     ],
-    'terrestial_ecoregions' => [
-        'name' => 'Name',
-        'area' => 'ecoregion area [km2]',
-        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
-        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
-        'protected_in_ecoregion' => 'protected area in ecoregion [km2]'
-    ],
-    'marine_ecoregions' => [
-        'name' => 'Name',
-        'area' => 'ecoregion area [km2]',
-        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
-        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
-        'protected_in_ecoregion' => 'protected area in the ecoregion [km2]'
-    ],
-    'copernicus' => [
-        'label' => 'Land Cover Class',
-        'percent' => '% Covered',
-        'area' => 'Calculated Surface',
-        'color' => 'Color Map'
-    ],
     'protected_area' => [
         'name' => 'Name',
         'gis_area' => 'Area [km2]',
@@ -330,24 +302,6 @@ return [
             'area_prot_terr_perc' => 'Protected Land',
             'protconn' => 'Protected Connected Land'
         ],
-        'dopa_indicators' => [
-            'terrestial_area' => [
-                'title_table' => 'Terrestrial Area',
-                'area_terr_perc' => 'Coverage [%]',
-                'area_prot_terr_km2' => 'Protected Land Area [km2]',
-                'area_terr_km2' => 'Total Land Area [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Aichi 11 threshold'
-
-            ],
-            'marine_indicators' => [
-                'title_table' => 'Marine Area',
-                'area_mar_perc' => 'Coverage [%]',
-                'area_prot_mar_km2' => 'Protected Marine Area [km2]',
-                'area_mar_km2' => 'Total Marine Area [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Aichi 11 threshold'
-            ]
-        ],
-
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Ranking according to IMET Indicator',
@@ -466,36 +420,6 @@ return [
         'relative_performance' => [
             'intro' => 'This section enables comparison of the scores of the 6 management cycle elements of a protected area to the average value of all protected areas.',
             'info' => '<b>Additional guidance</b>: The section presents two different types of analyses comparing the situation of one protected area and the average situation of other protected areas: (1) Radar view of the IMET synthetic indicator averages for all protected areas and the selected area, (2) Data table of the IMET synthetic indicator averages of all protected areas and the selected area. Note that the section does not allow to compare a protected area with other protected areas selected for the scaling up analysis.'],
-        'digital_information' => [
-            'main' => [
-                'intro' => 'Section 9 contains seven sub-sections to strengthen the analyses. To do so, additional elements based on information from digital observatories (Dopa Explorer. <a href="http://dopa.jrc.ec.europa.eu/1" target="_blank">http://dopa.jrc.ec.europa.eu/</a>) are provided. Information from these digital observatories (see sources) is constantly being updated and may change over time. The provided information for protected areas from previous years might not be correct',
-                'info' => ''],
-            'total_carbon' => [
-                'intro' => 'This subsection presents how each protected area contributes to carbon storage expressed in Mg/ha (1 ton/ha = 1.000 Kg/ha) and hence how it offsets the impacts of fossil fuel emissions for climate mitigation. ',
-                'info' => '<b>Additional guidance</b>: Forests represent one of the largest terrestrial organic carbon reservoirs, and significantly contribute to the regulation of global carbon cycle. Changes in land use and land cover can decrease aboveground carbon (AGC) stocks and related carbon emissions, which are one of the largest sources of human-caused carbon emissions to the atmosphere. Protected areas may contribute to biomass and carbon retention and thus reduce net emissions of greenhouse gasses responsible for climate change.<br/><br/><br/> <b>Source(s)</b>: <a href="http://globbiomass.org/products/global-mapping/" target="_blank">http://globbiomass.org/products/global-mapping/</a> and <a href="http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map" target="_blank">http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map</a>'],
-            'terestial_ecoregions' => [
-                'intro' => 'This sub-section shows the terrestrial ecoregions to which each protected area belongs. The number, type, and extent of different ecoregions within a protected area is an important indicator of the area’s ecological diversity. ',
-                'info' => '<b>Additional guidance</b>: Ecoregions cover relatively large areas of land or water, and contain characteristic, geographically distinct assemblages of natural communities and species. Information on ecoregion facilitates understanding how the protected area contributes to an ecologically representative protected area network at national, regional and global scales. This is particularly important when the area protects a substantial proportion of an ecoregion, or is the only protected area, or one of a few which provides protection for an ecoregion. This information influences protected area management, planning, monitoring and reporting.<br/><br/><br/> <b>Source(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'marine_ecoregions' => [
-                'intro' => 'This sub-section shows the marine ecoregions to which each protected area belongs. The number, type, and extent of different ecoregions within a protected area is an important indicator of the area’s ecological diversity.',
-                'info' => '<b>Additional guidance</b>: Ecoregions cover relatively large areas of land or water, and contain characteristic, geographically distinct assemblages of natural communities and species. Information on ecoregion information helps understand how the protected area contributes to an ecologically representative protected area network at national, regional and global scales. This is particularly important when the area protects a substantial proportion of an ecoregion, or is the only protected area, or one of a few which provides protection for an ecoregion. This information influences its management, planning, monitoring and reporting.<br/><br/><br/> <b>Source(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'copernicus' => [
-                'intro' => 'This sub-section shows the extent of different land cover types and anthropogenic changes in each of the analysed protected areas. ',
-                'info' => '<b>Additional guidance</b>: As human pressures often increase, it is important to monitor the consequences of the associated changes of the environment, in particular inside and around protected areas to ensure that natural ecosystems are preserved. By comparing maps of land cover change in the country, ecoregion and protected area level, land use changes can be measured and predicted for the future.<br/><br/> <b>Source(s)</b>: <a href="https://lcviewer.vito.be/2015" target="_blank">https://lcviewer.vito.be/2015</a>'],
-            'forest_cover' => [
-                'intro' => 'This sub- section presents the data related to forest cover, forest loss (in red) and forest gain (in blue) expressed in km2 and percentage. ',
-                'info' => '<b>Additional guidance</b>: Forests are one of the most important terrestrial habitats and a carbon sink that needs to be conserved to fulfil biodiversity conservation and climate change mitigation targets. By informing about the forest cover trends, and their spatial distribution, it is possible to highlight countries, ecoregions or specific protected areas with worrying forest loss trends, as well as others where forest cover is well maintained or even increases through time either naturally or through forestation.<br/><br/><br/> <b>Source(s)</b>: Forest cover 2000 and change for the period 2001–2019 (country, ecoregion, and protected area levels) <br/><br/>Hansen et al. (2013) <ul><li>Available from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a></li><li>	Further details on the version of this dataset used in DOPA Explorer are available from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html</a></li>'],
-            'protected_area_coverage_and_connectivity' => [
-                'intro' => 'This sub-section shows the protected area coverage and connectivity expressed in km² and percentage per country.',
-                'info' => '<b>Additional guidance</b>: Protected area coverage and connectivity (see box below) coverage is defined as the percentage of a country covered by protected and connected lands. Protected area connectivity considers both intra-protected areas and inter-protected areas connectivity, i.e. it accounts for both the amount of protected land that is available within individual protected areas and that reachable by moving between different protected areas.',
-                'table' => '<b>Box Connectivity</b> <br/><br/>The maintenance and restoration of ecosystem integrity require landscape-scale conservation. This can be achieved through systems of core protected areas that are functionally linked and buffered in ways that maintain ecosystem processes and allow species to survive and move, thus ensuring that populations are viable and that ecosystems and people are able to adapt to land transformation and change (Source IUCN)',
-                'extra_info' => '<b>Source(s)</b>: The method described above uses the following input datasets:<br/><br/><ul>
-                                    <li>Protected Areas, WDPA of January 2021 (UNEP-WCMC & IUCN, 2021), www.protectedplanet.net</li>
-                                    <li>Terrestrial Ecoregions of the World, TEOW (2001). Terrestrial ecoregions of the world (Olson et al., 2001). https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</li>
-                                    <li>Country boundaries: Global Administrative Unit Layers (GAUL), revision 2015 (2017-02-02). <a href="http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691" target="_blank">http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691</a></li></ul>'],
-            'land_degradation' => [
-                'intro' => 'This sub-section shows changes that have occurred over the past years in the health and productive capacity of the land inside the protected area (time-span can change; at present Land degradation changes are assessed over 15-year period (1999-2013)). ',
-                'info' => '<b>Additional guidance</b>: Land degradation severely limits the sustainability of ecosystem services. It can also indicate degradation of agricultural production around a protected area. The evolution of land degradation is presented as a graphic ring with six categories all measured in Km² (1) No biomass, (2) Persistent severe decline in productivity, (3) Persistent moderate decline in productivity, (4) Stable but stressed; persistent strong inter-annual productivity variations, (5) Stable Productivity, (6) Persistent increase in productivity.<br/><br/><br/> <b>Source(s)</b>: https://wad.jrc.ec.europa.eu/landproductivity']],
         'additional_options' => [
             'main' => [
                 'intro' => 'Section 8 contains two sub-sections that help to synthesise aspects of management (1) Analysis of Management Effectiveness, (2) Synthesis of Key Elements Affecting Elements of Management.',

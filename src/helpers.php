@@ -8,3 +8,5 @@
  * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
+
+const PROTECTEDPLANET_WEBSITE_URL = 'https://www.protectedplanet.net';

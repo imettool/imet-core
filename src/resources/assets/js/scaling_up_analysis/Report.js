@@ -32,8 +32,6 @@ import imetBarError from './components/bar_charts/imet_bar_error.vue';
 import scalingRadar from './components/various_charts/scaling_radar.vue';
 
 import treemap from './components/various_charts/treemap.vue';
-import scalingDopaChartBar from '../templates/dopa/chart_bar.vue';
-import scalingDopaChartDoughnut from '../templates/dopa/chart_doughnut.vue';
 import scatter from './components/various_charts/scatter.vue';
 import radarThreats from './components/various_charts/radar_threats.vue';
 import colorPicker from './tools/color_picker.vue';
@@ -41,7 +39,6 @@ import basket from './components/basket.vue';
 import guidance from './components/guidance.vue';
 import smallMenu from './components/menus/small_menu.vue';
 import tooltip from '@modular-forms/js/templates/tooltip.vue';
-import dopaIndicatorsTable from '../templates/dopa/indicators_table.vue';
 import checkboxesList from './components/checkboxes_list.vue';
 import application from './components/app.vue';
 
@@ -115,8 +112,6 @@ export default class Report {
         app.component('imet_bar_error',    imetBarError);
         app.component('scaling_radar', scalingRadar);
         app.component('treemap', treemap);
-        app.component('dopa_chart_bar',    scalingDopaChartBar);
-        app.component('dopa_chart_doughnut',    scalingDopaChartDoughnut);
         app.component('scatter',    scatter);
         app.component('radar_threats', radarThreats);
         app.component('color_picker', colorPicker);
@@ -126,7 +121,6 @@ export default class Report {
         app.component('checkboxes_list', checkboxesList);
         app.component('tooltip', tooltip);
         app.component('imet_bar_chart', imetBarChart);
-        app.component('dopa_indicators_table', dopaIndicatorsTable);
         app.component('text_editor', textEditor);
 
         return app;

@@ -13,9 +13,7 @@ namespace ImetCore\Models;
 
 use Closure;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
-use ImetCore\Factories\ProtectedAreaFactory;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
@@ -37,7 +35,6 @@ use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
  */
 class ProtectedArea extends BaseProtectedArea
 {
-    use HasFactory;
 
     protected static ?string $schema = Database::COMMON_SCHEMA;
     protected $table = 'protected_areas';
@@ -47,14 +44,6 @@ class ProtectedArea extends BaseProtectedArea
     public const UPDATED_AT = null;
     public const UPDATED_BY = null;
     public const CREATED_BY = null;
-
-    /**
-     * Override: cannot respect namespace convention for model factories
-     */
-    protected static function newFactory(): ProtectedAreaFactory
-    {
-        return ProtectedAreaFactory::new();
-    }
 
     /**
      * Override: get the table name with schema

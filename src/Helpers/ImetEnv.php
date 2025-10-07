@@ -11,7 +11,9 @@
 
 namespace ImetCore\Helpers;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
 class ImetEnv {
@@ -42,10 +44,24 @@ class ImetEnv {
         return App::environment('imetglobal_dev');
     }
 
+    /**
+     * Check if the current environment is a development environment
+     */
     public static function isDevEnv(): bool
     {
         $env = Str::lower(App::environment());
-        return Str::contains($env, 'dev') || Str::contains($env, 'local');
+        return Str::contains($env, 'dev') ||
+            Str::contains($env, 'local') ||
+            static::isImetGlobalDevEnv();
+    }
+
+    /**
+     * Check if there is an active internet connection
+     * @throws ConnectionException
+     */
+    public static function isConnectionAvailable(): bool
+    {
+        return Http::get('https://www.github.com')->successful();
     }
 
 }

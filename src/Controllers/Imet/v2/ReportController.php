@@ -11,13 +11,14 @@
 
 namespace ImetCore\Controllers\Imet\v2;
 
+use Illuminate\Http\Client\ConnectionException;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
+use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
-use ModularForms\Helpers\API\DOPA\DOPA;
 use Illuminate\Support\Str;
 use ReflectionException;
 
@@ -30,22 +31,19 @@ class ReportController extends BaseReportController
     /**
      * Retrieve data to populate report view
      * @throws ReflectionException
+     * @throws ConnectionException
      */
     protected function __retrieve_report_data(Imet $item): array
     {
         $form_id = $item->getKey();
 
-        $api_available = $show_api = false;
-        $wdpa_extent = $dopa_radar = $dopa_indicators = null;
+        $show_general_info = false;
+        $wdpa_extent = null;
+
+        $connection = ImetEnv::isConnectionAvailable();
 
         if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
-//            $show_api = true;
-//            $api_available = DOPA::apiAvailable();
-//            if ($api_available) {
-//                $wdpa_extent = [];
-//                $dopa_radar = DOPA::get_wdpa_radarplot($item->wdpa_id, true)?->records ?? null;
-//                $dopa_indicators = DOPA::get_wdpa_all_inds($item->wdpa_id)?->records ?? null;
-//            }
+            $show_general_info = true;
         } else {
             $show_non_wdpa = true;
             $non_wdpa = ProtectedAreaNonWdpa::find($item->wdpa_id)->toArray();
@@ -77,11 +75,9 @@ class ReportController extends BaseReportController
             'scores' => ImetScores::get_all($item),
             'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V2),
             'report' => \ImetCore\Models\Imet\v2\Report::getByForm($form_id),
-            'connection' => $api_available,
-            'show_api' => $show_api,
+            'connection' => $connection,
+            'show_general_info' => $show_general_info,
             'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
-            'dopa_radar' => $dopa_radar,
-            'dopa_indicators' => $dopa_indicators[0] ?? null,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info[0] ?? null,
