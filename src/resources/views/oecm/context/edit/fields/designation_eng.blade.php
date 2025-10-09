@@ -16,7 +16,7 @@
     :class="$class"
     :rules="$rules"
     :other="$other"
-    :module_key="$definitions['module_key']"
+    :module_key="$module_key"
 ></x-modular-forms::module.components.field.input>
 
 

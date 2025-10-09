@@ -17,7 +17,6 @@ use ImetCore\Controllers\Imet\v1;
 use ImetCore\Controllers\Imet\v2;
 use ImetCore\Controllers\ProtectedAreaController;
 use ImetCore\Controllers\SpeciesController;
-use ImetCore\Controllers\UsersController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use ImetCore\Middleware\SetLocale;
@@ -169,11 +168,6 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
             Route::group(['prefix' => 'pas'], function () {
                 Route::post('search', [ProtectedAreaController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX . 'selector.pas.search');
                 Route::post('labels', [ProtectedAreaController::class, 'get_labels'])->name(Imet\Controller::ROUTE_PREFIX . 'selector.pas.labels');
-            });
-
-            Route::group(['prefix' => 'users'], function () {
-                Route::post('search', [UsersController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX . 'selector.users.search');
-                Route::post('labels', [UsersController::class, 'get_labels'])->name('selector.user.labels');
             });
         });
 
