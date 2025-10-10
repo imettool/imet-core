@@ -4,15 +4,15 @@
 /** @var ?string $additional_classes [optional] */
 /** @var ?boolean $threats [optional] */
 
-use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Services\Scores\AssessmentsScores;
 
 $threats            = $threats ?? false;
 $constraints        = $constraints ?? false;
 
 $classes = match(true) {
-    $threats => ApiController::score_class_threats($assessment_value),
-    $constraints => ApiController::score_class_threats($assessment_value, 'score_constraints_success'),
-    default => ApiController::score_class($assessment_value)
+    $threats => AssessmentsScores::score_class_threats($assessment_value),
+    $constraints => AssessmentsScores::score_class_threats($assessment_value, 'score_constraints_success'),
+    default => AssessmentsScores::score_class($assessment_value)
 };
 
 ?>
