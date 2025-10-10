@@ -15,22 +15,22 @@ class AssessmentsScores
 {
 
     /**
-     * @param ImetV1|ImetV2 $item
+     * @param ImetV1|ImetV2|int $item
      * @param bool $responseTypeJson
      * @return JsonResponse|array
      */
-    public static function scores(ImetV1|ImetV2 $item, bool $responseTypeJson = true): JsonResponse|array
+    public static function scores(ImetV1|ImetV2|int|string $item, bool $responseTypeJson = true): JsonResponse|array
     {
         $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
         return $responseTypeJson ? response()->json($stats) : $stats;
     }
 
     /**
-     * @param ImetV1|ImetV2 $item
+     * @param ImetV1|ImetV2|int $item
      * @param bool $responseTypeJson
      * @return JsonResponse|array
      */
-    public static function scores_oecm(ImetV1|ImetV2 $item, bool $responseTypeJson = true): JsonResponse|array
+    public static function scores_oecm(ImetV1|ImetV2|int|string $item, bool $responseTypeJson = true): JsonResponse|array
     {
         $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
         return $responseTypeJson ? response()->json($stats) : $stats;
