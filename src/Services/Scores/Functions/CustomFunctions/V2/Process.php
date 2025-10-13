@@ -38,10 +38,8 @@ trait Process
 
                 $weight = 1;
                 $record['eval_score'] = $eval_score;
-                if ($record['EvaluationScore'] === null) {
-                    if (isset($staff_weights[$record['Theme']])) {
-                        $weight = $staff_weights[$record['Theme']]['w_avg'];
-                    }
+                if ($record['EvaluationScore'] === null && isset($staff_weights[$record['Theme']])) {
+                    $weight = $staff_weights[$record['Theme']]['w_avg'];
                 }
 
                 $record['eval_score'] = $eval_score;

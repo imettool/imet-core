@@ -230,7 +230,7 @@ class ScalingUpAnalysis extends Model
                     }
                 }
             }
-            foreach ($array_elements as $keys => $element) {
+            foreach (array_keys($array_elements) as $keys) {
                 if (count($retrieve_key_elements[$keys])) {
                     foreach ($retrieve_key_elements[$keys] as $item) {
                         if (isset($array_elements_count[$keys.'_count'][$item])) {
@@ -244,7 +244,7 @@ class ScalingUpAnalysis extends Model
             }
         }
 
-        foreach ($array_elements as $keys => $element) {
+        foreach (array_keys($array_elements) as $keys) {
 
             foreach ($array_elements_count[$keys.'_count'] as $value) {
                 $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
@@ -579,7 +579,7 @@ class ScalingUpAnalysis extends Model
     {
         $average = Group::get_calculation_grouping_analysis($parameters, $assessments, static::$scaling_id);
 
-        foreach ($average as $key => $value) {
+        foreach (array_keys($average) as $key) {
             $average[$key]['legend_selected'] = true;
         }
 

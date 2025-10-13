@@ -7,7 +7,7 @@ use ModularForms\View\Module\Components\Field\InputPreview;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create($view_groupTable);
 foreach ($definitions['groups'] as $group_key => $group) {

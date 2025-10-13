@@ -37,7 +37,7 @@ class DataTable
                 array_diff_key($values, ['indicators_number' => 0]))
             );
 
-            foreach ($table_indicators as $v => $item) {
+            foreach (array_keys($table_indicators) as $v) {
                 $value_ind = $values[$v];
                 if ((string) $value_ind === '-') {
                     $value_ind = 0;
@@ -47,7 +47,7 @@ class DataTable
             $tables[$type][] = $items;
         }
 
-        foreach ($table_indicators as $v => $item) {
+        foreach (array_keys($table_indicators) as $v) {
             $radar_average[$v] = Common::round_number((float) $radar_average[$v] / count($filtered));
         }
         $tables[$type][] = $radar_average;

@@ -176,7 +176,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         foreach (static::$groupsByCategory as $index => $groups) {
             $valuesByCategory[$index] = [];
             foreach ($groups as $group) {
-                $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
+                $valuesByCategory[$index][] = $group_stats[$group] ?? null;
             }
         }
         foreach ($valuesByCategory as $values) {

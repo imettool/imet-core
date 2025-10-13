@@ -72,11 +72,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
         foreach ($records as $idx => $record) {
-            if (array_key_exists($record['Element'], $weight)) {
-                $records[$idx]['Weight'] = $weight[$record['Element']];
-            } else {
-                $records[$idx]['Weight'] = null;
-            }
+            $records[$idx]['Weight'] = $weight[$record['Element']] ?? null;
         }
 
         return collect($records)

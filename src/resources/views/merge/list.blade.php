@@ -44,9 +44,9 @@ if(!function_exists('get_quoted_responsible')){
 
     function get_quoted_responsible(int $form_id, string $version): string
     {
-        if($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2){
+        if ($version === Imet\Imet::IMET_V1 || $version === Imet\Imet::IMET_V2) {
             $responsible = Imet\Imet::getResponsibles($form_id, $version);
-        } else if($version == Imet\Imet::IMET_OECM){
+        } elseif ($version === Imet\Imet::IMET_OECM) {
             $responsible = oecm\Imet::getResponsibles($form_id, $version);
         }
         return str_replace('\'', '\\\'', json_encode($responsible));

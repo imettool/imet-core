@@ -75,11 +75,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
         foreach ($records as $idx => $record) {
-            if (array_key_exists($record['Stakeholder'], $weight)) {
-                $records[$idx]['Weight'] = $weight[$record['Stakeholder']];
-            } else {
-                $records[$idx]['Weight'] = null;
-            }
+            $records[$idx]['Weight'] = $weight[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)

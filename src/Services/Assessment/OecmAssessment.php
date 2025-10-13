@@ -26,7 +26,7 @@ class OecmAssessment
      */
     private static function getAsModel(ImetOecm|int|string $imet): ImetOecm
     {
-        return (is_int($imet) or is_string($imet))
+        return (is_int($imet) || is_string($imet))
             ? ImetOecm::query()->find($imet)
             : $imet;
     }

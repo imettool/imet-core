@@ -20,11 +20,7 @@ foreach ($records as $index => $record) {
     $result[$index] = $result[$index] === 0 ? null : $result[$index];
 
     $total = floatval($result[$index]);
-    if($total > 0){
-        $percentage_results[$index] = round($total / $total_budget * 100, 1).' %';
-    } else {
-        $percentage_results[$index] = "";
-    }
+    $percentage_results[$index] = $total > 0 ? round($total / $total_budget * 100, 1).' %' : "";
 }
 \ImetCore\Controllers\Imet\v1\ContextController::set_financial_available_resources_totals($result);
 ?>

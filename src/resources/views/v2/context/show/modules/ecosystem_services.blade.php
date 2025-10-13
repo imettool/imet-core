@@ -10,7 +10,7 @@ $fistGroupPerCategory = array_map(function($category){
     return $category[0];
 }, \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::$groupsByCategory);
 
-$view = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$view = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
 
 foreach ($fistGroupPerCategory as $i => $group){

@@ -241,9 +241,7 @@ class FormSeeder
             return fake()->email();
         } elseif ($type === 'password') {
             return fake()->password();
-        } elseif ($type === 'integer'
-            || $type === 'code'
-            || $type === 'numeric') {
+        } elseif (in_array($type, ['integer', 'code', 'numeric'], true)) {
             return fake()->randomNumber(4);
         } elseif ($type === 'float'
             || $type === 'currency') {

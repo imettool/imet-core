@@ -5,7 +5,7 @@
 
 $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records);
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 // Inject Average calculation
 $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group0', 3, 2, '', \ModularForms\Helpers\Module::calculateAverage('EvaluationScore', 'group0', $new_records));

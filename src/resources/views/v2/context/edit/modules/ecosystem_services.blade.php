@@ -10,7 +10,7 @@ $fistGroupPerCategory = array_map(function($category){
     return $category[0];
 }, $vueData['groupsByCategory']);
 
-$view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
 
 foreach ($fistGroupPerCategory as $i => $group){

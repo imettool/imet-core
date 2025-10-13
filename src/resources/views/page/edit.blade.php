@@ -13,17 +13,17 @@ use \Illuminate\Support\Str;
 if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
     $step_labels = 'v1_common.steps';
-} else if (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
+} elseif (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
     $version = Models\Imet\Imet::IMET_V2;
     $step_labels = 'v2_common.steps';
-} else if (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
+} elseif (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
     $version = Models\Imet\Imet::IMET_OECM;
     $step_labels = 'oecm_common.steps';
 }
 
 if (Str::contains($controller, 'ContextController')) {
     $phase = 'context';
-} else if (Str::contains($controller, 'EvalController')) {
+} elseif (Str::contains($controller, 'EvalController')) {
     $phase = 'evaluation';
     $step_labels = 'common.steps_eval';
 }

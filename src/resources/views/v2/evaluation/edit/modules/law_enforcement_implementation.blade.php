@@ -7,7 +7,7 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
 use Illuminate\Support\Facades\View;
 
-$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 
 // Inject marine/terrestrial icon on title
 $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, LawEnforcementImplementation::get_marine_groups(), LawEnforcementImplementation::get_terrestrial_groups());

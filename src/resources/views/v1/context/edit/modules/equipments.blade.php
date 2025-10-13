@@ -3,7 +3,7 @@
 /** @var Mixed $definitions */
 /** @var Mixed $vueData */
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 
 // Inject Average calculation
 for($i=0; $i<=12; $i++){

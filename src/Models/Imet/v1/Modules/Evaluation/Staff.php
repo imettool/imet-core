@@ -70,7 +70,7 @@ class Staff extends Modules\Component\ImetModule_Eval
     {
         $new_records = [];
 
-        if (count($predefined_values['values']) > 1 && count($records) == 1) {
+        if (count($predefined_values['values']) > 1 && count($records) === 1) {
             $records = [];
         }
 

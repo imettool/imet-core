@@ -20,10 +20,10 @@ foreach ($records as $index => $record) {
         : '';
     $totalSum += $records[$index]['__sum_row'];
 }
-$totalSum = $totalSum / 2;
+$totalSum /= 2;
 
 
-$table = View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$table = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
     Helpers::trimNewlines($table)
 );

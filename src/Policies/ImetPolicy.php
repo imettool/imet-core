@@ -29,6 +29,8 @@ class ImetPolicy
         if (Role::isAdmin($user)) {
             return true;
         }
+
+        return null;
     }
 
     /**

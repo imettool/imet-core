@@ -23,7 +23,7 @@ class RolePolicy
      * Perform pre-authorization checks
      *
      * @param  \App\Models\User\User|\ImetUser  $user
-     * @return void|bool
+     * @return bool|null
      */
     public function before($user, string $ability)
     {
@@ -31,6 +31,8 @@ class RolePolicy
         if (Role::isAdmin($user)) {
             return true;
         }
+
+        return null;
     }
 
     /**

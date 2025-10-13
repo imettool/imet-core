@@ -95,9 +95,7 @@ class Habitats extends Modules\Component\ImetModule
             })
             ->map(function ($item) {
                 $labels = SelectionList::getList('ImetOECM_Habitats');
-                $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
-                    $labels[$item['EcosystemType']]
-                    : null;
+                $item['EcosystemType'] = $labels[$item['EcosystemType']] ?? null;
 
                 return blank($item['EcosystemDescription'])
                     ? $item['EcosystemType']

@@ -130,7 +130,7 @@ class Ranking
         arsort($average_values);
         foreach ($ranking['values'] as $ind => $items) {
             $i = 0;
-            foreach ($average_values as $k => $vals) {
+            foreach (array_keys($average_values) as $k) {
                 if (! isset($new_ranking['values'][$ind])) {
                     $new_ranking['values'][$ind] = [];
                 }
@@ -141,11 +141,7 @@ class Ranking
                 $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
-                if (isset($separated_values_by_pa[$k])) {
-                    $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
-                } else {
-                    $reorder_separated_values_by_pa[$i] = [];
-                }
+                $reorder_separated_values_by_pa[$i] = isset($separated_values_by_pa[$k]) ? $separated_values_by_pa[$k] : [];
                 $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $i++;
             }

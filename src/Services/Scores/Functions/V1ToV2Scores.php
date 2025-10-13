@@ -42,7 +42,7 @@ class V1ToV2Scores extends _Scores
         $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x) {
             return $x !== null;
         }));
-        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -89,7 +89,7 @@ class V1ToV2Scores extends _Scores
         $count = count(array_filter($scores, function ($x) {
             return $x !== null;
         }));
-        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -221,7 +221,7 @@ class V1ToV2Scores extends _Scores
         $count = count(array_filter($scores, function ($x) {
             return $x !== null;
         }));
-        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
     }

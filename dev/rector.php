@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\Class_\ConvertStaticToSelfRector;
 use Rector\Config\RectorConfig;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
@@ -29,6 +30,7 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         __DIR__.'/bootstrap/cache',
+        ConvertStaticToSelfRector::class,                       // Need to review all changes
         MakeModelAttributesAndScopesProtectedRector::class,
         //        FirstClassCallableRector::class => [
         //            __DIR__ . '/routes'                     // do not convert to first class callable in routes
@@ -40,7 +42,7 @@ return RectorConfig::configure()
     ->withComposerBased(laravel: true)
     ->withPreparedSets(
         deadCode: true,
-        //        codeQuality: true,
+        codeQuality: true,
         //        codingStyle: true,
         //        typeDeclarations: true,
         //        privatization: true,

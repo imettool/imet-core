@@ -103,11 +103,7 @@ trait Process
         if ($sum === null) {
             $score = null;
         } elseif ($sum > 0) {
-            if ($count < 5) {
-                $score = $sum / 5;
-            } else {
-                $score = $sum / $count;
-            }
+            $score = $count < 5 ? $sum / 5 : $sum / $count;
         } else {
             $score = 0;
         }

@@ -26,7 +26,7 @@ class OecmScores
      */
     private static function getAsId(ImetOecm|int|string $imet): int
     {
-        return (is_int($imet) or is_string($imet))
+        return (is_int($imet) || is_string($imet))
             ? (int) $imet
             : $imet->getKey();
     }

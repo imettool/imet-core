@@ -29,7 +29,7 @@ trait Inputs
 
         return $records
             ->map(function ($record) {
-                $expected = intval($record['ExpectedPermanent']) == 0 ? null : $record['ExpectedPermanent'];
+                $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, ($record['ActualPermanent'] ?? 0) / ($expected))
                     : 1;

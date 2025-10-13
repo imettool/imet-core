@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view = View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))->render();
+$view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
 $dom->filter('thead tr th')->eq(0)->append('<th></th>');

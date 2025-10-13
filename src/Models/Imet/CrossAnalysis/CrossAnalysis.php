@@ -48,7 +48,7 @@ class CrossAnalysis extends Model
     {
         $filteredArray = [];
         $compareElements = [];
-        foreach (static::$indicators as $step_key => $indicators) {
+        foreach (array_keys(static::$indicators) as $step_key) {
 
             $scores = ImetScores::get_step($item, $step_key);
             $filteredArray = array_merge($filteredArray,
@@ -58,15 +58,13 @@ class CrossAnalysis extends Model
             foreach ($item::modules()[$step_key] as $module) {
                 $definitions = $module::getDefinitions($item->FormID);
                 $code = strtolower(str_ireplace(['.', '/'], '', $definitions['module_code']));
-                if (isset($filteredArray[$code])) {
-                    if (is_array($definitions['module_info_EvaluationQuestion'])) {
-                        $compareElements[$code] = [
-                            'code' => $definitions['module_code'],
-                            'value' => $filteredArray[$code],
-                            'question' => $definitions['module_info_EvaluationQuestion'][0],
-                            'step' => $step_key,
-                            'key' => 'module_'.$definitions['module_key']];
-                    }
+                if (isset($filteredArray[$code]) && is_array($definitions['module_info_EvaluationQuestion'])) {
+                    $compareElements[$code] = [
+                        'code' => $definitions['module_code'],
+                        'value' => $filteredArray[$code],
+                        'question' => $definitions['module_info_EvaluationQuestion'][0],
+                        'step' => $step_key,
+                        'key' => 'module_'.$definitions['module_key']];
                 }
             }
         }

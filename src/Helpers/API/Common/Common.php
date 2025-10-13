@@ -203,7 +203,7 @@ class Common
         } else {
             $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids);
         }
-        if ($key) {
+        if ($key !== '' && $key !== '0') {
             $records = $records->where(['version' => $key]);
         }
         $records = $records->get();
@@ -223,7 +223,7 @@ class Common
         } else {
             $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
         }
-        if ($key) {
+        if ($key !== '' && $key !== '0') {
             $records = $records->where(['version' => $key]);
         }
         $records = $records->get();
@@ -247,7 +247,7 @@ class Common
             } else {
                 $record = Imet::query()->select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
             }
-            if ($key) {
+            if ($key !== '' && $key !== '0') {
                 $record = $record->where(['version' => $key]);
             }
             $record = $record->first();

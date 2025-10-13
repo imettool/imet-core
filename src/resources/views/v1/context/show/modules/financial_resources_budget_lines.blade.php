@@ -27,11 +27,7 @@ foreach ($records as $index => $record) {
     $cost[$index] = $cost[$index] === 0 ? null : round($cost[$index], 2);
 
     $val = floatval($cost[$index]);
-    if($val > 0 && $totalBudget > 0){
-        $percentage[$index] = round($val / $totalBudget * 100, 1).' %';
-    } else {
-        $percentage[$index] = "";
-    }
+    $percentage[$index] = $val > 0 && $totalBudget > 0 ? round($val / $totalBudget * 100, 1).' %' : "";
 }
 
 ?>

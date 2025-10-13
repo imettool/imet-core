@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
-$page = View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$page = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 

@@ -96,7 +96,7 @@ class ProtectedArea extends BaseProtectedArea
         ProtectedArea::query()->select('country')
             ->distinct()
             ->where(function ($query) use ($custom_where) {
-                if ($custom_where !== null) {
+                if ($custom_where instanceof Closure) {
                     $custom_where($query);
                 }
             })

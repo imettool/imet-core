@@ -7,7 +7,7 @@ use ModularForms\View\Module\Components\Field\InputPreview;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$page = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$page = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
     Helpers::trimNewlines($page)
 );

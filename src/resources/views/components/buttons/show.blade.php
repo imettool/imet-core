@@ -3,12 +3,11 @@
 
 use ModularForms\Helpers\Template;
 
-if($version === \ImetCore\Models\Imet\Imet::IMET_V1){
+if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
     $controller_context = \ImetCore\Controllers\Imet\v1\ContextController::class;
     $controller_eval = \ImetCore\Controllers\Imet\v1\EvalController::class;
     $controller_report = \ImetCore\Controllers\Imet\v1\ReportController::class;
-}
-else if($version === \ImetCore\Models\Imet\Imet::IMET_V2){
+} elseif ($version === \ImetCore\Models\Imet\Imet::IMET_V2) {
     $controller_context = \ImetCore\Controllers\Imet\v2\ContextController::class;
     $controller_eval = \ImetCore\Controllers\Imet\v2\EvalController::class;
     $controller_report = \ImetCore\Controllers\Imet\v2\ReportController::class;

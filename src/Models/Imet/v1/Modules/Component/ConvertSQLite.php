@@ -87,14 +87,14 @@ trait ConvertSQLite
             ->where('FormID', $imet_data->FormID)
             ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
-            ->map(function ($record) use ($sqlite_structure, $sqlite_connection) {
+            ->map(function ($record) use ($sqlite_structure) {
 
                 $record = (array) $record;
                 $json = [];
 
                 // Review data from SQLITE whenever necessary
                 if (method_exists(get_called_class(), 'conversionDataReview')) {
-                    $record = static::conversionDataReview($record, $sqlite_connection);
+                    $record = static::conversionDataReview($record);
                 }
 
                 // Match SQLite fields to current module fields
@@ -150,7 +150,7 @@ trait ConvertSQLite
             $record[$group_field] = $label;
         }
 
-        if (! $label and $record[$group_field] !== '') {
+        if (! $label && $record[$group_field] !== '') {
             dd('LABEL not found: "'.$record[$group_field].'" ('.$group_field.' - '.static::class.')');
         }
 

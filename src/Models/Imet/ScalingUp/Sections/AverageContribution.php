@@ -35,11 +35,9 @@ class AverageContribution
                 }
             }
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if ($protected_area === '') {
-                    $value = '-';
-                } else {
-                    $value = Common::round_number((-1 * (float) $protected_area));
-                }
+                $value = $protected_area === ''
+                    ? '-'
+                    : Common::round_number((-1 * (float) $protected_area));
                 $data[$k][] = $valuesIndicators[$k][] = $value;
             }
         }
@@ -160,12 +158,11 @@ class AverageContribution
 
         if (is_numeric($index)) {
             $average_contribution['data']['Average'][$i]['indicator'] = trans($label.($v), []);
+        } elseif ($type === 'process' && stripos($v, '_') === true) {
+            $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
+            // Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
         } else {
-            if ($type === 'process' && stripos($v, '_') === true) {
-                $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v); // Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
-            } else {
-                $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v]; // Common::indicator_label($v, $label);
-            }
+            $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v]; // Common::indicator_label($v, $label);
         }
 
         return $average_contribution;

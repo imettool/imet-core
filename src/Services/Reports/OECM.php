@@ -106,11 +106,7 @@ class OECM
         });
 
         foreach ($values as $value) {
-            if ($value['__score'] !== null) {
-                $fields[$value[$label]] = round($value['__score'], 2);
-            } else {
-                $fields[$value[$label]] = '-';
-            }
+            $fields[$value[$label]] = $value['__score'] !== null ? round($value['__score'], 2) : '-';
         }
 
         return ['values' => $values, 'chart' => ['values' => (($fields))]];

@@ -28,7 +28,7 @@ class ImetAssessment
      */
     private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
-        if (is_int($imet) or is_string($imet)) {
+        if (is_int($imet) || is_string($imet)) {
             $imet_model = ImetV2::query()->find($imet);
 
             return $imet_model->version === ImetV2::version

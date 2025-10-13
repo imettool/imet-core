@@ -55,7 +55,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 
         $new_records = [];
 
-        if (count($predefined_values['values']) > 1 && count($records) == 1) {
+        if (count($predefined_values['values']) > 1 && count($records) === 1) {
             $records = [];
         }
 
@@ -95,7 +95,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         }
 
         $result = [];
-        foreach ($adequacy as $i => $v) {
+        foreach (array_keys($adequacy) as $i) {
             $result[] = $adequacy[$i]['count'] > 0 ? round($adequacy[$i]['sum'] / $adequacy[$i]['count'], 2) : null;
         }
 

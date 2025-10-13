@@ -54,7 +54,7 @@ class Group
     {
         $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
 
-        foreach ($indicator as $indi => $value) {
+        foreach (array_keys($indicator) as $indi) {
             foreach ($assessments['data']['assessments'] as $assessment) {
                 foreach ($parameters as $form) {
 

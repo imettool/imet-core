@@ -129,7 +129,7 @@ trait Context
         $values = $records
             ->filter(function ($record) {
                 return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) != -99
+                    && intval($record['EvaluationScore']) !== -99
                     && intval($record['EvaluationScore']) > -4;
             });
 

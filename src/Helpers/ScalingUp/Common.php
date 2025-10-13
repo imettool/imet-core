@@ -54,7 +54,7 @@ class Common
             }
         });
 
-        return $items_number ? array_sum($array) / $items_number : null;
+        return $items_number !== 0 ? array_sum($array) / $items_number : null;
     }
 
     public static function indicator_label($id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
@@ -165,7 +165,7 @@ class Common
             });
 
             $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
-                return (string) $item != '-';
+                return (string) $item !== '-';
             }));
 
             // loop through imet sub indicators to create an average value in order to sort in the ranking
@@ -207,7 +207,7 @@ class Common
     {
         if ($show_original_names) {
             $protected_area = Imet::query()->where('FormID', $form_id)->get();
-            if (count($protected_area)) {
+            if (count($protected_area) > 0) {
                 return $protected_area[0];
             }
         } else {

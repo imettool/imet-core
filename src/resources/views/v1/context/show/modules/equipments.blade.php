@@ -4,7 +4,7 @@
 /** @var Mixed $records */
 
 $record = $records[0];
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 $averages = [];
 foreach ($records as $record) {

@@ -133,7 +133,7 @@ trait ImportExportJSON
         $model = ModuleKey::KeyToClassName($module_key);
 
         $query = $model::where(function ($query) use ($ids) {
-            if ($ids) {
+            if ($ids !== '' && $ids !== '0') {
                 $query->whereIn('FormID', explode(',', $ids));
             }
         })

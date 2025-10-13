@@ -85,11 +85,10 @@ class GlobalStatistics
         $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories->groupBy(DB::raw('iucn_category'))
             ->orderBy('total', 'desc')
             ->get()->map(function ($item) {
-                $values = [];
-                $values['iucn_category'] = $item['iucn_category'];
-                $values['total'] = $item['total'];
-
-                return $values;
+                return [
+                    'iucn_category' => $item['iucn_category'],
+                    'total' => $item['total']
+                ];
             });
 
         return ['data' => $number_of_pas_per_iucn_categories];
@@ -205,11 +204,7 @@ class GlobalStatistics
         $number_of_pas_by_country = $number_of_pas_by_country->groupBy(DB::raw('"Country"'))
             ->orderBy('total', 'desc')
             ->get()->map(function ($item) use ($name) {
-                $values = [];
-                $values['country'] = $item->country->$name;
-                $values['total'] = $item->total;
-
-                return $values;
+                return ['country' => $item->country->$name, 'total' => $item->total];
             });
 
         return ['data' => $number_of_pas_by_country];

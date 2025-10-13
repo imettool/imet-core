@@ -33,7 +33,7 @@ return new class extends Migration
             $header = fgetcsv($handle);
             while (($row = fgetcsv($handle)) !== false) {
                 $row = array_combine($header, $row);
-                if ($row) {
+                if ($row !== []) {
                     $row = [
                         'iso2' => Str::upper($row['alpha2']),
                         'iso3' => Str::upper($row['alpha3']),
@@ -50,8 +50,8 @@ return new class extends Migration
             }
         }
 
-        $data[] = self::addFakeCountry();
-        $data = self::addRegion($data);
+        $data[] = $this->addFakeCountry();
+        $data = $this->addRegion($data);
 
         // Split the data into chunks
         $data = array_chunk($data, 100);
@@ -75,7 +75,7 @@ return new class extends Migration
     /**
      * Add fake country
      */
-    private static function addFakeCountry(): array
+    private function addFakeCountry(): array
     {
         return [
             'iso2' => 'WY',
@@ -92,7 +92,7 @@ return new class extends Migration
     /**
      * Add region_id (required to maintain backward compatibility with old IMET JSONs - which still using global_id instead of wdpa_id)
      */
-    private static function addRegion($data): array
+    private function addRegion($data): array
     {
         foreach ($data as $key => $country) {
             if (in_array($country['iso3'],

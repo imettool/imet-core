@@ -18,7 +18,7 @@ $group_key = $group_key ?? '';
 
 $num_cols = count($definitions['fields']);
 
-$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['definitions', 'records', 'group_key']))->render();
+$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records, 'group_key' => $group_key])->render();
 $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));

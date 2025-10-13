@@ -10,7 +10,7 @@ use Wa72\HtmlPageDom\Helpers;
 $group_key = $group_key ?? '';
 $num_cols = count($definitions['fields']);
 
-$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions', 'group_key']))->render();
+$original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions, 'group_key' => $group_key])->render();
 $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));

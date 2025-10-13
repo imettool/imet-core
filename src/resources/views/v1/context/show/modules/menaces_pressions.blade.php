@@ -6,7 +6,7 @@
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 $stats = \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
 
 

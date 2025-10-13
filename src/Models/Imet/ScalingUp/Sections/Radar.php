@@ -148,7 +148,7 @@ class Radar
         $form_ids = array_reverse($form_ids, true);
         $totalProtectedAreas = count($form_ids);
         $form_ids_ordering = [];
-        foreach ($indicator as $indi => $value) {
+        foreach (array_keys($indicator) as $indi) {
             foreach ($form_ids as $key => $form_id) {
                 $assess = $assessments['data']['assessments'][$key];
                 $assess['width'] = '';
@@ -234,11 +234,7 @@ class Radar
                 }
             }
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if ($protected_area === '') {
-                    $value = '-';
-                } else {
-                    $value = Common::round_number((-1 * (float) $protected_area));
-                }
+                $value = $protected_area === '' ? '-' : Common::round_number((-1 * (float) $protected_area));
                 $record = ['id' => $pa->wdpa_id, 'name' => $protected_areas_names[$form_id], 'value' => $value, 'color' => $pa->color];
                 if ($pa->color) {
                     $record['color'] = $pa->color;

@@ -27,7 +27,7 @@ trait Inputs
 
         return $records
             ->map(function ($record) {
-                $expected = intval($record['ExpectedPermanent']) == 0 ? null : $record['ExpectedPermanent'];
+                $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, (($record['ActualPermanent'] ?? 0) + ($record['ActualPermanentPartnersOrCommunities'] ?? 0)) / ($expected))
                     : 1;
@@ -57,11 +57,7 @@ trait Inputs
             })
             ->all();
 
-        $score = static::average($values, 2);
-
-        return $score !== null ?
-            $score
-            : null;
+        return static::average($values, 2);
     }
 
     protected static function score_i3(int $imet_id)

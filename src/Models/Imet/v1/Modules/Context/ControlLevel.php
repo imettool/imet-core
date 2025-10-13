@@ -122,10 +122,6 @@ class ControlLevel extends Modules\Component\ImetModule
 
     private static function isValid($value): bool
     {
-        if (! is_infinite($value) && $value > 0) {
-            return true;
-        }
-
-        return false;
+        return ! is_infinite($value) && $value > 0;
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\View;
 
 $vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
 
-$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 
 // Inject marine icon on criteria
 $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $view_groupTable, "is_marine(item['Value'])");

@@ -83,7 +83,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         }
 
         $result = [];
-        foreach ($adequacy as $i => $v) {
+        foreach (array_keys($adequacy) as $i) {
             $result[] = $adequacy[$i]['count'] > 0
                 ? round($adequacy[$i]['sum'] / $adequacy[$i]['count'], 2)
                 : null;

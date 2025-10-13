@@ -48,7 +48,7 @@ class V2Scores extends _Scores
         $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x) {
             return $x !== null;
         }));
-        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -168,7 +168,7 @@ class V2Scores extends _Scores
         $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], function ($x) {
             return $x !== null;
         }));
-        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
     }

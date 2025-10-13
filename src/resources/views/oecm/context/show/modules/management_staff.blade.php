@@ -9,7 +9,7 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
 /** @var Mixed $definitions */
 /** @var Mixed $records */
 
-$original_table = View::make('modular-forms::module.show.type.table', compact(['collection', 'records', 'definitions']))->render();
+$original_table = View::make('modular-forms::module.show.type.table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 $diffs = [];
 foreach ($records as $record){

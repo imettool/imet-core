@@ -33,11 +33,7 @@ trait StatisticsApi
         $version = $request->input('version');
         $region = $request->input('region');
 
-        if ($region) {
-            $country = Country::getByRegion($region);
-        } else {
-            $country = [$country];
-        }
+        $country = $region ? Country::getByRegion($region) : [$country];
 
         App::setLocale($lang);
         $slug = str_replace('-', '_', $slug);
