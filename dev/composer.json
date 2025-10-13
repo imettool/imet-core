@@ -50,7 +50,9 @@
             "php artisan log-viewer:publish"
         ],
         "phpstan": " ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit 512M",
-        "rector": " ./vendor/bin/rector process"
+        "rector": " ./vendor/bin/rector process",
+        "pint": "./vendor/bin/pint --config pint.json",
+        "fix": "composer rector && composer pint"
     },
     "extra": {
         "laravel": {
