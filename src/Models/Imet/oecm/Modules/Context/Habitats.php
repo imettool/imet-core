@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
-use ImetCore\Models\Imet\oecm\Modules;
-use ModularForms\Helpers\Input\SelectionList;
 use Exception;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
+use ModularForms\Helpers\Input\SelectionList;
 
 class Habitats extends Modules\Component\ImetModule
 {
@@ -25,10 +26,11 @@ class Habitats extends Modules\Component\ImetModule
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ThreatsBiodiversity::class, 'EcosystemType'],
         [Modules\Evaluation\KeyElementsImpact::class, 'EcosystemType'],
-        [Modules\Evaluation\KeyElements::class, 'EcosystemType']
+        [Modules\Evaluation\KeyElements::class, 'EcosystemType'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.3';
@@ -49,12 +51,9 @@ class Habitats extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-
     /**
      * Override: replace values with labels
-     * @param $records
-     * @param $form_id
-     * @param $dependency_on
+     *
      * @throws Exception
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
@@ -71,13 +70,13 @@ class Habitats extends Modules\Component\ImetModule
         $to_be_dropped = array_diff($existing_values, $updated_values);
 
         // ### replace values with labels ###
-        $labels =  SelectionList::getList('ImetOECM_Habitats');
+        $labels = SelectionList::getList('ImetOECM_Habitats');
         $to_be_dropped_new = [];
-        foreach ($to_be_dropped as $type => $description){
-            if(array_key_exists($type, $labels)){
+        foreach ($to_be_dropped as $type => $description) {
+            if (array_key_exists($type, $labels)) {
                 $to_be_dropped_new[] = blank($description)
                     ? $labels[$type]
-                    : $labels[$type] . ' - ' .$description;
+                    : $labels[$type].' - '.$description;
             }
 
         }
@@ -99,11 +98,11 @@ class Habitats extends Modules\Component\ImetModule
                 $item['EcosystemType'] = array_key_exists($item['EcosystemType'], $labels) ?
                     $labels[$item['EcosystemType']]
                     : null;
+
                 return blank($item['EcosystemDescription'])
                     ? $item['EcosystemType']
-                    : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
+                    : $item['EcosystemType'].' - '.$item['EcosystemDescription'];
             })
             ->all();
     }
-
 }

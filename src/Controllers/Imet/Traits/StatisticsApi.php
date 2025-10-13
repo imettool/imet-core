@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,28 +12,28 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-use ImetCore\Models\Country;
-use ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\API\Statistics\GlobalStatistics;
+
 use function abort;
 
 trait StatisticsApi
 {
-
     /**
-     * @param string|null $year
+     * @param  string|null  $year
      */
     public function get_global_statistics(Request $request, string $lang, string $slug): object
     {
         $api = [];
-        $type = $request->input("type");
-        $year = $request->input("year");
-        $country = $request->input("country");
-        $version = $request->input("version");
-        $region = $request->input("region");
+        $type = $request->input('type');
+        $year = $request->input('year');
+        $country = $request->input('country');
+        $version = $request->input('version');
+        $region = $request->input('region');
 
-        if($region){
+        if ($region) {
             $country = Country::getByRegion($region);
         } else {
             $country = [$country];
@@ -40,7 +41,7 @@ trait StatisticsApi
 
         App::setLocale($lang);
         $slug = str_replace('-', '_', $slug);
-        $func = "get_" . $slug;
+        $func = 'get_'.$slug;
         if (method_exists(GlobalStatistics::class, $func)) {
             $form_ids = GlobalStatistics::from_year_get_form_ids($request, $year, $version, $country, $type);
             if (in_array($func, ['get_assessments_performed_by_country', 'get_pas_rating'])) {
@@ -53,10 +54,6 @@ trait StatisticsApi
             abort(404, trans('imet-core::api.error_messages.page_not_found'));
         }
 
-        return static::sendAPIResponse( $api);
+        return static::sendAPIResponse($api);
     }
-
-
-
-
 }

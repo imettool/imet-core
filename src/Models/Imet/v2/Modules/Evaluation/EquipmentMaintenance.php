@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,11 +18,13 @@ use ImetCore\Models\User\Role;
 class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_equipment_maintenance';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR6';
@@ -36,7 +39,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $this->predefined_values = [
             'field' => 'Equipment',                                                         // Comes from context->Equipments
             'values' => array_keys(trans('imet-core::v2_context.Equipments.groups')),
-            'labels' => array_values(trans('imet-core::v2_context.Equipments.groups'))
+            'labels' => array_values(trans('imet-core::v2_context.Equipments.groups')),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.EquipmentMaintenance.module_info_EvaluationQuestion');
@@ -47,7 +50,6 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
     }
 
-
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
@@ -55,12 +57,13 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
         $new_records = [];
         $adequacy = static::calculateEquipementAdequacy($form_id);
-        foreach($predefined_values['values'] as $i => $predefined_value){
-            if($adequacy[$i]!=null){
+        foreach ($predefined_values['values'] as $i => $predefined_value) {
+            if ($adequacy[$i] != null) {
                 $records[$i]['AdequacyLevel'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }
         }
+
         return $new_records;
     }
 
@@ -69,25 +72,25 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $adequacy = array_keys(trans('imet-core::v2_context.Equipments.groups'));
         $adequacy = array_fill_keys($adequacy, [
             'sum' => 0,
-            'count' => 0
+            'count' => 0,
         ]);
         $collection = Modules\Context\Equipments::getModule($form_id);
-        foreach ($collection as $item){
-            if($item['AdequacyLevel']!==null){
+        foreach ($collection as $item) {
+            if ($item['AdequacyLevel'] !== null) {
                 $adequacy[$item['group_key']]['sum'] += $item['AdequacyLevel'];
                 $adequacy[$item['group_key']]['count']++;
             }
         }
 
         $result = [];
-        foreach($adequacy as $i=>$v){
-            $result[] = $adequacy[$i]['count']>0
-                ? round($adequacy[$i]['sum']/$adequacy[$i]['count'],2)
+        foreach ($adequacy as $i => $v) {
+            $result[] = $adequacy[$i]['count'] > 0
+                ? round($adequacy[$i]['sum'] / $adequacy[$i]['count'], 2)
                 : null;
         }
 
-        foreach ($result as $i=>$r){
-            if($r!==null){
+        foreach ($result as $i => $r) {
+            if ($r !== null) {
                 $result[$i] = round($r, 2);
             }
         }

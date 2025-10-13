@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ManagementStaffCommunities extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.3';
@@ -46,8 +48,8 @@ class ManagementStaffCommunities extends Modules\Component\ImetModule
         return [
             'table' => 'ManagementStaffCommunities',
             'fields' => [
-                'Community', 'Role1',  'StaffNUmberRole1', 'Role2',  'StaffNUmberRole2', 'Role3',  'StaffNUmberRole3'
-            ]
+                'Community', 'Role1',  'StaffNUmberRole1', 'Role2',  'StaffNUmberRole2', 'Role3',  'StaffNUmberRole3',
+            ],
         ];
     }
 }

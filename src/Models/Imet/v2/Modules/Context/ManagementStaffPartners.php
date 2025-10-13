@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ManagementStaffPartners extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.2';
@@ -31,8 +33,6 @@ class ManagementStaffPartners extends Modules\Component\ImetModule
             ['name' => 'Technicians',  'type' => 'integer',   'label' => trans('imet-core::v2_context.ManagementStaffPartners.fields.Technicians')],
             ['name' => 'Auxiliaries',  'type' => 'integer',   'label' => trans('imet-core::v2_context.ManagementStaffPartners.fields.Auxiliaries')],
         ];
-
-
 
         parent::__construct($attributes);
 

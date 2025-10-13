@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,11 +18,12 @@ use ImetCore\Models\User\Role;
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_and_constaints';
-//    protected bool $fixed_rows = true;
+    //    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2';
@@ -46,8 +48,8 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
                 'group0' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values.group0'),
                 'group1' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values.group1'),
                 'group2' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values.group2'),
-                'group3' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values.group3')
-            ]
+                'group3' => trans('imet-core::v2_evaluation.SupportsAndConstraints.predefined_values.group3'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.SupportsAndConstraints.module_info_EvaluationQuestion');
@@ -56,6 +58,4 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
-
-
 }

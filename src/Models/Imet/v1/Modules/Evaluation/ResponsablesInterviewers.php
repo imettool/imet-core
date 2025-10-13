@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,7 +14,4 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v1\Modules;
 
-class ResponsablesInterviewers extends Modules\Context\ResponsablesInterviewers
-{
-
-}
+class ResponsablesInterviewers extends Modules\Context\ResponsablesInterviewers {}

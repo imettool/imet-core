@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,15 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-use ImetCore\Helpers\API\Common\Common;
-use ImetCore\Models\Imet\API\ScalingUp\Api;
-use ImetCore\Models\Imet\v2\Modules;
 use ErrorException;
 use Illuminate\Http\Request;
+use ImetCore\Helpers\API\Common\Common;
+use ImetCore\Models\Imet\API\ScalingUp\Api;
 use ReflectionException;
+
 use function abort;
 
-Trait ScalingUpApi
+trait ScalingUpApi
 {
     /**
      * @throws ReflectionException
@@ -29,7 +30,8 @@ Trait ScalingUpApi
         $items = $request->attributes->get('records');
         $this->auth_api($items);
 
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
+
         return static::sendAPIResponse(Api::get_general_info($form_ids));
     }
 
@@ -38,7 +40,8 @@ Trait ScalingUpApi
         $items = $request->attributes->get('records');
         $this->auth_api($items);
 
-        list($form_ids) = Common::retrieve_form_ids($items);
+        [$form_ids] = Common::retrieve_form_ids($items);
+
         return static::sendAPIResponse(Api::overall_ranking($form_ids));
     }
 
@@ -47,7 +50,8 @@ Trait ScalingUpApi
         $items = $request->attributes->get('records');
         $this->auth_api($items);
 
-        list($form_ids) = Common::retrieve_form_ids($items);
+        [$form_ids] = Common::retrieve_form_ids($items);
+
         return static::sendAPIResponse(Api::overall_average_of_six_elements($form_ids));
     }
 
@@ -56,7 +60,8 @@ Trait ScalingUpApi
         $items = $request->attributes->get('records');
         $this->auth_api($items);
 
-        list($form_ids) = Common::retrieve_form_ids($items);
+        [$form_ids] = Common::retrieve_form_ids($items);
+
         return static::sendAPIResponse(Api::visualization_synthetics_indicators($form_ids));
     }
 
@@ -65,7 +70,8 @@ Trait ScalingUpApi
         $items = $request->attributes->get('records');
         $this->auth_api($items);
 
-        list($form_ids) = Common::retrieve_form_ids($items);
+        [$form_ids] = Common::retrieve_form_ids($items);
+
         return static::sendAPIResponse(Api::scatter_visualization_synthetic_indicators($form_ids));
     }
 
@@ -73,7 +79,7 @@ Trait ScalingUpApi
     {
         $items = $request->attributes->get('records');
         $this->auth_api($items);
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
         $response = Api::get_key_elements_conservation($form_ids);
 
         return static::sendAPIResponse(Common::add_fields_to_response($response, $records));
@@ -83,54 +89,58 @@ Trait ScalingUpApi
     {
         $items = $request->attributes->get('records');
         $this->auth_api($items);
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
 
         $slug = str_replace('-', '_', $slug);
-        $func = $slug . "_ranking";
+        $func = $slug.'_ranking';
         $response = $this->execute_function_url($form_ids, $func);
+
         return static::sendAPIResponse(Common::add_fields_to_response($response, $records));
     }
 
-    public function get_analysis_average(Request $request,string $lang, string $slug): object
+    public function get_analysis_average(Request $request, string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
         $this->auth_api($items);
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
-        if(count($form_ids) === 0){
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
+        if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
         $slug = str_replace('-', '_', $slug);
-        $func = $slug . "_average";
+        $func = $slug.'_average';
+
         return static::sendAPIResponse($this->execute_function_url($form_ids, $func));
     }
 
-    public function get_analysis_radar(Request $request,string $lang, string $slug): object
+    public function get_analysis_radar(Request $request, string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
         $this->auth_api($items);
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
 
-        if(count($form_ids) === 0){
+        if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
         $slug = str_replace('-', '_', $slug);
-        $func = $slug . "_radar";
+        $func = $slug.'_radar';
         $response = $this->execute_function_url($form_ids, $func);
+
         return static::sendAPIResponse(Common::add_fields_to_response($response, $records));
     }
 
-    public function get_analysis_table(Request $request,string $lang, string $slug): object
+    public function get_analysis_table(Request $request, string $lang, string $slug): object
     {
         $items = $request->attributes->get('records');
         $this->auth_api($items);
-        list($form_ids, $records) = Common::retrieve_form_ids($items);
+        [$form_ids, $records] = Common::retrieve_form_ids($items);
 
-        if(count($form_ids) === 0){
+        if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
         $slug = str_replace('-', '_', $slug);
-        $func = $slug . "_table";
+        $func = $slug.'_table';
         $response = $this->execute_function_url($form_ids, $func);
+
         return static::sendAPIResponse(Common::add_fields_to_response($response, $records));
     }
 
@@ -140,6 +150,7 @@ Trait ScalingUpApi
 
         $this->auth_api($records);
         $items = $request->attributes->get('groups');
+
         return static::sendAPIResponse(Api::get_grouping_analysis($items));
     }
 
@@ -151,6 +162,7 @@ Trait ScalingUpApi
         $records = $request->attributes->get('records');
         $this->auth_api($records);
         $items = $request->attributes->get('groups');
+
         return static::sendAPIResponse(Api::get_grouping_analysis_by_indicators($items));
     }
 
@@ -167,10 +179,10 @@ Trait ScalingUpApi
         return $response;
     }
 
-    private function auth_api($form_ids){
-        foreach($form_ids as $form_id) {
+    private function auth_api($form_ids)
+    {
+        foreach ($form_ids as $form_id) {
             $this->authorize('api_scaling_up', $form_id);
         }
     }
-
 }

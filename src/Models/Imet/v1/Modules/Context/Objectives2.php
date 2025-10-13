@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -19,7 +20,8 @@ class Objectives2 extends _Objectives
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_code = 'CTX 2.6';
         $this->module_info = trans('imet-core::v1_context.Objectives2.module_info');
@@ -36,8 +38,8 @@ class Objectives2 extends _Objectives
         return [
             'table' => 'Objectives2',
             'fields' => [
-                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
-            ]
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective',
+            ],
         ];
     }
 }

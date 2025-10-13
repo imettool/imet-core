@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class NonSustainableUsage extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.5';
@@ -42,7 +44,7 @@ class NonSustainableUsage extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'HabitatParameter',
-            'values' => trans('imet-core::v1_context.NonSustainableUsage.predefined_values')
+            'values' => trans('imet-core::v1_context.NonSustainableUsage.predefined_values'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.NonSustainableUsage.module_info');
@@ -67,8 +69,8 @@ class NonSustainableUsage extends Modules\Component\ImetModule
                 'Reliability',
                 'Sectors',
                 'HistoricalAreaData',
-                'PreviousEstimationAreaData'
-            ]
+                'PreviousEstimationAreaData',
+            ],
         ];
     }
 }

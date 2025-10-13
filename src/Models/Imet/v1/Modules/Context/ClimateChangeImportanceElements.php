@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,11 +18,13 @@ use ImetCore\Models\User\Role;
 class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 {
     protected $table = 'context_climate_change_importance_elements';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'ACCORDION';
         $this->module_code = 'CTX 6.1';
@@ -35,7 +38,7 @@ class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'GroupElement',
-            'values' => trans('imet-core::v1_context.ClimateChangeImportanceElements.predefined_values')
+            'values' => trans('imet-core::v1_context.ClimateChangeImportanceElements.predefined_values'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.ClimateChangeImportanceElements.module_info');
@@ -52,8 +55,8 @@ class ClimateChangeImportanceElements extends Modules\Component\ImetModule
         return [
             'table' => 'ClimateChangeImportanceElements',
             'fields' => [
-                'GroupElement', 'Element', 'Application', 'Observations'
-            ]
+                'GroupElement', 'Element', 'Application', 'Observations',
+            ],
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,16 +12,15 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-use ImetCore\Models\Species;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Input\SelectionList;
-use Illuminate\Support\Str;
 
 class KeyElementsImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_elements_impact';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -52,9 +52,9 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
             'group2' => trans('imet-core::oecm_evaluation.KeyElementsImpact.groups.group2'),
         ];
 
-        $this->module_info_EvaluationQuestion   = trans('imet-core::oecm_evaluation.KeyElementsImpact.module_info_EvaluationQuestion');
-        $this->module_info_Rating               = trans('imet-core::oecm_evaluation.KeyElementsImpact.module_info_EvaluationQuestion');
-        $this->ratingLegend                     = trans('imet-core::oecm_evaluation.KeyElementsImpact.ratingLegend');
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.KeyElementsImpact.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.KeyElementsImpact.module_info_EvaluationQuestion');
+        $this->ratingLegend = trans('imet-core::oecm_evaluation.KeyElementsImpact.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -62,18 +62,17 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
                 'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
-                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType'),
             ]
             : [];
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
-    
 }

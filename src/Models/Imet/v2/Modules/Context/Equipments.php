@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,11 +18,12 @@ use ImetCore\Models\User\Role;
 class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
-//    protected bool $fixed_rows = true;
+    //    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 3.3';
@@ -45,10 +47,10 @@ class Equipments extends Modules\Component\ImetModule
                 'group7' => trans('imet-core::v2_context.Equipments.predefined_values.group7'),
                 'group8' => trans('imet-core::v2_context.Equipments.predefined_values.group8'),
                 'group9' => trans('imet-core::v2_context.Equipments.predefined_values.group9'),
-                'group10' =>trans('imet-core::v2_context.Equipments.predefined_values.group10'),
-                'group11' =>trans('imet-core::v2_context.Equipments.predefined_values.group11'),
-                'group12' =>trans('imet-core::v2_context.Equipments.predefined_values.group12')
-            ]
+                'group10' => trans('imet-core::v2_context.Equipments.predefined_values.group10'),
+                'group11' => trans('imet-core::v2_context.Equipments.predefined_values.group11'),
+                'group12' => trans('imet-core::v2_context.Equipments.predefined_values.group12'),
+            ],
         ];
 
         $this->module_groups = [
@@ -92,16 +94,17 @@ class Equipments extends Modules\Component\ImetModule
         $records = Equipments::getModuleRecords($form_id)['records'];
 
         $averages = [];
-        foreach (array_keys((new Equipments())->module_groups) as $group){
+        foreach (array_keys((new Equipments)->module_groups) as $group) {
             $sum = $count = 0;
-            foreach ($records as $record){
-                if($record['group_key'] === $group && $record['AdequacyLevel']!==null){
-                    $sum += (integer) $record['AdequacyLevel'];
+            foreach ($records as $record) {
+                if ($record['group_key'] === $group && $record['AdequacyLevel'] !== null) {
+                    $sum += (int) $record['AdequacyLevel'];
                     $count++;
                 }
             }
-            $averages[] = $count>0 ? round($sum/$count, 2) : 0;
+            $averages[] = $count > 0 ? round($sum / $count, 2) : 0;
         }
+
         return $averages;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,13 +13,13 @@
 namespace ImetCore\Models\Imet\Components;
 
 use Illuminate\Support\Facades\Date;
-use ImetCore\Models\Imet\Components\BaseModel;
-use Carbon\Carbon;
 
 abstract class Encoder extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
+
     public const UPDATED_AT = 'UpdateDate';
+
     public const UPDATED_BY = null;
 
     protected $guarded = [];
@@ -30,7 +31,8 @@ abstract class Encoder extends BaseModel
     /**
      * Accessor to full name
      */
-    public function getNameAttribute(): string {
+    public function getNameAttribute(): string
+    {
         return $this->attributes['last_name'].' '.$this->attributes['first_name'];
     }
 
@@ -42,13 +44,13 @@ abstract class Encoder extends BaseModel
             ->where('FormID', $formId)
             ->whereDate(static::UPDATED_AT, Date::today())
             ->first();
-        if($encoder){
+        if ($encoder) {
             $encoder->touch();
         } else {
             static::query()->create(array_merge(
                 $user_info,
                 [
-                    'FormID' => $formId
+                    'FormID' => $formId,
                 ]
             ));
         }
@@ -62,8 +64,9 @@ abstract class Encoder extends BaseModel
         return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['FormID', 'id'])
-            ->map(function ($item){
+            ->map(function ($item) {
                 $item['UpdateDate'] = Date::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
+
                 return $item;
             })
             ->toArray();
@@ -72,18 +75,16 @@ abstract class Encoder extends BaseModel
     /**
      * Import model
      *
-     * @param $form_id
-     * @param $encoders
      * @return void
      */
     public static function importModule($form_id, $encoders = null)
     {
-        if($encoders!==null){
-            foreach ($encoders as $encoder){
+        if ($encoders !== null) {
+            foreach ($encoders as $encoder) {
                 // Remove primary key
                 unset($encoder['id']);
                 // Create model and fill it with data
-                $item = new static();
+                $item = new static;
                 $item->fill($encoder);
                 $item['FormID'] = $form_id;
                 unset($item['name']);
@@ -94,10 +95,9 @@ abstract class Encoder extends BaseModel
 
     /**
      * Retrieve the form encoders' list
-     *
-     * @param $form_id
      */
-    public static function getNames($form_id): array {
+    public static function getNames($form_id): array
+    {
         return array_values(
             static::query()->where('FormID', $form_id)
                 ->orderBy('UpdateDate', 'desc')
@@ -107,5 +107,4 @@ abstract class Encoder extends BaseModel
                 ->toArray()
         );
     }
-
 }

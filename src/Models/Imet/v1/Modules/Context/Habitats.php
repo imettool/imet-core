@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class Habitats extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.3.1';
@@ -34,7 +36,6 @@ class Habitats extends Modules\Component\ImetModule
             ['name' => 'Reliability',               'type' => 'dropdown-ImetV1_SpeciesReliability',   'label' => trans('imet-core::v1_context.Habitats.fields.Reliability'), 'class' => 'width100px'],
             ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Sectors')],
         ];
-
 
         $this->module_info = trans('imet-core::v1_context.Habitats.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.Habitats.ratingLegend');
@@ -56,8 +57,8 @@ class Habitats extends Modules\Component\ImetModule
                 'DesiredConservationStatus',
                 'Trend',
                 'Reliability',
-                'Sectors'
-            ]
+                'Sectors',
+            ],
         ];
     }
 }

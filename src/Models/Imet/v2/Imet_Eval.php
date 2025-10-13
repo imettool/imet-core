@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,8 @@
 
 namespace ImetCore\Models\Imet\v2;
 
-
-class Imet_Eval extends Imet{
-
+class Imet_Eval extends Imet
+{
     public static ?array $modules = [
         'context' => [
             Modules\Evaluation\ImportanceClassification::class,
@@ -29,7 +29,7 @@ class Imet_Eval extends Imet{
             Modules\Evaluation\SupportsAndConstraints::class,
             Modules\Evaluation\ObjectivesSupportsAndConstraints::class,
             Modules\Evaluation\Menaces::class,
-            Modules\Evaluation\ObjectivesMenaces::class
+            Modules\Evaluation\ObjectivesMenaces::class,
         ],
         'planning' => [
             Modules\Evaluation\RegulationsAdequacy::class,
@@ -38,7 +38,7 @@ class Imet_Eval extends Imet{
             Modules\Evaluation\ManagementPlan::class,
             Modules\Evaluation\WorkPlan::class,
             Modules\Evaluation\Objectives::class,
-            Modules\Evaluation\ObjectivesPlanification::class
+            Modules\Evaluation\ObjectivesPlanification::class,
         ],
         'inputs' => [
             Modules\Evaluation\InformationAvailability::class,
@@ -46,7 +46,7 @@ class Imet_Eval extends Imet{
             Modules\Evaluation\BudgetAdequacy::class,
             Modules\Evaluation\BudgetSecurization::class,
             Modules\Evaluation\ManagementEquipmentAdequacy::class,
-            Modules\Evaluation\ObjectivesIntrants::class
+            Modules\Evaluation\ObjectivesIntrants::class,
         ],
         'process' => [
             Modules\Evaluation\StaffCompetence::class,
@@ -67,13 +67,13 @@ class Imet_Eval extends Imet{
             Modules\Evaluation\ResearchAndMonitoring::class,
             Modules\Evaluation\ClimateChangeMonitoring::class,
             Modules\Evaluation\EcosystemServices::class,
-            Modules\Evaluation\ObjectivesProcessus::class
+            Modules\Evaluation\ObjectivesProcessus::class,
         ],
         'outputs' => [
             Modules\Evaluation\WorkProgramImplementation::class,
             Modules\Evaluation\AchievedResults::class,
             Modules\Evaluation\AreaDomination::class,
-            Modules\Evaluation\AreaDominationMPA::class
+            Modules\Evaluation\AreaDominationMPA::class,
         ],
         'outcomes' => [
             Modules\Evaluation\AchievedObjectives::class,
@@ -96,5 +96,4 @@ class Imet_Eval extends Imet{
 
         ],
     ];
-
 }

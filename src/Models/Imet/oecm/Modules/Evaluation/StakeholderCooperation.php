@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,20 +18,23 @@ use ImetCore\Models\User\Role;
 class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_stakeholder_cooperation';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Element';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR9';
         $this->module_title = trans('imet-core::oecm_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
-            ['name' => 'Element',           'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
+            ['name' => 'Element',           'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Weight',            'type' => 'disabled',           'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Weight')],
             ['name' => 'Cooperation',       'type' => 'rating-0to3WithNA',  'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Cooperation')],
             ['name' => 'Comments',          'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.StakeholderCooperation.fields.Comments')],
@@ -48,7 +52,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
@@ -57,7 +61,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
 
@@ -67,8 +71,8 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
 
-        foreach($records as $idx => $record){
-            if(array_key_exists($record['Element'], $weight)){
+        foreach ($records as $idx => $record) {
+            if (array_key_exists($record['Element'], $weight)) {
                 $records[$idx]['Weight'] = $weight[$record['Element']];
             } else {
                 $records[$idx]['Weight'] = null;
@@ -83,18 +87,16 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     /**
      * Override
-     * @param $record
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
         $isEmpty = true;
 
-        if($record['Element']!==null){
+        if ($record['Element'] !== null) {
             $isEmpty = false;
         }
 
         return $isEmpty;
     }
-
 }

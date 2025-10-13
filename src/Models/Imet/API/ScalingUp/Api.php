@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,10 +14,9 @@ namespace ImetCore\Models\Imet\API\ScalingUp;
 
 class Api
 {
-    use Overall;
-    use KeyElements;
     use Analysis;
-    use Group;
     use GeneralInfo;
-
+    use Group;
+    use KeyElements;
+    use Overall;
 }

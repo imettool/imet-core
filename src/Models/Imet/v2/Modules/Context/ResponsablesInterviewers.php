@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ResponsablesInterviewers extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 1.0.1';
@@ -29,12 +31,12 @@ class ResponsablesInterviewers extends Modules\Component\ImetModule
             ['name' => 'Name',              'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.Name'),         'class' => 'width300px'],
             ['name' => 'Institution',       'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.Institution'),  'class' => 'width300px'],
             ['name' => 'Function',          'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.Function')],
-            ['name' => 'Contacts',          'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.Contacts')]
+            ['name' => 'Contacts',          'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.Contacts')],
         ];
 
         $this->module_common_fields = [
             ['name' => 'EncodingDate',      'type' => 'date',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.EncodingDate')],
-            ['name' => 'EncodingDuration',  'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.EncodingDuration')]
+            ['name' => 'EncodingDuration',  'type' => 'text-area',       'label' => trans('imet-core::common.ResponsablesInterviewers.fields.EncodingDuration')],
         ];
 
         parent::__construct($attributes);
@@ -46,5 +48,4 @@ class ResponsablesInterviewers extends Modules\Component\ImetModule
             ->map->only(['Name', 'Institution', 'Function'])
             ->toArray();
     }
-
 }

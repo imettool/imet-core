@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,6 @@ namespace ImetCore\Models;
 use ImetCore\Helpers\Database;
 use ModularForms\Models\BaseModel;
 
-
 /**
  * Class ProtectedAreaNonWdpa
  *
@@ -25,11 +25,11 @@ use ModularForms\Models\BaseModel;
  * @property string $Type
  * @property string $iucn_category
  * @property string $creation_date
- *
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'protected_areas_non_wdpa';
 
     public const LABEL = 'name';
@@ -65,15 +65,14 @@ class ProtectedAreaNonWdpa extends BaseModel
     public static function generate_fake_wdpa(?int $max_id = null)
     {
         $max_id = $max_id ?? ProtectedAreaNonWdpa::query()->max('id');
-        return $max_id===null || !static::isNonWdpa($max_id)
+
+        return $max_id === null || ! static::isNonWdpa($max_id)
             ? static::START_FAKE_ID
             : intval($max_id) + 1;
     }
 
     /**
      * Check if the given id is a fake WDPA or not
-     *
-     * @param $wdpa_id
      */
     public static function isNonWdpa($wdpa_id): bool
     {
@@ -87,6 +86,7 @@ class ProtectedAreaNonWdpa extends BaseModel
     {
         $pa = static::query()->findOrNew($id);
         $pa->id = $pa->id ?? $id;
+
         return $pa
             ->makeHidden([static::UPDATED_AT, static::UPDATED_BY])
             ->toArray();
@@ -94,7 +94,7 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Import from JSON
-     * @param $data
+     *
      * @return mixed
      */
     public static function import($data)
@@ -103,12 +103,11 @@ class ProtectedAreaNonWdpa extends BaseModel
         unset($data['id']);
 
         $pa = ProtectedAreaNonWdpa::query()->firstOrNew($data);
-        if($pa->isDirty()){
+        if ($pa->isDirty()) {
             $pa->id = ProtectedAreaNonWdpa::generate_fake_wdpa();
             $pa->save();
         }
+
         return $pa->id;
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,19 +14,20 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 
-
 class CreateNonWdpa extends Modules\Component\ImetModule
 {
     protected $table = 'forms';
+
     protected $primaryKey = 'FormID';
 
     public static array $rules = [
         'Year' => 'required',
         'wdpa_id' => 'required',
-        'language' => 'required'
+        'language' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::common.CreateNonWdpa.title');
@@ -50,5 +52,4 @@ class CreateNonWdpa extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_equipment_maintenance';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Equipment';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR5';
@@ -38,7 +41,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $this->predefined_values = [
             'field' => 'Equipment',                                                         // Comes from context->Equipments
             'values' => array_keys(trans('imet-core::oecm_context.Equipments.groups')),
-            'labels' => array_values(trans('imet-core::oecm_context.Equipments.groups'))
+            'labels' => array_values(trans('imet-core::oecm_context.Equipments.groups')),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.EquipmentMaintenance.module_info_EvaluationQuestion');
@@ -56,8 +59,8 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
         $new_records = [];
         $adequacy = static::calculateEquipementAdequacy($form_id);
-        foreach($predefined_values['values'] as $i => $predefined_value){
-            if($adequacy[$i]!==null){
+        foreach ($predefined_values['values'] as $i => $predefined_value) {
+            if ($adequacy[$i] !== null) {
                 $records[$i]['AdequacyLevel'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }
@@ -71,20 +74,20 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $adequacy = array_keys(trans('imet-core::oecm_context.Equipments.groups'));
         $adequacy = array_fill_keys($adequacy, [
             'sum' => 0,
-            'count' => 0
+            'count' => 0,
         ]);
         $collection = Modules\Context\Equipments::getModule($form_id);
-        foreach ($collection as $item){
-            if($item['AdequacyLevel']!==null){
+        foreach ($collection as $item) {
+            if ($item['AdequacyLevel'] !== null) {
                 $adequacy[$item['group_key']]['sum'] += $item['AdequacyLevel'];
                 $adequacy[$item['group_key']]['count']++;
             }
         }
 
         $result = [];
-        foreach($adequacy as $value){
-            $result[] = $value['count']>0
-                ? round($value['sum']/$value['count'],2)
+        foreach ($adequacy as $value) {
+            $result[] = $value['count'] > 0
+                ? round($value['sum'] / $value['count'], 2)
                 : null;
         }
 
@@ -95,8 +98,9 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
     public function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if($field['name'] === 'Equipment') {
+        if ($field['name'] === 'Equipment') {
             $list = trans('imet-core::oecm_context.Equipments.groups');
+
             return $list[$value] ?? null;
         }
 

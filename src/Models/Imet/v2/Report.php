@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,8 +14,10 @@ namespace ImetCore\Models\Imet\v2;
 
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Report as BaseReport;
+
 class Report extends BaseReport
 {
     protected static ?string $schema = Database::IMET_SCHEMA;
+
     protected $table = 'report';
 }

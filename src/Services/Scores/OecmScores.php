@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -10,7 +11,6 @@
  */
 
 namespace ImetCore\Services\Scores;
-
 
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
@@ -26,7 +26,7 @@ class OecmScores
      */
     private static function getAsId(ImetOecm|int|string $imet): int
     {
-        return  (is_int($imet) or is_string($imet))
+        return (is_int($imet) or is_string($imet))
             ? (int) $imet
             : $imet->getKey();
     }
@@ -37,6 +37,7 @@ class OecmScores
     public static function get_all(ImetOecm|int|string $imet): array
     {
         $imet_id = static::getAsId($imet);
+
         return OECMScoresFunctions::get_scores($imet_id);
     }
 
@@ -48,11 +49,12 @@ class OecmScores
         $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
-        if($with_abbreviations){
+        if ($with_abbreviations) {
             $labels = static::labels(true);
             unset($scores['imet_index']);
+
             return array_combine($labels, $scores);
-        } else{
+        } else {
             return $scores;
         }
     }
@@ -79,6 +81,7 @@ class OecmScores
     public static function refresh_scores(ImetOecm|int|string $imet): array
     {
         $imet_id = static::getAsId($imet);
+
         return OECMScoresFunctions::get_scores($imet_id, true);
     }
 
@@ -97,5 +100,4 @@ class OecmScores
     {
         return static::get_scores_labels($version);
     }
-
 }

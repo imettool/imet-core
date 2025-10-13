@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,13 +19,15 @@ use ImetCore\Models\User\Role;
 class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Activity';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR7';
@@ -41,7 +44,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
             'group1' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group1'),
             'group2' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group2'),
             'group4' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group4'),
-            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5')
+            'group5' => trans('imet-core::v2_evaluation.ManagementActivities.groups.group5'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ManagementActivities.module_info_EvaluationQuestion');
@@ -62,30 +65,30 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
-                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                        return $item['IncludeInStatistics'] && $item['group_key']==="group0";
+                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                        return $item['IncludeInStatistics'] && $item['group_key'] === 'group0';
                     })->pluck('Aspect')->toArray(),
-                    'group1' =>Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                        return $item['IncludeInStatistics'] && $item['group_key']==="group1";
+                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                        return $item['IncludeInStatistics'] && $item['group_key'] === 'group1';
                     })->pluck('Aspect')->toArray(),
-                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
+                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
-                    'group4' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                    'group4' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
-                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
                 ]
-                : []
+                : [],
         ];
     }
 
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        if(blank($imet_version) or $imet_version < 'v2.7.6b'){
+        if (blank($imet_version) or $imet_version < 'v2.7.6b') {
             // group3 merged into group2
             $record = static::replaceGroup($record, 'group_key', 'group3', 'group2');
         }
@@ -99,10 +102,10 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         $value = $record[$field['name']] ?? null;
         if ($value && Species::isTaxonomy($value)) {
             $taxonomy = Species::parseTaxonomy($value);
-            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+
+            return $taxonomy['genus'].' '.$taxonomy['species'];
         }
+
         return $value;
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,7 +14,6 @@ namespace ImetCore\Services\Scores\Functions;
 
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
-use ModularForms\Helpers\Locale;
 use ModularForms\Models\Cache;
 
 abstract class _Scores
@@ -23,13 +23,19 @@ abstract class _Scores
     const CACHE_PREFIX = 'imet_scores';
 
     const RADAR_SCORES = 'global';
+
     const ALL_SCORES = 'ALL';
 
     const CONTEXT = 'context';
+
     const PLANNING = 'planning';
+
     const INPUTS = 'inputs';
+
     const PROCESS = 'process';
+
     const OUTPUTS = 'outputs';
+
     const OUTCOMES = 'outcomes';
 
     /**
@@ -37,9 +43,10 @@ abstract class _Scores
      */
     public static function getAsModel(Imet|ImetOEMC|int|string $imet): Imet|ImetOEMC
     {
-        if(is_int($imet) or is_string($imet)){
+        if (is_int($imet) or is_string($imet)) {
             $imet = Imet::query()->find($imet);
         }
+
         return $imet;
     }
 
@@ -65,7 +72,7 @@ abstract class _Scores
             static::INPUTS => $scores[static::INPUTS]['avg_indicator'],
             static::PROCESS => $scores[static::PROCESS]['avg_indicator'],
             static::OUTPUTS => $scores[static::OUTPUTS]['avg_indicator'],
-            static::OUTCOMES =>  $scores[static::OUTCOMES]['avg_indicator']
+            static::OUTCOMES => $scores[static::OUTCOMES]['avg_indicator'],
         ];
 
         // Overall IMET score
@@ -85,7 +92,7 @@ abstract class _Scores
     {
         // Retrieve scores from cache
         $cache_key = Cache::buildKey(static::CACHE_PREFIX, ['id' => $imet_id]);
-        if (!$refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
+        if (! $refresh_cache && ($cache_value = Cache::get($cache_key)) !== null) {
             $scores = $cache_value;
         }
         // Calculate scores and store in cache
@@ -93,7 +100,7 @@ abstract class _Scores
             $scores = static::calculate_scores($imet_id);
             Cache::put($cache_key, $scores, null);
         }
+
         return $scores;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,26 +12,27 @@
 
 namespace ImetCore\Models\Imet\API\Assessment;
 
-use ImetCore\Models\Species;
-use ImetCore\Models\Imet\Imet;
-use ImetCore\Services\Scores\ImetScores;
-use ImetCore\Models\Imet\v1\Modules\Context\Areas;
-use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
-use ImetCore\Models\Imet\v1\Modules;
-use ImetCore\Models\Imet\v1\Report;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\v1\Modules\Context\Areas;
+use ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo;
+use ImetCore\Models\Imet\v1\Report;
+use ImetCore\Models\Species;
+use ImetCore\Services\Scores\ImetScores;
 
 class ReportV1
 {
     protected static string $report_class = Report::class;
+
     protected static string $general_info_class = GeneralInfo::class;
+
     protected static string $areas_class = Areas::class;
 
     /**
-     * @param $form
      * @throws \ReflectionException
      */
     public static function get_assessment_report(Request $request, $form): array
@@ -56,9 +58,9 @@ class ReportV1
                 'report' => $report,
                 'general_info' => $general_info,
                 'vision' => $vision,
-                'area' => static::get_area($form_id)
+                'area' => static::get_area($form_id),
             ],
-            'labels' => $labels
+            'labels' => $labels,
         ];
     }
 
@@ -73,11 +75,11 @@ class ReportV1
     protected static function get_report(int $form_id): array
     {
         $report = static::$report_class::getByForm($form_id);
+
         return static::remove_fields($report, ['id' => '', 'FormID' => '', 'UpdateDate' => '', 'UpdateBy' => '']);
     }
 
     /**
-     * @return array
      * @throws \ReflectionException
      */
     protected static function get_general_info(int $form_id): ?array
@@ -91,7 +93,6 @@ class ReportV1
     }
 
     /**
-     * @return array
      * @throws \ReflectionException
      */
     protected static function get_vision(int $form_id): ?array
@@ -147,5 +148,4 @@ class ReportV1
     {
         return array_diff_key($values, $fields_to_extract);
     }
-
 }

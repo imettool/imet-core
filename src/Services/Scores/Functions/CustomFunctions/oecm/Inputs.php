@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,11 +12,9 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-
-use ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
+use ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
-use ImetCore\Models\Imet\oecm\Modules\Context\Equipments;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 
@@ -24,6 +23,7 @@ trait Inputs
     protected static function score_i2(int $imet_id): ?float
     {
         $records = CapacityAdequacy::getModuleRecords($imet_id)['records'];
+
         return _Common::score_staff($imet_id, $records);
     }
 
@@ -36,22 +36,23 @@ trait Inputs
             ? (int) $records[0]['EvaluationScore']
             : null;
 
-        if($value===0){
+        if ($value === 0) {
             $score = 0;
-        } elseif($value===1){
+        } elseif ($value === 1) {
             $score = 12.5;
-        } elseif($value===2){
+        } elseif ($value === 2) {
             $score = 37.5;
-        } elseif($value===3){
+        } elseif ($value === 3) {
             $score = 60;
-        } elseif($value===4){
+        } elseif ($value === 4) {
             $score = 80;
-        } elseif($value===5){
+        } elseif ($value === 5) {
             $score = 100;
         } else {
             $score = null;
         }
-        return $score!==null
+
+        return $score !== null
             ? floatval($score)
             : null;
     }
@@ -62,14 +63,14 @@ trait Inputs
             ->toArray();
         $record = $records[0] ?? null;
 
-        $score = $record!==null && $record['Percentage']!==null && $record['EvaluationScore']!==null
+        $score = $record !== null && $record['Percentage'] !== null && $record['EvaluationScore'] !== null
             ? (
                 $record['Percentage'] / 5 +
                 $record['EvaluationScore'] / 3
             ) / 2 * 100
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -78,37 +79,39 @@ trait Inputs
     {
         $ctx_adequacy = Equipments::getModule($imet_id)
             ->groupBy('group_key')
-            ->map(function($group) {
+            ->map(function ($group) {
                 $group_values = $group
                     ->pluck('AdequacyLevel')
                     ->toArray();
+
                 return filled($group_values)
                     ? static::average($group_values, null)
                     : null;
             })->toArray();
 
         $values = ManagementEquipmentAdequacy::getModule($imet_id)
-            ->filter(function($item) use ($ctx_adequacy){
+            ->filter(function ($item) use ($ctx_adequacy) {
                 $adequacy = $ctx_adequacy[$item['Equipment']] ?? null;
-                return $adequacy !== null && $item['PresentNeeds']!==null;
+
+                return $adequacy !== null && $item['PresentNeeds'] !== null;
             })
-            ->map(function($item) use ($ctx_adequacy){
+            ->map(function ($item) use ($ctx_adequacy) {
                 $adequacy = $ctx_adequacy[$item['Equipment']];
                 $item['__present_needs'] = $item['PresentNeeds'] + 1;
                 $item['__prod'] = $item['__present_needs'] * $adequacy;
+
                 return $item;
             });
 
         $numerator = $values->sum('__prod');
         $denominator = $values->sum('__present_needs');
 
-        $score = $denominator>0
+        $score = $denominator > 0
             ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
-
 }

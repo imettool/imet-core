@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class KeyConservationTrend extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_conservation_trends';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Element';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'O/C2';
@@ -49,7 +52,6 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
         $this->module_info_Rating = trans('imet-core::v2_evaluation.KeyConservationTrend.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.KeyConservationTrend.ratingLegend');
 
-
         parent::__construct($attributes);
 
     }
@@ -64,47 +66,45 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
-                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                        return $item['IncludeInStatistics'] && $item['group_key']==="group0";
+                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                        return $item['IncludeInStatistics'] && $item['group_key'] === 'group0';
                     })->pluck('Aspect')->toArray(),
-                    'group1' =>Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item){
-                        return $item['IncludeInStatistics'] && $item['group_key']==="group1";
+                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                        return $item['IncludeInStatistics'] && $item['group_key'] === 'group1';
                     })->pluck('Aspect')->toArray(),
-                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item){
+                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
-                    'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item){
+                    'group3' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
-                    'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item){
+                    'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
-                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
                         return $item['IncludeInStatistics'];
                     })->pluck('Aspect')->toArray(),
                 ]
-                : []
+                : [],
         ];
     }
 
     /**
      * Override
-     * @param $record
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
         $isEmpty = true;
 
-        if($record['Condition']!==null
-            || $record['Trend']!==null
-            || $record['Reliability']!==null
-            || $record['Comments']!==null
-        ){
+        if ($record['Condition'] !== null
+            || $record['Trend'] !== null
+            || $record['Reliability'] !== null
+            || $record['Comments'] !== null
+        ) {
             $isEmpty = false;
         }
 
         return $isEmpty;
     }
-
 }

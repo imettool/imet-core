@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class AreaDominationMPA extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_area_domination_mpa';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const MODULE_SCOPE = self::MARINE;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'O/P4';
@@ -51,8 +54,8 @@ class AreaDominationMPA extends Modules\Component\ImetModule_Eval
                 'group1' => trans('imet-core::v2_evaluation.AreaDominationMPA.predefined_values.group1'),
                 'group2' => trans('imet-core::v2_evaluation.AreaDominationMPA.predefined_values.group2'),
                 'group3' => trans('imet-core::v2_evaluation.AreaDominationMPA.predefined_values.group3'),
-                'group4' => trans('imet-core::v2_evaluation.AreaDominationMPA.predefined_values.group4')
-            ]
+                'group4' => trans('imet-core::v2_evaluation.AreaDominationMPA.predefined_values.group4'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.AreaDominationMPA.module_info_EvaluationQuestion');

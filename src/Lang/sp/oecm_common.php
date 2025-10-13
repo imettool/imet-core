@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -21,7 +22,6 @@ return [
         'PRC' => 'Relaciones con las partes interesadas',
         'PRD' => 'Turismo/Seguimiento - Investigación',
 
-    ]
-
+    ],
 
 ];

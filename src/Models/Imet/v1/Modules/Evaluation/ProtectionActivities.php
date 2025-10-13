@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ProtectionActivities extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR8';
@@ -58,16 +60,13 @@ class ProtectionActivities extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_ProtectionActivities',
             'fields' => [
-                'Activity', 'EvaluationScore', 'Percentage', 'Comments', 'GroupActivity'
-            ]
+                'Activity', 'EvaluationScore', 'Percentage', 'Comments', 'GroupActivity',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

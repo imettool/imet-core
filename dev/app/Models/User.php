@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use ImetCore\Models\User\Role;
 use ImetCore\Models\User\User as ImetUser;
 
-
 class User extends ImetUser
 {
     use \Illuminate\Database\Eloquent\Factories\HasFactory;
+
     /** @phpstan-var array<string, string> $rules */
     public static array $rules = [
         'first_name' => 'required|string|max:255',
@@ -31,13 +31,14 @@ class User extends ImetUser
 
     /**
      * @phpstan-param array<string, string> $attributes
+     *
      * @phpstan-return ?User
      */
     public function update_offline(array $attributes): ?User
     {
         $item = User::query()->find($attributes['id']);
 
-        if($item !== null) {
+        if ($item !== null) {
             $item->fill($attributes);
             if ($item->imet_role == null) {
                 $item->imet_role = Role::ROLE_ADMINISTRATOR;
@@ -53,15 +54,15 @@ class User extends ImetUser
     }
 
     /**
-     * @param array<string, string> $attributes
+     * @param  array<string, string>  $attributes
      * @return array<string, array<int, string>>
      */
     public function validate(array $attributes): array
     {
         $validator = Validator::make($attributes, static::$rules);
+
         return $validator->fails()
             ? $validator->errors()->messages()
             : [];
     }
-
 }

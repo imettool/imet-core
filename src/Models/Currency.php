@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,11 +12,11 @@
 
 namespace ImetCore\Models;
 
-use ImetCore\Helpers\Database;
-use ModularForms\Models\Utils\Currency as BaseCurrency;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use ImetCore\Helpers\Database;
+use ModularForms\Models\Utils\Currency as BaseCurrency;
 
 /**
  * Class Currency
@@ -24,13 +25,13 @@ use Illuminate\Support\Facades\Config;
  * @property string $name_fr
  * @property string $name_en
  * @property string $name_sp
- *
- * @package ImetCore\Models
  */
 class Currency extends BaseCurrency
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'currencies';
+
     protected $primaryKey = 'iso';
 
     /**
@@ -48,7 +49,7 @@ class Currency extends BaseCurrency
     public static function imetV1List(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
     {
         $lang = App::getLocale() ?? Config::get('app.locale');
+
         return parent::selectionList('FIELDS', $collection, ['name_'.$lang, 'iso3']);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -22,18 +23,17 @@ class CustomInput extends Input
     {
 
         // ### imet-core custom inputs ###
-        if(Str::startsWith($this->type, 'imet-core::')){
+        if (Str::startsWith($this->type, 'imet-core::')) {
 
             // Wdpa selector
-            if(Str::contains($this->type, 'selector-wdpa_multiple')){
+            if (Str::contains($this->type, 'selector-wdpa_multiple')) {
                 return view('imet-core::components.inputs.selector-wdpa_multiple');
-            }
-            else if(Str::contains($this->type, 'selector-wdpa')){
+            } elseif (Str::contains($this->type, 'selector-wdpa')) {
                 return view('imet-core::components.inputs.selector-wdpa');
             }
 
             // Species selector
-            else if(Str::contains($this->type, 'selector-species')){
+            elseif (Str::contains($this->type, 'selector-species')) {
                 return view('imet-core::components.inputs.selector-species');
             }
 

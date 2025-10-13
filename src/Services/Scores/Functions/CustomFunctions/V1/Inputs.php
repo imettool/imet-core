@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,6 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
+use Illuminate\Support\Facades\App;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Models\Imet\v1\Modules\Context\Equipments;
 use ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
@@ -18,38 +20,36 @@ use ImetCore\Models\Imet\v1\Modules\Evaluation\BudgetAdequacy;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\BudgetSecurization;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\ManagementEquipmentAdequacy;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\Staff;
-use Illuminate\Support\Facades\App;
 
 trait Inputs
 {
-
     public static function staff_weights(int $imet_id, $staff = null): array
     {
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
-            ->map(function($record){
-                $expected = intval($record['ExpectedPermanent'])== 0 ? null : $record['ExpectedPermanent'];
-                $record['ratio'] = $expected!==null
+            ->map(function ($record) {
+                $expected = intval($record['ExpectedPermanent']) == 0 ? null : $record['ExpectedPermanent'];
+                $record['ratio'] = $expected !== null
                     ? min(1, ($record['ActualPermanent'] ?? 0) / ($expected))
                     : 1;
-                $record['ratio03'] = $record['ratio']===0
+                $record['ratio03'] = $record['ratio'] === 0
                     ? 0
-                    : ($record['ratio']>0
-                        ? ceil($record['ratio'] * 4 -1)
+                    : ($record['ratio'] > 0
+                        ? ceil($record['ratio'] * 4 - 1)
                         : null);
-                $record['w_avg'] = $expected!==null
+                $record['w_avg'] = $expected !== null
                     ? 1 + log($expected)
                     : null;
+
                 return $record;
             })
             ->keyBy('Function')
-            ->map(function($record){
+            ->map(function ($record) {
                 return collect($record)->only(['Function', 'ActualPermanent', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']);
             })
             ->toArray();
     }
-
 
     protected static function score_i2(int $imet_id): ?float
     {
@@ -57,30 +57,31 @@ trait Inputs
         $functions = $records->pluck('Theme')->toArray();
 
         $staff_weights = collect(static::staff_weights($imet_id))
-            ->filter(function ($item) use($functions){
+            ->filter(function ($item) use ($functions) {
                 return in_array($item['Function'], $functions);
             })
-            ->map(function($item){
-                $item['eval_sc'] = $item['ratio']>0
+            ->map(function ($item) {
+                $item['eval_sc'] = $item['ratio'] > 0
                     ? ceil($item['ratio'] * 4 - 1)
                     : 0;
                 $item['weight'] =
-                    (1 + log($item['ExpectedPermanent']==0 ? null : $item['ExpectedPermanent']));
-                $item['eval_sc_by_weight'] = $item['ratio']>0
-                    ? (1 + log($item['ExpectedPermanent']==0 ? null : $item['ExpectedPermanent']))
+                    (1 + log($item['ExpectedPermanent'] == 0 ? null : $item['ExpectedPermanent']));
+                $item['eval_sc_by_weight'] = $item['ratio'] > 0
+                    ? (1 + log($item['ExpectedPermanent'] == 0 ? null : $item['ExpectedPermanent']))
                         * ceil($item['ratio'] * 4 - 1)
                     : 0;
+
                 return $item;
             });
 
         $numerator = $staff_weights->sum('eval_sc_by_weight');
         $denominator = $staff_weights->sum('weight');
 
-        $score = $denominator>0
+        $score = $denominator > 0
             ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -94,17 +95,18 @@ trait Inputs
             ? (int) $records[0]['EvaluationScore']
             : null;
 
-        if($value===1){
+        if ($value === 1) {
             $score = 17.5;
-        } elseif($value===2){
+        } elseif ($value === 2) {
             $score = 53;
-        } elseif($value===3){
+        } elseif ($value === 3) {
             $score = 85.5;
-        } elseif($value===4){
+        } elseif ($value === 4) {
             $score = 100;
         } else {
             $score = null;
         }
+
         return $score;
     }
 
@@ -117,17 +119,18 @@ trait Inputs
             ? (int) $records[0]['EvaluationScore']
             : null;
 
-        if($value===1){
+        if ($value === 1) {
             $score = 16.7;
-        } elseif($value===2){
+        } elseif ($value === 2) {
             $score = 50;
-        } elseif($value===3){
+        } elseif ($value === 3) {
             $score = 83.3;
-        } elseif($value===4){
+        } elseif ($value === 4) {
             $score = 100;
         } else {
             $score = null;
         }
+
         return $score;
     }
 
@@ -155,10 +158,11 @@ trait Inputs
 
         $equipment = Equipments::getModule($imet_id)
             ->groupBy('group_key')
-            ->map(function($group) {
+            ->map(function ($group) {
                 $group_values = $group
                     ->pluck('AdequacyLevel')
                     ->toArray();
+
                 return filled($group_values)
                     ? static::average($group_values, null)
                     : null;
@@ -168,23 +172,24 @@ trait Inputs
             $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function - which is wrong)
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;
+
             return [
                 'group_key' => $index,
                 'AdequacyLevel' => $item,
                 'Importance' => $importance,
                 'imp_p1' => $imp_p1,
-                'eq_imp' => $eq_imp
+                'eq_imp' => $eq_imp,
             ];
         });
 
         $numerator = $values->sum('eq_imp');
         $denominator = $values->sum('imp_p1');
 
-        $score = $denominator>0
+        $score = $denominator > 0
             ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }

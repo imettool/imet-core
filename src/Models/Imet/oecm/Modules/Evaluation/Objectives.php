@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
@@ -22,13 +22,15 @@ class Objectives extends Modules\Component\ImetModule_Eval
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Objective';
+
     protected static $DEPENDENCIES = [
-        [AchievedObjectives::class, 'Objective']
+        [AchievedObjectives::class, 'Objective'],
     ];
 
     private static $cache_predefined_values;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'P6';
@@ -64,32 +66,31 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
             $key_elements = array_filter($key_elements);
 
-
             static::$cache_predefined_values = [
                 'field' => static::$DEPENDENCY_ON,
                 'values' => [
                     'group0' => [],
-                    'group1' => $key_elements
-                ]
+                    'group1' => $key_elements,
+                ],
             ];
         }
+
         return static::$cache_predefined_values;
     }
-
 
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
         $existing_values = static::getModule($form_id)
-            ->filter(function($item){
-                return $item['group_key']==='group0'
+            ->filter(function ($item) {
+                return $item['group_key'] === 'group0'
                     || $item['Existence'];
             })
             ->pluck($dependency_on)
             ->toArray();
         $updated_values = collect($records)
-            ->filter(function($item){
-                return $item['group_key']==='group0'
+            ->filter(function ($item) {
+                return $item['group_key'] === 'group0'
                     || $item['Existence'];
             })
             ->pluck($dependency_on)
@@ -97,7 +98,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
         // Make diff to find out what to drop
         $to_be_dropped = array_diff($existing_values, $updated_values);
+
         return array_values($to_be_dropped);
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class AchievedResults extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'R2';
@@ -50,8 +52,8 @@ class AchievedResults extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_AchievedResults',
             'fields' => [
-                'Activity', 'EvaluationScore', 'Percentage', 'Comments'
-            ]
+                'Activity', 'EvaluationScore', 'Percentage', 'Comments',
+            ],
         ];
     }
 }

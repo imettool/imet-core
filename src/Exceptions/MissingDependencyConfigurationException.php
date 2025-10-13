@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,11 @@ namespace ImetCore\Exceptions;
 use Exception;
 use Throwable;
 
-
 class MissingDependencyConfigurationException extends Exception
 {
-
     public function __construct($class_name, $code = 0, ?Throwable $previous = null)
     {
-        $message = trans('Missing dependency configuration on ' . $class_name);
+        $message = trans('Missing dependency configuration on '.$class_name);
         parent::__construct($message, $code, $previous);
     }
-
 }

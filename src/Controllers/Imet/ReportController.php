@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,13 +17,14 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use ReflectionException;
-use function view;
 
+use function view;
 
 abstract class ReportController extends Controller
 {
     /**
      * Manage "report" edit route
+     *
      * @throws AuthorizationException
      */
     public function report(int $item): Factory|View
@@ -31,11 +33,12 @@ abstract class ReportController extends Controller
 
         $this->authorize('edit', $imet);
 
-        return view(static::$form_view_prefix . '.edit', $this->__retrieve_report_data($imet));
+        return view(static::$form_view_prefix.'.edit', $this->__retrieve_report_data($imet));
     }
 
     /**
      * Manage "report" edit route
+     *
      * @throws AuthorizationException
      * @throws ReflectionException
      */
@@ -45,11 +48,12 @@ abstract class ReportController extends Controller
 
         $this->authorize('view', $imet);
 
-        return view(static::$form_view_prefix . '.show', $this->__retrieve_report_data($imet));
+        return view(static::$form_view_prefix.'.show', $this->__retrieve_report_data($imet));
     }
 
     /**
      * Manage "report" update route
+     *
      * @throws AuthorizationException
      */
     public function report_update(int $item, Request $request): array
@@ -57,7 +61,7 @@ abstract class ReportController extends Controller
         $this->authorize('edit', (static::$form_class)::find($item));
 
         \ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
+
         return ['status' => 'success'];
     }
-
 }

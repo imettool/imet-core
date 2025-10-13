@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,18 +12,19 @@
 
 namespace ImetCore\Controllers\Imet\oecm;
 
+use Illuminate\Http\Request;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules;
-use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Imet\oecm\Report;
-use ImetCore\Services\Scores\OecmScores;
-use Illuminate\Http\Request;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Reports\OECM;
+use ImetCore\Services\Scores\OecmScores;
 
 class ReportController extends BaseReportController
 {
     protected static ?string $form_class = Imet::class;
+
     protected static ?string $form_view_prefix = 'imet-core::oecm.report';
 
     /**
@@ -64,7 +66,7 @@ class ReportController extends BaseReportController
             'non_wdpa' => $non_wdpa ?? null,
             'governance' => $governance['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id),
-            'form_id' => $form_id
+            'form_id' => $form_id,
         ];
     }
 
@@ -79,8 +81,8 @@ class ReportController extends BaseReportController
     /**
      * Manage "report" update route
      *
-     * @param $item
      * @return string[]
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     #[\Override]
@@ -89,6 +91,7 @@ class ReportController extends BaseReportController
         $this->authorize('edit', (static::$form_class)::find($item));
 
         Report::updateByForm($item, $request->input('report'));
+
         return ['status' => 'success'];
     }
 }

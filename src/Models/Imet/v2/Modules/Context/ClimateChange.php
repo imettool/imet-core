@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,8 +14,6 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class ClimateChange extends Modules\Component\ImetModule
 {
@@ -27,10 +26,11 @@ class ClimateChange extends Modules\Component\ImetModule
         [Modules\Evaluation\InformationAvailability::class, 'Value'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Value'],
         [Modules\Evaluation\ManagementActivities::class, 'Value'],
-        [Modules\Evaluation\ClimateChangeMonitoring::class, 'Value']
+        [Modules\Evaluation\ClimateChangeMonitoring::class, 'Value'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 6.1';
@@ -48,15 +48,13 @@ class ClimateChange extends Modules\Component\ImetModule
             'group2' => trans('imet-core::v2_context.ClimateChange.groups.group2'),
             'group3' => trans('imet-core::v2_context.ClimateChange.groups.group3'),
             'group4' => trans('imet-core::v2_context.ClimateChange.groups.group4'),
-            'group5' => trans('imet-core::v2_context.ClimateChange.groups.group5')
+            'group5' => trans('imet-core::v2_context.ClimateChange.groups.group5'),
         ];
 
         $this->module_info = trans('imet-core::v2_context.ClimateChange.module_info');
         $this->ratingLegend = trans('imet-core::v2_context.ClimateChange.ratingLegend');
 
-
         parent::__construct($attributes);
 
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,10 +13,8 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
-use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 use ImetCore\Models\Species;
+use ImetCore\Models\User\Role;
 
 class AnimalSpecies extends Modules\Component\ImetModule
 {
@@ -32,7 +31,8 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
     protected $validation_min3 = '';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.1';
@@ -64,9 +64,10 @@ class AnimalSpecies extends Modules\Component\ImetModule
         $value = $record[$field['name']] ?? null;
         if ($value && Species::isTaxonomy($value)) {
             $taxonomy = Species::parseTaxonomy($value);
-            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+
+            return $taxonomy['genus'].' '.$taxonomy['species'];
         }
+
         return $value;
     }
-
 }

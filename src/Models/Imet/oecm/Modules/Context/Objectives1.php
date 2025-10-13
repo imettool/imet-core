@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,7 +13,6 @@
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
 use ImetCore\Models\User\Role;
-use ImetCore\Models\Imet\oecm\Modules;
 
 class Objectives1 extends _Objectives
 {
@@ -20,7 +20,8 @@ class Objectives1 extends _Objectives
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_code = 'CTX 1.7';
         $this->module_info = trans('imet-core::oecm_context.Objectives1.module_info');

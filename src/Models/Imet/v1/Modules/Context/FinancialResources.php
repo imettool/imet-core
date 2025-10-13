@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class FinancialResources extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 3.2.1';
@@ -46,8 +48,8 @@ class FinancialResources extends Modules\Component\ImetModule
         return [
             'table' => 'FinancialResources',
             'fields' => [
-                'Currency', 'ReferenceYear', 'ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget'
-            ]
+                'Currency', 'ReferenceYear', 'ManagementFinancialPlanCosts', 'OperationalWorkPlanCosts', 'TotalBudget',
+            ],
         ];
     }
 }

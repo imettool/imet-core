@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,14 +12,13 @@
 
 namespace ImetCore\Helpers;
 
-
 use Illuminate\Support\Str;
 use ImetCore\Models\Country;
 use ImetCore\Models\Currency;
 use ImetCore\Models\ProtectedArea;
 
-class SelectionList {
-
+class SelectionList
+{
     public static function getCustomList(string $type): array
     {
         $list = [];
@@ -31,32 +31,29 @@ class SelectionList {
         ) {
             preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
-            if ($matches[2] == "ProtectedArea") {
+            if ($matches[2] == 'ProtectedArea') {
                 $list = ProtectedArea::selectionList();
-            } elseif ($matches[2] == "Country") {
+            } elseif ($matches[2] == 'Country') {
                 $list = Country::selectionList();
-            } elseif ($matches[2] == "Currency") {
+            } elseif ($matches[2] == 'Currency') {
                 $list = Currency::imetV1List();
-            } elseif ($matches[2] == "PaType") {
+            } elseif ($matches[2] == 'PaType') {
                 $list = [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),
                     'marine_and_coastal' => trans('imet-core::oecm_lists.PaType.marine_and_coastal'),
-                    'mixed' => trans('imet-core::oecm_lists.PaType.mixed')
+                    'mixed' => trans('imet-core::oecm_lists.PaType.mixed'),
                 ];
             }
 
             // Fallback to lang lists:
             // $matches[1] = V1, V2, OECM
             // $matches[2] = list name
-            elseif ($matches[1] != "") {
-                $list = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);
+            elseif ($matches[1] != '') {
+                $list = trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
             }
 
         }
 
         return $list;
     }
-
 }
-
-

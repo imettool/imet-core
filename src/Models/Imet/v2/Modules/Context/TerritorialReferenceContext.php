@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.4';
@@ -44,7 +46,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
             ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
             ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => '']
+            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
@@ -52,7 +54,6 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
 
     public static function upgradeModule($record, $imet_version = null): array
     {
@@ -69,5 +70,4 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
         return static::addField($record, 'SpillOverKm');
     }
-
 }

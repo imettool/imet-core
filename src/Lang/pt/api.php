@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,5 +21,5 @@ return [
         'multiple_records_found' => 'Multiple records found!',
         'no_records_found' => 'No records found!',
         'page_not_found' => 'Api page not found',
-    ]
+    ],
 ];

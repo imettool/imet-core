@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,11 +13,11 @@
 namespace ImetCore\Models\Imet\v1\Modules\Context;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Type\JSON;
-use Illuminate\Support\Str;
 
 class Networks extends Modules\Component\ImetModule
 {
@@ -24,7 +25,8 @@ class Networks extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 1.4';
@@ -43,7 +45,6 @@ class Networks extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-
     /**
      * Override: upgrade module records during retrieving
      */
@@ -53,7 +54,7 @@ class Networks extends Modules\Component\ImetModule
         $models = parent::getModule($form_id);
 
         // Upgrade existing data
-        $models->map(function ($model){
+        $models->map(function ($model) {
             $model->timestamps = false;
             $model->fill(
                 static::upgradeModule($model->toArray())
@@ -66,7 +67,7 @@ class Networks extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
 
-        if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '[')){
+        if ($record['ProtectedAreas'] !== null && Str::contains($record['ProtectedAreas'], '[')) {
 
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
@@ -74,6 +75,7 @@ class Networks extends Modules\Component\ImetModule
             // Convert local_id to wdpa
             $pas = collect($pas)->map(function ($pa) {
                 $model = ProtectedArea::query()->find('OFAC_'.$pa);
+
                 return $model->wdpa_id ?? null;
             })->all();
             $pas = array_filter($pas);
@@ -81,9 +83,9 @@ class Networks extends Modules\Component\ImetModule
             // Convert JSON to comma-separated list
             $record['ProtectedAreas'] = implode(',', $pas);
         }
+
         return $record;
     }
-
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
@@ -93,22 +95,19 @@ class Networks extends Modules\Component\ImetModule
         return [
             'table' => 'Networks',
             'fields' => [
-                'NetworkName', 'ProtectedAreas', 'NetworkType'
-            ]
+                'NetworkName', 'ProtectedAreas', 'NetworkType',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {
-        $record =  self::convertGroupLabelToKey($record, 'NetworkType');
+        $record = self::convertGroupLabelToKey($record, 'NetworkType');
 
-        if(filled($record['ProtectedAreas'])){
+        if (filled($record['ProtectedAreas'])) {
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
             $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
@@ -120,5 +119,4 @@ class Networks extends Modules\Component\ImetModule
 
         return $record;
     }
-
 }

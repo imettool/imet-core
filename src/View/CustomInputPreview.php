@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -24,26 +25,28 @@ class CustomInputPreview extends InputPreview
     {
 
         // ### imet-core custom inputs ###
-        if(Str::startsWith($this->type, 'imet-core::')){
+        if (Str::startsWith($this->type, 'imet-core::')) {
 
             // Wdpa selector
-            if(Str::contains($this->type, 'selector-wdpa_multiple')){
+            if (Str::contains($this->type, 'selector-wdpa_multiple')) {
                 $list = '';
-                if(filled($this->value)){
-                    $list = array_map(function ($v){
+                if (filled($this->value)) {
+                    $list = array_map(function ($v) {
                         return ProtectedArea::getByWdpa($v)->name;
                     }, explode(',', $this->value));
                     $list = implode(', ', $list);
                 }
+
                 return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
             }
 
             // Species selector
-            else if(Str::contains($this->type, 'selector-species')){
+            elseif (Str::contains($this->type, 'selector-species')) {
                 $name = null;
-                if(filled($this->value)){
+                if (filled($this->value)) {
                     $name = Species::getPlainNameByTaxonomy($this->value);
                 }
+
                 return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
             }
 

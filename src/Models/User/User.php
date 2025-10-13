@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,14 @@
 
 namespace ImetCore\Models\User;
 
-use ImetCore\Helpers\Database;
-use ImetCore\Models\Country;
-use \ModularForms\Models\User\User as BaseUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use ImetCore\Models\Country;
+use ModularForms\Models\User\User as BaseUser;
 
 /**
  * Class User
+ *
  * @property string $first_name
  * @property string $last_name
  * @property string $organisation
@@ -30,6 +30,7 @@ class User extends BaseUser
 {
     /**
      * Override: set the fillable attributes
+     *
      * @var string[]
      */
     protected $fillable = [
@@ -41,7 +42,7 @@ class User extends BaseUser
         'organisation',
         'function',
         'country',
-        'imet_role'
+        'imet_role',
     ];
 
     protected $appends = ['name'];
@@ -76,7 +77,7 @@ class User extends BaseUser
     #[\Override]
     public function getName(): string
     {
-        return $this->name ;
+        return $this->name;
     }
 
     /**
@@ -89,24 +90,22 @@ class User extends BaseUser
             'first_name',
             'last_name',
             'organisation',
-            'country'
+            'country',
         ]);
     }
 
     /**
      * Search by key
      *
-     * @param $search_key
      * @return mixed
      */
     public static function searchByKey($search_key)
     {
-        return static::query()->where('first_name', '~~*', '%' . $search_key . '%')
-            ->orWhere('last_name', '~~*', '%' . $search_key . '%')
+        return static::query()->where('first_name', '~~*', '%'.$search_key.'%')
+            ->orWhere('last_name', '~~*', '%'.$search_key.'%')
             ->orderBy('last_name')
             ->orderBy('first_name')
             ->with('country')
             ->get();
     }
-
 }

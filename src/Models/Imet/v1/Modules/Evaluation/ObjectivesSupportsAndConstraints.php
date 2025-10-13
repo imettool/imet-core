@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ObjectivesSupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C2';
@@ -46,8 +48,8 @@ class ObjectivesSupportsAndConstraints extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_ObjectivesC2',
             'fields' => [
-                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
-            ]
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective',
+            ],
         ];
     }
 }

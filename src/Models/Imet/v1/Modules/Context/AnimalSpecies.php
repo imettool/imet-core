@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.1';
@@ -56,18 +58,18 @@ class AnimalSpecies extends Modules\Component\ImetModule
             'table' => 'SpeciesAnimalPresence',
             'fields' => [
                 'SpeciesID',
-                "FlagshipSpecies",
-                "EndangeredSpecies",
-                "EndemicSpecies",
-                "ExploitedSpecies",
-                "InvasiveSpecies",
-                "InsufficientDataSpecies",
+                'FlagshipSpecies',
+                'EndangeredSpecies',
+                'EndemicSpecies',
+                'ExploitedSpecies',
+                'InvasiveSpecies',
+                'InsufficientDataSpecies',
                 'PopulationEstimation',
                 'DesiredPopulation',
                 'TrendRating',
                 'Reliability',
-                'Comments'
-            ]
+                'Comments',
+            ],
         ];
     }
 }

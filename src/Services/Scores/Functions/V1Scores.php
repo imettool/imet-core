@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,15 +13,13 @@
 namespace ImetCore\Services\Scores\Functions;
 
 use ImetCore\Models\Imet\v1\Modules\Evaluation;
-use ImetCore\Services\Scores\Functions\CustomFunctions;
-
 
 class V1Scores extends _Scores
 {
     use CommonFunctions;
     use CustomFunctions\V1\Context;
-    use CustomFunctions\V1\Planning;
     use CustomFunctions\V1\Inputs;
+    use CustomFunctions\V1\Planning;
     use CustomFunctions\V1\Process;
     use Math;
 
@@ -45,8 +44,10 @@ class V1Scores extends _Scores
         $sum = ($scores['C1'] ?? 0)
             + (($scores['C2'] ?? 0) / 2 + 50)
             + (($scores['C3'] ?? 0) + 100);
-        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x) {
+            return $x !== null;
+        }));
+        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -72,8 +73,10 @@ class V1Scores extends _Scores
             + ($scores['P4'] ?? 0)
             + ($scores['P5'] ?? 0)
             + ($scores['P6'] ?? 0);
-        $count = count(array_filter($scores, function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+        $count = count(array_filter($scores, function ($x) {
+            return $x !== null;
+        }));
+        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -121,7 +124,7 @@ class V1Scores extends _Scores
             'PR16' => static::score_table($imet_id, Evaluation\NaturalResourcesMonitoring::class, 'EvaluationScore'),
             'PR17' => static::score_table($imet_id, Evaluation\ResearchAndMonitoring::class, 'EvaluationScore'),
             'PR18' => static::score_table($imet_id, Evaluation\ClimateChangeMonitoring::class, 'EvaluationScore'),
-            'PR19' => static::score_group($imet_id, Evaluation\EcosystemServices::class, 'EvaluationScore', 'group_key')
+            'PR19' => static::score_group($imet_id, Evaluation\EcosystemServices::class, 'EvaluationScore', 'group_key'),
         ];
 
         // aggregate step score
@@ -130,10 +133,11 @@ class V1Scores extends _Scores
         // intermediate scores
         $scores['PRA'] = static::average([$scores['PR1'],  $scores['PR2'], $scores['PR3'], $scores['PR4'], $scores['PR5'], $scores['PR6']]);
         $scores['PRB'] = static::average([$scores['PR7'],  $scores['PR8'],  $scores['PR9'], $scores['PR10']], 1);
-        $scores['PRC'] = static::average([ $scores['PR11'],  $scores['PR12'],  $scores['PR13']], 1);
+        $scores['PRC'] = static::average([$scores['PR11'],  $scores['PR12'],  $scores['PR13']], 1);
         $scores['PRD'] = static::average([$scores['PR14'],  $scores['PR15']], 1);
         $scores['PRE'] = static::average([$scores['PR16'],  $scores['PR17']], 1);
         $scores['PRF'] = static::average([$scores['PR18'],  $scores['PR19']], 1);
+
         return $scores;
     }
 
@@ -169,15 +173,16 @@ class V1Scores extends _Scores
 
         // aggregate step score
         $sum = ($scores['EI1'] ?? 0)
-            + ($scores['EI2']/2+50 ?? 0)
-            + ($scores['EI3']/2+50 ?? 0)
-            + ($scores['EI4']/2+50 ?? 0)
-            + ($scores['EI5']/2+50 ?? 0)
-            + ($scores['EI6']/2+50 ?? 0);
-        $count = count(array_filter($scores, function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+            + ($scores['EI2'] / 2 + 50 ?? 0)
+            + ($scores['EI3'] / 2 + 50 ?? 0)
+            + ($scores['EI4'] / 2 + 50 ?? 0)
+            + ($scores['EI5'] / 2 + 50 ?? 0)
+            + ($scores['EI6'] / 2 + 50 ?? 0);
+        $count = count(array_filter($scores, function ($x) {
+            return $x !== null;
+        }));
+        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
 
         return $scores;
     }
-
 }

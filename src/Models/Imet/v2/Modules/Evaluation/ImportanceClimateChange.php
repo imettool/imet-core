@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,17 +14,17 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c15';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
@@ -31,7 +32,8 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         [Modules\Evaluation\ClimateChangeMonitoring::class, 'Aspect'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.4';
@@ -45,7 +47,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => null
+            'values' => null,
         ];
 
         $this->module_subTitle = trans('imet-core::v2_evaluation.ImportanceClimateChange.module_subTitle');
@@ -63,18 +65,18 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        if($form_id!==null){
+        if ($form_id !== null) {
             $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
-                ->filter(function ($item){
-                    return $item['Value']!==null;
+                ->filter(function ($item) {
+                    return $item['Value'] !== null;
                 })
                 ->sortBy('Trend');
 
             // Filter first 10
-            if(count($ctx_records)>10){
+            if (count($ctx_records) > 10) {
                 $max_allowed_rank = array_values($ctx_records->toArray())[9]['Trend'];
                 $ctx_records = $ctx_records
-                    ->filter(function ($item) use ($max_allowed_rank){
+                    ->filter(function ($item) use ($max_allowed_rank) {
                         return $item['Trend'] <= $max_allowed_rank;
                     });
             }
@@ -82,13 +84,12 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' =>  $form_id !== null
+            'values' => $form_id !== null
                 ? $ctx_records
-                    ->map(function ($item){
+                    ->map(function ($item) {
                         return $item['Value'];
                     })
-                : []
+                : [],
         ];
     }
-
 }

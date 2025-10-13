@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,8 +19,8 @@ use ImetCore\Models\Imet\API\ScalingUp\Analysis\Ranking;
 
 trait Analysis
 {
-    use Ranking;
-    use Data;
     use Average;
+    use Data;
     use DataUpperLowerAverage;
+    use Ranking;
 }

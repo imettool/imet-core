@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,13 +12,13 @@
 
 namespace ImetCore\Commands;
 
-use ImetCore\Controllers\Imet\Controller as ImetController;
-use ModularForms\Helpers\File\File;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use ImetCore\Controllers\Imet\Controller as ImetController;
+use ModularForms\Helpers\File\File;
 
 class Import extends Command
 {
@@ -56,31 +57,32 @@ class Import extends Command
      */
     public function handle(): int
     {
-        $i=0;
+        $i = 0;
         foreach ($this->storage->files() as $file) {
             if (Str::endsWith($file, '.json')) {
                 $file_content = $this->storage->get($file);
-                $json         = json_decode($file_content, true);
+                $json = json_decode($file_content, true);
                 if ($json !== null && isset($json['Imet']['version'])) {
-                    $this->info('Importing file ' . $file . '...');
+                    $this->info('Importing file '.$file.'...');
                     try {
-                        $response = (new ImetController())->import(new Request(), $json)->getContent();
+                        $response = (new ImetController)->import(new Request, $json)->getContent();
                         if (Str::contains($response, 'success')) {
                             $this->info('Successfully imported.');
                         }
                     } catch (Exception $e) {
-                        $this->error('Error: ' . $e->getMessage());
+                        $this->error('Error: '.$e->getMessage());
                     }
                     $i++;
                 }
             }
         }
-        if($i>0){
+        if ($i > 0) {
             $this->info('All done.');
         } else {
             $this->warn('Nothing to import.');
             $this->warn('No IMET json files found in storage/app/temp.');
         }
+
         return 0;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,6 +12,18 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
+use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\View\View;
 use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet;
@@ -24,25 +37,11 @@ use ModularForms\Helpers\HTTP;
 use ModularForms\Helpers\Module;
 use ModularForms\Helpers\ModuleKey;
 use ModularForms\Models\Traits\Upload;
-use Exception;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-
 use Throwable;
-use function report;
-use function response;
-use function trans;
 
+use function report;
+use function trans;
 
 trait ImportExportJSON
 {
@@ -59,10 +58,10 @@ trait ImportExportJSON
         $ext = $file->extension();
         $files = [];
         try {
-            //upload file
+            // upload file
             $uploaded = static::uploadFile($file);
-            $import = new static();
-            //and then check if is zip or json
+            $import = new static;
+            // and then check if is zip or json
             if ($ext == 'zip') {
                 $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path($uploaded['temp_filename']);
                 $extractFiles = Zip::extract($uploaded_path);
@@ -70,23 +69,24 @@ trait ImportExportJSON
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
                         $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
-                        $files[] = $import->import(new Request(), $json, false);
+                        $files[] = $import->import(new Request, $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
                 $json = json_decode(static::getUploadFileContent($uploaded), true);
-                $files[] = $import->import(new Request(), $json, false);
+                $files[] = $import->import(new Request, $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
             if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
-                return new JsonResponse(["message" => trans('modular-forms::common.upload.no_files_found')], 500);
+                return new JsonResponse(['message' => trans('modular-forms::common.upload.no_files_found')], 500);
             }
         } catch (Exception $e) {
             report($e);
-            return new JsonResponse(["message" => $e->getMessage()], 500);
+
+            return new JsonResponse(['message' => $e->getMessage()], 500);
         }
 
         return new JsonResponse($files);
@@ -94,7 +94,9 @@ trait ImportExportJSON
 
     /**
      * return a list of Imet's for export in json/zip
+     *
      * @return Application|Factory|\Illuminate\Contracts\View\View
+     *
      * @throws AuthorizationException
      */
     public function export_view(Request $request)
@@ -107,17 +109,17 @@ trait ImportExportJSON
 
         // retrieve IMET list
         $filtered_list = $form_class::get_assessments_list_with_extras($request);
-        $full_list = $form_class::get_assessments_list(new Request(), ['country']);
+        $full_list = $form_class::get_assessments_list(new Request, ['country']);
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
-        return view(static::$form_view_prefix . '.export', [
+        return view(static::$form_view_prefix.'.export', [
             'controller' => static::class,
             'route_prefix' => static::ROUTE_PREFIX,
             'list' => $filtered_list,
             'request' => $request,
             'countries' => $countries,
-            'years' => $years
+            'years' => $years,
         ]);
     }
 
@@ -130,12 +132,11 @@ trait ImportExportJSON
     {
         $model = ModuleKey::KeyToClassName($module_key);
 
-        $query = $model
-            ::where(function ($query) use ($ids) {
-                if ($ids) {
-                    $query->whereIn('FormID', explode(',', $ids));
-                }
-            })
+        $query = $model::where(function ($query) use ($ids) {
+            if ($ids) {
+                $query->whereIn('FormID', explode(',', $ids));
+            }
+        })
             ->whereHas('imet', function ($q) {
                 $q->where('version', Imet\Imet::IMET_V2);
             })
@@ -147,7 +148,8 @@ trait ImportExportJSON
             return trans('modular-forms::common.no_record_found');
         }
         $title = str_replace(' ', '_', $query->pluck('module_code')->first());
-        return File::exportToCSV($title . '.csv', $records);
+
+        return File::exportToCSV($title.'.csv', $records);
     }
 
     /**
@@ -159,26 +161,26 @@ trait ImportExportJSON
         $modules_final_list = [];
         $temp_array = [];
 
-        //retrieve all form records and manipulate array result
+        // retrieve all form records and manipulate array result
         $results = Imet\Imet::query()->select('FormID')->distinct()->commonSearchWithWdpa($request)->get();
 
-        //add this to check if a filter is applied in order to return the ids or return 0 (all records)
+        // add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
             $results = $results->implode('FormID', ',');
         } else {
             $results = 0;
         }
 
-        //retrieve all data for filters countries, years, wdpa
+        // retrieve all data for filters countries, years, wdpa
         $filters = Imet\Imet::getFieldsSplitToArrays();
 
-        //retrieve wdpa labels and ids in an array for selections
+        // retrieve wdpa labels and ids in an array for selections
         $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id', 'name'], 'wdpa_id');
         foreach ($wdpas as $a) {
             $wdpa_list[$a['wdpa_id']] = $a['name'];
         }
 
-        //retrieve countries labels and ids in an array for selections
+        // retrieve countries labels and ids in an array for selections
         $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
         $countries = array_map(function ($item) {
             return $item['name'];
@@ -194,7 +196,7 @@ trait ImportExportJSON
             unset($temp_array[$key]);
         }
 
-        return view(static::$form_view_prefix . '.tools.export_csv',
+        return view(static::$form_view_prefix.'.tools.export_csv',
             [
                 'modules' => $modules_final_list,
                 'imet_keys' => $imet_keys,
@@ -204,7 +206,7 @@ trait ImportExportJSON
                 'wdpa' => $wdpa_list,
                 'request' => $request,
                 'method' => 'GET',
-                'results' => $results
+                'results' => $results,
             ]
         );
     }
@@ -216,7 +218,7 @@ trait ImportExportJSON
      */
     public function export_batch(Request $request): BinaryFileResponse
     {
-        $imetIds = explode(",", $request->input('selection'));
+        $imetIds = explode(',', $request->input('selection'));
 
         $files = [];
         foreach ($imetIds as $imet) {
@@ -224,9 +226,10 @@ trait ImportExportJSON
         }
         $path = $files[0];
         if (count($files) > 1) {
-            $fileName = "IMETS_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip";
+            $fileName = 'IMETS_'.count($files).'_'.date('m-d-Y_hisu').'.zip';
             $path = Zip::compress($files, $fileName);
         }
+
         return File::download($path);
     }
 
@@ -262,7 +265,7 @@ trait ImportExportJSON
                 'Encoders' => Imet\v1\Encoder::exportModule($imet_id),
                 'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\v1\Report::export($imet_id)
+                'Report' => Imet\v1\Report::export($imet_id),
             ];
         } // #####  IMET V2  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
@@ -271,7 +274,7 @@ trait ImportExportJSON
                 'Encoders' => Imet\v2\Encoder::exportModule($imet_id),
                 'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\v2\Report::export($imet_id)
+                'Report' => Imet\v2\Report::export($imet_id),
             ];
         } // #####  IMET OECM  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
@@ -280,7 +283,7 @@ trait ImportExportJSON
                 'Encoders' => Imet\oecm\Encoder::exportModule($imet_id),
                 'Context' => Imet\oecm\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\oecm\Report::export($imet_id)
+                'Report' => Imet\oecm\Report::export($imet_id),
             ];
         }
 
@@ -290,6 +293,7 @@ trait ImportExportJSON
 
         if ($to_file) {
             $fileName = $imet->filename('json');
+
             return File::exportToJSON(
                 $fileName,
                 $json,
@@ -314,17 +318,17 @@ trait ImportExportJSON
     {
         $this->authorize('viewAny', static::$form_class);
 
-        return view(static::$form_view_prefix . '.import', [
-            'controller' => static::class
+        return view(static::$form_view_prefix.'.import', [
+            'controller' => static::class,
         ]);
     }
 
     /**
      * Import a full IMET from json file
      *
-     * @param Request|null $request
-     * @param $json
+     * @param  Request|null  $request
      * @return array|JsonResponse|string[]
+     *
      * @throws FileNotFoundException
      * @throws Throwable
      */
@@ -333,7 +337,7 @@ trait ImportExportJSON
         try {
             if ($json === null) {
                 $fileContent = static::getUploadFileContent($request->get('json_file'));
-                $json = json_decode($fileContent, True);
+                $json = json_decode($fileContent, true);
             }
 
             $response = ['status' => 'success', 'modules' => []];
@@ -356,7 +360,7 @@ trait ImportExportJSON
             if ($version === Imet\Imet::IMET_V1 ||
                 $version === Imet\Imet::IMET_V2) {
                 ImetScores::refresh_scores($formID);
-            } else if ($version === Imet\Imet::IMET_OECM) {
+            } elseif ($version === Imet\Imet::IMET_OECM) {
                 OecmScores::refresh_scores($formID);
             }
 
@@ -367,10 +371,10 @@ trait ImportExportJSON
         } catch (Exception $e) {
             DB::rollback();
             $response = ['status' => 'error'];
-            throw_if(!App::environment('production') || ImetEnv::isImetOfflineEnv(), $e);
+            throw_if(! App::environment('production') || ImetEnv::isImetOfflineEnv(), $e);
         }
 
-        if (!$returnJson) {
+        if (! $returnJson) {
             return $response;
         }
 
@@ -380,7 +384,6 @@ trait ImportExportJSON
     /**
      * Import all the IMET modules
      *
-     * @param $json
      * @throws FileNotFoundException
      */
     protected static function import_modules($json, bool $with_report = true): array
@@ -418,9 +421,6 @@ trait ImportExportJSON
             }
         }
 
-
         return [$formID, $modules_imported];
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class EcosystemServices extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_ecosystem_services';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Intervention';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR18';
@@ -50,11 +53,10 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
         return [
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
-                ? Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item){
+                ? Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray()
-                : []
+                : [],
         ];
     }
-
 }

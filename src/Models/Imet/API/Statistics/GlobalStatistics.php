@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,17 +12,14 @@
 
 namespace ImetCore\Models\Imet\API\Statistics;
 
-use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\Imet\v2\Modules\Context\Areas;
-use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
-use ImetCore\Models\ProtectedArea;
-use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use ImetCore\Models\Country;
+use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\v1;
 use ImetCore\Models\Imet\v2;
-use ImetCore\Models\Region;
-use ImetCore\Models\Country;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
+use ImetCore\Services\Scores\ImetScores;
 
 class GlobalStatistics
 {
@@ -39,7 +37,7 @@ class GlobalStatistics
         foreach ($list as $item) {
             $wdpa_ids[$item['wdpa_id']] = [
                 'wdpa_id' => $item['wdpa_id'],
-                'imet_index' => ImetScores::get_score($item)
+                'imet_index' => ImetScores::get_score($item),
             ];
         }
 
@@ -47,11 +45,12 @@ class GlobalStatistics
             $key = $item['iucn_category'];
             $form_ids[$item['FormID']]['iucn_category'] = $key;
 
-            if (!isset($imet_index_average[$key])) {
+            if (! isset($imet_index_average[$key])) {
                 $imet_index_average[$key] = [];
             }
 
             $imet_index_average[$key][] = $wdpa_ids[$item['wdpa_id']]['imet_index'];
+
             return $item;
         };
 
@@ -67,6 +66,7 @@ class GlobalStatistics
         usort($imet_index_average, function ($a, $b) {
             return $a['total'] < $b['total'];
         });
+
         return ['data' => $imet_index_average];
     }
 
@@ -88,6 +88,7 @@ class GlobalStatistics
                 $values = [];
                 $values['iucn_category'] = $item['iucn_category'];
                 $values['total'] = $item['total'];
+
                 return $values;
             });
 
@@ -106,13 +107,14 @@ class GlobalStatistics
             ->orderBy('total', 'desc')
             ->get()->map(function ($item) {
                 $values = [];
-                if ($item['Type'] === "terrestrial") {
+                if ($item['Type'] === 'terrestrial') {
                     $values['Type'] = ucfirst(trans('imet-core::common.terrestrial'));
                 } else {
                     $values['Type'] = ucfirst(trans('imet-core::common.marine'));
                 }
 
                 $values['total'] = $item['total'];
+
                 return $values;
             });
 
@@ -127,7 +129,7 @@ class GlobalStatistics
     }
 
     /**
-     * @param string $lang
+     * @param  string  $lang
      */
     public static function get_pa_areas_large(array $form_ids, string $order = 'desc', int $limit = 5): array
     {
@@ -137,7 +139,7 @@ class GlobalStatistics
             $pa_areas = $pa_areas->whereIn('FormID', $form_ids);
         }
 
-        $pa_areas = $pa_areas->where('WDPAArea', '<>', Null)
+        $pa_areas = $pa_areas->where('WDPAArea', '<>', null)
             ->orderBy('WDPAArea', $order)->limit($limit)
             ->get()->toArray();
 
@@ -151,12 +153,13 @@ class GlobalStatistics
     {
         $list = [];
         $regions = \ImetCore\Models\Region::query()->select()->get();
-        foreach($regions as $region){
+        foreach ($regions as $region) {
 
             $countries = Country::getByRegion($region['id']);
 
             $list[$region['name']] = \ImetCore\Models\Imet\Imet::query()->select('FormID')->whereIn('Country', $countries)->get()->count();
         }
+
         return ['data' => $list];
     }
 
@@ -169,9 +172,9 @@ class GlobalStatistics
         }
 
         $number_of_pas = $number_of_pas->get()->toArray();
+
         return ['data' => $number_of_pas[0]];
     }
-
 
     public static function get_assessments_performed_by_year(array $form_ids): array
     {
@@ -190,7 +193,7 @@ class GlobalStatistics
 
     public static function get_assessments_performed_by_country(array $form_ids, string $language = 'en'): array
     {
-        $name = 'name_' . $language;
+        $name = 'name_'.$language;
 
         $number_of_pas_by_country = Imet::with('country')
             ->select(DB::raw('"Country"'), DB::raw('count("Country") as total'));
@@ -205,6 +208,7 @@ class GlobalStatistics
                 $values = [];
                 $values['country'] = $item->country->$name;
                 $values['total'] = $item->total;
+
                 return $values;
             });
 
@@ -223,7 +227,7 @@ class GlobalStatistics
         foreach ($list_of_pas_rating['data'] as $item) {
             foreach ($item as $key => $value) {
                 // Initialize the sum if it doesn't exist
-                if (!isset($sums[$key])) {
+                if (! isset($sums[$key])) {
                     $sums[$key] = 0;
                 }
                 // Add the value to the sum
@@ -234,16 +238,17 @@ class GlobalStatistics
         $items_length = count($list_of_pas_rating['data']);
         foreach ($sums as $key => $item) {
             $sums[$key] = round($item / $items_length, 1);
-            $api['labels'][$key] = $key === "imet_index" ? trans('imet-core::common.indexes.imet') :trans('imet-core::common.steps_eval.'.$key);
+            $api['labels'][$key] = $key === 'imet_index' ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.'.$key);
         }
         $api['data'] = $sums;
+
         return $api;
     }
 
     public static function get_pas_rating(array $form_ids, string $language = 'en', bool $only_top_rating = true, bool $all_scores = false): array
     {
-        $name = 'name_' . $language;
-        $country_fields = 'country:iso3,' . $name;
+        $name = 'name_'.$language;
+        $country_fields = 'country:iso3,'.$name;
 
         $i = 0;
         $list_of_pas_rating_v2 = v2\Imet::query()->whereIn('FormID', $form_ids)->where('version', 'v2')->with($country_fields);
@@ -252,16 +257,18 @@ class GlobalStatistics
         $list_of_pas_rating_v2 = $list_of_pas_rating_v2->get()
             ->map(function ($item) use ($name, &$i, $all_scores) {
                 $i++;
+
                 return static::pas_rating_fields($item, $name, $i, $all_scores);
             })->toArray();
         $list_of_pas_rating_v1 = $list_of_pas_rating_v1->get()
             ->map(function ($item) use ($name, &$i, $all_scores) {
                 $i++;
+
                 return static::pas_rating_fields($item, $name, $i, $all_scores);
             })->toArray();
 
         $list_of_pas_rating = array_merge($list_of_pas_rating_v1, $list_of_pas_rating_v2);
-        if (!$all_scores) {
+        if (! $all_scores) {
             usort($list_of_pas_rating, function ($a, $b) {
                 return $a['imet_index'] < $b['imet_index'];
             });
@@ -278,7 +285,7 @@ class GlobalStatistics
         $form_ids = [];
         $records = null;
         if ($year !== null || $version !== null || $country !== null) {
-            $records = new v2\Imet();
+            $records = new v2\Imet;
 
             if ($year !== null) {
                 $records = $records::query()->where('Year', $year);
@@ -308,8 +315,8 @@ class GlobalStatistics
         $new_item = [];
         $new_item['FormID'] = $item['FormID'];
         if (static::$hide_protected_area_info) {
-            $new_item['wdpa_id'] = "-";
-            $new_item['name'] = ucfirst(trans_choice('imet-core::common.protected_area.protected_area', 0)) . " " . $i;
+            $new_item['wdpa_id'] = '-';
+            $new_item['name'] = ucfirst(trans_choice('imet-core::common.protected_area.protected_area', 0)).' '.$i;
         } else {
             $new_item['wdpa_id'] = $item['wdpa_id'];
             $new_item['name'] = $item['name'];
@@ -327,6 +334,4 @@ class GlobalStatistics
 
         return $new_item;
     }
-
-
 }

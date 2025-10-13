@@ -1,13 +1,12 @@
 <?php
 
-
 namespace ImetCore\Services\ScalingUp;
 
+use Illuminate\Support\Facades\Storage;
 use ImetCore\Models\Imet\ScalingUp\Basket;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ModularForms\Helpers\File\File;
 use ModularForms\Helpers\File\Zip;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class DownloadScalingUp
@@ -24,20 +23,21 @@ class DownloadScalingUp
             static::checkAuthorization(explode(',', $item->wdpas));
 
             foreach ($scaling_ups as $record) {
-                $files[] = Storage::disk(Basket::BASKET_DISK)->path('') . $record->item;
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$record->item;
             }
 
             if (count($files) > 1) {
                 $path = Zip::compress($files,
-                    "Scaling_up_" . count($files) . "_" . date('m-d-Y_hisu') . ".zip",
+                    'Scaling_up_'.count($files).'_'.date('m-d-Y_hisu').'.zip',
                     false);
+
                 return File::download($path);
             }
 
-            return trans("imet-core::analysis_report.more_than_one_file");
+            return trans('imet-core::analysis_report.more_than_one_file');
 
         }
 
-        return "";
+        return '';
     }
 }

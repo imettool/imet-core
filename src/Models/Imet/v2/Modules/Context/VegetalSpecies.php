@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,8 +14,6 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class VegetalSpecies extends Modules\Component\ImetModule
 {
@@ -29,7 +28,8 @@ class VegetalSpecies extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'Species'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.2';
@@ -49,9 +49,7 @@ class VegetalSpecies extends Modules\Component\ImetModule
 
         $this->module_info = trans('imet-core::v2_context.VegetalSpecies.module_info');
 
-
         parent::__construct($attributes);
 
     }
-
 }

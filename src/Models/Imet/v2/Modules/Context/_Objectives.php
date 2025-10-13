@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,8 +16,8 @@ use ImetCore\Models\Imet\v2\Modules;
 
 class _Objectives extends Modules\Component\ImetModule
 {
-
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_title = trans('imet-core::v2_context.Objectives.title');
@@ -32,5 +33,4 @@ class _Objectives extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
 }

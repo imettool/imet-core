@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -32,15 +33,16 @@ trait Ranking
         $api = static::parse_data($ranking);
 
         for ($i = 1; $i < 13; $i++) {
-            $labels[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . $i);
+            $labels[] = trans('imet-core::v2_context.MenacesPressions.categories.title'.$i);
         }
+
         return ['data' => $api, 'labels' => $labels];
     }
 
     public static function management_context_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('management_context');
-        list($api) = static::retrieve_data_ranking($items, $indicators);
+        [$api] = static::retrieve_data_ranking($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -48,7 +50,7 @@ trait Ranking
     public static function value_and_importance_sub_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators);
+        [$api] = static::retrieve_data_ranking($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -56,7 +58,7 @@ trait Ranking
     public static function planning_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('planning');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'planning');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'planning');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -64,7 +66,7 @@ trait Ranking
     public static function inputs_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('inputs');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'inputs');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'inputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -72,7 +74,7 @@ trait Ranking
     public static function outputs_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outputs');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'outputs');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'outputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -80,7 +82,7 @@ trait Ranking
     public static function outcomes_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outcomes');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'outcomes');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'outcomes');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -88,7 +90,7 @@ trait Ranking
     public static function process_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -96,7 +98,7 @@ trait Ranking
     public static function process_internal_management_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -104,7 +106,7 @@ trait Ranking
     public static function process_management_protection_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -112,7 +114,7 @@ trait Ranking
     public static function process_stakeholders_relationships_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -120,7 +122,7 @@ trait Ranking
     public static function process_tourism_management_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_tourism_management_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -128,7 +130,7 @@ trait Ranking
     public static function process_monitoring_and_research_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_monitoring_and_research_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -136,14 +138,11 @@ trait Ranking
     public static function process_effects_of_climate_change_indicators_ranking(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_effects_of_climate_change_indicators');
-        list($api) = static::retrieve_data_ranking($items, $indicators, 'process');
+        [$api] = static::retrieve_data_ranking($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    /**
-     * @param $data
-     */
     private static function parse_data($data): array
     {
         $api = [];
@@ -153,7 +152,7 @@ trait Ranking
 
         $new_names = ['values', 'percent_values', 'raw_values'];
 
-        foreach(['values', 'percent_value', 'actual_value'] as $n => $type) {
+        foreach (['values', 'percent_value', 'actual_value'] as $n => $type) {
             foreach ($data[$type] as $key => $value) {
                 foreach ($value as $k => $v) {
                     $indicator = array_keys($data['legends'], $key)[0];
@@ -161,6 +160,7 @@ trait Ranking
                 }
             }
         }
+
         return $api;
     }
 }

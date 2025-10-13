@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,7 +19,7 @@ trait Average
     private static function retrieve_average(array $items, array $indicators, string $type = 'context'): array
     {
         $api = [];
-        $average = AverageContribution::average_contribution_calculations($items, $indicators, $type, "", [], 'imet-core::analysis_report.assessment.');
+        $average = AverageContribution::average_contribution_calculations($items, $indicators, $type, '', [], 'imet-core::analysis_report.assessment.');
 
         foreach ($average['average_contribution']['data']['Average'] as $average) {
             $indicator = implode(' ', $average['label']);
@@ -27,8 +28,8 @@ trait Average
                 'values' => [
                     'value' => $average['value'],
                     'percentile_10' => $average['upper limit'][0],
-                    'percentile_90' => $average['upper limit'][1]
-                ]
+                    'percentile_90' => $average['upper limit'][1],
+                ],
             ];
         }
 
@@ -38,7 +39,7 @@ trait Average
     public static function threat_average(array $items): array
     {
         $api = [];
-        $average = AverageContribution::average_contribution_calculations_threat($items, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', "");
+        $average = AverageContribution::average_contribution_calculations_threat($items, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '');
 
         if (array_key_exists('data', $average['average_contribution'])) {
             foreach ($average['average_contribution']['data']['Average'] as $average) {
@@ -47,13 +48,13 @@ trait Average
                     'values' => [
                         'value' => $average['value'],
                         'percentile_10' => $average['upper limit'][0],
-                        'percentile_90' => $average['upper limit'][1]
-                    ]
+                        'percentile_90' => $average['upper limit'][1],
+                    ],
                 ];
             }
         }
 
-        return ['data' => $api] ;
+        return ['data' => $api];
     }
 
     public static function management_context_average(array $items): array
@@ -61,10 +62,10 @@ trait Average
         $indicators = [
             'C1' => [],
             'C2' => [],
-            'C3' => []
+            'C3' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators);
+        [$api] = static::retrieve_average($items, $indicators);
 
         return ['data' => $api];
     }
@@ -76,10 +77,10 @@ trait Average
             'C12' => [],
             'C13' => [],
             'C14' => [],
-            'C15' => []
+            'C15' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators);
+        [$api] = static::retrieve_average($items, $indicators);
 
         return ['data' => $api];
     }
@@ -92,10 +93,10 @@ trait Average
             'P3' => [],
             'P4' => [],
             'P5' => [],
-            'P6' => []
+            'P6' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'planning');
+        [$api] = static::retrieve_average($items, $indicators, 'planning');
 
         return ['data' => $api];
     }
@@ -107,10 +108,10 @@ trait Average
             'I2' => [],
             'I3' => [],
             'I4' => [],
-            'I5' => []
+            'I5' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'inputs');
+        [$api] = static::retrieve_average($items, $indicators, 'inputs');
 
         return ['data' => $api];
     }
@@ -120,10 +121,10 @@ trait Average
         $indicators = [
             'OP1' => [],
             'OP2' => [],
-            'OP3' => []
+            'OP3' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'outputs');
+        [$api] = static::retrieve_average($items, $indicators, 'outputs');
 
         return ['data' => $api];
     }
@@ -133,10 +134,10 @@ trait Average
         $indicators = [
             'OC1' => [],
             'OC2' => [],
-            'OC3' => []
+            'OC3' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'outcomes');
+        [$api] = static::retrieve_average($items, $indicators, 'outcomes');
 
         return ['data' => $api];
     }
@@ -152,7 +153,7 @@ trait Average
             'PRF' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -168,7 +169,7 @@ trait Average
             'PR6' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -178,10 +179,10 @@ trait Average
         $indicators = [
             'PR7' => [],
             'PR8' => [],
-            'PR9' => []
+            'PR9' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -191,10 +192,10 @@ trait Average
         $indicators = [
             'PR10' => [],
             'PR11' => [],
-            'PR12' => []
+            'PR12' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -203,10 +204,10 @@ trait Average
     {
         $indicators = [
             'PR13' => [],
-            'PR14' => []
+            'PR14' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -215,10 +216,10 @@ trait Average
     {
         $indicators = [
             'PR15' => [],
-            'PR16' => []
+            'PR16' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }
@@ -227,10 +228,10 @@ trait Average
     {
         $indicators = [
             'PR17' => [],
-            'PR18' => []
+            'PR18' => [],
         ];
 
-        list($api) = static::retrieve_average($items, $indicators, 'process');
+        [$api] = static::retrieve_average($items, $indicators, 'process');
 
         return ['data' => $api];
     }

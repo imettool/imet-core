@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,8 +12,8 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
-trait CommonFunctions {
-
+trait CommonFunctions
+{
     /**
      * Standard function for TABLE type modules
      */
@@ -27,9 +28,9 @@ trait CommonFunctions {
             ->toArray();
 
         $average = static::average($values, null);
-        $score = $average!==null ? $average / $denominator * 100 : null;
+        $score = $average !== null ? $average / $denominator * 100 : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -42,13 +43,14 @@ trait CommonFunctions {
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->groupBy($group_field)
-            ->map(function($group) use($module_field) {
+            ->map(function ($group) use ($module_field) {
                 $group_values = $group
-                    ->filter(function ($value) use($module_field) {
+                    ->filter(function ($value) use ($module_field) {
                         return $value[$module_field] != -99;
                     })
                     ->pluck($module_field)
                     ->toArray();
+
                 return filled($group_values)
                     ? static::average($group_values, null)
                     : null;
@@ -59,12 +61,10 @@ trait CommonFunctions {
             ->toArray();
 
         $average = static::average($values, null);
-        $score = $average!==null ? $average / 3 * 100 : null;
+        $score = $average !== null ? $average / 3 * 100 : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
-
-
 }

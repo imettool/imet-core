@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,14 +21,17 @@ use ImetCore\Models\User\Role;
 class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2.1';
@@ -50,7 +54,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
@@ -59,7 +63,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
 
@@ -70,8 +74,8 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
-        foreach($records as $idx => $record){
-            if(array_key_exists($record['Stakeholder'], $weight)){
+        foreach ($records as $idx => $record) {
+            if (array_key_exists($record['Stakeholder'], $weight)) {
                 $records[$idx]['Weight'] = $weight[$record['Stakeholder']];
             } else {
                 $records[$idx]['Weight'] = null;
@@ -89,14 +93,13 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function($item){
+            ->map(function ($item) {
                 $item['__score'] = $item['Weight'] !== null && $item['ConstraintLevel'] !== null
                     ? $item['ConstraintLevel'] * $item['Weight']
                     : null;
+
                 return $item;
             })
             ->toArray();
     }
-
-
 }

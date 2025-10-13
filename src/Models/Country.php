@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,31 +12,31 @@
 
 namespace ImetCore\Models;
 
+use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
 use ModularForms\Models\Utils\Country as BaseCountry;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
 use Override;
-
 
 /**
  * Class Country
  *
- * @property integer $iso2
- * @property integer $iso3
+ * @property int $iso2
+ * @property int $iso3
  * @property string $name
  * @property string $Name
- *
- * @package ImetCore\Models
  */
 class Country extends BaseCountry
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'countries';
+
     public $primaryKey = 'iso3';
+
     public static ?string $foreign_key = 'region_id';
 
     /**
@@ -57,14 +58,15 @@ class Country extends BaseCountry
 
     /**
      * Get country by regions
+     *
      * @throws Exception
      */
     public static function getByRegion($region): array
     {
-        if(strlen($region)==2){
+        if (strlen($region) == 2) {
             return static::query()->where('region_id', $region)->pluck('iso3')->toArray();
-        }else {
-            throw new Exception('Wrong size for region: '. $region);
+        } else {
+            throw new Exception('Wrong size for region: '.$region);
         }
     }
 
@@ -76,8 +78,8 @@ class Country extends BaseCountry
     {
         $allowed_countries = Role::allowedCountries();
         $collection = static::query()->select(['iso3', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($allowed_countries){
-                if($allowed_countries!==null){
+            ->where(function ($query) use ($allowed_countries) {
+                if ($allowed_countries !== null) {
                     $query->whereIn('iso3', array_values($allowed_countries));
                 }
             })
@@ -85,6 +87,4 @@ class Country extends BaseCountry
 
         return parent::selectionList('FIELDS', $collection);
     }
-
-
 }

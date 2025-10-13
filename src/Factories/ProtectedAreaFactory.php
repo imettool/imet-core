@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -36,10 +37,10 @@ class ProtectedAreaFactory extends Factory
         ];
 
         return [
-            'global_id' => $country . '_' . $wdpaId,
+            'global_id' => $country.'_'.$wdpaId,
             'country' => $country,
             'wdpa_id' => $wdpaId,
-            'name' => fake()->city() . ' ' . $suffixes[array_rand($suffixes)],
+            'name' => fake()->city().' '.$suffixes[array_rand($suffixes)],
         ];
     }
 }

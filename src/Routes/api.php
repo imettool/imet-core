@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -9,10 +10,9 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
+use Illuminate\Support\Facades\Route;
 use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Controllers\Imet\Controller;
-use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +41,6 @@ Route::group(['prefix' => 'api'], function () {
             Route::get('{lang}/statistics/radar/{wdpa_id}/{year?}', [ApiController::class, 'get_imet_statistics_radar']);
             Route::get('{lang}/details/{key}/{wdpa_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::imet_details');
             Route::get('{lang}/details/{key}/{form_id}/{year?}', [ApiController::class, 'get_imet'])->name('imet_core::api::oecm_details');
-
 
             Route::group(['prefix' => '{lang}/scaling-up'], function () {
                 Route::get('general-info/{wdpa_id}/{year?}', [ApiController::class, 'get_general_info']);

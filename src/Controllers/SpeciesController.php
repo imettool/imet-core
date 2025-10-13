@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,12 +12,11 @@
 
 namespace ImetCore\Controllers;
 
-use ModularForms\Controllers\Controller;
-use ModularForms\Helpers\HTTP;
-use ImetCore\Models\Species;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
+use ImetCore\Models\Species;
+use ModularForms\Controllers\Controller;
+use ModularForms\Helpers\HTTP;
 
 class SpeciesController extends Controller
 {
@@ -29,10 +29,10 @@ class SpeciesController extends Controller
         $ordersByClass = [];
 
         // Perform search only if search_key provided
-        if($request->filled('search_key')){
+        if ($request->filled('search_key')) {
 
             HTTP::sanitize($request, [
-                'search' => 'alpha|nullable'
+                'search' => 'alpha|nullable',
             ]);
 
             // Perform search query
@@ -40,7 +40,7 @@ class SpeciesController extends Controller
 
             // Organize order by classes
             $ordersByClass = $species
-                ->map->only(['class','order'])
+                ->map->only(['class', 'order'])
                 ->unique()
                 ->sortBy('order')
                 ->sortBy('class')
@@ -52,7 +52,7 @@ class SpeciesController extends Controller
 
         return static::sendAPIResponse($species->toArray(), null, 200, [
             'classes' => array_keys($ordersByClass),
-            'orders' => $ordersByClass
+            'orders' => $ordersByClass,
         ]);
     }
 }

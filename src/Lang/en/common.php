@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,30 +12,30 @@
 
 return [
 
-    'id'                    => 'ID',
-    'name'                  => 'nom',
-    'year'                  => 'year',
-    'country'               => 'country',
-    'language'              => 'language',
-    'version'               => 'version',
-    'link'                  => 'link|links',
+    'id' => 'ID',
+    'name' => 'nom',
+    'year' => 'year',
+    'country' => 'country',
+    'language' => 'language',
+    'version' => 'version',
+    'link' => 'link|links',
 
     'staff' => [
-        'first_name'            => 'first name',
-        'last_name'             => 'last name',
-        'institution'           => 'institution',
-        'function'              => 'function',
-        'confirm_user_info'         => 'Please confirm your information'
+        'first_name' => 'first name',
+        'last_name' => 'last name',
+        'institution' => 'institution',
+        'function' => 'function',
+        'confirm_user_info' => 'Please confirm your information',
     ],
 
     'protected_area' => [
-        'protected_area'    => 'protected area|protected areas',
-        'wdpa_id'           => 'WDPA id|WDPA ids',
-        'iucn_category'     => 'IUCN category',
+        'protected_area' => 'protected area|protected areas',
+        'wdpa_id' => 'WDPA id|WDPA ids',
+        'iucn_category' => 'IUCN category',
     ],
 
-    'methodology'   => 'Evaluation question',
-    'criteria'      => 'Rating',
+    'methodology' => 'Evaluation question',
+    'criteria' => 'Rating',
 
     'terrestrial' => 'terrestrial',
     'marine' => 'marine and coastal',
@@ -44,48 +45,48 @@ return [
     'yes' => 'Yes',
 
     'languages' => [
-        'fr'        => 'French',
-        'en'        => 'English',
-        'sp'        => 'Spanish',
-        'pt'        => 'Portuguese'
+        'fr' => 'French',
+        'en' => 'English',
+        'sp' => 'Spanish',
+        'pt' => 'Portuguese',
     ],
     'switch_language' => 'Switch current language to',
 
     'imet' => 'Integrated Management Effectiveness Tool',
-    'imet_short'        => 'IMET',
+    'imet_short' => 'IMET',
 
-    'management'        => 'IMET management',
+    'management' => 'IMET management',
 
-    'encoding_language'         => 'Encoding language',
-    'encoders_responsible'      => 'Encoders and responsibles',
-    'encoders'                  => 'Encoders',
-    'responsible_internal'      => 'Responsibles (management team)',
-    'responsible_external'      => 'Responsibles (external support)',
+    'encoding_language' => 'Encoding language',
+    'encoders_responsible' => 'Encoders and responsibles',
+    'encoders' => 'Encoders',
+    'responsible_internal' => 'Responsibles (management team)',
+    'responsible_external' => 'Responsibles (external support)',
 
-    'supervisors'              => 'Supervisors',
-    'readonly'                 => 'Read-only',
+    'supervisors' => 'Supervisors',
+    'readonly' => 'Read-only',
 
-    'encode'            => 'encode',
-    'show'              => 'show',
+    'encode' => 'encode',
+    'show' => 'show',
 
-    'context'           => 'context',
-    'evaluation'        => 'evaluation',
-    'cross_analysis'    => 'cross analysis',
-    'report'            => 'analysis report',
-    'context_long'      => 'intervention context',
-    'evaluation_long'   => 'management evaluation',
-    'cross_analysis_long'   => 'cross analysis',
-    'report_long'       => 'analysis report',
+    'context' => 'context',
+    'evaluation' => 'evaluation',
+    'cross_analysis' => 'cross analysis',
+    'report' => 'analysis report',
+    'context_long' => 'intervention context',
+    'evaluation_long' => 'management evaluation',
+    'cross_analysis_long' => 'cross analysis',
+    'report_long' => 'analysis report',
 
-    'import_imet'       => 'Import IMET from file',
-    'merge_tool'        => 'Merge Tool',
-    'destination_form'        => 'Destination form',
+    'import_imet' => 'Import IMET from file',
+    'merge_tool' => 'Merge Tool',
+    'destination_form' => 'Destination form',
     'set_as_destination_form' => 'Set as destination form',
-    'confirm_merge'     => 'Confirm to copy data',
-    'upgrade'           => 'Upgrade to IMET v2',
-    'upgrade_confirm'   => 'Confirm to upgrade to IMET v2?<ul><li>A copy of the original form will be created.</li><li>Some data could not be converted to v2</li>',
-    'upgrade_success'   => 'Upgrade to IMET v2 successfully completed',
-    'upgrade_failed'    => 'Error in upgrading to IMET v2',
+    'confirm_merge' => 'Confirm to copy data',
+    'upgrade' => 'Upgrade to IMET v2',
+    'upgrade_confirm' => 'Confirm to upgrade to IMET v2?<ul><li>A copy of the original form will be created.</li><li>Some data could not be converted to v2</li>',
+    'upgrade_success' => 'Upgrade to IMET v2 successfully completed',
+    'upgrade_failed' => 'Error in upgrading to IMET v2',
     'not_authorized_module' => 'No authorization to visualize this information',
     'double_check_wdpa' => 'Be sure to select the right WDPA',
     'nothing_to_evaluate' => 'Nothing to evaluate',
@@ -95,25 +96,25 @@ return [
     'nothing_found' => 'Nothing found',
 
     'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Context index',
-        'planning'    => 'Planning index',
-        'inputs'      => 'Inputs index',
-        'process'     => 'Process index',
-        'outputs'     => 'Outputs index',
-        'outcomes'    => 'Outcomes index',
+        'imet' => 'IMET index',
+        'context' => 'Context index',
+        'planning' => 'Planning index',
+        'inputs' => 'Inputs index',
+        'process' => 'Process index',
+        'outputs' => 'Outputs index',
+        'outcomes' => 'Outcomes index',
     ],
 
     'steps_eval' => [
-        'context'                   => 'Management context',
-        'planning'                  => 'Planning',
-        'inputs'                    => 'Inputs',
-        'process'                   => 'Process',
-        'outputs'                   => 'Outputs',
-        'outcomes'                  => 'Outcomes',
-        'objectives'                => 'Objectives',
-        'management_effectiveness'  => 'Management Effectiveness',
-        'cross_analysis'  => 'Cross Analysis',
+        'context' => 'Management context',
+        'planning' => 'Planning',
+        'inputs' => 'Inputs',
+        'process' => 'Process',
+        'outputs' => 'Outputs',
+        'outcomes' => 'Outcomes',
+        'objectives' => 'Objectives',
+        'management_effectiveness' => 'Management Effectiveness',
+        'cross_analysis' => 'Cross Analysis',
     ],
 
     'Create' => [
@@ -124,7 +125,7 @@ return [
             'wdpa_id' => 'protected area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
-        ]
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -158,25 +159,25 @@ return [
     'ResponsablesInterviewers' => [
         'title' => 'Responsibility for filling the form: Management team and partners',
         'fields' => [
-            'Name'          => 'name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
-            'Contacts'      => 'contact details',
-            'EncodingDate'  => 'Date of compilation',
-            'EncodingDuration' => 'Time taken for evaluation (hrs)'
-        ]
+            'Name' => 'name',
+            'Institution' => 'organisation',
+            'Function' => 'job role',
+            'Contacts' => 'contact details',
+            'EncodingDate' => 'Date of compilation',
+            'EncodingDuration' => 'Time taken for evaluation (hrs)',
+        ],
     ],
 
     'ResponsablesInterviewees' => [
         'title' => 'Responsibility for filling the form: External support for analysis and management evaluation',
         'fields' => [
             'Name' => 'Name',
-            'Institution'   => 'organisation',
-            'Function'      => 'job role',
+            'Institution' => 'organisation',
+            'Function' => 'job role',
             'Contacts' => 'contact details',
             'EncodingDate' => 'Date of compilation',
             'EncodingDuration' => 'Time taken for evaluation (hrs)',
-        ]
+        ],
     ],
 
     'dropzone' => [
@@ -189,29 +190,29 @@ return [
         'dict_cancel_upload' => 'Cancel upload',
         'dict_upload_canceled' => 'Upload canceled',
         'dict_cancel_upload_confirmation' => 'Are you sure you want to cancel this upload?',
-        'dict_remove_file'  => 'Remove file',
+        'dict_remove_file' => 'Remove file',
         'dictMaxFilesExceeded' => 'You exceeded the maximum files for upload. Please remove files in order to upload more',
     ],
 
     'species' => [
-        'species'           => 'species|species',
-        'common_names'      => 'common names',
+        'species' => 'species|species',
+        'common_names' => 'common names',
         'taxonomy' => [
-            'taxonomy'      => 'taxonomy',
-            'domain'        => 'domain',
-            'kingdom'       => 'kingdom',
-            'phylum'        => 'phylum',
-            'class'         => 'class',
-            'order'         => 'order',
-            'family'        => 'family',
-            'genus'         => 'genus',
-            'species'       => 'species',
-            'authority'     => 'authority'
+            'taxonomy' => 'taxonomy',
+            'domain' => 'domain',
+            'kingdom' => 'kingdom',
+            'phylum' => 'phylum',
+            'class' => 'class',
+            'order' => 'order',
+            'family' => 'family',
+            'genus' => 'genus',
+            'species' => 'species',
+            'authority' => 'authority',
         ],
         'links' => [
             'iucn_red_list' => 'IUCN Red List',
-            'col'           => 'Catalogue of Life',
+            'col' => 'Catalogue of Life',
         ],
-    ]
+    ],
 
 ];

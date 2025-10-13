@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class GovernanceLeadership extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'PR4';
@@ -46,8 +48,8 @@ class GovernanceLeadership extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_Governance_Leadership',
             'fields' => [
-                'EvaluationScoreGovernace', 'EvaluationScoreLeadership', 'Comments'
-            ]
+                'EvaluationScoreGovernace', 'EvaluationScoreLeadership', 'Comments',
+            ],
         ];
     }
 }

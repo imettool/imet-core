@@ -19,5 +19,4 @@ trait Common
             throw_if(Gate::denies($ability, Imet::query()->find($wdpa)), AuthorizationException::class, 'This action is unauthorized.');
         }
     }
-
 }

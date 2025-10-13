@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,13 +12,14 @@
 
 namespace ImetCore\Controllers\Imet\v1;
 
-
 class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::v1.context';
+
     protected static ?string $form_default_step = 'general_info';
 
     protected static $total_budget = 0;
+
     protected static $financial_available_resources_totals = 0;
 
     public static function get_records_total_budget()
@@ -26,10 +28,10 @@ class ContextController extends Controller
     }
 
     /**
-     * @param $value
      * @return void
      */
-    public static function set_records_total_budget($value){
+    public static function set_records_total_budget($value)
+    {
         static::$total_budget = $value;
     }
 
@@ -39,11 +41,10 @@ class ContextController extends Controller
     }
 
     /**
-     * @param $value
      * @return void
      */
-    public static function set_financial_available_resources_totals($value){
+    public static function set_financial_available_resources_totals($value)
+    {
         static::$financial_available_resources_totals = $value;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,8 +12,11 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
+use Exception;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\Database;
-use ImetCore\Models\Species;
+use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 use ImetCore\Models\Imet\ScalingUp\Sections\DataTable;
@@ -20,27 +24,24 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Group;
 use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
 use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
 use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
-use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Species;
 use ModularForms\Helpers\Locale;
-use Exception;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Config;
-
 
 class ScalingUpAnalysis extends Model
 {
     protected static $ttl = 2;
 
     protected static ?string $schema = Database::IMET_SCHEMA;
+
     protected $table = 'scaling_up';
 
     protected $fillable = ['wdpas'];
+
     public $timestamps = false;
+
     public static $scaling_id;
+
     public const UNDEFINED_VALUE = -99999999;
 
     /**
@@ -62,6 +63,7 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get the protected area country
+     *
      * @throws Exception
      */
     public static function get_protected_area_with_countries(array $form_ids): array
@@ -80,7 +82,6 @@ class ScalingUpAnalysis extends Model
         return ['status' => 'success', 'data' => $items];
     }
 
-
     /**
      * get protected area custom names with all the information
      */
@@ -95,12 +96,15 @@ class ScalingUpAnalysis extends Model
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
-        return ["models" => $protected_area, "categories" => $categories];
+
+        return ['models' => $protected_area, 'categories' => $categories];
     }
 
     /**
      * get general info of protected areas by form ids
+     *
      * @return \array[][]
+     *
      * @throws \ReflectionException
      */
     public static function general_info(array $form_ids): array
@@ -112,7 +116,7 @@ class ScalingUpAnalysis extends Model
             'total_surface_protected_areas' => 0,
             'local_mission' => [],
             'local_objective' => [],
-            'local_vision' => []
+            'local_vision' => [],
         ];
 
         foreach ($form_ids as $form_id) {
@@ -123,11 +127,11 @@ class ScalingUpAnalysis extends Model
             if ($general_info_data[0]) {
                 $general_info = $general_info_data[0];
                 $lang = Locale::lower();
-                $name = "name_" . (trim($lang) === "" ? "en" : $lang);
-                $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : "";
+                $name = 'name_'.(trim($lang) === '' ? 'en' : $lang);
+                $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : '';
 
-                //echo $general_info['Country']."-".$country_name."\n";
-                if (!in_array($country_name, $generalElements['countries'])) {
+                // echo $general_info['Country']."-".$country_name."\n";
+                if (! in_array($country_name, $generalElements['countries'])) {
                     $generalElements['countries'][] = $country_name;
                 }
 
@@ -161,6 +165,7 @@ class ScalingUpAnalysis extends Model
 
     /**
      * get management context for protected areas by form ids
+     *
      * @return \array[][]
      */
     public static function get_management_context(array $form_ids): array
@@ -171,7 +176,7 @@ class ScalingUpAnalysis extends Model
             'climate_change' => [],
             'ecosystem_services' => [],
             'threats' => [],
-            'species_statistics' => []
+            'species_statistics' => [],
         ];
         $array_elements = ['habitats' => [],
             'climate_change' => [],
@@ -209,7 +214,7 @@ class ScalingUpAnalysis extends Model
                 })->pluck('Aspect')->toArray(),
                 'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray()
+                })->pluck('Aspect')->toArray(),
             ];
 
             if (count($retrieve_key_elements['species'])) {
@@ -228,10 +233,10 @@ class ScalingUpAnalysis extends Model
             foreach ($array_elements as $keys => $element) {
                 if (count($retrieve_key_elements[$keys])) {
                     foreach ($retrieve_key_elements[$keys] as $item) {
-                        if (isset($array_elements_count[$keys . '_count'][$item])) {
-                            $array_elements_count[$keys . '_count'][$item] += 1;
+                        if (isset($array_elements_count[$keys.'_count'][$item])) {
+                            $array_elements_count[$keys.'_count'][$item] += 1;
                         } else {
-                            $array_elements_count[$keys . '_count'][$item] = 1;
+                            $array_elements_count[$keys.'_count'][$item] = 1;
                         }
                         $key_elements[$keys][$item][0][] = $name;
                     }
@@ -241,7 +246,7 @@ class ScalingUpAnalysis extends Model
 
         foreach ($array_elements as $keys => $element) {
 
-            foreach ($array_elements_count[$keys . '_count'] as $value) {
+            foreach ($array_elements_count[$keys.'_count'] as $value) {
                 $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
                     return count($v[0]) > 1;
                 });
@@ -250,11 +255,11 @@ class ScalingUpAnalysis extends Model
                     return count($b[0]) <=> count($a[0]);
                 });
 
-                $array_elements_count[$keys . '_count'] = array_filter($array_elements_count[$keys . '_count'], function ($v) {
-                    return ($v) > 1;
+                $array_elements_count[$keys.'_count'] = array_filter($array_elements_count[$keys.'_count'], function ($v) {
+                    return $v > 1;
                 });
 
-                uasort($array_elements_count[$keys . '_count'], function ($a, $b) {
+                uasort($array_elements_count[$keys.'_count'], function ($a, $b) {
                     return $b <=> $a;
                 });
             }
@@ -270,7 +275,7 @@ class ScalingUpAnalysis extends Model
             });
 
             $species_count[$k] = array_filter($group, function ($v) {
-                return ($v) > 1;
+                return $v > 1;
             });
 
             uasort($species_count[$k], function ($a, $b) {
@@ -285,6 +290,7 @@ class ScalingUpAnalysis extends Model
         $key_elements['threats_statistics'] = array_slice($array_elements_count['threats_count'], 0, 5);
         $key_elements['ecosystem_services'] = array_slice($key_elements['ecosystem_services'], 0, 10);
         $key_elements['threats'] = array_slice($key_elements['threats'], 0, 5);
+
         return ['status' => 'success', 'data' => ['key_elements' => $key_elements]];
     }
 
@@ -293,11 +299,11 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_threats_categories_per_protected_area(array $form_ids): array
     {
-        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', "", static::$scaling_id);
+        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '', static::$scaling_id);
         $ranking = Ranking::ranking_threats_indicators($form_ids, static::$scaling_id);
         $radar = Radar::get_threats_radar_indicators($form_ids, static::$scaling_id);
 
-        return ['status' => 'success', 'data' => ["values" => $radar['total_categories'], 'average_contribution' => $averages['average_contribution'], 'ranking' => $ranking, 'radar' => $radar['radar']]];
+        return ['status' => 'success', 'data' => ['values' => $radar['total_categories'], 'average_contribution' => $averages['average_contribution'], 'ranking' => $ranking, 'radar' => $radar['radar']]];
     }
 
     /**
@@ -311,14 +317,13 @@ class ScalingUpAnalysis extends Model
         $assessments['data'] = $synthetic_indicators_table['data'];
         // filter out and reindex the assessments starting from 0
 
-
-
         $index_ranking = Ranking::get_overall_ranking($form_ids, $assessments);
         $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments, true);
         $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
         Common::reset_areas_ids();
         $scatter_plots = static::get_scatter_grouping_analysis(array_map(function (int $value): array {
             $pa = ScalingUpWdpa::getCustomNames($value, static::$scaling_id);
+
             return ['id' => $value, 'group' => $value, 'name' => $pa['name'], 'color' => $pa['color']];
         }, $form_ids), $assessments, true);
 
@@ -333,8 +338,8 @@ class ScalingUpAnalysis extends Model
                 'averages_six_elements' => $averages_six_elements['data'],
                 'radar' => $radars['data']['diagrams'],
                 'scatter' => $scatter_plots['data']['scatter'],
-                'assessments' => $assessments['data']['assessments_average']
-            ]
+                'assessments' => $assessments['data']['assessments_average'],
+            ],
         ];
     }
 
@@ -350,7 +355,7 @@ class ScalingUpAnalysis extends Model
             'outputs' => ['height' => '500px'],
             'outcomes' => ['height' => '500px'],
             'context_sub_indicators' => ['height' => '500px'],
-            'process_sub_indicators' => ['height' => '500px']
+            'process_sub_indicators' => ['height' => '500px'],
         ];
 
         $table_indicators = [
@@ -358,15 +363,15 @@ class ScalingUpAnalysis extends Model
                 'main' => [
                     'C1' => [],
                     'C2' => [],
-                    'C3' => []
+                    'C3' => [],
                 ],
                 'context_value_and_importance' => [
                     'C11' => [],
                     'C12' => [],
                     'C13' => [],
                     'C14' => [],
-                    'C15' => []
-                ]
+                    'C15' => [],
+                ],
             ],
             'planning' => [
                 'main' => [
@@ -375,8 +380,8 @@ class ScalingUpAnalysis extends Model
                     'P3' => [],
                     'P4' => [],
                     'P5' => [],
-                    'P6' => []
-                ]
+                    'P6' => [],
+                ],
             ],
             'inputs' => [
                 'main' => [
@@ -384,8 +389,8 @@ class ScalingUpAnalysis extends Model
                     'I2' => [],
                     'I3' => [],
                     'I4' => [],
-                    'I5' => []
-                ]
+                    'I5' => [],
+                ],
             ],
             'process' => [
                 'process_sub_indicators' => [
@@ -395,7 +400,7 @@ class ScalingUpAnalysis extends Model
                     'PRF' => [],
                     'PRA' => [],
                     'PRB' => [],
-                ]
+                ],
             ],
             'process_PRA' => [
                 'process_internal_management' => [
@@ -405,64 +410,64 @@ class ScalingUpAnalysis extends Model
                     'PR4' => [],
                     'PR5' => [],
                     'PR6' => [],
-                ]
+                ],
             ],
             'process_PRB' => [
                 'process_management_protection_values' => [
                     'PR7' => [],
                     'PR8' => [],
-                    'PR9' => []
-                ]
+                    'PR9' => [],
+                ],
             ],
             'process_PRC' => [
                 'process_stakeholders_relationships' => [
                     'PR10' => [],
                     'PR11' => [],
-                    'PR12' => []
-                ]
+                    'PR12' => [],
+                ],
             ],
             'process_PRD' => [
                 'process_tourism_management' => [
                     'PR13' => [],
-                    'PR14' => []
-                ]
+                    'PR14' => [],
+                ],
             ],
             'process_PRE' => [
                 'process_monitoring_and_research' => [
                     'PR15' => [],
-                    'PR16' => []
-                ]
+                    'PR16' => [],
+                ],
             ],
             'process_PRF' => [
                 'process_effects_of_climate_change' => [
                     'PR17' => [],
-                    'PR18' => []
-                ]
+                    'PR18' => [],
+                ],
             ],
             'outputs' => [
                 'main' => [
                     'OP1' => [],
                     'OP2' => [],
                     'OP3' => [],
-                    'OP4' => []
-                ]
+                    'OP4' => [],
+                ],
             ],
             'outcomes' => [
                 'main' => [
                     'OC1' => [],
                     'OC2' => [],
-                    'OC3' => []
-                ]
-            ]
+                    'OC3' => [],
+                ],
+            ],
         ];
 
         $origType = $type;
         $extra_type_words = '';
-        if (str_contains($type, "process")) {
+        if (str_contains($type, 'process')) {
             // dd($type);
-            $name = explode("_", $type);
+            $name = explode('_', $type);
             if (count($name) > 1) {
-                $extra_type_words = $name[0] . "_" . $name[1] ?? '';
+                $extra_type_words = $name[0].'_'.$name[1] ?? '';
             }
             $origType = $name[0];
         }
@@ -475,9 +480,9 @@ class ScalingUpAnalysis extends Model
         }
         $time_end = microtime(true);
         $execution_time = ($time_end - $time_start);
+
         return ['status' => 'success', 'data' => $data, 'execution_time' => $execution_time];
     }
-
 
     /**
      * @return array|array[]
@@ -492,25 +497,25 @@ class ScalingUpAnalysis extends Model
             'outputs' => '#92D050',
             'outcomes' => '#00B050',
             'context_sub_indicators' => '#ffff00',
-            'process_sub_indicators' => '#0099CC'
+            'process_sub_indicators' => '#0099CC',
         ];
 
-        //radar data
-        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $type, $colors[$type], $options, "", static::$scaling_id);
+        // radar data
+        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $type, $colors[$type], $options, '', static::$scaling_id);
 
-        //table data
+        // table data
         $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $type, static::$scaling_id, true);
 
-        //radar data
+        // radar data
         $ranking = Ranking::ranking_indicators($form_ids, $type, $table_indicators, static::$scaling_id);
-        //average data
+        // average data
         $averages = AverageContribution::average_contribution_calculations($form_ids, $table_indicators, $type, $colors[$type], $options, 'imet-core::analysis_report.assessment.', $custom_type);
 
         return [
             'table' => $tables['table'],
             'ranking' => $ranking,
             'average_contribution' => $averages['average_contribution'],
-            'radar' => $radar
+            'radar' => $radar,
         ];
     }
 
@@ -542,17 +547,18 @@ class ScalingUpAnalysis extends Model
 
         App::setLocale($locale);
         $response['Average'] = [
-            ['value' => $average['outcomes'], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator_raw' => 'outcomes', 'indicator' => trans('imet-core::common.steps_eval.outcomes'), "itemStyle" => ["color" => '#00B050']],
-            ['value' => $average['outputs'], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator_raw' => 'outputs', 'indicator' => trans('imet-core::common.steps_eval.outputs'), "itemStyle" => ["color" => '#92D050']],
-            ['value' => $average['process'], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator_raw' => 'process', 'indicator' => trans('imet-core::common.steps_eval.process'), "itemStyle" => ["color" => '#0099CC']],
-            ['value' => $average['inputs'], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator_raw' => 'inputs', 'indicator' => trans('imet-core::common.steps_eval.inputs'), "itemStyle" => ["color" => '#ffc000']],
-            ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator_raw' => 'planning', 'indicator' => trans('imet-core::common.steps_eval.planning'), "itemStyle" => ["color" => '#bfbfbf']],
-            ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator_raw' => 'context', 'indicator' => trans('imet-core::common.steps_eval.context'), "itemStyle" => ["color" => '#ffff00']]];
+            ['value' => $average['outcomes'], 'upper limit' => [$lowerLimit['outcomes'], $upperLimit['outcomes']], 'indicator_raw' => 'outcomes', 'indicator' => trans('imet-core::common.steps_eval.outcomes'), 'itemStyle' => ['color' => '#00B050']],
+            ['value' => $average['outputs'], 'upper limit' => [$lowerLimit['outputs'], $upperLimit['outputs']], 'indicator_raw' => 'outputs', 'indicator' => trans('imet-core::common.steps_eval.outputs'), 'itemStyle' => ['color' => '#92D050']],
+            ['value' => $average['process'], 'upper limit' => [$lowerLimit['process'], $upperLimit['process']], 'indicator_raw' => 'process', 'indicator' => trans('imet-core::common.steps_eval.process'), 'itemStyle' => ['color' => '#0099CC']],
+            ['value' => $average['inputs'], 'upper limit' => [$lowerLimit['inputs'], $upperLimit['inputs']], 'indicator_raw' => 'inputs', 'indicator' => trans('imet-core::common.steps_eval.inputs'), 'itemStyle' => ['color' => '#ffc000']],
+            ['value' => $average['planning'], 'upper limit' => [$lowerLimit['planning'], $upperLimit['planning']], 'indicator_raw' => 'planning', 'indicator' => trans('imet-core::common.steps_eval.planning'), 'itemStyle' => ['color' => '#bfbfbf']],
+            ['value' => $average['context'], 'upper limit' => [$lowerLimit['context'], $upperLimit['context']], 'indicator_raw' => 'context', 'indicator' => trans('imet-core::common.steps_eval.context'), 'itemStyle' => ['color' => '#ffff00']]];
 
         $response['legends'] = [
             'Synthetic indicators',
             'Variability',
         ];
+
         return ['status' => 'success', 'data' => $response];
     }
 
@@ -563,12 +569,11 @@ class ScalingUpAnalysis extends Model
         $radar = Radar::get_radar_indicators($form_ids, $width, $assessments, $overall, static::$scaling_id);
         $end_time = microtime(true);
         $execution_time = $end_time - $start_time;
+
         return array_merge(
             $radar, ['execution_time' => $execution_time]
         );
     }
-
-
 
     public static function get_grouping_analysis(array $parameters, array $assessments = []): array
     {
@@ -581,7 +586,6 @@ class ScalingUpAnalysis extends Model
         return ['status' => 'success', 'data' => ['radar' => $average]];
     }
 
-
     /**
      * @return array|array[]
      */
@@ -590,14 +594,13 @@ class ScalingUpAnalysis extends Model
         return Scatter::get_scatter_grouping_analysis($parameters, $assessments, $not_grouped, static::$scaling_id);
     }
 
-
-
     public static function get_wdpas_by_form_id(array $form_ids): array
     {
         $protected_area = [];
         foreach ($form_ids as $k => $form_id) {
             $protected_area[$k] = ScalingUpWdpa::getByFormID(static::$scaling_id, $form_id);
         }
+
         return $protected_area;
     }
 
@@ -608,6 +611,7 @@ class ScalingUpAnalysis extends Model
     {
         $assessments = Common::get_assessments($form_ids, static::$scaling_id);
         unset($assessments['data']['assessments']);
+
         return $assessments;
     }
 }

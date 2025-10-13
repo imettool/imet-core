@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -24,13 +25,13 @@ trait Planning
             ? (int) $records[0]['EvaluationScore']
             : null;
 
-        if($value===1){
+        if ($value === 1) {
             $score = 25;
-        } elseif($value===2){
+        } elseif ($value === 2) {
             $score = 62.5;
-        } elseif($value===3){
+        } elseif ($value === 3) {
             $score = 87.5;
-        } elseif($value===4){
+        } elseif ($value === 4) {
             $score = 100;
         } else {
             $score = null;

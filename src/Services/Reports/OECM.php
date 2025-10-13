@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,20 +12,17 @@
 
 namespace ImetCore\Services\Reports;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
-use ImetCore\Models\Imet\oecm\Modules\Component\ImetModule_Eval;
 use ImetCore\Models\Imet\oecm\Report;
-
 
 class OECM
 {
     public static function getElementImpacts(int $form_id): array
     {
-        //dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
+        // dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
         return array_map(function ($item) {
             $effects = ['EffectSH', 'EffectER'];
-            $item['average'] = "";
+            $item['average'] = '';
             $total_effect = 0;
             $total_effect_length = 0;
             foreach ($effects as $effect) {
@@ -36,6 +34,7 @@ class OECM
             if ($total_effect_length > 0) {
                 $item['average'] = $total_effect / $total_effect_length;
             }
+
             return $item;
 
         },
@@ -91,7 +90,6 @@ class OECM
         $chart_integration = static::getChartValues($integration_threats, 'Aspect');
         $chart_global = static::getChartValues($global_threats, 'Threat');
 
-
         return ['global' => $chart_global, 'integration' => $chart_integration];
     }
 
@@ -103,6 +101,7 @@ class OECM
             if ($a['__score'] == $b['__score']) {
                 return 0;
             }
+
             return ($a['__score'] > $b['__score']) ? -1 : 1;
         });
 
@@ -110,7 +109,7 @@ class OECM
             if ($value['__score'] !== null) {
                 $fields[$value[$label]] = round($value['__score'], 2);
             } else {
-                $fields[$value[$label]] = "-";
+                $fields[$value[$label]] = '-';
             }
         }
 
@@ -137,18 +136,19 @@ class OECM
             if ($a[$score_field] == $b[$score_field]) {
                 return 0;
             }
+
             return ($a[$score_field] > $b[$score_field]) ? -1 : 1;
         });
 
         foreach ($threats as $value) {
             if ($value[$score_field] !== null) {
-                if (isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== "-") {
-                    $fields[$value['Aspect'] . ' ' . $value['Comments']] = round($value['__score'], 2);
+                if (isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== '-') {
+                    $fields[$value['Aspect'].' '.$value['Comments']] = round($value['__score'], 2);
                 } else {
                     $fields[$value['Aspect']] = round($value[$score_field], 2);
                 }
             } else {
-                $fields[$value['Aspect']] = "-";
+                $fields[$value['Aspect']] = '-';
             }
         }
 
@@ -217,10 +217,11 @@ class OECM
     {
         $elements = [];
         foreach ($items as $item) {
-            if ($item["id"]) {
-                $elements[$label . "_" . $item['ShortOrLongTerm'] . "_" . $index . "_" . $item["id"]] = $item["Element"];
+            if ($item['id']) {
+                $elements[$label.'_'.$item['ShortOrLongTerm'].'_'.$index.'_'.$item['id']] = $item['Element'];
             }
         }
+
         return $elements;
     }
 
@@ -230,7 +231,7 @@ class OECM
         $report = Report::getByForm($form_id);
 
         if (count($report) && array_key_exists('objectives', $report[0])) {
-            if($report[0]['objectives']) {
+            if ($report[0]['objectives']) {
                 $result = json_decode($report[0]['objectives'], true);
                 foreach ($result as $item) {
                     if (str_contains($item['id'], '_context')) {
@@ -239,10 +240,11 @@ class OECM
                         $objectives['evaluation'][$item['id']] = $item['value'];
                     }
                 }
-            }else {
+            } else {
                 return [];
             }
         }
+
         return $objectives;
     }
 }

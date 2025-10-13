@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,26 +12,22 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-
+use Illuminate\Support\Str;
 use ImetCore\Models\Imet\Imet as ImetAlias;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Models\Imet\v1\Imet_Eval;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
-use Illuminate\Support\Str;
 
-trait ConvertSQLite{
-
+trait ConvertSQLite
+{
     /**
      * Convert IMET
-     *
-     * @param $imet
-     * @param $sqlite_connection
      */
     public static function convert($imet, $sqlite_connection): array
     {
         // skip if test
-        if($imet->Country === 'AWY'){
+        if ($imet->Country === 'AWY') {
             return [];
         }
 
@@ -38,7 +35,7 @@ trait ConvertSQLite{
         [$wdpa, $pa_name] = Modules\Component\ImetModule::identifySqlitePa($imet, $sqlite_connection);
 
         // no WDPA nor NAME found: cannot identify
-        if (blank($wdpa) && blank($pa_name)){
+        if (blank($wdpa) && blank($pa_name)) {
             return [];
         }
 
@@ -47,25 +44,25 @@ trait ConvertSQLite{
 
         // Build JSON structure
         $json = [
-            "Imet" => [
-                "name" => $pa_name,
-                "Country" => $imet->Country,
-                "Year" => $imet->Year,
-                "version" => ImetAlias::IMET_V1,
-                "wdpa_id" => trim($wdpa),
-                "language" => Str::lower($imet->FormLanguage),
-                "imet_version" => "SQLITE",
+            'Imet' => [
+                'name' => $pa_name,
+                'Country' => $imet->Country,
+                'Year' => $imet->Year,
+                'version' => ImetAlias::IMET_V1,
+                'wdpa_id' => trim($wdpa),
+                'language' => Str::lower($imet->FormLanguage),
+                'imet_version' => 'SQLITE',
             ],
-            "Encoders" => [],
-            "Context" => [],
-            "Evaluation" => [],
+            'Encoders' => [],
+            'Context' => [],
+            'Evaluation' => [],
         ];
-        if(ProtectedAreaNonWdpa::isNonWdpa($wdpa)){
-            $json["NonWdpaProtectedArea"] = [];
-            $json["NonWdpaProtectedArea"]['id'] = $wdpa;
-            $json["NonWdpaProtectedArea"]['wdpa_id'] = trim($wdpa);
-            $json["NonWdpaProtectedArea"]['name'] = $pa_name;
-            $json["NonWdpaProtectedArea"]['country'] = $imet->Country;
+        if (ProtectedAreaNonWdpa::isNonWdpa($wdpa)) {
+            $json['NonWdpaProtectedArea'] = [];
+            $json['NonWdpaProtectedArea']['id'] = $wdpa;
+            $json['NonWdpaProtectedArea']['wdpa_id'] = trim($wdpa);
+            $json['NonWdpaProtectedArea']['name'] = $pa_name;
+            $json['NonWdpaProtectedArea']['country'] = $imet->Country;
         }
 
         foreach (Imet::allModules() as $module_class) {
@@ -77,6 +74,4 @@ trait ConvertSQLite{
 
         return $json;
     }
-
-
 }

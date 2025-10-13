@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,48 +12,60 @@
 
 namespace ImetCore\Models\Imet\Components\Modules;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Dependencies;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Module;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\App;
 use ReflectionException;
-
 
 class ImetModule extends Module
 {
-    use InjectInView;
     use Dependencies;
+    use InjectInView;
 
     protected static ?string $form_clas;
 
     public const CREATED_AT = 'UpdateDate';
+
     public const UPDATED_AT = 'UpdateDate';
+
     public const UPDATED_BY = 'UpdateBy';
 
     public const TERRESTRIAL = 'terrestrial';
+
     public const TERRESTRIAL_AND_MARINE = 'terrestrial_and_marine';
+
     public const MARINE = 'marine';
+
     public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static ?string $schema = null;
+
     protected $primaryKey = 'id';
+
     public static ?string $foreign_key = 'FormID';
 
     protected bool $enable_raw_export = true;
 
     public $ratingLegend;
+
     public $module_subTitle;
+
     public $module_info_EvaluationQuestion;
+
     public $module_info_Rating;
 
     // Override modular-forms views
     public const MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
+
     public const MODULE_INFO_BAR_VIEW = 'imet-core::components.module.components.bars.info';
+
     public const MODULE_SCRIPT_EDIT_VIEW = 'imet-core::components.module.edit.script';
+
     public const MODULE_SCRIPT_SHOW_VIEW = 'imet-core::components.module.show.script';
 
     /**
@@ -83,12 +96,13 @@ class ImetModule extends Module
     public static function getDefinitions($form_id = null): array
     {
         $definitions = parent::getDefinitions($form_id);
-        $model = new static();
+        $model = new static;
         $definitions['ratingLegend'] = $model->ratingLegend;
         $definitions['module_subTitle'] = $model->module_subTitle;
         $definitions['module_info_EvaluationQuestion'] = $model->module_info_EvaluationQuestion;
         $definitions['module_info_Rating'] = $model->module_info_Rating;
         $definitions['module_scope'] = static::MODULE_SCOPE;
+
         return $definitions;
     }
 
@@ -98,9 +112,9 @@ class ImetModule extends Module
     protected static function getPredefined($form_id = null): ?array
     {
         static::forceLanguage($form_id);
+
         return parent::getPredefined($form_id);
     }
-
 
     /**
      * Override: Check for "warning_on_save" labels
@@ -109,6 +123,7 @@ class ImetModule extends Module
     public static function getVueData($form_id, $records, $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
+
         return static::warningOnSave($vue_data);
     }
 
@@ -127,12 +142,11 @@ class ImetModule extends Module
      */
     public static function forceLanguage($form_id = null): void
     {
-        if($form_id!==null){
+        if ($form_id !== null) {
             $FormLang = (static::$form_class)::getLanguage($form_id);
-            if($FormLang != App::getLocale()){
+            if ($FormLang != App::getLocale()) {
                 App::setLocale($FormLang);
             }
         }
     }
-
 }

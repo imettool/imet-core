@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,18 +12,19 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Helpers\Template;
-use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
 class SpecialStatus extends Modules\Component\ImetModule
 {
     protected $table = 'context_special_status';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+
     protected static array $exclude_raw_fields = ['upload'];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_ACCORDION';
         $this->module_code = 'CTX 1.3';
@@ -37,13 +39,12 @@ class SpecialStatus extends Modules\Component\ImetModule
         ];
 
         $this->module_groups = [
-            'conventions'   => trans('imet-core::oecm_context.SpecialStatus.groups.conventions'),
-            'networks'      => trans('imet-core::oecm_context.SpecialStatus.groups.networks'),
-            'conservation'  => trans('imet-core::oecm_context.SpecialStatus.groups.conservation'),
-            'marine_pa'     => trans('imet-core::oecm_context.SpecialStatus.groups.marine_pa'),
+            'conventions' => trans('imet-core::oecm_context.SpecialStatus.groups.conventions'),
+            'networks' => trans('imet-core::oecm_context.SpecialStatus.groups.networks'),
+            'conservation' => trans('imet-core::oecm_context.SpecialStatus.groups.conservation'),
+            'marine_pa' => trans('imet-core::oecm_context.SpecialStatus.groups.marine_pa'),
         ];
 
         parent::__construct($attributes);
     }
-
 }

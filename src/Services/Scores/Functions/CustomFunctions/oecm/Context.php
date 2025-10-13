@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,31 +12,30 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 
-trait Context {
-
+trait Context
+{
     protected static function score_designations(int $imet_id): ?float
     {
         $records = Designation::getModuleRecords($imet_id)['records'];
         $values = collect($records);
 
-        $numerator = $values->sum(function ($item){
+        $numerator = $values->sum(function ($item) {
             return $item['EvaluationScore'] * ($item['SignificativeClassification'] ? 3 : 1);
         });
-        $denominator = $values->sum(function ($item){
-                return $item['SignificativeClassification'] ? 3 : 1;
-            });
+        $denominator = $values->sum(function ($item) {
+            return $item['SignificativeClassification'] ? 3 : 1;
+        });
 
-        $score = $numerator>0 && $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $numerator > 0 && $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -46,27 +46,28 @@ trait Context {
 
         $records = $module_class::getModule($imet_id);
         $values = $records
-            ->filter(function ($record){
+            ->filter(function ($record) {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
             })
-            ->map(function($item){
+            ->map(function ($item) {
                 $importance = $item['Importance'];
                 $integration = $item['EvaluationScore'];
                 $toPrioritize = $item['IncludeInStatistics'];
                 $item['_numerator'] = $importance * $integration * ($toPrioritize ? 2 : 1);
                 $item['_denominator'] = $importance * ($toPrioritize ? 2 : 1);
+
                 return $item;
             });
 
         $numerator = $values->sum('_numerator');
         $denominator = $values->sum('_denominator');
 
-        $score = $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -78,16 +79,16 @@ trait Context {
                 return $item['__score'] !== null;
             });
 
-        $numerator = $values->sum(function ($item){
+        $numerator = $values->sum(function ($item) {
             return $item['__score'];
         });
         $denominator = $values->sum('Weight');
 
-        $score = $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -102,9 +103,8 @@ trait Context {
 
         $score = static::average($values, null);
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
-
 }

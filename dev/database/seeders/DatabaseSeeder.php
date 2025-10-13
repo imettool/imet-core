@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,15 @@
 
 namespace Database\Seeders;
 
+use Auth;
+use Exception;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use ImetCore\Factories\ProtectedAreaFactory;
 use ImetCore\Factories\SpeciesFactory;
 use ImetCore\Helpers\Dev\FormSeeder as DevDatabaseSeeder;
 use ImetCore\Models\ProtectedArea;
-use Auth;
-use Exception;
-use Illuminate\Database\Seeder;
 use ImetCore\Models\User\Role;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
 
     /**
      * Seed the application's database.
+     *
      * @throws Exception
      */
     public function run(): void
@@ -55,7 +57,7 @@ class DatabaseSeeder extends Seeder
 
         // Seed forms with modules
         $pas = ProtectedArea::all()->random(10);
-        for($i=1; $i<=self::NUM_FORMS; $i++){
+        for ($i = 1; $i <= self::NUM_FORMS; $i++) {
             $language = collect(['en', 'fr', 'sp', 'pt'])->random();
             App::setLocale($language);
             DevDatabaseSeeder::seedFormImetV2($pas->random(), $language);

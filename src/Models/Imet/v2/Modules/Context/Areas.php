@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,20 +21,21 @@ use ImetCore\Models\User\Role;
 class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'context_areas';
+
     public int $label_width = 5;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type   = 'SIMPLE';
-        $this->module_code   = 'CTX 2.2';
-        $this->module_title  = trans('imet-core::v2_context.Areas.title');
+        $this->module_type = 'SIMPLE';
+        $this->module_code = 'CTX 2.2';
+        $this->module_title = trans('imet-core::v2_context.Areas.title');
         $this->module_fields = [
             [
                 'name' => 'AdministrativeArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.AdministrativeArea')
+                'label' => trans('imet-core::v2_context.Areas.fields.AdministrativeArea'),
             ],
             [
                 'name' => 'WDPAArea',
@@ -42,47 +44,47 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'GISArea',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.GISArea')
+                'label' => trans('imet-core::v2_context.Areas.fields.GISArea'),
             ],
             [
                 'name' => 'BoundaryLength',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.BoundaryLength')
+                'label' => trans('imet-core::v2_context.Areas.fields.BoundaryLength'),
             ],
             [
                 'name' => 'TerrestrialArea',
                 'type' => 'numeric',
-                'label' => Template::module_scope(static::TERRESTRIAL).trans('imet-core::v2_context.Areas.fields.TerrestrialArea')
+                'label' => Template::module_scope(static::TERRESTRIAL).trans('imet-core::v2_context.Areas.fields.TerrestrialArea'),
             ],
             [
                 'name' => 'MarineArea',
                 'type' => 'numeric',
-                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.Areas.fields.MarineArea')
+                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.Areas.fields.MarineArea'),
             ],
             [
                 'name' => 'PercentageNationalNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.PercentageNationalNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageNationalNetwork'),
             ],
             [
                 'name' => 'PercentageEcoregion',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.PercentageEcoregion')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageEcoregion'),
             ],
             [
                 'name' => 'PercentageTransnationalNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.PercentageTransnationalNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageTransnationalNetwork'),
             ],
             [
                 'name' => 'PercentageLandscapeNetwork',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.PercentageLandscapeNetwork')
+                'label' => trans('imet-core::v2_context.Areas.fields.PercentageLandscapeNetwork'),
             ],
             [
                 'name' => 'Index',
                 'type' => 'numeric',
-                'label' => trans('imet-core::v2_context.Areas.fields.Index')
+                'label' => trans('imet-core::v2_context.Areas.fields.Index'),
             ],
         ];
 
@@ -90,7 +92,7 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'Observations',
                 'type' => 'text-area',
-                'label' => trans('imet-core::v2_context.Areas.fields.Observations')
+                'label' => trans('imet-core::v2_context.Areas.fields.Observations'),
             ],
         ];
 
@@ -102,7 +104,7 @@ class Areas extends Modules\Component\ImetModule
     public static function getArea($form_id)
     {
         $areas = static::getModuleRecords($form_id)['records'];
-        $area  = 0;
+        $area = 0;
         if (count($areas) > 0) {
             $area = null;
             $area = array_key_exists(
@@ -118,6 +120,7 @@ class Areas extends Modules\Component\ImetModule
                 $areas[0]
             ) && $areas[0]['GISArea'] !== null && $areas[0]['GISArea'] > 0 ? $areas[0]['GISArea'] : $area;
         }
+
         return $area === 0 ? null : $area / 100; // ha->km2
     }
 
@@ -129,10 +132,10 @@ class Areas extends Modules\Component\ImetModule
     {
         $records = parent::getModuleRecords($form_id, $collection);
 
-        if($records['records'][0] === $records['empty_record']){
+        if ($records['records'][0] === $records['empty_record']) {
             $wdpa_id = Imet::query()->find($form_id)->wdpa_id;
             $pa_area_km2 = ProtectedArea::getByWdpa($wdpa_id)->area;
-            if($pa_area_km2 !== null && $pa_area_km2 > 0){
+            if ($pa_area_km2 !== null && $pa_area_km2 > 0) {
                 $pa_area_ha = $pa_area_km2 * 100; // km2 -> ha
                 $records['empty_record']['WDPAArea'] = $pa_area_ha;
                 $records['records'][0] = $records['empty_record'];
@@ -141,5 +144,4 @@ class Areas extends Modules\Component\ImetModule
 
         return $records;
     }
-
 }

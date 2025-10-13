@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ActorsRelations extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR13';
@@ -34,7 +36,7 @@ class ActorsRelations extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Activity',
-            'values' => trans('imet-core::v1_evaluation.ActorsRelations.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.ActorsRelations.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.ActorsRelations.module_info_EvaluationQuestion');
@@ -52,8 +54,8 @@ class ActorsRelations extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_ActorsRelations',
             'fields' => [
-                'Activity', 'EvaluationScore', 'Percentage', 'Comments'
-            ]
+                'Activity', 'EvaluationScore', 'Percentage', 'Comments',
+            ],
         ];
     }
 }

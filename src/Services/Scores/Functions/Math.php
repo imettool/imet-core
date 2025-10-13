@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,9 +18,9 @@ trait Math
     {
         $sum = 0;
         $count_not_null = 0;
-        foreach($data as $item){
+        foreach ($data as $item) {
             $sum += $item ?? 0;
-            if($item !== null){
+            if ($item !== null) {
                 $count_not_null++;
             }
         }
@@ -27,10 +28,8 @@ trait Math
             ? $sum / $count_not_null
             : null;
 
-        return $average!==null && $precision!==null
+        return $average !== null && $precision !== null
             ? round($average, $precision)
             : $average;
     }
-
-
 }

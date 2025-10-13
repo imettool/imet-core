@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class AdministrativeManagement extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR4';
@@ -33,7 +35,7 @@ class AdministrativeManagement extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => trans('imet-core::oecm_evaluation.AdministrativeManagement.predefined_values')
+            'values' => trans('imet-core::oecm_evaluation.AdministrativeManagement.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.AdministrativeManagement.module_info_EvaluationQuestion');
@@ -42,6 +44,4 @@ class AdministrativeManagement extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,22 +16,24 @@ use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
-class StakeholdersService{
-
+class StakeholdersService
+{
     /**
      * Retrieve all the stakeholders records (both direct and indirect)
      */
     public static function getAllRecords(int $form_id): array
     {
         $stakeholder_direct_records = collect(AnalysisStakeholderDirectUsers::getModuleRecords($form_id)['records'])
-            ->map(function($item){
+            ->map(function ($item) {
                 $item['__mode'] = Stakeholders::ONLY_DIRECT;
+
                 return $item;
             })
             ->toArray();
         $stakeholder_indirect_records = collect(AnalysisStakeholderIndirectUsers::getModuleRecords($form_id)['records'])
-            ->map(function($item){
+            ->map(function ($item) {
                 $item['__mode'] = Stakeholders::ONLY_INDIRECT;
+
                 return $item;
             })
             ->toArray();
@@ -52,13 +55,13 @@ class StakeholdersService{
                     ];
 
                     // extract direct & indirect stakeholders arrays
-                    if($record['__mode'] == Stakeholders::ONLY_DIRECT){
+                    if ($record['__mode'] == Stakeholders::ONLY_DIRECT) {
                         $threats[$threat]['stakeholders_direct'][] = $record['Stakeholder'];
-                    } elseif($record['__mode'] == Stakeholders::ONLY_INDIRECT){
+                    } elseif ($record['__mode'] == Stakeholders::ONLY_INDIRECT) {
                         $threats[$threat]['stakeholders_indirect'][] = $record['Stakeholder'];
                     }
 
-                    if($record['Illegal']) {
+                    if ($record['Illegal']) {
                         $threats[$threat]['elements_illegal'][$record['Element']] = $threats[$threat]['elements_illegal'][$record['Element']] ?? [];
                         $threats[$threat]['elements_illegal'][$record['Element']][] = $record['Description'];
                     } else {
@@ -73,15 +76,16 @@ class StakeholdersService{
             $list = '';
             foreach ($elements as $elem_key => $spec_elements) {
                 $list .= ''.$elem_key;
-                if(count($spec_elements) > 0){
+                if (count($spec_elements) > 0) {
                     $list .= ' ('.implode(', ', $spec_elements).')';
                 }
                 $list .= ', ';
             }
+
             return rtrim($list, ', ');
         };
 
-        foreach($threats as $idx => $threat){
+        foreach ($threats as $idx => $threat) {
             // render key elements lists
             $threats[$idx]['elements_legal_list'] = $render_list($threat['elements_legal']);
             $threats[$idx]['elements_illegal_list'] = $render_list($threat['elements_illegal']);
@@ -94,5 +98,4 @@ class StakeholdersService{
 
         return $threats;
     }
-
 }

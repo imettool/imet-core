@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,7 +18,6 @@ use ImetCore\Models\Imet\v2\Imet as ImetV2;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use ImetCore\Services\Scores\Functions\V2Scores;
-use ImetCore\Services\Scores\Functions\V1Scores;
 
 class ImetScores
 {
@@ -28,12 +28,14 @@ class ImetScores
      */
     private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
-        if(is_int($imet) or is_string($imet)) {
+        if (is_int($imet) or is_string($imet)) {
             $imet_model = ImetV2::query()->find($imet);
-            return $imet_model->version===ImetV2::version
+
+            return $imet_model->version === ImetV2::version
                 ? $imet_model
                 : ImetV1::query()->find($imet);
         }
+
         return $imet;
     }
 
@@ -43,6 +45,7 @@ class ImetScores
     public static function get_all(ImetV1|ImetV2|int|string $imet): array
     {
         $imet = static::getAsModel($imet);
+
         return $imet->version === Imet::IMET_V1
             ? V1ToV2Scores::get_scores($imet->getKey())
             : V2Scores::get_scores($imet->getKey());
@@ -60,6 +63,7 @@ class ImetScores
         if ($with_abbreviations) {
             $labels = static::labels($imet->version, true);
             unset($scores['imet_index']);
+
             return array_combine($labels, $scores);
         } else {
             return $scores;
@@ -88,6 +92,7 @@ class ImetScores
     public static function refresh_scores(ImetV1|ImetV2|int|string $imet): array
     {
         $imet = static::getAsModel($imet);
+
         return $imet->version === Imet::IMET_V1
             ? V1ToV2Scores::get_scores($imet->getKey(), true)
             : V2Scores::get_scores($imet->getKey(), true);
@@ -108,5 +113,4 @@ class ImetScores
     {
         return static::get_scores_labels($version);
     }
-
 }

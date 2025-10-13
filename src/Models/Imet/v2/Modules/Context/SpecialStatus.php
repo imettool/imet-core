@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -22,7 +23,8 @@ class SpecialStatus extends Modules\Component\ImetModule
 
     protected static array $exclude_raw_fields = ['upload'];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_ACCORDION';
         $this->module_code = 'CTX 1.3';
@@ -37,10 +39,10 @@ class SpecialStatus extends Modules\Component\ImetModule
         ];
 
         $this->module_groups = [
-            'conventions'   => trans('imet-core::v2_context.SpecialStatus.groups.conventions'),
-            'networks'      => trans('imet-core::v2_context.SpecialStatus.groups.networks'),
-            'conservation'  => trans('imet-core::v2_context.SpecialStatus.groups.conservation'),
-            'marine_pa'     => trans('imet-core::v2_context.SpecialStatus.groups.marine_pa'),
+            'conventions' => trans('imet-core::v2_context.SpecialStatus.groups.conventions'),
+            'networks' => trans('imet-core::v2_context.SpecialStatus.groups.networks'),
+            'conservation' => trans('imet-core::v2_context.SpecialStatus.groups.conservation'),
+            'marine_pa' => trans('imet-core::v2_context.SpecialStatus.groups.marine_pa'),
         ];
 
         $this->module_info = trans('imet-core::v2_context.SpecialStatus.module_info');
@@ -48,5 +50,4 @@ class SpecialStatus extends Modules\Component\ImetModule
         parent::__construct($attributes);
 
     }
-
 }

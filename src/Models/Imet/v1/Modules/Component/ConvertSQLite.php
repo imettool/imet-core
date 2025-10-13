@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,22 +12,19 @@
 
 namespace ImetCore\Models\Imet\v1\Modules\Component;
 
-use ImetCore\Models\ProtectedArea;
 use Illuminate\Database\ConnectionInterface;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use ImetCore\Models\ProtectedArea;
 
 /**
  * @method static conversionDataReview(array $record)
  * @method static conversionParameters()
  */
-trait ConvertSQLite{
-
+trait ConvertSQLite
+{
     /**
      * Convert ProtectedAreaID to WDPA from SQLITE knowledgebase
-     *
-     * @param $id
-     * @param $sqlite_connection
      */
     public static function wdpaBySqliteProtectedAreaID($id, $sqlite_connection): ?string
     {
@@ -34,14 +32,13 @@ trait ConvertSQLite{
             ->select()
             ->where('id', $id)
             ->first();
+
         return $knowledge_base ? trim($knowledge_base->WDPA) : null;
     }
 
     /**
      * Identify PA (wdpa or name)
      *
-     * @param $imet
-     * @param $sqlite_connection
      * @return array|null[]
      */
     public static function identifySqlitePa($imet, $sqlite_connection): array
@@ -52,7 +49,7 @@ trait ConvertSQLite{
             ->where('id', $imet->ProtectedAreaID)
             ->first();
         $wdpa = $knowledge_base->WDPA ?? null;
-        if($wdpa === null){
+        if ($wdpa === null) {
             $general_info = $sqlite_connection->table('ProtectedAreas_GeneralInfo')
                 ->select(['CompleteName', 'CompleteNameWDPA', 'UsedName', 'WDPA'])
                 ->where('FormID', $imet->FormID)
@@ -61,8 +58,8 @@ trait ConvertSQLite{
         }
 
         // Valid WDPA found
-        if(filled($wdpa)
-            && $pa = ProtectedArea::query()->where('wdpa_id', $wdpa)->first()){
+        if (filled($wdpa)
+            && $pa = ProtectedArea::query()->where('wdpa_id', $wdpa)->first()) {
             return [$wdpa, $pa->name];
         }
 
@@ -76,12 +73,10 @@ trait ConvertSQLite{
 
     /**
      * Execute conversion of OLD SQLite IMET to array
-     *
-     * @param $imet_data
      */
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
-        if(!method_exists(get_called_class(), 'conversionParameters')){
+        if (! method_exists(get_called_class(), 'conversionParameters')) {
             return [];
         }
 
@@ -92,29 +87,29 @@ trait ConvertSQLite{
             ->where('FormID', $imet_data->FormID)
             ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
-            ->map(function($record) use ($sqlite_structure, $sqlite_connection){
+            ->map(function ($record) use ($sqlite_structure, $sqlite_connection) {
 
                 $record = (array) $record;
                 $json = [];
 
                 // Review data from SQLITE whenever necessary
-                if(method_exists(get_called_class(), 'conversionDataReview')){
+                if (method_exists(get_called_class(), 'conversionDataReview')) {
                     $record = static::conversionDataReview($record, $sqlite_connection);
                 }
 
                 // Match SQLite fields to current module fields
-                $module_fields = (new static())->getModuleFieldsNames(['FILE_BINARY']);
+                $module_fields = (new static)->getModuleFieldsNames(['FILE_BINARY']);
                 $sqlite_fields = $sqlite_structure['fields'];
-                foreach ($module_fields as $field_idx => $field){
-                    //Find and import corresponding BYTEA field
-                    if(Str::contains($field, '_BYTEA')){
+                foreach ($module_fields as $field_idx => $field) {
+                    // Find and import corresponding BYTEA field
+                    if (Str::contains($field, '_BYTEA')) {
                         $filename_field = Str::replace('_BYTEA', '', $field);
                         $filename_field_idx = array_search($filename_field, $sqlite_fields);
-                        $sqlite_filename_field = $sqlite_fields[$filename_field_idx] . '_BYTEA';
-                        array_splice( $sqlite_fields, $field_idx, 0, $sqlite_filename_field);
+                        $sqlite_filename_field = $sqlite_fields[$filename_field_idx].'_BYTEA';
+                        array_splice($sqlite_fields, $field_idx, 0, $sqlite_filename_field);
                     }
                     // Import corresponding field
-                    if($sqlite_fields[$field_idx]!==null){
+                    if ($sqlite_fields[$field_idx] !== null) {
                         $json[$field] = $record[$sqlite_fields[$field_idx]];
                     }
                 }
@@ -132,8 +127,6 @@ trait ConvertSQLite{
     /**
      * Replace OLD label with keys in the group filed of GROUP_TABLE nad GROUP_ACCORDION modules
      *
-     * @param $record
-     * @param $group_field
      * @return mixed
      */
     protected static function convertGroupLabelToKey($record, $group_field)
@@ -145,24 +138,22 @@ trait ConvertSQLite{
 
         // EN corresponding label
         App::setLocale('en');
-        $label = array_search($record[$group_field], (new static())->module_groups);
+        $label = array_search($record[$group_field], (new static)->module_groups);
 
         // FR corresponding label
-        if(!$label){
+        if (! $label) {
             App::setLocale('fr');
-            $label = array_search($record[$group_field], (new static())->module_groups);
+            $label = array_search($record[$group_field], (new static)->module_groups);
         }
 
-        if($label!==false){
+        if ($label !== false) {
             $record[$group_field] = $label;
         }
 
-        if(!$label and $record[$group_field]!==''){
-            dd('LABEL not found: "' . $record[$group_field] . '" (' . $group_field . ' - ' . static::class . ')');
+        if (! $label and $record[$group_field] !== '') {
+            dd('LABEL not found: "'.$record[$group_field].'" ('.$group_field.' - '.static::class.')');
         }
 
         return $record;
     }
-
-
 }

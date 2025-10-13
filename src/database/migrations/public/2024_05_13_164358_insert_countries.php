@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,7 +17,6 @@ use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
@@ -24,16 +24,16 @@ return new class extends Migration
     {
         // CSV retrieved from https://stefangabos.github.io/world_countries/
 
-        $filename = dirname(__FILE__) . '/countries.csv';
+        $filename = dirname(__FILE__).'/countries.csv';
         $data = [];
 
         // Read the CSV file and extract the countries
-        $handle = fopen($filename, "r");
-        if($handle) {
+        $handle = fopen($filename, 'r');
+        if ($handle) {
             $header = fgetcsv($handle);
             while (($row = fgetcsv($handle)) !== false) {
                 $row = array_combine($header, $row);
-                if($row) {
+                if ($row) {
                     $row = [
                         'iso2' => Str::upper($row['alpha2']),
                         'iso3' => Str::upper($row['alpha3']),
@@ -42,7 +42,7 @@ return new class extends Migration
                         'name_en' => $row['en'],
                         'name_sp' => $row['es'],
                         'name_pt' => $row['pt'],
-                        'region_id' => null
+                        'region_id' => null,
                     ];
 
                     $data[] = $row;
@@ -85,7 +85,7 @@ return new class extends Migration
             'name_en' => 'Far Far Away',
             'name_sp' => 'Far Far Away',
             'name_pt' => 'Tão Tão Distante',
-            'region_id' => null
+            'region_id' => null,
         ];
     }
 
@@ -96,11 +96,11 @@ return new class extends Migration
     {
         foreach ($data as $key => $country) {
             if (in_array($country['iso3'],
-                ['AGO', 'ZAF', 'BWA', 'COM', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZMB', 'ZWE',])) {
+                ['AGO', 'ZAF', 'BWA', 'COM', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZMB', 'ZWE'])) {
                 $data[$key]['region_id'] = 'sa';
             }
             if (in_array($country['iso3'],
-                ['ATG','BHS','BRB', 'BLZ', 'CUB', 'DMA','GRD','GUY', 'HTI', 'JAM', 'DOM', 'LCA', 'KNA', 'VCT', 'SUR', 'TTO'])) {
+                ['ATG', 'BHS', 'BRB', 'BLZ', 'CUB', 'DMA', 'GRD', 'GUY', 'HTI', 'JAM', 'DOM', 'LCA', 'KNA', 'VCT', 'SUR', 'TTO'])) {
                 $data[$key]['region_id'] = 'ac';
             }
             if (in_array($country['iso3'],
@@ -124,6 +124,4 @@ return new class extends Migration
 
         return $data;
     }
-
-
 };

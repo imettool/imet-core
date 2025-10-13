@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,7 +17,6 @@ use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
@@ -28,7 +28,7 @@ return new class extends Migration
                 'common_name_fr',
                 'common_name_en',
                 'common_name_sp',
-                'country_distribution'
+                'country_distribution',
             ]);
             $table->dropUnique(['order', 'family', 'genus', 'species']);
 
@@ -72,7 +72,7 @@ return new class extends Migration
                 'vernacular_names_kor',
                 'authorship',
                 'col_id',
-                'environment'
+                'environment',
             ]);
 
             $table->string('common_name_fr', 500)->nullable();

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,9 @@
 
 namespace ImetCore\Models\Imet\CrossAnalysis;
 
+use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Services\Scores\ImetScores;
-use Illuminate\Database\Eloquent\Model;
 
 class CrossAnalysis extends Model
 {
@@ -25,7 +26,7 @@ class CrossAnalysis extends Model
         'inputs' => ['I2', 'I5'],
         'planning' => ['P1', 'P4'],
         'outcomes' => ['OC3'],
-        'outputs' => ['OP3']
+        'outputs' => ['OP3'],
     ];
 
     private static array $compares = [
@@ -37,12 +38,11 @@ class CrossAnalysis extends Model
         ['PR8', 'OP3'],
         ['P4', 'PR4', 'PR5'],
         ['PR11', 'OC3'],
-        ['C15', 'PR18']
+        ['C15', 'PR18'],
     ];
 
     /**
      * retrieve all indicators data
-     * @param $item
      */
     public static function getIndicators($item): array
     {
@@ -65,17 +65,17 @@ class CrossAnalysis extends Model
                             'value' => $filteredArray[$code],
                             'question' => $definitions['module_info_EvaluationQuestion'][0],
                             'step' => $step_key,
-                            'key' => "module_" . $definitions['module_key']];
+                            'key' => 'module_'.$definitions['module_key']];
                     }
                 }
             }
         }
+
         return static::compareValues($compareElements);
     }
 
     /**
      * compare values of indicators
-     * @param $elements
      */
     private static function compareValues($elements): array
     {
@@ -85,10 +85,10 @@ class CrossAnalysis extends Model
             $array_length = count($item);
             for ($i = 0; $i < $array_length; $i++) {
                 for ($k = $i + 1; $k < $array_length; $k++) {
-                    if(isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
-                        $value_indi1 = Common::values_correction($item[$i] ,$elements[$item[$i]]['value']);
-                        $value_indi2 = Common::values_correction($item[$k] ,$elements[$item[$k]]['value']);
-                        $value = abs((double)$value_indi1 - (double)$value_indi2);
+                    if (isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
+                        $value_indi1 = Common::values_correction($item[$i], $elements[$item[$i]]['value']);
+                        $value_indi2 = Common::values_correction($item[$k], $elements[$item[$k]]['value']);
+                        $value = abs((float) $value_indi1 - (float) $value_indi2);
                         if (($value) > static::$threshold) {
                             $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
                             $error_indicators[$j][$item[$k]] = $elements[$item[$k]];
@@ -101,6 +101,4 @@ class CrossAnalysis extends Model
 
         return $error_indicators;
     }
-
-
 }

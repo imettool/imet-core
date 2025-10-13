@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,14 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-
 class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_empowerment_governance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR3';
@@ -35,7 +36,7 @@ class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
         $this->module_groups = [
             'group0' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group0'),
             'group1' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group1'),
-            'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group2')
+            'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group2'),
         ];
 
         $this->predefined_values = [
@@ -43,8 +44,8 @@ class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
             'values' => [
                 'group0' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group0'),
                 'group1' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group1'),
-                'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group2')
-            ]
+                'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group2'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.EmpowermentGovernance.module_info_EvaluationQuestion');
@@ -53,6 +54,4 @@ class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
-
-
 }

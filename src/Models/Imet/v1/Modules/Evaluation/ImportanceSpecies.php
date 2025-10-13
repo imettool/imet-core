@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.3';
@@ -53,16 +55,13 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_ImportanceC13',
             'fields' => [
-                'Aspect',  'EvaluationScore', 'SignificativeSpecies', 'Comments', 'GroupAspect'
-            ]
+                'Aspect',  'EvaluationScore', 'SignificativeSpecies', 'Comments', 'GroupAspect',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

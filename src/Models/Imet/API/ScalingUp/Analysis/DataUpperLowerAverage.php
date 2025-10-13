@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -34,7 +35,7 @@ trait DataUpperLowerAverage
             $api[] = [
                 'wdpa_id' => $wdpa['id'],
                 'name' => $indicator,
-                'values' => $indicator_values
+                'values' => $indicator_values,
             ];
         }
 
@@ -47,29 +48,28 @@ trait DataUpperLowerAverage
         $api[] = [
             'wdpa_id' => 0,
             'name' => 'Lower Limit',
-            'values' => $radar['values']['lower limit']
+            'values' => $radar['values']['lower limit'],
         ];
         $api[] = [
             'wdpa_id' => 0,
             'name' => 'Upper Limit',
-            'values' => $radar['values']['upper limit']
+            'values' => $radar['values']['upper limit'],
         ];
 
         $api[] = [
             'wdpa_id' => 0,
             'name' => 'Average',
-            'values' => $average_values
+            'values' => $average_values,
         ];
-        //}
+        // }
 
         return [$api];
     }
 
-
     public static function management_context_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('management_context');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators);
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -77,7 +77,7 @@ trait DataUpperLowerAverage
     public static function value_and_importance_sub_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators);
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -85,7 +85,7 @@ trait DataUpperLowerAverage
     public static function planning_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('planning');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'planning');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'planning');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -93,7 +93,7 @@ trait DataUpperLowerAverage
     public static function inputs_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('inputs');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'inputs');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'inputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -101,7 +101,7 @@ trait DataUpperLowerAverage
     public static function outputs_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outputs');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'outputs');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'outputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -109,7 +109,7 @@ trait DataUpperLowerAverage
     public static function outcomes_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outcomes');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'outcomes');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'outcomes');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -117,7 +117,7 @@ trait DataUpperLowerAverage
     public static function process_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -125,7 +125,7 @@ trait DataUpperLowerAverage
     public static function process_internal_management_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -133,7 +133,7 @@ trait DataUpperLowerAverage
     public static function process_management_protection_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -141,7 +141,7 @@ trait DataUpperLowerAverage
     public static function process_stakeholders_relationships_indicators_radar(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');
-        list($api) = static::retrieve_data_upper_low_average($items, $indicators, 'process');
+        [$api] = static::retrieve_data_upper_low_average($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,10 +19,6 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
 
 trait Overall
 {
-
-    /**
-     * @param $items
-     */
     public static function overall_ranking($items): array
     {
         $api = [];
@@ -45,7 +42,6 @@ trait Overall
     }
 
     /**
-     * @param $items
      * @return array|array[]|\array[][]
      */
     public static function overall_average_of_six_elements($items): array
@@ -59,8 +55,8 @@ trait Overall
                 'values' => [
                     'value' => $average['value'],
                     'percentile_10' => $average['upper limit'][0],
-                    'percentile_90' => $average['upper limit'][1]
-                ]
+                    'percentile_90' => $average['upper limit'][1],
+                ],
             ];
         }
 
@@ -68,7 +64,6 @@ trait Overall
     }
 
     /**
-     * @param $items
      * @return array|array[]|\array[][]
      */
     public static function scatter_visualization_synthetic_indicators($items): array
@@ -76,8 +71,8 @@ trait Overall
         $api = [];
         $labels = [
             'process' => trans('imet-core::common.steps_eval.process'),
-            'context_planning_inputs' => trans('imet-core::common.steps_eval.context') . ", " . trans('imet-core::common.steps_eval.planning') . ", " . trans('imet-core::common.steps_eval.inputs'),
-            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes') . ", " . trans('imet-core::common.steps_eval.outputs')
+            'context_planning_inputs' => trans('imet-core::common.steps_eval.context').', '.trans('imet-core::common.steps_eval.planning').', '.trans('imet-core::common.steps_eval.inputs'),
+            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes').', '.trans('imet-core::common.steps_eval.outputs'),
         ];
 
         $assessments = Common::get_assessments($items);
@@ -85,12 +80,12 @@ trait Overall
             $api[] = [
                 'name' => $value['name'],
                 'wdpa_id' => $value['wdpa_id'],
-                "year" => $value['year'],
+                'year' => $value['year'],
                 'value' => [
                     'process' => Common::round_number($value['process']),
                     'context_planning_inputs' => Common::round_number(($value['context'] + $value['planning'] + $value['inputs']) / 3),
-                    'outcomes_outputs' => Common::round_number(($value['outcomes'] + $value['outputs']) / 2)
-                ]
+                    'outcomes_outputs' => Common::round_number(($value['outcomes'] + $value['outputs']) / 2),
+                ],
             ];
         }
 
@@ -98,7 +93,6 @@ trait Overall
     }
 
     /**
-     * @param $items
      * @return array|array[]|\array[][]
      */
     public static function visualization_synthetics_indicators($items): array
@@ -111,14 +105,14 @@ trait Overall
             'process' => trans('imet-core::common.steps_eval.process'),
             'inputs' => trans('imet-core::common.steps_eval.inputs'),
             'planning' => trans('imet-core::common.steps_eval.planning'),
-            'imet_index' => trans('imet-core::common.indexes.imet')
+            'imet_index' => trans('imet-core::common.indexes.imet'),
         ];
 
         $assessments = Common::get_assessments($items);
         $radars = Radar::get_radar_indicators($items, false, $assessments, true);
 
         foreach ($radars['data']['diagrams'] as $key => $value) {
-            $wdpa_id = $value['wdpa_id'] ?? "-";
+            $wdpa_id = $value['wdpa_id'] ?? '-';
             unset($value['color']);
             unset($value['lineStyle']);
             unset($value['width']);
@@ -126,7 +120,7 @@ trait Overall
             $api[] = [
                 'name' => $key,
                 'wdpa_id' => $wdpa_id,
-                'value' => $value
+                'value' => $value,
             ];
         }
 

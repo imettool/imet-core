@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'P1';
@@ -33,7 +35,7 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Regulation',
-            'values' => trans('imet-core::v2_evaluation.RegulationsAdequacy.predefined_values')
+            'values' => trans('imet-core::v2_evaluation.RegulationsAdequacy.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.RegulationsAdequacy.module_info_EvaluationQuestion');
@@ -45,7 +47,8 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 
     public static function get_marine_predefined(): array
     {
-        $predefined = (new static())->predefined_values['values'];
+        $predefined = (new static)->predefined_values['values'];
+
         return [
             $predefined[9],
             $predefined[10],
@@ -53,9 +56,7 @@ class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
             $predefined[12],
             $predefined[13],
             $predefined[14],
-            $predefined[15]
+            $predefined[15],
         ];
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,24 +14,24 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
 
 class Designation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'designation';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Aspect'],
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect']
+        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1';
@@ -57,13 +58,12 @@ class Designation extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
-                : []
+                : [],
         ];
     }
 
     /**
      * Provide the list of prioritized key elements
-     * @param $form_id
      */
     public static function getPrioritizedElements($form_id): array
     {
@@ -74,7 +74,6 @@ class Designation extends Modules\Component\ImetModule_Eval
             ->pluck('Aspect')
             ->toArray();
     }
-
 
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
@@ -90,7 +89,7 @@ class Designation extends Modules\Component\ImetModule_Eval
 
         // Make diff to find out what to drop
         $to_be_dropped = array_diff($existing_values, $updated_values);
+
         return array_values($to_be_dropped);
     }
-
 }

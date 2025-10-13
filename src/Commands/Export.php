@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,9 @@
 
 namespace ImetCore\Commands;
 
+use Illuminate\Console\Command;
 use ImetCore\Controllers\Imet\v2\Controller as ImetController;
 use ImetCore\Models\Imet\Imet;
-use Illuminate\Console\Command;
-
 
 class Export extends Command
 {
@@ -47,15 +47,15 @@ class Export extends Command
      */
     public function handle(): int
     {
-        $i=0;
+        $i = 0;
         $imets = Imet::query()->orderBy('name')->orderBy('Year')->get();
-        $this->info($imets->count() . ' IMETS found.');
-        foreach ($imets as $imet){
+        $this->info($imets->count().' IMETS found.');
+        foreach ($imets as $imet) {
             new ImetController()->export($imet, false, true);
-            $this->info($imet->name . ' (' . $imet->Year . ') exported.');
+            $this->info($imet->name.' ('.$imet->Year.') exported.');
             $i++;
         }
-        $this->info($i . ' IMETS exported (storage/framework/cache/).');
+        $this->info($i.' IMETS exported (storage/framework/cache/).');
 
         return 0;
     }

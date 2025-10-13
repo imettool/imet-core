@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,14 +12,14 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
-use ImetCore\Models\Imet\oecm\Modules;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Str;
+use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
 class Stakeholders extends Modules\Component\ImetModule
 {
     protected $table = 'context_stakeholders_natural_resources';
+
     protected bool $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -38,7 +39,7 @@ class Stakeholders extends Modules\Component\ImetModule
         'UsesCategories' => 'required_with:Element',
         'LevelEngagement' => 'required_unless:GeographicalProximity,true',
         'LevelInterest' => 'required_unless:GeographicalProximity,true',
-        'LevelExpertise' => 'required_unless:GeographicalProximity,true'
+        'LevelExpertise' => 'required_unless:GeographicalProximity,true',
     ];
 
     public function __construct(array $attributes = [])
@@ -70,15 +71,15 @@ class Stakeholders extends Modules\Component\ImetModule
     #[\Override]
     public static function updateModuleRecords($records, $form_id): void
     {
-        foreach ($records as $index => $record){
+        foreach ($records as $index => $record) {
             // Ensure no "newline" (or other not allowed entities) are saved
             $record['Element'] = Str::replace("\n", '', $record['Element']);
             $record['Element'] = Str::replace("\r", '', $record['Element']);
             $record['Element'] = Str::replace("\t", '', $record['Element']);
-            $record['Element'] = Str::replace("&nbsp;", '', $record['Element']);
+            $record['Element'] = Str::replace('&nbsp;', '', $record['Element']);
             $record['Element'] = trim($record['Element']);
             // Remove all empty records: where "Element" is empty
-            if($record['Element']===null || trim($record['Element'])===''){
+            if ($record['Element'] === null || trim($record['Element']) === '') {
                 unset($records[$index]);
             }
         }
@@ -87,7 +88,9 @@ class Stakeholders extends Modules\Component\ImetModule
     }
 
     public const ALL_USERS = 0;
+
     public const ONLY_DIRECT = 1;
+
     public const ONLY_INDIRECT = 2;
 
     /**
@@ -100,9 +103,9 @@ class Stakeholders extends Modules\Component\ImetModule
         $updated_values = collect($records)->pluck('DirectUser', 'Element')->toArray();
 
         // Make diff to find out what to drop
-        foreach($updated_values as $elem => $direct){
-            if(array_key_exists($elem, $existing_values)
-                && $direct === $existing_values[$elem]){
+        foreach ($updated_values as $elem => $direct) {
+            if (array_key_exists($elem, $existing_values)
+                && $direct === $existing_values[$elem]) {
                 unset($existing_values[$elem]);
             }
         }
@@ -112,29 +115,28 @@ class Stakeholders extends Modules\Component\ImetModule
 
     /**
      * Retrieve stakeholders' list (grouped or not)
-     *
-     * @param $form_id
      */
     public static function getStakeholders($form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
     {
         $query = static::getModule($form_id);
 
-        if($mode == static::ONLY_DIRECT){
+        if ($mode == static::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } else if($mode == static::ONLY_INDIRECT){
+        } elseif ($mode == static::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 
-        if($with_categories){
+        if ($with_categories) {
             $query = $query
                 ->groupBy('Element')
                 ->map(function ($group) {
                     $categories = [];
                     $group->map(function ($item) use (&$categories) {
-                        if($item['UsesCategories'] !== null){
+                        if ($item['UsesCategories'] !== null) {
                             $categories = array_merge($categories, json_decode($item['UsesCategories']));
                         }
                     });
+
                     return json_encode($categories);
                 });
         } else {
@@ -149,26 +151,24 @@ class Stakeholders extends Modules\Component\ImetModule
 
     /**
      * Retrieve stakeholders' wights
-     *
-     * @param $form_id
      */
     public static function calculateWeights($form_id, int $mode = self::ALL_USERS): array
     {
         $query = static::getModule($form_id);
 
-        if($mode == static::ONLY_DIRECT){
+        if ($mode == static::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } else if($mode == static::ONLY_INDIRECT){
+        } elseif ($mode == static::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 
         $records = $query->toArray();
 
         return collect($records)
-            ->filter(function($item){
+            ->filter(function ($item) {
                 return filled($item['Element']);
             })
-            ->map(function($item){
+            ->map(function ($item) {
 
                 $UsesCategories = filled($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
@@ -176,9 +176,9 @@ class Stakeholders extends Modules\Component\ImetModule
                 $sum = $item['GeographicalProximity'] ? 4 : 0;
                 $sum += $UsesCategories ?? 0; // max 4
                 $sum += $item['DirectUser'] ? 7 : 0;
-                $sum += $item['LevelEngagement']!==null ? $item['LevelEngagement'] : 0;
-                $sum += $item['LevelInterest']!==null ? $item['LevelInterest'] : 0;
-                $sum += $item['LevelExpertise']!==null ? $item['LevelExpertise'] : 0;
+                $sum += $item['LevelEngagement'] !== null ? $item['LevelEngagement'] : 0;
+                $sum += $item['LevelInterest'] !== null ? $item['LevelInterest'] : 0;
+                $sum += $item['LevelExpertise'] !== null ? $item['LevelExpertise'] : 0;
 
                 $max_score =
                     4 // GeographicalProximity

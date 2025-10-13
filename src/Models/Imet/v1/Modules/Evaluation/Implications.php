@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class Implications extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR11';
@@ -36,15 +38,15 @@ class Implications extends Modules\Component\ImetModule_Eval
             'group0' => trans('imet-core::v1_evaluation.Implications.groups.group0'),
             'group1' => trans('imet-core::v1_evaluation.Implications.groups.group1'),
             'group2' => trans('imet-core::v1_evaluation.Implications.groups.group2'),
-            'group3' => trans('imet-core::v1_evaluation.Implications.groups.group3')
+            'group3' => trans('imet-core::v1_evaluation.Implications.groups.group3'),
         ];
 
         $this->predefined_values = [
             'field' => 'Actor',
             'values' => [
                 'group0' => trans('imet-core::v1_evaluation.Implications.predefined_values.group0'),
-                'group1' => trans('imet-core::v1_evaluation.Implications.predefined_values.group1')
-            ]
+                'group1' => trans('imet-core::v1_evaluation.Implications.predefined_values.group1'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.Implications.module_info_EvaluationQuestion');
@@ -62,16 +64,13 @@ class Implications extends Modules\Component\ImetModule_Eval
         return [
             'table' => 'Eval_Implications',
             'fields' => [
-                'Actor', 'EvaluationScore', 'Percentage', 'Comments', 'GroupActor'
-            ]
+                'Actor', 'EvaluationScore', 'Percentage', 'Comments', 'GroupActor',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

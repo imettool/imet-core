@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,13 +21,14 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR10';
         $this->module_title = trans('imet-core::v2_evaluation.StakeholderCooperation.title');
         $this->module_fields = [
-            ['name' => 'Element',           'type' => 'text-area',          'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.Element'), 'other'=>'rows="3"'],
+            ['name' => 'Element',           'type' => 'text-area',          'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'MPInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.MPInvolvement')],
             ['name' => 'MPIImplementation', 'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.MPIImplementation')],
             ['name' => 'BAInvolvement',     'type' => 'checkbox-boolean_numeric',  'label' => trans('imet-core::v2_evaluation.StakeholderCooperation.fields.BAInvolvement')],
@@ -50,7 +52,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
                 'group1' => trans('imet-core::v2_evaluation.StakeholderCooperation.predefined_values.group1'),
                 'group2' => trans('imet-core::v2_evaluation.StakeholderCooperation.predefined_values.group2'),
                 'group3' => trans('imet-core::v2_evaluation.StakeholderCooperation.predefined_values.group3'),
-            ]
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.StakeholderCooperation.module_info_EvaluationQuestion');

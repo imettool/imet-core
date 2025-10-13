@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,11 +13,10 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\ProtectedArea;
+use Illuminate\Support\Str;
+use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Type\JSON;
-use ImetCore\Models\Imet\v2\Modules;
-use Illuminate\Support\Str;
 
 class Networks extends Modules\Component\ImetModule
 {
@@ -24,7 +24,8 @@ class Networks extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 1.4';
@@ -54,7 +55,7 @@ class Networks extends Modules\Component\ImetModule
         $models = parent::getModule($form_id);
 
         // Upgrade existing data
-        $models->map(function ($model){
+        $models->map(function ($model) {
             $model->timestamps = false;
             $model->fill(
                 static::upgradeModule($model->toArray())
@@ -67,16 +68,17 @@ class Networks extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ### Update "ProtectedAreas" to comma-separated list of WDPA ids ###
-        if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '_')){
+        if ($record['ProtectedAreas'] !== null && Str::contains($record['ProtectedAreas'], '_')) {
 
             $pas = explode(',', $record['ProtectedAreas']);
 
             // Convert global_id to wdpa
             $pas = collect($pas)->map(function ($pa) {
-                if(Str::startsWith($pa, 'OFAC_')){
+                if (Str::startsWith($pa, 'OFAC_')) {
                     $model = \ImetCore\Models\ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
+
                     return $model->wdpa_id ?? null;
-                } else{
+                } else {
                     return explode('_', $pa)[1]; // for other regions: global_id is region + wdpa
                 }
             })->all();
@@ -94,12 +96,12 @@ class Networks extends Modules\Component\ImetModule
         $value = $record[$field['name']] ?? null;
         if ($field['name'] === 'ProtectedAreas') {
             $pas = explode(',', $value);
-            $value = "";
+            $value = '';
             $pas_length = count($pas);
-            for($index = 0; $index < $pas_length; $index++) {
+            for ($index = 0; $index < $pas_length; $index++) {
                 $model = \ImetCore\Models\ProtectedArea::query()->where('wdpa_id', '=', $pas[$index])->get()->toArray();
-                if(filled($model)) {
-                    if($index === 0) {
+                if (filled($model)) {
+                    if ($index === 0) {
                         $value .= $model[0]['name'];
                     } else {
                         $value .= ", {$model[0]['name']}";
@@ -107,6 +109,7 @@ class Networks extends Modules\Component\ImetModule
                 }
             }
         }
+
         return $value;
     }
 }

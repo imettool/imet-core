@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,9 +13,8 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use Exception;
-use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Input\SelectionList;
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
 class Governance extends Modules\Component\ImetModule
 {
@@ -42,7 +42,7 @@ class Governance extends Modules\Component\ImetModule
             ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
 
-        $this->module_info =  trans('imet-core::v2_context.Governance.module_info');
+        $this->module_info = trans('imet-core::v2_context.Governance.module_info');
 
         parent::__construct($attributes);
     }
@@ -57,9 +57,9 @@ class Governance extends Modules\Component\ImetModule
         $record['PartnershipsType1'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
         $record['PartnershipsType2'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
         $record['PartnershipsType3'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
-        if (array_key_exists('Type', $record)){
+        if (array_key_exists('Type', $record)) {
             $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType'); // until v2.13.7
-        } else if (array_key_exists('GovernanceType', $record)){
+        } elseif (array_key_exists('GovernanceType', $record)) {
             $record['GovernanceModel'] = static::dropIfValueNotInPredefinedList($record['GovernanceModel'], 'GovernanceType'); // after v3.*
         }
 
@@ -68,5 +68,4 @@ class Governance extends Modules\Component\ImetModule
 
         return static::renameField($record, 'Comments', 'AdditionalInfo');
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,18 +19,21 @@ use ImetCore\Models\User\Role;
 class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c13';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
         [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.2';
@@ -62,39 +66,37 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray(),
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray()
+                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray(),
             ]
             : [];
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
 
     /**
      * Override
-     * @param $record
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
         $isEmpty = true;
 
-        if($record['EvaluationScore']!==null
-            || $record['SignificativeSpecies']!==null
-            || $record['IncludeInStatistics']!==null
-            || $record['Comments']!==null
-        ){
+        if ($record['EvaluationScore'] !== null
+            || $record['SignificativeSpecies'] !== null
+            || $record['IncludeInStatistics'] !== null
+            || $record['Comments'] !== null
+        ) {
             $isEmpty = false;
         }
 
         return $isEmpty;
     }
-
 
     #[\Override]
     protected function customValue(array $record, array $field): string|array|null
@@ -102,10 +104,10 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $value = $record[$field['name']] ?? null;
         if ($value && Species::isTaxonomy($value)) {
             $taxonomy = Species::parseTaxonomy($value);
-            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+
+            return $taxonomy['genus'].' '.$taxonomy['species'];
         }
+
         return $value;
     }
-
-
 }

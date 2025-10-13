@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 7.1';
@@ -45,8 +47,8 @@ class EcosystemServices extends Modules\Component\ImetModule
                 'group6' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group6'),
                 'group7' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group7'),
                 'group8' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group8'),
-                'group9' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group9')
-            ]
+                'group9' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group9'),
+            ],
         ];
 
         $this->module_groups = [
@@ -62,7 +64,6 @@ class EcosystemServices extends Modules\Component\ImetModule
             'group9' => trans('imet-core::v1_context.EcosystemServices.groups.group9'),
         ];
 
-
         $this->module_info = trans('imet-core::v1_context.EcosystemServices.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.EcosystemServices.ratingLegend');
         parent::__construct($attributes);
@@ -76,16 +77,13 @@ class EcosystemServices extends Modules\Component\ImetModule
         return [
             'table' => 'EcosystemServices',
             'fields' => [
-                'Element', 'Importance', null, null, 'Observations', 'GroupElement'
-            ]
+                'Element', 'Importance', null, null, 'Observations', 'GroupElement',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

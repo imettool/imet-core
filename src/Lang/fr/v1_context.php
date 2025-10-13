@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -19,41 +20,41 @@ return [
             'Benchmark2' => 'Valeur de référence, benchmark 2',
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées',
-        ]
+        ],
     ],
 
     'Objectives1' => [
-        'module_info' => 'Détermination des objectifs - cibles de conservation et des indicateurs relatifs à la <b>gouvernance et partenariat, statut, réseau d’appartenance, vision, mission, objectifs, contexte historique, politique, socioéconomique, juridique et institutionnel, autres aspects importants</b> de l\'aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Détermination des objectifs - cibles de conservation et des indicateurs relatifs à la <b>gouvernance et partenariat, statut, réseau d’appartenance, vision, mission, objectifs, contexte historique, politique, socioéconomique, juridique et institutionnel, autres aspects importants</b> de l\'aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives2' => [
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs à <b>la superficies, limites et indice de forme, niveau de contrôle</b> de l\'aire protégée</b><br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs à <b>la superficies, limites et indice de forme, niveau de contrôle</b> de l\'aire protégée</b><br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives3' => [
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>ressources humaines et financières / appui des partenariats et matérielles dans la gestion</b> de l\'aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>ressources humaines et financières / appui des partenariats et matérielles dans la gestion</b> de l\'aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives4' => [
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b> i) espèces phares, menaces, endémiques, importantes, invasives, exploitées, mais avec données insuffisantes; ii) habitats ; iii) land-cover-change et iv) gestion des ressources naturelles</b><br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b> i) espèces phares, menaces, endémiques, importantes, invasives, exploitées, mais avec données insuffisantes; ii) habitats ; iii) land-cover-change et iv) gestion des ressources naturelles</b><br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives5' => [
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>pressions et menaces</b> qui pèsent sur l’aire protégée<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives6' => [
-        'module_info' => 'Objectifs liés au <b>changements climatiques</b> qui pèsent sur l’aire protégée.<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Objectifs liés au <b>changements climatiques</b> qui pèsent sur l’aire protégée.<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
     'Objectives7' => [
-        'module_info' => 'Objectifs liés au <b>maintien des services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Objectifs liés au <b>maintien des services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ces services<br /> Les objectifs et valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser pour la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement pour les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ResponsablesInterviewers' => [
         'title' => 'Responsables de la compilation du fichier: Équipe de gestion et partenaires de l\'AP',
         'fields' => [
-            'Name'          => 'nom',
-            'Institution'   => 'organisation',
-            'Function'      => 'fonction',
-            'Contacts'      => 'coordonnées',
-            'EncodingDate'  => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)'
-        ]
+            'Name' => 'nom',
+            'Institution' => 'organisation',
+            'Function' => 'fonction',
+            'Contacts' => 'coordonnées',
+            'EncodingDate' => 'Date de compilation',
+            'EncodingDuration' => 'Durée de l\'évaluation (h)',
+        ],
     ],
 
     'ResponsablesInterviewees' => [
@@ -65,7 +66,7 @@ return [
             'Contacts' => 'Coordonnées',
             'EncodingDate' => 'Date de compilation',
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
+        ],
     ],
 
     'GeneralInfo' => [
@@ -88,7 +89,7 @@ return [
             'ReferenceText' => 'Référence du texte de création en cours de validité',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'Dans le texte de création, quelles sont les principales valeurs pour lesquelles la zone est désignée?',
-        ]
+        ],
     ],
 
     'Governance' => [
@@ -101,7 +102,7 @@ return [
             'PartnershipsType3' => 'troisième',
             'Type' => 'Typologie de gouvernance de l\'aire protégée',
             'Comments' => 'Précisions sur la typologie de gouvernance (si nécessaire) ',
-        ]
+        ],
     ],
 
     'SpecialStatus' => [
@@ -115,12 +116,12 @@ return [
             'upload' => 'Charger',
         ],
         'groups' => [
-            'conventions'   => 'Reconnaissances et inscriptions dans les listes de conventions internationales (Patrimoine Mondial, RAMSAR, etc.,)',
-            'networks'      => 'Statut d\'appartenance à un réseau international officialement reconnus (MAB, RAPAC, etc.,)',
-            'conservation'  => 'Statut d\'intérêt pour la conservation par des organismes internationaux (IBA, AZE, etc.,)',
-            'marine_pa'     => 'Statut des aires protégées marines'
+            'conventions' => 'Reconnaissances et inscriptions dans les listes de conventions internationales (Patrimoine Mondial, RAMSAR, etc.,)',
+            'networks' => 'Statut d\'appartenance à un réseau international officialement reconnus (MAB, RAPAC, etc.,)',
+            'conservation' => 'Statut d\'intérêt pour la conservation par des organismes internationaux (IBA, AZE, etc.,)',
+            'marine_pa' => 'Statut des aires protégées marines',
         ],
-        'module_info' => 'La liste indicative, mais pas exhaustive est disponible dans la guide du formulaire'
+        'module_info' => 'La liste indicative, mais pas exhaustive est disponible dans la guide du formulaire',
     ],
 
     'Networks' => [
@@ -133,7 +134,7 @@ return [
             'group0' => 'Réseau transfrontalier',
             'group1' => 'Landscape (réseau des AP Terrestres) - Network (réseau des AP Marines)',
             'group2' => 'Autre réseau',
-        ]
+        ],
     ],
 
     'Missions' => [
@@ -150,7 +151,7 @@ return [
             'InternationalSource' => 'Source',
             'InternationalManagementPlan' => 'Fichier (Plan d\'aménagement)',
             'Observation' => 'Observation',
-        ]
+        ],
     ],
 
     'Contexts' => [
@@ -167,9 +168,9 @@ return [
             'Contexte socioéconomique',
             'Contexte politique (niveau pays)',
             'Contexte juridique',
-            'Contexte institutionnel'
+            'Contexte institutionnel',
         ],
-        'module_info' => 'Remplissage au niveau national avec vérification au niveau local'
+        'module_info' => 'Remplissage au niveau national avec vérification au niveau local',
     ],
 
     'GeographicalLocation' => [
@@ -181,7 +182,7 @@ return [
             'Coordinates' => 'Coordonnées géographiques (base, station  ou point important du parc)',
             'SourceCoords' => 'Source des coordonnées',
             'AdministrativeLocation' => 'Localisation administrative de la zone protégée (province, région, etc.)',
-        ]
+        ],
     ],
 
     'Areas' => [
@@ -198,25 +199,25 @@ return [
             'PercentageLandscapeNetwork' => '% par rapport au landscape/network',
             'Index' => 'Indice de forme (km/sqrt(km^2) = bon > 23; moyen de 23 à 17;  mauvais < 17), voir note dans la guide du formulaire',
             'Observations' => 'Observations',
-        ]
+        ],
     ],
 
     'ControlLevel' => [
         'title' => 'Niveau de contrôle de l’aire protégée',
         'fields' => [
-            'UnderControlArea'              => 'Km² sous contrôle',
-            'UnderControlPatrolManDay'      => 'Homme/jours de patrouille',
-            'UnderControlPatrolKm'          => 'Km de patrouille',
-            'EcologicalMonitoringPatrolKm'  => 'Surface soumise au suivi écologique',
-            'Source'                        => 'Source',
-            'Observations'                  => 'Notes',
+            'UnderControlArea' => 'Km² sous contrôle',
+            'UnderControlPatrolManDay' => 'Homme/jours de patrouille',
+            'UnderControlPatrolKm' => 'Km de patrouille',
+            'EcologicalMonitoringPatrolKm' => 'Surface soumise au suivi écologique',
+            'Source' => 'Source',
+            'Observations' => 'Notes',
         ],
-        'area'                          => 'Superficie dans l\'aire protégée',
-        'under_control_area'            => 'Superficie de l\'aire protégée sous contrôle (protection LAB) pendant les derniers 12 mois (ou préciser la période de référence)',
-        'area_percentage'               => '% de la surface',
-        'average_time'                  => 'Moyenne h/j/Km² par an de la surface totale',
-        'area_percentage_conversion'    => '% de la surface (conversion)',
-        'average_time_controlled'       => 'Moyenne h/j/Km² par an de la surface sous contrôle'
+        'area' => 'Superficie dans l\'aire protégée',
+        'under_control_area' => 'Superficie de l\'aire protégée sous contrôle (protection LAB) pendant les derniers 12 mois (ou préciser la période de référence)',
+        'area_percentage' => '% de la surface',
+        'average_time' => 'Moyenne h/j/Km² par an de la surface totale',
+        'area_percentage_conversion' => '% de la surface (conversion)',
+        'average_time_controlled' => 'Moyenne h/j/Km² par an de la surface sous contrôle',
     ],
 
     'Sectors' => [
@@ -231,7 +232,7 @@ return [
             'SectorMap' => 'Carte de zonage',
             'Source' => 'Source',
             'Observations' => 'Observations',
-        ]
+        ],
     ],
 
     'TerritorialReferenceContext' => [
@@ -244,7 +245,7 @@ return [
             'FunctionalAreaPopulation' => 'Estimation de la population riveraine',
             'SocioEconomicAspects' => 'Aspects socio-économiques et administratifs ; p.ex. les liaisons des autorités traditionnelles et modernes avec les espaces de l’AP (Km2)',
             'SpillOverEffect' => 'Effet  SPILL-OVER dans les AP marine',
-        ]
+        ],
     ],
 
     'ManagementStaff' => [
@@ -257,7 +258,7 @@ return [
             'difference' => 'Différence',
             'Source' => 'Source',
         ],
-        'module_info' => 'Le système statistique ne permet que quatorze lignes pour identifier les fonctions du personnel de l’aire protégée'
+        'module_info' => 'Le système statistique ne permet que quatorze lignes pour identifier les fonctions du personnel de l’aire protégée',
     ],
 
     'ManagementStaffPartners' => [
@@ -267,7 +268,7 @@ return [
             'Coordinators' => 'Coordinateurs',
             'Technicians' => 'Techniciens/ Administration',
             'Auxiliaries' => 'Personnel auxiliaire',
-        ]
+        ],
     ],
 
     'ManagementStaffCommunities' => [
@@ -280,7 +281,7 @@ return [
             'StaffNUmberRole2' => 'Nombre',
             'Role3' => 'Rôle',
             'StaffNUmberRole3' => 'Nombre',
-        ]
+        ],
     ],
 
     'FinancialResources' => [
@@ -292,11 +293,11 @@ return [
             'OperationalWorkPlanCosts' => 'Budget total estimés à partir du plan opérationnel/plan de travail budgétisé annuellement [devise/an]',
             'TotalBudget' => 'Budget total annuel - previsions [devise/an]',
         ],
-        'amount'                        => 'Montant',
-        'functioning_costs'             => 'Budget total (devise/Km²/an)',
-        'estimation_financial_plan'     => '% des estimations du plan financier / plan de travail budgétisé annuellement',
-        'estimation_operational_plan'   => '% des estimations du plan opérationnel / plan de travail budgétisé annuellement',
-        'module_info' => 'Coûts totaux estimés à partir du Plan de gestion/Plan financier'
+        'amount' => 'Montant',
+        'functioning_costs' => 'Budget total (devise/Km²/an)',
+        'estimation_financial_plan' => '% des estimations du plan financier / plan de travail budgétisé annuellement',
+        'estimation_operational_plan' => '% des estimations du plan opérationnel / plan de travail budgétisé annuellement',
+        'module_info' => 'Coûts totaux estimés à partir du Plan de gestion/Plan financier',
     ],
 
     'FinancialAvailableResources' => [
@@ -311,11 +312,11 @@ return [
             'total' => 'Totaux',
             'percentage' => '% des previsions du budget',
         ],
-        "predefined_values" => [
-            "Budget total annuel disponible",
-            "Budget total annuel disponible de fonctionnement",
-            "Budget total annuel disponible d'investissement"
-        ]
+        'predefined_values' => [
+            'Budget total annuel disponible',
+            'Budget total annuel disponible de fonctionnement',
+            "Budget total annuel disponible d'investissement",
+        ],
     ],
 
     'FinancialResourcesBudgetLines' => [
@@ -327,7 +328,7 @@ return [
             'Currency' => 'Devise',
             'function_costs' => 'Coûts de fonctionnement (devise/Km²/an)',
             'percentage' => '% du budget disponible',
-        ]
+        ],
     ],
 
     'FinancialResourcesPartners' => [
@@ -340,7 +341,7 @@ return [
             'EndDate' => 'Fin prévue',
             'Observations' => 'Observations',
             'Currency' => 'Devise',
-        ]
+        ],
     ],
 
     'Equipments' => [
@@ -365,19 +366,19 @@ return [
             'group12' => 'Desserte de l\'aire protégée',
         ],
         'predefined_values' => [
-            'group0' => ['Bureaux','Postes de patrouille','Postes, barrières','Recherche scientifique','Garage aménagé et atelier','Services divers (magazine, radio, etc.)','Dispensaires','Autres bâtiments'],
+            'group0' => ['Bureaux', 'Postes de patrouille', 'Postes, barrières', 'Recherche scientifique', 'Garage aménagé et atelier', 'Services divers (magazine, radio, etc.)', 'Dispensaires', 'Autres bâtiments'],
             'group1' => ['Officiers et sous-officiers', 'Agents', 'Personnel d\'appui', 'Personnel scientifique', 'Accueil', 'Autres bâtiments'],
             'group2' => ['Hôtels', 'Eco-lodges', 'Campements', 'Accueils des touristes', 'Miradors', 'Chambres disponibles', 'Guides en service', 'Parcours touristiques aménagés', 'Autres bâtiments'],
-            'group3' => ['Voitures','Motos/Quads','Vélos','Bateaux, Pirogues','Avion, ULM','Jet ski','autres moyens'],
-            'group4' => ['Radar de controle','Armements','Cartouches','Tenues','Rations','GPS, boussoles', 'Matériel de camping et de brousse','Autres moyens'],
-            'group5' => ['Radios VHF-HF','V-SAT','Téléphones fixes','Téléphones GSM','Téléphones satellitaires','Connexion internet','Autres moyens'],
-            'group6' => ['Ordinateurs fixes','Ordinateurs portables','Imprimantes','Photocopieurs','Autres moyens'],
-            'group7' => ['Groupes électrogènes','Installation électrique solaire','Installation électrique hydraulique','Installation électrique éolienne','Autres sources'],
-            'group8' => ['Matériel roulant/bateaux','Radios','Bâtiments','Réseau électrique','Réseau hydraulique','Autres'],
-            'group9' => ['Routes/pistes de pénétration dans l\'aire protégée','Sentiers de pénétration dans l\'aire protégée','Autre'],
-            'group10' => ['Voies fluviales de pénétration dans l\'aire protégée','Autre'],
-            'group11' => ['Pistes aériennes à l\'intérieur et à l\'extérieur de l\'aire protégée','Autre'],
-            'group12' => ['Grandes voies de communication terrestres','Voies fluviales','Connexions aériennes nationales et internationales','Autre'],
+            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux, Pirogues', 'Avion, ULM', 'Jet ski', 'autres moyens'],
+            'group4' => ['Radar de controle', 'Armements', 'Cartouches', 'Tenues', 'Rations', 'GPS, boussoles', 'Matériel de camping et de brousse', 'Autres moyens'],
+            'group5' => ['Radios VHF-HF', 'V-SAT', 'Téléphones fixes', 'Téléphones GSM', 'Téléphones satellitaires', 'Connexion internet', 'Autres moyens'],
+            'group6' => ['Ordinateurs fixes', 'Ordinateurs portables', 'Imprimantes', 'Photocopieurs', 'Autres moyens'],
+            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne', 'Autres sources'],
+            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique', 'Autres'],
+            'group9' => ['Routes/pistes de pénétration dans l\'aire protégée', 'Sentiers de pénétration dans l\'aire protégée', 'Autre'],
+            'group10' => ['Voies fluviales de pénétration dans l\'aire protégée', 'Autre'],
+            'group11' => ['Pistes aériennes à l\'intérieur et à l\'extérieur de l\'aire protégée', 'Autre'],
+            'group12' => ['Grandes voies de communication terrestres', 'Voies fluviales', 'Connexions aériennes nationales et internationales', 'Autre'],
         ],
         'ratingLegend' => [
             'AdequacyLevel' => [
@@ -385,8 +386,8 @@ return [
                 '1' => 'insuffisant',
                 '2' => 'correct',
                 '3' => 'excellent',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'AnimalSpecies' => [
@@ -413,8 +414,8 @@ return [
                 '-1 / -2' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'VegetalSpecies' => [
@@ -439,8 +440,8 @@ return [
                 '-1 / -2' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'Habitats' => [
@@ -461,8 +462,8 @@ return [
                 '-1 / -2' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
 
     ],
 
@@ -485,9 +486,9 @@ return [
             'Stratus pélagique',
             'Stratus abyssal',
             'Stratus benthique',
-            'Mer ouverte'
+            'Mer ouverte',
         ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Habitats marins à caractéristiques importantes et significatives de l’aire protégée, Couverture et Utilisation des sols (Land cover et Land use)<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Présence, étendue et distribution des habitats et stratus marins clés</span></b>'
+        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Habitats marins à caractéristiques importantes et significatives de l’aire protégée, Couverture et Utilisation des sols (Land cover et Land use)<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Présence, étendue et distribution des habitats et stratus marins clés</span></b>',
     ],
 
     'LandCover' => [
@@ -511,7 +512,7 @@ return [
             'Eau',
             'Cultures / Plantations',
             'Habitations',
-            'Routes'
+            'Routes',
         ],
         'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Habitats terrestres à caractéristiques importantes et significatives de l’aire protégée, Couverture et Utilisation des sols (Land cover et Land use)<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Maintien de la couverture des sols (land cover ou type de terrain physique - forêt, eau, routes, etc.) [valeurs totales voir point # 2.2]</span></b><br /> <b>Catégories de couverture du sol ou land cover</b> (base: Land Cover Classification System - LCCS, catégories principales, exemple)<br /> <b>Fiabilité de l\'information</b> <ul> <li>Haute: méthodologie reconnue officiellement</li> <li>Moyenne: méthodologie pas reconnue officiellement</li> <li>Faible: Inexistante, il s\'agit généralement d’estimations</li> </ul>',
         'ratingLegend' => [
@@ -519,8 +520,8 @@ return [
                 '-1 / -2' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'NonSustainableUsage' => [
@@ -550,7 +551,7 @@ return [
             'Espèces envahissantes',
             'Ravageurs et maladies',
             'Feux',
-            'Accessibilité et effets relatives'
+            'Accessibilité et effets relatives',
         ],
         'module_info' => '<b>Fiabilité de l\'information</b> <ul> <li>Haute: méthodologie reconnue officiellement</li> <li>Moyenne: méthodologie pas reconnue officiellement</li> <li>Faible: Inexistante, il s\'agit généralement d’estimations</li> </ul>',
         'ratingLegend' => [
@@ -558,8 +559,8 @@ return [
                 '-1 / -2' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'MenacesPressions' => [
@@ -598,74 +599,74 @@ return [
             'group22' => 'Energie excessive',
             'group23' => 'Phénomènes géologiques',
             'group24' => 'Changement climatique et phénomènes météorologiques graves',
-            'group25' => 'Autres pressions et menaces'
+            'group25' => 'Autres pressions et menaces',
         ],
         'predefined_values' => [
             'group0' => [
                 'Zones urbaines et habitations',
                 'Zones commerciales',
                 'Zones touristiques et récréatives',
-                'Zones des enclaves'
+                'Zones des enclaves',
             ],
             'group1' => [
                 'Agriculture itinérante',
                 'Petites exploitations agricoles',
-                'Exploitations agro-industrielles'
+                'Exploitations agro-industrielles',
             ],
             'group2' => [
                 'Petites plantations',
-                'Plantations agro-industrielles'
+                'Plantations agro-industrielles',
             ],
             'group3' => [
                 'Pâturage nomade',
                 'Pâturage et élevage de petites exploitations',
-                'Pâturage et élevage agro-industriel'
+                'Pâturage et élevage agro-industriel',
             ],
             'group4' => [
                 'Aquaculture de subsistance ou artisanale',
-                'Aquaculture industrielle'
+                'Aquaculture industrielle',
             ],
             'group6' => [
                 'Forages (gaz et pétrole)',
                 'Exploitation de mines ou de carrières',
-                'Energies renouvelables'
+                'Energies renouvelables',
             ],
             'group7' => [
                 'Routes',
                 'Réseaux et linéaires de services et de communication (électrique, téléphone, aqueduc…)',
                 'Voies maritimes et couloirs de navigation',
                 'Couloirs aériens',
-                'Voies ferrées'
+                'Voies ferrées',
             ],
             'group8' => [
                 'Chasse d\'animaux terrestres',
-                'Prelevement d\'animaux vivants'
+                'Prelevement d\'animaux vivants',
             ],
             'group9' => [
                 'Cueillette de plantes',
-                'Prélèvement de plantes'
+                'Prélèvement de plantes',
             ],
             'group10' => [
                 'Exploitation bois d\'oeuvre à petite échelle',
                 'Exploitation bois énergie à grande échelle',
                 'Exploitation bois energie à petite échelle',
                 'Exploitation bois d\'oeuvre à grande échelle',
-                'Perche/poteau pour construction'
+                'Perche/poteau pour construction',
             ],
             'group11' => [
                 'Pêche de subsistance ou à petite échelle',
                 'Pêche à grande échelle',
                 'Récolte de ressources aquatiques de subsistance ou à petite échelle',
                 'Récolte de ressources aquatiques à grande échelle',
-                'Récolte de coquillages'
+                'Récolte de coquillages',
             ],
             'group12' => [
                 'Activités récréatives',
                 'Guerres, troubles civils et exercices militaires',
-                'Travaux et autres activités'
+                'Travaux et autres activités',
             ],
             'group13' => [
-                'Fréquence et intensité des incendies'
+                'Fréquence et intensité des incendies',
             ],
             'group14' => [
                 'Prélèvement d\'eau de surface (utilisation domestique)',
@@ -678,7 +679,7 @@ return [
                 'Prélèvement d\'eau souterraine (utilisation inconnue)',
                 'Petits barrages',
                 'Grands barrages',
-                'Barrages (taille inconnue)'
+                'Barrages (taille inconnue)',
             ],
             'group16' => [
                 'Espèces ou maladies introduites et envahissantes',
@@ -686,64 +687,64 @@ return [
                 'Espèces ou maladies problématiques d\'origine inconnue',
                 'Matériel génétique introduit',
                 'Maladies virales ou prion',
-                'Maladie de cause inconnue'
+                'Maladie de cause inconnue',
             ],
             'group17' => [
-                'Eaux usées et égouts',],
+                'Eaux usées et égouts', ],
             'group18' => [
                 'Marée noire ou nappe de pétrole',
-                'Fuite d\'exploitation minière'
+                'Fuite d\'exploitation minière',
             ],
             'group19' => [
                 'Charge en nutriments',
                 'Erosion des sols et sédimentation',
-                'Herbicides et pesticides'
+                'Herbicides et pesticides',
             ],
             'group20' => [
                 'Déchets des villes',
                 'Epaves des moyens',
                 'Débris de construction',
-                'Déchets nuisibles pour la faune'
+                'Déchets nuisibles pour la faune',
             ],
             'group21' => [
                 'Pluies acides',
                 'Nuage de pollution',
-                'Ozone'
+                'Ozone',
             ],
             'group22' => [
                 'Pollution lumineuse',
                 'Pollution thermique',
-                'Pollution sonore'
+                'Pollution sonore',
             ],
             'group23' => [
                 'Volcans',
                 'Tremblements de terre et tsunamis',
-                'Avalanches et glissements de terrain'
+                'Avalanches et glissements de terrain',
             ],
             'group24' => [
                 'Altération et modification de l\'habitat',
                 'Sècheresses',
                 'Températures extrêmes',
                 'Tempêtes et inondations',
-                'Autre: Augmentation des pluies et changements saisonnières'
+                'Autre: Augmentation des pluies et changements saisonnières',
             ],
             'group25' => [
-                'Conflit Homme-Faune'
-            ]
+                'Conflit Homme-Faune',
+            ],
         ],
         'categories' => [
-            'title1' =>  'Développement commercial et résidentiel',
-            'title2' =>  'Agriculture et aquaculture',
-            'title3' =>  'Production d\'énergie et exploitation minière',
-            'title4' =>  'Transports et infrastructures',
-            'title5' =>  'Utilisation des ressources biologiques',
-            'title6' =>  'Intrusions et perturbations humaines',
-            'title7' =>  'Modifications du système naturel',
-            'title8' =>  'Espèces exotiques envahissantes et autres espèces, gènes ou maladies problématiques',
-            'title9' =>  'Pollution',
+            'title1' => 'Développement commercial et résidentiel',
+            'title2' => 'Agriculture et aquaculture',
+            'title3' => 'Production d\'énergie et exploitation minière',
+            'title4' => 'Transports et infrastructures',
+            'title5' => 'Utilisation des ressources biologiques',
+            'title6' => 'Intrusions et perturbations humaines',
+            'title7' => 'Modifications du système naturel',
+            'title8' => 'Espèces exotiques envahissantes et autres espèces, gènes ou maladies problématiques',
+            'title9' => 'Pollution',
             'title10' => 'Phénomènes géologiques',
             'title11' => 'Changement climatique et phénomènes météorologiques graves',
-            'title12' => 'Autres pressions et menaces'
+            'title12' => 'Autres pressions et menaces',
         ],
         'ratingLegend' => [
             'Impact' => [
@@ -777,7 +778,7 @@ return [
                 '2' => 'moyenne',
                 '3' => 'haute',
             ],
-        ]
+        ],
     ],
 
     'ClimateChangeImportanceElements' => [
@@ -798,7 +799,7 @@ return [
             'Planification intersectorielle',
             'Politique environnementale',
             'Financement durable',
-            'Socioéconomique'
+            'Socioéconomique',
         ],
         'Element' => [
             'Support des projets REDD-plus (zones à forte diversité biologique et à hautes possibilités de stockage en carbone)',
@@ -810,7 +811,7 @@ return [
             'Intégration des effets du changement climatique dans les planifications générales incluant les aires protégées pour accroitre l’efficacité d’atténuation et d’adaptation des réponses',
             'Intégration dans les politiques et la législation relative à l’environnement et les aires protégées des mesures nécessaires pour répondre au changement climatique',
             'Intégration des mesures nécessaires pour répondre au changement climatique dans la mise à disposition des fonds alloués pour la biodiversité et la gestion des ressources naturelles',
-            'Intégration avec les problématiques de difficultés socioéconomiques des populations riveraines'
+            'Intégration avec les problématiques de difficultés socioéconomiques des populations riveraines',
         ],
         'module_info' => '<ul> <li>Les résultats de cette analyse seront utilisés pour définir les décisions de gestion concernant les effets du changement climatique. Ce travail contribuera à promouvoir l\'intégration de ces valeurs dans les systèmes de gestion de l\'aire protégée</li> <li>Notez chaque estimation en fonction de vos informations selon le barème: haute ; moyenne ; faible ; très faible</li> <li>Vous n\'avez pas besoin de mesurer exactement la valeur pour attribuer une note</li> </ul>',
         'ratingLegend' => [
@@ -819,8 +820,8 @@ return [
                 '1' => 'faible application',
                 '2' => 'application',
                 '3' => 'application importante',
-            ]
-        ]
+            ],
+        ],
 
     ],
 
@@ -847,8 +848,8 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus sévère)',
                 '0' => 'Stable',
                 '1 / 2 / 3' => 'Positive (moins - plus important)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'EcosystemServices' => [
@@ -882,7 +883,7 @@ return [
             'group6' => ['La marche, la randonnée, les loisirs en général y compris la chasse ou la pêche si permise'],
             'group7' => ['scientifique', 'pédagogique', 'patrimoine culturel/héritage', 'divertissement', 'esthétique'],
             'group8' => ['symbolique', 'sacré et/ou religieuse'],
-            'group9' => ['conservation ex-situ']
+            'group9' => ['conservation ex-situ'],
         ],
         'categories' => [
             'title1' => 'Approvisionnement',
@@ -897,7 +898,7 @@ return [
                 '2' => 'moyenne',
                 '3' => 'haut',
             ],
-        ]
+        ],
     ],
 
     'EcosystemServicesTendance' => [
@@ -908,7 +909,7 @@ return [
             'DesiredStatus' => 'Etats souhaités',
             'Trend' => 'Tendance',
             'Reliability' => 'Fiabilité',
-            'Notes' => 'Observations'
+            'Notes' => 'Observations',
         ],
         'groups' => [
             'group0' => 'Nutrition',
@@ -939,7 +940,7 @@ return [
                 'Moyenne' => 'Méthodologie pas reconnue officiellement',
                 'Faible' => 'Inexistante, il s’agit généralement d’estimations',
             ],
-        ]
+        ],
     ],
 
 ];

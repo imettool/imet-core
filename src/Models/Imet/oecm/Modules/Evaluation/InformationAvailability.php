@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,21 +12,23 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
 class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_information_availability';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Element';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I1';
@@ -46,22 +49,21 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
 
     /**
      * Override
-     * @param $record
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        if($record['EvaluationScore']!==null || $record['Comments']!==null){
+        if ($record['EvaluationScore'] !== null || $record['Comments'] !== null) {
             return false;
         }
+
         return true;
     }
-
 
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $key_elements = $form_id!==null
+        $key_elements = $form_id !== null
             ? array_merge(
                 KeyElements::getPrioritizedElements($form_id),
                 Designation::getPrioritizedElements($form_id),
@@ -72,8 +74,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $key_elements
+            'values' => $key_elements,
         ];
     }
-
 }

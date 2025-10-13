@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,11 +14,9 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Input\SelectionList;
-use ImetCore\Models\Imet\v2\Modules;
 
 class GeneralInfo extends Modules\Component\ImetModule
 {
@@ -30,7 +29,8 @@ class GeneralInfo extends Modules\Component\ImetModule
         'Country' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 1.1';
@@ -76,7 +76,7 @@ class GeneralInfo extends Modules\Component\ImetModule
         $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1'] ?? $pa->iucn_category;
         $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country'] ?? $pa->country;
         $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear'] ??
-            ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
+            ($pa->creation_date !== null ? substr($pa->creation_date, 0, 4) : null);
 
         return $vue_data;
     }
@@ -93,9 +93,6 @@ class GeneralInfo extends Modules\Component\ImetModule
         $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
         $record = static::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
 
-
         return static::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
     }
-
-
 }

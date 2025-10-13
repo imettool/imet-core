@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,18 +12,17 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-use Illuminate\Support\Facades\Date;
-use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\ProtectedArea;
-use ModularForms\Models\Traits\Payload;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\ProtectedArea;
+use ModularForms\Models\Traits\Payload;
 
 trait Prefill
 {
@@ -37,11 +37,12 @@ trait Prefill
 
         $year = $request->input('year');
 
-        if($year === null){
+        if ($year === null) {
             return collect([]);
         }
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
-        return (static::$form_class)::select(['FormID','Year','wdpa_id'])
+
+        return (static::$form_class)::select(['FormID', 'Year', 'wdpa_id'])
             ->where('wdpa_id', $wdpa_id)
             ->where('version', Imet::IMET_V2)
             ->where('Year', '<', $year)
@@ -53,7 +54,6 @@ trait Prefill
     /**
      * Store a prefilled IMET (data retrieved from a previous year)
      *
-     * @param $prev_year_selection
      * @throws FileNotFoundException|Exception
      */
     private function store_prefilled(Request $request, $prev_year_selection): array
@@ -73,10 +73,11 @@ trait Prefill
             DB::commit();
 
             Session::flash('message', trans('modular-forms::common.saved_successfully'));
+
             return [
                 'status' => 'success',
                 'entity_label' => (static::$form_class)::find($formID)->{(static::$form_class)::LABEL},
-                'edit_url' => action([static::class, 'edit'], ['item' => $formID])
+                'edit_url' => action([static::class, 'edit'], ['item' => $formID]),
 
             ];
         } catch (Exception $e) {
@@ -85,5 +86,4 @@ trait Prefill
             throw $e;
         }
     }
-
 }

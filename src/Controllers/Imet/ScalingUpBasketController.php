@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,12 +12,10 @@
 
 namespace ImetCore\Controllers\Imet;
 
-use ImetCore\Controllers\__Controller;
-use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
-use ModularForms\Helpers\File\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use ImetCore\Controllers\__Controller;
+use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
 
 class ScalingUpBasketController extends __Controller
 {
@@ -30,6 +29,7 @@ class ScalingUpBasketController extends __Controller
         $item = BasketModel::query()->find($id);
         if ($item) {
             Storage::disk(BasketModel::BASKET_DISK)->delete($item->item);
+
             return BasketModel::destroy($item->id);
         }
 
@@ -39,6 +39,7 @@ class ScalingUpBasketController extends __Controller
     public function retrieve(Request $request)
     {
         $item = BasketModel::query()->find($request->id);
+
         return json_encode($item);
     }
 
@@ -47,6 +48,7 @@ class ScalingUpBasketController extends __Controller
         $id = $request->input('id');
 
         $items = BasketModel::retrieve_by_scaling_id($id);
+
         return json_encode($items);
     }
 
@@ -58,12 +60,11 @@ class ScalingUpBasketController extends __Controller
 
         foreach ($records as $e) {
 
-            if (!static::delete($e->id)) {
+            if (! static::delete($e->id)) {
                 return false;
             }
         }
 
         return true;
     }
-
 }

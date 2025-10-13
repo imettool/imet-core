@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,24 +13,24 @@
 namespace ImetCore\Controllers\Imet\v1;
 
 use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Support\Str;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use ImetCore\Helpers\ImetEnv;
-use ImetCore\Models\ProtectedAreaNonWdpa;
-use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Species;
-use Illuminate\Support\Str;
-use ReflectionException;
-
+use ImetCore\Services\Scores\ImetScores;
 
 class ReportController extends BaseReportController
 {
     protected static ?string $form_class = Imet::class;
+
     protected static ?string $form_view_prefix = 'imet-core::v1.report';
 
     /**
      * Retrieve data to populate the report view
+     *
      * @throws ConnectionException
      */
     protected function __retrieve_report_data(Imet $item): array
@@ -40,7 +41,7 @@ class ReportController extends BaseReportController
         $wdpa_extent = null;
         $connection = ImetEnv::isConnectionAvailable();
 
-        if (!ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+        if (! ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_general_info = true;
 
         } else {
@@ -50,6 +51,7 @@ class ReportController extends BaseReportController
 
         $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
         $vision = Modules\Context\Missions::getModuleRecords($form_id);
+
         return [
             'item' => $item,
             'key_elements' => [
@@ -62,7 +64,7 @@ class ReportController extends BaseReportController
                 'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
                     ->pluck('Aspect')->toArray(),
                 'ecosystem_services' => array_values(Modules\Evaluation\ImportanceEcosystemServices::getPredefined()['values']),
-                'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values'])
+                'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values']),
             ],
             'scores' => ImetScores::get_all($item),
             'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V1),
@@ -74,9 +76,7 @@ class ReportController extends BaseReportController
             'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info[0] ?? null,
             'vision' => $vision['records'][0] ?? null,
-            'area' => Modules\Context\Areas::getArea($form_id)
+            'area' => Modules\Context\Areas::getArea($form_id),
         ];
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,11 +12,9 @@
 
 namespace ImetCore\Models\Imet\API\ScalingUp;
 
-
-use ImetCore\Models\Species;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
-
+use ImetCore\Models\Species;
 
 trait KeyElements
 {
@@ -23,15 +22,14 @@ trait KeyElements
     {
         $api = [];
         $labels = [
-            'species' =>
-                [
-                    'animal_species' => trans('imet-core::analysis_report.management_context.animal_species'),
-                    'plant_species' => trans('imet-core::analysis_report.management_context.plants_species')
-                ],
+            'species' => [
+                'animal_species' => trans('imet-core::analysis_report.management_context.animal_species'),
+                'plant_species' => trans('imet-core::analysis_report.management_context.plants_species'),
+            ],
             'habitats' => trans('imet-core::analysis_report.management_context.occurrences_habitats'),
             'climate_change' => trans('imet-core::analysis_report.management_context.climate_change'),
             'ecosystem_services' => trans('imet-core::analysis_report.management_context.ecosystem_services'),
-            'threats' => trans('imet-core::analysis_report.management_context.label_threats')
+            'threats' => trans('imet-core::analysis_report.management_context.label_threats'),
         ];
 
         foreach ($items as $form_id) {
@@ -54,15 +52,15 @@ trait KeyElements
                 })->pluck('Aspect')->toArray(),
                 'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray()
+                })->pluck('Aspect')->toArray(),
             ];
             $retrieve_key_elements['species']['animal_species'] = [];
             $retrieve_key_elements['species']['plant_species'] = [];
             $species_array = $retrieve_key_elements['species'];
             foreach ($species_array as $k => $species) {
                 foreach ($species as $key => $value) {
-                    //echo $key;
-                    if ($key == "group0") {
+                    // echo $key;
+                    if ($key == 'group0') {
                         $retrieve_key_elements['species']['animal_species'][] = $value;
                     } else {
                         $retrieve_key_elements['species']['plant_species'][] = $value;

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,9 @@
 
 namespace ImetCore\Models\Imet\API\ScalingUp\Analysis;
 
+use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\Sections\DataTable as ScalingUpDataTable;
 use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
-use ImetCore\Helpers\ScalingUp\Common;
 
 trait Data
 {
@@ -31,7 +32,7 @@ trait Data
             $api[] = [
                 'wdpa_id' => $id,
                 'name' => $name,
-                'values' => $values
+                'values' => $values,
             ];
         }
 
@@ -47,7 +48,7 @@ trait Data
             $api[] = [
                 'wdpa_id' => $value['id'],
                 'name' => $value['name'],
-                'values' => $data['radar']['values'][$value['name']]
+                'values' => $data['radar']['values'][$value['name']],
             ];
         }
 
@@ -57,7 +58,7 @@ trait Data
     public static function management_context_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('management_context');
-        list($api) = static::retrieve_data($items, $indicators);
+        [$api] = static::retrieve_data($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -65,7 +66,7 @@ trait Data
     public static function value_and_importance_sub_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('value_and_importance_sub_indicators');
-        list($api) = static::retrieve_data($items, $indicators);
+        [$api] = static::retrieve_data($items, $indicators);
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -73,7 +74,7 @@ trait Data
     public static function planning_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('planning');
-        list($api) = static::retrieve_data($items, $indicators, 'planning');
+        [$api] = static::retrieve_data($items, $indicators, 'planning');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -81,7 +82,7 @@ trait Data
     public static function inputs_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('inputs');
-        list($api) = static::retrieve_data($items, $indicators, 'inputs');
+        [$api] = static::retrieve_data($items, $indicators, 'inputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -89,7 +90,7 @@ trait Data
     public static function outputs_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outputs');
-        list($api) = static::retrieve_data($items, $indicators, 'outputs');
+        [$api] = static::retrieve_data($items, $indicators, 'outputs');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -97,7 +98,7 @@ trait Data
     public static function outcomes_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('outcomes');
-        list($api) = static::retrieve_data($items, $indicators, 'outcomes');
+        [$api] = static::retrieve_data($items, $indicators, 'outcomes');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -105,7 +106,7 @@ trait Data
     public static function process_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process');
-        list($api) = static::retrieve_data($items, $indicators, 'process');
+        [$api] = static::retrieve_data($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -113,7 +114,7 @@ trait Data
     public static function process_internal_management_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_internal_management_indicators');
-        list($api) = static::retrieve_data($items, $indicators, 'process');
+        [$api] = static::retrieve_data($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -121,7 +122,7 @@ trait Data
     public static function process_management_protection_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_management_protection_indicators');
-        list($api) = static::retrieve_data($items, $indicators, 'process');
+        [$api] = static::retrieve_data($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }
@@ -129,7 +130,7 @@ trait Data
     public static function process_stakeholders_relationships_indicators_table(array $items): array
     {
         $indicators = Common::get_labels_by_indicator('process_stakeholders_relationships_indicators');
-        list($api) = static::retrieve_data($items, $indicators, 'process');
+        [$api] = static::retrieve_data($items, $indicators, 'process');
 
         return ['data' => $api, 'labels' => $indicators];
     }

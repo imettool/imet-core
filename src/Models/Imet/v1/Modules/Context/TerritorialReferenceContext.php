@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.5';
@@ -40,7 +42,6 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     }
 
-
     public static function upgradeModule($record, $imet_version = null): array
     {
         $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
@@ -59,8 +60,8 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             'table' => 'TerritorialReferenceContext',
             'fields' => [
                 'ReferenceEcosystemAreaEstimation', 'ReferenceEcosystemAreaPopulation', 'EcologicalAspects', 'FunctionalArea',
-                 'FunctionalAreaPopulation', 'SocioEconomicAspects', 'SpillOverEffect'
-            ]
+                'FunctionalAreaPopulation', 'SocioEconomicAspects', 'SpillOverEffect',
+            ],
         ];
     }
 }

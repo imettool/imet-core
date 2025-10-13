@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,7 +12,6 @@
 
 namespace ImetCore\Controllers\Imet\v1;
 
-
 use ImetCore\Controllers\Imet\Controller as BaseController;
 use ImetCore\Models\Imet\v1\Imet;
 
@@ -20,6 +20,6 @@ class Controller extends BaseController
     public const ROUTE_PREFIX = 'imet-core::v1.';
 
     protected static ?string $form_view_prefix = 'imet-core::v1';
-    protected static ?string $form_class = Imet::class;
 
+    protected static ?string $form_class = Imet::class;
 }

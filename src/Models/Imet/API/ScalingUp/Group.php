@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\API\ScalingUp;
 
-
 use ImetCore\Models\Imet\ScalingUp\Sections\Group as SectionGroup;
 use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
 
@@ -23,19 +23,19 @@ trait Group
         $api = SectionGroup::get_calculation_grouping_analysis($parameters, []);
         foreach ($api as $indicators) {
             foreach ($indicators as $indi => $value) {
-                $labels[$indi] = trans('imet-core::common.steps_eval.' . $indi);
+                $labels[$indi] = trans('imet-core::common.steps_eval.'.$indi);
             }
         }
 
         return ['data' => $api, 'labels' => $labels];
     }
 
-    public static function get_grouping_analysis_by_indicators(array $parameters):array
+    public static function get_grouping_analysis_by_indicators(array $parameters): array
     {
         $labels = [
             'process' => trans('imet-core::common.steps_eval.process'),
-            'context_planning_inputs' => trans('imet-core::common.steps_eval.context') . ", " . trans('imet-core::common.steps_eval.planning') . ", " . trans('imet-core::common.steps_eval.inputs'),
-            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes') . ", " . trans('imet-core::common.steps_eval.outputs')
+            'context_planning_inputs' => trans('imet-core::common.steps_eval.context').', '.trans('imet-core::common.steps_eval.planning').', '.trans('imet-core::common.steps_eval.inputs'),
+            'outcomes_outputs' => trans('imet-core::common.steps_eval.outcomes').', '.trans('imet-core::common.steps_eval.outputs'),
         ];
 
         $api = [];
@@ -44,7 +44,7 @@ trait Group
         foreach ($data['data']['scatter'] as $item) {
             $api[] = ['name' => $item['name'], 'value' => ['process' => $item['value'][0],
                 'context_planning_inputs' => $item['value'][1],
-                'outcomes_outputs' => $item ['value'][2]]];
+                'outcomes_outputs' => $item['value'][2]]];
         }
 
         return ['data' => $api, 'labels' => $labels];

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,6 +18,7 @@ use ImetCore\Models\User\Role;
 class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_capacity_adequacy';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
@@ -47,7 +49,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
     #[\Override]
     protected static function getPredefined($form_id = null): ?array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
@@ -56,7 +58,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
 
@@ -69,10 +71,10 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
         $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
         $weighted_stakeholder = Modules\Context\Stakeholders::calculateWeights($form_id);
 
-        foreach($records as $idx => $module_record){
-            if($module_record['group_key']==='group0'){
+        foreach ($records as $idx => $module_record) {
+            if ($module_record['group_key'] === 'group0') {
                 $records[$idx]['Weight'] = $weighted_staff[$module_record['Member']] ?? null;
-            } elseif($module_record['group_key']==='group1'){
+            } elseif ($module_record['group_key'] === 'group1') {
                 $records[$idx]['Weight'] = $weighted_stakeholder[$module_record['Member']] ?? null;
             }
         }

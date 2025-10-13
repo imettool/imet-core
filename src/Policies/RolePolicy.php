@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,8 @@
 
 namespace ImetCore\Policies;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
-
+use ImetCore\Models\User\Role;
 
 class RolePolicy
 {
@@ -22,7 +22,7 @@ class RolePolicy
     /**
      * Perform pre-authorization checks
      *
-     * @param \App\Models\User\User|\ImetUser $user
+     * @param  \App\Models\User\User|\ImetUser  $user
      * @return void|bool
      */
     public function before($user, string $ability)
@@ -36,12 +36,11 @@ class RolePolicy
     /**
      * Determine whether the user can manage Roles
      *
-     * @param \App\Models\User\User|\ImetUser $user
+     * @param  \App\Models\User\User|\ImetUser  $user
      */
     public function manage($user): bool
     {
         // TODO: ROLE_REGIONAL_OBSERVATORY ?
         return false;
     }
-
 }

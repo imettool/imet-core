@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,10 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use Illuminate\Http\Request;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
@@ -22,7 +23,8 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P4';
@@ -46,7 +48,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
 
     private static function ensureNullValues($data)
     {
-        if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
+        if ($data['PlanExistence'] === false || $data['PlanExistence'] === 'false') {
             $data['PlanUptoDate'] = null;
             $data['PlanApproved'] = null;
             $data['PlanImplemented'] = null;
@@ -54,6 +56,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
             $data['PlanAdequacyScore'] = null;
             $data['Comments'] = null;
         }
+
         return $data;
     }
 
@@ -63,6 +66,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         $records = Payload::decode($request->input('records_json'));
         $records[0] = static::ensureNullValues($records[0]);
         $request->merge(['records_json' => Payload::encode($records)]);
+
         return parent::updateModule($request);
     }
 
@@ -72,7 +76,4 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         $data = static::ensureNullValues($data);
         parent::importModule($form_id, $data);
     }
-
-
-
 }

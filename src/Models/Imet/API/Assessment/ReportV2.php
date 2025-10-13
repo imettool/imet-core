@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,17 +12,17 @@
 
 namespace ImetCore\Models\Imet\API\Assessment;
 
-use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
-use ImetCore\Models\Imet\v2\Modules\Context\Areas;
-use ImetCore\Models\Imet\v2\Modules;
 use Illuminate\Support\Facades\Lang;
+use ImetCore\Models\Imet\v2\Modules\Context\Areas;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use ImetCore\Models\Imet\v2\Report;
 
 class ReportV2 extends ReportV1
 {
-
     protected static string $report_class = Report::class;
+
     protected static string $general_info_class = GeneralInfo::class;
+
     protected static string $areas_class = Areas::class;
 
     #[\Override]
@@ -41,5 +42,4 @@ class ReportV2 extends ReportV1
 
         return array_merge($steps_eval_labels, $general_info_labels, $mission_labels, $assessment_labels);
     }
-
 }

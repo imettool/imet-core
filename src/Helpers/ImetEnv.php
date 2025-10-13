@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,8 +17,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 
-class ImetEnv {
-
+class ImetEnv
+{
     /**
      * Check if the current environment is IMET related (ex. Imet Offline Tool or IMET Global)
      */
@@ -50,6 +51,7 @@ class ImetEnv {
     public static function isDevEnv(): bool
     {
         $env = Str::lower(App::environment());
+
         return Str::contains($env, 'dev') ||
             Str::contains($env, 'local') ||
             static::isImetGlobalDevEnv();
@@ -57,11 +59,11 @@ class ImetEnv {
 
     /**
      * Check if there is an active internet connection
+     *
      * @throws ConnectionException
      */
     public static function isConnectionAvailable(): bool
     {
         return Http::get('https://www.github.com')->successful();
     }
-
 }

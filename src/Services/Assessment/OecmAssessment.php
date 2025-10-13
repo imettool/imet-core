@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,8 +14,8 @@ namespace ImetCore\Services\Assessment;
 
 use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ImetCore\Services\Scores\Functions\_Scores;
-use ImetCore\Services\Scores\OecmScores;
 use ImetCore\Services\Scores\Labels;
+use ImetCore\Services\Scores\OecmScores;
 
 class OecmAssessment
 {
@@ -47,12 +48,11 @@ class OecmAssessment
             'iso3' => $imet->Country,
             'name' => $imet->name,
             'version' => $imet->version,
-            'scores' => $scores
+            'scores' => $scores,
         ];
 
         return $with_labels
             ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
             : $result;
     }
-
 }

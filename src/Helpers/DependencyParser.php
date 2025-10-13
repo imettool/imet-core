@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,6 @@ namespace ImetCore\Helpers;
 use ModularForms\Helpers\DependencyParser as BaseDependencyParser;
 use Override;
 
-
 class DependencyParser extends BaseDependencyParser
 {
     protected const COPYRIGHT = 'Copyright (C) 2025 European Union';
@@ -26,6 +26,7 @@ class DependencyParser extends BaseDependencyParser
     protected static function getNpmDirectDependencyList(bool $includeDev): array
     {
         $dependencies = parent::getNpmDirectDependencyList($includeDev);
+
         return array_filter($dependencies, function ($dependency) {
             return $dependency !== 'modular-forms';
         });
@@ -40,11 +41,11 @@ class DependencyParser extends BaseDependencyParser
         $copyright = parent::retrieveCopyright($packageInfo, $mode);
 
         // Hardcode copyright for specific packages
-        if($copyright===null && $packageInfo['name'] === 'vue3-colorpicker') {
+        if ($copyright === null && $packageInfo['name'] === 'vue3-colorpicker') {
             return 'Copyright (c) 2021-present vue3-colorpicker';
-        } else if($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
+        } elseif ($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
             return 'Copyright 2017-2025 The Apache Software Foundation';
-        } else if(str_contains($packageInfo['name'], 'modular-forms')) {
+        } elseif (str_contains($packageInfo['name'], 'modular-forms')) {
             return BaseDependencyParser::COPYRIGHT;
         }
 
@@ -60,7 +61,7 @@ class DependencyParser extends BaseDependencyParser
         $version = parent::retrieveVersion($packageInfo);
 
         // Hardcoded versions
-        if($packageInfo['name'] == 'modular-forms') {
+        if ($packageInfo['name'] == 'modular-forms') {
             $details = self::getDetailsFromComposerLock(['andreamarelli/'.$packageInfo['name']], false);
             $version = $details[0]['version'];
         }
@@ -77,7 +78,7 @@ class DependencyParser extends BaseDependencyParser
         $license = parent::retrieveLicense($packageInfo);
 
         // Hardcoded licenses
-        if($packageInfo['name'] == 'modular-forms') {
+        if ($packageInfo['name'] == 'modular-forms') {
             $license[] = 'EUPL-1.2';
         }
 
@@ -93,11 +94,10 @@ class DependencyParser extends BaseDependencyParser
         $url = parent::retrievePackageUrl($packageInfo, $mode);
 
         // Hardcoded URLs
-        if($packageInfo['name'] === 'modular-forms') {
+        if ($packageInfo['name'] === 'modular-forms') {
             return BaseDependencyParser::COPYRIGHT;
         }
 
         return $url;
     }
-
 }

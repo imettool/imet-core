@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -34,7 +35,7 @@ class SpeciesFactory extends Factory
             'species' => fake()->word(),
             'authorship' => fake()->name(),
             'col_id' => fake()->bothify('******'),
-            'vernacular_names_eng' => fake()->words(2, true) . ', ' . fake()->words(2, true),
+            'vernacular_names_eng' => fake()->words(2, true).', '.fake()->words(2, true),
             'vernacular_names_spa' => fake()->words(2, true),
             'vernacular_names_fra' => fake()->words(2, true),
         ];

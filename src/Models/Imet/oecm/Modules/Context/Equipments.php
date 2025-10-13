@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,11 +12,8 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
-use ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
+use ImetCore\Models\User\Role;
 
 class Equipments extends Modules\Component\ImetModule
 {
@@ -25,10 +23,11 @@ class Equipments extends Modules\Component\ImetModule
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\EquipmentMaintenance::class, 'Resource'],
-        [Modules\Evaluation\ManagementEquipmentAdequacy::class, 'Resource']
+        [Modules\Evaluation\ManagementEquipmentAdequacy::class, 'Resource'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 3.3';
@@ -51,8 +50,8 @@ class Equipments extends Modules\Component\ImetModule
                 'group6' => trans('imet-core::oecm_context.Equipments.predefined_values.group6'),
                 'group7' => trans('imet-core::oecm_context.Equipments.predefined_values.group7'),
                 'group8' => trans('imet-core::oecm_context.Equipments.predefined_values.group8'),
-                'group9' => trans('imet-core::oecm_context.Equipments.predefined_values.group9')
-            ]
+                'group9' => trans('imet-core::oecm_context.Equipments.predefined_values.group9'),
+            ],
         ];
 
         $this->module_groups = [
@@ -65,7 +64,7 @@ class Equipments extends Modules\Component\ImetModule
             'group6' => trans('imet-core::oecm_context.Equipments.groups.group6'),
             'group7' => trans('imet-core::oecm_context.Equipments.groups.group7'),
             'group8' => trans('imet-core::oecm_context.Equipments.groups.group8'),
-            'group9' => trans('imet-core::oecm_context.Equipments.groups.group9')
+            'group9' => trans('imet-core::oecm_context.Equipments.groups.group9'),
         ];
 
         $this->ratingLegend = trans('imet-core::oecm_context.Equipments.ratingLegend');
@@ -88,7 +87,4 @@ class Equipments extends Modules\Component\ImetModule
 
         return array_values($to_be_dropped);
     }
-
-
-
 }

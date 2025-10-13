@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,16 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\ProtectedArea;
+use Illuminate\Http\Request;
 use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\ProtectedArea;
 use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class Create extends Modules\Component\ImetModule
 {
     protected $table = 'forms';
+
     protected $primaryKey = 'FormID';
 
     public static array $rules = [
@@ -28,7 +30,8 @@ class Create extends Modules\Component\ImetModule
         'language' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::oecm_context.Create.title');
@@ -58,5 +61,4 @@ class Create extends Modules\Component\ImetModule
 
         return parent::updateModule($request);
     }
-
 }

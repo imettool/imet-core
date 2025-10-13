@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,7 +13,6 @@
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
 use ImetCore\Models\User\Role;
-use ImetCore\Models\Imet\oecm\Modules;
 
 class StakeholdersObjectives extends _Objectives
 {
@@ -20,7 +20,8 @@ class StakeholdersObjectives extends _Objectives
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_code = 'SA 1.2';
         $this->module_info = trans('imet-core::oecm_context.StakeholdersObjectives.module_info');

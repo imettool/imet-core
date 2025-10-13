@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,6 +12,11 @@
 
 namespace ImetCore\Models\Imet\oecm;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use ImetCore\Controllers\Imet\oecm\Controller;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Imet as BaseImetForm;
@@ -20,17 +26,13 @@ use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\Scores\OecmScores;
 use ModularForms\Helpers\Type\Chars;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-
 
 class Imet extends BaseImetForm
 {
     public const version = 'oecm';
+
     protected static ?string $schema = Database::OECM_SCHEMA;
+
     protected $table = 'forms';
 
     public static ?array $modules = [
@@ -72,18 +74,17 @@ class Imet extends BaseImetForm
         'stakeholder_analysis' => [
             Modules\Context\AnalysisStakeholderDirectUsers::class,
             Modules\Context\AnalysisStakeholderIndirectUsers::class,
-            Modules\Context\AnalysisStakeholdersObjectives::class
+            Modules\Context\AnalysisStakeholdersObjectives::class,
         ],
-        'objectives'            => [
+        'objectives' => [
             Modules\Context\Objectives1::class,
             Modules\Context\Objectives2::class,
             Modules\Context\Objectives3::class,
             Modules\Context\Objectives4::class,
             Modules\Context\StakeholdersObjectives::class,
-            Modules\Context\AnalysisStakeholdersObjectives::class
-        ]
+            Modules\Context\AnalysisStakeholdersObjectives::class,
+        ],
     ];
-
 
     /**
      * Relation to Encoder (only name)
@@ -100,7 +101,7 @@ class Imet extends BaseImetForm
     public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
-            ->select(['FormID','Name']);
+            ->select(['FormID', 'Name']);
     }
 
     /**
@@ -109,7 +110,7 @@ class Imet extends BaseImetForm
     public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
-            ->select(['FormID','Name']);
+            ->select(['FormID', 'Name']);
     }
 
     /**
@@ -132,11 +133,12 @@ class Imet extends BaseImetForm
             })
             ->get()
             // Replacement for PostgreSQL unaccent() function
-            ->filter(function($item) use ($request){
-                if ($request->filled('search')){
+            ->filter(function ($item) use ($request) {
+                if ($request->filled('search')) {
                     return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
                         || Str::contains($item['wdpa_id'], $request->input('search'));
                 }
+
                 return true;
             });
     }
@@ -152,7 +154,7 @@ class Imet extends BaseImetForm
         $duplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item)  use ($duplicates) {
+            ->map(function ($item) use ($duplicates) {
 
                 // Add encoders
                 $item->encoders_responsibles = [
@@ -189,14 +191,13 @@ class Imet extends BaseImetForm
         return [
             'encoders' => Encoder::getNames($form_id),
             'internal' => $internal,
-            'external' => $external
+            'external' => $external,
         ];
     }
 
     /**
      * Extent parent method: save user as encoder
      *
-     * @param $item
      * @throws \Exception
      */
     #[\Override]
@@ -206,7 +207,7 @@ class Imet extends BaseImetForm
 
         // backup to JSON
         if ($return['status'] == 'success') {
-            (new Controller())->backup($item, Imet::version);
+            (new Controller)->backup($item, Imet::version);
         }
 
         // Update encoder UPDATED_AT
@@ -219,6 +220,4 @@ class Imet extends BaseImetForm
 
         return $return;
     }
-
-
 }

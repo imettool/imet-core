@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,9 @@
 
 namespace ImetCore\Policies;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
-
+use ImetCore\Models\User\Role;
 
 class ImetPolicy
 {
@@ -30,7 +30,6 @@ class ImetPolicy
             return true;
         }
     }
-
 
     /**
      * Determine whether the user can INDEX
@@ -99,6 +98,7 @@ class ImetPolicy
     public function export_button($user, $form = null): bool
     {
         $user = $user ?? Auth::user();
+
         return Role::isRole(Role::ROLE_ENCODER, $user) ||
             Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
             Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
@@ -110,11 +110,12 @@ class ImetPolicy
     public function export($user, $form = null): bool
     {
         $user = $user ?? Auth::user();
+
         return Role::isWdpaAllowed($form->wdpa_id, $user) && (
-                Role::isRole(Role::ROLE_ENCODER, $user) ||
-                Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-                Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
-            );
+            Role::isRole(Role::ROLE_ENCODER, $user) ||
+            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
+            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
+        );
     }
 
     /**
@@ -146,13 +147,14 @@ class ImetPolicy
     /**
      * Determine whether the user is a national authority or an observatory
      */
-    public function scaling_up(): bool{
+    public function scaling_up(): bool
+    {
         return $this->role_national_or_observatory();
     }
 
     public function role_national_or_observatory(): bool
     {
-        return (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY));
+        return Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY);
     }
 
     /**
@@ -163,5 +165,4 @@ class ImetPolicy
         return Role::hasRequiredAccessLevel($model) &&
             Role::isWdpaAllowed($form->wdpa_id, $user);
     }
-
 }

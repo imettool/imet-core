@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -27,8 +28,6 @@ use ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
-use ImetCore\Services\Scores\Functions\CustomFunctions;
-
 
 class OECMScores extends _Scores
 {
@@ -37,17 +36,15 @@ class OECMScores extends _Scores
     use CommonFunctions;
     use CustomFunctions\oecm\_Common;
     use CustomFunctions\oecm\Context;
-    use CustomFunctions\oecm\Planning;
     use CustomFunctions\oecm\Inputs;
-    use CustomFunctions\oecm\Process;
-    use CustomFunctions\oecm\Outputs;
     use CustomFunctions\oecm\Outcomes;
+    use CustomFunctions\oecm\Outputs;
+    use CustomFunctions\oecm\Planning;
+    use CustomFunctions\oecm\Process;
     use Math;
 
     /**
      * Override: Ensure to return IMET model
-     *
-     * @param $imet
      */
     #[\Override]
     public static function getAsModel($imet): Imet
@@ -55,6 +52,7 @@ class OECMScores extends _Scores
         if (is_int($imet) or is_string($imet)) {
             $imet = Imet::query()->find($imet);
         }
+
         return $imet;
     }
 
@@ -67,7 +65,7 @@ class OECMScores extends _Scores
             'C1' => static::score_designations($imet_id),
             'C2' => static::score_support_contraints($imet_id),
             'C3' => static::score_threats($imet_id),
-            'C4' => static::score_key_elements($imet_id)
+            'C4' => static::score_key_elements($imet_id),
         ];
 
         // aggregate step score
@@ -81,7 +79,6 @@ class OECMScores extends _Scores
             + ($scores['C4'] !== null ? 3 * $scores['C4'] : 0)
             + ($scores['C2'] !== null ? 3 * ($scores['C2'] / 2 + 50) : 0)
             + ($scores['C3'] !== null ? 3 * ($scores['C3'] + 100) : 0);
-
 
         $scores['avg_indicator'] = $numerator > 0 && $denominator > 0
             ? $numerator / $denominator
@@ -106,7 +103,7 @@ class OECMScores extends _Scores
             'P3' => static::score_p3($imet_id),
             'P4' => static::score_p4($imet_id),
             'P5' => static::score_p5($imet_id),
-            'P6' => static::score_p6($imet_id)
+            'P6' => static::score_p6($imet_id),
         ];
 
         // aggregate step score
@@ -161,7 +158,7 @@ class OECMScores extends _Scores
             'PR9' => static::score_pr9($imet_id),
             'PR10' => static::score_group($imet_id, AssistanceActivities::class, 'EvaluationScore', 'group_key'),
             'PR11' => static::score_table($imet_id, EnvironmentalEducation::class, 'EvaluationScore'),
-            'PR12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore')
+            'PR12' => static::score_table($imet_id, VisitorsManagement::class, 'EvaluationScore'),
         ];
 
         // aggregate step score
@@ -188,7 +185,7 @@ class OECMScores extends _Scores
     {
         $scores = [
             'OP1' => static::score_table($imet_id, WorkProgramImplementation::class, 'EvaluationScore'),
-            'OP2' => static::score_op2($imet_id)
+            'OP2' => static::score_op2($imet_id),
         ];
 
         // aggregate step score
@@ -221,7 +218,7 @@ class OECMScores extends _Scores
 
         $numerator = $scores['OC1']
             + $scores['OC2']
-            + ($scores['OC3']!==null
+            + ($scores['OC3'] !== null
                 ? $scores['OC3'] / 2 + 50
                 : 0);
 
@@ -237,5 +234,4 @@ class OECMScores extends _Scores
 
         return $scores;
     }
-
 }

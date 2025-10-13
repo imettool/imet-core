@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,12 +12,12 @@
 
 namespace ImetCore\Services\Assessment;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v1\Imet as ImetV1;
 use ImetCore\Models\Imet\v2\Imet as ImetV2;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Services\Scores\Labels;
-use Illuminate\Database\Eloquent\Collection;
 
 class ImetAssessment
 {
@@ -27,12 +28,14 @@ class ImetAssessment
      */
     private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
-        if(is_int($imet) or is_string($imet)) {
+        if (is_int($imet) or is_string($imet)) {
             $imet_model = ImetV2::query()->find($imet);
-            return $imet_model->version===ImetV2::version
+
+            return $imet_model->version === ImetV2::version
                 ? $imet_model
                 : ImetV1::query()->find($imet);
         }
+
         return $imet;
     }
 
@@ -56,7 +59,7 @@ class ImetAssessment
             'iso3' => $imet->Country,
             'name' => $imet->name,
             'version' => $imet->version,
-            'scores' => $scores
+            'scores' => $scores,
         ];
 
         return $with_labels
@@ -80,7 +83,7 @@ class ImetAssessment
     public static function getAvailableYears($wdpa_id): Collection
     {
         return ImetV2::query()->where('wdpa_id', $wdpa_id)
-            ->orderBy('Year','DESC')
+            ->orderBy('Year', 'DESC')
             ->get();
     }
 
@@ -93,13 +96,13 @@ class ImetAssessment
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()
-            ->map(function ($item) use($with_scores) {
-                if($with_scores) {
+            ->map(function ($item) use ($with_scores) {
+                if ($with_scores) {
                     $item['scores'] = ImetScores::get_radar($item, true);
                 }
+
                 return $item;
             })
             ->toArray();
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,18 +19,19 @@ use ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\BudgetSecurization;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\CapacityAdequacy;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElementsImpact;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElementsImpact;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementEquipmentAdequacy;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
@@ -39,21 +41,19 @@ use ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesIntrants;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesPlanification;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ObjectivesProcessus;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraintsIntegration;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ThreatsBiodiversity;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\ThreatsIntegration;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
 use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
 
 class Imet_Eval extends Imet
 {
-
     public static ?array $modules = [
         'context' => [
             Designation::class,
@@ -61,10 +61,10 @@ class Imet_Eval extends Imet
             SupportsAndConstraintsIntegration::class,
             ThreatsBiodiversity::class,
             Threats::class,             // histogram
-                                        //   + score scale from -100 to 0
+            //   + score scale from -100 to 0
             ThreatsIntegration::class,  // sort ranking
             KeyElements::class,         // Formula: DONE
-            ObjectivesContext::class
+            ObjectivesContext::class,
         ],
         'planning' => [
             RegulationsAdequacy::class,
@@ -73,7 +73,7 @@ class Imet_Eval extends Imet
             ManagementPlan::class,
             WorkPlan::class,
             Objectives::class,
-            ObjectivesPlanification::class
+            ObjectivesPlanification::class,
         ],
         'inputs' => [
             InformationAvailability::class,
@@ -81,7 +81,7 @@ class Imet_Eval extends Imet
             BudgetAdequacy::class,
             BudgetSecurization::class,
             ManagementEquipmentAdequacy::class,
-            ObjectivesIntrants::class
+            ObjectivesIntrants::class,
         ],
         'process' => [
             StaffCompetence::class,
@@ -101,7 +101,7 @@ class Imet_Eval extends Imet
         ],
         'outputs' => [
             WorkProgramImplementation::class,
-            ManagementGovernance::class
+            ManagementGovernance::class,
         ],
         'outcomes' => [
             AchievedObjectives::class,
@@ -117,5 +117,4 @@ class Imet_Eval extends Imet
         ],
         'management_effectiveness' => [],
     ];
-
 }

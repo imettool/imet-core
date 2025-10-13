@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class EcosystemServicesTendance extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 7.2';
@@ -61,16 +63,13 @@ class EcosystemServicesTendance extends Modules\Component\ImetModule
         return [
             'table' => 'EcosystemServicesTendance',
             'fields' => [
-                'Value', 'Description', 'DesiredStatus', 'Trend', 'Reliability', 'Notes', 'Group'
-            ]
+                'Value', 'Description', 'DesiredStatus', 'Trend', 'Reliability', 'Notes', 'Group',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

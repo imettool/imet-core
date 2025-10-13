@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class GeographicalLocation extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.1';
@@ -45,8 +47,8 @@ class GeographicalLocation extends Modules\Component\ImetModule
         return [
             'table' => 'Localization',
             'fields' => [
-                'LimitsExist', 'Shapefile', 'SourceSHP', 'Coordinates', 'SourceCoords', 'AdministrativeLocation'
-            ]
+                'LimitsExist', 'Shapefile', 'SourceSHP', 'Coordinates', 'SourceCoords', 'AdministrativeLocation',
+            ],
         ];
     }
 }

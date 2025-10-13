@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,11 +19,13 @@ use ImetCore\Models\User\Role;
 class FinancialAvailableResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_available_resources';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.2';
@@ -39,7 +42,7 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'BudgetType',
-            'values' => trans('imet-core::v2_context.FinancialAvailableResources.predefined_values')
+            'values' => trans('imet-core::v2_context.FinancialAvailableResources.predefined_values'),
         ];
 
         $this->module_common_fields = [
@@ -59,6 +62,7 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
             ->map(
                 function ($item) use ($form_id) {
                     $item->Currency = $item->Currency ?? FinancialResources::getCurrency($form_id);
+
                     return $item;
                 }
             );
@@ -69,15 +73,15 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
      */
     public static function copyCurrencyFromCTX213($data): array
     {
-        if(filled($data['FinancialResources'])){
+        if (filled($data['FinancialResources'])) {
             $currency = $data['FinancialResources'][0]['Currency'];
-            if($currency!==null){
-                foreach ($data[static::getShortClassName()] as $i=>$record){
+            if ($currency !== null) {
+                foreach ($data[static::getShortClassName()] as $i => $record) {
                     $data[static::getShortClassName()][$i]['Currency'] = $currency;
                 }
             }
         }
+
         return $data;
     }
-
 }

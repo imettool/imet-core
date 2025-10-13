@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,7 @@
 
 namespace ImetCore\Models\Imet\API\ScalingUp;
 
-
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
-use Illuminate\Support\Facades\App;
 
 trait GeneralInfo
 {
@@ -29,13 +28,11 @@ trait GeneralInfo
             'total_surface_protected_areas' => trans('imet-core::analysis_report.general_info.total_surface_protected'),
             'local_mission' => trans('imet-core::analysis_report.general_info.mission'),
             'local_objective' => trans('imet-core::analysis_report.general_info.objectives'),
-            'local_vision' => trans('imet-core::analysis_report.general_info.vision')
+            'local_vision' => trans('imet-core::analysis_report.general_info.vision'),
         ];
 
         $api = ScalingUpAnalysis::general_info($parameters);
 
         return ['data' => $api['data']['general_info'], 'labels' => $labels];
     }
-
-
 }

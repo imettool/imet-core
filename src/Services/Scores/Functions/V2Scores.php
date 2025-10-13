@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,18 +13,16 @@
 namespace ImetCore\Services\Scores\Functions;
 
 use ImetCore\Models\Imet\v2\Modules\Evaluation;
-use ImetCore\Services\Scores\Functions\CustomFunctions;
-
 
 class V2Scores extends _Scores
 {
     use CommonFunctions;
     use CustomFunctions\V2\Context;
-    use CustomFunctions\V2\Planning;
     use CustomFunctions\V2\Inputs;
-    use CustomFunctions\V2\Process;
-    use CustomFunctions\V2\Outputs;
     use CustomFunctions\V2\Outcomes;
+    use CustomFunctions\V2\Outputs;
+    use CustomFunctions\V2\Planning;
+    use CustomFunctions\V2\Process;
     use Math;
 
     /**
@@ -46,8 +45,10 @@ class V2Scores extends _Scores
         $sum = ($scores['C1'] ?? 0)
             + ($scores['C2'] ? $scores['C2'] / 2 + 50 : 0)
             + ($scores['C3'] ? $scores['C3'] + 100 : 0);
-        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x) {
+            return $x !== null;
+        }));
+        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
 
         return $scores;
     }
@@ -109,7 +110,7 @@ class V2Scores extends _Scores
             'PR10' => static::score_pr10($imet_id),
             'PR11' => static::score_group($imet_id, Evaluation\AssistanceActivities::class, 'EvaluationScore', 'group_key'),
             'PR12' => static::score_table($imet_id, Evaluation\EnvironmentalEducation::class, 'EvaluationScore'),
-            'PR13' => static::score_group($imet_id,  Evaluation\VisitorsManagement::class, 'EvaluationScore', 'group_key'),
+            'PR13' => static::score_group($imet_id, Evaluation\VisitorsManagement::class, 'EvaluationScore', 'group_key'),
             'PR14' => static::score_group($imet_id, Evaluation\VisitorsImpact::class, 'EvaluationScore', 'group_key'),
             'PR15' => static::score_table($imet_id, Evaluation\NaturalResourcesMonitoring::class, 'EvaluationScore'),
             'PR16' => static::score_table($imet_id, Evaluation\ResearchAndMonitoring::class, 'EvaluationScore'),
@@ -162,12 +163,13 @@ class V2Scores extends _Scores
 
         // aggregate step score
         $sum = ($scores['OC1'] ?? 0)
-            + ($scores['OC2'] ? $scores['OC2']/2+50 : 0)
-            + ($scores['OC3'] ? $scores['OC3']/2+50 : 0);
-        $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], function($x) { return $x!==null; }));
-        $scores['avg_indicator'] = $count ? round($sum/$count, 1) : null;
+            + ($scores['OC2'] ? $scores['OC2'] / 2 + 50 : 0)
+            + ($scores['OC3'] ? $scores['OC3'] / 2 + 50 : 0);
+        $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], function ($x) {
+            return $x !== null;
+        }));
+        $scores['avg_indicator'] = $count ? round($sum / $count, 1) : null;
 
         return $scores;
     }
-
 }

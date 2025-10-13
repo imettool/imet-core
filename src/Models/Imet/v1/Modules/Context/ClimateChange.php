@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class ClimateChange extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 6.2';
@@ -39,12 +41,11 @@ class ClimateChange extends Modules\Component\ImetModule
             'group2' => trans('imet-core::v1_context.ClimateChange.groups.group2'),
             'group3' => trans('imet-core::v1_context.ClimateChange.groups.group3'),
             'group4' => trans('imet-core::v1_context.ClimateChange.groups.group4'),
-            'group5' => trans('imet-core::v1_context.ClimateChange.groups.group5')
+            'group5' => trans('imet-core::v1_context.ClimateChange.groups.group5'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.ClimateChange.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.ClimateChange.ratingLegend');
-
 
         parent::__construct($attributes);
 
@@ -58,16 +59,13 @@ class ClimateChange extends Modules\Component\ImetModule
         return [
             'table' => 'ClimateChangeChangements',
             'fields' => [
-                'Value', 'Description', 'DesiredStatus', 'Trend', 'Notes', 'Group'
-            ]
+                'Value', 'Description', 'DesiredStatus', 'Trend', 'Notes', 'Group',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {

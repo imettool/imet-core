@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,7 +18,7 @@ return [
             'Element' => 'Elemento/Indicador',
             'Status' => 'Línea de base',
             'Objective' => 'Objetivo – Estado óptimo o favorable',
-            'comments' => 'Comentarios'
+            'comments' => 'Comentarios',
         ],
     ],
 
@@ -35,19 +36,19 @@ return [
                 '1' => 'baja integración',
                 '2' => 'integración moderada',
                 '3' => 'alta integración',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valor e importancia - Designaciones',
         'module_info_EvaluationQuestion' => [
-            '¿Ha incluido el área protegida los valores y la importancia de las designaciones nacionales, regionales o internacionales en la gestión de la misma?'
+            '¿Ha incluido el área protegida los valores y la importancia de las designaciones nacionales, regionales o internacionales en la gestión de la misma?',
         ],
         'module_info_Rating' => [
-            'Evaluar la integración de los valores y la importancia de las designaciones (designación nacional y designación internacional, por ejemplo, sitio del Patrimonio Mundial o sitio Ramsar) en la gestión del área protegida'
-        ]
+            'Evaluar la integración de los valores y la importancia de las designaciones (designación nacional y designación internacional, por ejemplo, sitio del Patrimonio Mundial o sitio Ramsar) en la gestión del área protegida',
+        ],
     ],
 
     'ObjectivesClassification' => [
-        'module_info' => 'Establecer y describir los objetivos para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>la(s) actual(es) designación(es) nacional(es), regional(es) o internacional(es) </b>del área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.',
     ],
 
     'ImportanceSpecies' => [
@@ -69,22 +70,21 @@ return [
                 '1' => 'baja integración',
                 '2' => 'integración moderada',
                 '3' => 'alta integración',
-            ]
+            ],
         ],
         'module_subTitle' => 'Identificar las especies animales (emblemáticas o bandera, en peligro, endémicas, etc.) elegidas como especies clave',
         'module_info_EvaluationQuestion' => [
-            '¿Se han identificado e integrado claramente las especies clave en la gestión del área protegida?'
+            '¿Se han identificado e integrado claramente las especies clave en la gestión del área protegida?',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración de 3 a 10 especies clave en la gestión del área protegida (sobre la base de un análisis del Contexto de Intervención, puntos 4.1 y 4.2, que se informa automáticamente a continuación). La representatividad de una especie clave corresponde al grado en que ésta: i) representa una característica natural fuerte de un hábitat, ecosistema o bioma; ii) influye en un proceso o comunidad ecológica o iii) afecta a una política de gestión dirigida por la especie)'
+            'Evaluar el nivel de integración de 3 a 10 especies clave en la gestión del área protegida (sobre la base de un análisis del Contexto de Intervención, puntos 4.1 y 4.2, que se informa automáticamente a continuación). La representatividad de una especie clave corresponde al grado en que ésta: i) representa una característica natural fuerte de un hábitat, ecosistema o bioma; ii) influye en un proceso o comunidad ecológica o iii) afecta a una política de gestión dirigida por la especie)',
         ],
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'ObjectivesSpecies' => [
-        'module_info' => 'Establecer y describir los objetivos de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos de <b>especies (emblemáticas o bandera, en peligro, endémicas, explotadas, invasoras o sobre las que no hay datos suficientes) </b> en el área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.',
     ],
 
     'ImportanceHabitats' => [
@@ -92,7 +92,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Integración',
-            'EvaluationScore2'=> 'Valor/importancia regional y mundial',
+            'EvaluationScore2' => 'Valor/importancia regional y mundial',
             'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicación',
         ],
@@ -111,18 +111,17 @@ return [
         ],
         'module_subTitle' => 'Valor e importancia - Hábitats terrestres y marinos - cobertura de suelo, cambio de uso de suelo y ocupación del territorio',
         'module_info_EvaluationQuestion' => [
-            '¿Ha identificado e integrado claramente el área protegida los hábitats terrestres y marinos más importantes y las dimensiones relacionadas de la cobertura de suelo, cambio de uso de suelo y ocupación del territorio en la gestión del área protegida?'
+            '¿Ha identificado e integrado claramente el área protegida los hábitats terrestres y marinos más importantes y las dimensiones relacionadas de la cobertura de suelo, cambio de uso de suelo y ocupación del territorio en la gestión del área protegida?',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración en la gestión del área protegida de 3 a 10 de los hábitats y dimensiones relacionadas más representativas e importantes de los tipos de cobertura de suelo, cambio de uso de suelo y ocupación del territorio (sobre la base del análisis del Contexto de la intervención, puntos 4.3, que se informa automáticamente a continuación). (El valor/importancia regional y mundial de los hábitats es un grado en el cual - i - representa a nivel regional o mundial el entorno natural de plantas o animales clave; ii) influye en un proceso ecológico o en una comunidad y - iii) - afecta una política de gestión dirigida a los hábitats)'
+            'Evaluar el nivel de integración en la gestión del área protegida de 3 a 10 de los hábitats y dimensiones relacionadas más representativas e importantes de los tipos de cobertura de suelo, cambio de uso de suelo y ocupación del territorio (sobre la base del análisis del Contexto de la intervención, puntos 4.3, que se informa automáticamente a continuación). (El valor/importancia regional y mundial de los hábitats es un grado en el cual - i - representa a nivel regional o mundial el entorno natural de plantas o animales clave; ii) influye en un proceso ecológico o en una comunidad y - iii) - afecta una política de gestión dirigida a los hábitats)',
         ],
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'ObjectivesHabitats' => [
-        'module_info' => 'Establecer y describir los objetivos para mantener los <b>hábitats terrestres y marinos y las dimensiones relacionadas de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para mantener los <b>hábitats terrestres y marinos y las dimensiones relacionadas de la cobertura de suelo, el cambio de uso de suelos  y la ocupación del territorio</b> del área protegida.<br /> Los objetivos (productos y resultados) que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión en el área protegida.',
     ],
 
     'ImportanceClimateChange' => [
@@ -140,22 +139,21 @@ return [
                 '1' => 'baja integración',
                 '2' => 'integración moderada',
                 '3' => 'alta integración',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valores y Importancia - Cambio Climático',
         'module_info_EvaluationQuestion' => [
-            '¿Se han identificado e integrado claramente los elementos clave (especies, hábitats, etc.) más vulnerables al cambio climático para adoptar las mejores medidas de adaptación disponibles en la gestión del área protegida?'
+            '¿Se han identificado e integrado claramente los elementos clave (especies, hábitats, etc.) más vulnerables al cambio climático para adoptar las mejores medidas de adaptación disponibles en la gestión del área protegida?',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración de los elementos clave más importantes (especies, hábitats, etc.) más vulnerables al cambio climático (sobre la base del análisis del Contexto de Intervención, puntos CTX6.1, que se informa automáticamente a continuación) en la gestión del área protegida.'
+            'Evaluar el nivel de integración de los elementos clave más importantes (especies, hábitats, etc.) más vulnerables al cambio climático (sobre la base del análisis del Contexto de Intervención, puntos CTX6.1, que se informa automáticamente a continuación) en la gestión del área protegida.',
         ],
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>'
+        'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i>, <i>PR17</i> and <i>O/C2</i>',
     ],
 
     'ObjectivesClimateChange' => [
-        'module_info' => 'Establecer y describir los objetivos a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos a los <b> efectos más significativos del cambio climático</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión, y más concretamente para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.',
     ],
 
     'ImportanceEcosystemServices' => [
@@ -173,22 +171,21 @@ return [
                 '1' => 'baja integración',
                 '2' => 'integración moderada',
                 '3' => 'alta integración',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valor e importacial de los Servicios y Funciones Ecosistémicas',
         'module_info_EvaluationQuestion' => [
-            '¿Ha identificado e integrado claramente en la gestión del área protegida los servicios/funciones ecosistémicas más importantes para el bienestar humano?'
+            '¿Ha identificado e integrado claramente en la gestión del área protegida los servicios/funciones ecosistémicas más importantes para el bienestar humano?',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración en la gestión del área protegida de los Servicios/Funciones Ecosistémicas más importantes (basado en el análisis del Contexto del punto de intervención CTX7.1, que se informa automáticamente a continuación)'
+            'Evaluar el nivel de integración en la gestión del área protegida de los Servicios/Funciones Ecosistémicas más importantes (basado en el análisis del Contexto del punto de intervención CTX7.1, que se informa automáticamente a continuación)',
         ],
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>'
+        'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i>, <i>PR18</i> and <i>O/C2</i>',
     ],
 
     'ObjectivesEcosystemServices' => [
-        'module_info' => 'Establecer y describir los objetivos para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>preservar los servicios/funciones ecosistémicas</b> en el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases de los procesos y la supervisión de las actividades de gestión del área protegida.',
     ],
 
     'SupportsAndConstraints' => [
@@ -196,7 +193,7 @@ return [
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variable',
             'EvaluationScore' => 'Influencia/poder de los actores en general',
-            'EvaluationScore2'=> 'Nivel de la restricción/conflicto o del apoyo/cumplimiento',
+            'EvaluationScore2' => 'Nivel de la restricción/conflicto o del apoyo/cumplimiento',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -244,7 +241,7 @@ return [
                 'N/A' => 'Este actor general no participa en el proceso',
                 '1' => 'Baja influencia/poder',
                 '2' => 'Influencia/poder moderado',
-                '3' => 'Alta influencia/poder'
+                '3' => 'Alta influencia/poder',
             ],
             'EvaluationScore2' => [
                 '-3' => 'Severas limitaciones/conflictos generadas por este actor',
@@ -258,15 +255,15 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿La gestión del área protegida está sujeta a limitaciones/conflictos o se beneficia de factores de apoyo/cumplimiento derivados del entorno político, institucional y social externo?',
-            '<i>El entorno político, institucional y civil puede obstruir (limitaciones/conflictos externas) o facilitar (apoyos/cumplimientos externos) las actividades de conservación del área protegida. Las limitaciones/conflictos o apoyos/cumplimientos del entorno político, institucional y civil externo pueden medirse por su intensidad y por la influencia/poder de los socios directos en la limitación o el apoyo/cumplimiento del área protegida.</i>'
+            '<i>El entorno político, institucional y civil puede obstruir (limitaciones/conflictos externas) o facilitar (apoyos/cumplimientos externos) las actividades de conservación del área protegida. Las limitaciones/conflictos o apoyos/cumplimientos del entorno político, institucional y civil externo pueden medirse por su intensidad y por la influencia/poder de los socios directos en la limitación o el apoyo/cumplimiento del área protegida.</i>',
         ],
         'module_info_Rating' => [
-            'Evaluar las limitaciones/conflictos o factores de apoyo/cumplimiento más importantes del entorno político, institucional y civil externo en la gestión del área protegida'
-        ]
+            'Evaluar las limitaciones/conflictos o factores de apoyo/cumplimiento más importantes del entorno político, institucional y civil externo en la gestión del área protegida',
+        ],
     ],
 
     'ObjectivesSupportsAndConstraints' => [
-        'module_info' => 'Establecer y describir los objetivos para <b>limitaciones/conflictos o factores de apoyo/cumplimiento </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>limitaciones/conflictos o factores de apoyo/cumplimiento </b>para el área protegida <br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y la supervisión de las actividades de gestión del área protegida.',
     ],
 
     'Menaces' => [
@@ -277,18 +274,17 @@ return [
             'Comments' => 'Comentarios/explicación',
         ],
         'module_info_EvaluationQuestion' => [
-            '¿Se han identificado e integrado claramente las amenazas (presiones, amenazas y vulnerabilidades) que podrían afectar a la biodiversidad, el patrimonio cultural, los servicios o funciones ecosistémicas, etc. en la gestión del área protegida?'
+            '¿Se han identificado e integrado claramente las amenazas (presiones, amenazas y vulnerabilidades) que podrían afectar a la biodiversidad, el patrimonio cultural, los servicios o funciones ecosistémicas, etc. en la gestión del área protegida?',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de integración de las amenazas más importantes en la gestión del área protegida sobre la base del análisis de la calculadora de amenazas en el punto Contexto de intervención CTX 5.1 y de la que se informa automáticamente a continuación.'
+            'Evaluar el nivel de integración de las amenazas más importantes en la gestión del área protegida sobre la base del análisis de la calculadora de amenazas en el punto Contexto de intervención CTX 5.1 y de la que se informa automáticamente a continuación.',
         ],
-        'warning_on_save' =>
-            'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
-            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
+            los módulos de evaluación (si ya se ha codificado):<br /><i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'ObjectivesMenaces' => [
-        'module_info' => 'Establecer y describir los objetivos para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para for <b>las amenazas más importantes a las que se enfrenta</b>  el área protegida<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.',
     ],
 
     'RegulationsAdequacy' => [
@@ -314,7 +310,7 @@ return [
             'Vedas espaciales y temporales de la pesca; límites del número y tamaño de los buques (controles de entrada); otras restricciones o prohibiciones de uso (por ejemplo, CITES)',
             'Normas (por ejemplo, MARPOL para los buques); prohibición de la pesca con dinamita o de las artes de pesca',
             'Límites o cuotas de captura (controles de salida)',
-            'Licencias, por ejemplo, de acuicultura y parques eólicos en alta mar'
+            'Licencias, por ejemplo, de acuicultura y parques eólicos en alta mar',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -323,15 +319,15 @@ return [
                 '1' => 'Algo inadecuado',
                 '2' => 'Adecuado',
                 '3' => 'Completamente adecuado',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Son adecuadas las actuales disposiciones legales y reglamentarias para actividades de conservación y gestión de los recursos naturales en el área protegida?',
-            '<i>Una legislación y disposiciones reglamentarias adecuadas, son la base de un marco de gobernanza, gestión eficaz y sólido para el área protegida y, lo que es más importante, para garantizar su sostenibilidad a largo plazo para generaciones actuales y futuras</i>'
+            '<i>Una legislación y disposiciones reglamentarias adecuadas, son la base de un marco de gobernanza, gestión eficaz y sólido para el área protegida y, lo que es más importante, para garantizar su sostenibilidad a largo plazo para generaciones actuales y futuras</i>',
         ],
         'module_info_Rating' => [
-            'Identificar y evaluar la pertinencia de las actuales disposiciones legales y reglamentarias para la conservación y la gestión de los recursos naturales en el área protegida'
-            ]
+            'Identificar y evaluar la pertinencia de las actuales disposiciones legales y reglamentarias para la conservación y la gestión de los recursos naturales en el área protegida',
+        ],
     ],
 
     'DesignAdequacy' => [
@@ -353,7 +349,7 @@ return [
             'Zona de exclusión (No-take zone)',
             'Zonas de amortiguación para el uso tradicional',
             'Zonas de amortiguación para actividades educativas y/o recreativas',
-            'Zona de uso múltiple'
+            'Zona de uso múltiple',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -362,15 +358,15 @@ return [
                 '1' => 'Algo inadecuad',
                 '2' => 'Adecuado',
                 '3' => 'Totalmente adecuado',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿El diseño y la disposición del área protegida son adecuados para proteger las especies, los hábitats y otros valores y mantener los procesos naturales (por ejemplo, las cuencas hidrográficas)?',
-            'Base metodológica: El diseño y la disposición (configuración espacial) afectan a la gestión de los ecosistemas, la biodiversidad y otros valores de un área  protegida. El diseño de las áreas protegidas para proteger los valores es complicado y no todas las zonas protegidas tienen un diseño y una disposición óptimos para representar y mantener sus ecosistemas, su biodiversidad y otros valores. La configuración espacial actual del área protegida debería evaluarse con respecto al objetivo de conservar sus valores clave. El análisis debería mostrar si el diseño y la disposición son adecuados para proteger plenamente los ecosistemas representativos, la biodiversidad y otros valores, o si se debería proponer una disposición mejorada, si es factible.'
+            'Base metodológica: El diseño y la disposición (configuración espacial) afectan a la gestión de los ecosistemas, la biodiversidad y otros valores de un área  protegida. El diseño de las áreas protegidas para proteger los valores es complicado y no todas las zonas protegidas tienen un diseño y una disposición óptimos para representar y mantener sus ecosistemas, su biodiversidad y otros valores. La configuración espacial actual del área protegida debería evaluarse con respecto al objetivo de conservar sus valores clave. El análisis debería mostrar si el diseño y la disposición son adecuados para proteger plenamente los ecosistemas representativos, la biodiversidad y otros valores, o si se debería proponer una disposición mejorada, si es factible.',
         ],
         'module_info_Rating' => [
-            'Evaluar si el diseño y la disposición del área protegida (basado en el análisis del Contexto del punto de intervención CTX2) es adecuado para asegurar que sus valores clave están protegidos y pueden ser bien gestionados.'
-        ]
+            'Evaluar si el diseño y la disposición del área protegida (basado en el análisis del Contexto del punto de intervención CTX2) es adecuado para asegurar que sus valores clave están protegidos y pueden ser bien gestionados.',
+        ],
     ],
 
     'BoundaryLevel' => [
@@ -396,7 +392,7 @@ return [
             'Límites registrados con coordenadas geográficas (grado, min, seg)',
             'Demarcación de las zonas de uso de la AP (zonificación)',
             'Demarcación de límites, o parte de ellos, que son ambulatorios [por ejemplo, riberas, ríos, etc.] y que pueden necesitar ser revisados',
-            'Demarcación por elementos naturales mediante una declaración clara (por ejemplo, datos de las mareas o de las inundaciones fluviales: bajamar media, pleamar media, etc.)'
+            'Demarcación por elementos naturales mediante una declaración clara (por ejemplo, datos de las mareas o de las inundaciones fluviales: bajamar media, pleamar media, etc.)',
         ],
         'ratingLegend' => [
             'Boundaries' => [
@@ -406,7 +402,7 @@ return [
                 '3' => '46–60%',
                 '4' => '61–75%',
                 '5' => '76–90%',
-                '6' => '91–100%'
+                '6' => '91–100%',
             ],
             'EvaluationScore' => [
                 'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
@@ -414,15 +410,15 @@ return [
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
                 '3' => 'Totalmente adecuado (91-100% de las necesidades)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿El límite del área protegida está marcado y es adecuado?',
-            'La demarcación física de un área protegida es en general una obligación legal. La demarcación del límite cumple los requisitos para señalar cuál es el límite del área protegida establecido por la legislación específica. La demarcación de las áreas protegidas es útil desde el punto de vista jurídico, ya que permite definir exactamente dónde aplicar el marco jurídico específico (es decir, aplicar sanciones). Cabe señalar, sin embargo, que si bien es útil, la demarcación no es por sí misma una medida de protección suficiente y el conocimiento y la aceptación de los límites del área protegida por los interesados directos es necesario para la conservación.'
+            'La demarcación física de un área protegida es en general una obligación legal. La demarcación del límite cumple los requisitos para señalar cuál es el límite del área protegida establecido por la legislación específica. La demarcación de las áreas protegidas es útil desde el punto de vista jurídico, ya que permite definir exactamente dónde aplicar el marco jurídico específico (es decir, aplicar sanciones). Cabe señalar, sin embargo, que si bien es útil, la demarcación no es por sí misma una medida de protección suficiente y el conocimiento y la aceptación de los límites del área protegida por los interesados directos es necesario para la conservación.',
         ],
         'module_info_Rating' => [
-            'Evaluar  <ol type="A"><li>el grado de delimitación del área protegida</li><li>la adecuación de la demarcación de los límites para la gestión del área protegida</li></ol>'
-        ]
+            'Evaluar  <ol type="A"><li>el grado de delimitación del área protegida</li><li>la adecuación de la demarcación de los límites para la gestión del área protegida</li></ol>',
+        ],
     ],
 
     'ManagementPlan' => [
@@ -441,22 +437,22 @@ return [
                 '0' => 'La visión, la misión y los objetivos del plan de gestión son totalmente inadecuados',
                 '1' => 'La visión, la misión y los objetivos del plan de gestión son algo inadecuados',
                 '2' => 'La visión, misión y objetivos del plan de gestión son adecuados',
-                '3' => 'La visión, misión y objetivos del plan de gestión son totalmente adecuados'
-              ],
-              'PlanAdequacyScore' => [
-                  '0' => 'La claridad y aplicabilidad de la visión, misión y objetivos son totalmente inadecuadas (0-30% de las necesidades)',
-                  '1' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son algo inadecuados (31-60% de las necesidades)',
-                  '2' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son adecuados (61-90% de las necesidades)',
-                  '3' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son plenamente adecuados (91-100% de las necesidades)'
+                '3' => 'La visión, misión y objetivos del plan de gestión son totalmente adecuados',
+            ],
+            'PlanAdequacyScore' => [
+                '0' => 'La claridad y aplicabilidad de la visión, misión y objetivos son totalmente inadecuadas (0-30% de las necesidades)',
+                '1' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son algo inadecuados (31-60% de las necesidades)',
+                '2' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son adecuados (61-90% de las necesidades)',
+                '3' => 'La claridad y la aplicabilidad de la visión, la misión y los objetivos son plenamente adecuados (91-100% de las necesidades)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Existe un plan de gestión, es adecuado y práctico de aplicar para el área protegida?',
-            'El Plan de Gestión es un documento que establece el enfoque y los objetivos de gestión, junto con un marco para la toma de decisiones, que se aplica a un área protegida específica durante un período de tiempo determinado. Para el éxito del plan es fundamental la consulta más amplia posible con los interesados directos y la elaboración de objetivos que puedan ser acordados y a los que puedan adherirse todos los que tengan interés en el uso y la supervivencia continua del área en cuestión (de la UICN: Directrices para la planificación de la gestión de áreas protegidas, 2008).'
+            'El Plan de Gestión es un documento que establece el enfoque y los objetivos de gestión, junto con un marco para la toma de decisiones, que se aplica a un área protegida específica durante un período de tiempo determinado. Para el éxito del plan es fundamental la consulta más amplia posible con los interesados directos y la elaboración de objetivos que puedan ser acordados y a los que puedan adherirse todos los que tengan interés en el uso y la supervivencia continua del área en cuestión (de la UICN: Directrices para la planificación de la gestión de áreas protegidas, 2008).',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) Estado del plan de gestión, B) Idoneidad de la visión, la misión y los objetivos establecidos en el plan y C) Adecuación del plan de gestión a las necesidades de conservación'
-        ]
+            'Evaluar: A) Estado del plan de gestión, B) Idoneidad de la visión, la misión y los objetivos establecidos en el plan y C) Adecuación del plan de gestión a las necesidades de conservación',
+        ],
     ],
 
     'WorkPlan' => [
@@ -475,20 +471,20 @@ return [
                 '0' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son totalmente inadecuados en relación con los objetivos del plan de gestión (0-30% de las necesidades)',
                 '1' => 'Las actividades y resultados del plan de trabajo/acción o plan de monitoreo son inadecuados en relación con los objetivos del plan de gestión (31-60% de las necesidades)',
                 '2' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son adecuados en relación con los objetivos del plan de gestión (61-90% de las necesidades)',
-                '3' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)'
+                '3' => 'Las actividades y los resultados del plan de trabajo/acción o plan de monitoreo son plenamente adecuados en relación con los objetivos del plan de gestión (91-100% de las necesidades)',
             ],
             'PlanAdequacyScore' => [
                 '0' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son totalmente inadecuados',
                 '1' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son algo inadecuados',
                 '2' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son adecuadas',
-                '3' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son plenamente adecuados'
+                '3' => 'La claridad y la aplicabilidad de las actividades y los resultados previstos son plenamente adecuados',
             ],
         ],
         'module_info_Rating' => '•	Evaluar: A) el estado del plan de trabajo/acción o plan de monitoreo, B) la idoneidad de las actividades y resultados del plan de trabajo/acción o plan de monitoreo en relación con los objetivos del plan de gestión y C) la idoneidad en cuanto a la claridad y aplicabilidad de las actividades y resultados establecidos del plan de trabajo/acción o plan de monitoreo',
         'module_info_EvaluationQuestion' => [
             '¿En el área protegida, existe un plan de trabajo/acción o plan de monitoreo, es adecuado y práctico de implementar?',
-            'Un plan de trabajo/acción o plan de monitoreo es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción o plan de monitoreo, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción o plan de monitoreo suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.'
-        ]
+            'Un plan de trabajo/acción o plan de monitoreo es un plan detallado en el que se esbozan las acciones o actividades concretas que deben llevarse a cabo (y por quién, dónde y cuándo) a fin de lograr los productos y resultados establecidos en el plan de gestión del área protegida. Un plan de trabajo/acción o plan de monitoreo, permite monitorear el progreso en el logro de los productos y resultados del área protegida. El plan de trabajo/acción o plan de monitoreo suele abarcar un período fijo (por ejemplo, un año natural) y crea un vínculo dentro del equipo, ya que cada miembro es consciente de su papel individual, además de proporcionar la información necesaria para garantizar el éxito del área protegida en sus esfuerzos de conservación.',
+        ],
     ],
 
     'Objectives' => [
@@ -522,19 +518,19 @@ return [
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
                 '3' => 'Completamente adecuado (91-100% de las necesidades)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Son adecuados los objetivos establecidos para el área protegida?',
-            'La gestión de las áreas protegidas se lleva a cabo cada vez más siguiendo el enfoque de "gestión por objetivos". Se considera proactiva, es decir, está diseñada para lograr un conjunto específico de resultados, en lugar de ser un instrumento reactivo, es decir, simplemente respondiendo a los problemas que surgen. Las metas y objetivos del área protegida deben ser claramente entendidos. Deberían estar bien definidos y redactados para facilitar la supervisión, pero también deberían estar relacionados con los valores clave del área protegida (es decir, especies o ecosistemas importantes) o con las principales áreas de actividad de gestión (por ejemplo, turismo, educación). En esta herramienta hacemos una importante distinción entre resultados y productos.<ul><li> Los RESULTADOS se refieren a los cambios relacionados con las METAS / OBJETIVOS, es decir, las metas / objetivos a largo plazo o las visiones expresadas en el plan de gestión o manejo. Estas metas / objetivos suelen serdeclaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o funciones y/o servicios del ecosistema) o con las principales áreas de actividades de gestión (por ejemplo, turismo, educación).</li><li>Los RESULTADOS se refieren a la realización de ACTIVIDADES a corto plazo, generalmente se miden de forma cuantitativa, y contribuyen con otros logros a alcanzar las metas a largo plazo o los objetivos específicos.</li></ul>'
+            'La gestión de las áreas protegidas se lleva a cabo cada vez más siguiendo el enfoque de "gestión por objetivos". Se considera proactiva, es decir, está diseñada para lograr un conjunto específico de resultados, en lugar de ser un instrumento reactivo, es decir, simplemente respondiendo a los problemas que surgen. Las metas y objetivos del área protegida deben ser claramente entendidos. Deberían estar bien definidos y redactados para facilitar la supervisión, pero también deberían estar relacionados con los valores clave del área protegida (es decir, especies o ecosistemas importantes) o con las principales áreas de actividad de gestión (por ejemplo, turismo, educación). En esta herramienta hacemos una importante distinción entre resultados y productos.<ul><li> Los RESULTADOS se refieren a los cambios relacionados con las METAS / OBJETIVOS, es decir, las metas / objetivos a largo plazo o las visiones expresadas en el plan de gestión o manejo. Estas metas / objetivos suelen serdeclaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o funciones y/o servicios del ecosistema) o con las principales áreas de actividades de gestión (por ejemplo, turismo, educación).</li><li>Los RESULTADOS se refieren a la realización de ACTIVIDADES a corto plazo, generalmente se miden de forma cuantitativa, y contribuyen con otros logros a alcanzar las metas a largo plazo o los objetivos específicos.</li></ul>',
         ],
         'module_info_Rating' => [
-            'Evaluar la adecuación de los objetivos del plan de manejo para los elementos clave del área protegida, basándose en el análisis del contexto de la intervención, puntos: CTX1.5, CTX 4, 5, 6, 7 y contexto de la gestión, puntos de C 1.1 a C 1.5)'
-        ]
+            'Evaluar la adecuación de los objetivos del plan de manejo para los elementos clave del área protegida, basándose en el análisis del contexto de la intervención, puntos: CTX1.5, CTX 4, 5, 6, 7 y contexto de la gestión, puntos de C 1.1 a C 1.5)',
+        ],
     ],
 
     'ObjectivesPlanification' => [
-      'module_info' => 'Establecer y describir los objetivos para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos para <b>la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.',
     ],
 
     'InformationAvailability' => [
@@ -550,7 +546,7 @@ return [
             'group2' => 'Hábitats y las dimensiones relacionadas de cobertura de suelos - uso - ocupación del territorio dentro y fuera del área protegida',
             'group3' => 'Amenazas al área protegida',
             'group4' => 'Efectos del cambio climático en elementos clave del área protegida',
-            'group5' => 'Servicios y funciones ecosistémicas que presta el área protegida'
+            'group5' => 'Servicios y funciones ecosistémicas que presta el área protegida',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -558,23 +554,23 @@ return [
                 '1' => 'No hay mucha información disponible e insuficiente para ayudar a la gestión (31-60% de las necesidades)',
                 '2' => 'Información disponible pero moderadamente suficiente para ayudar a la gestión (61-90% de las necesidades)',
                 '3' => 'Información disponible y en gran medida suficiente para ayudar a la gestión (91-100% de las necesidades)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿El área protegida, dispone de información suficiente y específica que le sirva de apoyo en la toma de decisiones para la gestión?',
-            'La gestión efectiva de las áreas protegidas requiere conocimientos e información suficientes para fundamentar la adopción de decisiones. La gestión de un área protegida necesita un análisis sólido para resumir y estructurar la información pertinente con miras a encontrar soluciones a problemas concretos de gestión. Los buenos datos e información son un requisito previo para un análisis sólido, y sin esa información no puede haber una buena gestión.'
+            'La gestión efectiva de las áreas protegidas requiere conocimientos e información suficientes para fundamentar la adopción de decisiones. La gestión de un área protegida necesita un análisis sólido para resumir y estructurar la información pertinente con miras a encontrar soluciones a problemas concretos de gestión. Los buenos datos e información son un requisito previo para un análisis sólido, y sin esa información no puede haber una buena gestión.',
         ],
         'module_info_Rating' => [
-            'Analizar la disponibilidad de información para apoyar la gestión del área protegida en las siguientes dimensiones del Contexto de la intervención, points CTX 4; 5; 6; 7'
-        ]
+            'Analizar la disponibilidad de información para apoyar la gestión del área protegida en las siguientes dimensiones del Contexto de la intervención, points CTX 4; 5; 6; 7',
+        ],
     ],
 
     'Staff' => [
         'title' => 'Personal actual',
         'fields' => [
             'Theme' => 'Criterio -  Concepto medido  - Variables',
-            'StaffNumberAdequacy'=> 'Adecuación del número de personal',
-            'StaffCapacityAdequacy'=> 'Adecuación de las capacidades del personal',
+            'StaffNumberAdequacy' => 'Adecuación del número de personal',
+            'StaffCapacityAdequacy' => 'Adecuación de las capacidades del personal',
             'Comments' => 'Comentarios/explicación',
         ],
         'StaffNumberAdequacy' => 'Adecuación del número del personal',
@@ -584,23 +580,23 @@ return [
                 '1' => 'No hay suficiente personal para las actividades esenciales de gestión (entre el 21 y el 40% del número requerido)',
                 '2' => 'No hay suficiente personal para llevar a cabo muchas actividades de gestión (entre el 41 y el 60% del número necesario)',
                 '3' => 'Suficiente personal para llevar a cabo muchas, pero no todas las actividades (entre el 61 y el 80% del número requerido)',
-                '4' => 'Número de personal apropiado para llevar a cabo todas las actividades (entre el 81 y el 100% del número requerido)'
+                '4' => 'Número de personal apropiado para llevar a cabo todas las actividades (entre el 81 y el 100% del número requerido)',
             ],
             'StaffCapacityAdequacy' => [
                 '0' => 'Sin capacidad de personal (0-30% de las necesidades)',
                 '1' => 'Capacidades de personal insuficientes (31-60% de las necesidades)',
                 '2' => 'La capacidad del personal es adecuada en principio, pero se requieren más mejoras (61-90% de las necesidades)',
-                '3' => 'Capacidades de personal suficientes (91-100% de las necesidades)'
+                '3' => 'Capacidades de personal suficientes (91-100% de las necesidades)',
 
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Hay suficiente personal para cumplir los requisitos de gestión del área protegida?',
-            'La dotación de personal cualificado, competente, comprometido y adecuado (en número) es fundamental para el éxito de las áreas protegidas. Las necesidades de personal están definitivamente correlacionadas con el tamaño, el tipo, la densidad de vegetación y las presiones y amenazas (es decir, la densidad humana) de un área protegida. Por ejemplo, para su protección, las zonas forestales más pequeñas y protegidas tienden a requerir relativamente más personal en comparación con las zonas protegidas de sabana más grandes y abiertas, lo que implica mayores costos de personal. La evaluación se basa en la información del plan de manejo o del organigrama oficial del personal'
+            'La dotación de personal cualificado, competente, comprometido y adecuado (en número) es fundamental para el éxito de las áreas protegidas. Las necesidades de personal están definitivamente correlacionadas con el tamaño, el tipo, la densidad de vegetación y las presiones y amenazas (es decir, la densidad humana) de un área protegida. Por ejemplo, para su protección, las zonas forestales más pequeñas y protegidas tienden a requerir relativamente más personal en comparación con las zonas protegidas de sabana más grandes y abiertas, lo que implica mayores costos de personal. La evaluación se basa en la información del plan de manejo o del organigrama oficial del personal',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) la adecuación del número de empleados (obsérvese que los resultados se calculan automáticamente sobre la evaluación realizada en el CTX 3.1.1), B) la adecuación de la capacidad del personal'
-        ]
+            'Evaluar: A) la adecuación del número de empleados (obsérvese que los resultados se calculan automáticamente sobre la evaluación realizada en el CTX 3.1.1), B) la adecuación de la capacidad del personal',
+        ],
     ],
 
     'BudgetAdequacy' => [
@@ -616,17 +612,17 @@ return [
                 '2' => 'Insuficiente para muchas actividades de gestión (26-50% de las necesidades)',
                 '3' => 'Adecuado para las actividades esenciales de gestión (entre el 51 y el 70% de las necesidades)',
                 '4' => 'Adecuado para muchas, pero no todas las actividades (entre el 71% y el 90% de las necesidades)',
-                '5' => 'Adecuado para todas las actividades (91% o más de los requisitos)'
+                '5' => 'Adecuado para todas las actividades (91% o más de los requisitos)',
 
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿El presupuesto actual es adecuado para la gestión apropiada del área protegida?',
-            'Las áreas protegidas preparan sus presupuestos anuales de funcionamiento cada año o durante varios años. La planificación financiera y los documentos presupuestarios clave son necesarios para mejorar la eficiencia y la eficacia operativa. La mejora se consigue mediante el uso de medidas de rendimiento y el análisis de los procesos'
+            'Las áreas protegidas preparan sus presupuestos anuales de funcionamiento cada año o durante varios años. La planificación financiera y los documentos presupuestarios clave son necesarios para mejorar la eficiencia y la eficacia operativa. La mejora se consigue mediante el uso de medidas de rendimiento y el análisis de los procesos',
         ],
         'module_info_Rating' => [
-            '•	Evaluar la idoneidad de la financiación del año en curso del área protegida en relación con los requisitos de conservación (sobre la base del análisis del contexto de la intervención, punto CTX 3.2)'
-        ]
+            '•	Evaluar la idoneidad de la financiación del año en curso del área protegida en relación con los requisitos de conservación (sobre la base del análisis del contexto de la intervención, punto CTX 3.2)',
+        ],
     ],
 
     'BudgetSecurization' => [
@@ -645,20 +641,20 @@ return [
                 '4' => 'Las necesidades financieras básicas de la gestión de las áreas protegidas están relativamente bien aseguradas (76-90% de las necesidades aseguradas)',
                 '5' => 'Se aseguran las necesidades financieras básicas de la gestión del área protegida (> 90% de las necesidades aseguradas)',
             ],
-            'EvaluationScore' =>[
+            'EvaluationScore' => [
                 '0' => 'Las necesidades financieras básicas de la gestión del área protegida están aseguradas sólo por 1 año (año en curso)',
                 '1' => 'Las necesidades financieras básicas de la gestión del área protegida están aseguradas por 2 años (año en curso +1 año)',
                 '2' => 'Las necesidades financieras básicas de la gestión del área protegida están aseguradas por 3 años (año en curso +2 años)',
-                '3' => 'Las necesidades financieras básicas de la gestión de las áreas protegidas están aseguradas para 4 - and más años. (año en curso +3 años y más)'
-            ]
+                '3' => 'Las necesidades financieras básicas de la gestión de las áreas protegidas están aseguradas para 4 - and más años. (año en curso +3 años y más)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Qué parte del presupuesto necesario se asegura, y por cuánto tiempo, para cubrir las necesidades básicas de gestión de las áreas protegidas?',
-            'Un presupuesto seguro y fiable es fundamental para la planificación y la gestión de las áreas protegidas, en particular para las actividades a gran escala y a largo plazo. Se debería hacer una evaluación realista de las necesidades para asegurar que todos los costos relacionados con el plan de trabajo o de gestión puedan ser satisfechos plenamente, teniendo en cuenta que algunos objetivos requerirán varios años para ser alcanzados. Cuando no se disponga de recursos, el administrador debe decidir cómo priorizar las actividades en términos de calendario e inversión'
+            'Un presupuesto seguro y fiable es fundamental para la planificación y la gestión de las áreas protegidas, en particular para las actividades a gran escala y a largo plazo. Se debería hacer una evaluación realista de las necesidades para asegurar que todos los costos relacionados con el plan de trabajo o de gestión puedan ser satisfechos plenamente, teniendo en cuenta que algunos objetivos requerirán varios años para ser alcanzados. Cuando no se disponga de recursos, el administrador debe decidir cómo priorizar las actividades en términos de calendario e inversión',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) la seguridad del financiamiento y B) el período de seguridad de la financiación para los próximos años en relación con los requisitos de conservación en el área protegida'
-        ]
+            'Evaluar: A) la seguridad del financiamiento y B) el período de seguridad de la financiación para los próximos años en relación con los requisitos de conservación en el área protegida',
+        ],
     ],
 
     'ManagementEquipmentAdequacy' => [
@@ -685,16 +681,16 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿La infraestructura, el equipo y las instalaciones del área protegida son adecuados para los requisitos de gestión?',
-            'La infraestructura, el equipo y las instalaciones son importantes para asegurar y mejorar la eficiencia y eficacia operativa del área protegida. El análisis de la infraestructura, el equipo y las instalaciones de un área protegida puede servir de base para buscar financiación adicional. Se debería alentar a los donantes a que contribuyan a alcanzar y mantener niveles adecuados de infraestructura, equipo e instalaciones para la gestión de las áreas protegidas'
+            'La infraestructura, el equipo y las instalaciones son importantes para asegurar y mejorar la eficiencia y eficacia operativa del área protegida. El análisis de la infraestructura, el equipo y las instalaciones de un área protegida puede servir de base para buscar financiación adicional. Se debería alentar a los donantes a que contribuyan a alcanzar y mantener niveles adecuados de infraestructura, equipo e instalaciones para la gestión de las áreas protegidas',
         ],
         'module_info_Rating' => [
             'Evaluar: A) la idoneidad de la infraestructura, el equipo y las instalaciones (resultados calculados automáticamente sobre la base del análisis del contexto de la intervención, punto (CTX 3.3), B) la necesidad actual de disponer de infraestructura, equipo e instalaciones específicas para el área protegida',
-                ]
+        ],
     ],
 
     'ObjectivesIntrants' => [
-      'module_info' => 'Establecer y describir los objetivos de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.'
-        ],
+        'module_info' => 'Establecer y describir los objetivos de los <b>insumos</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento de las actividades de gestión del área protegida.',
+    ],
 
     'StaffCompetence' => [
         'title' => 'Programa de capacitación y fomento de la capacidad del personal',
@@ -709,22 +705,22 @@ return [
                 '0' => 'Completamente inadecuado',
                 '1' => 'Algo inadecuado',
                 '2' => 'Adecuado',
-                '3' => 'Completamente adecuado'
+                '3' => 'Completamente adecuado',
             ],
             'PercentageLevel' => [
                 '0' => 'Actividades de fomento de la capacidad del personal totalmente inadecuadas',
                 '1' => 'Actividades de fomento de la capacidad del personal algo inadecuadas',
                 '2' => 'Actividades adecuadas de fomento de la capacidad del personal, pero se necesitan mejoras',
-                '3' => 'Actividades de fomento de la capacidad del personal plenamente adecuadas (suficientes y actualizadas)'
-            ]
+                '3' => 'Actividades de fomento de la capacidad del personal plenamente adecuadas (suficientes y actualizadas)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Se está aplicando en el área protegida un programa adecuado de capacitación y fomento de la capacidad que responda a las necesidades de personal para lograr los objetivos de gestión?',
-            'El personal cualificado, competente y comprometido es fundamental para el éxito de las áreas protegidas. La capacitación del personal se reconoce cada vez más como un componente vital de la gestión eficiente de las áreas protegidas. El objetivo principal de la capacitación del personal es aumentar la capacidad del personal de las áreas protegidas para adaptarse a los nuevos desafíos, utilizando enfoques innovadores, si es necesario. El análisis de este punto tiene en cuenta la adecuación de (A) el diseño del programa de formación (incluyendo el análisis, la dotación de recursos, el diseño), y (B) las actividades de creación de capacidad (incluyendo el desarrollo e impartición de formación) en relación con la capacidad y las necesidades del personal para los requisitos de gestión del área protegida'
+            'El personal cualificado, competente y comprometido es fundamental para el éxito de las áreas protegidas. La capacitación del personal se reconoce cada vez más como un componente vital de la gestión eficiente de las áreas protegidas. El objetivo principal de la capacitación del personal es aumentar la capacidad del personal de las áreas protegidas para adaptarse a los nuevos desafíos, utilizando enfoques innovadores, si es necesario. El análisis de este punto tiene en cuenta la adecuación de (A) el diseño del programa de formación (incluyendo el análisis, la dotación de recursos, el diseño), y (B) las actividades de creación de capacidad (incluyendo el desarrollo e impartición de formación) en relación con la capacidad y las necesidades del personal para los requisitos de gestión del área protegida',
         ],
         'module_info_Rating' => [
-            'Para las diferentes categorías/funciones de personal (por ejemplo, directores, guardaparques, etc.) evaluar la idoneidad de: A) el diseño del programa de capacitación y B) las actividades de fomento de la capacidad del personal'
-        ]
+            'Para las diferentes categorías/funciones de personal (por ejemplo, directores, guardaparques, etc.) evaluar la idoneidad de: A) el diseño del programa de capacitación y B) las actividades de fomento de la capacidad del personal',
+        ],
     ],
 
     'HRmanagementPolitics' => [
@@ -745,7 +741,7 @@ return [
             'Normas para reducir el favoritismo y la discriminación',
             'Formación y desarrollo',
             'Gestión de las relaciones con los empleados',
-            'Sistemas de información de recursos humanos'
+            'Sistemas de información de recursos humanos',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -753,16 +749,16 @@ return [
                 '0' => 'Completamente inadecuado (0-30% de las necesidades)',
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
-                '3' => 'Completamente adecuado (91-100% de las necesidades)'
-            ]
+                '3' => 'Completamente adecuado (91-100% de las necesidades)',
+            ],
         ],
-        'module_info_EvaluationQuestion' =>[
+        'module_info_EvaluationQuestion' => [
             '¿Ha adoptado el área protegida políticas, procedimientos y directrices adecuados de gestión de los recursos humanos para la contratación, el ascenso, la compensación, el rendimiento, la evaluación y la capacitación del personal, sus obligaciones y su código de conducta?',
-            'Las políticas de recursos humanos esbozan el enfoque y las medidas a adoptar en la gestión del personal. Esas políticas también proporcionan directrices para la gestión de los recursos humanos sobre diversas cuestiones relativas a diferentes aspectos como la contratación, los ascensos, la remuneración, el rendimiento, la evaluación y la capacitación, pero también las obligaciones del personal y su código de conducta, los procedimientos disciplinarios, etc. El establecimiento de políticas, procedimientos y directrices claros puede contribuir a demostrar, tanto interna como externamente, que el área protegida cumple los requisitos de equidad, diversidad, ética y capacitación, así como sus compromisos de cumplir los requisitos reglamentarios y la buena gestión de los recursos humanos de los empleados del área protegida'
+            'Las políticas de recursos humanos esbozan el enfoque y las medidas a adoptar en la gestión del personal. Esas políticas también proporcionan directrices para la gestión de los recursos humanos sobre diversas cuestiones relativas a diferentes aspectos como la contratación, los ascensos, la remuneración, el rendimiento, la evaluación y la capacitación, pero también las obligaciones del personal y su código de conducta, los procedimientos disciplinarios, etc. El establecimiento de políticas, procedimientos y directrices claros puede contribuir a demostrar, tanto interna como externamente, que el área protegida cumple los requisitos de equidad, diversidad, ética y capacitación, así como sus compromisos de cumplir los requisitos reglamentarios y la buena gestión de los recursos humanos de los empleados del área protegida',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de las disposiciones de las políticas, procedimientos y directrices de gestión de los recursos humanos para el área protegida'
-        ]
+            'Evaluar la idoneidad de las disposiciones de las políticas, procedimientos y directrices de gestión de los recursos humanos para el área protegida',
+        ],
     ],
 
     'HRmanagementSystems' => [
@@ -784,7 +780,7 @@ return [
             'Condiciones de trabajo adecuadas (equipo de trabajo, ropa, etc.)',
             'Motivación de las autoridades políticas, administrativas y militares',
             'Motivación de las autoridades legales',
-            'Motivación de las comunidades locales'
+            'Motivación de las comunidades locales',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -792,8 +788,8 @@ return [
                 '0' => 'Completamente inadecuado (0-30% de las necesidades)',
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
-                '3' => 'Completamente adecuado (91-100% de las necesidades)'
-                ]
+                '3' => 'Completamente adecuado (91-100% de las necesidades)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Utiliza la gestión del área protegida medidas/enfoques/herramientas adecuadas para asegurar la motivación del personal?',
@@ -801,7 +797,7 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluar la idoneidad de las medidas/enfoques/herramientas de motivación del personal en el área protegida',
-            ]
+        ],
     ],
 
     'GovernanceLeadership' => [
@@ -816,20 +812,20 @@ return [
                 '0' => 'No hay comunicación, o es extremadamente limitada, sobre la visión, la misión y los valores del área protegida para influir en el desempeño, el apoyo y la retroalimentación del personal (entre el 0 y el 25% de las necesidades)',
                 '1' => 'No hay una comunicación suficientemente clara sobre la visión de la misión de las áreas protegidas y los valores para influir en el desempeño, el apoyo y la retroalimentación del personal (entre el 26 y el 50% de las necesidades)',
                 '2' => 'Existe una comunicación clara pero no completa sobre la visión, la misión y los valores del área protegida para influir en el desempeño, el apoyo y la retroalimentación del personal (entre el 51 y el 75% de las necesidades)',
-                '3' => 'Existe una comunicación completa sobre la visión, misión y valores de las áreas protegidas para influir en el desempeño, el apoyo y la retroalimentación del personal (entre el 76 y el 100% de las necesidades)'
+                '3' => 'Existe una comunicación completa sobre la visión, misión y valores de las áreas protegidas para influir en el desempeño, el apoyo y la retroalimentación del personal (entre el 76 y el 100% de las necesidades)',
             ],
             'EvaluationScoreLeadership' => [
                 '0' => 'La gestión no está orientada a los resultados en el logro de la visión, misión y conservación de los valores del área protegida',
                 '1' => 'La gestión está débilmente orientada a los resultados en el logro de la visión, misión y conservación de los valores del área protegida',
                 '2' => 'La gestión suele estar orientada a los resultados para lograr la visión, misión y conservación de los valores del área protegida',
-                '3' => 'La gestión está fuertemente orientada a los resultados en el logro de la visión, la misión y la conservación de los valores del área protegida'
+                '3' => 'La gestión está fuertemente orientada a los resultados en el logro de la visión, la misión y la conservación de los valores del área protegida',
             ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿La gestión del área protegida ofrece una dirección y orientación adecuadas para emprender tareas y ejecutarlas?',
-            'La gestión del área protegida debería dar una dirección y orientación adecuadas para cualquier actividad relacionada con las operaciones de escritorio y sobre el terreno, el uso de recursos, la administración, la aplicación de la ley, la vigilancia, etc. La evaluación de la orientación de la gestión debería determinar si sigue siendo pertinente, eficaz y actual, o si es necesario introducir cambios. A veces puede ser necesario hacer ajustes para asegurar que la gestión proporcione una dirección adecuada para la aplicación de los productos y resultados previstos'
+            'La gestión del área protegida debería dar una dirección y orientación adecuadas para cualquier actividad relacionada con las operaciones de escritorio y sobre el terreno, el uso de recursos, la administración, la aplicación de la ley, la vigilancia, etc. La evaluación de la orientación de la gestión debería determinar si sigue siendo pertinente, eficaz y actual, o si es necesario introducir cambios. A veces puede ser necesario hacer ajustes para asegurar que la gestión proporcione una dirección adecuada para la aplicación de los productos y resultados previstos',
         ],
-        'module_info_Rating' => 'Evaluar la adecuación de: A) la comunicación por parte de la administración de la misión y los valores del área protegida y B) el enfoque de la administración orientado a los resultados'
+        'module_info_Rating' => 'Evaluar la adecuación de: A) la comunicación por parte de la administración de la misión y los valores del área protegida y B) el enfoque de la administración orientado a los resultados',
     ],
 
     'AdministrativeManagement' => [
@@ -845,7 +841,7 @@ return [
             'Transparencia: La organización es transparente en lo que respecta a su trabajo y sus finanzas, poniendo la información a disposición de todos los funcionarios/interesados.',
             'Integridad: los individuos en su organización están operando con honestidad y decoro.',
             'Administración financiera: su organización cuida bien los recursos financieros que le han sido designados y se asegura de que se utilicen para los propósitos previstos.',
-            'Normas de contabilidad: el sistema de su organización para mantener los registros y la documentación financiera sigue las normas de contabilidad externas aceptadas.'
+            'Normas de contabilidad: el sistema de su organización para mantener los registros y la documentación financiera sigue las normas de contabilidad externas aceptadas.',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -854,16 +850,16 @@ return [
                 '1' => 'Raramente',
                 '2' => 'A veces',
                 '3' => 'A menudo',
-                '4' => 'Siempre'
-            ]
+                '4' => 'Siempre',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Se administran bien el presupuesto y los recursos financieros para satisfacer las necesidades esenciales y prioritarias de gestión del área protegida?',
-            'El presupuesto y la gestión financiera de un área protegida debe ser sólida para permitir una asignación adecuada de los recursos, una previsión dinámica y detallada de los costes de posición en todos los programas y una planificación estratégica. La gestión presupuestaria y financiera es más que sólo llevar registros contables. Es una parte esencial de la planificación, la organización, el control y el seguimiento de los recursos financieros para lograr los objetivos de conservación del área protegida. Sólo se puede conseguir una gestión presupuestaria y financiera eficaz si se dispone de un plan de gestión y trabajo sólido con políticas y estrategias claras y un conjunto de objetivos acordados.'
+            'El presupuesto y la gestión financiera de un área protegida debe ser sólida para permitir una asignación adecuada de los recursos, una previsión dinámica y detallada de los costes de posición en todos los programas y una planificación estratégica. La gestión presupuestaria y financiera es más que sólo llevar registros contables. Es una parte esencial de la planificación, la organización, el control y el seguimiento de los recursos financieros para lograr los objetivos de conservación del área protegida. Sólo se puede conseguir una gestión presupuestaria y financiera eficaz si se dispone de un plan de gestión y trabajo sólido con políticas y estrategias claras y un conjunto de objetivos acordados.',
         ],
         'module_info_Rating' => [
-            'Evaluar la configuración de los elementos básicos que deben estar en vigor para lograr una buena práctica en la gestión presupuestaria y financiera. (No existe un modelo único de sistema de gestión presupuestaria y financiera que se adapte a todas las organizaciones, pero hay algunos elementos básicos que deben estar en vigor para lograr una buena práctica de gestión presupuestaria y financiera)'
-        ]
+            'Evaluar la configuración de los elementos básicos que deben estar en vigor para lograr una buena práctica en la gestión presupuestaria y financiera. (No existe un modelo único de sistema de gestión presupuestaria y financiera que se adapte a todas las organizaciones, pero hay algunos elementos básicos que deben estar en vigor para lograr una buena práctica de gestión presupuestaria y financiera)',
+        ],
     ],
 
     'EquipmentMaintenance' => [
@@ -880,16 +876,16 @@ return [
                 '0' => 'Completamente inadecuado (0-30% de las necesidades)',
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
-                '3' => 'Completamente adecuado (91-100% de las necesidades)'
-                ]
+                '3' => 'Completamente adecuado (91-100% de las necesidades)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Se mantienen adecuadamente la infraestructura, el equipo y las instalaciones del área protegida?',
-            'El mantenimiento preventivo es el término que se utiliza para el mantenimiento periódico de rutina realizado en la infraestructura, el equipo y las instalaciones para mantenerlas funcionando sin problemas y de manera eficiente y para ayudar a prolongar su vida útil. La infraestructura, el equipo y las instalaciones mal mantenidos no sólo se desgastan más rápidamente, sino que también desperdician recursos y degradan fundamentalmente la capacidad del área protegida para alcanzar los objetivos de conservación. El área protegida debería trabajar para prevenir ambas condiciones mediante un programa de mantenimiento adecuado'
+            'El mantenimiento preventivo es el término que se utiliza para el mantenimiento periódico de rutina realizado en la infraestructura, el equipo y las instalaciones para mantenerlas funcionando sin problemas y de manera eficiente y para ayudar a prolongar su vida útil. La infraestructura, el equipo y las instalaciones mal mantenidos no sólo se desgastan más rápidamente, sino que también desperdician recursos y degradan fundamentalmente la capacidad del área protegida para alcanzar los objetivos de conservación. El área protegida debería trabajar para prevenir ambas condiciones mediante un programa de mantenimiento adecuado',
         ],
         'module_info_Rating' => [
-            'Evaluate the level of maintenance of infrastructure, equipment and facilities in relation to management requirements for the protected area (based on the analysis of the context of intervention, point CTX 3.3)'
-        ]
+            'Evaluate the level of maintenance of infrastructure, equipment and facilities in relation to management requirements for the protected area (based on the analysis of the context of intervention, point CTX 3.3)',
+        ],
     ],
 
     'ManagementActivities' => [
@@ -914,22 +910,22 @@ return [
                 '0' => 'Completamente inadecuado (0-30% de las necesidades)',
                 '1' => 'Algo inadecuado (31-60% de las necesidades)',
                 '2' => 'Adecuado (61-90% de las necesidades)',
-                '3' => 'Completamente adecuado (91-100% de las necesidades)'
-            ]
+                '3' => 'Completamente adecuado (91-100% de las necesidades)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Existen medidas de gestión específicas para los valores y amenazas clave del área protegida?',
-            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, el hábitat y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.'
+            'El principal objetivo de gestión de las áreas protegidas es la conservación/restauración de los valores naturales y culturales asociados. Para preservar estos valores y minimizar las amenazas más significativas, los gestores deben identificar y utilizar las directrices, medidas o mejores prácticas de gestión disponibles. Las acciones pueden incluir la conservación/restauración de especies animales y vegetales, el hábitat y la gestión de diversas amenazas (nota: para las acciones de adaptación al cambio climático y de gestión de los servicios de los ecosistemas, véanse los PR 17 y PR 18). Ejemplos de acciones: gestión de fauna o vegetación, gestión del entorno físico, gestión de incendios, trabajos de revegetación, control de especies invasoras, gestión de recursos culturales, minimización de amenazas, etc.',
         ],
         'module_info_Rating' => [
-            'Enumere tres o más valores, amenazas y otros elementos clave y evalúe la idoneidad de las medidas de gestión conexas (sobre la base del análisis del contexto de los puntos de intervención CTX 4 y 5).'
-        ]
+            'Enumere tres o más valores, amenazas y otros elementos clave y evalúe la idoneidad de las medidas de gestión conexas (sobre la base del análisis del contexto de los puntos de intervención CTX 4 y 5).',
+        ],
     ],
     'LawEnforcementImplementation' => [
         'title' => 'Gestión de patrullajes de guardaparques (aplicación de la ley)',
         'fields' => [
             'Element' => 'Criterio - Concepto medido  - Variables',
-            'Adequacy'=> 'Adecuación de la gestión de patrullajes de guardaparques',
+            'Adequacy' => 'Adecuación de la gestión de patrullajes de guardaparques',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -964,7 +960,7 @@ return [
                 'Patrullas de control realizadas durante la noche y otras horas aleatorias',
                 'Participación periódica en la formación especializada (formación básica de la Organización Marítima Internacional -OMI-, lectura y utilización de cartas náuticas, búsqueda y salvamento, curso de mantenimiento básico de motores fueraborda, etc.)',
                 'Actualización y distribución continuas de una hoja informativa sencilla en la que se exponen la zonificación, los reglamentos, las restricciones y las multas o sanciones',
-            ]
+            ],
         ],
         'ratingLegend' => [
             'Adequacy' => [
@@ -973,7 +969,7 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Completamente adecuado (91-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿En qué medida es adecuada la gestión y aplicación de la aplicación de la ley mediante patrullajes de guardaparques orientadas a garantizar la protección de la biodiversidad a largo plazo?',
@@ -982,14 +978,14 @@ return [
         ],
         'module_info_Rating' => [
             'Evaluar la idoneidad de los elementos de la gestión de los patrullajes de guardaparques orientados a asegurar la protección a largo plazo de la biodiversidad y otros valores',
-            ]
+        ],
     ],
 
     'IntelligenceImplementation' => [
         'title' => 'Seguimiento de indicios, cruce de información, seguimiento a infracciones y acciones legales (aplicación de la ley)',
         'fields' => [
             'Element' => 'Criterios - Concepto medido – Variables',
-            'Adequacy'=> 'Adecuación de la gestión de: A) Seguimiento de indicios y cruce de información; B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales',
+            'Adequacy' => 'Adecuación de la gestión de: A) Seguimiento de indicios y cruce de información; B) a busqueda de indicios, seguimiento a infracciones y desarrollo de casos de acciones legales',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -1005,7 +1001,7 @@ return [
                 'Apoyo informático a la seguimiento de indicios',
                 'Sistema de organización y análisis de datos de seguimiento de indicios',
                 'Colaboración interinstitucional (por ejemplo, los fiscales del servicio de vida silvestre o la unidad especializada en la persecución de delitos contra la vida silvestre, policia ambinetal, tribunal agroambiental)',
-                'Colaboración interinstitucional con las ONG (por ejemplo, AIDA - Red de Justicia Ambiental, entre otros)'
+                'Colaboración interinstitucional con las ONG (por ejemplo, AIDA - Red de Justicia Ambiental, entre otros)',
             ],
             'group0b' => [
                 'Unidades de inteligencia e investigación que orientan y apoyan las operaciones de patrulla marítima',
@@ -1017,7 +1013,7 @@ return [
                 'Nivel de seguridad personal durante el embarque',
                 'Utilización de un modelo de evaluación de riesgos (GAR -GREEN-AMBER-RED o equivalente/otro)',
                 'Utilización de una base de datos para el registro y el seguimiento de la información sobre las infracciones',
-                'Colaboración con las ONG especializadas en legislación marina, aplicación de la ley, etc. (por ejemplo el Programa Oceánico del Environmental Law Institute - ELI)'
+                'Colaboración con las ONG especializadas en legislación marina, aplicación de la ley, etc. (por ejemplo el Programa Oceánico del Environmental Law Institute - ELI)',
             ],
             'group1' => [
                 'Observación de los delitos',
@@ -1025,7 +1021,7 @@ return [
                 'Preparación del informe de patrullaje especial',
                 'Denuncia hacia las entidades correspondiente',
                 'Aplicación de la ley (querella)/ multa a los infractores',
-                'Seguimiento a infractores/conclusión del caso'
+                'Seguimiento a infractores/conclusión del caso',
             ],
             'group1b' => [
                 'Talleres de formación para jueces, abogados y procuradores sobre la normativa marina y pesquera',
@@ -1043,15 +1039,15 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Completamente adecuado (91-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿En qué medida es adecuado el seguimiento de indicios/ cruce de información / seguimiento a infracciones /acciones jurídicas orientadas a garantizar la protección de la diversidad biológica a largo plazo?',
-            'El Seguimiento de indicios y el cruce de información, así como el seguimiento a infracciones y las medidas jurídicas, son actividades esenciales de aplicación de la ley para hacer cumplir las normas jurídicas existentes que deberían garantizar la protección a largo plazo de la biodiversidad y otros valores en el área protegida. La gestión eficaz de las áreas protegidas requiere la aplicación de la ley a todos los niveles: patrullajes de guardaparques, Seguimiento de indicios y sistemas de justicia penal eficaces. Esta etapa del análisis está orientada a la evaluación de: A) Seguimiento de indicios y la cruce de información y B) la busqueda de indicios y la adopción de medidas jurídicas'
+            'El Seguimiento de indicios y el cruce de información, así como el seguimiento a infracciones y las medidas jurídicas, son actividades esenciales de aplicación de la ley para hacer cumplir las normas jurídicas existentes que deberían garantizar la protección a largo plazo de la biodiversidad y otros valores en el área protegida. La gestión eficaz de las áreas protegidas requiere la aplicación de la ley a todos los niveles: patrullajes de guardaparques, Seguimiento de indicios y sistemas de justicia penal eficaces. Esta etapa del análisis está orientada a la evaluación de: A) Seguimiento de indicios y la cruce de información y B) la busqueda de indicios y la adopción de medidas jurídicas',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad en el seguimiento de indicios/ cruce de información / seguimiento a infracciones /acciones legales orientadas a asegurar la protección a largo plazo de la biodiversidad y otros valores.'
-        ]
+            'Evaluar la idoneidad en el seguimiento de indicios/ cruce de información / seguimiento a infracciones /acciones legales orientadas a asegurar la protección a largo plazo de la biodiversidad y otros valores.',
+        ],
     ],
 
     'StakeholderCooperation' => [
@@ -1070,7 +1066,7 @@ return [
             'group1' => 'Gobierno',
             'group2' => 'Científicos, investigadores, donantes y ONG',
             'group3' => 'Operadores económicos',
-            'group4' => 'Otros interesados'
+            'group4' => 'Otros interesados',
         ],
         'predefined_values' => [
             'group0' => [
@@ -1082,7 +1078,7 @@ return [
                 'Usuarios locales de los recursos naturales',
                 'Usuarios locales de productos forestales no madereros PFNM',
                 'Grupos insuficientemente representados o desfavorecidos',
-                'Población que no se encuentra en la zona de amortiguación'
+                'Población que no se encuentra en la zona de amortiguación',
             ],
             'group1' => [
                 'Gobierno central',
@@ -1091,19 +1087,19 @@ return [
                 'Autoridad del área protegida/Comité de gestión',
                 'Autoridades y servicios de gestión del territorio y suelos (Autoridades Ambientales regionales y urbanas en Colombia, INRA, ABT en Bolivia, Servicio Forestal y Fauna Silvestre en Perú, etc.)',
                 'Representantes de las poblaciones locales (representantes parlamentarios, etc.)',
-                'Fuerzas armadas (policía militar y naval)'
+                'Fuerzas armadas (policía militar y naval)',
             ],
             'group2' => [
                 'ONGs de derechos sociales',
                 'ONGs medioambientales',
                 'Científicos/investigadores',
-                'Donantes'
+                'Donantes',
             ],
             'group3' => [
                 'Operadores privados de turismo',
                 'Operadores forestales',
-                'Operadores de pesca'
-            ]
+                'Operadores de pesca',
+            ],
         ],
         'ratingLegend' => [
             'Cooperation' => [
@@ -1111,16 +1107,16 @@ return [
                 '0' => 'No hay cooperación',
                 '1' => 'Muy poca cooperación',
                 '2' => 'Cooperación moderada',
-                '3' => 'Cooperación muy alta'
-            ]
+                '3' => 'Cooperación muy alta',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Contribuyen los socios en la gestión del área protegida para desarrollar la comprensión y el apoyo al cumplimiento de los objetivos del área protegida?',
-            'En muchas áreas protegidas, algunos o todos los interesados pertinentes cooperan de manera sustancial en la adopción de decisiones de la administración en relación con las actividades y su ejecución dentro o fuera del área protegida. Esta cooperación puede consistir en acuerdos formales o informales. El nivel de cooperación de los interesados directos en un área protegida depende de diversos factores, pero en particular de la naturaleza de los interesados directos, las presiones y otras influencias derivadas de los interesados directos y la biodiversidad y los servicios de los ecosistemas del área protegida. En esta etapa del análisis se evalúa la forma en que algunos o todos los interesados pertinentes participan en la gestión del área protegida en cuatro esferas: (P) planificación; (PM) planificación y gestión (B/A) beneficios/asistencia para las comunidades locales (EAI) Información, educación y comunicación para la comprensión y el compromiso de la comunidad. El nivel óptimo de participación y cooperación de los interesados directos debería determinarse para cada área protegida individualmente porque cada área protegida es única'
+            'En muchas áreas protegidas, algunos o todos los interesados pertinentes cooperan de manera sustancial en la adopción de decisiones de la administración en relación con las actividades y su ejecución dentro o fuera del área protegida. Esta cooperación puede consistir en acuerdos formales o informales. El nivel de cooperación de los interesados directos en un área protegida depende de diversos factores, pero en particular de la naturaleza de los interesados directos, las presiones y otras influencias derivadas de los interesados directos y la biodiversidad y los servicios de los ecosistemas del área protegida. En esta etapa del análisis se evalúa la forma en que algunos o todos los interesados pertinentes participan en la gestión del área protegida en cuatro esferas: (P) planificación; (PM) planificación y gestión (B/A) beneficios/asistencia para las comunidades locales (EAI) Información, educación y comunicación para la comprensión y el compromiso de la comunidad. El nivel óptimo de participación y cooperación de los interesados directos debería determinarse para cada área protegida individualmente porque cada área protegida es única',
         ],
         'module_info_Rating' => [
-            'Seleccione (A) las áreas en las que los socios / actores locales participan en la gestión del área protegida y evalúe (B) el nivel de cooperación:<ul><li><b>P</b>: planificación de la gestión</li><li><b>PM</b>: Aplicación del plan de manejo o gestión</li><li><b>B/A</b>: Beneficios/asistencia para las comunidades locales</li><li><b>EAS</b>:Educación ambiental, sensibilización y compromiso de la comunidad</li></ul>'
-        ]
+            'Seleccione (A) las áreas en las que los socios / actores locales participan en la gestión del área protegida y evalúe (B) el nivel de cooperación:<ul><li><b>P</b>: planificación de la gestión</li><li><b>PM</b>: Aplicación del plan de manejo o gestión</li><li><b>B/A</b>: Beneficios/asistencia para las comunidades locales</li><li><b>EAS</b>:Educación ambiental, sensibilización y compromiso de la comunidad</li></ul>',
+        ],
     ],
 
     'AssistanceActivities' => [
@@ -1132,7 +1128,7 @@ return [
         ],
         'groups' => [
             'group0' => 'Elementos del nivel de vida material',
-            'group1' => 'Elementos del nivel de vida inmaterial'
+            'group1' => 'Elementos del nivel de vida inmaterial',
         ],
         'predefined_values' => [
             'group0' => [
@@ -1156,8 +1152,8 @@ return [
                 'Apoyo a la resolución de conflictos entre humanos y fauna salvaje-compensación',
                 'Apoyar la pesca a pequeña escala',
                 'Apoyo a la construcción de cobertizos para barcos',
-                'Apoyo a la construcción de un aparcamiento para barcos'
-                ],
+                'Apoyo a la construcción de un aparcamiento para barcos',
+            ],
             'group1' => [
                 'Fortalecimiento de la seguridad en la área',
                 'Reducción al mínimo de los conflictos y fortalecimiento de la gestión y el uso sostenible de los servicios/funciones ecosistémicas (avituallamiento y cultura)',
@@ -1168,8 +1164,8 @@ return [
                 'Provisión de acceso libre al área',
                 'Provisión de servicios culturales (físico - intelectual - emblemático - espiritual - interacción con los servicios/funciones ecosistémicas)',
                 'Facilitación de la solución de problemas sociales',
-                'Fortalecimiento de la identidad y el sentido de lugar de las comunidades locales'
-            ]
+                'Fortalecimiento de la identidad y el sentido de lugar de las comunidades locales',
+            ],
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1177,15 +1173,15 @@ return [
                 '0' => 'Completamente inadecuado (0-30%)',
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
-                '3' => 'Completamente adecuado (91-100%)'
-            ]
+                '3' => 'Completamente adecuado (91-100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Realiza el área protegida actividades/programas diseñados para proporcionar beneficios/ayuda adecuados a las comunidades?',
-            'La gestión de las áreas protegidas se ha alejado del paradigma histórico de la protección total, en el que se consideraba que los beneficios de la conservación se obtenían en general a expensas de los intereses de las comunidades locales. En la actualidad se reconoce ampliamente que las áreas protegidas deben contribuir al desarrollo sostenible y al bienestar económico de sus comunidades vecinas. Los resultados socioeconómicos positivos de las áreas protegidas son importantes por derecho propio, pero también pueden ser necesarios para asegurar que las áreas protegidas sigan produciendo resultados ecológicos sólidos. En muchos estudios de casos de todo el mundo se ha vinculado la falta de beneficios/ayuda apropiados para las comunidades locales con los resultados fallidos de las iniciativas de conservación de las áreas protegidas. En consecuencia, las normas internacionales sobre prácticas óptimas promueven una evaluación de las áreas protegidas que tenga en cuenta tanto los resultados ecológicos como los socioeconómicos (Fuentes UNESCO - UICN).'
+            'La gestión de las áreas protegidas se ha alejado del paradigma histórico de la protección total, en el que se consideraba que los beneficios de la conservación se obtenían en general a expensas de los intereses de las comunidades locales. En la actualidad se reconoce ampliamente que las áreas protegidas deben contribuir al desarrollo sostenible y al bienestar económico de sus comunidades vecinas. Los resultados socioeconómicos positivos de las áreas protegidas son importantes por derecho propio, pero también pueden ser necesarios para asegurar que las áreas protegidas sigan produciendo resultados ecológicos sólidos. En muchos estudios de casos de todo el mundo se ha vinculado la falta de beneficios/ayuda apropiados para las comunidades locales con los resultados fallidos de las iniciativas de conservación de las áreas protegidas. En consecuencia, las normas internacionales sobre prácticas óptimas promueven una evaluación de las áreas protegidas que tenga en cuenta tanto los resultados ecológicos como los socioeconómicos (Fuentes UNESCO - UICN).',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de las actividades/programa que el área protegida está llevando a cabo para proporcionar beneficios/asistencia a las comunidades'
+            'Evaluar la idoneidad de las actividades/programa que el área protegida está llevando a cabo para proporcionar beneficios/asistencia a las comunidades',
         ],
     ],
 
@@ -1207,7 +1203,7 @@ return [
             'Visitas guiadas para las comunidades locales del área protegida',
             'Material de educación ambiental distribuido a las escuelas',
             'Campañas de limpieza',
-            'Sensibilización pública (por ejemplo, ecomuseos, presentaciones itinerantes)'
+            'Sensibilización pública (por ejemplo, ecomuseos, presentaciones itinerantes)',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1216,15 +1212,15 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Totalmente adecuado (91-100%)',
-          ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Realiza el área protegida actividades/programas de educación ambiental y de sensibilización pública específicamente vinculados a las necesidades y objetivos de conservación/gestión de los recursos naturales?',
-            'La educación ambiental puede desempeñar un papel eficaz en la creación de conciencia sobre la necesidad de proteger y preservar el medio ambiente y de mejorar la calidad de la vida humana. La educación ambiental puede ayudar a las personas a equilibrar sus propias necesidades vitales con las necesidades del medio ambiente natural que presta servicios de ecosistema (de aprovisionamiento, de regulación, culturales y de apoyo) a las comunidades dentro y fuera, cerca y lejos del área protegida (considerando la designación específica del área protegida). La educación ambiental incluye la educación y la capacitación tanto formal como informal que aumenta la capacidad y la habilidad humanas para participar en la gestión ambiental y en la solución de las crisis y los desafíos ambientales, incluido el cambio climático. Esto podría lograrse aumentando la conciencia y cambiando efectivamente la perspectiva del individuo sobre el medio ambiente'
+            'La educación ambiental puede desempeñar un papel eficaz en la creación de conciencia sobre la necesidad de proteger y preservar el medio ambiente y de mejorar la calidad de la vida humana. La educación ambiental puede ayudar a las personas a equilibrar sus propias necesidades vitales con las necesidades del medio ambiente natural que presta servicios de ecosistema (de aprovisionamiento, de regulación, culturales y de apoyo) a las comunidades dentro y fuera, cerca y lejos del área protegida (considerando la designación específica del área protegida). La educación ambiental incluye la educación y la capacitación tanto formal como informal que aumenta la capacidad y la habilidad humanas para participar en la gestión ambiental y en la solución de las crisis y los desafíos ambientales, incluido el cambio climático. Esto podría lograrse aumentando la conciencia y cambiando efectivamente la perspectiva del individuo sobre el medio ambiente',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de las actividades/programas de educación ambiental y de sensibilización pública que se apoyan en el área protegida'
-        ]
+            'Evaluar la idoneidad de las actividades/programas de educación ambiental y de sensibilización pública que se apoyan en el área protegida',
+        ],
     ],
 
     'VisitorsManagement' => [
@@ -1250,7 +1246,7 @@ return [
             'Guías turísticos en el área protegida',
             'Desarrollo constante de las atracciones turísticas',
             'Sentido del lugar (preservar o mejorar el carácter específico del espacio natural)',
-            'Datos de seguimiento del turismo'
+            'Datos de seguimiento del turismo',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1259,15 +1255,15 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Completamente adecuado (91-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Gestiona el área protegida (diseña, establece, mantiene y mejora) las instalaciones y servicios para visitantes necesarios para el turismo ambiental y ecoturismo?',
-            'El turismo de las áreas protegidas es una industria grande y en crecimiento. El turismo es un servicio crítico del ecosistema que puede contribuir directa e indirectamente a las áreas protegidas como estrategia de conservación mundial, incluido el cumplimiento de los Objetivos de Aichi relacionados con la conservación, el desarrollo comunitario y la sensibilización del público (CDB, 2012). El turismo es un fenómeno complejo y sus interacciones con las áreas protegidas se producen en contextos históricos, culturales y geográficos singulares en los que intervienen múltiples valores y partes interesadas. La gestión eficaz del turismo en las áreas protegidas requiere una apreciación y comprensión de los contextos de sostenibilidad ambiental, social y económica y una gestión compatible de los servicios e instalaciones para los visitantes, así como la comprensión de la forma en que cambian con el tiempo.'
+            'El turismo de las áreas protegidas es una industria grande y en crecimiento. El turismo es un servicio crítico del ecosistema que puede contribuir directa e indirectamente a las áreas protegidas como estrategia de conservación mundial, incluido el cumplimiento de los Objetivos de Aichi relacionados con la conservación, el desarrollo comunitario y la sensibilización del público (CDB, 2012). El turismo es un fenómeno complejo y sus interacciones con las áreas protegidas se producen en contextos históricos, culturales y geográficos singulares en los que intervienen múltiples valores y partes interesadas. La gestión eficaz del turismo en las áreas protegidas requiere una apreciación y comprensión de los contextos de sostenibilidad ambiental, social y económica y una gestión compatible de los servicios e instalaciones para los visitantes, así como la comprensión de la forma en que cambian con el tiempo.',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de la gestión de las instalaciones y servicios para visitantes del área protegida para el turismo ambiental y ecoturismo'
-        ]
+            'Evaluar la idoneidad de la gestión de las instalaciones y servicios para visitantes del área protegida para el turismo ambiental y ecoturismo',
+        ],
     ],
 
     'VisitorsImpact' => [
@@ -1281,7 +1277,7 @@ return [
             'Medidas para determinar, monitorear y gestionar el nivel aceptable de impacto de los visitantes',
             'Acciones para minimizar los cambios inducidos por el hombre (transporte, alojamiento y actividades de ocio)',
             'Proceso de gestión que equilibra los objetivos de conservación con las actividades con fines de lucro [por ejemplo, 1) desarrollar un centro de visitantes y senderos, 2) limitar el uso para proteger la biodiversidad en un hábitat específico].',
-            'Recopilación y comunicación de datos de vigilancia del turismo y pruebas de los efectos para aumentar la participación del público y la sensibilización de los visitantes'
+            'Recopilación y comunicación de datos de vigilancia del turismo y pruebas de los efectos para aumentar la participación del público y la sensibilización de los visitantes',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1290,13 +1286,13 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Completamente adecuado (91-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Gestiona y mitiga adecuadamente el área protegida los impactos de los visitantes?',
-            'Promover la recreación y el turismo para que los visitantes puedan conocer y apreciar un área protegida, sin dañar los valores para los que fue establecida, puede ser un desafío. Los visitantes pueden tener un impacto negativo tanto en los recursos como en la experiencia de otros visitantes, o pueden también, sin saberlo, ofender las normas culturales. La vigilancia, gestión y mitigación adecuadas de los impactos de los visitantes son fundamentales para las estrategias de gestión del turismo sostenible, pero a menudo se pasan por alto una vez que el plan está en marcha. Sin un conocimiento adecuado de los efectos de las actividades turísticas en el entorno natural del sitio y las comunidades circundantes, es imposible establecer si la gestión del ecoturismo del área protegida tiene éxito'
+            'Promover la recreación y el turismo para que los visitantes puedan conocer y apreciar un área protegida, sin dañar los valores para los que fue establecida, puede ser un desafío. Los visitantes pueden tener un impacto negativo tanto en los recursos como en la experiencia de otros visitantes, o pueden también, sin saberlo, ofender las normas culturales. La vigilancia, gestión y mitigación adecuadas de los impactos de los visitantes son fundamentales para las estrategias de gestión del turismo sostenible, pero a menudo se pasan por alto una vez que el plan está en marcha. Sin un conocimiento adecuado de los efectos de las actividades turísticas en el entorno natural del sitio y las comunidades circundantes, es imposible establecer si la gestión del ecoturismo del área protegida tiene éxito',
         ],
-        'module_info_Rating' => '•	Evaluar la gestión del impacto de los visitantes en el área protegida (turismo ambiental y ecoturismo)'
+        'module_info_Rating' => '•	Evaluar la gestión del impacto de los visitantes en el área protegida (turismo ambiental y ecoturismo)',
     ],
 
     'NaturalResourcesMonitoring' => [
@@ -1321,7 +1317,7 @@ return [
             'Monitoreo de los impactos de los visitantes',
             'Monitoreo de los servicios/funciones ecosistémicas que presta el área protegida',
             'Monitoreo de los efectos del cambio climático en elementos clave del área protegida',
-            'Recopilación y análisis de datos (i.e. SMART, Programas de Monitoreo Integral, Programas de monitoreo de especies, monitoreo basado en los guardaparques, monitoreo con Sistemas de Información Geográfico, monitoreo de focos de calor - quemas - incendios, otros)'
+            'Recopilación y análisis de datos (i.e. SMART, Programas de Monitoreo Integral, Programas de monitoreo de especies, monitoreo basado en los guardaparques, monitoreo con Sistemas de Información Geográfico, monitoreo de focos de calor - quemas - incendios, otros)',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1330,15 +1326,15 @@ return [
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
                 '3' => 'Totalmente adecuado (91-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Son adecuados los programas de monitoreo para realizar un seguimiento eficazmente la diversidad biológica y los recursos naturales y culturales del área protegida?',
-            'El éxito de la ejecución de un programa de monitoreo depende del análisis de los principales objetivos de conservación del área protegida para establecer criterios e indicadores de monitoreo específicos. Bajo la influencia de fuerzas motrices negativas y amenazas (crecimiento demográfico y económico, fenómenos naturales, etc.), las actividades humanas ejercen presión sobre el área protegida. Esta presión provoca un cambio, una alteración o una degradación de los valores y recursos del área protegida. Para anticiparse a los posibles problemas y planificar las mejores intervenciones en el área protegida, es indispensable una sólida comprensión de las tendencias de los servicios y funciones ambientales y ecosistémicas (biodiversidad, abastecimiento de agua, suministro de alimentos, calidad de los bosques, amenazas, etc.)'
+            'El éxito de la ejecución de un programa de monitoreo depende del análisis de los principales objetivos de conservación del área protegida para establecer criterios e indicadores de monitoreo específicos. Bajo la influencia de fuerzas motrices negativas y amenazas (crecimiento demográfico y económico, fenómenos naturales, etc.), las actividades humanas ejercen presión sobre el área protegida. Esta presión provoca un cambio, una alteración o una degradación de los valores y recursos del área protegida. Para anticiparse a los posibles problemas y planificar las mejores intervenciones en el área protegida, es indispensable una sólida comprensión de las tendencias de los servicios y funciones ambientales y ecosistémicas (biodiversidad, abastecimiento de agua, suministro de alimentos, calidad de los bosques, amenazas, etc.)',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de los programas de monitoreo establecidos para la diversidad biológica y los recursos naturales y culturales del área protegida'
-        ]
+            'Evaluar la idoneidad de los programas de monitoreo establecidos para la diversidad biológica y los recursos naturales y culturales del área protegida',
+        ],
     ],
 
     'ResearchAndMonitoring' => [
@@ -1359,7 +1355,7 @@ return [
             'La investigación y la monitoreo ecológico/ambiental a largo plazo del bienestar humano y material de la población en el área protegida',
             'Investigación y monitoreo ecológico/ambiental a largo plazo de las amenazas directas e indirectas al área protegida',
             'La investigación y la monitoreo ecológico/ambiental a largo plazo de los servicios/funciones del ecosistema que presta el área protegida',
-            'Investigación y monitoreo ecológico/ambiental a largo plazo de los efectos del cambio climático en elementos clave de la área protegida'
+            'Investigación y monitoreo ecológico/ambiental a largo plazo de los efectos del cambio climático en elementos clave de la área protegida',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1367,16 +1363,16 @@ return [
                 '0' => 'Completamente inadecuado (0-30%)',
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
-                '3' => 'Completamente adecuado (91-100%)'
-            ]
+                '3' => 'Completamente adecuado (91-100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Coordina o inicia el área protegida actividades de investigación y monitoreo ecológico/ambiental a largo plazo, y tiene acceso a los resultados de la investigación y los utiliza en la gestión?',
-            'El propósito de la investigación y monitoreo ecológico/ambiental en un área protegida es obtener información sobre el desarrollo a largo plazo de determinados componentes de sus ecosistemas para predecir cuestiones futuras y planificar intervenciones de gestión. Un estudio debe seleccionar las áreas así como las especies, los hábitats, el agua, etc. para evaluar la salud ambiental de los valores y la importancia del área protegida. Podrían aplicarse cada vez más medidas funcionales como enfoque complementario para monitorear la integridad ecológica del área protegida'
+            'El propósito de la investigación y monitoreo ecológico/ambiental en un área protegida es obtener información sobre el desarrollo a largo plazo de determinados componentes de sus ecosistemas para predecir cuestiones futuras y planificar intervenciones de gestión. Un estudio debe seleccionar las áreas así como las especies, los hábitats, el agua, etc. para evaluar la salud ambiental de los valores y la importancia del área protegida. Podrían aplicarse cada vez más medidas funcionales como enfoque complementario para monitorear la integridad ecológica del área protegida',
         ],
         'module_info_Rating' => [
-            '•	Evaluar la idoneidad de las acciones/aplicaciones de investigación que apoyan la gestión del área protegida'
-        ]
+            '•	Evaluar la idoneidad de las acciones/aplicaciones de investigación que apoyan la gestión del área protegida',
+        ],
     ],
 
     'ClimateChangeMonitoring' => [
@@ -1396,7 +1392,7 @@ return [
             'Proteger las zonas que constituyen el futuro hábitat de las especies desplazadas (por ejemplo, establecer asociaciones para proteger los hábitats críticos fuera del   área protegida para las especies clave afectadas por los efectos del cambio climático)',
             'Identificar y proteger el clima refugia  (por ejemplo, reducir el uso humano y las perturbaciones en los refugios, etc.)',
             'Gestionar las redes ecológicas para promover la resiliencia ecológica/ambiental para enfrentar el impacto climático',
-            'Participar en la planificación de la adaptación de los paisajes terrestres y marinos que se extiende más allá de los límites de las áreas protegidas individuales'
+            'Participar en la planificación de la adaptación de los paisajes terrestres y marinos que se extiende más allá de los límites de las áreas protegidas individuales',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1404,16 +1400,16 @@ return [
                 '0' => 'Totalmente inadecuado (0-30%)',
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
-                '3' => 'Totalmente adecuado (91-100%)'
-            ]
+                '3' => 'Totalmente adecuado (91-100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cómo gestiona el área protegida la adaptación a los efectos del cambio climático?',
-            'La respuesta al cambio climático puede dividirse en "mitigación" (acciones que reducen la cantidad de dióxido de carbono y otros gases que atrapan el calor en la atmósfera) y "adaptación" (un ajuste de los sistemas humanos o naturales al clima cambiante). Si bien las áreas protegidas tienen la capacidad de capturar y almacenar carbono en sus ecosistemas y de reducir las emisiones de las operaciones de las áreas protegidas, el enfoque principal de la gestión suele ser la adaptación a los efectos del cambio climático'
+            'La respuesta al cambio climático puede dividirse en "mitigación" (acciones que reducen la cantidad de dióxido de carbono y otros gases que atrapan el calor en la atmósfera) y "adaptación" (un ajuste de los sistemas humanos o naturales al clima cambiante). Si bien las áreas protegidas tienen la capacidad de capturar y almacenar carbono en sus ecosistemas y de reducir las emisiones de las operaciones de las áreas protegidas, el enfoque principal de la gestión suele ser la adaptación a los efectos del cambio climático',
         ],
         'module_info_Rating' => [
-            'Evaluar la idoneidad de las medidas de gestión de la adaptación al cambio climático'
-        ]
+            'Evaluar la idoneidad de las medidas de gestión de la adaptación al cambio climático',
+        ],
     ],
 
     'EcosystemServices' => [
@@ -1446,20 +1442,20 @@ return [
                 '0' => 'Totalmente inadecuado (0-30%)',
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',
-                '3' => 'Totalmente adecuado (91-100%)'
-            ]
+                '3' => 'Totalmente adecuado (91-100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Gestiona el área protegida para promover la conservación/mejora de los servicios y/o funciones ecosistémicas que proporciona el área protegida?',
-            '•	Los servicios y funciones ecosistémicas son los muchos y variados beneficios que los seres humanos obtienen libremente del medio ambiente natural y de los ecosistemas que funcionan correctamente. Los servicios y funciones ecosistémicas se agrupan en cuatro grandes categorías: 1) servicios o funciones de aprovisionamiento, como la producción de alimentos y agua; 2) servicios o funciones de regulación, como el control del clima y las enfermedades; 3) servicios o funciones culturales, como los beneficios espirituales y recreativos; y 4) servicios o funciones de apoyo, como los ciclos de los nutrientes, la polinización de los cultivos o los hábitats que proporcionan todo lo que una planta o un animal necesita para sobrevivir: alimento, agua y refugio [Evaluación de los Ecosistemas del Milenio (EM)].'
+            '•	Los servicios y funciones ecosistémicas son los muchos y variados beneficios que los seres humanos obtienen libremente del medio ambiente natural y de los ecosistemas que funcionan correctamente. Los servicios y funciones ecosistémicas se agrupan en cuatro grandes categorías: 1) servicios o funciones de aprovisionamiento, como la producción de alimentos y agua; 2) servicios o funciones de regulación, como el control del clima y las enfermedades; 3) servicios o funciones culturales, como los beneficios espirituales y recreativos; y 4) servicios o funciones de apoyo, como los ciclos de los nutrientes, la polinización de los cultivos o los hábitats que proporcionan todo lo que una planta o un animal necesita para sobrevivir: alimento, agua y refugio [Evaluación de los Ecosistemas del Milenio (EM)].',
         ],
         'module_info_Rating' => [
-            '•	Evaluar la idoneidad de las medidas de ordenación que promueven la conservación/mejora de los servicios y funciones ecosistémicas que presta el área protegida'
-        ]
+            '•	Evaluar la idoneidad de las medidas de ordenación que promueven la conservación/mejora de los servicios y funciones ecosistémicas que presta el área protegida',
+        ],
     ],
 
     'ObjectivesProcessus' => [
-        'module_info' => 'Establecer y describir los objetivos relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.'
+        'module_info' => 'Establecer y describir los objetivos relacionados <b> con el proceso implementación de la planificación</b> del área protegida.<br /> Los objetivos que se indican a continuación se utilizarán para mejorar la gestión y, más concretamente, para la planificación, la movilización de recursos (insumos), las fases del proceso y el seguimiento y monitoreo de las actividades de gestión del área protegida.',
     ],
 
     'WorkProgramImplementation' => [
@@ -1476,19 +1472,19 @@ return [
                 '0' => 'No hay o hay un nivel muy bajo de ejecución de las actividades específicas del año anterior (entre el 0 y el 25%)',
                 '1' => 'Bajo nivel de ejecución de las actividades específicas del año anterior (entre el 26 y el 50%)',
                 '2' => 'Nivel moderado de ejecución de las actividades específicas del año anterior (entre el 51 y el 75%)',
-                '3' => 'Alto nivel de ejecución de las actividades específicas del año anterior (entre el 76 y el 100%)'
-            ]
+                '3' => 'Alto nivel de ejecución de las actividades específicas del año anterior (entre el 76 y el 100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿En qué medida ha llevado a cabo el área protegida las principales actividades del plan de trabajo?',
-            'La aplicación es la realización o ejecución del plan de trabajo/acción anual o plurianual relativo a las actividades del área protegida. Como tal, la aplicación es la acción que debe seguir a cualquier actividad previa de planificación, gestión y conservación. Cuando el área protegida implementa un plan de trabajo, puede lograr acciones de gestión y conservación específicas de manera sostenible'
+            'La aplicación es la realización o ejecución del plan de trabajo/acción anual o plurianual relativo a las actividades del área protegida. Como tal, la aplicación es la acción que debe seguir a cualquier actividad previa de planificación, gestión y conservación. Cuando el área protegida implementa un plan de trabajo, puede lograr acciones de gestión y conservación específicas de manera sostenible',
         ],
         'module_info_Rating' => [
             'Evaluar el nivel de implementación de las principales actividades del plan de trabajo/de acción del año anterior (en el recuadro de observaciones indique el año de referencia si solicita un plan de trabajo/de acción plurianual)',
             '<b>Categoría de actividades</b>: por ejemplo, aplicación de la ley, desarrollo de instalaciones sociales, educación ambiental, gestión del turismo, etc.',
             '<b>Actividad</b>: acción perteneciente a una de las principales categorías de actividades que se ejecuta para lograr un propósito particular',
-            'Sin un plan de trabajo/acción, puede referirse a las categorías y las actividades del elemento Proceso: Gestión y protección de los elementos clave; Relaciones con las partes interesadas; Turismo; Vigilancia e investigación; Cambio climático y Servicios de los ecosistemas'
-        ]
+            'Sin un plan de trabajo/acción, puede referirse a las categorías y las actividades del elemento Proceso: Gestión y protección de los elementos clave; Relaciones con las partes interesadas; Turismo; Vigilancia e investigación; Cambio climático y Servicios de los ecosistemas',
+        ],
     ],
 
     'AchievedResults' => [
@@ -1506,19 +1502,19 @@ return [
                 '0' => 'No se alcanzó o se ha alcanzado muy poco el resultado previsto del año anterior (entre el 0 y el 25%)',
                 '1' => 'Bajo nivel de logro de la meta del año anterior (entre el 26 y el 50%)',
                 '2' => 'Nivel moderado de logro de la meta del año anterior (entre el 51 y el 75%)',
-                '3' => 'Alto nivel de logro de la meta del año anterior (entre 76 y 100%)'
-            ]
+                '3' => 'Alto nivel de logro de la meta del año anterior (entre 76 y 100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿En qué medida ha alcanzado el área protegida los principales resultados del plan de trabajo?',
-            'El enfoque predominante para la planificación de las áreas protegidas incluye el establecimiento de resultados de planes de trabajo/acciones anuales o multianuales que contribuyan al logro de los objetivos de conservación a largo plazo/objetivos o EFECTOS E IMPACTOS. En el proceso de planificación, las metas/objetivos a más largo plazo se traducen en objetivos de conservación a corto plazo para características específicas de la diversidad biológica, como especies, hábitats y amenazas o servicios de los ecosistemas que es posible lograr con el plan de trabajo/acción. Sin embargo, dado que la utilización de muchas metas de conservación de bajo nivel es un obstáculo para lograr un rendimiento de conservación de alto nivel, los productos deben estar fuertemente vinculados a los resultados para asegurar un rendimiento de conservación de alto nivel. El establecimiento de sistemas de medición del rendimiento es una forma importante de hacer un seguimiento de los progresos de sus actividades de gestión y conservación'
+            'El enfoque predominante para la planificación de las áreas protegidas incluye el establecimiento de resultados de planes de trabajo/acciones anuales o multianuales que contribuyan al logro de los objetivos de conservación a largo plazo/objetivos o EFECTOS E IMPACTOS. En el proceso de planificación, las metas/objetivos a más largo plazo se traducen en objetivos de conservación a corto plazo para características específicas de la diversidad biológica, como especies, hábitats y amenazas o servicios de los ecosistemas que es posible lograr con el plan de trabajo/acción. Sin embargo, dado que la utilización de muchas metas de conservación de bajo nivel es un obstáculo para lograr un rendimiento de conservación de alto nivel, los productos deben estar fuertemente vinculados a los resultados para asegurar un rendimiento de conservación de alto nivel. El establecimiento de sistemas de medición del rendimiento es una forma importante de hacer un seguimiento de los progresos de sus actividades de gestión y conservación',
         ],
         'module_info_Rating' => [
             'Evaluar el nivel de logro/cumplimiento de las principales metas del plan de trabajo/acción (en las observaciones, indicar el año de referencia si se solicita un plan de trabajo/acción plurianual).',
             '<b>Categoría de actividades</b>: acción perteneciente a una de las principales categorías de actividades que se ejecuta para lograr un propósito particular',
             '<b>Actividad</b>: action belonging to one of the main categories of activities that is executed to achieve particular purpose',
-            'Sin un plan de trabajo/acción, puede referirse a las categorías y las actividades del elemento Proceso: Gestión y protección de los elementos clave; Relaciones con las partes interesadas; Turismo; Monitoreo e investigación; Cambio climático y Servicios/funciones ecosistémicas'
-        ]
+            'Sin un plan de trabajo/acción, puede referirse a las categorías y las actividades del elemento Proceso: Gestión y protección de los elementos clave; Relaciones con las partes interesadas; Turismo; Monitoreo e investigación; Cambio climático y Servicios/funciones ecosistémicas',
+        ],
     ],
 
     'AreaDomination' => [
@@ -1528,7 +1524,7 @@ return [
             'RapidIntervention' => 'B) Capacidad de intervención rápida',
             'AirVehicles' => 'C.1) Medios especiales disponibles y adecuados para la vigilancia',
             'Planes' => 'C.2) Medios especiales disponibles y adecuados para una intervención rápida',
-            'Comments' => 'Comentarios/explicación'
+            'Comments' => 'Comentarios/explicación',
         ],
         'ratingLegend' => [
             'Patrol' => [
@@ -1546,11 +1542,11 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cuál es la extensión del área actual del dominio por parte del área protegida?',
-            'La dominación de una zona se refiere a la capacidad de la administración del parque para crear presencia en una zona determinada, por ejemplo, mediante encuestas de patrullaje regulares, intervenciones rápidas o vigilancia aérea. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de un alto grado de dominio de la zona es prevenir o reducir al mínimo las actividades ilegales que afectan a la biodiversidad y los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites'
+            'La dominación de una zona se refiere a la capacidad de la administración del parque para crear presencia en una zona determinada, por ejemplo, mediante encuestas de patrullaje regulares, intervenciones rápidas o vigilancia aérea. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de un alto grado de dominio de la zona es prevenir o reducir al mínimo las actividades ilegales que afectan a la biodiversidad y los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites',
         ],
         'module_info_Rating' => [
-            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales'
-        ]
+            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales',
+        ],
     ],
 
     'AreaDominationMPA' => [
@@ -1567,25 +1563,25 @@ return [
             'group1' => 'Zonas de exclusión de pesca (No-take areas) / Reserva marina',
             'group2' => 'Zonas de amortiguación para el uso tradicional',
             'group3' => 'Zonas de amortiguación para actividades educativas y/o recreativas',
-            'group4' => 'Aplicación de la ley en los muelles para los buques que llegan a puerto'
+            'group4' => 'Aplicación de la ley en los muelles para los buques que llegan a puerto',
         ],
         'predefined_values' => [
             'group0' => [
-                'Todas las actividades/usos prohibidos'
+                'Todas las actividades/usos prohibidos',
             ],
             'group1' => [
                 'Actividades prohibidas (por ejemplo, pesca o extracción de cualquier tipo, anclaje, navegación, vertido, etc.)',
-                'Actividades permitidas (por ejemplo, investigación y seguimiento, etc.)'
+                'Actividades permitidas (por ejemplo, investigación y seguimiento, etc.)',
             ],
             'group2' => [
                 'Actividades prohibidas (por ejemplo, pesca ilegal y métodos de pesca legales especificados, anclaje, vertido)',
-                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación, etc.)'
+                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación, etc.)',
             ],
             'group3' => [
-                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación y educación, etc.)'
+                'Actividades permitidas (por ejemplo, pesca y navegación tradicionales limitadas y especificadas, natación y buceo, anclaje en boyas de amarre, investigación y educación, etc.)',
             ],
             'group4' => [
-                'Actividades utilizadas para recopilar información que pueda arrojar luz sobre los patrones de comportamientos ilícitos. Las estrategias en los muelles deben adaptarse para promover la aplicación de la ley más adecuada para las grandes AMP o para abordar los problemas de aplicación de la ley en las AMP más pequeñas y cercanas a la costa.'
+                'Actividades utilizadas para recopilar información que pueda arrojar luz sobre los patrones de comportamientos ilícitos. Las estrategias en los muelles deben adaptarse para promover la aplicación de la ley más adecuada para las grandes AMP o para abordar los problemas de aplicación de la ley en las AMP más pequeñas y cercanas a la costa.',
             ],
         ],
         'ratingLegend' => [
@@ -1604,11 +1600,11 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cuál es el alcance actual de la aplicación de la ley en la AMP?',
-            'La aplicación de la ley en las AMP se refiere a la capacidad de la gestión del parque para crear una presencia en una zona determinada, por ejemplo, mediante patrullas periódicas, intervenciones rápidas o vigilancia aérea o detección mediante herramientas de teledetección. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de la aplicación de la ley en las AMP es prevenir o minimizar las actividades ilegales que afectan a la biodiversidad y a los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites'
+            'La aplicación de la ley en las AMP se refiere a la capacidad de la gestión del parque para crear una presencia en una zona determinada, por ejemplo, mediante patrullas periódicas, intervenciones rápidas o vigilancia aérea o detección mediante herramientas de teledetección. Cuando sea necesario, esta presencia debe imponerse con frecuencia y eficacia para hacer frente a amenazas como la caza furtiva o las actividades ilegales. El objetivo de la aplicación de la ley en las AMP es prevenir o minimizar las actividades ilegales que afectan a la biodiversidad y a los valores culturales o históricos, y hacer cumplir la protección del área protegida y sus límites',
         ],
         'module_info_Rating' => [
-            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales'
-        ]
+            'Evaluar la dominación del área basándose en el porcentaje de la superficie del área protegida en el que la gestión está presente o puede estar presente a través de: (A) estudios de patrullaje; (B) intervenciones rápidas; (C) utilización de medios especiales',
+        ],
     ],
 
     'AchievedObjectives' => [
@@ -1623,25 +1619,25 @@ return [
                 '0' => 'Ningún o muy bajo nivel de logro (entre 0 y 25%).',
                 '1' => 'Bajo nivel de logro (entre el 26 y el 50%)',
                 '2' => 'Nivel de logro moderado (entre el 51 y el 75%)',
-                '3' => 'Alto nivel de logro (entre 76 y 100%)'
-            ]
+                '3' => 'Alto nivel de logro (entre 76 y 100%)',
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿En qué medida ha alcanzado el área protegida los principales objetivos del plan de manejo/gestión/rector?',
             '(Basado en el análisis del contexto de la intervención, punto CTX1.5 Visión - Misión - Objetivos o elementos de Planificación, punto P6 - Objetivos del área protegida)',
-            'La gestión de las áreas protegidas se lleva a cabo cada vez más de acuerdo con los principios de la "gestión por objetivos". Las metas y objetivos de un área protegida deben entenderse claramente si se quiere que la gestión tenga éxito sobre la base de logros mensurables. En esta herramienta hacemos una importante distinción entre resultados y productos:<ul><li>Los RESULTADOS se relacionan con las METAS / OBJETIVOS, es decir, las metas / objetivos a largo plazo o las visiones expresadas en el plan de manejo/gestión. Estas metas / objetivos suelen ser declaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o servicios/funciones ecosistémicas) o con las principales áreas de actividades de gestión (por ejemplo, el turismo, la educación).</li><li>Los EFECTOS se relacionan con MOTIVOS, es decir, metas cuantitativas a corto plazo (o relativamente a corto plazo) para alcanzar las metas / objetivos a largo plazo y los objetivos específicos. Creemos que el uso de muchas metas de conservación de bajo nivel es un obstáculo para lograr un alto rendimiento de la conservación</li></ul>'
+            'La gestión de las áreas protegidas se lleva a cabo cada vez más de acuerdo con los principios de la "gestión por objetivos". Las metas y objetivos de un área protegida deben entenderse claramente si se quiere que la gestión tenga éxito sobre la base de logros mensurables. En esta herramienta hacemos una importante distinción entre resultados y productos:<ul><li>Los RESULTADOS se relacionan con las METAS / OBJETIVOS, es decir, las metas / objetivos a largo plazo o las visiones expresadas en el plan de manejo/gestión. Estas metas / objetivos suelen ser declaraciones específicas relacionadas con los valores clave del área protegida (es decir, especies importantes o servicios/funciones ecosistémicas) o con las principales áreas de actividades de gestión (por ejemplo, el turismo, la educación).</li><li>Los EFECTOS se relacionan con MOTIVOS, es decir, metas cuantitativas a corto plazo (o relativamente a corto plazo) para alcanzar las metas / objetivos a largo plazo y los objetivos específicos. Creemos que el uso de muchas metas de conservación de bajo nivel es un obstáculo para lograr un alto rendimiento de la conservación</li></ul>',
         ],
         'module_info_Rating' => [
-            'Evaluar el nivel de logro de las principales metas/objetivos a largo plazo relacionados con los valores clave del área protegida o las principales áreas del plan de gestión.'
-        ]
+            'Evaluar el nivel de logro de las principales metas/objetivos a largo plazo relacionados con los valores clave del área protegida o las principales áreas del plan de gestión.',
+        ],
     ],
 
     'KeyConservationTrend' => [
         'title' => 'Condiciones y tendencias de los elementos clave de la conservación del área protegida',
         'fields' => [
             'Element' => 'Elemento clave de conservación',
-            'Condition'=> 'Condición del elemento clave',
-            'Trend'=> 'Tendencia del elemento clave',
+            'Condition' => 'Condición del elemento clave',
+            'Trend' => 'Tendencia del elemento clave',
             'Reliability' => 'Fiabilidad de la información',
             'Comments' => 'Comentarios/explicación',
         ],
@@ -1651,7 +1647,7 @@ return [
             'group2' => 'Condiciones de conservación y tendencias de los hábitats y las dimensiones relacionadas del territorio - uso del suelo - cobertura del suelo',
             'group3' => 'Situaciones y tendencias de las amenazas al área protegida',
             'group4' => 'Adaptación al cambio climático',
-            'group5' => 'Condiciones y tendencias de conservación de los servicios y funciones ecosistémicas del área protegida'
+            'group5' => 'Condiciones y tendencias de conservación de los servicios y funciones ecosistémicas del área protegida',
         ],
         'ratingLegend' => [
             'Condition' => [
@@ -1678,15 +1674,15 @@ return [
                 'High' => 'Certeza casi completa sobre los valores de la condición y las tendencias',
                 'Medium' => 'Alguna posibilidad de error sobre los valores de la condición y las tendencias',
                 'Poor' => 'Gran incertidumbre sobre los valores de la condición y las tendencias',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Cuáles son las condiciones y tendencias de los elementos clave de conservación del área protegida?',
-            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos'
+            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)'
-        ]
+            'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)',
+        ],
     ],
 
     'LifeQualityImpact' => [
@@ -1708,7 +1704,7 @@ return [
                 'Servicios de aprovisionamiento de los ecosistemas: (alimentos, materias primas, etc.)',
                 'Ingresos por turismo',
                 'Conflictos entre el hombre y la fauna silvestre',
-                'Empleos de la población local'
+                'Empleos de la población local',
             ],
             'group1' => [
                 'Protección de las personas, instalaciones e infraestructuras y estabilidad social',
@@ -1717,8 +1713,8 @@ return [
                 'Contribución a la mejora de la salud pública local',
                 'Mantenimiento del valor emblemático y espiritual del territorio local',
                 'Mantenimiento o fortalecimiento de la identidad comunitaria (cultural, tradicional, espiritual, etc.)',
-                'Reducción de los conflictos de los usuarios de los recursos naturales'
-            ]
+                'Reducción de los conflictos de los usuarios de los recursos naturales',
+            ],
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1730,14 +1726,14 @@ return [
                 '+1' => 'Efectos ligeramente favorables',
                 '+2' => 'Efectos favorables',
                 '+3' => 'Efectos altamente favorables',
-                ]
+            ],
         ],
         'module_info_EvaluationQuestion' => [
             '¿Tiene la gestión del área protegida efectos positivos o negativos en la calidad de vida de los actores locales?',
-            'Desde la perspectiva del ecosistema, todas las personas dependen del capital natural y de los servicios y funciones ecosistémicas. Los cambios en el medio ambiente (condiciones presentes y futuras) y la disponibilidad de recursos esenciales pueden afectar a la calidad de vida (las contribuciones que los servicios de los ecosistemas hacen al bienestar) a través de los impactos en el consumo, los ingresos y la riqueza (niveles de vida material) y en la buena vida, la salud y las relaciones sociales y culturales (niveles de vida inmateriales). La gestión de las áreas protegidas debe tener mucho cuidado en los efectos sobre la calidad de vida de los actores locales'
+            'Desde la perspectiva del ecosistema, todas las personas dependen del capital natural y de los servicios y funciones ecosistémicas. Los cambios en el medio ambiente (condiciones presentes y futuras) y la disponibilidad de recursos esenciales pueden afectar a la calidad de vida (las contribuciones que los servicios de los ecosistemas hacen al bienestar) a través de los impactos en el consumo, los ingresos y la riqueza (niveles de vida material) y en la buena vida, la salud y las relaciones sociales y culturales (niveles de vida inmateriales). La gestión de las áreas protegidas debe tener mucho cuidado en los efectos sobre la calidad de vida de los actores locales',
         ],
         'module_info_Rating' => [
-            'Evaluar los efectos para los interesados locales derivados de las actividades operacionales del área protegida'
-        ]
-    ]
+            'Evaluar los efectos para los interesados locales derivados de las actividades operacionales del área protegida',
+        ],
+    ],
 ];

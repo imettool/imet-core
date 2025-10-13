@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -19,30 +20,31 @@ use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
 use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 
-
 /**
  * Class ProtectedArea
  *
  * @property string $global_id
  * @property string $country
- * @property integer $wdpa_id
+ * @property int $wdpa_id
  * @property string $name
  * @property string $iucn_category
  * @property string $creation_date
  * @property numeric $area
- *
- * @package ImetCore\Models
  */
 class ProtectedArea extends BaseProtectedArea
 {
-
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'protected_areas';
+
     public $primaryKey = 'global_id';
 
     public const CREATED_AT = null;
+
     public const UPDATED_AT = null;
+
     public const UPDATED_BY = null;
+
     public const CREATED_BY = null;
 
     /**
@@ -58,7 +60,7 @@ class ProtectedArea extends BaseProtectedArea
      * @deprecated
      * Get by global_id
      */
-    public static function getByGlobalId($global_id) : ?ProtectedArea
+    public static function getByGlobalId($global_id): ?ProtectedArea
     {
         return static::query()->where('global_id', '=', $global_id)
             ->first();
@@ -93,15 +95,15 @@ class ProtectedArea extends BaseProtectedArea
 
         ProtectedArea::query()->select('country')
             ->distinct()
-            ->where(function ($query)  use ($custom_where){
-                if($custom_where !== null){
+            ->where(function ($query) use ($custom_where) {
+                if ($custom_where !== null) {
                     $custom_where($query);
                 }
             })
             ->get()
             ->pluck('country')
             ->sort()
-            ->each(function($iso) use (&$iso3s){
+            ->each(function ($iso) use (&$iso3s) {
                 $iso3s = array_merge($iso3s, explode(';', $iso));
             });
 
@@ -118,8 +120,8 @@ class ProtectedArea extends BaseProtectedArea
             : static::getCountriesISO();
 
         return Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($countries){
-                if($countries!==null){
+            ->where(function ($query) use ($countries) {
+                if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
                 }
             })
@@ -135,14 +137,14 @@ class ProtectedArea extends BaseProtectedArea
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::query()->where(function($query) use($search_key, $country){
+        $protected_areas = static::query()->where(function ($query) use ($search_key, $country) {
             $query = $query->like($search_key);
-            if($country != null){
-                $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
+            if ($country != null) {
+                $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
             }
         })
-            ->where(function($query) use($allowed_wdpas){
-                if($allowed_wdpas !== null){
+            ->where(function ($query) use ($allowed_wdpas) {
+                if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
@@ -161,14 +163,13 @@ class ProtectedArea extends BaseProtectedArea
             ->sort()
             ->toArray();
 
-        return $protected_areas->map(function($item) use($countries){
-            foreach (static::parseISOs([$item->country]) as $iso){
-                $item['country_name'] .= $countries[$iso] . ', ';
+        return $protected_areas->map(function ($item) use ($countries) {
+            foreach (static::parseISOs([$item->country]) as $iso) {
+                $item['country_name'] .= $countries[$iso].', ';
             }
             $item['country_name'] = rtrim($item['country_name'], ', ');
+
             return $item;
         });
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -31,7 +32,7 @@ class Scatter
 
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
-            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null, $form['id'], $form['wdpa_id']?? null];
+            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null, $form['id'], $form['wdpa_id'] ?? null];
         }
 
         $indicator = Group::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
@@ -69,10 +70,10 @@ class Scatter
             $final_average[$i]['itemStyle']['borderColor'] = $value['color'];
             $final_average[$i]['itemStyle']['color'] = 'transparent';
             $final_average[$i]['itemStyle']['borderWidth'] = '4';
-            $final_average[$i]['label'] = ["position" => "inside",
-                "color" => $value['color'],
-                "backgroundColor" => "transparent",
-                "show" => true
+            $final_average[$i]['label'] = ['position' => 'inside',
+                'color' => $value['color'],
+                'backgroundColor' => 'transparent',
+                'show' => true,
             ];
             $i++;
         }

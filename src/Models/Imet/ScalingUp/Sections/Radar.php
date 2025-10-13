@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,8 +17,7 @@ use ImetCore\Models\Imet\v2\Modules;
 
 class Radar
 {
-
-    public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = "", int $scaling_id = 0): array
+    public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = '', int $scaling_id = 0): array
     {
         $valuesIndicators = [];
 
@@ -46,25 +46,25 @@ class Radar
             unset($values['indicators_number']);
             $i = 0;
             foreach ($values as $v => $value) {
-                if ($v !== "avg") {
-                    if ($type === "process" && stripos($v, "_") === true) {
-                        $name = Common::get_all_indicator_labels_cached()[$v]." ".trans('imet-core::analysis_report.legends.'.$v);
+                if ($v !== 'avg') {
+                    if ($type === 'process' && stripos($v, '_') === true) {
+                        $name = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
                     } else {
                         $name = Common::get_all_indicator_labels_cached()[$v];
                     }
 
                     $indicators[$i] = $name;
 
-                    if (in_array($v, $radar_negative_indicators) && !in_array($i, $radar_indicators_for_negative)) {
+                    if (in_array($v, $radar_negative_indicators) && ! in_array($i, $radar_indicators_for_negative)) {
                         $radar_indicators_for_negative[] = $i;
-                    } else if (in_array($v, $radar_zero_negative_indicators) && !in_array($i, $radar_indicators_zero_negative)) {
+                    } elseif (in_array($v, $radar_zero_negative_indicators) && ! in_array($i, $radar_indicators_zero_negative)) {
                         $radar_indicators_zero_negative[] = $i;
                     }
 
                     $rounded_value = Common::round_number($value);
                     $tables[$type][$idx][$v] = $valuesIndicators[$v][] = $rounded_value;
 
-                    if ((string)$value === "-") {
+                    if ((string) $value === '-') {
                         $value = 0;
                     } else {
                         $indicators_count_to_calculate_average[$v] = array_key_exists($v, $indicators_count_to_calculate_average) ? $indicators_count_to_calculate_average[$v] + 1 : 1;
@@ -86,11 +86,10 @@ class Radar
             $lowerLimit[$k] = min($v);
         }
 
-
         $analysis_diagrams_protected_areas['indicators'] = $indicators;
 
         foreach ($radar_average as $k => $item) {
-            $radar_protected_areas['values']['Average'][] = isset($indicators_count_to_calculate_average[$k]) ? Common::round_number($item / $indicators_count_to_calculate_average[$k]) : "-";
+            $radar_protected_areas['values']['Average'][] = isset($indicators_count_to_calculate_average[$k]) ? Common::round_number($item / $indicators_count_to_calculate_average[$k]) : '-';
         }
 
         return [
@@ -98,15 +97,15 @@ class Radar
             'radar_indicators_zero_negative' => $radar_indicators_zero_negative,
             'wdpas' => $wdpas,
             'values' => array_merge($radar_protected_areas['values'], [
-                    'upper limit' => $upperLimit,
-                    'lower limit' => $lowerLimit
-                ]
+                'upper limit' => $upperLimit,
+                'lower limit' => $lowerLimit,
+            ]
             ),
-            'indicators' => $analysis_diagrams_protected_areas['indicators']
+            'indicators' => $analysis_diagrams_protected_areas['indicators'],
         ];
     }
 
-    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = "", string $colors = "", array $options = [], string $label = "", ?int $scaling_id = 0): array
+    public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = '', string $colors = '', array $options = [], string $label = '', ?int $scaling_id = 0): array
     {
         $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
@@ -124,7 +123,7 @@ class Radar
             'radar_indicators_zero_negative' => $response['radar_indicators_zero_negative'],
             'wdpas' => $response['wdpas'],
             'values' => $response['values'],
-            'indicators' => $response['indicators']
+            'indicators' => $response['indicators'],
         ];
     }
 
@@ -140,7 +139,7 @@ class Radar
             'process' => [],
             'inputs' => [],
             'planning' => [],
-            'imet_index' => []
+            'imet_index' => [],
         ];
 
         $analysis_diagrams_protected_areas = [];
@@ -180,11 +179,11 @@ class Radar
             }
         }
 
-//        if(count($analysis_diagrams_protected_areas) === 0){
-//            return [];
-//        }
+        //        if(count($analysis_diagrams_protected_areas) === 0){
+        //            return [];
+        //        }
 
-        //get min and max level for each category
+        // get min and max level for each category
         foreach ($indicator as $k => $v) {
             if (count($v) > 0) {
                 $upperLimit[$k] = max($v) ?? 0;
@@ -211,8 +210,8 @@ class Radar
             'data' => [
                 'form_ids' => $form_ids_ordering,
                 'diagrams' => array_merge($analysis_diagrams_protected_areas,
-                    ['Average' => $average, 'upper limit' => $upperLimit, 'lower limit' => $lowerLimit])
-            ]
+                    ['Average' => $average, 'upper limit' => $upperLimit, 'lower limit' => $lowerLimit]),
+            ],
         ];
     }
 
@@ -229,18 +228,18 @@ class Radar
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
             if (count($indicators) === 0) {
                 foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
-                    $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($c + 1), []);
+                    $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($c + 1), []);
                     array_unshift($indicators, $name);
 
                 }
             }
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if ($protected_area === "") {
-                    $value = "-";
+                if ($protected_area === '') {
+                    $value = '-';
                 } else {
-                    $value = Common::round_number((-1 * (double)$protected_area));
+                    $value = Common::round_number((-1 * (float) $protected_area));
                 }
-                $record = ["id" => $pa->wdpa_id, "name" => $protected_areas_names[$form_id], "value" => $value, 'color' => $pa->color];
+                $record = ['id' => $pa->wdpa_id, 'name' => $protected_areas_names[$form_id], 'value' => $value, 'color' => $pa->color];
                 if ($pa->color) {
                     $record['color'] = $pa->color;
                 }
@@ -267,6 +266,7 @@ class Radar
         }
 
         $radar['indicators'] = $indicators;
+
         return ['radar' => $radar, 'total_categories' => $total_categories];
     }
 }

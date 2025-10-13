@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class StaffCompetence extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_staff_competence';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Theme';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR1';
@@ -37,7 +40,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Theme',
-            'values' => null
+            'values' => null,
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.StaffCompetence.module_info_EvaluationQuestion');
@@ -60,8 +63,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray()
-                : []
+                : [],
         ];
     }
-
 }

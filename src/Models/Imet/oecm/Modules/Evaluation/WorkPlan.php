@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+use Illuminate\Http\Request;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
 class WorkPlan extends Modules\Component\ImetModule_Eval
 {
@@ -22,7 +23,8 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P5';
@@ -47,12 +49,13 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
 
     private static function ensureNullValues($data)
     {
-        if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
+        if ($data['PlanExistence'] === false || $data['PlanExistence'] === 'false') {
             $data['PlanUptoDate'] = false;
             $data['PlanApproved'] = false;
             $data['PlanImplemented'] = false;
             $data['PlanAdequacyScore'] = 0;
         }
+
         return $data;
     }
 
@@ -62,6 +65,7 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         $records = Payload::decode($request->input('records_json'));
         $records[0] = static::ensureNullValues($records[0]);
         $request->merge(['records_json' => Payload::encode($records)]);
+
         return parent::updateModule($request);
     }
 
@@ -71,6 +75,4 @@ class WorkPlan extends Modules\Component\ImetModule_Eval
         $data = static::ensureNullValues($data);
         parent::importModule($form_id, $data);
     }
-
-
 }

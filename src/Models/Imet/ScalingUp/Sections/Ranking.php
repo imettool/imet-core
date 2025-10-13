@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,8 +14,8 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common;
-use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
+use ImetCore\Models\Imet\v2\Modules;
 
 class Ranking
 {
@@ -35,8 +36,8 @@ class Ranking
             $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $indicators);
         }
 
-        //loop each imet record sorted and get pa name
-        //and merge it with the table
+        // loop each imet record sorted and get pa name
+        // and merge it with the table
         $i = 0;
         foreach ($filtered as $id => $values) {
             $pa = Common::get_pa_name($id, $scaling_id);
@@ -47,13 +48,13 @@ class Ranking
             unset($values['indicators_number']);
 
             $indicators_divide_length = count(array_filter($values));
-            if (!isset($items_to_calculate[$i])) {
+            if (! isset($items_to_calculate[$i])) {
                 $items_to_calculate[$i] = 0;
             }
 
             foreach ($values as $v => $value) {
-                if ($type === "process" && stripos($v, "_")) {
-                    $name = Common::get_all_indicator_labels_cached()[$v]." _".trans('imet-core::analysis_report.legends.'.$v);
+                if ($type === 'process' && stripos($v, '_')) {
+                    $name = Common::get_all_indicator_labels_cached()[$v].' _'.trans('imet-core::analysis_report.legends.'.$v);
                 } else {
                     $name = Common::get_all_indicator_labels_cached()[$v];
                 }
@@ -71,23 +72,24 @@ class Ranking
 
                 $ranking['legends'][$v] = $name;
                 $ranking['actual_value'][$name][] = $correction_value;
-                if ((string)$correction_value !== "-") {
+                if ((string) $correction_value !== '-') {
                     $items_to_calculate[$i]++;
                     $separated_values_by_pa[$i][] = $correction_value;
                 } else {
                     $separated_values_by_pa[$i][] = ScalingUpAnalysis::UNDEFINED_VALUE;
                 }
 
-                if (!isset($sum_values[$i])) {
+                if (! isset($sum_values[$i])) {
                     $sum_values[$i] = 0;
                 }
-                $sum_values[$i] += (float)($correction_value);
+                $sum_values[$i] += (float) ($correction_value);
             }
 
             $ranking['xAxis'][$i] = $protected_area;
             $ranking['wdpa_ids'][$i] = $wdpa_id;
             $i++;
         }
+
         return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
@@ -114,8 +116,8 @@ class Ranking
         }, $sum_values, array_keys($sum_values));
         foreach ($percent_values as $k => $values) {
             foreach ($values as $kk => $value) {
-                if($value !== ScalingUpAnalysis::UNDEFINED_VALUE){
-                    if(isset($average_values[$kk])) {
+                if ($value !== ScalingUpAnalysis::UNDEFINED_VALUE) {
+                    if (isset($average_values[$kk])) {
                         $calculate = Common::round_number(($value / 100) * $average_values[$kk]);
                         $ranking['values'][$k][$kk] = $calculate;
                     }
@@ -129,17 +131,17 @@ class Ranking
         foreach ($ranking['values'] as $ind => $items) {
             $i = 0;
             foreach ($average_values as $k => $vals) {
-                if (!isset($new_ranking['values'][$ind])) {
+                if (! isset($new_ranking['values'][$ind])) {
                     $new_ranking['values'][$ind] = [];
                 }
-                if (!isset($new_ranking['actual_value'][$ind])) {
+                if (! isset($new_ranking['actual_value'][$ind])) {
                     $new_ranking['actual_value'][$ind] = [];
                 }
                 $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
-                if(isset($separated_values_by_pa[$k])) {
+                if (isset($separated_values_by_pa[$k])) {
                     $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k];
                 } else {
                     $reorder_separated_values_by_pa[$i] = [];
@@ -167,7 +169,7 @@ class Ranking
             'PRC' => ['PR10' => [], 'PR11' => [], 'PR12' => []],
             'PRD' => ['PR13' => [], 'PR14' => []],
             'PRE' => ['PR15' => [], 'PR16' => []],
-            'PRF' => ['PR17' => [], 'PR18' => []]
+            'PRF' => ['PR17' => [], 'PR18' => []],
         ];
 
         $indicators_numbers = [];
@@ -191,7 +193,7 @@ class Ranking
     }
 
     /**
-     * @param int|null $scaling_id
+     * @param  int|null  $scaling_id
      * @return array[]|\array[][]
      */
     public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
@@ -205,21 +207,21 @@ class Ranking
             $wdpa_id = $pa->wdpa_id;
 
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if (!isset($sum_values[$j])) {
+                if (! isset($sum_values[$j])) {
                     $sum_values[$j] = 0;
                 }
-                if (!isset($items_to_calculate[$j])) {
+                if (! isset($items_to_calculate[$j])) {
                     $items_to_calculate[$j] = 0;
                 }
                 App::setLocale($locale);
-                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($k + 1), []);
+                $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($k + 1), []);
 
-                if ($protected_area === "") {
+                if ($protected_area === '') {
                     $value = ScalingUpAnalysis::UNDEFINED_VALUE;
                 } else {
                     $items_to_calculate[$j] += 1;
-                    $value = Common::round_number((-1 * (double)$protected_area));
-                    $sum_values[$j] += (float)($value);
+                    $value = Common::round_number((-1 * (float) $protected_area));
+                    $sum_values[$j] += (float) ($value);
                 }
                 $separated_values_by_pa[$j][] = $value;
                 $ranking_raw_values[$name][] = $ranking['actual_value'][$name][] = $value;
@@ -244,7 +246,7 @@ class Ranking
             'inputs' => 0,
             'process' => 0,
             'outputs' => 0,
-            'outcomes' => 0
+            'outcomes' => 0,
         ];
 
         $total_values = $raw_values = [];
@@ -254,7 +256,7 @@ class Ranking
         $items = $assessments['data'];
 
         usort($items['assessments'], function ($first, $second) {
-            return ($first['imet_index']) < ($second['imet_index']);
+            return $first['imet_index'] < ($second['imet_index']);
         });
 
         $i = 0;
@@ -274,12 +276,12 @@ class Ranking
             $percent['xAxis'][] = $name;
             $collect_values_for_sorting = [];
             foreach ($indicators as $ind => $indicator) {
-                $label = trans('imet-core::common.steps_eval.' . $ind);
+                $label = trans('imet-core::common.steps_eval.'.$ind);
                 $percent['legends'][$ind] = $label;
-                if($total_values[$name] === 0){
-                    $percent_value = "-";
-                    $percent['percent_values'][$label][] = "-";
-                    $percent['values'][$label][] = $collect_values_for_sorting[] = "-";
+                if ($total_values[$name] === 0) {
+                    $percent_value = '-';
+                    $percent['percent_values'][$label][] = '-';
+                    $percent['values'][$label][] = $collect_values_for_sorting[] = '-';
                 } else {
                     $percent_value = Common::round_number(($indicator / $total_values[$name]) * 100);
                     $percent['percent_values'][$label][] = $percent_value;
@@ -296,10 +298,9 @@ class Ranking
             'legends' => $percent['legends'],
             'xAxis' => $percent['xAxis'],
             'actual_value' => $percent['actual_value'],
-            'raw_values' => $raw_values
+            'raw_values' => $raw_values,
         ];
 
         return ['status' => 'success', 'data' => ['values' => $new_ranking, 'form_ids' => $form_ids]];
     }
-
 }

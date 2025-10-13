@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -21,16 +22,17 @@ class BoundaryLevel extends Modules\Component\ImetModule_Eval
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public static array $rules = [
-        'Boundaries'       => 'required'
+        'Boundaries' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P3';
         $this->module_title = trans('imet-core::oecm_evaluation.BoundaryLevel.title');
 
-        $this->module_fields =[
+        $this->module_fields = [
             ['name' => 'Boundaries',    'type' => 'rating-0to6',         'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Boundaries')],
             ['name' => 'Adequacy',      'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Adequacy')],
             ['name' => 'Comments',      'type' => 'text-area',                      'label' => trans('imet-core::oecm_evaluation.BoundaryLevel.fields.Comments')],

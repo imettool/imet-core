@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,7 @@ return [
             'Contacts' => 'Coordonnées',
             'EncodingDate' => 'Date de compilation',
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
+        ],
     ],
 
     'ResponsablesInterviewees' => [
@@ -32,7 +33,7 @@ return [
             'Contacts' => 'Coordonnées',
             'EncodingDate' => 'Date de compilation',
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
+        ],
     ],
 
     'ImportanceGovernance' => [
@@ -54,7 +55,7 @@ return [
             'Intégration des nécessités/aspirations des gestionnaires dans la gestion de l\'aire protégée par les opérateurs touristiques',
             'Intégration des nécessités/aspirations des opérateurs touristiques par les gestionnaires dans la gestion de l\'aire protégée',
             'Coordination avec les administrations décentralisées — déconcentrées [p.ex. échelon(s) provincial et/ou territorial]',
-            'Coordination de plusieurs administrations décentralisées – déconcentrées [p.ex. échelon(s) provincial et/ou territorial] en raison de l’appartenance de l’aire protégée à plusieurs territoires administratifs'
+            'Coordination de plusieurs administrations décentralisées – déconcentrées [p.ex. échelon(s) provincial et/ou territorial] en raison de l’appartenance de l’aire protégée à plusieurs territoires administratifs',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -63,11 +64,11 @@ return [
                 '1' => 'faiblement mise en application',
                 '2' => 'mise en application',
                 '3' => 'considérablement mise en application',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valeur et Importance - Gouvernance / Partenariat',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée a-t-elle une typologie de gouvernance bien définie et êtes-vous en mesure d\'en identifier les avantages ou désavantages?</li> <li>L\'aire protégée a-t-elle actuellement des partenariats en appui à la gouvernance et la gestion ?</li> <li><b>Identifier la typologie actuelle de gouvernance ainsi que le degré d\'intégration des aspirations des partenariats dans la gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les aspects de premier plan de la gouvernance / des partenariats'
+        'module_info_Rating' => 'Evaluez les aspects de premier plan de la gouvernance / des partenariats',
     ],
 
     'ObjectivesGovernance' => [
@@ -79,7 +80,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées de la gouvernance / des partenariats',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs à <b>la gouvernance, partenariat, etc. </b>de l\'aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs à <b>la gouvernance, partenariat, etc. </b>de l\'aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ImportanceClassification' => [
@@ -96,11 +97,11 @@ return [
                 '1' => 'faible importance',
                 '2' => 'important',
                 '3' => 'extrêmement important',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valeur et Importance - Classifications',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée a-elle-été classée ou érigée à un statut au profit de la conservation au niveau nationale, régionale ou internationale?</li> <li><b>Identifier l\'importance et l\'influence du (ou des) statut(s) national, régional ou international dans la gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Listez les classifications de l\'aire protégée au niveau national, régional ou international (voir Contexte d\'Intervention, point 1.3)'
+        'module_info_Rating' => 'Listez les classifications de l\'aire protégée au niveau national, régional ou international (voir Contexte d\'Intervention, point 1.3)',
     ],
 
     'ObjectivesClassification' => [
@@ -112,7 +113,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées de classification / statut de l\'aire protégée',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs <b>au (aux) statu(s) actuel(s) au niveau national, régional ou international</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs <b>au (aux) statu(s) actuel(s) au niveau national, régional ou international</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ImportanceSpecies' => [
@@ -121,7 +122,7 @@ return [
             'Aspect' => 'Critères, Concept mesuré, Variables',
             'EvaluationScore' => 'Note',
             'SignificativeSpecies' => 'Espèce hautement significative',
-            'Comments' => 'Commentaire, Explication'
+            'Comments' => 'Commentaire, Explication',
         ],
         'groups' => [
             'group0' => 'Identifiez les espèces animales phares, menacées, endémiques, …, choisies comme indicateurs',
@@ -133,11 +134,11 @@ return [
                 '1' => 'faible importance',
                 '2' => 'important',
                 '3' => 'extrêmement important',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valeur et Importance - Espèces phare, menacées, endémiques, exploitées, invasives, avec faible niveau de connaissance',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée assure-t-elle la conservation des espèces phare, menacées, endémiques, exploitées, invasives, avec faible niveau de connaissance les plus représentatives pour l\'aire protégée ?</li> <li><b>Identifier le degré d\'importance dans la gestion de l\'aire protégée attribué aux espèces phare, menacées, endémiques, exploitées, invasives, avec faible niveau de connaissance les plus représentatives et pouvant être adoptées comme indicateurs écologiques d\'excellence</b></li> </ul>',
-        'module_info_Rating' => 'Listez les espèces phare, menacées, endémiques, exploitées, invasives, avec faible niveau de connaissance les plus représentatives de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points: 4.1; 4.2).<br /> <span class="error">Attention: pas moins de 5, pas plus de 10</span>'
+        'module_info_Rating' => 'Listez les espèces phare, menacées, endémiques, exploitées, invasives, avec faible niveau de connaissance les plus représentatives de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points: 4.1; 4.2).<br /> <span class="error">Attention: pas moins de 5, pas plus de 10</span>',
     ],
 
     'ObjectivesSpecies' => [
@@ -149,7 +150,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées des valeurs et importances de l\'aire protégée',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>éléments clé et aux espèces phare, menaces, endémiques, invasives, avec faible niveau de connaissance </b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>éléments clé et aux espèces phare, menaces, endémiques, invasives, avec faible niveau de connaissance </b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ImportanceHabitats' => [
@@ -179,7 +180,7 @@ return [
         ],
         'module_subTitle' => 'Valeur et Importance - Habitats terrestres et marines et couverture du sol (land-cover et land-change)',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée assure-t-elle la conservation et la valorisation des habitats terrestres et marins et de la couverture du sol (land-cover et land-change)pour l\'aire protégée?</li> <li><b>Identifier le degré d\'importance attribuée dans la gestion de l\'aire protégée aux habitats terrestres et marins et de la couverture du sol (land-cover et land-change) pouvant être adoptées comme indicateurs de gestion</b></li> </ul>',
-        'module_info_Rating' => 'Listez les habitats ou éléments de la couverture du sol les plus importants pour l\'aire protégée, identifiés (sur la base des éléments du Contexte d\'Intervention, point 4.3).<br /> <span class="error">Attention: pas moins de 5, pas plus de 10</span>'
+        'module_info_Rating' => 'Listez les habitats ou éléments de la couverture du sol les plus importants pour l\'aire protégée, identifiés (sur la base des éléments du Contexte d\'Intervention, point 4.3).<br /> <span class="error">Attention: pas moins de 5, pas plus de 10</span>',
     ],
 
     'ObjectivesHabitats' => [
@@ -191,7 +192,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées des habitats terrestres et marines et couverture du sol',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs au <b>maintien des habitats terrestres et marins ou de la couverture du sol</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs au <b>maintien des habitats terrestres et marins ou de la couverture du sol</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ImportanceClimateChange' => [
@@ -221,11 +222,11 @@ return [
                 '1' => 'faible importance',
                 '2' => 'important',
                 '3' => 'extrêmement important',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valeur et Importance - Changement Climatique',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée assure-t-elle de l\'importance aux effets du changement climatique dans la gestion de l\'aire protégée ?</li> <li><b>Identifier le degré d\'importance attribué dans la gestion de l\'aire protégée aux effets du changement climatique les plus significatifs et pouvant être adoptés comme indicateurs écologiques d\'excellence pour accroitre l’efficacité d’atténuation et d’adaptation des réponses au phénomène</b></li> </ul>',
-        'module_info_Rating' => 'Listez cinq ou plus éléments les plus importants liés au changement climatique et affectant l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 6.1)'
+        'module_info_Rating' => 'Listez cinq ou plus éléments les plus importants liés au changement climatique et affectant l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 6.1)',
     ],
 
     'ObjectivesClimateChange' => [
@@ -237,7 +238,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées pour les réponses aux effets du changement climatique',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs <b> aux effets du changement climatique</b><br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs <b> aux effets du changement climatique</b><br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'ImportanceEcosystemServices' => [
@@ -256,7 +257,7 @@ return [
             'Culturel: Interactions physiques  et expérience',
             'Culturel: Interactions intellectuelles et de représentation',
             'Culturel: Spirituel et/ou emblématiques',
-            'Culturel: Autres sorties culturelles (conservation ex-situ)'
+            'Culturel: Autres sorties culturelles (conservation ex-situ)',
         ],
         'module_info' => 'Notez que les estimations sont reportées automatiquement a’ partir des appréciations que vous avez effectué au point #7.1. L’échelle des critères vous permet de vérifier la cohérence des estimations que vous avez effectué précédemment.',
         'ratingLegend' => [
@@ -266,11 +267,11 @@ return [
                 '1' => 'faible importance',
                 '2' => 'important',
                 '3' => 'extrêmement important',
-            ]
+            ],
         ],
         'module_subTitle' => 'Valeur et Importance - Services Ecosystémiques',
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée assure-t-elle la conservation et la valorisation des services écosystémiques pour le bien-être humain ?</li> <li><b>Identifier le degré d\'importance attribué dans la gestion de l\'aire protégée aux services écosystémiques les plus significatifs et pouvant être adoptés comme indicateurs écologiques d\'excellence en raison de la dépendance des populations riveraines (de la zone de transition pour les réserves MAB) de ces services écosystémiques</b></li> </ul>',
-        'module_info_Rating' => 'Listez cinq ou plus services écosystémiques (légaux et illégaux) les plus importants et représentatifs pour l\'aire protégée sur la base de l\'analyse de l\'Etat du Contexte (voir Contexte d\'Intervention, point 7.1)'
+        'module_info_Rating' => 'Listez cinq ou plus services écosystémiques (légaux et illégaux) les plus importants et représentatifs pour l\'aire protégée sur la base de l\'analyse de l\'Etat du Contexte (voir Contexte d\'Intervention, point 7.1)',
     ],
 
     'ObjectivesEcosystemServices' => [
@@ -282,7 +283,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées of the ecosystem services provided by the protected area',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs au <b>maintien des services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ses services<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs au <b>maintien des services écosystémiques et à la dépendance des collectivités</b> de l’aire protégée envers ses services<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'SupportsAndConstraints' => [
@@ -310,7 +311,7 @@ return [
             'Forces militaires marines',
             'Forces de police',
             'Résidents de haut niveau dans la zone tampon',
-            'Hautes autorités de l\'Etat'
+            'Hautes autorités de l\'Etat',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -326,7 +327,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle soumise à des contraintes ou profite-t-elle d\'appuis exercés par l\'environnement politique-institutionnel et social externe?</li> <li><b>Etes-vous en mesure d\'identifier les avantages et les inconvénients exercés par l\'environnement politique et social externe ?</b></li> </ul>',
-        'module_info_Rating' => 'Listez les principaux appuis et contraintes exercés sur l\'aire protégée et évaluer leur importance'
+        'module_info_Rating' => 'Listez les principaux appuis et contraintes exercés sur l\'aire protégée et évaluer leur importance',
     ],
 
     'ObjectivesSupportsAndConstraints' => [
@@ -338,7 +339,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées  pour les contraintes ou les appuis externes sur l\'aire protégée',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>contraintes ou appuis externes</b> sur l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>contraintes ou appuis externes</b> sur l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'Menaces' => [
@@ -353,10 +354,10 @@ return [
                 'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
                 '0' => 'pas d\'influence',
                 '-3 / -2 / -1' => 'Gravité (moins - plus sévère)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle soumise à des menaces (pressions - menaces - vulnérabilités) en mesure de mettre en danger les patrimoines en biodiversité, culturels, les services écosystémiques, etc. de l\'aire protégée ?</li> <li>Quelles sont les menaces (pressions - menaces - vulnérabilités) les plus graves et importantes qui pèsent sur l\'aire protégée ?</li> <li><b>Identifier le degré de prise en compte des menaces principales et pouvant être adoptées comme indicateurs d\'excellence, dans la gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Listez les menaces (pressions - menaces - vulnérabilités) les plus importantes qui pèsent sur l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 5.1)'
+        'module_info_Rating' => 'Listez les menaces (pressions - menaces - vulnérabilités) les plus importantes qui pèsent sur l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 5.1)',
     ],
 
     'ObjectivesMenaces' => [
@@ -368,7 +369,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées concernant les pressions et les menaces qui pèsent sur l\'aire protégée',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>pressions et menaces qui pèsent</b> sur l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>pressions et menaces qui pèsent</b> sur l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'RegulationsAdequacy' => [
@@ -389,7 +390,7 @@ return [
             'Lois, conventions sur la recherche sur la biodiversité et les ressources naturelles',
             'Mesures d\'application des dispositions sur la recherche',
             'Droit coutumier (élément tiré du P2)',
-            'Droit foncier'
+            'Droit foncier',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -401,10 +402,10 @@ return [
                 '1' => 'moyennement adéquate',
                 '2' => 'adéquates',
                 '3' => 'très adéquates',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les réglementations en vigueur pour le contrôle des activités et l\'utilisation des terres et des ressources naturelles (p.ex. la cueillette) dans l\'aire protégée sont-elles appropriées?</li> <li><b>Identifier les réglementations en vigueur pour le contrôle des activités et l\'utilisation des terres et des ressources naturelles de l\'aire protégée, et en évaluer la conformité</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les principales réglementations en vigueur intervenant dans le cadre de la gestion de l\'aire protégée'
+        'module_info_Rating' => 'Evaluez les principales réglementations en vigueur intervenant dans le cadre de la gestion de l\'aire protégée',
     ],
 
     'DesignAdequacy' => [
@@ -423,7 +424,7 @@ return [
             'Zone de frontière',
             'Segment(s) de limites sujets à conflits ou contestation (ex. limites non naturelles, droits coutumiers, exploitations, etc.)',
             'Enclaves reconnues officiellement',
-            'Zones enclavées avec un difficile / impossible accès pour les patrouilles'
+            'Zones enclavées avec un difficile / impossible accès pour les patrouilles',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -435,10 +436,10 @@ return [
                 '1' => 'peu adéquate',
                 '2' => 'modérément adéquates',
                 '3' => 'très adéquates',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle de la bonne taille et forme pour protéger les espèces, les habitats et assurer les processus écologiques et naturels comme la couverture du sol et les captages d\'eau ?</li> <li>L\'aire protégée a-t-elle besoin d\'être agrandie (élargir ses corridors, etc.) pour atteindre ses objectifs ?</li> <li><b>Evaluez le degré d\'adéquation de la conception de l\'aire protégée pour assurer la protection de ses valeurs et aspects d\'importance</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les aspects les plus importants concernant la configuration et l\'adéquation actuelle de la conception de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 2)'
+        'module_info_Rating' => 'Evaluez les aspects les plus importants concernant la configuration et l\'adéquation actuelle de la conception de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 2)',
     ],
 
     'BoundaryLevel' => [
@@ -455,10 +456,10 @@ return [
                 '2' => 'limites connues par les autorités et les résidents/utilisateurs, mais non signalées de manière adéquate (51-75%)',
                 '3' => 'limites connues par les autorités et les résidents/utilisateurs et signalées (plus de 76, mais inferieur à 100%)',
                 '4' => 'limites parfaictement connues par les autorités et les résidents/utilisateurs et correctement signalées (100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>La limite est-elle connue et signalée?</li> <li><b>Identifier le degré de connaissance et de signalisation des limites de l\'aire protégée et, si vous le pouvez, le pourcentage de signalisation des limites dans la fourchette indiquée</b></li> </ul>',
-        'module_info_Rating' => 'Renseignez l\'état actuel et si possible le % du périmètre de l\'aire protégée signalé'
+        'module_info_Rating' => 'Renseignez l\'état actuel et si possible le % du périmètre de l\'aire protégée signalé',
     ],
 
     'ManagementPlan' => [
@@ -484,7 +485,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Y a-t-il un plan de gestion et, si oui, est-il applicable ?</li> <li><b>Vérifier l\'existence et l\'applicabilité du plan de gestion</b></li> </ul>',
-        'module_info_Rating' => 'Renseignez l\'existence et l\'applicabilité du plan de gestion sur la base des quatre + quatre niveaux ci-dessous'
+        'module_info_Rating' => 'Renseignez l\'existence et l\'applicabilité du plan de gestion sur la base des quatre + quatre niveaux ci-dessous',
     ],
 
     'WorkPlan' => [
@@ -510,7 +511,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Existe-t-il un plan de travail annuel ?</li> <li><b>Vérifier l\'existence et la pertinance du plan de travail</b></li> </ul>',
-        'module_info_Rating' => 'Renseignez l\'existence et la pertinence du plan de travail sur la base des quatre +quatre niveaux ci-dessous:'
+        'module_info_Rating' => 'Renseignez l\'existence et la pertinence du plan de travail sur la base des quatre +quatre niveaux ci-dessous:',
     ],
 
     'Objectives' => [
@@ -527,7 +528,7 @@ return [
             'Utilisation légale et durable des ressources naturelles (droits coutumiers et aires protégées à gestion des ressources naturelles)',
             'Atténuation des menaces directes et indirectes qui pèsent sur l\'aire protégée',
             'Atténuation / l\'adaptation des effets du changement climatique sur les éléments clés de l\'aire protégée',
-            'Conservation des services écosystémiques fournis par l\'aire protégée'
+            'Conservation des services écosystémiques fournis par l\'aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -536,10 +537,10 @@ return [
                 '1' => 'definition des objectifs, mais ceux-ci ne sont pas précisés sur la base des indicateurs et des valeurs de référence',
                 '2' => 'definition des objectifs, mais ceux-ci ne sont pas complètement précisés sur la base des indicateurs ou des valeurs de référence',
                 '3' => 'definition des objectifs accompagnés d\'indicateurs et de valeurs de référence relatifs',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les objectifs fixés présent-ils des indicateurs et de valeurs de référence des conditions souhaitées comme impact de la gestion de l’aire protégée ?</li> <li><b>Juger la pertinence des objectifs, des indicateurs et de valeurs de référence associés sur la base des précédents documents de planification et de l’état du contexte de l’aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Jugez la pertinence des objectifs, des indicateurs et de valeurs de référence de la planification pour assurer la conservation des valeurs et de l’importance de l’aire protégée (sur la base des éléments du Contexte d\'intervention, points 4; 5; 6; 7) '
+        'module_info_Rating' => 'Jugez la pertinence des objectifs, des indicateurs et de valeurs de référence de la planification pour assurer la conservation des valeurs et de l’importance de l’aire protégée (sur la base des éléments du Contexte d\'intervention, points 4; 5; 6; 7) ',
     ],
 
     'ObjectivesPlanification' => [
@@ -551,7 +552,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>exercices et outil de planification</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>exercices et outil de planification</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'InformationAvailability' => [
@@ -580,10 +581,10 @@ return [
                 '1' => 'information disponible, mais insuffisante pour la planification et la prise de décision (entre 26 et 50% des besoins de gestion)',
                 '2' => 'information disponible et suffisante pour la planification et la prise de décision, mais le travail essentiel de suivi et recherche n’est pas assuré (entre 51 et 75% des besoins de gestion)',
                 '3' => 'information disponible et suffisante pour la planification et la prise de décision et mise à jour par le travail essentiel de suivi et recherche (entre 76 et 100% des besoins de gestion)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Disposez-vous d\'informations suffisantes pour gérer l’aire protégée?</li> <li><b>Analyser la pertinence et la disponibilité des informations pour assurer une gestion efficace de l\'aire protégée.</b></li> </ul>',
-        'module_info_Rating' => 'Précisez les plus importants éléments de gestion de l\'aire protégée disposant ou pas d\'informations fondamentales pour assurer leur gestion (sur la base des éléments du Contexte d\'intervention, points 4; 5; 6; 7) '
+        'module_info_Rating' => 'Précisez les plus importants éléments de gestion de l\'aire protégée disposant ou pas d\'informations fondamentales pour assurer leur gestion (sur la base des éléments du Contexte d\'intervention, points 4; 5; 6; 7) ',
     ],
 
     'Staff' => [
@@ -602,10 +603,10 @@ return [
                 '1' => 'pas suffisant aux activités de gestion essentielles (entre 26 et 50% des besoins)',
                 '2' => 'en dessous du seuil optimal (entre 51 et 75% des besoins)',
                 '3' => 'adaptés aux activités (entre 76 et 100% des besoins)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Y a-t-il assez de personnel pour gérer l’aire protégée ?</li> <li><b>Préciser l\'adéquation des effectifs par rapport aux exigences de gestion de l\'aire protégée sur la base des indications du plan de gestion or de l\'organigramme officiel</b></li> </ul>',
-        'module_info_Rating' => 'Identification automatique de l\'état actuel; évaluez si possible le % du personnel par rapport aux nécessités de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.1)'
+        'module_info_Rating' => 'Identification automatique de l\'état actuel; évaluez si possible le % du personnel par rapport aux nécessités de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.1)',
     ],
 
     'BudgetAdequacy' => [
@@ -622,10 +623,10 @@ return [
                 '2' => 'en-dessous du seuil optimal (entre 36 et 70% des besoins)',
                 '3' => 'adapté aux activités (plus de 71 mais inferieur à 100% des besoins)',
                 '4' => 'parfaitement adapté aux activités (100% des besoins)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le budget actuel est-il suffisant pour assurer une gestion appropriée de l\'aire protégée ?</li> <li><b>Juger l\'adéquation du financement actuel par rapport aux exigences de conservation de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Renseignez le niveau d\'adéquation des financements actuels de l\'aire protégée par rapport aux exigences de conservation sur la base des quatre niveaux ci-dessous (sur la base des éléments du Contexte d\'Intervention, point 3.2)'
+        'module_info_Rating' => 'Renseignez le niveau d\'adéquation des financements actuels de l\'aire protégée par rapport aux exigences de conservation sur la base des quatre niveaux ci-dessous (sur la base des éléments du Contexte d\'Intervention, point 3.2)',
     ],
 
     'BudgetSecurization' => [
@@ -642,10 +643,10 @@ return [
                 '2' => 'budget sécurisé en proportion importante, mais de nombreuses innovations et initiatives demeurent dépendantes de fonds externes (entre 34 et 67% de sécurisation du budget)',
                 '3' => 'budget sécurisé et besoins de gestion couverts pour plusieurs années (plus de 67 mais inferieur à 100% de sécurisation du budget)',
                 '4' => 'budget sécurisé et besoins de gestion parfaictement couverts pour plusieurs années (100% de sécurisation du budget)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le budget est-il sécurisé ?</li> <li><b>Juger de la sécurisation du budget par rapport aux exigences de conservation de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Indiquez le niveau de sécurisation des financements actuels de l\'aire protégée par rapport aux exigences de conservation sur la base des quatre niveaux ci-dessous'
+        'module_info_Rating' => 'Indiquez le niveau de sécurisation des financements actuels de l\'aire protégée par rapport aux exigences de conservation sur la base des quatre niveaux ci-dessous',
     ],
 
     'ManagementEquipmentAdequacy' => [
@@ -672,7 +673,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les infrastructures, les équipements et les installations sont-ils suffisants pour les besoins de gestion ?</li> <li><b>Juger l\'adéquation des infrastructures, des équipements et des installations par rapport aux exigences de gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez le niveau d\'adéquation des infrastructures, équipements et installations par rapport aux exigences de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.3) '
+        'module_info_Rating' => 'Evaluez le niveau d\'adéquation des infrastructures, équipements et installations par rapport aux exigences de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.3) ',
     ],
 
     'ObjectivesIntrants' => [
@@ -684,7 +685,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>intrants nécessaires pour la mise en œuvre de la planification</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>intrants nécessaires pour la mise en œuvre de la planification</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'StaffCompetence' => [
@@ -701,10 +702,10 @@ return [
                 '1' => 'niveau de compétences ou de formation faible',
                 '2' => 'niveau de compétences ou de formation adaptés, mais à améliorer',
                 '3' => 'niveau de compétences ou de formation à jour, voire anticipé',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le personnel a-t-il les compétences et est-il formé de façon adéquate pour atteindre les objectifs de gestion ?</li> <li><b>Juger le niveau de compétences et l\'adéquation de la formation du personnel par rapport aux exigences de gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Par rapport au poste de service et au plus importantes thématiques de gestion de l\'aire protégée renseignez le niveau moyen de compétences et de formation du personnel disponible (sur la base des éléments du Contexte d\'Intervention, point 3.1)'
+        'module_info_Rating' => 'Par rapport au poste de service et au plus importantes thématiques de gestion de l\'aire protégée renseignez le niveau moyen de compétences et de formation du personnel disponible (sur la base des éléments du Contexte d\'Intervention, point 3.1)',
     ],
 
     'HRmanagementPolitics' => [
@@ -721,7 +722,7 @@ return [
             'Gestion et contrôle des procédures internes par la DRH de l\'aire protégée pour l\'amélioration de la gestion des ressources humaines',
             'Le recrutement et la gestion des RH sont indépendants des pressions externes',
             'Mise en œuvre des dispositions de RH avec les communications, les procédures appliquées et les programmes de formation',
-            'Suivi et révisions des procédures et des processus internes à l\'aire protégée'
+            'Suivi et révisions des procédures et des processus internes à l\'aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -730,10 +731,10 @@ return [
                 '1' => 'faible application',
                 '2' => 'application moyenne',
                 '3' => 'forte application',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L’aire protégée adopte-t-elle des politiques et des procédures de gestion des ressources humaines ?</li> <li><b>Juger l\'adéquation des politiques et des procédures de gestion des ressources humaines de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Si nécessaire, complétez et évaluez la liste des conditions indispensables pour avoir une bonne politique et des procédures adéquates de gestion des ressources humaines dans une aire protégée'
+        'module_info_Rating' => 'Si nécessaire, complétez et évaluez la liste des conditions indispensables pour avoir une bonne politique et des procédures adéquates de gestion des ressources humaines dans une aire protégée',
     ],
 
     'HRmanagementSystems' => [
@@ -752,7 +753,7 @@ return [
             'Conditions de travail adéquates',
             'Soutien des autorités politiques, administratives et militaires',
             'Soutien des autorités  judiciaires',
-            'Soutien des communautés locales'
+            'Soutien des communautés locales',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -761,10 +762,10 @@ return [
                 '1' => 'faiblement mise en pratique',
                 '2' => 'moyennement mise en pratique',
                 '3' => 'activement mise en pratique',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le personnel de service de l\'aire protégée dispose-t-il d\'une bonne aptitude au travail de conservation?</li> <li><b>Analyser le degré de motivation du personnel (aptitude au travail)</b></li> </ul>',
-        'module_info_Rating' => 'Si nécessaire, complétez la liste des conditions indispensables pour entretenir un bon niveau de motivation du personnel dans une aire protégée'
+        'module_info_Rating' => 'Si nécessaire, complétez la liste des conditions indispensables pour entretenir un bon niveau de motivation du personnel dans une aire protégée',
     ],
 
     'GovernanceLeadership' => [
@@ -789,7 +790,7 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>La prise de décision, l\'exécution des ordres et la discipline sont-elles adéquatement assurées dans la gestion de l\'aire protégée ?</li> <li><b>Évaluer le niveau de gouvernance interne et de leadership</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez le niveau actuel de gouvernance interne et de leadership de l\'aire protégée'
+        'module_info_Rating' => 'Evaluez le niveau actuel de gouvernance interne et de leadership de l\'aire protégée',
     ],
 
     'AdministrativeManagement' => [
@@ -804,10 +805,10 @@ return [
                 '1' => 'la gestion du budget et des ressources financières est médiocre et compromet l’efficacité de la gestion de l’aire protégée',
                 '2' => 'la gestion du budget et des ressources financières est adéquate, mais pourrait être améliorée',
                 '3' => 'la gestion du budget et des ressources financières est excellente et soutient l’efficacité de la gestion de l’aire protégée',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le budget et les ressources financières sont-ils gérés de façon à couvrir les besoins essentiels de gestion ?</li> <li><b>Evaluez l\'efficacité de la gestion comptable et financière</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez le niveau de qualité de gestion comptable et financière'
+        'module_info_Rating' => 'Evaluez le niveau de qualité de gestion comptable et financière',
     ],
 
     'EquipmentMaintenance' => [
@@ -825,10 +826,10 @@ return [
                 '1' => 'insuffisante pour les activités de gestion essentielles (entre 26 et 50% des besoins)',
                 '2' => 'en dessous du seuil optimal (entre 51 et 75% des besoins)',
                 '3' => 'adaptés aux activités (entre 76 et 100% des besoins)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les infrastructures, les équipements et les installations sont-ils entretenus de manière adéquate ?</li> <li><b>Estimer le niveau d\'entretien des infrastructures, des équipements et des installations</b></li> </ul>',
-        'module_info_Rating' => 'Jugez le niveau d\'entretien des infrastructures, équipements et installations par rapport aux exigences de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.3)'
+        'module_info_Rating' => 'Jugez le niveau d\'entretien des infrastructures, équipements et installations par rapport aux exigences de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 3.3)',
     ],
 
     'ManagementActivities' => [
@@ -836,7 +837,7 @@ return [
         'fields' => [
             'Activity' => 'Activités spécifiques de gestion',
             'EvaluationScore' => 'Niveau de l\'action de gestion',
-            'Comments' => 'Commentaire'
+            'Comments' => 'Commentaire',
         ],
         'groups' => [
             'group0' => 'Mesures actives de gestion: espèces animales phares, menacées, endémiques, …, choisies comme indicateurs',
@@ -853,10 +854,10 @@ return [
                 '1' => 'adoption de dispositions et application faible',
                 '2' => 'adoption de dispositions et applications adaptées, mais à améliorer',
                 '3' => 'adoption de dispositions et applications conformes et proactives',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée adopte-t-elle des mesures actives de gestion des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces?</li> <li><b>Evaluer l\'existence et l\'efficacité des activités de gestion des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces</b></li> </ul>',
-        'module_info_Rating' => 'Listez cinq ou plus activités spécifiques de gestion des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces qui sont présents dans l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5)'
+        'module_info_Rating' => 'Listez cinq ou plus activités spécifiques de gestion des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces qui sont présents dans l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5)',
     ],
 
     'ProtectionActivities' => [
@@ -883,10 +884,10 @@ return [
                 '1' => 'mesures de protection / contrôle partiels',
                 '2' => 'mesures de protection / contrôle modérément efficace',
                 '3' => 'mesures de protection / contrôle efficace',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée adopte-t-elle des dispositions de protection des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces, des effets du changement climatique et des services écosystémiques ?</li> <li><b>Evaluer l\'efficacité des activités de protection des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces, des effets du changement climatique et des services écosystémiques</b></li> </ul>',
-        'module_info_Rating' => 'Listez cinq ou plus activités spécifiques de protection des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces, des effets du changement climatique et des services écosystémiques (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
+        'module_info_Rating' => 'Listez cinq ou plus activités spécifiques de protection des espèces animales et végétales clé, des habitats, du maintien de la couverture et l\'utilisation du sol, des menaces, des effets du changement climatique et des services écosystémiques (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)',
     ],
 
     'Control' => [
@@ -903,10 +904,10 @@ return [
                 '2' => 'Le contrôle de l\'aire protégée est bon (entre 51 et 75% de la surface)',
                 '3' => 'Le contrôle de l\'aire protégée est élevé (plus de 76%, mais inferieur à 100% de la surface)',
                 '4' => 'Le contrôle de l\'aire protégée est total (100% de la surface)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle sous contrôle total ou partiel ?</li> <li><b>Déterminer le niveau de contrôle de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez l\'état actuel et si possible le % du contrôle de l\'aire protégée sur la base'
+        'module_info_Rating' => 'Evaluez l\'état actuel et si possible le % du contrôle de l\'aire protégée sur la base',
     ],
 
     'LawEnforcement' => [
@@ -926,7 +927,7 @@ return [
             'Le système d\'application des lois et des règlements est intangible',
             'Proximité des instances de justice par rapport à l\'aire protégée',
             'L’autorité centrale en charge de la conservation soutient les efforts d’application de la loi',
-            'L’autorité administrative locale soutient les efforts d’application de la loi'
+            'L’autorité administrative locale soutient les efforts d’application de la loi',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -935,10 +936,10 @@ return [
                 '1' => 'insuffisante',
                 '2' => 'satisfaisante',
                 '3' => 'très satisfaisante',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Le personnel de l\'aire protégée peut-il faire respecter efficacement les règles de l\'aire protégée ?</li> <li>Qu\'arrive-t-il en cas d\'arrestation ?</li> <li><b>Evaluer les capacités d\'application des lois</b></li> </ul>',
-        'module_info_Rating' => 'Établissez lesquels des 10 ou plus éléments de base pour l\'application des dispositions des lois de protection concernent l\'aire protégée'
+        'module_info_Rating' => 'Établissez lesquels des 10 ou plus éléments de base pour l\'application des dispositions des lois de protection concernent l\'aire protégée',
     ],
 
     'Implications' => [
@@ -961,15 +962,15 @@ return [
                 'Communautés qui vivent à proximité ou dans le parc',
                 'Groupes exploitants forestiers et pêcheurs',
                 'Opérateurs privés',
-                'Représentants de la société civile / des conseils locaux'
+                'Représentants de la société civile / des conseils locaux',
             ],
             'group1' => [
                 'Gouvernement national (ministères, mandataires des entreprises publics, etc.)',
                 'Gouvernement(s) régional, provincial et Préfecture(s)',
                 'Conseil territorial / départemental et communal',
                 'Représentants des populations (députés, etc.)',
-                'Forces armées (Gendarmerie et Marine Nationale)'
-            ]
+                'Forces armées (Gendarmerie et Marine Nationale)',
+            ],
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -978,10 +979,10 @@ return [
                 '1' => 'implication, mais pas de rôle direct dans la prise de décisions (1 - 25%)',
                 '2' => 'implication avec contribution à certaines décisions (26 - 75%)',
                 '3' => 'implication et contribution à la prise de toutes les décisions, p.ex. cogestion (76 - 100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les communautés locales, les ayants droit et les parties prenantes sont-ils impliqués dans les décisions de gestion de l\'aire protégée?</li> <li><b>Estimer le degré d\'implication des communautés locales, des ayants droit et des parties prenantes dans l\'échange d\'informations et la prise des décisions de la gestion de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Estimez l\'implication des communautés locales, des ayants droit et des parties prenantes dans les décisions de gestion de l\'aire protégée'
+        'module_info_Rating' => 'Estimez l\'implication des communautés locales, des ayants droit et des parties prenantes dans les décisions de gestion de l\'aire protégée',
     ],
 
     'AssistanceActivities' => [
@@ -1001,7 +1002,7 @@ return [
             'Appui dans la production vivrière et petit élevage',
             'Points d\'eau, adduction d\'eau',
             'Amélioration des routes',
-            'Fourniture énergie, connexion électrique'
+            'Fourniture énergie, connexion électrique',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1010,10 +1011,10 @@ return [
                 '1' => 'petites activités / programmes, et avantages minimes',
                 '2' => 'activités / programmes convenables, mais parfois occasionnelles, et avantages moyens',
                 '3' => 'activités / programmes importantes et constants, et forts avantages',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Y a-t-il des activités / programmes actuellement en cours par le gestionnaires dans l\'aire protégée visant des avantages / assistance appropriés vis-à-vis des collectivités ?</li> <li><b>Evaluer si le niveau des avantages et d\'assistance vis-à-vis des collectivités apportés par les activités et programmes de l\'aire protégée est approprié</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les activités / programmes en cours par l\'aire protégée visant des avantages / assistance appropriés vis-à-vis des collectivités'
+        'module_info_Rating' => 'Evaluez les activités / programmes en cours par l\'aire protégée visant des avantages / assistance appropriés vis-à-vis des collectivités',
     ],
 
     'ActorsRelations' => [
@@ -1034,7 +1035,7 @@ return [
             'Matériel didactique de diffusion aux  écoles',
             'Emissions télévisuelles sur le PN',
             'Operations de nettoyage et déchets',
-            'Ecomusée'
+            'Ecomusée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1043,10 +1044,10 @@ return [
                 '1' => 'activités / programmes limités et peu ciblés, et à effets minimes',
                 '2' => 'activités / programmes convenables, mais parfois occasionnels, et à effets moyens',
                 '3' => 'activités / programmes planifiés et constants, et à effets forts',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Y a-t-il un programme établi d’éducation environnementale généraliste ou spécifiquement liée aux objectifs et nécessités de la conservation / gestion des ressources naturelles ?</li> <li><b>Juger s\'il existe des programmes d’éducation et de sensibilisation adaptés aux objectifs et aux nécessités de conservation / gestion des ressources naturelles de l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les activités / programmes d’éducation et de sensibilisation actuellement en cours dans l\'aire protégée'
+        'module_info_Rating' => 'Evaluez les activités / programmes d’éducation et de sensibilisation actuellement en cours dans l\'aire protégée',
     ],
 
     'VisitorsManagement' => [
@@ -1068,7 +1069,7 @@ return [
                 'Qualité des attraits touristiques',
                 'Diversité des attraits touristiques',
                 'Niveau de valorisation des potentialités touristiques',
-                'Innovation'
+                'Innovation',
             ],
             'group1' => [
                 'Gamme de diversité de l\'offre et des expériences pour les visiteurs',
@@ -1080,7 +1081,7 @@ return [
                 'Stabilité du pays',
                 'Accessibilité à l\'aire protégée',
                 'Facilité administrative (visa, absence des tracasseries administratives, etc.)',
-                'Réseau d\'échange touristique'
+                'Réseau d\'échange touristique',
             ],
         ],
         'ratingLegend' => [
@@ -1090,10 +1091,10 @@ return [
                 '1' => 'établissement et application faibles',
                 '2' => 'établissement et application adaptés, mais à améliorer',
                 '3' => 'établissement et application conformes et proactifs',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée a-t-elle établi et mis en application les conditions nécessaires pour avoir une bonne adéquation des installations et des services pour les visiteurs (tourisme) ?</li> <li><b>Déterminer l\'adéquation des installations et des services pour les visiteurs (tourisme et éducation environnementale)</b></li> </ul>',
-        'module_info_Rating' => 'Notez et évaluez le niveau d\'application des conditions nécessaires pour avoir une bonne adéquation des installations et des services pour les visiteurs dans l\'aire protégée (tourisme et éducation environnementale)'
+        'module_info_Rating' => 'Notez et évaluez le niveau d\'application des conditions nécessaires pour avoir une bonne adéquation des installations et des services pour les visiteurs dans l\'aire protégée (tourisme et éducation environnementale)',
     ],
 
     'VisitorsImpact' => [
@@ -1112,12 +1113,12 @@ return [
                 'Planification',
                 'Gestion active',
                 'Communication',
-                'Surveillance'
+                'Surveillance',
             ],
             'group1' => [
                 'Parvenir à une utilisation durable (écologique, sociale et économique)',
                 'Minimiser les impacts environnementaux (transport, hébergement et logement, et activités de loisirs)',
-                'Assurer des bénéfices économiques pour les aires protégées et les populations locales'
+                'Assurer des bénéfices économiques pour les aires protégées et les populations locales',
             ],
         ],
         'ratingLegend' => [
@@ -1126,10 +1127,10 @@ return [
                 '1' => 'pas suffisantes aux activités touristiques',
                 '2' => 'en dessous du seuil optimal',
                 '3' => 'adaptées et proactives par rapport aux activités touristiques',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée assure-t-elle la prise en charge et l\'atténuation des impacts des activités touristiques de manière appropriée ?</li> <li><b>Juger si la prise en charge et l\'atténuation des impacts des visiteurs sont gérées de manière appropriée</b></li> </ul>',
-        'module_info_Rating' => 'Notez et évaluez le niveau de prise en charge et d\'atténuation des impacts des visites touristiques dans l\'aire protégée'
+        'module_info_Rating' => 'Notez et évaluez le niveau de prise en charge et d\'atténuation des impacts des visites touristiques dans l\'aire protégée',
     ],
 
     'NaturalResourcesMonitoring' => [
@@ -1156,7 +1157,7 @@ return [
             'Suivi de l\'utilisation légale et durable des ressources naturelles (droits coutumiers et aires protégées à gestion des ressources naturelles',
             'Suivi de menaces directes et indirectes qui pèsent sur l\'aire protégée',
             'Suivi des impacts potentiels du changement climatique sur les éléments clés',
-            'Suivi des services écosystémiques fournis par l\'aire protégée'
+            'Suivi des services écosystémiques fournis par l\'aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1165,10 +1166,10 @@ return [
                 '1' => 'adoption des dispositions et application faible',
                 '2' => 'adoption des dispositions et applications adaptés, mais à améliorer',
                 '3' => 'adoption des disposition et applications conformes et proactifs',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Les valeurs et les aspects importants de l\'aire protégée sont-ils efficacement suivis par rapport aux efforts de gestion et à l\'ampleur et à la gravité des menaces ?</li> <li><b>Evaluer l\'efficacité du suivi des valeurs et des aspects importants par rapport aux efforts de gestion et à l\'ampleur et à la gravité des menaces portées sur l\'aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Établissez lesquelles des conditions ou plus listées sont respectées pour effectuer un suivi pertinent par rapport aux efforts de gestion et des menaces portées aux valeurs et aux aspects importants de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
+        'module_info_Rating' => 'Établissez lesquelles des conditions ou plus listées sont respectées pour effectuer un suivi pertinent par rapport aux efforts de gestion et des menaces portées aux valeurs et aux aspects importants de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)',
     ],
 
     'ResearchAndMonitoring' => [
@@ -1185,7 +1186,7 @@ return [
             'Activités de biomonitoring et de recherche sur l\'utilisation durable des ressources naturelles en périphérie de l\'aire protégée',
             'Activités de biomonitoring et de recherche sur les menaces directes et indirectes qui pèsent sur l\'aire protégée',
             'Activités de biomonitoring et de recherche sur les impacts potentiels du changement climatique sur les éléments clés',
-            'Activités de biomonitoring et de recherche sur les services écosystémiques fournis par l\'aire protégée'
+            'Activités de biomonitoring et de recherche sur les services écosystémiques fournis par l\'aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1193,10 +1194,10 @@ return [
                 '1' => 'activités ad hoc de suivi et de recherche, mais pas alignées sur les besoins et l\'amélioration de la gestion de l\'aire protégée',
                 '2' => 'activités de suivi et de recherche partiellement alignées sur les besoins et l\'amélioration de la gestion de l\'aire protégée',
                 '3' => 'activités de suivi et de recherche alignées sur les besoins et l\'amélioration de la gestion de l\'aire protégée',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>o	Y a-t-il un programme et des activités de biomonitoring et de recherche ?</li> <li><b>Analyser et évaluer les activités de recherche et suivi écologique (biomonitoring) de la gestion des aspects naturels et culturels</b></li> </ul>',
-        'module_info_Rating' => 'Établissez et évaluez lesquelles des activités de recherche ou plus listées sont mise en œuvre dans le programme de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
+        'module_info_Rating' => 'Établissez et évaluez lesquelles des activités de recherche ou plus listées sont mise en œuvre dans le programme de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)',
     ],
 
     'ClimateChangeMonitoring' => [
@@ -1218,7 +1219,7 @@ return [
             'Adoption de renforcement de capacités des ressources humaines dans la planification, suivi-évaluation, gestion et gouvernance des processus liés au changement climatique (p.ex. activités REDD-plus)',
             'Adoption d’une approche d’implication-responsabilisation des parties prenantes dans la planification et processus liés au  changement climatique de l\'AP et son écosystème de référence',
             'Adoption des indicateurs-benchmarks relatifs à l’atténuation et adaptation au changement climatique (p.ex. stock carbone, espèces exotiques envahissantes, incendies, etc.)',
-            'Adoption des aspects du  changement climatique dans les stratégies de communication et d’éducation environnementale et à l’environnement des AP (avantages) et leurs écosystèmes de référence (gestion durable des ressources naturelles)'
+            'Adoption des aspects du  changement climatique dans les stratégies de communication et d’éducation environnementale et à l’environnement des AP (avantages) et leurs écosystèmes de référence (gestion durable des ressources naturelles)',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1227,10 +1228,10 @@ return [
                 '1' => 'activités / programme ad hoc, mais pas alignés sur les besoins d\'atténuation et d\'adaptation au changement climatique',
                 '2' => 'activités / programme partiellement alignés sur les besoins d\'atténuation et d\'adaptation au changement climatique',
                 '3' => 'activités / programme alignés sur les besoins d\'atténuation et d\'adaptation au changement climatique',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle gérée de manière à prendre en compte les effets probables du changement climatique?</li> <li><b>Estimer les dispositions d\'atténuation et d\'adaptation dans la planification et la gestion de l\'aire protégée visant à prendre en compte les effets du changement climatique</b></li> </ul>',
-        'module_info_Rating' => 'Établissez et évaluez lesquelles des activités et programmes de planification / gestion de l\'aire protégée axés sur les activités d’atténuation et d\'adaptation au changement climatique au profit de la conservation et la gestion durable des ressources naturelles sont mise en œuvre dans le programme de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 7) (voir exemple des projets REDD+)'
+        'module_info_Rating' => 'Établissez et évaluez lesquelles des activités et programmes de planification / gestion de l\'aire protégée axés sur les activités d’atténuation et d\'adaptation au changement climatique au profit de la conservation et la gestion durable des ressources naturelles sont mise en œuvre dans le programme de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 7) (voir exemple des projets REDD+)',
     ],
 
     'EcosystemServices' => [
@@ -1259,10 +1260,10 @@ return [
                 '1' => 'pas suffisante au maintien/valorisation des services écosystémiques essentiels',
                 '2' => 'en dessous du seuil optimal du maintien/valorisation des services écosystémiques',
                 '3' => 'adaptés au maintien/valorisation des services écosystémiques',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Y a-t-il des actions / un programme en faveur de la conservation / la valorisation des services écosystémiques rendus par l\'aire protégée ?</li> <li><b>Déterminer l\'efficacité dans la conservation / la valorisation des services écosystémiques</b></li> </ul>',
-        'module_info_Rating' => 'Listez jusqu\'à 3 ou plus activités et programmes de maintien et valorisation de services écosystémiques fournis par l\'aire protégée pour le bien-être humain (sur la base des éléments du Contexte d\'Intervention, point 7.1)'
+        'module_info_Rating' => 'Listez jusqu\'à 3 ou plus activités et programmes de maintien et valorisation de services écosystémiques fournis par l\'aire protégée pour le bien-être humain (sur la base des éléments du Contexte d\'Intervention, point 7.1)',
     ],
 
     'ObjectivesProcessus' => [
@@ -1274,7 +1275,7 @@ return [
             'Benchmark3' => 'Valeur de référence, benchmark 3',
             'Objective' => 'Objectif - Conditions souhaitées',
         ],
-        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>processus et activités de mise en œuvre des planifications</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.'
+        'module_info' => 'Cibles de conservation et des indicateurs relatifs aux <b>processus et activités de mise en œuvre des planifications</b> de l’aire protégée<br /> Les objectifs et les valeurs de référence (benchmarks) à insérer dans le tableau ci-dessous sont à utiliser dans la gestion et le suivi des activités de l\'aire protégée et plus spécifiquement dans les phases de planification, recherche des ressources (Intrants), processus, détermination des résultats et des objectifs d\'impact.',
     ],
 
     'WorkProgramImplementation' => [
@@ -1293,10 +1294,10 @@ return [
                 '1' => 'faible mise en œuvre de l\'activité annuelle (entre 1-33%) ',
                 '2' => 'mise en œuvre modérée de l\'activité annuelle (entre 34-66%)',
                 '3' => 'mise en œuvre importante de l\'activité annuelle (entre 66-100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Comment et dans quelle proportion les principales activités du programme de travail sont-elles mises en œuvre par l’aire protégée ?</li> <li><b>Evaluation de la <span style="text-decoration: underline">mise en œuvre</span> des principales activités du plan de travail annuel ou pluriannuel</b></li> </ul>',
-        'module_info_Rating' => 'Listez jusqu\'à cinq principales activités du plan de travail pour évaluer leur mise en œuvre'
+        'module_info_Rating' => 'Listez jusqu\'à cinq principales activités du plan de travail pour évaluer leur mise en œuvre',
     ],
 
     'AchievedResults' => [
@@ -1314,10 +1315,10 @@ return [
                 '1' => 'faible atteinte du résultat (entre 1 - 33%) ',
                 '2' => 'atteinte modérée du résultat (entre 34-66%)',
                 '3' => 'atteinte importante du résultat (entre 66 - 100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Comment et dans quelle proportion l\'aire protégée a -t-elle atteint les principaux <b>résultats</b> du plande travail ?</li> <li><b>Indiquer la proportion d\'atteintes estimées des principaux <span style="text-decoration: underline">résultats</span> des activités et des plans de travail annuels ou pluriannuel</b></li> </ul>',
-        'module_info_Rating' => 'Listez jusqu\'à cinq principales résultats du plan de travail pour évaluer le niveau d\'atteinte des résultats attendus'
+        'module_info_Rating' => 'Listez jusqu\'à cinq principales résultats du plan de travail pour évaluer le niveau d\'atteinte des résultats attendus',
     ],
 
     'AchievedObjectives' => [
@@ -1334,10 +1335,10 @@ return [
                 '1' => 'faible atteinte de l\'objectif du plan de travail et du plan de gestion (entre 1 - 33%)',
                 '2' => 'atteinte modérée de l\'objectif du plan de travail et du plan de gestion (entre 34-66%)',
                 '3' => 'atteinte importante de l\'objectif du plan de travail et du plan de gestion (pluriannuel) (entre 66 - 100%)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Comment et en quelle proportion l\'aire protégée a-t-elle atteint les objectifs du plan de travail et du plan de gestion ?</li> <li><b>Déterminer l\'atteinte des objectifs fixés</b></li> </ul>',
-        'module_info_Rating' => 'Listez et évaluez cinq ou plus objectifs principaux ou secondaires du plan de gestion pour en évaluer le niveau d\'atteinte'
+        'module_info_Rating' => 'Listez et évaluez cinq ou plus objectifs principaux ou secondaires du plan de gestion pour en évaluer le niveau d\'atteinte',
     ],
 
     'DesignatedValuesConservation' => [
@@ -1360,10 +1361,10 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus important)',
                 '0' => 'Stable',
                 '+1 / +2 / +3' => 'Positive (moins - plus important)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Quels sont les <span style="text-decoration: underline">états de conservation</span> des valeurs désignées de l’aire protégée ?</li> <li><b>Déterminer l\'impact des activités de gestion sur l\'état de conservation des valeurs désignées et des elements clé de l’aire protégée</b></li> </ul>',
-        'module_info_Rating' => 'Evaluez les valeurs et les éléments clé de l’aire protégée sur la base des analyses du contexte pour évaluer l\'impact des activités de gestion sur l\'état de conservation (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
+        'module_info_Rating' => 'Evaluez les valeurs et les éléments clé de l’aire protégée sur la base des analyses du contexte pour évaluer l\'impact des activités de gestion sur l\'état de conservation (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)',
     ],
 
     'DesignatedValuesConservationTendency' => [
@@ -1386,10 +1387,10 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus important)',
                 '0' => 'Stable',
                 '1 / 2 / 3' => 'Positive (moins - plus important)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>Quelles sont les <span style="text-decoration: underline">tendances évolutivesde l\'état de conservation</span> de valeurs et les éléments clé désignées de l’aire protégée ?</li> <li>Estimer la <span style="text-decoration: underline">tendance évolutive de l’état de conservation</span> des valeurs et les éléments clé désignées de l’aire protégée</li> </ul>',
-        'module_info_Rating' => 'Evaluez les valeurs et les éléments clé de l’aire protégée sur la base des analyses du contexte déjà établies dans le point précèdent pour en évaluer la tendance évolutive de l\'état de conservation (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)'
+        'module_info_Rating' => 'Evaluez les valeurs et les éléments clé de l’aire protégée sur la base des analyses du contexte déjà établies dans le point précèdent pour en évaluer la tendance évolutive de l\'état de conservation (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 6; 7)',
     ],
 
     'LocalCommunitiesImpact' => [
@@ -1409,7 +1410,7 @@ return [
             'Appui dans la production vivrière et petit élevage',
             'Points d\'eau, adduction d\'eau',
             'Amélioration des routes',
-            'Fourniture énergie, connexion électrique'
+            'Fourniture énergie, connexion électrique',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1417,10 +1418,10 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus important)',
                 '0' => 'Nulle',
                 '1 / 2 / 3' => 'Positive (moins - plus important)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée fournit-elle des avantages ou des désavantages économiques/sociaux aux communautés locales, par exemple, revenu, emploi, payement des services environnementaux, etc. ?</li> <li>Juger les effets et l\'impacts économiques/sociaux de la gestion de l\'aire protégée sur les communautés locales</li> </ul>',
-        'module_info_Rating' => 'Evaluez les effets et les impacts économiques/sociaux sur les communautés locales comme consequence de la gestion de l\'aire protégée'
+        'module_info_Rating' => 'Evaluez les effets et les impacts économiques/sociaux sur les communautés locales comme consequence de la gestion de l\'aire protégée',
     ],
 
     'ClimateChangeImpact' => [
@@ -1435,7 +1436,7 @@ return [
             'Impacts des activités d’atténuation et d\'adaptation au changement climatique pour les espèces végétales  caractéristiques, menacées ou endémiques',
             'Impacts des activités d’atténuation et d\'adaptation au changement climatique pour les habitats à caractéristique importante et significative, et sur l\'utilisation des sols dans et en dehors de l\'aire protégée (land cover - use - take)',
             'Impacts des activités d’atténuation et d\'adaptation au changement climatique pour les services écosystémiques rendus et la dépendance des populations riveraines (de la zone de transition pour les réserves MAB)',
-            'Impacts des activités d’atténuation et d\'adaptation au changement climatique pour l\'utilisation durable des ressources naturelles en périphérie de l\'aire protégée'
+            'Impacts des activités d’atténuation et d\'adaptation au changement climatique pour l\'utilisation durable des ressources naturelles en périphérie de l\'aire protégée',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1443,10 +1444,10 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus important)',
                 '0' => 'Nulle',
                 '1 / 2 / 3' => 'Positive (moins - plus important)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L\'aire protégée est-elle gérée en prenant en compte les effets probables du changement climatique?</li> <li>Estimer les effets et l\'impact sur la conservation de la diversité biologique et la gestion durable des ressources naturelles comme conséquence des résultats des activités d’atténuation et d\'adaptation au changement climatique</li> </ul>',
-        'module_info_Rating' => 'Evaluez les effets et les impacts au profit de la conservation de la diversité biologique et de la gestion durable des ressources naturelles comme conséquence des résultats des activités d’atténuation et d\'adaptation au changement climatique (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 7)'
+        'module_info_Rating' => 'Evaluez les effets et les impacts au profit de la conservation de la diversité biologique et de la gestion durable des ressources naturelles comme conséquence des résultats des activités d’atténuation et d\'adaptation au changement climatique (sur la base des éléments du Contexte d\'Intervention, points 4; 5; 7)',
     ],
 
     'EcosystemServicesImpact' => [
@@ -1466,7 +1467,7 @@ return [
             'Culturel: Interactions physiques  et l\'expérience',
             'Culturel: Interactions intellectuelles et de représentation',
             'Culturel: Spirituel et/ou emblématiques',
-            'Culturel: Autres sorties culturelles (conservation ex-situ)'
+            'Culturel: Autres sorties culturelles (conservation ex-situ)',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1474,10 +1475,10 @@ return [
                 '-3 / -2 / -1' => 'Négative (moins - plus important)',
                 '0' => 'Stable',
                 '+1 / +2 / +3' => 'Positive (moins - plus important)',
-            ]
+            ],
         ],
         'module_info_EvaluationQuestion' => '<ul> <li>L’aire protégée fournit-elle des effets et un impact sur le maintien / la valorisation des services écosystémiques ?</li> <li>Juger les effets et l\'impact de la gestion de l’aire protégée sur le maintien / la valorisation des services écosystémiques</li> </ul>',
-        'module_info_Rating' => 'Evaluez les effets et les impacts sur les services écosystémiques comme conséquence des résultats des activités de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 7.2)'
+        'module_info_Rating' => 'Evaluez les effets et les impacts sur les services écosystémiques comme conséquence des résultats des activités de gestion de l\'aire protégée (sur la base des éléments du Contexte d\'Intervention, point 7.2)',
     ],
 
 ];

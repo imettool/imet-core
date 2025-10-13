@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -50,8 +51,8 @@ class Governance extends Modules\Component\ImetModule
         return [
             'table' => 'Governance',
             'fields' => [
-                'Partner','InstitutionType','PartnershipsType1','PartnershipsType2','PartnershipsType3', 'Type', 'Comments'
-            ]
+                'Partner', 'InstitutionType', 'PartnershipsType1', 'PartnershipsType2', 'PartnershipsType3', 'Type', 'Comments',
+            ],
         ];
     }
 }

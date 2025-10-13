@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,13 +18,15 @@ use ImetCore\Models\User\Role;
 class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_climate_change_monitoring';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Program';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR17';
@@ -36,7 +39,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Program',
-            'values' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.predefined_values')
+            'values' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ClimateChangeMonitoring.module_info_EvaluationQuestion');
@@ -63,7 +66,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 
         return [
             'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'values' => $predefined_values,
         ];
     }
 
@@ -71,19 +74,17 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
         $record = static::replacePredefinedValue($record, 'Program',
-         'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
-        'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)');
+            'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
+            'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)');
         $record = static::replacePredefinedValue($record, 'Program',
-        'Gestion de l’adaptation pour les habitats et le territoire (couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
-        'Gestion de l’adaptation pour les habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)');
+            'Gestion de l’adaptation pour les habitats et le territoire (couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
+            'Gestion de l’adaptation pour les habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)');
         $record = static::replacePredefinedValue($record, 'Program',
-         'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
-        'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)');
+            'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
+            'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)');
 
         return static::replacePredefinedValue($record, 'Program',
-         'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
-        'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)');
+            'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
+            'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)');
     }
-
-
 }
