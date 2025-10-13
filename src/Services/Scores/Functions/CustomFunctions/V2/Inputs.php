@@ -11,7 +11,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
+use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
 use ImetCore\Models\Imet\v2\Modules\Context\Equipments;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetAdequacy;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetSecurization;
