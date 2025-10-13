@@ -69,15 +69,18 @@ class Radar
                     } else {
                         $indicators_count_to_calculate_average[$v] = array_key_exists($v, $indicators_count_to_calculate_average) ? $indicators_count_to_calculate_average[$v] + 1 : 1;
                     }
+
                     $radar_average[$v] = array_key_exists($v, $radar_average) ? $radar_average[$v] + $value : $value;
 
                     $radar_protected_areas['values'][$protected_area][] = $rounded_value;
                     if ($color) {
                         $radar_protected_areas['values'][$protected_area]['color'] = $color;
                     }
+
                     $i++;
                 }
             }
+
             $idx++;
         }
 
@@ -170,6 +173,7 @@ class Radar
                     $analysis_diagrams_protected_areas[$name]['width'] = 4;
                 }
             }
+
             if ($totalProtectedAreas > 0) {
                 if ($overall) {
                     $average[$indi] = Common::round_number(array_sum($indicator[$indi]) / $totalProtectedAreas);
@@ -185,7 +189,7 @@ class Radar
 
         // get min and max level for each category
         foreach ($indicator as $k => $v) {
-            if (count($v) > 0) {
+            if ($v !== []) {
                 $upperLimit[$k] = max($v) ?? 0;
                 $lowerLimit[$k] = min($v) ?? 0;
             }
@@ -226,19 +230,21 @@ class Radar
             $protected_areas_names[$form_id] = $pa->name;
 
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
-            if (count($indicators) === 0) {
+            if ($indicators === []) {
                 foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($c + 1), []);
                     array_unshift($indicators, $name);
 
                 }
             }
+
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 $value = $protected_area === '' ? '-' : Common::round_number((-1 * (float) $protected_area));
                 $record = ['id' => $pa->wdpa_id, 'name' => $protected_areas_names[$form_id], 'value' => $value, 'color' => $pa->color];
                 if ($pa->color) {
                     $record['color'] = $pa->color;
                 }
+
                 $total_categories[$k][] = $record;
             }
         }

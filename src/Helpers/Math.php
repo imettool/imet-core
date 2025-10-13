@@ -16,7 +16,8 @@ class Math
 {
     public static function records_average($records, $field)
     {
-        $sum = $count = 0;
+        $sum = 0;
+        $count = 0;
         foreach ($records as $record) {
             if ($record[$field] !== null && $record[$field] !== -99 && $record[$field] !== '-99') {
                 $sum += intval($record[$field]);

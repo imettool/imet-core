@@ -104,10 +104,11 @@ trait ConvertSQLite
                     // Find and import corresponding BYTEA field
                     if (Str::contains($field, '_BYTEA')) {
                         $filename_field = Str::replace('_BYTEA', '', $field);
-                        $filename_field_idx = array_search($filename_field, $sqlite_fields);
+                        $filename_field_idx = array_search($filename_field, $sqlite_fields, true);
                         $sqlite_filename_field = $sqlite_fields[$filename_field_idx].'_BYTEA';
                         array_splice($sqlite_fields, $field_idx, 0, $sqlite_filename_field);
                     }
+
                     // Import corresponding field
                     if ($sqlite_fields[$field_idx] !== null) {
                         $json[$field] = $record[$sqlite_fields[$field_idx]];
@@ -138,12 +139,12 @@ trait ConvertSQLite
 
         // EN corresponding label
         App::setLocale('en');
-        $label = array_search($record[$group_field], (new static)->module_groups);
+        $label = array_search($record[$group_field], (new static)->module_groups, true);
 
         // FR corresponding label
         if (! $label) {
             App::setLocale('fr');
-            $label = array_search($record[$group_field], (new static)->module_groups);
+            $label = array_search($record[$group_field], (new static)->module_groups, true);
         }
 
         if ($label !== false) {

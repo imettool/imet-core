@@ -95,6 +95,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         if ($field['name'] === 'Equipment') {
             return $record['__predefined_label'];
         }
+
         if ($field['name'] === 'EvaluationScore') {
             return $record['__adequacy'];
         }

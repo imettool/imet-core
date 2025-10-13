@@ -68,7 +68,7 @@ class User extends BaseUser
      */
     public function getNameAttribute(): string
     {
-        return "{$this->first_name} {$this->last_name}";
+        return sprintf('%s %s', $this->first_name, $this->last_name);
     }
 
     /**

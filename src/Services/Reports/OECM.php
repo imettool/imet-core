@@ -31,6 +31,7 @@ class OECM
                     $total_effect_length++;
                 }
             }
+
             if ($total_effect_length > 0) {
                 $item['average'] = $total_effect / $total_effect_length;
             }

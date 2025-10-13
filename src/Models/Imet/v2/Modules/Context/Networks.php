@@ -104,7 +104,7 @@ class Networks extends Modules\Component\ImetModule
                     if ($index === 0) {
                         $value .= $model[0]['name'];
                     } else {
-                        $value .= ", {$model[0]['name']}";
+                        $value .= ', '.$model[0]['name'];
                     }
                 }
             }

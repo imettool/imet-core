@@ -35,7 +35,7 @@ foreach (MenacesPressions::$groupsByCategory as $category) {
             foreach ($stats['row_stats'][$group] as $value) {
                 preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", $view_groupTable, $matched1);
                 $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
-                if (count($matched1) > 0) {
+                if ($matched1 !== []) {
                     $matched1[0] = '/' . preg_quote($matched1[0], '/') . '/';
                     $view_groupTable = preg_replace($matched1[0], $textToAdd, $view_groupTable, 1);
                 }

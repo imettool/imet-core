@@ -58,6 +58,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                             $found = true;
                         }
                     }
+
                     // if record not found force an empty one
                     if (! $found) {
                         $record = $empty_record;
@@ -252,6 +253,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 if (! isset($items[$category])) {
                     $items[$category] = [];
                 }
+
                 $element = $record['Element'];
                 if (! isset($items[$category][$element])) {
                     $items[$category][$element] = ['elements' => []];

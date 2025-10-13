@@ -70,6 +70,7 @@ abstract class Report extends BaseModel
         if ($report == null) {
             $report = new static;
         }
+
         $data['FormID'] = $form_id;
         $report->fill($data);
         if ($report->isDirty()) {

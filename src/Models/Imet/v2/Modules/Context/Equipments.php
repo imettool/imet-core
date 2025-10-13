@@ -18,6 +18,7 @@ use ImetCore\Models\User\Role;
 class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
+
     //    protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
@@ -95,13 +96,15 @@ class Equipments extends Modules\Component\ImetModule
 
         $averages = [];
         foreach (array_keys((new Equipments)->module_groups) as $group) {
-            $sum = $count = 0;
+            $sum = 0;
+            $count = 0;
             foreach ($records as $record) {
                 if ($record['group_key'] === $group && $record['AdequacyLevel'] !== null) {
                     $sum += (int) $record['AdequacyLevel'];
                     $count++;
                 }
             }
+
             $averages[] = $count > 0 ? round($sum / $count, 2) : 0;
         }
 

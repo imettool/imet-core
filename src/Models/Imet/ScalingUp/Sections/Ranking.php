@@ -24,7 +24,10 @@ class Ranking
      */
     public static function ranking_indicators(array $form_ids, string $type, array $indicators, ?int $scaling_id = 0): array
     {
-        $items_to_calculate = $percent_values = $sum_values = $separated_values_by_pa = [];
+        $items_to_calculate = [];
+        $percent_values = [];
+        $sum_values = [];
+        $separated_values_by_pa = [];
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'wdpa_ids' => [], 'actual_value' => []];
 
         // only for process sub-indicators average
@@ -58,6 +61,7 @@ class Ranking
                 } else {
                     $name = Common::get_all_indicator_labels_cached()[$v];
                 }
+
                 $indicators_process_number = [];
                 if (isset($indicators_numbers[$id])) {
                     $indicators_process_number = $indicators_numbers[$id];
@@ -82,6 +86,7 @@ class Ranking
                 if (! isset($sum_values[$i])) {
                     $sum_values[$i] = 0;
                 }
+
                 $sum_values[$i] += (float) ($correction_value);
             }
 
@@ -134,9 +139,11 @@ class Ranking
                 if (! isset($new_ranking['values'][$ind])) {
                     $new_ranking['values'][$ind] = [];
                 }
+
                 if (! isset($new_ranking['actual_value'][$ind])) {
                     $new_ranking['actual_value'][$ind] = [];
                 }
+
                 $new_ranking['values'][$ind][$i] = $ranking['values'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
@@ -174,6 +181,7 @@ class Ranking
         foreach ($overall_ranking as $key => $value) {
             $indicators_average[$key] = Common::filtered_indicators_and_round_values($form_ids, $type, $value);
         }
+
         $filtered_indicators = [];
 
         foreach ($indicators_average as $key => $item) {
@@ -196,7 +204,12 @@ class Ranking
     {
         $locale = App::getLocale();
         $ranking = ['values' => [], 'legends' => [], 'xAxis' => [], 'xAxisx' => [], 'wdpa_ids' => []];
-        $items_to_calculate = $ranking_raw_values = $separated_values_by_pa = $sum_values = $percent_values = $protected_areas = [];
+        $items_to_calculate = [];
+        $ranking_raw_values = [];
+        $separated_values_by_pa = [];
+        $sum_values = [];
+        $percent_values = [];
+        $protected_areas = [];
         foreach ($form_ids as $j => $form_id) {
             $pa = Common::get_pa_name($form_id, $scaling_id);
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
@@ -206,9 +219,11 @@ class Ranking
                 if (! isset($sum_values[$j])) {
                     $sum_values[$j] = 0;
                 }
+
                 if (! isset($items_to_calculate[$j])) {
                     $items_to_calculate[$j] = 0;
                 }
+
                 App::setLocale($locale);
                 $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($k + 1), []);
 
@@ -219,6 +234,7 @@ class Ranking
                     $value = Common::round_number((-1 * (float) $protected_area));
                     $sum_values[$j] += (float) ($value);
                 }
+
                 $separated_values_by_pa[$j][] = $value;
                 $ranking_raw_values[$name][] = $ranking['actual_value'][$name][] = $value;
                 $ranking['legends'][$name] = $name;
@@ -244,8 +260,8 @@ class Ranking
             'outputs' => 0,
             'outcomes' => 0,
         ];
-
-        $total_values = $raw_values = [];
+        $total_values = [];
+        $raw_values = [];
         $percent = ['values' => [], 'legends' => [], 'xAxis' => []];
 
         $assessments = count($assessment) ? $assessment : Common::get_assessments($form_ids);
@@ -283,6 +299,7 @@ class Ranking
                     $percent['percent_values'][$label][] = $percent_value;
                     $percent['values'][$label][] = $collect_values_for_sorting[] = Common::round_number(($percent_value / 100) * $assessment['imet_index']);
                 }
+
                 $percent['actual_value'][$label][] = Common::round_number($indicator);
 
             }

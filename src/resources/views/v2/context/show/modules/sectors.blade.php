@@ -1,18 +1,16 @@
 <?php
+
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var Mixed $definitions */
-
 /** @var Mixed $records */
-
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-
 $table_id = 'table_' . $definitions['module_key'];
 $group_key = '';
-
 $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);
-$sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
-
+$sumUnderControlArea = 0;
+$UnderControlPatrolKm = 0;
+$UnderControlPatrolManDay = 0;
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -45,18 +43,19 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
     <tbody class="{{ $group_key }}">
     @foreach($records as $record)
 
-            <?php
-            $area_percentage = $average_time = null;
-            if (floatval($area) > 0 && floatval($record['UnderControlArea']) > 0) {
-                $area_percentage = round(floatval($record['UnderControlArea']) / $area * 100, 2);
-            }
-            if (floatval($area) > 0 && floatval($record['UnderControlPatrolManDay']) > 0) {
-                $average_time = round(floatval($record['UnderControlPatrolManDay']) / $area, 2);
-            }
-            $sumUnderControlArea += floatval($record['UnderControlArea']);
-            $UnderControlPatrolKm += floatval($record['UnderControlPatrolKm']);
-            $UnderControlPatrolManDay += floatval($record['UnderControlPatrolManDay']);
-            ?>
+            <?php 
+$area_percentage = null;
+$average_time = null;
+if (floatval($area) > 0 && floatval($record['UnderControlArea']) > 0) {
+    $area_percentage = round(floatval($record['UnderControlArea']) / $area * 100, 2);
+}
+if (floatval($area) > 0 && floatval($record['UnderControlPatrolManDay']) > 0) {
+    $average_time = round(floatval($record['UnderControlPatrolManDay']) / $area, 2);
+}
+$sumUnderControlArea += floatval($record['UnderControlArea']);
+$UnderControlPatrolKm += floatval($record['UnderControlPatrolKm']);
+$UnderControlPatrolManDay += floatval($record['UnderControlPatrolManDay']);
+?>
 
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $f_index=>$field)
@@ -117,3 +116,4 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
 
 @include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
 
+<?php 

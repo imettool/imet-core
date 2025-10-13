@@ -106,7 +106,7 @@ class ReportScalingUp
         });
 
         // if not return 404
-        abort_if(count($items_array) === 0 || (count($filtered_array) !== count($items_array)), 404);
+        abort_if($items_array === [] || (count($filtered_array) !== count($items_array)), 404);
 
         [$areas, $scaling_up_id] = static::loadItemsAndScalingUpID($items);
 

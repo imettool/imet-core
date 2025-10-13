@@ -52,12 +52,14 @@ class Scatter
                     $group_color = $group[0] - 1;
                     $average[$group[1]]['color'] = $colors[$group_color] ?? $colors[9];
                 }
+
                 $average[$group[1]]['form_id'] = $group[3];
                 $average[$group[1]]['wdpa_id'] = $group[4];
                 $average[$group[1]]['legend_selected'] = true;
                 $i++;
             }
         }
+
         $final_average = [];
         $i = 0;
         foreach ($average as $key => $value) {

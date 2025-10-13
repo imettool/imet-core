@@ -34,6 +34,7 @@ class ModuleKey
                 $module_class .= '\\'.ucfirst(Str::camel($item));
             }
         }
+
         if (class_exists($module_class)) {
             return $module_class;
         }

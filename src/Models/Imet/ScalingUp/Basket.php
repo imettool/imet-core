@@ -52,6 +52,7 @@ class Basket extends BaseModel
 
             return json_encode($record);
         }
+
         // $path = $disk->url($image_path);
 
         return null;

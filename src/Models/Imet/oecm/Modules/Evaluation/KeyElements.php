@@ -120,6 +120,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
 
                     continue;
                 }
+
                 $records[$index]['__score'] = $biodiversity_key_elements_scores[$record['Aspect']];
                 $records[$index]['Importance'] = null;
                 $records[$index]['__num_stakeholders_direct'] = null;

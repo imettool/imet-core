@@ -72,10 +72,12 @@ class Import extends Command
                     } catch (Exception $e) {
                         $this->error('Error: '.$e->getMessage());
                     }
+
                     $i++;
                 }
             }
         }
+
         if ($i > 0) {
             $this->info('All done.');
         } else {

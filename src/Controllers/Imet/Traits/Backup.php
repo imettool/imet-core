@@ -65,6 +65,7 @@ trait Backup
                     if ($num_backups >= $this->MAX_NUM_BACKUPS) {
                         Storage::delete($oldest_backup);
                     }
+
                     $this->execute_backup($form, $fileName);
                 }
             }

@@ -1,5 +1,5 @@
 <?php
-$score = 'records[index][\'__score\']';
+$score = "records[index]['__score']";
 
 ?>
 

@@ -49,7 +49,7 @@ if(!function_exists('get_quoted_responsible')){
         } elseif ($version === Imet\Imet::IMET_OECM) {
             $responsible = oecm\Imet::getResponsibles($form_id, $version);
         }
-        return str_replace('\'', '\\\'', json_encode($responsible));
+        return str_replace("'", '\\\'', json_encode($responsible));
     }
 }
 

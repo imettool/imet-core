@@ -15,7 +15,7 @@ $nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::compon
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
 $tbody = HtmlPageCrawler::create($dom->filter('tbody'));
-$tbody->setAttribute('v-if', 'hasRecordsToEvaluate(\'' . $definitions['fields'][0]['name'] . '\')');
+$tbody->setAttribute('v-if', "hasRecordsToEvaluate('" . $definitions['fields'][0]['name'] . "')");
 $tbody->after($nothing_to_evaluate);
 
 ?>

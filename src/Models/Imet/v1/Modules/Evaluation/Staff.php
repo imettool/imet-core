@@ -83,6 +83,7 @@ class Staff extends Modules\Component\ImetModule_Eval
                     break;
                 }
             }
+
             $new_record[$predefined_values['field']] = $predefined_value;
             $new_record['__status'] = $predefined_values['additional_values'][$p];
             $new_record['__predefined'] = true;

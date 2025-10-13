@@ -70,6 +70,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
                     break;
                 }
             }
+
             $new_record[$predefined_values['field']] = $predefined_value;
             $new_record['__adequacy'] = $adequacy[$p];
             $new_record['__predefined'] = true;

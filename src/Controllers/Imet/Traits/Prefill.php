@@ -40,6 +40,7 @@ trait Prefill
         if ($year === null) {
             return collect([]);
         }
+
         $wdpa_id = ProtectedArea::getByWdpa($request->input('wdpa_id'))->wdpa_id;
 
         return (static::$form_class)::select(['FormID', 'Year', 'wdpa_id'])
@@ -80,10 +81,10 @@ trait Prefill
                 'edit_url' => action([static::class, 'edit'], ['item' => $formID]),
 
             ];
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             DB::rollback();
             Session::flash('message', trans('modular-forms::common.saved_error'));
-            throw $e;
+            throw $exception;
         }
     }
 }

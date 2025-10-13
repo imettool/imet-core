@@ -99,22 +99,27 @@ return new class extends Migration
                 ['AGO', 'ZAF', 'BWA', 'COM', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZMB', 'ZWE'])) {
                 $data[$key]['region_id'] = 'sa';
             }
+
             if (in_array($country['iso3'],
                 ['ATG', 'BHS', 'BRB', 'BLZ', 'CUB', 'DMA', 'GRD', 'GUY', 'HTI', 'JAM', 'DOM', 'LCA', 'KNA', 'VCT', 'SUR', 'TTO'])) {
                 $data[$key]['region_id'] = 'ac';
             }
+
             if (in_array($country['iso3'],
                 ['AND', 'CPV', 'CIV', 'GMB', 'GHA', 'GIN', 'GNB', 'GUF', 'LBR', 'MLI', 'MRT', 'NER', 'NGA', 'SEN', 'SLE', 'TGO'])) {
                 $data[$key]['region_id'] = 'wa';
             }
+
             if (in_array($country['iso3'],
                 ['ATA', 'CMR', 'GAB', 'GNQ', 'CAF', 'COD', 'COG', 'STP', 'TCD'])) {
                 $data[$key]['region_id'] = 'ca';
             }
+
             if (in_array($country['iso3'],
                 ['DJI', 'ERI', 'ETH', 'KEN', 'UGA', 'TZA', 'RWA', 'SOM', 'SDN'])) {
                 $data[$key]['region_id'] = 'ea';
             }
+
             if (in_array($country['iso3'],
                 ['FSM', 'FJI', 'COK', 'MHL', 'SLB', 'KIR', 'NRU', 'NIU', 'PLW', 'PNG', 'WSM', 'TLS', 'TON', 'TUV', 'VUT'])) {
                 $data[$key]['region_id'] = 'ap';

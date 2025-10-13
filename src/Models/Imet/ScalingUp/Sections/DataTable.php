@@ -42,14 +42,17 @@ class DataTable
                 if ((string) $value_ind === '-') {
                     $value_ind = 0;
                 }
+
                 $radar_average[$v] = array_key_exists($v, $radar_average) ? $radar_average[$v] + (float) $value_ind : (float) $value_ind;
             }
+
             $tables[$type][] = $items;
         }
 
         foreach (array_keys($table_indicators) as $v) {
             $radar_average[$v] = Common::round_number((float) $radar_average[$v] / count($filtered));
         }
+
         $tables[$type][] = $radar_average;
 
         return [

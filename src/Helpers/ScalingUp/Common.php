@@ -39,6 +39,7 @@ class Common
         if ($val == 100 || $val == 0) {
             return $val;
         }
+
         if ($val == '0.0') {
             return 0;
         }
@@ -90,8 +91,9 @@ class Common
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
         if (in_array($search_with, static::$protected_areas_ids)) {
-            $in_value .= " ($add_value)";
+            $in_value .= sprintf(' (%s)', $add_value);
         }
+
         static::$protected_areas_ids[] = $search_with;
 
         return $in_value;
@@ -156,7 +158,7 @@ class Common
         foreach ($form_ids as $form_id) {
             $results[$form_id] = ImetScores::get_step($form_id, $type);
 
-            if (count($indicators)) {
+            if ($indicators !== []) {
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
@@ -255,6 +257,7 @@ class Common
             foreach ($indicators as $indicator) {
                 $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
             }
+
             $i++;
         }
 
@@ -267,6 +270,7 @@ class Common
                     $count++;
                 }
             }
+
             $assessments[0][$item] = static::round_number($sum / $count);
         }
 

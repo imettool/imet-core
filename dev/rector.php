@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\ConvertStaticToSelfRector;
+use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
@@ -12,6 +13,9 @@ use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\MethodCall\ResponseHelperCallToJsonResponseRector;
 use RectorLaravel\Set\LaravelSetList;
 use RectorLaravel\Set\LaravelSetProvider;
+
+const PATH_TO_DEV = __DIR__;
+const PATH_TO_PACKAGE = __DIR__ . '/package/imet-core/src';
 
 return RectorConfig::configure()
     ->withPaths([
@@ -25,17 +29,21 @@ return RectorConfig::configure()
         //        __DIR__ . '/routes',
 
         // imet-core package folders
-        __DIR__.'/package/imet-core/src',
+        PATH_TO_PACKAGE,
 
     ])
     ->withSkip([
-        __DIR__.'/bootstrap/cache',
+        PATH_TO_DEV . '/bootstrap/cache',
+        PATH_TO_PACKAGE . '/Models/Utils/Country.php',      // abstract class, cannot add Override attribute
         ConvertStaticToSelfRector::class,                       // Need to review all changes
+        FirstClassCallableRector::class => [
+            PATH_TO_DEV . '/routes',                            // do not convert to first class callable in routes
+            PATH_TO_PACKAGE . '/Routes'
+        ],
         MakeModelAttributesAndScopesProtectedRector::class,
-        //        FirstClassCallableRector::class => [
-        //            __DIR__ . '/routes'                     // do not convert to first class callable in routes
-        //        ],
-        //        __DIR__ . '/package/imet-core/src/Models/Utils/Country.php',    // abstract class, cannot add Override attribute
+        SymplifyQuoteEscapeRector::class => [
+            PATH_TO_PACKAGE . '/Lang',                      // Keep always same quote style in lang files
+        ],
     ])
 //    ->withPhpSets(php84: true)
     ->withSetProviders(LaravelSetProvider::class)
@@ -43,7 +51,7 @@ return RectorConfig::configure()
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
-        //        codingStyle: true,
+        codingStyle: true,
         //        typeDeclarations: true,
         //        privatization: true,
         // //        naming: true,                 // not necessary, and sometimes harmful

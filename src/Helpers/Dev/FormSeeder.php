@@ -145,6 +145,7 @@ class FormSeeder
                 } else {
                     $random_predefined_value = collect($predefined['values'])->random();
                 }
+
                 if ($random_predefined_value !== null) {
                     $values[$predefined['field']] = $random_predefined_value;
                 }
@@ -282,10 +283,12 @@ class FormSeeder
                 $values[] = '-99';
                 $rating_type = Str::replace('WithNA', '', $rating_type);
             }
+
             [$min, $max] = explode('to', $rating_type);
             if (Str::contains($min, 'Minus')) {
                 $min = Str::replace('Minus', '-', $min);
             }
+
             $min = intval($min);
             $max = intval($max);
             $values = array_merge($values, range($min, $max));

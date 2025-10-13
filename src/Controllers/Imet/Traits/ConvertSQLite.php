@@ -68,6 +68,7 @@ trait ConvertSQLite
         foreach (Imet::allModules() as $module_class) {
             $json['Context'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
         }
+
         foreach (Imet_Eval::allModules() as $module_class) {
             $json['Evaluation'][$module_class::getShortClassName()] = $module_class::convert($imet, $sqlite_connection);
         }

@@ -80,13 +80,13 @@ trait ImportExportJSON
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
-            if (count($files) === 0 || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
+            if ($files === [] || (count($files) === 1 && isset($files[0]) && $files[0]['status'] === 'error')) {
                 return new JsonResponse(['message' => trans('modular-forms::common.upload.no_files_found')], 500);
             }
-        } catch (Exception $e) {
-            report($e);
+        } catch (Exception $exception) {
+            report($exception);
 
-            return new JsonResponse(['message' => $e->getMessage()], 500);
+            return new JsonResponse(['message' => $exception->getMessage()], 500);
         }
 
         return new JsonResponse($files);
@@ -147,6 +147,7 @@ trait ImportExportJSON
         if (count($records) === 0) {
             return trans('modular-forms::common.no_record_found');
         }
+
         $title = str_replace(' ', '_', $query->pluck('module_code')->first());
 
         return File::exportToCSV($title.'.csv', $records);
@@ -224,6 +225,7 @@ trait ImportExportJSON
         foreach ($imetIds as $imet) {
             $files[] = $this->export($imet, false, true, false);
         }
+
         $path = $files[0];
         if (count($files) > 1) {
             $fileName = 'IMETS_'.count($files).'_'.date('m-d-Y_hisu').'.zip';
@@ -368,10 +370,10 @@ trait ImportExportJSON
             (new static)->backup($formID, $version);
 
             $response['modules'] = $modules_imported;
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             DB::rollback();
             $response = ['status' => 'error'];
-            throw_if(! App::environment('production') || ImetEnv::isImetOfflineEnv(), $e);
+            throw_if(! App::environment('production') || ImetEnv::isImetOfflineEnv(), $exception);
         }
 
         if (! $returnJson) {

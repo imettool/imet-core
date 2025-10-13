@@ -161,6 +161,7 @@ class MenacesPressions extends Modules\Component\ImetModule
             foreach ($fields as $field) {
                 $valuesByRecord[] = $record[$field];
             }
+
             $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
         }
 
@@ -179,6 +180,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 $valuesByCategory[$index][] = $group_stats[$group] ?? null;
             }
         }
+
         foreach ($valuesByCategory as $values) {
             $stat = static::calculateStats($values);
             $category_stats[] = $stat > 0 ? round($stat * 100 / 3, 2) : '';
@@ -203,6 +205,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 } else {
                     $prod *= $numCategories - $value;
                 }
+
                 $count++;
             }
         }
@@ -273,6 +276,7 @@ class MenacesPressions extends Modules\Component\ImetModule
             foreach ($elements as $k => $element) {
                 $dom->filter($k.'['.$element.'*="_'.$group.'"]')->setAttribute('v-if', $vueIfDirective);
             }
+
             $dom->filter('table[id*="_'.$group.'"] + br')->setAttribute('v-if', $vueIfDirective);
             $dom->filter('table[id*="_'.$group.'"] + br + br')->setAttribute('v-if', $vueIfDirective);
         }

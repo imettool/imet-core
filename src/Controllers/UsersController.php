@@ -42,10 +42,12 @@ class UsersController extends __Controller
                     if ($r['country'] !== null) {
                         $role_isos[] = $r['country'];
                     }
+
                     if ($r['wdpa'] !== null) {
                         $role_wdpas[] = $r['wdpa'];
                     }
                 }
+
                 unset($item['imet_roles']);
 
                 return [
@@ -120,6 +122,7 @@ class UsersController extends __Controller
                     $defined_users[] = $record['user'];
                 }
             }
+
             // Set imet_role to null for any user with the given role which is not in the provided list
             if (filled($defined_users)) {
                 (config('imet-core.user'))::where('imet_role', $role_type)
@@ -144,12 +147,14 @@ class UsersController extends __Controller
                             Role::query()->updateOrCreate($attributes, $attributes);
                         }
                     }
+
                     if (filled($isos)) {
                         foreach ($isos as $iso) {
                             $attributes = ['user_id' => $user_id, 'wdpa' => null, 'country' => $iso];
                             Role::query()->updateOrCreate($attributes, $attributes);
                         }
                     }
+
                     // Remove any extra role
                     Role::query()->where('user_id', $user_id)
                         ->whereNull('country')

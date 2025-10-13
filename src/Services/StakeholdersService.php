@@ -79,6 +79,7 @@ class StakeholdersService
                 if (count($spec_elements) > 0) {
                     $list .= ' ('.implode(', ', $spec_elements).')';
                 }
+
                 $list .= ', ';
             }
 

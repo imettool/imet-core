@@ -149,9 +149,11 @@ class ScalingUpAnalysis extends Model
                 if ($vision['LocalMission']) {
                     $generalElements['local_mission'][] = $general_info_data[0]['CompleteName'];
                 }
+
                 if ($vision['LocalObjective']) {
                     $generalElements['local_objective'][] = $general_info_data[0]['CompleteName'];
                 }
+
                 if ($vision['LocalVision']) {
                     $generalElements['local_vision'][] = $general_info_data[0]['CompleteName'];
                 }
@@ -216,28 +218,28 @@ class ScalingUpAnalysis extends Model
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),
             ];
+            foreach ($retrieve_key_elements['species'] as $array_species) {
+                foreach ($array_species as $group => $species) {
 
-            if (count($retrieve_key_elements['species'])) {
-                foreach ($retrieve_key_elements['species'] as $array_species) {
-                    foreach ($array_species as $group => $species) {
-
-                        if (isset($species_count[$group][$species])) {
-                            $species_count[$group][$species] += 1;
-                        } else {
-                            $species_count[$group][$species] = 1;
-                        }
-                        $key_elements['species'][$group][$species][0][] = $name;
+                    if (isset($species_count[$group][$species])) {
+                        $species_count[$group][$species] += 1;
+                    } else {
+                        $species_count[$group][$species] = 1;
                     }
+
+                    $key_elements['species'][$group][$species][0][] = $name;
                 }
             }
+
             foreach (array_keys($array_elements) as $keys) {
-                if (count($retrieve_key_elements[$keys])) {
+                if ($retrieve_key_elements[$keys] !== []) {
                     foreach ($retrieve_key_elements[$keys] as $item) {
                         if (isset($array_elements_count[$keys.'_count'][$item])) {
                             $array_elements_count[$keys.'_count'][$item] += 1;
                         } else {
                             $array_elements_count[$keys.'_count'][$item] = 1;
                         }
+
                         $key_elements[$keys][$item][0][] = $name;
                     }
                 }
@@ -469,6 +471,7 @@ class ScalingUpAnalysis extends Model
             if (count($name) > 1) {
                 $extra_type_words = $name[0].'_'.$name[1] ?? '';
             }
+
             $origType = $name[0];
         }
 
@@ -478,6 +481,7 @@ class ScalingUpAnalysis extends Model
             Common::reset_areas_ids();
             $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type);
         }
+
         $time_end = microtime(true);
         $execution_time = ($time_end - $time_start);
 
@@ -537,6 +541,7 @@ class ScalingUpAnalysis extends Model
         if (static::$scaling_id) {
             $id = static::$scaling_id;
         }
+
         $locale = App::getLocale();
         $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, $id);
         $response = ['Average' => []];

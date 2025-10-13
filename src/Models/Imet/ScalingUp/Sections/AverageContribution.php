@@ -26,7 +26,7 @@ class AverageContribution
         foreach ($form_ids as $j => $form_id) {
             $protected_areas[$j] = Modules\Context\MenacesPressions::getStats($form_id);
 
-            if (count($indicators) === 0) {
+            if ($indicators === []) {
 
                 foreach ($protected_areas[$j]['categoryStats'] as $c => $value) {
                     $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($c + 1), []);
@@ -34,6 +34,7 @@ class AverageContribution
                     $indicators_average_contribution[] = $name;
                 }
             }
+
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
                 $value = $protected_area === ''
                     ? '-'
@@ -43,7 +44,7 @@ class AverageContribution
         }
 
         $average_contribution = [];
-        if (count(array_filter(array_keys($data), 'is_string')) === 0) {
+        if (array_filter(array_keys($data), 'is_string') === []) {
             krsort($data);
         }
 
@@ -93,14 +94,16 @@ class AverageContribution
                     } else {
                         $correction_value = $value;
                     }
+
                     $data[$type][$v][] = $correction_value;
                 }
             }
         }
 
-        if (count(array_filter(array_keys($data), 'is_string')) === 0) {
+        if (array_filter(array_keys($data), 'is_string') === []) {
             krsort($data[$type]);
         }
+
         $average_contribution = [];
         $average_contribution = static::calculate_data_average_contribution($average_contribution, $data[$type], $colors, $label, $type);
         $average_contribution['options'] = count($options) ? $options : null;
@@ -131,6 +134,7 @@ class AverageContribution
                 if (is_numeric($index)) {
                     $v = (int) $index + 1;
                 }
+
                 $values = array_filter(array_values($value), function ($v) {
                     return is_numeric($v);
                 });
@@ -140,6 +144,7 @@ class AverageContribution
                 $average[] = $average_value;
                 $average_contribution = self::getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, $colors, $average_contribution, $i, $index, $label, $type);
             }
+
             $i++;
         }
 

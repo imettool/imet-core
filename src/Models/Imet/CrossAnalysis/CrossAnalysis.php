@@ -94,6 +94,7 @@ class CrossAnalysis extends Model
                     }
                 }
             }
+
             $j++;
         }
 

@@ -58,6 +58,7 @@ trait InjectInView
                         '<div>'.Template::module_scope($icon_type).'</div>&nbsp;&nbsp;'
                         .$td->getInnerHtml());
                 }
+
                 $td->children()->last()->setStyle('flex-grow', '1');
             }
         }

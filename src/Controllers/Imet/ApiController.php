@@ -54,6 +54,7 @@ class ApiController extends Controller
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
+
         throw_if(count($records) > 1, ErrorException::class, trans('imet-core::api.error_messages.multiple_records_found'));
 
         $form_id = $records[0]['FormID'] ?? null;
@@ -63,6 +64,7 @@ class ApiController extends Controller
         } else {
             $data = ReportV2::get_assessment_report($request, $form);
         }
+
         $api['data'] = ['wdpa_id' => (int) $records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year'], 'values' => $data['data']];
         $api['labels'] = $data['labels'];
 
@@ -104,6 +106,7 @@ class ApiController extends Controller
             $sums[$k] = round($value / $items_for_average, 2);
             $api['labels'][$k] = $k === 'imet_index' ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.'.$k);
         }
+
         $api['data'] = $sums;
 
         return static::sendAPIResponse($api);
@@ -149,6 +152,7 @@ class ApiController extends Controller
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
+
         foreach ($records as $record) {
             $item = array_merge([
                 'wdpa_id' => $record['wdpa_id'],
@@ -183,6 +187,7 @@ class ApiController extends Controller
         if ($region) {
             $countries = Country::getByRegion($region);
         }
+
         $list = Imet\Imet::get_assessments_list($request, ['country'], false, $countries);
         $hasType = $request->has('type');
         $type = $request->input('type');
@@ -201,6 +206,7 @@ class ApiController extends Controller
             if ($language !== 'en') {
                 $region_name .= '_'.$language;
             }
+
             $item['Type'] = \ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo::query()->where('FormID', $item['FormID'])->pluck('Type')->first();
             if (! $hasType || (! $type && $item['Type'] === null) || $type === $item['Type']) {
                 if ($item->country->region) {
@@ -209,6 +215,7 @@ class ApiController extends Controller
                         'name' => $item->country->region->$region_name,
                     ];
                 }
+
                 $api[] = [
                     'wdpa_id' => $item['wdpa_id'],
                     'language' => $item['language'],

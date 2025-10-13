@@ -90,6 +90,7 @@ class Common
                 $rules[$key_group] = 'required|array';
                 $rules[$key_group.'.*'] = 'integer|max:'.$max_wdpa_id;
             }
+
             if ($request->get($key_year, null)) {
                 $parameters[$key_year] = explode(',', $request->get($key_year, null));
                 $rules[$key_year] = 'array';
@@ -176,7 +177,7 @@ class Common
     public static function wdpa_id_and_year_to_form_id(Request $request, array $ids = [], array $years = [], string $key = ''): Collection
     {
         $fields = ['FormID', 'Year', 'wdpa_id', 'Country', 'version', 'name'];
-        if (count($ids) === 0) {
+        if ($ids === []) {
             [$ids, $years, $key, $form_id] = static::get_querystring_values($request);
         }
 
@@ -203,9 +204,11 @@ class Common
         } else {
             $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids);
         }
+
         if ($key !== '' && $key !== '0') {
             $records = $records->where(['version' => $key]);
         }
+
         $records = $records->get();
         static::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
 
@@ -223,9 +226,11 @@ class Common
         } else {
             $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids)->where('Year', $years[0]);
         }
+
         if ($key !== '' && $key !== '0') {
             $records = $records->where(['version' => $key]);
         }
+
         $records = $records->get();
         static::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
 
@@ -247,9 +252,11 @@ class Common
             } else {
                 $record = Imet::query()->select($fields)->where('wdpa_id', $id)->where('Year', $years[$ikey]);
             }
+
             if ($key !== '' && $key !== '0') {
                 $record = $record->where(['version' => $key]);
             }
+
             $record = $record->first();
             if ($record) {
                 $collection->add($record);
@@ -260,7 +267,7 @@ class Common
 
         static::checkIfRequestedPAHaveImetRecords($ids_size, $collection->count());
 
-        if (! count($keys_not_match)) {
+        if ($keys_not_match === []) {
             return $collection;
         } else {
             throw new ErrorException(trans('imet-core::api.error_messages.no_combination_found').implode(',', $keys_not_match));
@@ -275,6 +282,7 @@ class Common
         if ($requested > 0 && $requested < $exists) {
             ApiController::sendAPIError(404, trans('imet-core::api.error_messages.more_than_one_protected_areas_found'));
         }
+
         if ($requested !== $exists) {
             ApiController::sendAPIError(404, trans('imet-core::api.error_messages.no_protected_areas_found'));
         }
@@ -290,7 +298,7 @@ class Common
             $records[$item->wdpa_id] = $item->toArray();
         }
 
-        if (count($form_ids) === 0) {
+        if ($form_ids === []) {
             ApiController::sendAPIError(404, trans('imet-core::api.error_messages.no_protected_areas_found'));
         }
 
@@ -315,6 +323,7 @@ class Common
                 if ($years_keys) {
                     $years = explode(',', $years_keys);
                 }
+
                 $ids = explode(',', $item);
 
                 $records = Common::wdpa_id_and_year_to_form_id($request, $ids, $years);
@@ -326,6 +335,7 @@ class Common
                         'name' => 'Group '.$group,
                     ];
                 }
+
                 $group++;
             }
         }

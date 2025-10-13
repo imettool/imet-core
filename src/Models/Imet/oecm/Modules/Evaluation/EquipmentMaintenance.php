@@ -95,7 +95,7 @@ class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
     }
 
     #[\Override]
-    public function customValue(array $record, array $field): string|array|null
+    protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
         if ($field['name'] === 'Equipment') {

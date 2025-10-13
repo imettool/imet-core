@@ -137,6 +137,7 @@ class MenacesPressions extends Modules\Component\ImetModule
             foreach ($fields as $field) {
                 $valuesByRecord[] = $record[$field];
             }
+
             $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
         }
 
@@ -155,6 +156,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 $valuesByCategory[$index][] = $group_stats[$group] ?? null;
             }
         }
+
         foreach ($valuesByCategory as $values) {
             $category_stats[] = static::calculateStats($values);
         }
@@ -179,6 +181,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 } else {
                     $prod *= $numCategories - $value;
                 }
+
                 $count++;
             }
         }

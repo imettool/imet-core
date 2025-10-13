@@ -24,6 +24,7 @@ trait Math
                 $count_not_null++;
             }
         }
+
         $average = $count_not_null > 0
             ? $sum / $count_not_null
             : null;

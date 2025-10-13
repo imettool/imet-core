@@ -113,7 +113,8 @@ abstract class Imet extends Form
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
-                if (count($countries)) {
+
+                if ($countries !== []) {
                     $query->whereIn('Country', $countries);
                 }
             })
@@ -135,7 +136,8 @@ abstract class Imet extends Form
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
-                if (count($countries)) {
+
+                if ($countries !== []) {
                     $query->whereIn('Country', $countries);
                 }
             })
@@ -218,9 +220,11 @@ abstract class Imet extends Form
         if (array_key_exists('country', $params) && $params['country'] !== null) {
             $query->where('Country', $params['country']);
         }
+
         if (array_key_exists('year', $params) && $params['year'] !== null) {
             $query->where('Year', $params['year']);
         }
+
         if (array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null) {
             $query->where('wdpa_id', $params['wdpa_id']);
         }

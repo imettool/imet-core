@@ -40,10 +40,12 @@ class ImetDetails
                         if (is_string($field[$value['name']])) {
                             $values = static::animalScientificName($field[$value['name']]);
                         }
+
                         $filtered_fields[$value['name']] = $values;
                         $labels[$value['name']] = $value['label'];
                     }
                 }
+
                 $accepted_fields[] = $filtered_fields;
             }
         }

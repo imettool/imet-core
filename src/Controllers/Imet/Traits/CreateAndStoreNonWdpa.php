@@ -63,6 +63,7 @@ trait CreateAndStoreNonWdpa
                 return $this->store_prefilled($request, $prev_year_selection);
             }
         }
+
         // #### Create an IMET on a non-WDPA site ####
         if (array_key_exists('name', $records[0])) {
             return $this->store_non_wdpa($request);
@@ -103,9 +104,9 @@ trait CreateAndStoreNonWdpa
 
             return static::redirect_to_edit_non_wdpa($request);
 
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             Session::flash('message', trans('modular-forms::common.saved_error'));
-            throw $e;
+            throw $exception;
         }
     }
 

@@ -63,7 +63,7 @@ class Threats extends Modules\Component\ImetModule_Eval
 
         // Inject num stakeholders and elements
         foreach ($records as $index => $record) {
-            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
+            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'), true);
 
             $records[$index]['__count_stakeholders_direct'] = null;
             $records[$index]['__count_stakeholders_indirect'] = null;

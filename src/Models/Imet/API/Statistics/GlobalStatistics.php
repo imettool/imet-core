@@ -87,7 +87,7 @@ class GlobalStatistics
             ->get()->map(function ($item) {
                 return [
                     'iucn_category' => $item['iucn_category'],
-                    'total' => $item['total']
+                    'total' => $item['total'],
                 ];
             });
 
@@ -98,7 +98,7 @@ class GlobalStatistics
     {
         $pa_number_or_marines_and_terrestrials = GeneralInfo::query()->select(DB::raw('"Type"'), DB::raw('count("Type") as total'));
 
-        if (count($form_ids) > 0) {
+        if ($form_ids !== []) {
             $pa_number_or_marines_and_terrestrials = $pa_number_or_marines_and_terrestrials->whereIn('FormID', $form_ids);
         }
 
@@ -134,7 +134,7 @@ class GlobalStatistics
     {
         $pa_areas = \ImetCore\Models\Imet\v2\Modules\Context\Areas::query()->select(['WDPAArea', 'FormID']);
 
-        if (count($form_ids) > 0) {
+        if ($form_ids !== []) {
             $pa_areas = $pa_areas->whereIn('FormID', $form_ids);
         }
 
@@ -166,7 +166,7 @@ class GlobalStatistics
     {
         $number_of_pas = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('count("FormID") as total'));
 
-        if (count($form_ids) > 0) {
+        if ($form_ids !== []) {
             $number_of_pas = $number_of_pas->whereIn('FormID', $form_ids);
         }
 
@@ -179,7 +179,7 @@ class GlobalStatistics
     {
         $number_of_pas_by_year = \ImetCore\Models\Imet\Imet::query()->select(DB::raw('"Year"'), DB::raw('count("Year") as total'));
 
-        if (count($form_ids) > 0) {
+        if ($form_ids !== []) {
             $number_of_pas_by_year = $number_of_pas_by_year->whereIn('FormID', $form_ids);
         }
 
@@ -197,7 +197,7 @@ class GlobalStatistics
         $number_of_pas_by_country = Imet::with('country')
             ->select(DB::raw('"Country"'), DB::raw('count("Country") as total'));
 
-        if (count($form_ids) > 0) {
+        if ($form_ids !== []) {
             $number_of_pas_by_country = $number_of_pas_by_country->whereIn('FormID', $form_ids);
         }
 
@@ -225,6 +225,7 @@ class GlobalStatistics
                 if (! isset($sums[$key])) {
                     $sums[$key] = 0;
                 }
+
                 // Add the value to the sum
                 $sums[$key] += $value;
             }
@@ -235,6 +236,7 @@ class GlobalStatistics
             $sums[$key] = round($item / $items_length, 1);
             $api['labels'][$key] = $key === 'imet_index' ? trans('imet-core::common.indexes.imet') : trans('imet-core::common.steps_eval.'.$key);
         }
+
         $api['data'] = $sums;
 
         return $api;
@@ -268,6 +270,7 @@ class GlobalStatistics
                 return $a['imet_index'] < $b['imet_index'];
             });
         }
+
         if ($only_top_rating) {
             $list_of_pas_rating = array_slice($list_of_pas_rating, 0, 10);
         }
@@ -286,12 +289,15 @@ class GlobalStatistics
                 $records = $records::query()->where('Year', $year);
 
             }
+
             if ($version !== null) {
                 $records = $records->where('version', $version);
             }
+
             if ($country[0] !== null) {
                 $records = $records->whereIn('Country', $country);
             }
+
             $form_ids = $records->pluck('FormID')->toArray();
         }
 
@@ -316,9 +322,10 @@ class GlobalStatistics
             $new_item['wdpa_id'] = $item['wdpa_id'];
             $new_item['name'] = $item['name'];
         }
+
         $new_item['Year'] = $item['Year'];
 
-        $new_item['country'] = $item->country["$name"];
+        $new_item['country'] = $item->country[$name];
 
         if ($global_scores) {
             $new_item = ImetScores::get_radar($item);

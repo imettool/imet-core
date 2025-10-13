@@ -46,6 +46,7 @@ trait Dependencies
             $label_prefix .= 'evaluation.';
             $labels = trans($label_prefix.$this_class_name);
         }
+
         if (is_array($labels) && array_key_exists('warning_on_save', $labels)) {
             $vue_data['warning_on_save'] = trans($label_prefix.$this_class_name.'.warning_on_save');
         }
@@ -134,6 +135,7 @@ trait Dependencies
                 foreach ($records_to_be_dropped as $record) {
                     $to_be_dropped_from_dependency[] = $record[$dependency_on];
                 }
+
                 $to_be_dropped_from_dependency = array_unique($to_be_dropped_from_dependency);
                 $dependency_class::dropOrphansDependencyRecords($form_id, $to_be_dropped_from_dependency, $dependency_to);
             }

@@ -81,6 +81,7 @@ class ProtectedArea extends BaseProtectedArea
                 $parsed_isos[] = $iso;
             }
         }
+
         $parsed_isos = array_unique($parsed_isos);
 
         return array_values($parsed_isos);
@@ -167,6 +168,7 @@ class ProtectedArea extends BaseProtectedArea
             foreach (static::parseISOs([$item->country]) as $iso) {
                 $item['country_name'] .= $countries[$iso].', ';
             }
+
             $item['country_name'] = rtrim($item['country_name'], ', ');
 
             return $item;

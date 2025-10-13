@@ -47,7 +47,7 @@ class EvalController extends BaseEvalController
     {
         $classes = [];
         $warnings = CrossAnalysis::getIndicators($form);
-        if (count($warnings) > 0) {
+        if ($warnings !== []) {
             $classes['cross_analysis'] = 'cross-analysis-warnings';
         }
 

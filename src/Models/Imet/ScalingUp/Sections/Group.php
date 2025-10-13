@@ -34,6 +34,7 @@ class Group
             $form_ids[] = $form['id'];
             $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null];
         }
+
         $indicator = static::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
 
         krsort($groups);

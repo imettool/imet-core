@@ -106,6 +106,7 @@ trait ScalingUpApi
         if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
+
         $slug = str_replace('-', '_', $slug);
         $func = $slug.'_average';
 
@@ -121,6 +122,7 @@ trait ScalingUpApi
         if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
+
         $slug = str_replace('-', '_', $slug);
         $func = $slug.'_radar';
         $response = $this->execute_function_url($form_ids, $func);
@@ -137,6 +139,7 @@ trait ScalingUpApi
         if (count($form_ids) === 0) {
             return static::sendAPIResponse([]);
         }
+
         $slug = str_replace('-', '_', $slug);
         $func = $slug.'_table';
         $response = $this->execute_function_url($form_ids, $func);

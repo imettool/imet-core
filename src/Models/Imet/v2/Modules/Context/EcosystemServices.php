@@ -121,6 +121,7 @@ class EcosystemServices extends Modules\Component\ImetModule
                     }
                 }
             }
+
             $category_stats[$category_index] = $category_sum > 0 ? (($category_sum / $category_count) * 100 / 3.0) : null;
         }
 
@@ -140,7 +141,7 @@ class EcosystemServices extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public function customValue(array $record, array $field): string|array|null
+    protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
         if ($field['type'] === 'toggle-ImetV2_EcosystemServicesImportance') {
