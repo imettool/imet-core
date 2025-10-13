@@ -65,6 +65,6 @@ trait Merge
 
         $module_class::updateModule($request);
 
-        return redirect()->route($this::ROUTE_PREFIX.'merge_view', ['item' => $destination_form_id]);
+        return to_route($this::ROUTE_PREFIX.'merge_view', ['item' => $destination_form_id]);
     }
 }

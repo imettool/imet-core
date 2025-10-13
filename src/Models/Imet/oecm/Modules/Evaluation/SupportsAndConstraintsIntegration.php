@@ -88,7 +88,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         return collect($records)
             ->sortBy('__score')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /**

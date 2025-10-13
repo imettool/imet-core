@@ -81,7 +81,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         return collect($records)
             ->sortByDesc('Weight')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     public static function calculateRanking($form_id): array

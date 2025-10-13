@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
+use Illuminate\Support\Facades\Date;
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\ProtectedArea;
 use ModularForms\Models\Traits\Payload;
@@ -62,7 +63,7 @@ trait Prefill
         $records[0]['language'] = null;
         $json = static::export((static::$form_class)::find($prev_year_selection), false, false);
         $json['Imet']['Year'] = $records[0]['Year'];
-        $json['Imet']['UpdateDate'] = Carbon::now()->format('Y-m-d H:i:s');
+        $json['Imet']['UpdateDate'] = Date::now()->format('Y-m-d H:i:s');
 
         DB::beginTransaction();
 

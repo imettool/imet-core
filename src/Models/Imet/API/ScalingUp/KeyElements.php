@@ -42,7 +42,7 @@ trait KeyElements
                     return $item['IncludeInStatistics'];
                 })->map(function ($item) {
                     return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
-                })->toArray(),
+                })->all(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
                 })->pluck('Aspect')->toArray(),

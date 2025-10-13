@@ -50,7 +50,7 @@ class Common
 
         $wdpa_ids_params_size = count($parameters['wdpa_id']);
         $years_params_size = count($parameters['years']);
-        throw_if($years_params_size > 1 && $wdpa_ids_params_size !== $years_params_size, new ErrorException(trans('imet-core::api.error_messages.mismatch_wdpa_ids_years')));
+        throw_if($years_params_size > 1 && $wdpa_ids_params_size !== $years_params_size, ErrorException::class, trans('imet-core::api.error_messages.mismatch_wdpa_ids_years'));
 
         $rules = [
             'wdpa_id' => 'required|array' . $wdpa_size,
@@ -98,7 +98,7 @@ class Common
             if (isset($parameters[$key_group]) && isset($parameters[$key_year])) {
                 $group_ids_params_size = count($parameters[$key_group]);
                 $years_params_size = count($parameters[$key_year]);
-                throw_if($years_params_size > 1 && $group_ids_params_size !== $years_params_size, new ErrorException(trans('imet-core::api.error_messages.mismatch_group_ids_years')));
+                throw_if($years_params_size > 1 && $group_ids_params_size !== $years_params_size, ErrorException::class, trans('imet-core::api.error_messages.mismatch_group_ids_years'));
             }
         }
 

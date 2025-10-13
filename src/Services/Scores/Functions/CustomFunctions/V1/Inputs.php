@@ -133,6 +133,7 @@ trait Inputs
 
     protected static function score_i5(int $imet_id): ?float
     {
+        /*
         $imet_locale = Imet::query()->find($imet_id)->language;
         $current_locale = App::getLocale();
 
@@ -150,6 +151,7 @@ trait Inputs
             })
             ->pluck('Importance', 'group_key');
         App::setLocale($current_locale);
+        */
 
         $equipment = Equipments::getModule($imet_id)
             ->groupBy('group_key')
@@ -162,11 +164,10 @@ trait Inputs
                     : null;
             });
 
-        $values = $equipment->map(function ($item, $index) use ($equipment_adequacy){
+        $values = $equipment->map(function ($item, $index) {
             $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function - which is wrong)
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;
-
             return [
                 'group_key' => $index,
                 'AdequacyLevel' => $item,

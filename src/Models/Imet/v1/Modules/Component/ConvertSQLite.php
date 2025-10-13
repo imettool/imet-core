@@ -126,7 +126,7 @@ trait ConvertSQLite{
 
                 return $json;
             })
-            ->toArray();
+            ->all();
     }
 
     /**

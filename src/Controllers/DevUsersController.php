@@ -129,7 +129,7 @@ class DevUsersController extends __Controller {
             // ######  Login as Administrator  ######
             Auth::loginUsingId(99999);
 
-            return redirect()->route('dashboard');
+            return to_route('dashboard');
         }
         abort(404);
     }
@@ -163,7 +163,7 @@ class DevUsersController extends __Controller {
                 abort(505);
             }
 
-            return redirect()->route('dashboard');
+            return to_route('dashboard');
 
         } else {
             abort(404);

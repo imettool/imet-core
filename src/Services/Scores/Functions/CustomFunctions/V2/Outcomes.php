@@ -31,7 +31,7 @@ trait Outcomes
                 $sum_trend = static::average($group->pluck('Trend')->toArray(), null) * 100 / 3;
                 return ($sum_cond + $sum_trend) / 2;
             })
-            ->toArray();
+            ->all();
         $score = static::average($values, null);
 
         return $score!== null ?

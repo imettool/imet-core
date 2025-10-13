@@ -75,7 +75,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         return collect($records)
             ->sortBy('__score')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /**

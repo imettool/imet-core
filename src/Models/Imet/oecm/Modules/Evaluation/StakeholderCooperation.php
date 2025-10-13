@@ -78,7 +78,7 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
         return collect($records)
             ->sortByDesc('Weight')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /**

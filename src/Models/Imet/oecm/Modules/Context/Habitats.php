@@ -103,7 +103,7 @@ class Habitats extends Modules\Component\ImetModule
                     ? $item['EcosystemType']
                     : $item['EcosystemType'] . ' - ' . $item['EcosystemDescription'];
             })
-            ->toArray();
+            ->all();
     }
 
 }

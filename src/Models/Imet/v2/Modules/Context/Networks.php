@@ -79,7 +79,7 @@ class Networks extends Modules\Component\ImetModule
                 } else{
                     return explode('_', $pa)[1]; // for other regions: global_id is region + wdpa
                 }
-            })->toArray();
+            })->all();
 
             // Convert JSON to comma-separated list
             $record['ProtectedAreas'] = implode(',', $pas);

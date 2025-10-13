@@ -94,7 +94,7 @@ abstract class Controller extends __Controller
         $form = new static::$form_class();
         $form = $form->find($item);
         $form->delete();
-        return redirect()->route(static::ROUTE_PREFIX.'index');
+        return to_route(static::ROUTE_PREFIX.'index');
     }
 
 }

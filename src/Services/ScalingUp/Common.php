@@ -16,7 +16,7 @@ trait Common
     protected static function checkAuthorization(array $wdpas, string $ability = 'api_scaling_up'): void
     {
         foreach ($wdpas as $wdpa) {
-            throw_if(Gate::denies($ability, Imet::query()->find($wdpa)), new AuthorizationException('This action is unauthorized.'));
+            throw_if(Gate::denies($ability, Imet::query()->find($wdpa)), AuthorizationException::class, 'This action is unauthorized.');
         }
     }
 

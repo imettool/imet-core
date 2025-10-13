@@ -188,7 +188,7 @@ trait Context
                     ? -1 * $average
                     : null;
             })
-            ->toArray();
+            ->all();
 
         $score = static::average($values, null);
 

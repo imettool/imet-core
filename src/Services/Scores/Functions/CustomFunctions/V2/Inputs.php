@@ -55,7 +55,7 @@ trait Inputs
             ->map(function($item) {
                 return $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100;
             })
-        ->toArray();
+        ->all();
 
         $score = static::average($values, 2);
 

@@ -37,7 +37,7 @@ trait _Common{
                     ? $numerator/$denominator * 100 / 3
                     : null;
             })
-            ->toArray();
+            ->all();
 
         $score_staff = $scores['group0'] ?? null;
         $score_stakeholders = $scores['group1'] ?? null;

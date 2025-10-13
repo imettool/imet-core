@@ -11,6 +11,7 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
+use Illuminate\Support\Facades\Date;
 use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedAreaNonWdpa;
@@ -44,7 +45,7 @@ trait Backup{
                 $form = (new Imet\oecm\Imet())->find($item);
             }
 
-            $now = Carbon::now();
+            $now = Date::now();
             $fileName = $this->backup_filename($form, $now);
 
             // Retrieve existing backups
@@ -61,7 +62,7 @@ trait Backup{
                 $last_backup = last($form_backups);
                 $bck_name_array = explode('_', str_replace('.json','',$last_backup));
                 $bck_date = $bck_name_array[count($bck_name_array) - 1];
-                $bck_date = Carbon::createFromFormat('Y-m-d-H-i-s',  $bck_date);
+                $bck_date = Date::createFromFormat('Y-m-d-H-i-s',  $bck_date);
                 // More than $MIN_MINUTES_DIFF from last backup
                 if($bck_date->diffInMinutes($now) > $this->MIN_MINUTES_DIFF){
                     // remove oldest backup when max num reached

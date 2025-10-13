@@ -145,7 +145,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             })
             ->sortByDesc('importance')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     private static function retrieveStakeholdersWeights($form_id): ?array
@@ -157,7 +157,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 ->map(function ($item) use ($weights_sum) {
                     return $item / $weights_sum;
                 })
-                ->toArray()
+                ->all()
             : null;
     }
 

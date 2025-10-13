@@ -109,7 +109,7 @@ class Ranking
             }
         }
 
-        $average_values = array_map(function ($value, $i) use ($items_to_calculate, $separated_values_by_pa) {
+        $average_values = array_map(function ($value, $i) use ($items_to_calculate) {
             return $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0;
         }, $sum_values, array_keys($sum_values));
         foreach ($percent_values as $k => $values) {

@@ -17,7 +17,7 @@ $dom->filter('tbody tr td')->eq(0)->append('<td><div class="field-preview w-16" 
 $vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['category_stats'])
     ->map(function ($item){
         return round($item, 2);
-    })->toArray();
+    })->all();
 ?>
 
 

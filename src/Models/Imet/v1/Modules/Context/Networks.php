@@ -75,7 +75,7 @@ class Networks extends Modules\Component\ImetModule
             $pas = collect($pas)->map(function ($pa) {
                 $model = ProtectedArea::query()->find('OFAC_'.$pa);
                 return $model->wdpa_id ?? null;
-            })->toArray();
+            })->all();
             $pas = array_filter($pas);
 
             // Convert JSON to comma-separated list
@@ -113,7 +113,7 @@ class Networks extends Modules\Component\ImetModule
             $pas = array_filter($pas);
             $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
                 return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
-            })->toArray();
+            })->all();
             $pas = array_filter($pas);
             $record['ProtectedAreas'] = implode(',', $pas);
         }

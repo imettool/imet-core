@@ -49,7 +49,7 @@ class Common
 
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) use (&$items_number) {
+        array_walk($array, function (&$item, $key) {
             if ((string)$item === "-") {
                 $item = 0;
             }

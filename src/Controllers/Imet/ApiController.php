@@ -55,7 +55,7 @@ class ApiController extends Controller
         if (count($records) === 0) {
             return static::sendAPIResponse([]);
         }
-        throw_if(count($records) > 1, new ErrorException(trans('imet-core::api.error_messages.multiple_records_found')));
+        throw_if(count($records) > 1, ErrorException::class, trans('imet-core::api.error_messages.multiple_records_found'));
 
         $form_id = $records[0]['FormID'] ?? null;
         $form = Imet\Imet::query()->find($form_id);
@@ -127,10 +127,10 @@ class ApiController extends Controller
         $model = ModuleKey::KeyToClassName($slug);
         $this->authorize('api_details', [$records[0], $model]);
 
-        throw_if(count($records) > 1, new ErrorException(trans('imet-core::api.error_messages.multiple_records_found')));
+        throw_if(count($records) > 1, ErrorException::class, trans('imet-core::api.error_messages.multiple_records_found'));
 
         $form_id = $records[0]['FormID'] ?? null;
-        throw_if($form_id === null, new ErrorException(trans('imet-core::api.error_messages.no_records_found')));
+        throw_if($form_id === null, ErrorException::class, trans('imet-core::api.error_messages.no_records_found'));
         $api = ImetDetails::getImetDetails($slug, $form_id);
         $api['data'] = ['wdpa_id' => (int)$records[0]['wdpa_id'], 'name' => $records[0]['name'], 'year' => $records[0]['Year']];
         return static::sendAPIResponse($api);

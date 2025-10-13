@@ -13,6 +13,7 @@ namespace ImetCore\Models\Imet;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Helpers\Database;
@@ -457,7 +458,7 @@ abstract class Imet extends Form
     public function filename($extension): string
     {
         $name = Chars::clean(Chars::replaceAccents($this->name));
-        $now = Carbon::now()->format('Y-m-d');
+        $now = Date::now()->format('Y-m-d');
 
         $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '_' . $this->wdpa_id;
 

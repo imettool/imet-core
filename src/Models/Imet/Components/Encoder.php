@@ -11,6 +11,7 @@
 
 namespace ImetCore\Models\Imet\Components;
 
+use Illuminate\Support\Facades\Date;
 use ImetCore\Models\Imet\Components\BaseModel;
 use Carbon\Carbon;
 
@@ -39,7 +40,7 @@ abstract class Encoder extends BaseModel
         $encoder = static::query()->where('first_name', $user_info['first_name'])
             ->where('last_name', $user_info['last_name'])
             ->where('FormID', $formId)
-            ->whereDate(static::UPDATED_AT, Carbon::today())
+            ->whereDate(static::UPDATED_AT, Date::today())
             ->first();
         if($encoder){
             $encoder->touch();
@@ -62,7 +63,7 @@ abstract class Encoder extends BaseModel
             ->get()
             ->makeHidden(['FormID', 'id'])
             ->map(function ($item){
-                $item['UpdateDate'] = Carbon::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
+                $item['UpdateDate'] = Date::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
                 return $item;
             })
             ->toArray();
