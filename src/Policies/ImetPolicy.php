@@ -23,7 +23,7 @@ class ImetPolicy
     /**
      * Perform pre-authorization checks
      */
-    public function before($user, string $ability)
+    public function before($user, string $ability): ?bool
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {

@@ -56,10 +56,10 @@ class ServiceProvider extends BaseServiceProvider
         ], 'imet-core');
 
         // Routes
-        Route::group($this->routeConfiguration('web'), function () {
+        Route::group($this->routeConfiguration('web'), function (): void {
             $this->loadRoutesFrom(static::BASE_PATH.'Routes/web.php');
         });
-        Route::group($this->routeConfiguration('api'), function () {
+        Route::group($this->routeConfiguration('api'), function (): void {
             $this->loadRoutesFrom(static::BASE_PATH.'Routes/api.php');
         });
 
@@ -82,7 +82,7 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    private function routeConfiguration($route_file): array
+    private function routeConfiguration(string $route_file): array
     {
         if ($route_file === 'web' && config('imet-core.web_routes_prefix') !== null) {
             return [

@@ -96,7 +96,7 @@ class ProtectedArea extends BaseProtectedArea
 
         ProtectedArea::query()->select('country')
             ->distinct()
-            ->where(function ($query) use ($custom_where) {
+            ->where(function ($query) use ($custom_where): void {
                 if ($custom_where instanceof Closure) {
                     $custom_where($query);
                 }
@@ -104,7 +104,7 @@ class ProtectedArea extends BaseProtectedArea
             ->get()
             ->pluck('country')
             ->sort()
-            ->each(function ($iso) use (&$iso3s) {
+            ->each(function ($iso) use (&$iso3s): void {
                 $iso3s = array_merge($iso3s, explode(';', $iso));
             });
 
@@ -121,7 +121,7 @@ class ProtectedArea extends BaseProtectedArea
             : static::getCountriesISO();
 
         return Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($countries) {
+            ->where(function ($query) use ($countries): void {
                 if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
                 }
@@ -138,13 +138,13 @@ class ProtectedArea extends BaseProtectedArea
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::query()->where(function ($query) use ($search_key, $country) {
+        $protected_areas = static::query()->where(function ($query) use ($search_key, $country): void {
             $query = $query->like($search_key);
             if ($country != null) {
                 $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
             }
         })
-            ->where(function ($query) use ($allowed_wdpas) {
+            ->where(function ($query) use ($allowed_wdpas): void {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
@@ -164,7 +164,7 @@ class ProtectedArea extends BaseProtectedArea
             ->sort()
             ->toArray();
 
-        return $protected_areas->map(function ($item) use ($countries) {
+        return $protected_areas->map(function ($item) use ($countries): \ArrayAccess&\stdClass {
             foreach (static::parseISOs([$item->country]) as $iso) {
                 $item['country_name'] .= $countries[$iso].', ';
             }

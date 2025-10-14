@@ -15,7 +15,7 @@ use RectorLaravel\Set\LaravelSetList;
 use RectorLaravel\Set\LaravelSetProvider;
 
 const PATH_TO_DEV = __DIR__;
-const PATH_TO_PACKAGE = __DIR__ . '/package/imet-core/src';
+const PATH_TO_PACKAGE = __DIR__.'/package/imet-core/src';
 
 return RectorConfig::configure()
     ->withPaths([
@@ -33,16 +33,16 @@ return RectorConfig::configure()
 
     ])
     ->withSkip([
-        PATH_TO_DEV . '/bootstrap/cache',
-        PATH_TO_PACKAGE . '/Models/Utils/Country.php',      // abstract class, cannot add Override attribute
+        PATH_TO_DEV.'/bootstrap/cache',
+        PATH_TO_PACKAGE.'/Models/Utils/Country.php',      // abstract class, cannot add Override attribute
         ConvertStaticToSelfRector::class,                       // Need to review all changes
         FirstClassCallableRector::class => [
-            PATH_TO_DEV . '/routes',                            // do not convert to first class callable in routes
-            PATH_TO_PACKAGE . '/Routes'
+            PATH_TO_DEV.'/routes',                            // do not convert to first class callable in routes
+            PATH_TO_PACKAGE.'/Routes',
         ],
         MakeModelAttributesAndScopesProtectedRector::class,
         SymplifyQuoteEscapeRector::class => [
-            PATH_TO_PACKAGE . '/Lang',                      // Keep always same quote style in lang files
+            PATH_TO_PACKAGE.'/Lang',                      // Keep always same quote style in lang files
         ],
     ])
 //    ->withPhpSets(php84: true)
@@ -52,7 +52,7 @@ return RectorConfig::configure()
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
-        //        typeDeclarations: true,
+        typeDeclarations: true,
         //        privatization: true,
         // //        naming: true,                 // not necessary, and sometimes harmful
         //        instanceOf: true,

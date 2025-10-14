@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table): void {
 
             $table->dropColumn([
                 'common_name_fr',
@@ -56,7 +56,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table): void {
 
             $table->dropUnique(['col_id']);
             $table->dropColumn([

@@ -36,7 +36,7 @@ abstract class Encoder extends BaseModel
         return $this->attributes['last_name'].' '.$this->attributes['first_name'];
     }
 
-    public static function touchOnFormUpdate($formId, $user_info)
+    public static function touchOnFormUpdate($formId, array $user_info): void
     {
         // Insert encoder (if not present in the day)
         $encoder = static::query()->where('first_name', $user_info['first_name'])
@@ -64,7 +64,7 @@ abstract class Encoder extends BaseModel
         return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['FormID', 'id'])
-            ->map(function ($item) {
+            ->map(function ($item): static {
                 $item['UpdateDate'] = Date::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
 
                 return $item;
@@ -74,10 +74,8 @@ abstract class Encoder extends BaseModel
 
     /**
      * Import model
-     *
-     * @return void
      */
-    public static function importModule($form_id, $encoders = null)
+    public static function importModule($form_id, $encoders = null): void
     {
         if ($encoders !== null) {
             foreach ($encoders as $encoder) {

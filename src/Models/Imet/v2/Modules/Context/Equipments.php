@@ -90,7 +90,7 @@ class Equipments extends Modules\Component\ImetModule
     /**
      * Calculate the average adequacy level for each group
      */
-    public static function getAverages($form_id): array
+    public static function getAverages(?int $form_id): array
     {
         $records = Equipments::getModuleRecords($form_id)['records'];
 

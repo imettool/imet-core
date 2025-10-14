@@ -54,7 +54,7 @@ class Networks extends Modules\Component\ImetModule
         $models = parent::getModule($form_id);
 
         // Upgrade existing data
-        $models->map(function ($model) {
+        $models->map(function ($model): void {
             $model->timestamps = false;
             $model->fill(
                 static::upgradeModule($model->toArray())
@@ -73,7 +73,7 @@ class Networks extends Modules\Component\ImetModule
             $pas = array_filter($pas);
 
             // Convert local_id to wdpa
-            $pas = collect($pas)->map(function ($pa) {
+            $pas = collect($pas)->map(function (string $pa) {
                 $model = ProtectedArea::query()->find('OFAC_'.$pa);
 
                 return $model->wdpa_id ?? null;
@@ -110,7 +110,7 @@ class Networks extends Modules\Component\ImetModule
         if (filled($record['ProtectedAreas'])) {
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
-            $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
+            $pas = collect($pas)->map(function ($pa) use ($sqlite_connection): ?string {
                 return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
             })->all();
             $pas = array_filter($pas);

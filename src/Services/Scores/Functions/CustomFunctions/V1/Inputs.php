@@ -28,7 +28,7 @@ trait Inputs
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
-            ->map(function ($record) {
+            ->map(function (array $record): array {
                 $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, ($record['ActualPermanent'] ?? 0) / ($expected))
@@ -57,10 +57,10 @@ trait Inputs
         $functions = $records->pluck('Theme')->toArray();
 
         $staff_weights = collect(static::staff_weights($imet_id))
-            ->filter(function ($item) use ($functions) {
+            ->filter(function (array $item) use ($functions): bool {
                 return in_array($item['Function'], $functions);
             })
-            ->map(function ($item) {
+            ->map(function (array $item): array {
                 $item['eval_sc'] = $item['ratio'] > 0
                     ? ceil($item['ratio'] * 4 - 1)
                     : 0;
@@ -86,7 +86,7 @@ trait Inputs
             : null;
     }
 
-    protected static function score_i3(int $imet_id)
+    protected static function score_i3(int $imet_id): null|int|float
     {
         $records = BudgetAdequacy::getModule($imet_id)
             ->toArray();
@@ -110,7 +110,7 @@ trait Inputs
         return $score;
     }
 
-    protected static function score_i4(int $imet_id)
+    protected static function score_i4(int $imet_id): null|int|float
     {
         $records = BudgetSecurization::getModule($imet_id)
             ->toArray();
@@ -168,7 +168,7 @@ trait Inputs
                     : null;
             });
 
-        $values = $equipment->map(function ($item, $index) {
+        $values = $equipment->map(function ($item, $index): array {
             $importance = null; // !!!!! TODO: to be removed (here only to compare with DB function - which is wrong)
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;

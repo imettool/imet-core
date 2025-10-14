@@ -87,7 +87,7 @@ class EcosystemServices extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData($form_id, $records, $definitions): array
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['groupsByCategory'] = static::$groupsByCategory;
@@ -104,7 +104,10 @@ class EcosystemServices extends Modules\Component\ImetModule
         return static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
     }
 
-    public static function getStats($form_id)
+    /**
+     * @return float[]|null[]
+     */
+    public static function getStats(?int $form_id): array
     {
         $records = static::getModuleRecords($form_id)['records'];
         $category_stats = [];
@@ -128,7 +131,7 @@ class EcosystemServices extends Modules\Component\ImetModule
         return $category_stats;
     }
 
-    private static function row_stats($record)
+    private static function row_stats(array $record): ?float
     {
         $stat = null;
         if ($record['Importance'] !== null && $record['ImportanceRegional'] !== null && $record['ImportanceGlobal'] !== null) {

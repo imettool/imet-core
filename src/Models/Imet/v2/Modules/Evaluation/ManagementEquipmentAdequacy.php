@@ -49,7 +49,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
@@ -66,7 +66,10 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-    private static function calculateEquipementAdequacy($form_id)
+    /**
+     * @return list<(float | null)>
+     */
+    private static function calculateEquipementAdequacy(?int $form_id): array
     {
         $adequacy = array_keys(trans('imet-core::v2_context.Equipments.groups'));
         $adequacy = array_fill_keys($adequacy, [

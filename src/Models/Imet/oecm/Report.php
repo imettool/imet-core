@@ -146,11 +146,9 @@ class Report extends BaseReport
 
     /**
      * Update report
-     *
-     * @return void
      */
     #[\Override]
-    public static function updateByForm($form_id, $data)
+    public static function updateByForm($form_id, $data): void
     {
 
         Report::query()->where('FormID', $form_id)->delete();

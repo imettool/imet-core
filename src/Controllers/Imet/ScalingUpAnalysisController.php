@@ -102,7 +102,7 @@ class ScalingUpAnalysisController extends __Controller
      * @throws \ReflectionException
      * @throws AuthorizationException
      */
-    public function report(Request $request, $items = null): View|Factory
+    public function report(Request $request, ?string $items = null): View|Factory
     {
         $result = ReportScalingUp::report($request, $items);
 

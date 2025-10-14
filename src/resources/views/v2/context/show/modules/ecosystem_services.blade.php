@@ -6,7 +6,7 @@
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $stats = array_key_exists('FormID', $records[0]) ? \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::getStats($records[0]['FormID']) : null;
-$fistGroupPerCategory = array_map(function($category){
+$fistGroupPerCategory = array_map(function(array $category){
     return $category[0];
 }, \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::$groupsByCategory);
 

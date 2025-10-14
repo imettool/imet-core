@@ -18,7 +18,7 @@ use ImetCore\Services\Scores\ImetScores;
 
 class CrossAnalysis extends Model
 {
-    private static $threshold = 34.0;
+    private static float $threshold = 34.0;
 
     private static array $indicators = [
         'context' => ['C12', 'C2', 'C14', 'C15'],
@@ -44,7 +44,7 @@ class CrossAnalysis extends Model
     /**
      * retrieve all indicators data
      */
-    public static function getIndicators($item): array
+    public static function getIndicators(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $item): array
     {
         $filteredArray = [];
         $compareElements = [];
@@ -75,7 +75,7 @@ class CrossAnalysis extends Model
     /**
      * compare values of indicators
      */
-    private static function compareValues($elements): array
+    private static function compareValues(array $elements): array
     {
         $error_indicators = [];
         $j = 0;

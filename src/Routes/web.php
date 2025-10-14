@@ -23,7 +23,7 @@ use ImetCore\Controllers\SpeciesController;
 use ImetCore\Controllers\UsersController;
 use ImetCore\Middleware\SetLocale;
 
-Route::middleware([SetLocale::class, 'web'])->group(function () {
+Route::middleware([SetLocale::class, 'web'])->group(function (): void {
 
     // Old routes: to be kept for the moment to ensure backwards compatibility
     Route::get('/{url}', function ($url) {
@@ -38,7 +38,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
     | IMET Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'imet', 'middleware' => 'auth'], function (): void {
 
         // ####  common routes (v1 & v2) ####
         Route::get('import', [v2\Controller::class, 'import_view'])->name(Imet\Controller::ROUTE_PREFIX.'import_view');
@@ -47,7 +47,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
         Route::match(['get', 'post'], '/', [v2\Controller::class, 'index'])->name(Imet\Controller::ROUTE_PREFIX.'index');
 
         // #### IMET Version 1 ####
-        Route::group(['prefix' => 'v1'], function () {
+        Route::group(['prefix' => 'v1'], function (): void {
 
             Route::match(['get', 'post'], '/', [v1\Controller::class, 'index'])->name(v1\Controller::ROUTE_PREFIX.'index');     // alias
 
@@ -69,17 +69,17 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
             Route::delete('{item}', [v1\Controller::class, 'destroy']);
 
             // edit/show
-            Route::group(['prefix' => 'context'], function () {
+            Route::group(['prefix' => 'context'], function (): void {
                 Route::get('{item}/show/{step?}', [v1\ContextController::class, 'show'])->name(v1\Controller::ROUTE_PREFIX.'context_show');
                 Route::get('{item}/edit/{step?}', [v1\ContextController::class, 'edit'])->name(v1\Controller::ROUTE_PREFIX.'context_edit');
                 Route::patch('{item}', [v1\ContextController::class, 'update']);
             });
-            Route::group(['prefix' => 'evaluation'], function () {
+            Route::group(['prefix' => 'evaluation'], function (): void {
                 Route::get('{item}/show/{step?}', [v1\EvalController::class, 'show'])->name(v1\Controller::ROUTE_PREFIX.'evaluation_show');
                 Route::get('{item}/edit/{step?}', [v1\EvalController::class, 'edit'])->name(v1\Controller::ROUTE_PREFIX.'evaluation_edit');
                 Route::patch('{item}', [v1\EvalController::class, 'update']);
             });
-            Route::group(['prefix' => 'report'], function () {
+            Route::group(['prefix' => 'report'], function (): void {
                 Route::get('{item}/edit', [v1\ReportController::class, 'report'])->name(v1\Controller::ROUTE_PREFIX.'report_edit');
                 Route::get('{item}/show', [v1\ReportController::class, 'report_show'])->name(v1\Controller::ROUTE_PREFIX.'report_show');
                 Route::patch('{item}', [v1\ReportController::class, 'report_update'])->name(v1\Controller::ROUTE_PREFIX.'report_update');
@@ -87,7 +87,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
         });
 
         // #### IMET Version 2 ####
-        Route::group(['prefix' => 'v2'], function () {
+        Route::group(['prefix' => 'v2'], function (): void {
 
             Route::match(['get', 'post'], '/', [v2\Controller::class, 'index'])->name(v2\Controller::ROUTE_PREFIX.'index');    // alias
 
@@ -113,20 +113,20 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
             Route::post('prev_years', [v2\Controller::class, 'retrieve_prev_years'])->name(v2\Controller::ROUTE_PREFIX.'retrieve_prev_years');
 
             // edit/show
-            Route::group(['prefix' => 'context'], function () {
+            Route::group(['prefix' => 'context'], function (): void {
                 Route::get('{item}/edit/{step?}', [v2\ContextController::class, 'edit'])->name(v2\Controller::ROUTE_PREFIX.'context_edit');
                 Route::get('{item}/show/{step?}', [v2\ContextController::class, 'show'])->name(v2\Controller::ROUTE_PREFIX.'context_show');
                 Route::patch('{item}', [v2\ContextController::class, 'update']);
                 Route::get('raw_export/{item}/{slug}', [v2\ContextController::class, 'raw_export']);
             });
-            Route::group(['prefix' => 'evaluation'], function () {
+            Route::group(['prefix' => 'evaluation'], function (): void {
                 Route::get('{item}/edit/{step?}', [v2\EvalController::class, 'edit'])->name(v2\Controller::ROUTE_PREFIX.'evaluation_edit');
                 Route::get('{item}/show/{step?}', [v2\EvalController::class, 'show'])->name(v2\Controller::ROUTE_PREFIX.'evaluation_show');
                 Route::get('{item}/print', [v2\EvalController::class, 'print']);
                 Route::patch('{item}', [v2\EvalController::class, 'update']);
                 Route::get('raw_export/{item}/{slug}', [v2\EvalController::class, 'raw_export']);
             });
-            Route::group(['prefix' => 'report'], function () {
+            Route::group(['prefix' => 'report'], function (): void {
                 Route::get('{item}/edit', [v2\ReportController::class, 'report'])->name(v2\Controller::ROUTE_PREFIX.'report_edit');
                 Route::get('{item}/show', [v2\ReportController::class, 'report_show'])->name(v2\Controller::ROUTE_PREFIX.'report_show');
                 Route::patch('{item}', [v2\ReportController::class, 'report_update'])->name(v2\Controller::ROUTE_PREFIX.'report_update');
@@ -135,7 +135,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
         });
 
         // #### Scaling Up Analysis ####
-        Route::group(['prefix' => 'scaling_up'], function () {
+        Route::group(['prefix' => 'scaling_up'], function (): void {
 
             Route::match(['get', 'post'], '/', [ScalingUpAnalysisController::class, 'index'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_index');
             Route::post('analysis', [ScalingUpAnalysisController::class, 'analysis'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_analysis');
@@ -143,7 +143,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
             Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_download');
             Route::get('preview/{id}', [ScalingUpAnalysisController::class, 'preview_template'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_preview');
 
-            Route::group(['prefix' => 'basket'], function () {
+            Route::group(['prefix' => 'basket'], function (): void {
                 Route::post('add', [ScalingUpBasketController::class, 'save'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_basket_add');
                 Route::post('get', [ScalingUpBasketController::class, 'retrieve'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_basket_get');
                 Route::post('all', [ScalingUpBasketController::class, 'all'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_basket_all');
@@ -153,24 +153,24 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
 
         });
 
-        Route::group(['prefix' => 'tools'], function () {
+        Route::group(['prefix' => 'tools'], function (): void {
             Route::get('export_csv', [v2\Controller::class, 'exportListCSV'])->name(Imet\Controller::ROUTE_PREFIX.'csv_list');
             Route::get('export_csv/{ids}/{module_key}', [v2\Controller::class, 'exportModuleToCsv'])->name(Imet\Controller::ROUTE_PREFIX.'csv');
         });
 
         // ###### Selectors ######
-        Route::group(['prefix' => 'selector'], function () {
+        Route::group(['prefix' => 'selector'], function (): void {
 
-            Route::group(['prefix' => 'species'], function () {
+            Route::group(['prefix' => 'species'], function (): void {
                 Route::post('search', [SpeciesController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX.'selector.species.search');
             });
 
-            Route::group(['prefix' => 'pas'], function () {
+            Route::group(['prefix' => 'pas'], function (): void {
                 Route::post('search', [ProtectedAreaController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX.'selector.pas.search');
                 Route::post('labels', [ProtectedAreaController::class, 'get_labels'])->name(Imet\Controller::ROUTE_PREFIX.'selector.pas.labels');
             });
 
-            Route::group(['prefix' => 'users'], function () {
+            Route::group(['prefix' => 'users'], function (): void {
                 Route::post('search', [UsersController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX.'selector.users.search');
                 Route::post('labels', [UsersController::class, 'get_labels'])->name('selector.user.labels');
             });
@@ -183,7 +183,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
     | IMET OECM Routes
     |--------------------------------------------------------------------------
     */
-    Route::group(['prefix' => 'oecm', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'oecm', 'middleware' => 'auth'], function (): void {
 
         Route::match(['get', 'post'], '/', [oecm\Controller::class, 'index'])->name(oecm\Controller::ROUTE_PREFIX.'index');
 
@@ -204,21 +204,21 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
         Route::post('store', [oecm\ContextController::class, 'store']);
         Route::post('prev_years', [oecm\Controller::class, 'retrieve_prev_years'])->name(oecm\Controller::ROUTE_PREFIX.'retrieve_prev_years');
 
-        Route::group(['prefix' => 'context'], function () {
+        Route::group(['prefix' => 'context'], function (): void {
             Route::get('{item}/edit/{step?}', [oecm\ContextController::class, 'edit'])->name(oecm\Controller::ROUTE_PREFIX.'context_edit');
             Route::get('{item}/show/{step?}', [oecm\ContextController::class, 'show'])->name(oecm\Controller::ROUTE_PREFIX.'context_show');
             Route::patch('{item}', [oecm\ContextController::class, 'update']);
             Route::get('{item}/print_sa', [oecm\ContextController::class, 'print_sa'])->name(oecm\Controller::ROUTE_PREFIX.'print_sa');
             Route::get('raw_export/{item}/{slug}', [oecm\ContextController::class, 'raw_export']);
         });
-        Route::group(['prefix' => 'evaluation'], function () {
+        Route::group(['prefix' => 'evaluation'], function (): void {
             Route::get('{item}/edit/{step?}', [oecm\EvalController::class, 'edit'])->name(oecm\Controller::ROUTE_PREFIX.'evaluation_edit');
             Route::get('{item}/show/{step?}', [oecm\EvalController::class, 'show'])->name(oecm\Controller::ROUTE_PREFIX.'evaluation_show');
             Route::get('{item}/print', [oecm\EvalController::class, 'print']);
             Route::patch('{item}', [oecm\EvalController::class, 'update']);
             Route::get('raw_export/{item}/{slug}', [oecm\EvalController::class, 'raw_export']);
         });
-        Route::group(['prefix' => 'report'], function () {
+        Route::group(['prefix' => 'report'], function (): void {
             Route::get('{item}/edit', [oecm\ReportController::class, 'report'])->name(oecm\Controller::ROUTE_PREFIX.'report_edit');
             Route::get('{item}/show', [oecm\ReportController::class, 'report_show'])->name(oecm\Controller::ROUTE_PREFIX.'report_show');
             Route::patch('{item}', [oecm\ReportController::class, 'report_update'])->name(oecm\Controller::ROUTE_PREFIX.'report_update');

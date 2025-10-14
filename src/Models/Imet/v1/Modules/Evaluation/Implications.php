@@ -72,7 +72,7 @@ class Implications extends Modules\Component\ImetModule_Eval
     /**
      * Review data from SQLITE
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
         return static::convertGroupLabelToKey($record, 'GroupActor');
     }

@@ -87,7 +87,7 @@ trait ConvertSQLite
             ->where('FormID', $imet_data->FormID)
             ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
-            ->map(function ($record) use ($sqlite_structure) {
+            ->map(function ($record) use ($sqlite_structure): array {
 
                 $record = (array) $record;
                 $json = [];
@@ -127,10 +127,8 @@ trait ConvertSQLite
 
     /**
      * Replace OLD label with keys in the group filed of GROUP_TABLE nad GROUP_ACCORDION modules
-     *
-     * @return mixed
      */
-    protected static function convertGroupLabelToKey($record, $group_field)
+    protected static function convertGroupLabelToKey(array $record, string $group_field): array
     {
         // Clean whitespaces
         $record[$group_field] = Str::replace(' ', ' ', $record[$group_field]);

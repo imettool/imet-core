@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'scaling_up_wdpas'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'scaling_up_wdpas'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('scaling_id')->nullable();

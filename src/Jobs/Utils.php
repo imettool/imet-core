@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 trait Utils
 {
-    private static function log($message, $type = 'comment')
+    private static function log($message, $type = 'comment'): void
     {
         if (is_array($message) || is_object($message)) {
             $message = print_r($message, true);

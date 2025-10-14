@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_financial_resources_budget_lines'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_financial_resources_budget_lines'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();

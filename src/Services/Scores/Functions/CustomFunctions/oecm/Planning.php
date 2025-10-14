@@ -58,10 +58,10 @@ trait Planning
             ->toArray();
 
         $denominator = collect($records)
-            ->filter(function ($item) {
+            ->filter(function (array $item): bool {
                 return $item['EvaluationScore'] !== null;
             })
-            ->map(function ($item) {
+            ->map(function (array $item): int {
                 return $item['group_key'] === 'group0'
                     ? 3
                     : 1;
@@ -69,7 +69,7 @@ trait Planning
             ->sum();
 
         $score = collect($records)
-            ->map(function ($item) {
+            ->map(function (array $item) {
                 return $item['group_key'] === 'group0'
                     ? $item['EvaluationScore'] * 3
                     : $item['EvaluationScore'];

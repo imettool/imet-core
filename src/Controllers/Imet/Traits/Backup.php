@@ -29,7 +29,7 @@ trait Backup
     /**
      * Perform IMET backup if necessary (analyze existing ones)
      */
-    public function backup($item, string $version)
+    public function backup($item, string $version): void
     {
         if (ImetEnv::isImetOfflineEnv()) {
 
@@ -107,7 +107,7 @@ trait Backup
         return $form_backups;
     }
 
-    private function execute_backup($form, $filename)
+    private function execute_backup($form, string $filename): void
     {
         if (! Storage::exists($this->BACKUP_FOLDER)) {
             Storage::makeDirectory($this->BACKUP_FOLDER);

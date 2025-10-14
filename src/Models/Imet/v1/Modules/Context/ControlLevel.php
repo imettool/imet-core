@@ -54,7 +54,7 @@ class ControlLevel extends Modules\Component\ImetModule
         ];
     }
 
-    public static function areaPercentage($record, $area): ?float
+    public static function areaPercentage(array $record, $area): ?float
     {
 
         $result = null;
@@ -68,7 +68,7 @@ class ControlLevel extends Modules\Component\ImetModule
         return $result;
     }
 
-    public static function averageTime($record, $area): ?float
+    public static function averageTime(array $record, $area): ?float
     {
         $result = null;
         $value = $record['UnderControlPatrolManDay'];
@@ -81,7 +81,7 @@ class ControlLevel extends Modules\Component\ImetModule
         return $result;
     }
 
-    public static function areaPercentageConversion($record, $area): ?float
+    public static function areaPercentageConversion(array $record, $area): ?float
     {
         $result = null;
         $value = $record['UnderControlPatrolKm'];
@@ -94,7 +94,7 @@ class ControlLevel extends Modules\Component\ImetModule
         return $result;
     }
 
-    public static function averageTimeControlled($record, $area): ?float
+    public static function averageTimeControlled(array $record, $area): ?float
     {
         $result = null;
         $value = $record['UnderControlPatrolKm'];
@@ -107,7 +107,7 @@ class ControlLevel extends Modules\Component\ImetModule
         return $result;
     }
 
-    public static function ecologicalMonitoringPatrolKmPercentage($record, $area): ?float
+    public static function ecologicalMonitoringPatrolKmPercentage(array $record, $area): ?float
     {
         $result = null;
         $value = $record['EcologicalMonitoringPatrolKm'];

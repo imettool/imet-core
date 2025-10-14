@@ -97,7 +97,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      *
      * @return mixed
      */
-    public static function import($data)
+    public static function import(array $data)
     {
         unset($data['wdpa_id']);
         unset($data['id']);

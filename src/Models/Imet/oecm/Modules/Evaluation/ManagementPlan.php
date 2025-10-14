@@ -47,7 +47,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    private static function ensureNullValues($data)
+    private static function ensureNullValues(array $data): array
     {
         if ($data['PlanExistence'] === false || $data['PlanExistence'] === 'false') {
             $data['PlanUptoDate'] = false;
@@ -70,7 +70,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
     }
 
     #[\Override]
-    public static function importModule($form_id, $data): void
+    public static function importModule(int $form_id, ?array $data): void
     {
         $data = static::ensureNullValues($data);
         parent::importModule($form_id, $data);

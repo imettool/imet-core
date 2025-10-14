@@ -35,7 +35,7 @@ class UsersController extends __Controller
         $users = (config('imet-core.user'))::select(['id'])->where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
-            ->map(function ($item) {
+            ->map(function (array $item): array {
                 $role_isos = [];
                 $role_wdpas = [];
                 foreach ($item['imet_roles'] as $r) {
@@ -89,7 +89,7 @@ class UsersController extends __Controller
             $pairs = (config('imet-core.user'))::select(['id', 'first_name', 'last_name'])
                 ->where('id', $id)
                 ->get()
-                ->map(function ($user) {
+                ->map(function ($user): array {
                     return [
                         'id' => $user->id,
                         'name' => [$user->getName()],

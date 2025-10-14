@@ -6,7 +6,7 @@
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$fistGroupPerCategory = array_map(function($category){
+$fistGroupPerCategory = array_map(function(array $category){
     return $category[0];
 }, $vueData['groupsByCategory']);
 

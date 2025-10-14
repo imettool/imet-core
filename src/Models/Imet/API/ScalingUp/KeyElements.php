@@ -38,7 +38,7 @@ trait KeyElements
             $retrieve_key_elements = [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
-                })->map(function ($item) {
+                })->map(function ($item): array {
                     return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
                 })->all(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {

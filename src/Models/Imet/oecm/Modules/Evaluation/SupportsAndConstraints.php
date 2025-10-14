@@ -67,7 +67,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -84,18 +84,18 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             ->all();
     }
 
-    public static function calculateRanking($form_id): array
+    public static function calculateRanking(?int $form_id): array
     {
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function ($item) {
+            ->map(function ($item): array {
                 $item['__score'] = $item['Weight'] !== null && $item['ConstraintLevel'] !== null
                     ? $item['ConstraintLevel'] * $item['Weight']
                     : null;
 
                 return $item;
             })
-            ->toArray();
+            ->all();
     }
 }

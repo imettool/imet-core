@@ -96,7 +96,7 @@ class Species extends Animal
     private static function sortByLevenshteinDistance(Collection $collection, string $search_key): Collection
     {
         return $collection
-            ->map(function ($item) use ($search_key) {
+            ->map(function ($item) use ($search_key): \Illuminate\Database\Eloquent\Model {
                 $item['__levenshtein'] = max(
                     $item['phylum'] !== null ? levenshtein($item['phylum'], $search_key) : 0,
                     $item['class'] !== null ? levenshtein($item['class'], $search_key) : 0,

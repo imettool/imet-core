@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'countries'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'countries'), function (Blueprint $table): void {
             $table->text('iso2')->nullable();
             $table->text('iso3')->primary();
             $table->integer('iso')->nullable();

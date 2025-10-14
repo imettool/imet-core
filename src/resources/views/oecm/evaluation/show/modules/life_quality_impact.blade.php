@@ -14,7 +14,7 @@ $dom = HtmlPageCrawler::create(
 );
 
 foreach ($definitions['groups'] as $group_key => $group) {
-    $group_records = array_filter($records, function ($item) use ($group_key) {
+    $group_records = array_filter($records, function (array $item) use ($group_key): bool {
         return $item['group_key'] === $group_key;
     });
     $input = '<thead>

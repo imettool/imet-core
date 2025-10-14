@@ -20,7 +20,7 @@ foreach ($records as $record){
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
 $dom->filter('thead > tr > th')->eq(5)->append('<th class="text-center">' . trans('imet-core::oecm_context.ManagementStaff.fields.Difference') . '</th>');
-$dom->filter('tbody > tr')->each(function($row, $i) use ($diffs){
+$dom->filter('tbody > tr')->each(function($row, $i) use ($diffs): void{
     $diff_col = '<div class="field-preview">
                     <div class="text-right">' . $diffs[$i] . '</div>
                 </div>';

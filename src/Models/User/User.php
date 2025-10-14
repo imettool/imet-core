@@ -99,7 +99,7 @@ class User extends BaseUser
      *
      * @return mixed
      */
-    public static function searchByKey($search_key)
+    public static function searchByKey(string $search_key)
     {
         return static::query()->where('first_name', '~~*', '%'.$search_key.'%')
             ->orWhere('last_name', '~~*', '%'.$search_key.'%')

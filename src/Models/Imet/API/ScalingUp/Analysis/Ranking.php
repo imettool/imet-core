@@ -143,7 +143,7 @@ trait Ranking
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    private static function parse_data($data): array
+    private static function parse_data(array $data): array
     {
         $api = [];
         foreach ($data['xAxis'] as $key => $xAxi) {

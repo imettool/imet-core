@@ -267,7 +267,7 @@ class Ranking
         $assessments = count($assessment) ? $assessment : Common::get_assessments($form_ids);
         $items = $assessments['data'];
 
-        usort($items['assessments'], function ($first, $second) {
+        usort($items['assessments'], function (array $first, array $second): bool {
             return $first['imet_index'] < ($second['imet_index']);
         });
 

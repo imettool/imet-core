@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'encoders'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'encoders'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->string('first_name')->nullable();

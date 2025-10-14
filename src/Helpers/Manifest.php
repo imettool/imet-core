@@ -17,7 +17,7 @@ class Manifest
     /**
      * Retrieve hashed assets path from manifest file
      */
-    public static function asset($hashed_asset, $debug = false): string
+    public static function asset(string $hashed_asset, $debug = false): string
     {
         $asset_path = '/vendor/imet-core/';
         $path = public_path($asset_path);

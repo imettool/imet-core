@@ -93,7 +93,7 @@ class ImetModule extends Module
      * @throws ReflectionException
      */
     #[\Override]
-    public static function getDefinitions($form_id = null): array
+    public static function getDefinitions(?int $form_id = null): array
     {
         $definitions = parent::getDefinitions($form_id);
         $model = new static;
@@ -109,7 +109,7 @@ class ImetModule extends Module
     /**
      * Override: Get predefined_values according to form language
      */
-    protected static function getPredefined($form_id = null): ?array
+    protected static function getPredefined(?int $form_id = null): ?array
     {
         static::forceLanguage($form_id);
 
@@ -120,7 +120,7 @@ class ImetModule extends Module
      * Override: Check for "warning_on_save" labels
      */
     #[\Override]
-    public static function getVueData($form_id, $records, $definitions): array
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
 
@@ -131,7 +131,7 @@ class ImetModule extends Module
      * Override: update dependent modules
      */
     #[\Override]
-    public static function updateModuleRecords($records, $form_id): void
+    public static function updateModuleRecords(array $records, ?int $form_id): void
     {
         static::updateDependencies($records, $form_id);
         parent::updateModuleRecords($records, $form_id);

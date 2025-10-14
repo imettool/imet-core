@@ -66,10 +66,10 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
-                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item): bool {
                         return $item['IncludeInStatistics'] && $item['group_key'] === 'group0';
                     })->pluck('Aspect')->toArray(),
-                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
+                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item): bool {
                         return $item['IncludeInStatistics'] && $item['group_key'] === 'group1';
                     })->pluck('Aspect')->toArray(),
                     'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {

@@ -34,7 +34,7 @@ class ReportScalingUp
         ];
     }
 
-    private static function update_custom_names(Request $request, $items, $scaling_up_id): void
+    private static function update_custom_names(Request $request, string $items, int $scaling_up_id): void
     {
         $ids = explode(',', $items);
         foreach ($ids as $id) {
@@ -101,7 +101,7 @@ class ReportScalingUp
         static::checkAuthorization($items_array);
 
         // check if the parameters are an array of numbers and pa exist in the db
-        $filtered_array = array_filter($items_array, function ($value) {
+        $filtered_array = array_filter($items_array, function ($value): bool {
             return is_numeric($value) && Imet::query()->where('FormID', $value)->exists();
         });
 
@@ -118,7 +118,7 @@ class ReportScalingUp
 
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
-        uasort($protected_areas['models'], function ($a, $b) {
+        uasort($protected_areas['models'], function (array $a, array $b): bool {
             return $a['name'] > $b['name'];
         });
 

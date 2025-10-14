@@ -274,10 +274,7 @@ class Common
         }
     }
 
-    /**
-     * @return void
-     */
-    private static function checkIfRequestedPAHaveImetRecords(int $requested, int $exists)
+    private static function checkIfRequestedPAHaveImetRecords(int $requested, int $exists): void
     {
         if ($requested > 0 && $requested < $exists) {
             ApiController::sendAPIError(404, trans('imet-core::api.error_messages.more_than_one_protected_areas_found'));

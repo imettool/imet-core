@@ -62,7 +62,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 

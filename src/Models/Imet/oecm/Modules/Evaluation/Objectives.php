@@ -27,7 +27,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
         [AchievedObjectives::class, 'Objective'],
     ];
 
-    private static $cache_predefined_values;
+    private static ?array $cache_predefined_values = null;
 
     public function __construct(array $attributes = [])
     {
@@ -82,14 +82,14 @@ class Objectives extends Modules\Component\ImetModule_Eval
     {
         // Get list of values (of reference field) from DB and from updated records
         $existing_values = static::getModule($form_id)
-            ->filter(function ($item) {
+            ->filter(function ($item): bool {
                 return $item['group_key'] === 'group0'
                     || $item['Existence'];
             })
             ->pluck($dependency_on)
             ->toArray();
         $updated_values = collect($records)
-            ->filter(function ($item) {
+            ->filter(function ($item): bool {
                 return $item['group_key'] === 'group0'
                     || $item['Existence'];
             })

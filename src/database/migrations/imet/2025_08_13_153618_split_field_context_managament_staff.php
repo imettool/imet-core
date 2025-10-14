@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_management_staff'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_management_staff'), function (Blueprint $table): void {
             $table->decimal('ActualPermanentPartnersOrCommunities')->nullable();
         });
 
@@ -33,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_management_staff'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_management_staff'), function (Blueprint $table): void {
             $table->dropColumn('ActualPermanentPartnersOrCommunities');
         });
     }

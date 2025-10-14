@@ -178,7 +178,7 @@ class Role extends BaseModel
                 // filter by role WDPA
                 ->whereIn('wdpa_id', $allowed_role_wdpas)
                 // filter by role ISO
-                ->orWhere(function ($query) use ($allowed_role_countries) {
+                ->orWhere(function ($query) use ($allowed_role_countries): void {
                     foreach ($allowed_role_countries as $c) {
                         $query->orWhere('country', 'LIKE', '%'.$c.'%'); // use LIKE for over-national WDPAs
                     }

@@ -140,7 +140,7 @@ class Imet extends BaseImetForm
      * @throws \Exception
      */
     #[\Override]
-    public static function updateModuleAndForm($item, Request $request): array
+    public static function updateModuleAndForm(int $item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
 
@@ -164,7 +164,7 @@ class Imet extends BaseImetForm
      * Override: apply changes
      */
     #[\Override]
-    public static function upgradeModules($data, $imet_version = null): array
+    public static function upgradeModules(array $data, $imet_version = null): array
     {
         if (array_key_exists('FinancialResources', $data)) {
             $data = FinancialAvailableResources::copyCurrencyFromCTX213($data);

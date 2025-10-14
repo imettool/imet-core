@@ -182,7 +182,7 @@ trait ScalingUpApi
         return $response;
     }
 
-    private function auth_api($form_ids)
+    private function auth_api($form_ids): void
     {
         foreach ($form_ids as $form_id) {
             $this->authorize('api_scaling_up', $form_id);

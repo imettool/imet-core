@@ -101,7 +101,7 @@ class Areas extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getArea($form_id)
+    public static function getArea(?int $form_id): int|float|null
     {
         $areas = static::getModuleRecords($form_id)['records'];
         $area = 0;
@@ -128,7 +128,7 @@ class Areas extends Modules\Component\ImetModule
      * Override: retrieve the PA area (only when the module is empty)
      */
     #[\Override]
-    public static function getModuleRecords($form_id, $collection = null): array
+    public static function getModuleRecords(?int $form_id, ?\Illuminate\Database\Eloquent\Collection $collection = null): array
     {
         $records = parent::getModuleRecords($form_id, $collection);
 

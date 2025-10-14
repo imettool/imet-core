@@ -21,7 +21,7 @@ trait InjectInView
     /**
      * Inject marine/terrestre icon to predefined criteria (EDIT mode with Vue)
      */
-    public static function injectIconToPredefinedCriteriaWithVue($icon_type, $view, $vue_if): string
+    public static function injectIconToPredefinedCriteriaWithVue($icon_type, $view, string $vue_if): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         foreach ($dom->filter('tbody') as $tbody) {

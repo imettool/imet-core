@@ -50,11 +50,11 @@ class FinancialResourcesPartners extends Modules\Component\ImetModule
      * Override: force Currency from CTX 3.2.1
      */
     #[\Override]
-    public static function getModule($form_id = null): Collection
+    public static function getModule(?int $form_id = null): Collection
     {
         return parent::getModule($form_id)
             ->map(
-                function ($item) use ($form_id) {
+                function ($item) use ($form_id): \ModularForms\Models\Module {
                     $item->Currency = $item->Currency ?? FinancialResources::getCurrency($form_id);
 
                     return $item;
@@ -65,7 +65,7 @@ class FinancialResourcesPartners extends Modules\Component\ImetModule
     /**
      * Copy currency from CTX 3.2.1
      */
-    public static function copyCurrencyFromCTX213($data): array
+    public static function copyCurrencyFromCTX213(array $data): array
     {
         if (filled($data['FinancialResources'])) {
             $currency = $data['FinancialResources'][0]['Currency'];

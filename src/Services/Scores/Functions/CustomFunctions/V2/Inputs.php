@@ -26,7 +26,7 @@ trait Inputs
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
-            ->map(function ($record) {
+            ->map(function (array $record): array {
                 $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, (($record['ActualPermanent'] ?? 0) + ($record['ActualPermanentPartnersOrCommunities'] ?? 0)) / ($expected))
@@ -52,7 +52,7 @@ trait Inputs
     protected static function score_i2(int $imet_id): ?float
     {
         $values = Staff::getModule($imet_id)
-            ->map(function ($item) {
+            ->map(function (array $item): int|float {
                 return $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100;
             })
             ->all();
@@ -60,7 +60,7 @@ trait Inputs
         return static::average($values, 2);
     }
 
-    protected static function score_i3(int $imet_id)
+    protected static function score_i3(int $imet_id): ?float
     {
         $records = BudgetAdequacy::getModule($imet_id)
             ->toArray();
@@ -123,7 +123,7 @@ trait Inputs
             });
 
         $equipment_adequacy = ManagementEquipmentAdequacy::getModule($imet_id)
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $record['Importance'] = $record['Importance'] !== null
                     ? floatval($record['Importance'])
                     : 0;
@@ -132,7 +132,7 @@ trait Inputs
             })
             ->pluck('Importance', 'Equipment');
 
-        $values = $equipment->map(function ($item, $index) use ($equipment_adequacy) {
+        $values = $equipment->map(function ($item, $index) use ($equipment_adequacy): array {
             $importance = $equipment_adequacy[$index] ?? null;
             $imp_p1 = $importance + 1;
             $eq_imp = $imp_p1 * $item;

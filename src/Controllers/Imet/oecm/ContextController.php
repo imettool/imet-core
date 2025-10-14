@@ -12,13 +12,15 @@
 
 namespace ImetCore\Controllers\Imet\oecm;
 
+use Illuminate\Contracts\View\View;
+
 class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::oecm.context';
 
     protected static ?string $form_default_step = 'general_info';
 
-    public function print_sa($item)
+    public function print_sa($item): View
     {
         $this->authorize('view', (static::$form_class)::find($item));
 

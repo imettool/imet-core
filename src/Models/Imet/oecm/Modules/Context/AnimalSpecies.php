@@ -75,7 +75,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return static::getModule($form_id)
-            ->filter(function ($item) {
+            ->filter(function ($item): bool {
                 return filled($item['species']);
             })
             ->pluck('species')

@@ -29,7 +29,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'species'],
     ];
 
-    protected $validation_min3 = '';
+    protected array|\Illuminate\Contracts\Translation\Translator|string $validation_min3;
 
     public function __construct(array $attributes = [])
     {

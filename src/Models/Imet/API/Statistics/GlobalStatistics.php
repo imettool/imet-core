@@ -41,7 +41,7 @@ class GlobalStatistics
             ];
         }
 
-        $fn = function ($item) use (&$form_ids, &$imet_index_average, $wdpa_ids) {
+        $fn = function (array $item) use (&$form_ids, &$imet_index_average, $wdpa_ids): array {
             $key = $item['iucn_category'];
             $form_ids[$item['FormID']]['iucn_category'] = $key;
 
@@ -59,11 +59,11 @@ class GlobalStatistics
             ->get()
             ->map($fn);
 
-        $imet_index_average = array_map(function ($key, $item) {
+        $imet_index_average = array_map(function ($key, $item): array {
             return ['IUCNCategory' => $key, 'total' => round(array_sum($item) / count($item), 2)];
         }, array_keys($imet_index_average), $imet_index_average);
 
-        usort($imet_index_average, function ($a, $b) {
+        usort($imet_index_average, function (array $a, array $b): bool {
             return $a['total'] < $b['total'];
         });
 
@@ -84,7 +84,7 @@ class GlobalStatistics
 
         $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories->groupBy(DB::raw('iucn_category'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item) {
+            ->get()->map(function ($item): array {
                 return [
                     'iucn_category' => $item['iucn_category'],
                     'total' => $item['total'],
@@ -104,7 +104,7 @@ class GlobalStatistics
 
         $pa_number_or_marines_and_terrestrials = $pa_number_or_marines_and_terrestrials->groupBy(DB::raw('"Type"'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item) {
+            ->get()->map(function ($item): array {
                 $values = [];
                 if ($item['Type'] === 'terrestrial') {
                     $values['Type'] = ucfirst(trans('imet-core::common.terrestrial'));
@@ -203,7 +203,7 @@ class GlobalStatistics
 
         $number_of_pas_by_country = $number_of_pas_by_country->groupBy(DB::raw('"Country"'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item) use ($name) {
+            ->get()->map(function ($item) use ($name): array {
                 return ['country' => $item->country->$name, 'total' => $item->total];
             });
 
@@ -252,13 +252,13 @@ class GlobalStatistics
         $list_of_pas_rating_v1 = v1\Imet::query()->whereIn('FormID', $form_ids)->where('version', 'v1')->with($country_fields);
 
         $list_of_pas_rating_v2 = $list_of_pas_rating_v2->get()
-            ->map(function ($item) use ($name, &$i, $all_scores) {
+            ->map(function ($item) use ($name, &$i, $all_scores): array {
                 $i++;
 
                 return static::pas_rating_fields($item, $name, $i, $all_scores);
             })->toArray();
         $list_of_pas_rating_v1 = $list_of_pas_rating_v1->get()
-            ->map(function ($item) use ($name, &$i, $all_scores) {
+            ->map(function ($item) use ($name, &$i, $all_scores): array {
                 $i++;
 
                 return static::pas_rating_fields($item, $name, $i, $all_scores);
@@ -266,7 +266,7 @@ class GlobalStatistics
 
         $list_of_pas_rating = array_merge($list_of_pas_rating_v1, $list_of_pas_rating_v2);
         if (! $all_scores) {
-            usort($list_of_pas_rating, function ($a, $b) {
+            usort($list_of_pas_rating, function (array $a, array $b): bool {
                 return $a['imet_index'] < $b['imet_index'];
             });
         }

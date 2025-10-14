@@ -61,7 +61,7 @@ class Country extends BaseCountry
      *
      * @throws Exception
      */
-    public static function getByRegion($region): array
+    public static function getByRegion(string $region): array
     {
         if (strlen($region) === 2) {
             return static::query()->where('region_id', $region)->pluck('iso3')->toArray();
@@ -78,7 +78,7 @@ class Country extends BaseCountry
     {
         $allowed_countries = Role::allowedCountries();
         $collection = static::query()->select(['iso3', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($allowed_countries) {
+            ->where(function ($query) use ($allowed_countries): void {
                 if ($allowed_countries !== null) {
                     $query->whereIn('iso3', array_values($allowed_countries));
                 }

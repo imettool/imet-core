@@ -52,7 +52,7 @@ class Threats extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -86,7 +86,7 @@ class Threats extends Modules\Component\ImetModule_Eval
     /**
      * Calculate threat's ranking
      */
-    public static function calculateRanking($form_id, $records = null): array
+    public static function calculateRanking(?int $form_id, $records = null): array
     {
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 

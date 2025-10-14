@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Models\Module;
 
 class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 {
@@ -80,7 +81,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
@@ -96,10 +97,10 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    private static function getEcosystemServices($form_id)
+    private static function getEcosystemServices(?int $form_id)
     {
         return Modules\Context\EcosystemServices::getModule($form_id)
-            ->filter(function ($item) {
+            ->filter(function ($item): bool {
                 return $item['Importance'] !== null;
             })
             ->map(function ($item) {

@@ -20,7 +20,7 @@ class ThreatsService
     public static function calculateRanking(array $records): array
     {
         return collect($records)
-            ->map(function ($item) {
+            ->map(function (array $item): array {
 
                 $prod = 1
                     * ($item['Impact'] != null ? 4 - $item['Impact'] : 1)
@@ -52,6 +52,6 @@ class ThreatsService
                 return $item;
             })
             ->sortBy('__score')
-            ->toArray();
+            ->all();
     }
 }

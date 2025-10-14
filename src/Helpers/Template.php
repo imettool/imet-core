@@ -55,7 +55,7 @@ class Template
     /**
      * Return scope icon (marine or terrestrial)
      */
-    public static function module_scope($scope): string
+    public static function module_scope(?string $scope): string
     {
         if ($scope !== null) {
             return "<scope-icon scope='".$scope."'></scope-icon>";

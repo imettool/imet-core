@@ -21,7 +21,7 @@ trait Upgrade
     /**
      * Upgrade module record from a previous version (need to be instantiated wherever necessary)
      */
-    public static function upgradeModuleRecords($records, $imet_version = null): array
+    public static function upgradeModuleRecords(array $records, $imet_version = null): array
     {
         foreach ($records as $i => $record) {
             $records[$i] = static::upgradeModule($record, $imet_version);
@@ -41,7 +41,7 @@ trait Upgrade
     /**
      * Add a field to the given record (added in newer version)
      */
-    protected static function addField($record, $field): array
+    protected static function addField(array $record, $field): array
     {
         if (! array_key_exists($field, $record)) {
             $record[$field] = null;
@@ -53,7 +53,7 @@ trait Upgrade
     /**
      * Drop a field from the given record (removed in newer version)
      */
-    protected static function dropField($record, $field): array
+    protected static function dropField(array $record, string $field): array
     {
         if (array_key_exists($field, $record)) {
             unset($record[$field]);
@@ -68,7 +68,7 @@ trait Upgrade
     /**
      * Rename a field in the given record
      */
-    protected static function renameField($record, $from, $to): array
+    protected static function renameField($record, string $from, string $to): array
     {
         if (array_key_exists($from, $record)) {
             $record = static::addField($record, $to);
@@ -87,7 +87,7 @@ trait Upgrade
     /**
      * Replace an obsolete predefined value with a newer one
      */
-    protected static function replacePredefinedValue($record, $field, $old_value, $new_value): array
+    protected static function replacePredefinedValue(array $record, $field, $old_value, $new_value): array
     {
         $record[$field] = $record[$field] === $old_value ? $new_value : $record[$field];
 
@@ -97,7 +97,7 @@ trait Upgrade
     /**
      * Drop a record if predefined value had been removed
      */
-    protected static function dropIfPredefinedValueObsolete($record, $field, $old_value): ?array
+    protected static function dropIfPredefinedValueObsolete(array $record, $field, $old_value): ?array
     {
         return $record !== null && $record[$field] === $old_value
             ? null
@@ -109,7 +109,7 @@ trait Upgrade
      *
      * @throws Exception
      */
-    protected static function dropIfValueNotInPredefinedList($value, $list_key): ?string
+    protected static function dropIfValueNotInPredefinedList($value, string $list_key): ?string
     {
         // if value is a JSON string, decode it and check each value
         if (json_encode(json_decode($value)) === $value) {
@@ -132,7 +132,7 @@ trait Upgrade
     /**
      * Force amount value to the given currency
      */
-    protected static function forceCurrency($record, $field_currency, $fields_to_exchange): array
+    protected static function forceCurrency(array $record, $field_currency, $fields_to_exchange): array
     {
         if ($record[$field_currency] !== null && ! in_array($record[$field_currency], Currency::MINIMAL_CURRENCIES)) {
             $currency = $record[$field_currency] === 'CFA' ? 'XAF' : $record[$field_currency];
@@ -145,7 +145,7 @@ trait Upgrade
         return $record;
     }
 
-    protected static function replaceGroup($record, $group_field, $old_group, $new_group): array
+    protected static function replaceGroup(array $record, $group_field, $old_group, $new_group): array
     {
         $record[$group_field] = $record[$group_field] === $old_group ? $new_group : $record[$group_field];
 

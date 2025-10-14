@@ -35,7 +35,7 @@ class Basket extends BaseModel
         return static::query()->where('scaling_up_id', $id)->orderBy('id', 'asc')->get();
     }
 
-    public static function save_item($item)
+    public static function save_item(array $item)
     {
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);

@@ -30,7 +30,7 @@ trait Process
         $records = EquipmentMaintenance::getModule($imet_id);
 
         $values = $records
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $record['numerator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
@@ -59,13 +59,13 @@ trait Process
         $records = StakeholderCooperation::getModuleRecords($imet_id)['records'];
 
         $values = collect($records)
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['Weight'] !== null
                     && $record['Cooperation'] !== null
                     && $record['Cooperation'] !== -99;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             return $item['Cooperation'] * $item['Weight'];
         });
         $denominator = $values->sum('Weight');

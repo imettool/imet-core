@@ -50,7 +50,7 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-        $formula = function ($item) {
+        $formula = function (array $item): int|float {
             return (
                 $item['Patrol'] +
                 $item['RapidIntervention'] +
@@ -68,20 +68,20 @@ trait Outputs
 
         $sanctuary_score = $values
             ->where('group_key', 'group0')
-            ->map(function ($item) use ($formula) {
+            ->map(function ($item) use ($formula): float|int {
                 return $formula($item);
             })
             ->first();
 
         $no_take_score = $values
             ->where('group_key', 'group1')
-            ->map(function ($item) use ($formula) {
+            ->map(function ($item) use ($formula): float|int {
                 return $formula($item);
             })->avg();
 
         $buffer_zone_score = $values
             ->whereIn('group_key', ['group2', 'group3'])
-            ->map(function ($item) use ($formula) {
+            ->map(function ($item) use ($formula): float|int {
                 return $formula($item);
             })->avg();
 

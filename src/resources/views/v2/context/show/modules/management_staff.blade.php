@@ -14,7 +14,7 @@ $dom = HtmlPageCrawler::create(
 
 $table_dom = $dom->filter('table#table_' . $definitions['module_key']);
 $table_dom->filter('thead tr th')->eq(2)->after('<th>' . ucfirst(trans('imet-core::v2_context.ManagementStaff.fields.difference')) . '</th>');
-$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records) {
+$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
     $diff = intval($records[$index]['ActualPermanent']) + intval($records[$index]['ActualPermanentPartnersOrCommunities']) - intval($records[$index]['ExpectedPermanent']);
     $tr->filter('td')->eq(2)->after(
         '<td>

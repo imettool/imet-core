@@ -34,7 +34,7 @@ $table_dom->filter('thead tr th')->eq(4)->after(
          <th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.percentage')) . '</th>
     ');
 
-$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records) {
+$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
     $tr->filter('td')->eq(4)->after(
         '<td>
             ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $records[$index]['__sum_row'])) . '

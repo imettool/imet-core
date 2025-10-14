@@ -51,7 +51,7 @@ trait Merge
         $destination_form_id = $request->input('destination_form');
 
         $records = $module_class::exportModule($source_form_id);
-        $records = array_map(function ($item) use ($module_class, $destination_form_id) {
+        $records = array_map(function (array $item) use ($module_class, $destination_form_id): array {
             $item[(new $module_class)->getKeyName()] = null;
             $item[$module_class::$foreign_key] = $destination_form_id;
 

@@ -20,7 +20,7 @@ class OECM
     public static function getElementImpacts(int $form_id): array
     {
         // dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
-        return array_map(function ($item) {
+        return array_map(function (array $item): array {
             $effects = ['EffectSH', 'EffectER'];
             $item['average'] = '';
             $total_effect = 0;
@@ -78,13 +78,13 @@ class OECM
      * @param $key_elements
      * @return array
      */
-    public static function getBiodiversityGlobalThreats($form_id, $key_elements): array
+    public static function getBiodiversityGlobalThreats(int $form_id, $key_elements): array
     {
-        $global_threats = array_filter(static::getThreatsIntegration($form_id), function ($item) {
+        $global_threats = array_filter(static::getThreatsIntegration($form_id), function (array $item): bool {
             return $item['IncludeInStatistics'] !== null;
         });
 
-        $integration_threats = array_filter($key_elements, function ($item) {
+        $integration_threats = array_filter($key_elements, function (array $item): bool {
             return $item['group_key'] === 'group1';
         });
 
@@ -97,7 +97,7 @@ class OECM
     private static function getChartValues(array $values, string $label): array
     {
         $fields = [];
-        uasort($values, function ($a, $b) {
+        uasort($values, function (array $a, array $b): int {
 
             if ($a['__score'] == $b['__score']) {
                 return 0;
@@ -119,16 +119,16 @@ class OECM
         $score_field = $ecosystem ? 'Importance' : '__score';
 
         if ($ecosystem) {
-            $threats = array_filter($threats, function ($item) {
+            $threats = array_filter($threats, function (array $item): bool {
                 return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] !== null;
             });
         } else {
-            $threats = array_filter($threats, function ($item) {
+            $threats = array_filter($threats, function (array $item): bool {
                 return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] === null;
             });
         }
 
-        uasort($threats, function ($a, $b) use ($score_field) {
+        uasort($threats, function (array $a, array $b) use ($score_field): int {
 
             if ($a[$score_field] == $b[$score_field]) {
                 return 0;
@@ -167,14 +167,14 @@ class OECM
 
     public static function getKeyElementsEcosystems(array $values): array
     {
-        return array_filter($values, function ($item) {
+        return array_filter($values, function (array $item): bool {
             return $item['__group_stakeholders'] !== null;
         });
     }
 
     public static function getKeyElementsBiodiversity(array $values): array
     {
-        return array_filter($values, function ($item) {
+        return array_filter($values, function (array $item): bool {
             return $item['__group_stakeholders'] === null;
         });
     }
@@ -182,7 +182,7 @@ class OECM
     public static function getKeyElements(int $form_id): array
     {
         return collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
-            ->filter(function ($item) {
+            ->filter(function (array $item) {
                 return $item['IncludeInStatistics'];
             })
             ->toArray();
@@ -210,7 +210,7 @@ class OECM
         return $objectives;
     }
 
-    private static function objectivesSchema($index, $label, $items): array
+    private static function objectivesSchema(string $index, string $label, $items): array
     {
         $elements = [];
         foreach ($items as $item) {

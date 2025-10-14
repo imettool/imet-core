@@ -65,7 +65,7 @@ class Designation extends Modules\Component\ImetModule_Eval
     /**
      * Provide the list of prioritized key elements
      */
-    public static function getPrioritizedElements($form_id): array
+    public static function getPrioritizedElements(?int $form_id): array
     {
         return collect(static::getModuleRecords($form_id)['records'])
             ->filter(function ($item) {

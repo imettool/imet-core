@@ -49,12 +49,12 @@ class ManagementStaff extends Modules\Component\ImetModule
     /**
      * Calculate weights
      */
-    public static function calculateWeights($form_id): array
+    public static function calculateWeights(?int $form_id): array
     {
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function ($item) {
+            ->map(function ($item): array {
                 $item['__weight'] = round(sqrt($item['Number']), 2);
 
                 return $item;

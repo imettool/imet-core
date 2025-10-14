@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'eval_hr_management_politics'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::OECM_SCHEMA, 'eval_hr_management_politics'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();

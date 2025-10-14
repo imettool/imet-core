@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'regions'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'regions'), function (Blueprint $table): void {
             $table->string('id', 2)->primary();
             $table->text('name')->nullable();
             $table->text('name_fr')->nullable();

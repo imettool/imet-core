@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'scaling_up_basket'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'scaling_up_basket'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('order');
             $table->string('item', 500)->nullable();

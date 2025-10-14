@@ -11,7 +11,7 @@ $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
 );
 
-$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records) {
+$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records): void {
 
     $input = isset($records[$index]['_rank'])
         ? '<div class="text-left" style="padding: 4px;">
@@ -24,7 +24,7 @@ $dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($r
             </div>'
         : '';
 
-    $tr->filter('td')->first()->each(function ($td, $j) use ($input){
+    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void{
         $td->append($input);
     });
 });

@@ -11,7 +11,7 @@ $dom = HtmlPageCrawler::create('<div>'.$view_table.'</div>');
 
 
 // Inject scores into  table
-$dom->filter('table#table_imet__oecm__evaluation__threats_integration tr')->each(function ($tr, $index) use ($records) {
+$dom->filter('table#table_imet__oecm__evaluation__threats_integration tr')->each(function ($tr, $index) use ($records): void {
     $score = $index > 0 ? $records[$index - 1]['__score'] : null; // -1 because of header row
     if($score !== null){
         $score_text =
@@ -22,7 +22,7 @@ $dom->filter('table#table_imet__oecm__evaluation__threats_integration tr')->each
                 </div>
             </div>';
 
-        $tr->filter('td')->first()->each(function ($td, $_) use($score_text) {
+        $tr->filter('td')->first()->each(function ($td, $_) use($score_text): void {
             $td->append($score_text);   // -1 because of header row
         });
     }

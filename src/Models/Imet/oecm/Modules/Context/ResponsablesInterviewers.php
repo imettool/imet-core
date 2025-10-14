@@ -42,7 +42,7 @@ class ResponsablesInterviewers extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getNames($form_id)
+    public static function getNames(?int $form_id)
     {
         return static::getModule($form_id)
             ->map->only(['Name', 'Institution', 'Function'])

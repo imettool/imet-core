@@ -14,7 +14,7 @@ namespace ImetCore\Helpers;
 
 class Math
 {
-    public static function records_average($records, $field)
+    public static function records_average($records, $field): int|float
     {
         $sum = 0;
         $count = 0;

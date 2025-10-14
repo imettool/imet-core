@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'protected_areas'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'protected_areas'), function (Blueprint $table): void {
             $table->text('global_id')->primary();
             $table->text('country')->nullable();
             $table->integer('wdpa_id')->nullable();

@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'protected_areas_non_wdpa'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'protected_areas_non_wdpa'), function (Blueprint $table): void {
             $table->integer('id')->primary();
             $table->text('name')->nullable();
             $table->text('designation')->nullable();

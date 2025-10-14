@@ -39,7 +39,7 @@ class V1ToV2Scores extends _Scores
         $sum = ($scores['C1'] ?? 0)
             + (($scores['C2'] ?? 0) / 2 + 50)
             + (($scores['C3'] ?? 0) + 100);
-        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x) {
+        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function ($x): bool {
             return $x !== null;
         }));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
@@ -54,7 +54,7 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_planning($imet_id);
 
-        $conditional_p3 = function ($value) {
+        $conditional_p3 = function ($value): null|int|float {
             if ($value === null) {
                 return null;
             } elseif ($value === 0) {
@@ -86,7 +86,7 @@ class V1ToV2Scores extends _Scores
             + ($scores['P4'] ?? 0)
             + ($scores['P5'] ?? 0)
             + ($scores['P6'] ?? 0);
-        $count = count(array_filter($scores, function ($x) {
+        $count = count(array_filter($scores, function ($x): bool {
             return $x !== null;
         }));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
@@ -101,7 +101,7 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_inputs($imet_id);
 
-        $conditional_i3 = function ($value) {
+        $conditional_i3 = function ($value): int|float {
             if ($value === 0) {
                 return 0;
             } elseif ($value <= 17.5) {
@@ -115,7 +115,7 @@ class V1ToV2Scores extends _Scores
             }
         };
 
-        $conditional_i4 = function ($value) {
+        $conditional_i4 = function ($value): int|float {
             if ($value === 0) {
                 return 0;
             } elseif ($value <= 16.7) {
@@ -218,7 +218,7 @@ class V1ToV2Scores extends _Scores
         $sum = ($scores['OC1'] ?? 0)
             + ($scores['OC2'] / 2 + 50 ?? 0)
             + ($scores['OC3'] / 2 + 50 ?? 0);
-        $count = count(array_filter($scores, function ($x) {
+        $count = count(array_filter($scores, function ($x): bool {
             return $x !== null;
         }));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;

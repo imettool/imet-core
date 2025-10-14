@@ -250,7 +250,7 @@ class Radar
         }
 
         foreach ($total_categories as $k => $cat) {
-            usort($cat, function ($a, $b) {
+            usort($cat, function (array $a, array $b): bool {
                 return $a['value'] < $b['value'];
             });
             $total_categories[$k] = $cat;

@@ -117,7 +117,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData($form_id, $records, $definitions): array
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['groupsByCategory'] = static::$groupsByCategory;
@@ -125,7 +125,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         return $vue_data;
     }
 
-    public static function getStats($form_id)
+    public static function getStats(?int $form_id): array
     {
         $records = static::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
@@ -168,7 +168,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    private static function calculateStats($values, $rows = false)
+    private static function calculateStats($values, bool $rows = false): ?float
     {
         $numCategories = 4;
         $prod = 1;
@@ -176,7 +176,7 @@ class MenacesPressions extends Modules\Component\ImetModule
 
         foreach ($values as $index => $value) {
             if ($value !== null) {
-                if ($index === 3 && $rows === true) {
+                if ($index === 3 && $rows) {
                     $prod *= ($numCategories + 1) / 2 - $value * ($numCategories - 1) / 4;
                 } else {
                     $prod *= $numCategories - $value;
@@ -207,7 +207,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     /**
      * Review data from SQLITE
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
         return static::convertGroupLabelToKey($record, 'GroupValue');
     }

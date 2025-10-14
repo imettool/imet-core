@@ -24,19 +24,19 @@ class StakeholdersService
     public static function getAllRecords(int $form_id): array
     {
         $stakeholder_direct_records = collect(AnalysisStakeholderDirectUsers::getModuleRecords($form_id)['records'])
-            ->map(function ($item) {
+            ->map(function (array $item): array {
                 $item['__mode'] = Stakeholders::ONLY_DIRECT;
 
                 return $item;
             })
-            ->toArray();
+            ->all();
         $stakeholder_indirect_records = collect(AnalysisStakeholderIndirectUsers::getModuleRecords($form_id)['records'])
-            ->map(function ($item) {
+            ->map(function (array $item): array {
                 $item['__mode'] = Stakeholders::ONLY_INDIRECT;
 
                 return $item;
             })
-            ->toArray();
+            ->all();
 
         return array_merge($stakeholder_direct_records, $stakeholder_indirect_records);
     }
@@ -72,7 +72,7 @@ class StakeholdersService
             }
         }
 
-        $render_list = function ($elements) {
+        $render_list = function ($elements): string {
             $list = '';
             foreach ($elements as $elem_key => $spec_elements) {
                 $list .= ''.$elem_key;

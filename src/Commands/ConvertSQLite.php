@@ -40,7 +40,7 @@ class ConvertSQLite extends Command
 
     private $storage;
 
-    private $db_connection;
+    private ?ConnectionInterface $db_connection = null;
 
     /**
      * Create a new command instance.
@@ -103,7 +103,7 @@ class ConvertSQLite extends Command
     /**
      *  Create connection to SQLITE file
      */
-    private function db_connection($filename): ConnectionInterface
+    private function db_connection(string $filename): ConnectionInterface
     {
         Config::set('database.connections.sqlite_old', [
             'driver' => 'sqlite',
@@ -131,10 +131,8 @@ class ConvertSQLite extends Command
 
     /**
      * Convert IMET
-     *
-     * @return void
      */
-    private function convert($imet)
+    private function convert($imet): void
     {
         $json = Controller::convert($imet, $this->db_connection);
 

@@ -15,8 +15,6 @@ namespace ImetCore\Controllers\Imet\Traits;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -95,11 +93,9 @@ trait ImportExportJSON
     /**
      * return a list of Imet's for export in json/zip
      *
-     * @return Application|Factory|\Illuminate\Contracts\View\View
-     *
-     * @throws AuthorizationException
+     * @throws AuthorizationException|Throwable
      */
-    public function export_view(Request $request)
+    public function export_view(Request $request): View
     {
         $this->authorize('exportAll', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
@@ -132,12 +128,12 @@ trait ImportExportJSON
     {
         $model = ModuleKey::KeyToClassName($module_key);
 
-        $query = $model::where(function ($query) use ($ids) {
+        $query = $model::where(function ($query) use ($ids): void {
             if ($ids !== '' && $ids !== '0') {
                 $query->whereIn('FormID', explode(',', $ids));
             }
         })
-            ->whereHas('imet', function ($q) {
+            ->whereHas('imet', function ($q): void {
                 $q->where('version', Imet\Imet::IMET_V2);
             })
             ->get();
@@ -183,7 +179,7 @@ trait ImportExportJSON
 
         // retrieve countries labels and ids in an array for selections
         $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        $countries = array_map(function ($item) {
+        $countries = array_map(function (array $item) {
             return $item['name'];
         }, $countries);
 
@@ -316,7 +312,7 @@ trait ImportExportJSON
      *
      * @throws AuthorizationException
      */
-    public function import_view()
+    public function import_view(): View
     {
         $this->authorize('viewAny', static::$form_class);
 
@@ -334,7 +330,7 @@ trait ImportExportJSON
      * @throws FileNotFoundException
      * @throws Throwable
      */
-    public function import(Request $request, $json = null, bool $returnJson = true)
+    public function import(Request $request, $json = null, bool $returnJson = true): array|\Illuminate\Http\JsonResponse
     {
         try {
             if ($json === null) {
@@ -388,7 +384,7 @@ trait ImportExportJSON
      *
      * @throws FileNotFoundException
      */
-    protected static function import_modules($json, bool $with_report = true): array
+    protected static function import_modules(array $json, bool $with_report = true): array
     {
         $modules_imported = [];
         $imet_version = $json['Imet']['imet_version'] ?? null;

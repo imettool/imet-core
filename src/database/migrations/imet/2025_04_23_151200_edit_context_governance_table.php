@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table): void {
             $table->renameColumn('Type', 'GovernanceModel');
             $table->renameColumn('Comments', 'AdditionalInfo');
             $table->string('SubGovernanceModel', 250)->nullable();
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_governance'), function (Blueprint $table): void {
             $table->dropColumn('SubGovernanceModel');
             $table->renameColumn('GovernanceModel', 'Type');
             $table->renameColumn('AdditionalInfo', 'Comments');

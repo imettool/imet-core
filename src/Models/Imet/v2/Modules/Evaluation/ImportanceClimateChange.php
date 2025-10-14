@@ -67,7 +67,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     {
         if ($form_id !== null) {
             $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
-                ->filter(function ($item) {
+                ->filter(function ($item): bool {
                     return $item['Value'] !== null;
                 })
                 ->sortBy('Trend');
@@ -76,7 +76,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
             if (count($ctx_records) > 10) {
                 $max_allowed_rank = array_values($ctx_records->toArray())[9]['Trend'];
                 $ctx_records = $ctx_records
-                    ->filter(function ($item) use ($max_allowed_rank) {
+                    ->filter(function ($item) use ($max_allowed_rank): bool {
                         return $item['Trend'] <= $max_allowed_rank;
                     });
             }

@@ -75,7 +75,7 @@ class ScalingUpAnalysis extends Model
             $items[$k]['Country_name'] = Country::getByISO($pa['Country']);
         }
 
-        uasort($items, function ($a, $b) {
+        uasort($items, function (array $a, array $b): int {
             return strnatcmp($a['name'], $b['name']);
         });
 
@@ -202,7 +202,7 @@ class ScalingUpAnalysis extends Model
             $retrieve_key_elements = [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
                     return $item['IncludeInStatistics'];
-                })->map(function ($item) {
+                })->map(function ($item): array {
                     return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
                 })->all(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
@@ -249,38 +249,38 @@ class ScalingUpAnalysis extends Model
         foreach (array_keys($array_elements) as $keys) {
 
             foreach ($array_elements_count[$keys.'_count'] as $value) {
-                $key_elements[$keys] = array_filter($key_elements[$keys], function ($v) {
+                $key_elements[$keys] = array_filter($key_elements[$keys], function (array $v): bool {
                     return count($v[0]) > 1;
                 });
 
-                uasort($key_elements[$keys], function ($a, $b) {
+                uasort($key_elements[$keys], function (array $a, array $b): int {
                     return count($b[0]) <=> count($a[0]);
                 });
 
-                $array_elements_count[$keys.'_count'] = array_filter($array_elements_count[$keys.'_count'], function ($v) {
+                $array_elements_count[$keys.'_count'] = array_filter($array_elements_count[$keys.'_count'], function (int $v): bool {
                     return $v > 1;
                 });
 
-                uasort($array_elements_count[$keys.'_count'], function ($a, $b) {
+                uasort($array_elements_count[$keys.'_count'], function ($a, $b): int {
                     return $b <=> $a;
                 });
             }
         }
 
         foreach ($species_count as $k => $group) {
-            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], function ($v) {
+            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], function (array $v): bool {
                 return count($v[0]) > 1;
             });
 
-            uasort($key_elements['species'][$k], function ($a, $b) {
+            uasort($key_elements['species'][$k], function (array $a, array $b): int {
                 return count($b[0]) <=> count($a[0]);
             });
 
-            $species_count[$k] = array_filter($group, function ($v) {
+            $species_count[$k] = array_filter($group, function (int $v): bool {
                 return $v > 1;
             });
 
-            uasort($species_count[$k], function ($a, $b) {
+            uasort($species_count[$k], function ($a, $b): int {
                 return $b <=> $a;
             });
         }

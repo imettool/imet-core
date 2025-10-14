@@ -61,10 +61,8 @@ abstract class Report extends BaseModel
 
     /**
      * Update report
-     *
-     * @return void
      */
-    public static function updateByForm($form_id, $data)
+    public static function updateByForm($form_id, array $data): void
     {
         $report = static::query()->where('FormID', $form_id)->first();
         if ($report == null) {
@@ -94,10 +92,8 @@ abstract class Report extends BaseModel
 
     /**
      * Import report (from JSON export)
-     *
-     * @return void
      */
-    public static function import($form_id, $data)
+    public static function import($form_id, array $data): void
     {
         $report = new static;
         $data['FormID'] = $form_id;

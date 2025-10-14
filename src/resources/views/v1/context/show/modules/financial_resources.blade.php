@@ -6,7 +6,7 @@ $record = $records[0];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 \ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
-$fn = function ($value) {
+$fn = function ($value): bool {
     return !is_infinite($value) && $value > 0;
 };
 

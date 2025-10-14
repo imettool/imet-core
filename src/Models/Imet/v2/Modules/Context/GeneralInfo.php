@@ -63,7 +63,7 @@ class GeneralInfo extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData($form_id, $records, $definitions): array
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
 

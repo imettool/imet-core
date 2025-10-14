@@ -49,7 +49,7 @@ class Common
 
     public static function get_average(array $array, int $items_number = 0): ?float
     {
-        array_walk($array, function (&$item, $key) {
+        array_walk($array, function (&$item, $key): void {
             if ((string) $item === '-') {
                 $item = 0;
             }
@@ -58,7 +58,7 @@ class Common
         return $items_number !== 0 ? array_sum($array) / $items_number : null;
     }
 
-    public static function indicator_label($id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
+    public static function indicator_label(string $id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
     {
         return strtoupper(trans($path.$id)[0]).' '.trans($label.$id);
     }
@@ -162,11 +162,11 @@ class Common
                 $filtered[$form_id] = array_intersect_key($results[$form_id], $indicators);
             }
 
-            array_walk($filtered[$form_id], function (&$item) {
+            array_walk($filtered[$form_id], function (&$item): void {
                 $item = ((string) $item !== '') ? $item : '-';
             });
 
-            $number_of_indicators = count(array_filter($filtered[$form_id], function ($item) {
+            $number_of_indicators = count(array_filter($filtered[$form_id], function ($item): bool {
                 return (string) $item !== '-';
             }));
 
@@ -205,7 +205,7 @@ class Common
     /**
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function get_protected_area_data($form_id, bool $show_original_names = false)
+    private static function get_protected_area_data(int $form_id, bool $show_original_names = false)
     {
         if ($show_original_names) {
             $protected_area = Imet::query()->where('FormID', $form_id)->get();
@@ -274,11 +274,11 @@ class Common
             $assessments[0][$item] = static::round_number($sum / $count);
         }
 
-        uasort($assessments, function ($a, $b) {
+        uasort($assessments, function (array $a, array $b): int {
             return $b['name'] <=> $a['name'];
         });
 
-        $assessments_without_average = array_values(array_filter($assessments, function ($value) {
+        $assessments_without_average = array_values(array_filter($assessments, function (array $value): bool {
             return $value['name'] !== trans('imet-core::analysis_report.average');
         }));
 
@@ -310,7 +310,7 @@ class Common
     /**
      * @return string[]
      */
-    public static function get_labels_by_indicator($indicator): array
+    public static function get_labels_by_indicator(string $indicator): array
     {
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         $indicators = [

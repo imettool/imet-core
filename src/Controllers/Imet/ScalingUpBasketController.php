@@ -52,7 +52,7 @@ class ScalingUpBasketController extends __Controller
         return json_encode($items);
     }
 
-    public function clear(Request $request)
+    public function clear(Request $request): bool
     {
         $id = $request->input('id');
 

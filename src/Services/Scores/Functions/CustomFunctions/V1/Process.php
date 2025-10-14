@@ -24,10 +24,10 @@ trait Process
         $records = $records ?? StaffCompetence::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null;
             })
-            ->map(function ($record) use ($staff_weights) {
+            ->map(function (array $record) use ($staff_weights): array {
                 $record['eval_score'] = $record['EvaluationScore'] ?: $staff_weights[$record['Theme']]['ratio03'];
                 $record['weight'] = $record['EvaluationScore'] === null ? $staff_weights[$record['Theme']]['w_avg'] : 1;
 
@@ -35,7 +35,7 @@ trait Process
             });
 
         $sum_weight = $values->sum('weight');
-        $sum_weight_score = $values->sum(function ($item) {
+        $sum_weight_score = $values->sum(function (array $item): int|float {
             return $item['eval_score'] * $item['weight'];
         });
 
@@ -79,10 +79,10 @@ trait Process
         $records = ActorsRelations::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null;
             })
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $record['eval'] =
                     $record['EvaluationScore'] === -99
                         ? null
@@ -94,7 +94,7 @@ trait Process
         $count = $values->count();
         $sum = null;
         $values
-            ->map(function ($record) use (&$sum) {
+            ->map(function (array $record) use (&$sum): void {
                 if ($record['eval'] !== null) {
                     $sum += $record['eval'];
                 }

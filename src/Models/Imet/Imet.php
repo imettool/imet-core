@@ -109,7 +109,7 @@ abstract class Imet extends Form
         $list_v1 = v1\Imet::query()
             ->filterList($request->all())
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries) {
+            ->where(function ($query) use ($allowed_wdpas, $countries): void {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
@@ -120,7 +120,7 @@ abstract class Imet extends Form
             })
             ->get()
             // Replacement for PostgreSQL unaccent() function
-            ->filter(function ($item) use ($request) {
+            ->filter(function ($item) use ($request): bool {
                 if ($request->filled('search')) {
                     return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
                         || Str::contains($item['wdpa_id'], $request->input('search'));
@@ -132,7 +132,7 @@ abstract class Imet extends Form
         $list_v2 = v2\Imet::query()
             ->filterList($request->all())
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries) {
+            ->where(function ($query) use ($allowed_wdpas, $countries): void {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
@@ -143,7 +143,7 @@ abstract class Imet extends Form
             })
             ->get()
             // Replacement for PostgreSQL unaccent() function
-            ->filter(function ($item) use ($request) {
+            ->filter(function ($item) use ($request): bool {
                 if ($request->filled('search')) {
                     return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
                         || Str::contains($item['wdpa_id'], $request->input('search'));
@@ -165,7 +165,7 @@ abstract class Imet extends Form
         $hasDuplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item) use ($hasDuplicates) {
+            ->map(function ($item) use ($hasDuplicates): \Illuminate\Database\Eloquent\Model {
 
                 // Add encoders
                 $item->encoders_responsibles = [
@@ -249,16 +249,14 @@ abstract class Imet extends Form
 
     /**
      * Check and add missing Pa data (country, wdpa_id, pa_name) to form
-     *
-     * @return void
      */
-    public static function checkMissingPaData()
+    public static function checkMissingPaData(): void
     {
         static::query()->where('Country', null)
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
-            ->map(function ($imet) {
+            ->map(function ($imet): void {
                 /** @var Imet $imet */
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
                     ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
@@ -274,7 +272,7 @@ abstract class Imet extends Form
      *
      * @return mixed
      */
-    public static function getLanguage($form_id)
+    public static function getLanguage(string $form_id)
     {
         $session_key = 'imet_language_'.$form_id;
         $language = session($session_key, null);
@@ -390,7 +388,7 @@ abstract class Imet extends Form
      *
      * @return array
      */
-    public static function importForm($data)
+    public static function importForm(array $data)
     {
         if (! array_key_exists('wdpa_id', $data) || $data['wdpa_id'] === null) {
             $pa = ProtectedArea::getByGlobalId($data['protected_area_global_id']);
@@ -441,7 +439,7 @@ abstract class Imet extends Form
     /**
      * Upgrade modules from previous versions
      */
-    public static function upgradeModules($data, $imet_version = null): array
+    public static function upgradeModules(array $data, $imet_version = null): array
     {
         $upgraded_data = [];
         /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
@@ -458,7 +456,7 @@ abstract class Imet extends Form
     /**
      * Generate a filename for exporting form
      */
-    public function filename($extension): string
+    public function filename(string $extension): string
     {
         $name = Chars::clean(Chars::replaceAccents($this->name));
         $now = Date::now()->format('Y-m-d');
@@ -499,7 +497,7 @@ abstract class Imet extends Form
             ->groupBy('Year', 'wdpa_id', 'version')
             ->having(DB::raw('COUNT(*)'), '>', 1);
 
-        return static::query()->joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table) {
+        return static::query()->joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table): void {
             $join->on($table.'.Year', '=', 'dp.Year')
                 ->on($table.'.wdpa_id', '=', 'dp.wdpa_id')
                 ->on($table.'.version', '=', 'dp.version');

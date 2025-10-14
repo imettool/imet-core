@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'species'), function (Blueprint $table): void {
             $table->increments('id');
             $table->string('kingdom', 100)->nullable();
             $table->string('phylum', 100)->nullable();

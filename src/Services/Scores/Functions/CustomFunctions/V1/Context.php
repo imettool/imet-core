@@ -25,20 +25,20 @@ trait Context
         $records = ImportanceClassification::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0
                     && $record['SignificativeClassification'] !== null;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             $item['SignificativeClassification'] = is_string($item['SignificativeClassification'])
                 ? (boolval($item['SignificativeClassification']) ? 1 : 0)
                 : $item['SignificativeClassification'];
 
             return (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore'];
         });
-        $denominator = $values->sum(function ($item) {
+        $denominator = $values->sum(function (array $item): int|float {
             return 1 + 2 * $item['SignificativeClassification'];
         });
 
@@ -56,10 +56,10 @@ trait Context
         $records = ImportanceSpecies::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
-            })->map(function ($record) {
+            })->map(function (array $record): \ModularForms\Models\Module {
                 $record['SignificativeSpecies'] = $record['SignificativeSpecies'] === null
                     ? 0
                     : $record['SignificativeSpecies'];
@@ -67,14 +67,14 @@ trait Context
                 return $record;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
                 ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
                 : $item['SignificativeSpecies'];
 
             return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
         });
-        $denominator = $values->sum(function ($item) {
+        $denominator = $values->sum(function (array $item): int|float {
             $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
                 ? (boolval($item['SignificativeSpecies']) ? 1 : 0)
                 : $item['SignificativeSpecies'];
@@ -96,10 +96,10 @@ trait Context
         $records = ImportanceHabitats::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
-            })->map(function ($record) {
+            })->map(function (array $record): \ModularForms\Models\Module {
                 $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
                     ? 1
                     : $record['EvaluationScore2'];
@@ -107,7 +107,7 @@ trait Context
                 return $record;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             return $item['EvaluationScore2'] * $item['EvaluationScore'];
         });
         $denominator = $values->sum('EvaluationScore2');
@@ -127,13 +127,13 @@ trait Context
         $records = SupportsAndConstraints::getModule($imet_id);
 
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) !== -99
                     && intval($record['EvaluationScore']) > -4;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             return $item['EvaluationScore'] * $item['EvaluationScore2'];
         });
         $denominator = $values->sum(function ($item) {
@@ -158,7 +158,7 @@ trait Context
         $records = MenacesPressions::getModule($imet_id);
 
         $values = $records
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $impact = $record['Impact'] !== null ? $record['Impact'] * -1 + 4 : null;
                 $extension = $record['Extension'] !== null ? $record['Extension'] * -1 + 4 : null;
                 $duration = $record['Duration'] !== null ? $record['Duration'] * -1 + 4 : null;
@@ -184,7 +184,7 @@ trait Context
                 return $record;
             })
             ->groupBy('group_key')
-            ->map(function ($group) {
+            ->map(function ($group): int|float|null {
                 $group_values = $group
                     ->pluck('n_power')
                     ->toArray();

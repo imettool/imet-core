@@ -27,7 +27,7 @@ trait Process
         $records = StaffCompetence::getModule($imet_id);
 
         $values = $records
-            ->map(function ($record) use ($staff_weights) {
+            ->map(function (array $record) use ($staff_weights): \ModularForms\Models\Module {
                 if ($record['EvaluationScore'] !== null) {
                     $eval_score = $record['EvaluationScore'];
                 } elseif (isset($staff_weights[$record['Theme']])) {
@@ -49,10 +49,10 @@ trait Process
             });
 
         $weights = $values->sum('weight');
-        $weighted_eval_core = $values->sum(function ($item) {
+        $weighted_eval_core = $values->sum(function (array $item): int|float {
             return intval($item['eval_score']) * $item['weight'];
         });
-        $weighted_percentage = (function ($data) {
+        $weighted_percentage = (function ($data): null|int|float {
             $sum = 0;
             foreach ($data as $item) {
                 if ($item['PercentageLevel'] === null && $item['weight'] === null) {
@@ -82,7 +82,7 @@ trait Process
 
         $sum = null;
         if ($records->isNotEmpty()) {
-            $sum = $records->sum(function ($item) {
+            $sum = $records->sum(function (array $item): int {
                 return intval($item['EvaluationScoreGovernace']) + intval($item['EvaluationScoreLeadership']);
             });
         }
@@ -101,7 +101,7 @@ trait Process
         $records = EquipmentMaintenance::getModule($imet_id);
 
         $values = $records
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $record['numerator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
@@ -132,7 +132,7 @@ trait Process
         $terrestrial_avg = $records
             ->where('group_key', 'group0')
             ->pluck('Adequacy')
-            ->filter(function ($value) {
+            ->filter(function ($value): bool {
                 return $value != -99;
             })
             ->avg();
@@ -140,7 +140,7 @@ trait Process
         $marine_avg = $records
             ->where('group_key', 'group1')
             ->pluck('Adequacy')
-            ->filter(function ($value) {
+            ->filter(function ($value): bool {
                 return $value != -99;
             })
             ->avg();
@@ -159,7 +159,7 @@ trait Process
 
         $values = $records
             ->sortBy('Element')
-            ->map(function ($record) {
+            ->map(function (array $record): \ModularForms\Models\Module {
                 $record['score'] = $record['Cooperation'] === -99 ? 0 : $record['Cooperation'];
                 $record['weight'] =
                     ($record['MPInvolvement'] ?? 0) +
@@ -170,9 +170,9 @@ trait Process
                 return $record;
             })
             ->groupBy('group_key')
-            ->map(function ($group) {
+            ->map(function ($group): array {
                 $sw = $group->sum('weight');
-                $wi = (function ($data) {
+                $wi = (function ($data): int|float|null {
                     $sum = null;
                     foreach ($data as $item) {
                         if ($item['score'] === null || $item['weight'] === null) {

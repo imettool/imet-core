@@ -92,7 +92,7 @@ return new class extends Migration
     /**
      * Add region_id (required to maintain backward compatibility with old IMET JSONs - which still using global_id instead of wdpa_id)
      */
-    private function addRegion($data): array
+    private function addRegion(array $data): array
     {
         foreach ($data as $key => $country) {
             if (in_array($country['iso3'],

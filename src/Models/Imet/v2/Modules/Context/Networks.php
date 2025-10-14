@@ -55,7 +55,7 @@ class Networks extends Modules\Component\ImetModule
         $models = parent::getModule($form_id);
 
         // Upgrade existing data
-        $models->map(function ($model) {
+        $models->map(function ($model): void {
             $model->timestamps = false;
             $model->fill(
                 static::upgradeModule($model->toArray())

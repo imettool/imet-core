@@ -27,10 +27,7 @@ class ContextController extends Controller
         return static::$total_budget;
     }
 
-    /**
-     * @return void
-     */
-    public static function set_records_total_budget($value)
+    public static function set_records_total_budget($value): void
     {
         static::$total_budget = $value;
     }
@@ -40,10 +37,7 @@ class ContextController extends Controller
         return static::$financial_available_resources_totals;
     }
 
-    /**
-     * @return void
-     */
-    public static function set_financial_available_resources_totals($value)
+    public static function set_financial_available_resources_totals($value): void
     {
         static::$financial_available_resources_totals = $value;
     }

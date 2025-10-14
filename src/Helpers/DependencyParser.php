@@ -27,7 +27,7 @@ class DependencyParser extends BaseDependencyParser
     {
         $dependencies = parent::getNpmDirectDependencyList($includeDev);
 
-        return array_filter($dependencies, function ($dependency) {
+        return array_filter($dependencies, function (string $dependency): bool {
             return $dependency !== 'modular-forms';
         });
     }

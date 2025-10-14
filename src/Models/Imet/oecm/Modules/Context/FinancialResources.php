@@ -44,13 +44,13 @@ class FinancialResources extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getCurrency($form_id)
+    public static function getCurrency(?int $form_id)
     {
         return static::getModule($form_id)->first()
             ->Currency ?? null;
     }
 
-    public static function getTotalBudget($form_id)
+    public static function getTotalBudget(?int $form_id)
     {
         $records = static::getModuleRecords($form_id)['records'];
 

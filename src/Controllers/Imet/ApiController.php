@@ -192,7 +192,7 @@ class ApiController extends Controller
         $hasType = $request->has('type');
         $type = $request->input('type');
 
-        $list->map(function ($item) {
+        $list->map(function ($item): Imet\Imet {
             if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
                 $item->wdpa_id = null;
             }

@@ -126,14 +126,14 @@ class Imet extends BaseImetForm
         return Imet::query()
             ->filterList($request->all())
             ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas) {
+            ->where(function ($query) use ($allowed_wdpas): void {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
             ->get()
             // Replacement for PostgreSQL unaccent() function
-            ->filter(function ($item) use ($request) {
+            ->filter(function ($item) use ($request): bool {
                 if ($request->filled('search')) {
                     return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
                         || Str::contains($item['wdpa_id'], $request->input('search'));
@@ -154,7 +154,7 @@ class Imet extends BaseImetForm
         $duplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item) use ($duplicates) {
+            ->map(function ($item) use ($duplicates): \Illuminate\Database\Eloquent\Model {
 
                 // Add encoders
                 $item->encoders_responsibles = [
@@ -201,7 +201,7 @@ class Imet extends BaseImetForm
      * @throws \Exception
      */
     #[\Override]
-    public static function updateModuleAndForm($item, Request $request): array
+    public static function updateModuleAndForm(int $item, Request $request): array
     {
         $return = parent::updateModuleAndForm($item, $request);
 

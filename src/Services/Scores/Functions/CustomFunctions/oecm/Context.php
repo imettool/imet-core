@@ -24,10 +24,10 @@ trait Context
         $records = Designation::getModuleRecords($imet_id)['records'];
         $values = collect($records);
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item): int|float {
             return $item['EvaluationScore'] * ($item['SignificativeClassification'] ? 3 : 1);
         });
-        $denominator = $values->sum(function ($item) {
+        $denominator = $values->sum(function (array $item): int {
             return $item['SignificativeClassification'] ? 3 : 1;
         });
 
@@ -46,11 +46,11 @@ trait Context
 
         $records = $module_class::getModule($imet_id);
         $values = $records
-            ->filter(function ($record) {
+            ->filter(function (array $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
             })
-            ->map(function ($item) {
+            ->map(function (array $item): \ModularForms\Models\Module {
                 $importance = $item['Importance'];
                 $integration = $item['EvaluationScore'];
                 $toPrioritize = $item['IncludeInStatistics'];
@@ -75,11 +75,11 @@ trait Context
     protected static function score_support_contraints(int $imet_id): ?float
     {
         $values = collect(SupportsAndConstraints::calculateRanking($imet_id))
-            ->filter(function ($item) {
+            ->filter(function (array $item): bool {
                 return $item['__score'] !== null;
             });
 
-        $numerator = $values->sum(function ($item) {
+        $numerator = $values->sum(function (array $item) {
             return $item['__score'];
         });
         $denominator = $values->sum('Weight');

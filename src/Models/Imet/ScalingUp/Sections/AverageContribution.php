@@ -54,7 +54,7 @@ class AverageContribution
         $average_contribution['indicators'] = $indicators_average_contribution;
 
         if (array_key_exists('data', $average_contribution)) {
-            usort($average_contribution['data']['Average'], function ($a, $b) {
+            usort($average_contribution['data']['Average'], function (array $a, array $b): int {
                 return -($a['value'] <=> $b['value']);
             });
         }
@@ -135,7 +135,7 @@ class AverageContribution
                     $v = (int) $index + 1;
                 }
 
-                $values = array_filter(array_values($value), function ($v) {
+                $values = array_filter(array_values($value), function ($v): bool {
                     return is_numeric($v);
                 });
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
@@ -151,7 +151,7 @@ class AverageContribution
         return $average_contribution;
     }
 
-    private static function getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, string $colors, array $average_contribution, int $i, $index, string $label, string $type): array
+    private static function getAverage_contribution($average_value, $percentile_10, $percentile_90, int|string $v, string $colors, array $average_contribution, int $i, int|string $index, string $label, string $type): array
     {
         $average_contribution['data']['Average'][$i] = [
             'value' => $average_value,

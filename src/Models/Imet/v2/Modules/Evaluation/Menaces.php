@@ -78,7 +78,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
@@ -96,10 +96,10 @@ class Menaces extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    private static function getMenacesPressions($form_id)
+    private static function getMenacesPressions(?int $form_id)
     {
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
-            ->map(function ($item) {
+            ->map(function ($item){
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
                     [$item['Impact'], $item['Extension'], $item['Duration'], $item['Trend'], $item['Probability']],
                     true
@@ -113,7 +113,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
         if (count($ctx_records) > 10) {
             $max_allowed_rank = array_values($ctx_records->toArray())[9]['_rank'];
             $ctx_records = $ctx_records
-                ->filter(function ($item) use ($max_allowed_rank) {
+                ->filter(function ($item) use ($max_allowed_rank): bool {
                     return $item['_rank'] >= $max_allowed_rank;
                 });
         }

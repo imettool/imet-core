@@ -116,7 +116,7 @@ class Stakeholders extends Modules\Component\ImetModule
     /**
      * Retrieve stakeholders' list (grouped or not)
      */
-    public static function getStakeholders($form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
+    public static function getStakeholders(?int $form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
     {
         $query = static::getModule($form_id);
 
@@ -131,7 +131,7 @@ class Stakeholders extends Modules\Component\ImetModule
                 ->groupBy('Element')
                 ->map(function ($group) {
                     $categories = [];
-                    $group->map(function ($item) use (&$categories) {
+                    $group->map(function ($item) use (&$categories): void {
                         if ($item['UsesCategories'] !== null) {
                             $categories = array_merge($categories, json_decode($item['UsesCategories']));
                         }
@@ -152,7 +152,7 @@ class Stakeholders extends Modules\Component\ImetModule
     /**
      * Retrieve stakeholders' wights
      */
-    public static function calculateWeights($form_id, int $mode = self::ALL_USERS): array
+    public static function calculateWeights(?int $form_id, int $mode = self::ALL_USERS): array
     {
         $query = static::getModule($form_id);
 
@@ -165,10 +165,10 @@ class Stakeholders extends Modules\Component\ImetModule
         $records = $query->toArray();
 
         return collect($records)
-            ->filter(function ($item) {
+            ->filter(function ($item): bool {
                 return filled($item['Element']);
             })
-            ->map(function ($item) {
+            ->map(function ($item): array {
 
                 $UsesCategories = filled($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;

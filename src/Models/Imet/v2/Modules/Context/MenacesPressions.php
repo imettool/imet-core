@@ -128,7 +128,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData($form_id, $records, $definitions): array
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
         $vue_data['groupsByCategory'] = static::$groupsByCategory;
@@ -149,7 +149,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         return static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
     }
 
-    public static function getStats($form_id)
+    public static function getStats(?int $form_id): array
     {
         $records = static::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
@@ -192,7 +192,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    public static function calculateStats($values, $rows = false)
+    public static function calculateStats($values, $rows = false): ?float
     {
         $numCategories = 4;
         $prod = 1;
@@ -256,7 +256,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title): string
+    public static function injectGroupTitle($view, string $module_key, string $beforeGroup, string $title): string
     {
         $searchFor = '<h5 class="highlight group_title_'.$module_key.'_'.$beforeGroup.'"';
         $textToAdd = '<h3 class="group_title_'.$module_key.'_'.$beforeGroup.'">'.$title.'</h3>';
@@ -267,7 +267,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     /**
      * Inject
      */
-    public static function injectShowHideCategories($view, $parent, $groups): string
+    public static function injectShowHideCategories($view, string $parent, $groups): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         $vueIfDirective = 'isSubCategoryVisibly('.$parent.')';

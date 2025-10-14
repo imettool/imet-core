@@ -19,7 +19,7 @@ trait Outcomes
     protected static function score_oc2(int $imet_id): ?float
     {
         $records = KeyElementsImpact::getModule($imet_id)
-            ->filter(function ($item) {
+            ->filter(function (array $item): bool {
                 return $item['EffectSH'] !== null
                     && $item['ReliabilitySH'] !== null
                     && $item['EffectER'] !== null
@@ -27,7 +27,7 @@ trait Outcomes
             });
 
         return collect($records)
-            ->map(function ($item) {
+            ->map(function (array $item): \ModularForms\Models\Module {
 
                 if ($item['ReliabilitySH'] === 'high') {
                     $reliabilitySH = 3;

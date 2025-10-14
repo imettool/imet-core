@@ -33,7 +33,7 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
     foreach(MenacesPressions::$groupsByCategory as $category){
         foreach ($category as $group){
             $dom->filter('table#group_table_imet__v2__context__menaces_pressions_'.$group.' > tbody > tr')
-                ->each(function ($tr, $index) use($group, $stats) {
+                ->each(function ($tr, $index) use($group, $stats): void {
                     $tr->filter('td')
                         ->eq(6)
                         ->append('<div class="field-preview">'.$stats['rowStats'][$group][$index].'</div>');
