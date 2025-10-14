@@ -18,7 +18,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use ImetCore\Controllers\Imet\Controller as ImetController;
+use ImetCore\Controllers\Imet\v2\Controller;
 use ModularForms\Helpers\File\File;
+use Throwable;
 
 class Import extends Command
 {
@@ -51,9 +53,6 @@ class Import extends Command
 
     /**
      * Execute the console command.
-     *
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \Throwable
      */
     public function handle(): int
     {
@@ -65,11 +64,13 @@ class Import extends Command
                 if ($json !== null && isset($json['Imet']['version'])) {
                     $this->info('Importing file '.$file.'...');
                     try {
-                        $response = (new ImetController)->import(new Request, $json)->getContent();
+                        $response = (new Controller())->import(new Request, $json)->getContent();
                         if (Str::contains($response, 'success')) {
                             $this->info('Successfully imported.');
                         }
                     } catch (Exception $e) {
+                        $this->error('Error: '.$e->getMessage());
+                    } catch (Throwable $e) {
                         $this->error('Error: '.$e->getMessage());
                     }
 

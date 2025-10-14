@@ -388,7 +388,7 @@ abstract class Imet extends Form
      *
      * @return array
      */
-    public static function importForm(array $data)
+    public static function importForm(array $data): int
     {
         if (! array_key_exists('wdpa_id', $data) || $data['wdpa_id'] === null) {
             $pa = ProtectedArea::getByGlobalId($data['protected_area_global_id']);
