@@ -7,7 +7,7 @@
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 $num_cols = count($definitions['fields']);
 
 $original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions, 'group_key' => $group_key])->render();

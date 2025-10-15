@@ -75,9 +75,7 @@ class ScalingUpAnalysis extends Model
             $items[$k]['Country_name'] = Country::getByISO($pa['Country']);
         }
 
-        uasort($items, function (array $a, array $b): int {
-            return strnatcmp($a['name'], $b['name']);
-        });
+        uasort($items, fn (array $a, array $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
 
         return ['status' => 'success', 'data' => $items];
     }
@@ -127,7 +125,7 @@ class ScalingUpAnalysis extends Model
             if ($general_info_data[0]) {
                 $general_info = $general_info_data[0];
                 $lang = Locale::lower();
-                $name = 'name_'.(trim($lang) === '' ? 'en' : $lang);
+                $name = 'name_'.(trim((string) $lang) === '' ? 'en' : $lang);
                 $country_name = $general_info['Country'] ? Country::getByISO($general_info['Country'])->$name : '';
 
                 // echo $general_info['Country']."-".$country_name."\n";
@@ -200,23 +198,11 @@ class ScalingUpAnalysis extends Model
 
             $name = $protected_area['name'];
             $retrieve_key_elements = [
-                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->map(function ($item): array {
-                    return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
-                })->all(),
-                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
+                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->map(fn ($item): array => [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])])->all(),
+                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
             ];
             foreach ($retrieve_key_elements['species'] as $array_species) {
                 foreach ($array_species as $group => $species) {
@@ -249,40 +235,24 @@ class ScalingUpAnalysis extends Model
         foreach (array_keys($array_elements) as $keys) {
 
             foreach ($array_elements_count[$keys.'_count'] as $value) {
-                $key_elements[$keys] = array_filter($key_elements[$keys], function (array $v): bool {
-                    return count($v[0]) > 1;
-                });
+                $key_elements[$keys] = array_filter($key_elements[$keys], fn (array $v): bool => count($v[0]) > 1);
 
-                uasort($key_elements[$keys], function (array $a, array $b): int {
-                    return count($b[0]) <=> count($a[0]);
-                });
+                uasort($key_elements[$keys], fn (array $a, array $b): int => count($b[0]) <=> count($a[0]));
 
-                $array_elements_count[$keys.'_count'] = array_filter($array_elements_count[$keys.'_count'], function (int $v): bool {
-                    return $v > 1;
-                });
+                $array_elements_count[$keys.'_count'] = array_filter($array_elements_count[$keys.'_count'], fn (int $v): bool => $v > 1);
 
-                uasort($array_elements_count[$keys.'_count'], function ($a, $b): int {
-                    return $b <=> $a;
-                });
+                uasort($array_elements_count[$keys.'_count'], fn ($a, $b): int => $b <=> $a);
             }
         }
 
         foreach ($species_count as $k => $group) {
-            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], function (array $v): bool {
-                return count($v[0]) > 1;
-            });
+            $key_elements['species'][$k] = array_filter($key_elements['species'][$k], fn (array $v): bool => count($v[0]) > 1);
 
-            uasort($key_elements['species'][$k], function (array $a, array $b): int {
-                return count($b[0]) <=> count($a[0]);
-            });
+            uasort($key_elements['species'][$k], fn (array $a, array $b): int => count($b[0]) <=> count($a[0]));
 
-            $species_count[$k] = array_filter($group, function (int $v): bool {
-                return $v > 1;
-            });
+            $species_count[$k] = array_filter($group, fn (int $v): bool => $v > 1);
 
-            uasort($species_count[$k], function ($a, $b): int {
-                return $b <=> $a;
-            });
+            uasort($species_count[$k], fn ($a, $b): int => $b <=> $a);
         }
 
         $key_elements['species_statistics'] = $species_count;
@@ -465,9 +435,9 @@ class ScalingUpAnalysis extends Model
 
         $origType = $type;
         $extra_type_words = '';
-        if (str_contains($type, 'process')) {
+        if (str_contains((string) $type, 'process')) {
             // dd($type);
-            $name = explode('_', $type);
+            $name = explode('_', (string) $type);
             if (count($name) > 1) {
                 $extra_type_words = $name[0].'_'.$name[1] ?? '';
             }

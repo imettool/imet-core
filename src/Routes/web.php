@@ -26,12 +26,10 @@ use ImetCore\Middleware\SetLocale;
 Route::middleware([SetLocale::class, 'web'])->group(function (): void {
 
     // Old routes: to be kept for the moment to ensure backwards compatibility
-    Route::get('/{url}', function ($url) {
-        return Redirect::to('imet/');
-    })->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
-    Route::get('/{url}', function ($url) {
-        return Redirect::to('oecm/');
-    })->where(['url' => 'admin/oecm']);
+    Route::get('/{url}', fn ($url) => Redirect::to('imet/'))
+        ->where(['url' => 'admin/imet|admin/imet/v1|admin/imet/v2']);
+    Route::get('/{url}', fn ($url) => Redirect::to('oecm/'))
+        ->where(['url' => 'admin/oecm']);
 
     /*
     |--------------------------------------------------------------------------

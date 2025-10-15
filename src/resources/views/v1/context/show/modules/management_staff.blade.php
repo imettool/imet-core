@@ -5,7 +5,7 @@
 
 $record = $records[0];
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 $table_id = 'table_' . $definitions['module_key'];
 
 $diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($records);

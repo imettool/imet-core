@@ -29,24 +29,16 @@ trait Context
     protected static function score_c12(int $imet_id): ?float
     {
         $values = ImportanceSpecies::getModule($imet_id)
-            ->filter(function (ImportanceSpecies $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0
-                    && $record['IncludeInStatistics'] == 1;
-            })->map(function (ImportanceSpecies $record): ImportanceSpecies {
-                $record['SignificativeSpecies'] = $record['SignificativeSpecies'] === null
-                    ? 0
-                    : $record['SignificativeSpecies'];
+            ->filter(fn (ImportanceSpecies $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['IncludeInStatistics'] == 1)->map(function (ImportanceSpecies $record): ImportanceSpecies {
+                    $record['SignificativeSpecies'] ??= 0;
 
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function (ImportanceSpecies $item): int|float {
-            return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
-        });
-        $denominator = $values->sum(function (ImportanceSpecies $item): int|float {
-            return 1 + 2 * $item['SignificativeSpecies'];
-        });
+        $numerator = $values->sum(fn (ImportanceSpecies $item): int|float => (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore']);
+        $denominator = $values->sum(fn (ImportanceSpecies $item): int|float => 1 + 2 * $item['SignificativeSpecies']);
 
         $score = $denominator > 0
             ? $numerator / $denominator * 100 / 3
@@ -60,21 +52,15 @@ trait Context
     protected static function score_c13(int $imet_id): ?float
     {
         $values = ImportanceHabitats::getModule($imet_id)
-            ->filter(function (ImportanceHabitats $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0
-                    && $record['IncludeInStatistics'] == 1;
-            })->map(function (ImportanceHabitats $record): ImportanceHabitats {
-                $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
-                    ? 1
-                    : $record['EvaluationScore2'];
+            ->filter(fn (ImportanceHabitats $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['IncludeInStatistics'] == 1)->map(function (ImportanceHabitats $record): ImportanceHabitats {
+                    $record['EvaluationScore2'] ??= 1;
 
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function (ImportanceHabitats $item): int|float {
-            return $item['EvaluationScore2'] * $item['EvaluationScore'];
-        });
+        $numerator = $values->sum(fn (ImportanceHabitats $item): int|float => $item['EvaluationScore2'] * $item['EvaluationScore']);
         $denominator = $values->sum('EvaluationScore2');
         $denominator = $denominator === 0 ? null : $denominator;
 
@@ -101,9 +87,7 @@ trait Context
             })->keyBy('Element');
 
         $values = ImportanceEcosystemServices::getModule($imet_id)
-            ->filter(function (ImportanceEcosystemServices $record): bool {
-                return $record['IncludeInStatistics'] == 1;
-            })->map(function (ImportanceEcosystemServices $record) use ($ecosystem_services): ImportanceEcosystemServices {
+            ->filter(fn (ImportanceEcosystemServices $record): bool => $record['IncludeInStatistics'] == 1)->map(function (ImportanceEcosystemServices $record) use ($ecosystem_services): ImportanceEcosystemServices {
                 $record['score'] = $record['EvaluationScore'] < 0
                     ? null
                     : $record['EvaluationScore'];
@@ -113,16 +97,10 @@ trait Context
 
                 return $record;
             })
-            ->filter(function (ImportanceEcosystemServices $record): bool {
-                return $record['score'] !== null;
-            });
+            ->filter(fn (ImportanceEcosystemServices $record): bool => $record['score'] !== null);
 
-        $numerator = $values->sum(function (ImportanceEcosystemServices $item): int|float {
-            return ($item['weight'] ?? 0) * ($item['score'] / 3 ?? 0);
-        });
-        $denominator = $values->sum(function ($item) {
-            return $item['weight'] ?? 0;
-        });
+        $numerator = $values->sum(fn (ImportanceEcosystemServices $item): int|float => ($item['weight'] ?? 0) * ($item['score'] / 3 ?? 0));
+        $denominator = $values->sum(fn ($item): mixed => $item['weight'] ?? 0);
         $score = $denominator !== null && $denominator > 0
             ? $numerator / $denominator * 100
             : null;
@@ -135,22 +113,16 @@ trait Context
     protected static function score_c2(int $imet_id): ?float
     {
         $values = SupportsAndConstraints::getModule($imet_id)
-            ->filter(function (SupportsAndConstraints $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) > -4
-                    && $record['EvaluationScore2'] !== null
-                    && intval($record['EvaluationScore2']) > -4;
-            })->map(function (SupportsAndConstraints $record): SupportsAndConstraints {
-                $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
-                    ? 1
-                    : $record['EvaluationScore2'];
+            ->filter(fn (SupportsAndConstraints $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) > -4
+                && $record['EvaluationScore2'] !== null
+                && intval($record['EvaluationScore2']) > -4)->map(function (SupportsAndConstraints $record): SupportsAndConstraints {
+                    $record['EvaluationScore2'] ??= 1;
 
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function (SupportsAndConstraints $item): int|float {
-            return $item['EvaluationScore2'] * $item['EvaluationScore'];
-        });
+        $numerator = $values->sum(fn (SupportsAndConstraints $item): int|float => $item['EvaluationScore2'] * $item['EvaluationScore']);
         $denominator = $values->sum('EvaluationScore');
 
         $score = $denominator > 0

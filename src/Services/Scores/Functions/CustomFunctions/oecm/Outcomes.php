@@ -19,12 +19,10 @@ trait Outcomes
     protected static function score_oc2(int $imet_id): ?float
     {
         return KeyElementsImpact::getModule($imet_id)
-            ->filter(function (KeyElementsImpact $item): bool {
-                return $item['EffectSH'] !== null
-                    && $item['ReliabilitySH'] !== null
-                    && $item['EffectER'] !== null
-                    && $item['ReliabilityER'] !== null;
-            })
+            ->filter(fn (KeyElementsImpact $item): bool => $item['EffectSH'] !== null
+                && $item['ReliabilitySH'] !== null
+                && $item['EffectER'] !== null
+                && $item['ReliabilityER'] !== null)
             ->map(function (KeyElementsImpact $item): KeyElementsImpact {
 
                 if ($item['ReliabilitySH'] === 'high') {

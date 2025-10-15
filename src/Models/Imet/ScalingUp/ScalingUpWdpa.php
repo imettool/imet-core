@@ -45,7 +45,7 @@ class ScalingUpWdpa extends BaseModel
     {
         $saved_pas = [];
         foreach ($areas as $area) {
-            $rand_color = '#'.substr(md5(rand()), 0, 6); // 'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+            $rand_color = '#'.substr(md5(random_int(0, mt_getrandmax())), 0, 6); // 'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
             $saved_pas[] = static::query()->create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
         }
 

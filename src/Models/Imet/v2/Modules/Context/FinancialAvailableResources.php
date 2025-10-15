@@ -61,7 +61,7 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
         return parent::getModule($form_id)
             ->map(
                 function ($item) use ($form_id): \ModularForms\Models\Module {
-                    $item->Currency = $item->Currency ?? FinancialResources::getCurrency($form_id);
+                    $item->Currency ??= FinancialResources::getCurrency($form_id);
 
                     return $item;
                 }

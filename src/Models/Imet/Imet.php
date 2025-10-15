@@ -95,7 +95,7 @@ abstract class Imet extends Form
      */
     public function getLanguageAttribute($value): string
     {
-        return strtolower($value);
+        return strtolower((string) $value);
     }
 
     /**
@@ -382,7 +382,7 @@ abstract class Imet extends Form
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
             $pa->iucn_category = null;
-            $pa->creation_date = $pa->creation_date ?? null;
+            $pa->creation_date ??= null;
         } else {
             $pa = ProtectedArea::getByWdpa($wdpa_id);
         }

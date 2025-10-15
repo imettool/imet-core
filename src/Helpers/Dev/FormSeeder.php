@@ -315,7 +315,7 @@ class FormSeeder
 
             return collect($cached_list)
                 ->keys()
-                ->random(Str::contains($type, 'multiple') ? rand(2, 4) : null);
+                ->random(Str::contains($type, 'multiple') ? random_int(2, 4) : null);
         }
 
         if (Str::contains($type, 'rating')) {
@@ -326,7 +326,7 @@ class FormSeeder
                 $rating_type = Str::replace('WithNA', '', $rating_type);
             }
 
-            [$min, $max] = explode('to', $rating_type);
+            [$min, $max] = explode('to', (string) $rating_type);
             if (Str::contains($min, 'Minus')) {
                 $min = Str::replace('Minus', '-', $min);
             }
@@ -352,7 +352,7 @@ class FormSeeder
         // Standard
         if (Str::contains($type, 'selector-wdpa')) {
             if (Str::contains($type, 'multiple')) {
-                return implode(',', ProtectedArea::query()->inRandomOrder()->limit(rand(2, 5))->get()->pluck('wdpa_id')->toArray());
+                return implode(',', ProtectedArea::query()->inRandomOrder()->limit(random_int(2, 5))->get()->pluck('wdpa_id')->toArray());
             }
 
             return ProtectedArea::query()->inRandomOrder()->first()->wdpa_id;

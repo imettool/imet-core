@@ -44,18 +44,14 @@ trait Inputs
                 return $record;
             })
             ->keyBy('Function')
-            ->map(function ($record) {
-                return collect($record)->only(['Function', 'ActualPermanent', 'ActualPermanentPartnersOrCommunities', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']);
-            })
+            ->map(fn ($record) => collect($record)->only(['Function', 'ActualPermanent', 'ActualPermanentPartnersOrCommunities', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']))
             ->toArray();
     }
 
     protected static function score_i2(int $imet_id): ?float
     {
         $values = Staff::getModule($imet_id)
-            ->map(function (Staff $item): int|float {
-                return $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100;
-            })
+            ->map(fn (Staff $item): int|float => $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100)
             ->all();
 
         return static::average($values, 2);

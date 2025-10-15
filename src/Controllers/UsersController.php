@@ -31,7 +31,7 @@ class UsersController extends __Controller
     {
         $this->authorize('manage', static::$form_class);
 
-        $role_type = $role_type ?? Role::ROLE_ADMINISTRATOR;
+        $role_type ??= Role::ROLE_ADMINISTRATOR;
         $users = (config('imet-core.user'))::select(['id'])->where('imet_role', $role_type)
             ->with(['imet_roles.country_obj', 'imet_roles.wdpa_obj'])
             ->get()
@@ -89,12 +89,10 @@ class UsersController extends __Controller
             $pairs = (config('imet-core.user'))::select(['id', 'first_name', 'last_name'])
                 ->where('id', $id)
                 ->get()
-                ->map(function ($user): array {
-                    return [
-                        'id' => $user->id,
-                        'name' => [$user->getName()],
-                    ];
-                });
+                ->map(fn ($user): array => [
+                    'id' => $user->id,
+                    'name' => [$user->getName()],
+                ]);
         }
 
         return static::sendAPIResponse($pairs);
@@ -134,8 +132,8 @@ class UsersController extends __Controller
             foreach ($records as $record) {
                 if ($record['user'] !== null) {
                     $user_id = $record['user'];
-                    $wdpas = json_decode($record['role_wdpas']) ?? [];
-                    $isos = json_decode($record['role_isos']) ?? [];
+                    $wdpas = json_decode((string) $record['role_wdpas']) ?? [];
+                    $isos = json_decode((string) $record['role_isos']) ?? [];
 
                     $wdpas = array_unique(array_filter($wdpas));
                     $isos = array_unique(array_filter($isos));

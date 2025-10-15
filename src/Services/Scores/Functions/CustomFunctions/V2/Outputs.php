@@ -50,40 +50,32 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-        $formula = function (AreaDominationMPA $item): int|float {
-            return (
-                $item['Patrol'] +
-                $item['RapidIntervention'] +
-                (int) $item['DetectionRemoteSensing'] +
-                (int) $item['SpecialMeansRapidIntervention']
-            )
-                /
-                (
-                    ($item['Patrol'] === null ? 0 : 3) +
-                    ($item['RapidIntervention'] === null ? 0 : 3) +
-                    ($item['DetectionRemoteSensing'] === null ? 0 : 1) +
-                    ($item['SpecialMeansRapidIntervention'] === null ? 0 : 1)
-                ) * 100;
-        };
+        $formula = (fn (AreaDominationMPA $item): int|float => (
+            $item['Patrol'] +
+            $item['RapidIntervention'] +
+            (int) $item['DetectionRemoteSensing'] +
+            (int) $item['SpecialMeansRapidIntervention']
+        )
+            /
+            (
+                ($item['Patrol'] === null ? 0 : 3) +
+                ($item['RapidIntervention'] === null ? 0 : 3) +
+                ($item['DetectionRemoteSensing'] === null ? 0 : 1) +
+                ($item['SpecialMeansRapidIntervention'] === null ? 0 : 1)
+            ) * 100);
 
         $sanctuary_score = $values
             ->where('group_key', 'group0')
-            ->map(function ($item) use ($formula): float|int {
-                return $formula($item);
-            })
+            ->map(fn ($item): float|int => $formula($item))
             ->first();
 
         $no_take_score = $values
             ->where('group_key', 'group1')
-            ->map(function ($item) use ($formula): float|int {
-                return $formula($item);
-            })->avg();
+            ->map(fn ($item): float|int => $formula($item))->avg();
 
         $buffer_zone_score = $values
             ->whereIn('group_key', ['group2', 'group3'])
-            ->map(function ($item) use ($formula): float|int {
-                return $formula($item);
-            })->avg();
+            ->map(fn ($item): float|int => $formula($item))->avg();
 
         $score = self::average([$sanctuary_score, $no_take_score, $buffer_zone_score]);
 

@@ -35,7 +35,7 @@ trait Process
                 $record['denominator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : $record['AdequacyLevel'];
-                $record['denominator'] = $record['denominator'] ?? 0;
+                $record['denominator'] ??= 0;
 
                 return $record;
             });
@@ -57,15 +57,11 @@ trait Process
         $records = StakeholderCooperation::getModuleRecords($imet_id)['records'];
 
         $values = collect($records)
-            ->filter(function (array $record): bool {
-                return $record['Weight'] !== null
-                    && $record['Cooperation'] !== null
-                    && $record['Cooperation'] !== -99;
-            });
+            ->filter(fn (array $record): bool => $record['Weight'] !== null
+                && $record['Cooperation'] !== null
+                && $record['Cooperation'] !== -99);
 
-        $numerator = $values->sum(function (array $item): int|float {
-            return $item['Cooperation'] * $item['Weight'];
-        });
+        $numerator = $values->sum(fn (array $item): int|float => $item['Cooperation'] * $item['Weight']);
         $denominator = $values->sum('Weight');
 
         $score = $denominator > 0

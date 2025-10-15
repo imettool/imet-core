@@ -100,9 +100,9 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
     /**
      * Calculate threat's ranking
      */
-    public static function calculateRanking(?int $form_id, $records = null): array
+    public static function calculateRanking(?int $form_id, ?array $records = null): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records ??= static::getModuleRecords($form_id)['records'];
 
         return ThreatsService::calculateRanking($records);
     }

@@ -58,9 +58,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $predefined_values = $form_id !== null
             ? array_merge(
                 trans('imet-core::v2_evaluation.ClimateChangeMonitoring.predefined_values'),
-                Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray()
+                Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
             )
             : [];
 

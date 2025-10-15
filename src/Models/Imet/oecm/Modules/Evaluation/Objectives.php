@@ -82,17 +82,13 @@ class Objectives extends Modules\Component\ImetModule_Eval
     {
         // Get list of values (of reference field) from DB and from updated records
         $existing_values = static::getModule($form_id)
-            ->filter(function ($item): bool {
-                return $item['group_key'] === 'group0'
-                    || $item['Existence'];
-            })
+            ->filter(fn ($item): bool => $item['group_key'] === 'group0'
+                || $item['Existence'])
             ->pluck($dependency_on)
             ->toArray();
         $updated_values = collect($records)
-            ->filter(function (array $item): bool {
-                return $item['group_key'] === 'group0'
-                    || $item['Existence'];
-            })
+            ->filter(fn (array $item): bool => $item['group_key'] === 'group0'
+                || $item['Existence'])
             ->pluck($dependency_on)
             ->toArray();
 

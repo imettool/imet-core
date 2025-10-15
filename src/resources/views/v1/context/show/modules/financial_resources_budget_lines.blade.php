@@ -5,15 +5,13 @@
 
 $record = $records[0];
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_'.$definitions['module_key'];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $totals = \ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
-$totalBudget = array_reduce($totals, function ($carry, $item) {
-    return $carry + $item;
-});
+$totalBudget = array_reduce($totals, fn($carry, $item): float|int|array => $carry + $item);
 
 $cost = [];
 $percentage = [];

@@ -6,9 +6,7 @@
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$fistGroupPerCategory = array_map(function(array $category){
-    return $category[0];
-}, $vueData['groupsByCategory']);
+$fistGroupPerCategory = array_map(fn(array $category) => $category[0], $vueData['groupsByCategory']);
 
 $view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');

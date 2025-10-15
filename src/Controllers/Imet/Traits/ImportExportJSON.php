@@ -70,14 +70,14 @@ trait ImportExportJSON
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
                         $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
-                        $files[] = (new (get_called_class()))->import(new Request, $json, false);
+                        $files[] = (new (static::class))->import(new Request, $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
                 $json = json_decode(static::getUploadFileContent($uploaded), true);
-                $files[] = (new (get_called_class()))->import(new Request, $json, false);
+                $files[] = (new (static::class))->import(new Request, $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
@@ -182,9 +182,7 @@ trait ImportExportJSON
 
         // retrieve countries labels and ids in an array for selections
         $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
-        $countries = array_map(function (array $item) {
-            return $item['name'];
-        }, $countries);
+        $countries = array_map(fn (array $item) => $item['name'], $countries);
 
         $imet_keys = Imet\v2\Imet::getModulesKeys();
         $imet_eval_keys = Imet\v2\Imet_Eval::getModulesKeys();

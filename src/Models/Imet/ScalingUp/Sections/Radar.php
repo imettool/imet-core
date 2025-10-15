@@ -47,7 +47,7 @@ class Radar
             $i = 0;
             foreach ($values as $v => $value) {
                 if ($v !== 'avg') {
-                    if ($type === 'process' && stripos($v, '_') === true) {
+                    if ($type === 'process' && stripos((string) $v, '_') === true) {
                         $name = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
                     } else {
                         $name = Common::get_all_indicator_labels_cached()[$v];
@@ -250,9 +250,7 @@ class Radar
         }
 
         foreach ($total_categories as $k => $cat) {
-            usort($cat, function (array $a, array $b): bool {
-                return $a['value'] < $b['value'];
-            });
+            usort($cat, fn (array $a, array $b): bool => $a['value'] < $b['value']);
             $total_categories[$k] = $cat;
             foreach ($cat as $v) {
                 $name = $v['name'];

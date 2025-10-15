@@ -56,7 +56,7 @@ class Ranking
             }
 
             foreach ($values as $v => $value) {
-                if ($type === 'process' && stripos($v, '_')) {
+                if ($type === 'process' && stripos((string) $v, '_')) {
                     $name = Common::get_all_indicator_labels_cached()[$v].' _'.trans('imet-core::analysis_report.legends.'.$v);
                 } else {
                     $name = Common::get_all_indicator_labels_cached()[$v];
@@ -116,9 +116,7 @@ class Ranking
             }
         }
 
-        $average_values = array_map(function ($value, $i) use ($items_to_calculate) {
-            return $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0;
-        }, $sum_values, array_keys($sum_values));
+        $average_values = array_map(fn ($value, $i) => $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0, $sum_values, array_keys($sum_values));
         foreach ($percent_values as $k => $values) {
             foreach ($values as $kk => $value) {
                 if ($value !== ScalingUpAnalysis::UNDEFINED_VALUE) {
@@ -148,7 +146,7 @@ class Ranking
                 $new_ranking['actual_value'][$ind][$i] = $ranking['actual_value'][$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $new_ranking['xAxis'][$i] = $ranking['xAxis'][$k];
                 $new_ranking['wdpa_ids'][$i] = $ranking['wdpa_ids'][$k];
-                $reorder_separated_values_by_pa[$i] = isset($separated_values_by_pa[$k]) ? $separated_values_by_pa[$k] : [];
+                $reorder_separated_values_by_pa[$i] = $separated_values_by_pa[$k] ?? [];
                 $reorder_percent_values[$ind][$i] = $percent_values[$ind][$k] ?? ScalingUpAnalysis::UNDEFINED_VALUE;
                 $i++;
             }
@@ -267,9 +265,7 @@ class Ranking
         $assessments = $assessment !== [] ? $assessment : Common::get_assessments($form_ids);
         $items = $assessments['data'];
 
-        usort($items['assessments'], function (array $first, array $second): bool {
-            return $first['imet_index'] < ($second['imet_index']);
-        });
+        usort($items['assessments'], fn (array $first, array $second): bool => $first['imet_index'] < ($second['imet_index']));
 
         $i = 0;
         foreach ($items['assessments'] as $assessment) {

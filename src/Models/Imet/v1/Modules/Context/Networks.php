@@ -108,11 +108,9 @@ class Networks extends Modules\Component\ImetModule
         $record = self::convertGroupLabelToKey($record, 'NetworkType');
 
         if (filled($record['ProtectedAreas'])) {
-            $pas = json_decode($record['ProtectedAreas']);
+            $pas = json_decode((string) $record['ProtectedAreas']);
             $pas = array_filter($pas);
-            $pas = collect($pas)->map(function ($pa) use ($sqlite_connection): ?string {
-                return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
-            })->all();
+            $pas = collect($pas)->map(fn ($pa): ?string => Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection))->all();
             $pas = array_filter($pas);
             $record['ProtectedAreas'] = implode(',', $pas);
         }

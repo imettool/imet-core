@@ -67,18 +67,14 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
     {
         if ($form_id !== null) {
             $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
-                ->filter(function ($item): bool {
-                    return $item['Value'] !== null;
-                })
+                ->filter(fn ($item): bool => $item['Value'] !== null)
                 ->sortBy('Trend');
 
             // Filter first 10
             if (count($ctx_records) > 10) {
                 $max_allowed_rank = array_values($ctx_records->toArray())[9]['Trend'];
                 $ctx_records = $ctx_records
-                    ->filter(function ($item) use ($max_allowed_rank): bool {
-                        return $item['Trend'] <= $max_allowed_rank;
-                    });
+                    ->filter(fn ($item): bool => $item['Trend'] <= $max_allowed_rank);
             }
         }
 
@@ -86,9 +82,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? $ctx_records
-                    ->map(function ($item) {
-                        return $item['Value'];
-                    })
+                    ->map(fn ($item): mixed => $item['Value'])
                 : [],
         ];
     }

@@ -14,9 +14,7 @@ $dom = HtmlPageCrawler::create('<div>'.$view_groupTable.'</div>');
 foreach (['group0', 'group1'] as $group) {
 
     // Filter records by group
-    $group_records = array_values(array_filter($records, function (array $r) use ($group): bool {
-        return ($r['group_key'] == $group);
-    }));
+    $group_records = array_values(array_filter($records, fn(array $r): bool => $r['group_key'] == $group));
 
     // Inject scores into group table
     $dom->filter('table#group_table_imet__oecm__evaluation__supports_and_constraints_integration_' . $group . ' tr')->each(function ($tr, $index) use ($group_records): void {

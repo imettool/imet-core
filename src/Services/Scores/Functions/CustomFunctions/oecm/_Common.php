@@ -19,20 +19,14 @@ trait _Common
     public static function score_staff(int $imet_id, array $records): ?float
     {
         $values = collect($records)
-            ->filter(function (array $record): bool {
-                return $record['Weight'] !== null
-                    && $record['Adequacy'] !== null
-                    && $record['Adequacy'] !== -99;
-            });
+            ->filter(fn (array $record): bool => $record['Weight'] !== null
+                && $record['Adequacy'] !== null
+                && $record['Adequacy'] !== -99);
 
         $scores = $values->groupBy('group_key')
             ->map(function ($group): int|float|null {
-                $numerator = $group->sum(function (array $item): int|float {
-                    return $item['Adequacy'] * $item['Weight'];
-                });
-                $denominator = $group->sum(function (array $item) {
-                    return $item['Weight'];
-                });
+                $numerator = $group->sum(fn (array $item): int|float => $item['Adequacy'] * $item['Weight']);
+                $denominator = $group->sum(fn (array $item) => $item['Weight']);
 
                 return $denominator > 0
                     ? $numerator / $denominator * 100 / 3

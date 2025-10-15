@@ -3,18 +3,16 @@
 /** @var array $records */
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
-$group_key = $group_key ?? null;
+$group_key ??= null;
 
 if($definitions['module_type']==='GROUP_TABLE'){
-    $records = array_filter($records, function(array $item) use ($group_key, $definitions): bool{
-        return $item[$definitions['group_key_field']] === $group_key;
-    });
+    $records = array_filter($records, fn(array $item): bool => $item[$definitions['group_key_field']] === $group_key);
 }
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $num_cols = count($definitions['fields']);
 

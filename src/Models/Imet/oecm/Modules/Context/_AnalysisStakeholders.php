@@ -39,8 +39,8 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         // Add at least a record (empty) for each group (related to selected categories) per stakeholder
         $groups = array_keys(trans('imet-core::oecm_context.AnalysisStakeholders.groups'));
         foreach ($stakeholders as $stakeholder => $stakeholder_categories) {
-            $stakeholder_categories = json_decode($stakeholder_categories);
-            $stakeholder_categories = $stakeholder_categories !== null ? $stakeholder_categories : [];
+            $stakeholder_categories = json_decode((string) $stakeholder_categories);
+            $stakeholder_categories ??= [];
             foreach ($groups as $group) {
 
                 if (
@@ -78,7 +78,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     public static function calculateKeyElementsImportancesByUserMode(?int $form_id, $weights, $records = null): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records ??= static::getModuleRecords($form_id)['records'];
 
         return collect($records)
             ->map(function (array $item) use ($weights): array {
@@ -89,9 +89,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return $item;
             })
-            ->filter(function (array $item): bool {
-                return $item['__weighted_importance'] != null;
-            })
+            ->filter(fn (array $item): bool => $item['__weighted_importance'] != null)
             ->groupBy('Element')
             ->map(function ($group_element): array {
 
@@ -115,9 +113,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                     ->groupBy('Stakeholder')
                     ->map(function ($group_stakeholder): array {
                         $importance = $group_stakeholder
-                            ->map(function (array $item): ?float {
-                                return $item['__weighted_importance'];
-                            })
+                            ->map(fn (array $item): ?float => $item['__weighted_importance'])
                             ->avg();
 
                         return [
@@ -132,9 +128,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 // Aggregate importance on element
                 $importance = $group_element
-                    ->map(function (array $item): float|int|null {
-                        return $item['__weighted_importance'];
-                    })
+                    ->map(fn (array $item): float|int|null => $item['__weighted_importance'])
                     ->sum();
 
                 // Count how many stakeholders encoded the element
@@ -161,16 +155,14 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
         return $weights_sum > 0 ?
             collect($weights)
-                ->map(function ($item) use ($weights_sum): int|float {
-                    return $item / $weights_sum;
-                })
+                ->map(fn ($item): int|float => $item / $weights_sum)
                 ->all()
             : null;
     }
 
     public static function calculateKeyElementsImportances(?int $form_id, $records = null): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records ??= static::getModuleRecords($form_id)['records'];
         $weights = static::retrieveStakeholdersWeights($form_id);
 
         if (static::$USER_MODE === Stakeholders::ONLY_DIRECT) {
@@ -189,9 +181,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return $item;
             })
-            ->mapWithKeys(function (array $item): array {
-                return [$item['element'] => $item];
-            });
+            ->mapWithKeys(fn (array $item): array => [$item['element'] => $item]);
         $key_elements_importance_indirect = collect($key_elements_importance_indirect)
             ->map(function (array $item) {
                 $item['importance_indirect'] = $item['importance'];
@@ -200,9 +190,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return $item;
             })
-            ->mapWithKeys(function (array $item): array {
-                return [$item['element'] => $item];
-            });
+            ->mapWithKeys(fn (array $item): array => [$item['element'] => $item]);
 
         // merge
         $key_elements_importances = $key_elements_importance_direct;
@@ -214,10 +202,10 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
         // Sum importances & counts
         $key_elements_importances = $key_elements_importances->map(function (array $item): array {
-            $item['importance_direct'] = $item['importance_direct'] ?? 0;
-            $item['importance_indirect'] = $item['importance_indirect'] ?? 0;
-            $item['stakeholder_direct_count'] = $item['stakeholder_direct_count'] ?? 0;
-            $item['stakeholder_indirect_count'] = $item['stakeholder_indirect_count'] ?? 0;
+            $item['importance_direct'] ??= 0;
+            $item['importance_indirect'] ??= 0;
+            $item['stakeholder_direct_count'] ??= 0;
+            $item['stakeholder_indirect_count'] ??= 0;
 
             $item['importance'] = $item['importance_direct'] + $item['importance_indirect'];
             $item['stakeholder_count'] = $item['stakeholder_direct_count'] + $item['stakeholder_indirect_count'];

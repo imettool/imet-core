@@ -17,9 +17,7 @@ $num_cols = count($definitions['fields']);
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
     ->groupBy('Stakeholder')
-    ->map(function ($group) {
-        return $group->groupBy('group_key');
-    })
+    ->map(fn($group) => $group->groupBy('group_key'))
     ->toArray();
 
 $stakeholders_categories = Stakeholders::getStakeholders(

@@ -59,7 +59,7 @@ class Import extends Command
         foreach ($this->storage->files() as $file) {
             if (Str::endsWith($file, '.json')) {
                 $file_content = $this->storage->get($file);
-                $json = json_decode($file_content, true);
+                $json = json_decode((string) $file_content, true);
                 if ($json !== null && isset($json['Imet']['version'])) {
                     $this->info('Importing file '.$file.'...');
                     try {
@@ -67,9 +67,7 @@ class Import extends Command
                         if (Str::contains($response, 'success')) {
                             $this->info('Successfully imported.');
                         }
-                    } catch (Exception $e) {
-                        $this->error('Error: '.$e->getMessage());
-                    } catch (Throwable $e) {
+                    } catch (Exception|Throwable $e) {
                         $this->error('Error: '.$e->getMessage());
                     }
 

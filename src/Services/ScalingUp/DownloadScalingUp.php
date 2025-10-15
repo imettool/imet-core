@@ -21,7 +21,7 @@ class DownloadScalingUp
         if (count($scaling_ups) > 0) {
             $item = ModelScalingUpAnalysis::query()->where('id', $scaling_id)->first();
 
-            static::checkAuthorization(explode(',', $item->wdpas));
+            static::checkAuthorization(explode(',', (string) $item->wdpas));
 
             foreach ($scaling_ups as $record) {
                 $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$record->item;

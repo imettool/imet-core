@@ -23,7 +23,7 @@ class ModuleKey
      */
     public static function KeyToClassName($module_key): ?string
     {
-        $items = explode(self::separator, $module_key);
+        $items = explode(self::separator, (string) $module_key);
 
         $module_class = 'ImetCore\\Models';
         foreach ($items as $index => $item) {

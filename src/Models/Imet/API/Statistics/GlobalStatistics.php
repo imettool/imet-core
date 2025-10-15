@@ -60,13 +60,9 @@ class GlobalStatistics
             ->get()
             ->map($fn);
 
-        $imet_index_average = array_map(function ($key, $item): array {
-            return ['IUCNCategory' => $key, 'total' => round(array_sum($item) / count($item), 2)];
-        }, array_keys($imet_index_average), $imet_index_average);
+        $imet_index_average = array_map(fn ($key, $item): array => ['IUCNCategory' => $key, 'total' => round(array_sum($item) / count($item), 2)], array_keys($imet_index_average), $imet_index_average);
 
-        usort($imet_index_average, function (array $a, array $b): bool {
-            return $a['total'] < $b['total'];
-        });
+        usort($imet_index_average, fn (array $a, array $b): bool => $a['total'] < $b['total']);
 
         return ['data' => $imet_index_average];
     }
@@ -91,12 +87,10 @@ class GlobalStatistics
             ->groupBy(DB::raw('iucn_category'))
             ->orderBy('total', 'desc')
             ->get()
-            ->map(function (ProtectedArea $item): array {
-                return [
-                    'iucn_category' => $item['iucn_category'],
-                    'total' => $item['total'],
-                ];
-            });
+            ->map(fn (ProtectedArea $item): array => [
+                'iucn_category' => $item['iucn_category'],
+                'total' => $item['total'],
+            ]);
 
         return ['data' => $number_of_pas_per_iucn_categories];
     }
@@ -213,9 +207,7 @@ class GlobalStatistics
 
         $number_of_pas_by_country = $number_of_pas_by_country->groupBy(DB::raw('"Country"'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item) use ($name): array {
-                return ['country' => $item->country->$name, 'total' => $item->total];
-            });
+            ->get()->map(fn ($item): array => ['country' => $item->country->$name, 'total' => $item->total]);
 
         return ['data' => $number_of_pas_by_country];
     }
@@ -276,9 +268,7 @@ class GlobalStatistics
 
         $list_of_pas_rating = array_merge($list_of_pas_rating_v1, $list_of_pas_rating_v2);
         if (! $all_scores) {
-            usort($list_of_pas_rating, function (array $a, array $b): bool {
-                return $a['imet_index'] < $b['imet_index'];
-            });
+            usort($list_of_pas_rating, fn (array $a, array $b): bool => $a['imet_index'] < $b['imet_index']);
         }
 
         if ($only_top_rating) {

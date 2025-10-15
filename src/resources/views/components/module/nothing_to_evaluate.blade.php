@@ -4,8 +4,8 @@
 
 use \ModularForms\Enums\ModuleViewModes;
 
-$num_cols = $num_cols ?? 3;
-$mode = $mode ?? ModuleViewModes::EDIT;
+$num_cols ??= 3;
+$mode ??= ModuleViewModes::EDIT;
 
 ?>
 

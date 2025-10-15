@@ -71,9 +71,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? static::getMenacesPressions($form_id)
-                    ->map(function (Modules\Context\MenacesPressions $item) {
-                        return $item['Value'];
-                    })
+                    ->map(fn (Modules\Context\MenacesPressions $item): mixed => $item['Value'])
                 : [],
         ];
     }
@@ -113,9 +111,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
         if (count($ctx_records) > 10) {
             $max_allowed_rank = array_values($ctx_records->toArray())[9]['_rank'];
             $ctx_records = $ctx_records
-                ->filter(function ($item) use ($max_allowed_rank): bool {
-                    return $item['_rank'] >= $max_allowed_rank;
-                });
+                ->filter(fn ($item): bool => $item['_rank'] >= $max_allowed_rank);
         }
 
         return $ctx_records;

@@ -30,9 +30,7 @@ class CustomInputPreview extends InputPreview
             if (Str::contains($this->type, 'selector-wdpa_multiple')) {
                 $list = '';
                 if (filled($this->value)) {
-                    $list = array_map(function ($v) {
-                        return ProtectedArea::getByWdpa($v)->name;
-                    }, explode(',', $this->value));
+                    $list = array_map(fn ($v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
                     $list = implode(', ', $list);
                 }
 

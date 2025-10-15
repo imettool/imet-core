@@ -24,7 +24,7 @@ return new class extends Migration
     {
         // CSV retrieved from https://stefangabos.github.io/world_countries/
 
-        $filename = dirname(__FILE__).'/countries.csv';
+        $filename = __DIR__.'/countries.csv';
         $data = [];
 
         // Read the CSV file and extract the countries

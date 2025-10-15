@@ -97,7 +97,7 @@ class Networks extends Modules\Component\ImetModule
     {
         $value = $record[$field['name']] ?? null;
         if ($field['name'] === 'ProtectedAreas') {
-            $pas = explode(',', $value);
+            $pas = explode(',', (string) $value);
             $value = '';
             $pas_length = count($pas);
             for ($index = 0; $index < $pas_length; $index++) {

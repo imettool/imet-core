@@ -47,7 +47,7 @@ class StakeholdersService
         foreach ($stakeholder_records as $record) {
             if ($record['Element'] !== null && $record['Threats'] !== null) {
                 foreach (json_decode($record['Threats']) as $threat) {
-                    $threats[$threat] = $threats[$threat] ?? [
+                    $threats[$threat] ??= [
                         'stakeholders_direct' => [],
                         'stakeholders_indirect' => [],
                         'elements_legal' => [],
@@ -62,10 +62,10 @@ class StakeholdersService
                     }
 
                     if ($record['Illegal']) {
-                        $threats[$threat]['elements_illegal'][$record['Element']] = $threats[$threat]['elements_illegal'][$record['Element']] ?? [];
+                        $threats[$threat]['elements_illegal'][$record['Element']] ??= [];
                         $threats[$threat]['elements_illegal'][$record['Element']][] = $record['Description'];
                     } else {
-                        $threats[$threat]['elements_legal'][$record['Element']] = $threats[$threat]['elements_legal'][$record['Element']] ?? [];
+                        $threats[$threat]['elements_legal'][$record['Element']] ??= [];
                         $threats[$threat]['elements_legal'][$record['Element']][] = $record['Description'];
                     }
                 }

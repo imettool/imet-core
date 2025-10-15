@@ -48,9 +48,7 @@ trait Process
             });
 
         $weights = $values->sum('weight');
-        $weighted_eval_core = $values->sum(function (StaffCompetence $item): int|float {
-            return intval($item['eval_score']) * $item['weight'];
-        });
+        $weighted_eval_core = $values->sum(fn (StaffCompetence $item): int|float => intval($item['eval_score']) * $item['weight']);
         $weighted_percentage = (function ($data): null|int|float {
             $sum = 0;
             foreach ($data as $item) {
@@ -81,9 +79,7 @@ trait Process
 
         $sum = null;
         if ($records->isNotEmpty()) {
-            $sum = $records->sum(function (GovernanceLeadership $item): int {
-                return intval($item['EvaluationScoreGovernace']) + intval($item['EvaluationScoreLeadership']);
-            });
+            $sum = $records->sum(fn (GovernanceLeadership $item): int => intval($item['EvaluationScoreGovernace']) + intval($item['EvaluationScoreLeadership']));
         }
 
         $score = $sum !== null
@@ -105,7 +101,7 @@ trait Process
                 $record['denominator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : $record['AdequacyLevel'];
-                $record['denominator'] = $record['denominator'] ?? 0;
+                $record['denominator'] ??= 0;
 
                 return $record;
             });
@@ -129,17 +125,13 @@ trait Process
         $terrestrial_avg = $records
             ->where('group_key', 'group0')
             ->pluck('Adequacy')
-            ->filter(function ($value): bool {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->avg();
 
         $marine_avg = $records
             ->where('group_key', 'group1')
             ->pluck('Adequacy')
-            ->filter(function ($value): bool {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->avg();
 
         $average = static::average([$terrestrial_avg, $marine_avg], null);
@@ -205,9 +197,7 @@ trait Process
     protected static function score_pr18(int $imet_id): ?float
     {
         $records = EcosystemServices::getModule($imet_id);
-        $scores = $records->map(function ($record) {
-            return $record['EvaluationScore'] === -99 ? null : $record['EvaluationScore'];
-        });
+        $scores = $records->map(fn ($record): mixed => $record['EvaluationScore'] === -99 ? null : $record['EvaluationScore']);
 
         $score = $scores->isNotEmpty()
             ? static::average($scores, null) * 100 / 3

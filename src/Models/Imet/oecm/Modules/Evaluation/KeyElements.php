@@ -135,9 +135,7 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     public static function getPrioritizedElements(?int $form_id): array
     {
         return collect(static::getModuleRecords($form_id)['records'])
-            ->filter(function (array $item) {
-                return $item['IncludeInStatistics'];
-            })
+            ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Aspect')
             ->toArray();
     }

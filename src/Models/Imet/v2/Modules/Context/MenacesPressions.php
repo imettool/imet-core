@@ -211,7 +211,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         return $count > 0
-            ? (4 - round(pow($prod, 1 / ($count)), 2))
+            ? (4 - round($prod ** (1 / $count), 2))
             : null;
     }
 

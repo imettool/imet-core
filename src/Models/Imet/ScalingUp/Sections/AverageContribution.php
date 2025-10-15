@@ -54,9 +54,7 @@ class AverageContribution
         $average_contribution['indicators'] = $indicators_average_contribution;
 
         if (array_key_exists('data', $average_contribution)) {
-            usort($average_contribution['data']['Average'], function (array $a, array $b): int {
-                return -($a['value'] <=> $b['value']);
-            });
+            usort($average_contribution['data']['Average'], fn (array $a, array $b): int => -($a['value'] <=> $b['value']));
         }
 
         $average_contribution['legends'] = [trans('imet-core::v2_common.steps.threats'), trans('imet-core::analysis_report.variability')];
@@ -107,7 +105,7 @@ class AverageContribution
         $average_contribution = [];
         $average_contribution = static::calculate_data_average_contribution($average_contribution, $data[$type], $colors, $label, $type);
         $average_contribution['options'] = $options !== [] ? $options : null;
-        if (strpos($origType, '_') !== false) {
+        if (str_contains($origType, '_')) {
             $name = explode('_', $origType);
             $legend_name = trans('imet-core::analysis_report.assessment.'.$legends_match[$origType]);
         } else {
@@ -135,9 +133,7 @@ class AverageContribution
                     $v = (int) $index + 1;
                 }
 
-                $values = array_filter(array_values($value), function ($v): bool {
-                    return is_numeric($v);
-                });
+                $values = array_filter(array_values($value), fn ($v): bool => is_numeric($v));
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
                 $percentile_90 = Common::round_number(Common::get_percentile($values, 90));
                 $average_value = $values !== [] ? Common::round_number(array_sum($values) / count($values)) : 0; // check
@@ -163,7 +159,7 @@ class AverageContribution
 
         if (is_numeric($index)) {
             $average_contribution['data']['Average'][$i]['indicator'] = trans($label.($v), []);
-        } elseif ($type === 'process' && stripos($v, '_') === true) {
+        } elseif ($type === 'process' && stripos((string) $v, '_') === true) {
             $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
             // Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
         } else {

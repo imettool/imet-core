@@ -87,13 +87,13 @@ class Common
             $key_year = 'years_'.$i;
 
             if ($request->get($key_group, null)) {
-                $parameters[$key_group] = explode(',', $request->get($key_group, null));
+                $parameters[$key_group] = explode(',', (string) $request->get($key_group, null));
                 $rules[$key_group] = 'required|array';
                 $rules[$key_group.'.*'] = 'integer|max:'.$max_wdpa_id;
             }
 
             if ($request->get($key_year, null)) {
-                $parameters[$key_year] = explode(',', $request->get($key_year, null));
+                $parameters[$key_year] = explode(',', (string) $request->get($key_year, null));
                 $rules[$key_year] = 'array';
                 $rules[$key_year.'.*'] = 'integer|max:'.$year;
             }
@@ -314,15 +314,15 @@ class Common
         $records = [];
 
         foreach ($query as $k => $item) {
-            if (strpos($k, 'group_') !== false) {
+            if (str_contains((string) $k, 'group_')) {
                 $years = [];
-                $keys = explode('_', $k);
+                $keys = explode('_', (string) $k);
                 $years_keys = $request->get('years_'.$keys[1]);
                 if ($years_keys) {
-                    $years = explode(',', $years_keys);
+                    $years = explode(',', (string) $years_keys);
                 }
 
-                $ids = explode(',', $item);
+                $ids = explode(',', (string) $item);
 
                 $records = Common::wdpa_id_and_year_to_form_id($request, $ids, $years);
 

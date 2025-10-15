@@ -54,7 +54,7 @@ class ProtectedAreaController extends Controller
             } else {
                 $pas = json_validate($ids)
                     ? json_decode($ids)
-                    : explode(',', $ids);
+                    : explode(',', (string) $ids);
             }
 
             $pairs = ProtectedArea::query()->select(['wdpa_id', 'name'])

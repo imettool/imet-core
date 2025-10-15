@@ -14,9 +14,7 @@ $view_groupTable = View::make('modular-forms::module.show.type.group_table', ['d
 
 $dom = HtmlPageCrawler::create($view_groupTable);
 foreach ($definitions['groups'] as $group_key => $group) {
-    $group_records = array_filter($records, function (array $item) use ($group_key): bool {
-        return $item['group_key'] === $group_key;
-    });
+    $group_records = array_filter($records, fn(array $item): bool => $item['group_key'] === $group_key);
     $input = '<thead>
                 <th></th>
                 <th>

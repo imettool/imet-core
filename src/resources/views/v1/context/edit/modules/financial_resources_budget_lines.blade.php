@@ -3,7 +3,7 @@
 /** @var array $vueData */
 /** @var array $definitions */
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 $table_id = 'table_'.$definitions['module_key'];
 
 $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);

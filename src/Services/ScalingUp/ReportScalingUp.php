@@ -99,16 +99,14 @@ class ReportScalingUp
         static::checkAuthorization($items_array);
 
         // check if the parameters are an array of numbers and pa exist in the db
-        $filtered_array = array_filter($items_array, function ($value): bool {
-            return is_numeric($value) && Imet::query()->where('FormID', $value)->exists();
-        });
+        $filtered_array = array_filter($items_array, fn ($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists());
 
         // if not return 404
         abort_if($items_array === [] || (count($filtered_array) !== count($items_array)), 404);
 
         [$areas, $scaling_up_id] = static::loadItemsAndScalingUpID($items);
 
-        $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
+        $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', (string) $areas), true);
 
         static::saveForm($request, $items, $scaling_up_id);
 
@@ -116,9 +114,7 @@ class ReportScalingUp
 
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
-        uasort($protected_areas['models'], function (array $a, array $b): bool {
-            return $a['name'] > $b['name'];
-        });
+        uasort($protected_areas['models'], fn (array $a, array $b): bool => $a['name'] > $b['name']);
 
         [$custom_colors, $custom_items, $custom_names, $protected_areas_names] = static::protectedAreaNames($scaling_up_id);
 
@@ -152,13 +148,9 @@ class ReportScalingUp
     {
         $custom_items = static::retrieve_custom_names($scaling_up_id);
 
-        $custom_names = array_map(function ($v) {
-            return $v->name;
-        }, $custom_items);
+        $custom_names = array_map(fn ($v) => $v->name, $custom_items);
 
-        $custom_colors = array_map(function ($v) {
-            return $v->color;
-        }, $custom_items);
+        $custom_colors = array_map(fn ($v) => $v->color, $custom_items);
 
         $protected_areas_names = implode(', ', $custom_names);
 

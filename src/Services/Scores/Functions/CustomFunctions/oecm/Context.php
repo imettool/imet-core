@@ -24,12 +24,8 @@ trait Context
         $records = Designation::getModuleRecords($imet_id)['records'];
         $values = collect($records);
 
-        $numerator = $values->sum(function (array $item): int|float {
-            return $item['EvaluationScore'] * ($item['SignificativeClassification'] ? 3 : 1);
-        });
-        $denominator = $values->sum(function (array $item): int {
-            return $item['SignificativeClassification'] ? 3 : 1;
-        });
+        $numerator = $values->sum(fn (array $item): int|float => $item['EvaluationScore'] * ($item['SignificativeClassification'] ? 3 : 1));
+        $denominator = $values->sum(fn (array $item): int => $item['SignificativeClassification'] ? 3 : 1);
 
         $score = $numerator > 0 && $denominator > 0
             ? $numerator / $denominator * 100 / 3
@@ -44,10 +40,8 @@ trait Context
     {
         $records = KeyElements::getModule($imet_id);
         $values = $records
-            ->filter(function (KeyElements $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0;
-            })
+            ->filter(fn (KeyElements $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0)
             ->map(function (KeyElements $item): KeyElements {
                 $importance = $item['Importance'];
                 $integration = $item['EvaluationScore'];
@@ -73,13 +67,9 @@ trait Context
     protected static function score_support_contraints(int $imet_id): ?float
     {
         $values = collect(SupportsAndConstraints::calculateRanking($imet_id))
-            ->filter(function (array $item): bool {
-                return $item['__score'] !== null;
-            });
+            ->filter(fn (array $item): bool => $item['__score'] !== null);
 
-        $numerator = $values->sum(function (array $item) {
-            return $item['__score'];
-        });
+        $numerator = $values->sum(fn (array $item) => $item['__score']);
         $denominator = $values->sum('Weight');
 
         $score = $denominator > 0

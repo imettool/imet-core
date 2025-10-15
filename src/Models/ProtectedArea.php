@@ -74,7 +74,7 @@ class ProtectedArea extends BaseProtectedArea
         $parsed_isos = [];
         foreach ($countries as $iso) {
             if (Str::contains($iso, ';')) {
-                foreach (explode(';', $iso) as $i) {
+                foreach (explode(';', (string) $iso) as $i) {
                     $parsed_isos[] = $i;
                 }
             } else {
@@ -171,7 +171,7 @@ class ProtectedArea extends BaseProtectedArea
                     $item['country_name'] .= $countries[$iso].', ';
                 }
 
-                $item['country_name'] = rtrim($item['country_name'], ', ');
+                $item['country_name'] = rtrim((string) $item['country_name'], ', ');
 
                 return $item;
             });

@@ -112,7 +112,7 @@ trait Upgrade
     protected static function dropIfValueNotInPredefinedList($value, string $list_key): ?string
     {
         // if value is a JSON string, decode it and check each value
-        if (json_encode(json_decode($value)) === $value) {
+        if (json_encode(json_decode((string) $value)) === $value) {
             $value = '["Community-based conservation (CBC)","CBM (Community-based management (CBM)","CBA (Conservation Based Area)", "wieugfviweub (bla)"]';
             $values = json_decode($value, true);
             foreach ($values as $idx => $v) {

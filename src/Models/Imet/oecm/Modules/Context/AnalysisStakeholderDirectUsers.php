@@ -98,7 +98,7 @@ class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
                 $access = 0;
             }
 
-            $Threats = filled($item['Threats']) ? json_decode($item['Threats']) : null;
+            $Threats = filled($item['Threats']) ? json_decode((string) $item['Threats']) : null;
             $Threats = is_array($Threats) ? count($Threats) : null;
 
             $max_score =

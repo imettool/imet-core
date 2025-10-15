@@ -57,22 +57,16 @@ trait Planning
         $records = Objectives::getModule($imet_id);
 
         $denominator = $records
-            ->filter(function (Objectives $item): bool {
-                return $item['EvaluationScore'] !== null;
-            })
-            ->map(function (Objectives $item): int {
-                return $item['group_key'] === 'group0'
-                    ? 3
-                    : 1;
-            })
+            ->filter(fn (Objectives $item): bool => $item['EvaluationScore'] !== null)
+            ->map(fn (Objectives $item): int => $item['group_key'] === 'group0'
+                ? 3
+                : 1)
             ->sum();
 
         $score = $records
-            ->map(function (Objectives $item) {
-                return $item['group_key'] === 'group0'
-                    ? $item['EvaluationScore'] * 3
-                    : $item['EvaluationScore'];
-            })
+            ->map(fn (Objectives $item): mixed => $item['group_key'] === 'group0'
+                ? $item['EvaluationScore'] * 3
+                : $item['EvaluationScore'])
             ->sum();
 
         $score = $denominator > 0

@@ -55,13 +55,14 @@ final class ReportController extends BaseReportController
             'item' => $item,
             'key_elements' => [
                 'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
-                    ->pluck('Aspect')->map(function ($item) {
-                        return Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item;
-                    })->toArray(),
+                    ->pluck('Aspect')->map(fn ($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
+                    ->toArray(),
                 'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
-                    ->pluck('Aspect')->toArray(),
+                    ->pluck('Aspect')
+                    ->toArray(),
                 'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
-                    ->pluck('Aspect')->toArray(),
+                    ->pluck('Aspect')
+                    ->toArray(),
                 'ecosystem_services' => array_values(Modules\Evaluation\ImportanceEcosystemServices::getPredefined()['values']),
                 'threats' => array_values(Modules\Evaluation\Menaces::getPredefined()['values']),
             ],

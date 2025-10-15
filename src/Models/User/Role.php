@@ -118,7 +118,7 @@ class Role extends BaseModel
      */
     public static function isRole($role, $user = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         return $role === $user->imet_role;
     }
@@ -128,7 +128,7 @@ class Role extends BaseModel
      */
     public static function isNotRole($role, $user = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         return $role !== $user->imet_role;
     }
@@ -146,7 +146,7 @@ class Role extends BaseModel
      */
     public static function hasAnyRole($user = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
         if (static::isAdmin($user)) {
             return true;
         }
@@ -181,7 +181,7 @@ class Role extends BaseModel
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         if (! Role::isAdmin($user)) {
 
@@ -220,7 +220,7 @@ class Role extends BaseModel
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         if (! static::isAdmin($user)) {
             // Retrieved allowed ISOs from allowed WDPAs
@@ -253,7 +253,7 @@ class Role extends BaseModel
      */
     public static function isWdpaAllowed($wdpa, $user = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         if (! static::isAdmin($user)) {
             $allowed_wdpas = static::allowedWdpas($user);
@@ -272,27 +272,11 @@ class Role extends BaseModel
     {
         $user_role = Auth::user()->imet_role;
 
-        switch ($user_role) {
-
-            case static::ROLE_ADMINISTRATOR:
-            case static::ROLE_ENCODER:
-            case static::ROLE_NATIONAL_AUTHORITY:
-            case static::ROLE_REGIONAL_OBSERVATORY:
-                $user_access_level = static::ACCESS_LEVEL_FULL;
-                break;
-
-            case static::ROLE_REGIONAL_AUTHORITY:
-            case static::ROLE_INTERNATIONAL_INSTITUTIION:
-            case static::ROLE_DONOR:
-                $user_access_level = static::ACCESS_LEVEL_HIGH;
-                break;
-
-            default:
-                $user_access_level = static::ACCESS_LEVEL_LOW;
-                break;
-        }
-
-        return $user_access_level;
+        return match ($user_role) {
+            static::ROLE_ADMINISTRATOR, static::ROLE_ENCODER, static::ROLE_NATIONAL_AUTHORITY, static::ROLE_REGIONAL_OBSERVATORY => static::ACCESS_LEVEL_FULL,
+            static::ROLE_REGIONAL_AUTHORITY, static::ROLE_INTERNATIONAL_INSTITUTIION, static::ROLE_DONOR => static::ACCESS_LEVEL_HIGH,
+            default => static::ACCESS_LEVEL_LOW,
+        };
     }
 
     /**

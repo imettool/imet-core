@@ -21,7 +21,7 @@ class PreviewScalingUp
         $records = ModelScalingUpAnalysis::query()->where('id', $id)->first();
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
-            $wdpas = explode(',', $records->wdpas);
+            $wdpas = explode(',', (string) $records->wdpas);
             static::checkAuthorization($wdpas);
             ModelScalingUpAnalysis::$scaling_id = $id;
 

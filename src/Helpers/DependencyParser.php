@@ -27,9 +27,7 @@ class DependencyParser extends BaseDependencyParser
     {
         $dependencies = parent::getNpmDirectDependencyList($includeDev);
 
-        return array_filter($dependencies, function (string $dependency): bool {
-            return $dependency !== 'modular-forms';
-        });
+        return array_filter($dependencies, fn (string $dependency): bool => $dependency !== 'modular-forms');
     }
 
     /**
@@ -44,7 +42,7 @@ class DependencyParser extends BaseDependencyParser
             return 'Copyright (c) 2021-present vue3-colorpicker';
         }
 
-        if ($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
+        if ($packageInfo['name'] === 'echarts' && str_contains((string) $copyright, 'yyyy')) {
             return 'Copyright 2017-2025 The Apache Software Foundation';
         }
 

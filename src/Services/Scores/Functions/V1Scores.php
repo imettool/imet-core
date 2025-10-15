@@ -44,9 +44,7 @@ class V1Scores extends _Scores
         $sum = ($scores['C1'] ?? 0)
             + (($scores['C2'] ?? 0) / 2 + 50)
             + (($scores['C3'] ?? 0) + 100);
-        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], function (?float $x): bool {
-            return $x !== null;
-        }));
+        $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], fn (?float $x): bool => $x !== null));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
@@ -73,9 +71,7 @@ class V1Scores extends _Scores
             + ($scores['P4'] ?? 0)
             + ($scores['P5'] ?? 0)
             + ($scores['P6'] ?? 0);
-        $count = count(array_filter($scores, function (?float $x): bool {
-            return $x !== null;
-        }));
+        $count = count(array_filter($scores, fn (?float $x): bool => $x !== null));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;
@@ -178,9 +174,7 @@ class V1Scores extends _Scores
             + ($scores['EI4'] / 2 + 50 ?? 0)
             + ($scores['EI5'] / 2 + 50 ?? 0)
             + ($scores['EI6'] / 2 + 50 ?? 0);
-        $count = count(array_filter($scores, function (?float $x): bool {
-            return $x !== null;
-        }));
+        $count = count(array_filter($scores, fn (?float $x): bool => $x !== null));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
 
         return $scores;

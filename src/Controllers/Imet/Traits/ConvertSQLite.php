@@ -49,7 +49,7 @@ trait ConvertSQLite
                 'Country' => $imet->Country,
                 'Year' => $imet->Year,
                 'version' => ImetAlias::IMET_V1,
-                'wdpa_id' => trim($wdpa),
+                'wdpa_id' => trim((string) $wdpa),
                 'language' => Str::lower($imet->FormLanguage),
                 'imet_version' => 'SQLITE',
             ],
@@ -60,7 +60,7 @@ trait ConvertSQLite
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa)) {
             $json['NonWdpaProtectedArea'] = [];
             $json['NonWdpaProtectedArea']['id'] = $wdpa;
-            $json['NonWdpaProtectedArea']['wdpa_id'] = trim($wdpa);
+            $json['NonWdpaProtectedArea']['wdpa_id'] = trim((string) $wdpa);
             $json['NonWdpaProtectedArea']['name'] = $pa_name;
             $json['NonWdpaProtectedArea']['country'] = $imet->Country;
         }

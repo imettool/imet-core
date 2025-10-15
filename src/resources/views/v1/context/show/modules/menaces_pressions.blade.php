@@ -33,16 +33,16 @@ foreach (MenacesPressions::$groupsByCategory as $category) {
     foreach ($category as $group) {
         if (isset($stats['row_stats'][$group])) {
             foreach ($stats['row_stats'][$group] as $value) {
-                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", $view_groupTable, $matched1);
+                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", (string) $view_groupTable, $matched1);
                 $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
                 if ($matched1 !== []) {
                     $matched1[0] = '/' . preg_quote($matched1[0], '/') . '/';
-                    $view_groupTable = preg_replace($matched1[0], $textToAdd, $view_groupTable, 1);
+                    $view_groupTable = preg_replace($matched1[0], $textToAdd, (string) $view_groupTable, 1);
                 }
             }
         }
         if (isset($stats['group_stats'][$group])) {
-            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", $view_groupTable, $matched);
+            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", (string) $view_groupTable, $matched);
             $textToAdd = '<th>
                           <input type="text" disabled="disabled" value="' . $stats['group_stats'][$group] . '"
                                 class="field-disabled field-edit field-numeric text-center"/>

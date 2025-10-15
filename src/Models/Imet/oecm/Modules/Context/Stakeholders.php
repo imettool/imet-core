@@ -133,7 +133,7 @@ class Stakeholders extends Modules\Component\ImetModule
                     $categories = [];
                     $group->map(function ($item) use (&$categories): void {
                         if ($item['UsesCategories'] !== null) {
-                            $categories = array_merge($categories, json_decode($item['UsesCategories']));
+                            $categories = array_merge($categories, json_decode((string) $item['UsesCategories']));
                         }
                     });
 
@@ -165,20 +165,18 @@ class Stakeholders extends Modules\Component\ImetModule
         $records = $query->toArray();
 
         return collect($records)
-            ->filter(function (array $item): bool {
-                return filled($item['Element']);
-            })
+            ->filter(fn (array $item): bool => filled($item['Element']))
             ->map(function (array $item): array {
 
-                $UsesCategories = filled($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
+                $UsesCategories = filled($item['UsesCategories']) ? json_decode((string) $item['UsesCategories']) : null;
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;
 
                 $sum = $item['GeographicalProximity'] ? 4 : 0;
                 $sum += $UsesCategories ?? 0; // max 4
                 $sum += $item['DirectUser'] ? 7 : 0;
-                $sum += $item['LevelEngagement'] !== null ? $item['LevelEngagement'] : 0;
-                $sum += $item['LevelInterest'] !== null ? $item['LevelInterest'] : 0;
-                $sum += $item['LevelExpertise'] !== null ? $item['LevelExpertise'] : 0;
+                $sum += $item['LevelEngagement'] ?? 0;
+                $sum += $item['LevelInterest'] ?? 0;
+                $sum += $item['LevelExpertise'] ?? 0;
 
                 $max_score =
                     4 // GeographicalProximity

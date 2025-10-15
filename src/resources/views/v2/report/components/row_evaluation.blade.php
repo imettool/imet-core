@@ -6,9 +6,9 @@
 
 use ImetCore\Controllers\Imet\ApiController;
 
-$additional_classes = $additional_classes ?? null;
-$threats            = $threats ?? false;
-$constraints        = $constraints ?? false;
+$additional_classes ??= null;
+$threats ??= false;
+$constraints ??= false;
 
 $classes = match(true) {
     $threats => ApiController::score_class_threats($assessment_value),

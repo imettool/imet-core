@@ -55,7 +55,7 @@ class CalculateScores extends Command
 
             return self::SUCCESS;
 
-        } catch (Exception $exception) {
+        } catch (Exception) {
             $this->error('Execution filed');
 
             return self::FAILURE;

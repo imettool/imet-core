@@ -7,7 +7,7 @@
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_' . $definitions['module_key'];
 

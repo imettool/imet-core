@@ -44,9 +44,7 @@ class SpeciesController extends Controller
                 ->unique()
                 ->sortBy('order')
                 ->sortBy('class')
-                ->mapToGroups(function (array $item): array {
-                    return [$item['class'] => $item['order']];
-                })
+                ->mapToGroups(fn (array $item): array => [$item['class'] => $item['order']])
                 ->toArray();
         }
 

@@ -21,13 +21,11 @@ trait Process
 {
     public static function score_pr1(int $imet_id, $records = null, $staff_weights = null): ?float
     {
-        $staff_weights = $staff_weights ?? static::staff_weights($imet_id);
-        $records = $records ?? StaffCompetence::getModule($imet_id);
+        $staff_weights ??= static::staff_weights($imet_id);
+        $records ??= StaffCompetence::getModule($imet_id);
 
         $values = $records
-            ->filter(function (ImetModule $record): bool {
-                return $record['EvaluationScore'] !== null;
-            })
+            ->filter(fn (ImetModule $record): bool => $record['EvaluationScore'] !== null)
             ->map(function (ImetModule $record) use ($staff_weights): ImetModule {
                 $record['eval_score'] = $record['EvaluationScore'] ?: $staff_weights[$record['Theme']]['ratio03'];
                 $record['weight'] = $record['EvaluationScore'] === null ? $staff_weights[$record['Theme']]['w_avg'] : 1;
@@ -36,9 +34,7 @@ trait Process
             });
 
         $sum_weight = $values->sum('weight');
-        $sum_weight_score = $values->sum(function (ImetModule $item): int|float {
-            return $item['eval_score'] * $item['weight'];
-        });
+        $sum_weight_score = $values->sum(fn (ImetModule $item): int|float => $item['eval_score'] * $item['weight']);
 
         $score = $sum_weight > 0
             ? $sum_weight_score / $sum_weight * 100 / 3
@@ -78,9 +74,7 @@ trait Process
     protected static function score_pr13(int $imet_id): ?float
     {
         $values = ActorsRelations::getModule($imet_id)
-            ->filter(function (ActorsRelations $record): bool {
-                return $record['EvaluationScore'] !== null;
-            })
+            ->filter(fn (ActorsRelations $record): bool => $record['EvaluationScore'] !== null)
             ->map(function (ActorsRelations $record): ActorsRelations {
                 $record['eval'] =
                     $record['EvaluationScore'] === -99

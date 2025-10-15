@@ -14,10 +14,8 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 $threats = trans('imet-core::oecm_lists.Threats');
 
 $threats_in_sa2 = collect($records)
-    ->filter(function (array $item): bool {
-        return $item['__count_stakeholders_direct'] !== null
-            || $item['__count_stakeholders_indirect'] !== null;
-    })
+    ->filter(fn(array $item): bool => $item['__count_stakeholders_direct'] !== null
+        || $item['__count_stakeholders_indirect'] !== null)
     ->pluck('__threat_key')
     ->toArray();
 

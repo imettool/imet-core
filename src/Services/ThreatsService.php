@@ -36,7 +36,7 @@ class ThreatsService
                     + ($item['Probability'] != null ? 1 : 0);
 
                 $score = $count > 0
-                    ? (4 - pow($prod, 1 / ($count)))
+                    ? (4 - $prod ** (1 / $count))
                     : null;
 
                 $score = $score !== null

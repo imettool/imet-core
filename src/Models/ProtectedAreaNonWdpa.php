@@ -34,7 +34,7 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     public const LABEL = 'name';
 
-    private const START_FAKE_ID = 999990000;
+    private const int START_FAKE_ID = 999990000;
 
     protected $guarded = [];
 
@@ -62,9 +62,9 @@ class ProtectedAreaNonWdpa extends BaseModel
      *
      * @return int|mixed|string
      */
-    public static function generate_fake_wdpa(?int $max_id = null)
+    public static function generate_fake_wdpa(?int $max_id = null): int
     {
-        $max_id = $max_id ?? ProtectedAreaNonWdpa::query()->max('id');
+        $max_id ??= ProtectedAreaNonWdpa::query()->max('id');
 
         return $max_id === null || ! static::isNonWdpa($max_id)
             ? static::START_FAKE_ID
@@ -85,7 +85,7 @@ class ProtectedAreaNonWdpa extends BaseModel
     public static function export($id): array
     {
         $pa = static::query()->findOrNew($id);
-        $pa->id = $pa->id ?? $id;
+        $pa->id ??= $id;
 
         return $pa
             ->makeHidden([static::UPDATED_AT, static::UPDATED_BY])

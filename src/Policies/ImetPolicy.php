@@ -99,7 +99,7 @@ class ImetPolicy
      */
     public function export_button($user, $form = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
         if (Role::isRole(Role::ROLE_ENCODER, $user)) {
             return true;
         }
@@ -116,7 +116,7 @@ class ImetPolicy
      */
     public function export($user, $form = null): bool
     {
-        $user = $user ?? Auth::user();
+        $user ??= Auth::user();
 
         return Role::isWdpaAllowed($form->wdpa_id, $user) && (
             Role::isRole(Role::ROLE_ENCODER, $user) ||

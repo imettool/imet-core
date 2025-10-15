@@ -56,23 +56,27 @@ final class ReportController extends BaseReportController
         return [
             'item' => $item,
             'key_elements' => [
-                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->map(function ($item) {
-                    return Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item;
-                })->toArray(),
-                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
+                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->map(fn ($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
+                    ->toArray(),
+                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'threats' => Modules\Evaluation\Menaces::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
             ],
             'scores' => ImetScores::get_all($item),
             'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V2),

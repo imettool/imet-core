@@ -36,23 +36,26 @@ trait KeyElements
             $protected_area = Imet::query()->where(['FormID' => $form_id])->first();
 
             $retrieve_key_elements = [
-                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->map(function ($item): array {
-                    return [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])];
-                })->all(),
-                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
-                'threats' => Modules\Evaluation\Menaces::getModule($form_id)->filter(function ($item) {
-                    return $item['IncludeInStatistics'];
-                })->pluck('Aspect')->toArray(),
+                'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->map(fn ($item): array => [$item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])])
+                    ->all(),
+                'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
+                'threats' => Modules\Evaluation\Menaces::getModule($form_id)
+                    ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                    ->pluck('Aspect')
+                    ->toArray(),
             ];
             $retrieve_key_elements['species']['animal_species'] = [];
             $retrieve_key_elements['species']['plant_species'] = [];

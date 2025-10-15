@@ -46,9 +46,7 @@ trait Inputs
                 return $record;
             })
             ->keyBy('Function')
-            ->map(function ($record) {
-                return collect($record)->only(['Function', 'ActualPermanent', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']);
-            })
+            ->map(fn ($record) => collect($record)->only(['Function', 'ActualPermanent', 'ExpectedPermanent', 'ratio', 'ratio03', 'w_avg']))
             ->toArray();
     }
 
@@ -59,9 +57,7 @@ trait Inputs
             ->toArray();
 
         $staff_weights = collect(static::staff_weights($imet_id))
-            ->filter(function (array $item) use ($functions): bool {
-                return in_array($item['Function'], $functions);
-            })
+            ->filter(fn (array $item): bool => in_array($item['Function'], $functions))
             ->map(function (array $item): array {
                 $item['eval_sc'] = $item['ratio'] > 0
                     ? ceil($item['ratio'] * 4 - 1)

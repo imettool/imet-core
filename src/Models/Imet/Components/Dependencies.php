@@ -99,12 +99,10 @@ trait Dependencies
     public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, ?string $dependency_on = null): void
     {
         throw_if($dependency_on == null && static::$DEPENDENCY_ON === null, MissingDependencyConfigurationException::class, static::class);
-        $dependency_on = $dependency_on ?? static::$DEPENDENCY_ON;
+        $dependency_on ??= static::$DEPENDENCY_ON;
         // Drop records (where reference field values had been removed form parent)
         $records_to_be_dropped = static::getModule($form_id)
-            ->filter(function (array $record) use ($to_be_dropped, $dependency_on): bool {
-                return in_array($record[$dependency_on], $to_be_dropped);
-            })
+            ->filter(fn (array $record): bool => in_array($record[$dependency_on], $to_be_dropped))
             ->toArray();
         foreach ($records_to_be_dropped as $record) {
             static::destroy($record[(new static)->primaryKey]);
@@ -143,9 +141,7 @@ trait Dependencies
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return static::getModule($form_id)
-            ->filter(function (Modules\ImetModule $item) use ($dependency_field): bool {
-                return filled($item[$dependency_field]);
-            })
+            ->filter(fn (Modules\ImetModule $item): bool => filled($item[$dependency_field]))
             ->pluck($dependency_field)
             ->toArray();
     }

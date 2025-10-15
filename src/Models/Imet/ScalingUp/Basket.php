@@ -47,7 +47,7 @@ class Basket extends BaseModel
         $disk = Storage::disk(self::BASKET_DISK);
         $image_path = self::BASKET_FOLDER.$imageName;
         if ($disk->put($image_path, base64_decode($image))) {
-            $record->item = config('app.asset_url') ? ltrim(config('app.asset_url'), '/').ltrim($image_path, '/') : $image_path;
+            $record->item = config('app.asset_url') ? ltrim((string) config('app.asset_url'), '/').ltrim($image_path, '/') : $image_path;
             $record->comment = $item['comment'];
             $record->save();
 

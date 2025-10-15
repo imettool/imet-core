@@ -31,21 +31,15 @@ trait Planning
             });
 
         $not_null = $values
-            ->filter(function (BoundaryLevel $record): bool {
-                return $record['EvaluationScore'] !== null;
-            })
+            ->filter(fn (BoundaryLevel $record): bool => $record['EvaluationScore'] !== null)
             ->count();
 
         $value1 = ($values
-            ->map(function (BoundaryLevel $record): int|float {
-                return $record['Boundaries'] / 6;
-            })
+            ->map(fn (BoundaryLevel $record): int|float => $record['Boundaries'] / 6)
             ->avg() * 100 / 2) ?? 0;
 
         $value2 = $values
-            ->map(function (BoundaryLevel $record): int|float {
-                return (($record['score'] / 3 * 100) ?? 0) / 2;
-            })
+            ->map(fn (BoundaryLevel $record): int|float => (($record['score'] / 3 * 100) ?? 0) / 2)
             ->sum();
 
         $score = $not_null > 0

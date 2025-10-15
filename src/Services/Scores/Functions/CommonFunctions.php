@@ -24,9 +24,7 @@ trait CommonFunctions
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->pluck($module_field)
-            ->filter(function ($value): bool {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);
@@ -47,9 +45,7 @@ trait CommonFunctions
             ->groupBy($group_field)
             ->map(function ($group) use ($module_field) {
                 $group_values = $group
-                    ->filter(function (ImetModule $value) use ($module_field): bool {
-                        return $value[$module_field] != -99;
-                    })
+                    ->filter(fn (ImetModule $value): bool => $value[$module_field] != -99)
                     ->pluck($module_field)
                     ->toArray();
 
@@ -57,9 +53,7 @@ trait CommonFunctions
                     ? static::average($group_values, null)
                     : null;
             })
-            ->filter(function ($value): bool {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);

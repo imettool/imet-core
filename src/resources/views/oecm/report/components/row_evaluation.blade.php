@@ -6,12 +6,12 @@
 
 use ImetCore\Controllers\Imet\ApiController;
 
-$additional_classes = $additional_classes ?? null;
-$threats            = $threats ?? false;
+$additional_classes ??= null;
+$threats ??= false;
 
 $colspan            = isset($colspan) ? "colspan=".$colspan : "";
-$color_scores       = $color_scores ?? true;
-$constraints = $constraints ?? false;
+$color_scores ??= true;
+$constraints ??= false;
 
 $classes = '';
 if ($color_scores) {

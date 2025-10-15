@@ -15,9 +15,7 @@ $dom->filter('thead tr th')->eq(0)->append('<th></th>');
 $dom->filter('tbody tr td')->eq(0)->append('<td><div class="field-preview w-16" v-html=stats[index]></div></td>');
 
 $vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['category_stats'])
-    ->map(function ($item): float{
-        return round($item, 2);
-    })->all();
+    ->map(fn($item): float => round($item, 2))->all();
 ?>
 
 

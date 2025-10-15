@@ -33,7 +33,7 @@ trait ConvertSQLite
             ->where('id', $id)
             ->first();
 
-        return $knowledge_base ? trim($knowledge_base->WDPA) : null;
+        return $knowledge_base ? trim((string) $knowledge_base->WDPA) : null;
     }
 
     /**
@@ -54,7 +54,7 @@ trait ConvertSQLite
                 ->select(['CompleteName', 'CompleteNameWDPA', 'UsedName', 'WDPA'])
                 ->where('FormID', $imet->FormID)
                 ->first();
-            $wdpa = trim($general_info->WDPA ?? null) ?? null;
+            $wdpa = trim((string) ($general_info->WDPA ?? null)) ?? null;
         }
 
         // Valid WDPA found
@@ -77,7 +77,7 @@ trait ConvertSQLite
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
         /** @var class-string $called_class */
-        $called_class = get_called_class();
+        $called_class = static::class;
 
         if (! method_exists($called_class, 'conversionParameters')) {
             return [];

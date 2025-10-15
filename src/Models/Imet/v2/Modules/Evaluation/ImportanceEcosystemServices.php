@@ -74,9 +74,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? static::getEcosystemServices($form_id)
-                    ->map(function (Modules\Context\EcosystemServices $item) {
-                        return $item['Element'];
-                    })
+                    ->map(fn (Modules\Context\EcosystemServices $item): mixed => $item['Element'])
                 : [],
         ];
     }
@@ -100,9 +98,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
     private static function getEcosystemServices(?int $form_id): Collection
     {
         return Modules\Context\EcosystemServices::getModule($form_id)
-            ->filter(function ($item): bool {
-                return $item['Importance'] !== null;
-            })
+            ->filter(fn ($item): bool => $item['Importance'] !== null)
             ->map(function (Modules\Context\EcosystemServices $item): Modules\Context\EcosystemServices {
                 $item['_rank'] = (floatval($item['Importance'])
                         + ($item['ImportanceRegional'] / 3)

@@ -25,11 +25,9 @@ trait Context
         $records = ImportanceClassification::getModule($imet_id);
 
         $values = $records
-            ->filter(function (ImportanceClassification $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0
-                    && $record['SignificativeClassification'] !== null;
-            });
+            ->filter(fn (ImportanceClassification $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['SignificativeClassification'] !== null);
 
         $numerator = $values->sum(function (ImportanceClassification $item): int|float {
             $item['SignificativeClassification'] = is_string($item['SignificativeClassification'])
@@ -38,9 +36,7 @@ trait Context
 
             return (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore'];
         });
-        $denominator = $values->sum(function (ImportanceClassification $item): int|float {
-            return 1 + 2 * $item['SignificativeClassification'];
-        });
+        $denominator = $values->sum(fn (ImportanceClassification $item): int|float => 1 + 2 * $item['SignificativeClassification']);
 
         $score = $denominator > 0
             ? $numerator / $denominator * 100 / 3
@@ -54,16 +50,12 @@ trait Context
     public static function score_c13(int $imet_id): ?float
     {
         $values = ImportanceSpecies::getModule($imet_id)
-            ->filter(function (ImportanceSpecies $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0;
-            })->map(function (ImportanceSpecies $record): ImportanceSpecies {
-                $record['SignificativeSpecies'] = $record['SignificativeSpecies'] === null
-                    ? 0
-                    : $record['SignificativeSpecies'];
+            ->filter(fn (ImportanceSpecies $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0)->map(function (ImportanceSpecies $record): ImportanceSpecies {
+                    $record['SignificativeSpecies'] ??= 0;
 
-                return $record;
-            });
+                    return $record;
+                });
 
         $numerator = $values->sum(function (ImportanceSpecies $item): int|float {
             $item['SignificativeSpecies'] = is_string($item['SignificativeSpecies'])
@@ -92,20 +84,14 @@ trait Context
     public static function score_c14(int $imet_id): ?float
     {
         $values = ImportanceHabitats::getModule($imet_id)
-            ->filter(function (ImportanceHabitats $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0;
-            })->map(function (ImportanceHabitats $record): ImportanceHabitats {
-                $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
-                    ? 1
-                    : $record['EvaluationScore2'];
+            ->filter(fn (ImportanceHabitats $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0)->map(function (ImportanceHabitats $record): ImportanceHabitats {
+                    $record['EvaluationScore2'] ??= 1;
 
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function (ImportanceHabitats $item): int|float {
-            return $item['EvaluationScore2'] * $item['EvaluationScore'];
-        });
+        $numerator = $values->sum(fn (ImportanceHabitats $item): int|float => $item['EvaluationScore2'] * $item['EvaluationScore']);
         $denominator = $values->sum('EvaluationScore2');
         $denominator = $denominator === 0 ? null : $denominator;
 
@@ -121,21 +107,12 @@ trait Context
     public static function score_c2(int $imet_id): ?float
     {
         $values = SupportsAndConstraints::getModule($imet_id)
-            ->filter(function (SupportsAndConstraints $record): bool {
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) !== -99
-                    && intval($record['EvaluationScore']) > -4;
-            });
+            ->filter(fn (SupportsAndConstraints $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) !== -99
+                && intval($record['EvaluationScore']) > -4);
 
-        $numerator = $values->sum(function (SupportsAndConstraints $item): int|float {
-            return $item['EvaluationScore'] * $item['EvaluationScore2'];
-        });
-        $denominator = $values->sum(function ($item) {
-            return $item['EvaluationScore2'] === null
-                ? 0
-                : $item['EvaluationScore2'];
-
-        });
+        $numerator = $values->sum(fn (SupportsAndConstraints $item): int|float => $item['EvaluationScore'] * $item['EvaluationScore2']);
+        $denominator = $values->sum(fn ($item): mixed => $item['EvaluationScore2'] ?? 0);
         $denominator = $denominator === 0 ? null : $denominator;
 
         $score = $denominator > 0
@@ -159,11 +136,11 @@ trait Context
                 $probability = $record['Probability'] !== null ? $record['Probability'] * -1 + 4 : null;
                 $trend = $record['Trend'] !== null ? $record['Trend'] * -0.75 + 2.5 : null;
                 $product =
-                    ($impact === null ? 1 : $impact) *
-                    ($extension === null ? 1 : $extension) *
-                    ($duration === null ? 1 : $duration) *
-                    ($probability === null ? 1 : $probability) *
-                    ($trend === null ? 1 : $trend);
+                    ($impact ?? 1) *
+                    ($extension ?? 1) *
+                    ($duration ?? 1) *
+                    ($probability ?? 1) *
+                    ($trend ?? 1);
                 $not_null =
                     ($impact === null ? 0 : 1) +
                     ($extension === null ? 0 : 1) +
@@ -172,7 +149,7 @@ trait Context
                     ($trend === null ? 0 : 1);
                 $exp_denominator = $not_null === 0 ? null : $not_null;
                 $record['n_power'] = $exp_denominator !== null
-                    ? 4 - pow($product, (1 / $exp_denominator))
+                    ? 4 - $product ** (1 / $exp_denominator)
                     : null;
 
                 return $record;

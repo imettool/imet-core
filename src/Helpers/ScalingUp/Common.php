@@ -24,7 +24,7 @@ class Common
 
     public static function random_color(): string
     {
-        return '#'.substr(md5(rand()), 0, 6);
+        return '#'.substr(md5(random_int(0, mt_getrandmax())), 0, 6);
     }
 
     /**
@@ -60,7 +60,7 @@ class Common
 
     public static function indicator_label(string $id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
     {
-        return strtoupper(trans($path.$id)[0]).' '.trans($label.$id);
+        return strtoupper((string) trans($path.$id)[0]).' '.trans($label.$id);
     }
 
     /**
@@ -166,9 +166,7 @@ class Common
                 $item = ((string) $item !== '') ? $item : '-';
             });
 
-            $number_of_indicators = count(array_filter($filtered[$form_id], function ($item): bool {
-                return (string) $item !== '-';
-            }));
+            $number_of_indicators = count(array_filter($filtered[$form_id], fn ($item): bool => (string) $item !== '-'));
 
             // loop through imet sub indicators to create an average value in order to sort in the ranking
             // and pass the correct value where needed
@@ -274,13 +272,9 @@ class Common
             $assessments[0][$item] = static::round_number($sum / $count);
         }
 
-        uasort($assessments, function (array $a, array $b): int {
-            return $b['name'] <=> $a['name'];
-        });
+        uasort($assessments, fn (array $a, array $b): int => $b['name'] <=> $a['name']);
 
-        $assessments_without_average = array_values(array_filter($assessments, function (array $value): bool {
-            return $value['name'] !== trans('imet-core::analysis_report.average');
-        }));
+        $assessments_without_average = array_values(array_filter($assessments, fn (array $value): bool => $value['name'] !== trans('imet-core::analysis_report.average')));
 
         return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
     }

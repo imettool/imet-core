@@ -19,12 +19,10 @@ trait Outcomes
     protected static function score_oc2(int $imet_id): ?float
     {
         $values = KeyConservationTrend::getModule($imet_id)
-            ->filter(function (KeyConservationTrend $record): bool {
-                return intval($record['Condition']) !== -99
-                    && $record['Condition'] !== null
-                    && intval($record['Trend']) !== -99
-                    && $record['Trend'] !== null;
-            })
+            ->filter(fn (KeyConservationTrend $record): bool => intval($record['Condition']) !== -99
+                && $record['Condition'] !== null
+                && intval($record['Trend']) !== -99
+                && $record['Trend'] !== null)
             ->groupBy('group_key')
             ->map(function ($group): int|float {
                 $sum_cond = static::average($group->pluck('Condition')->toArray(), null) * 100 / 3;
