@@ -15,6 +15,7 @@ namespace ImetCore\Helpers\API\Common;
 use ErrorException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use ImetCore\Controllers\Imet\ApiController;
@@ -31,7 +32,7 @@ class Common
      */
     private static function validate_wdpa(Request $request)
     {
-        $year = date('Y');
+        $year = Date::now()->format('Y');
         $max_wdpa_id = static::$max_id;
         $wdpa_size = '';
 
@@ -71,7 +72,7 @@ class Common
      */
     private static function validate_group(Request $request): \Illuminate\Contracts\Validation\Validator
     {
-        $year = date('Y');
+        $year = Date::now()->format('Y');
         $parameters = [];
         $rules = [];
         $max_wdpa_id = static::$max_id;

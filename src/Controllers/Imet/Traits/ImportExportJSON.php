@@ -18,6 +18,7 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -224,7 +225,7 @@ trait ImportExportJSON
 
         $path = $files[0];
         if (count($files) > 1) {
-            $fileName = 'IMETS_'.count($files).'_'.date('m-d-Y_hisu').'.zip';
+            $fileName = 'IMETS_'.count($files).'_'. Date::now()->format('m-d-Y_hisu').'.zip';
             $path = Zip::compress($files, $fileName);
         }
 

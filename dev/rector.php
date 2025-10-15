@@ -54,12 +54,12 @@ return RectorConfig::configure()
         codingStyle: true,
         typeDeclarations: true,
         privatization: true,
-        // //        naming: true,                 // not necessary, and sometimes harmful
+        // naming: true,                 // not necessary, and sometimes harmful
         instanceOf: true,
         earlyReturn: true,
-        //        strictBooleans: true,
-        //        carbon: true,
-        // //        rectorPreset: true,           // To be decided: introduce strict type declaration
+        strictBooleans: true,
+        carbon: true,
+        // rectorPreset: true,           // To be decided: introduce strict type declaration
     )
     ->withSets([
         LaravelSetList::LARAVEL_ARRAYACCESS_TO_METHOD_CALL,

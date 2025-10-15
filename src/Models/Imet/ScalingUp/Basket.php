@@ -12,6 +12,7 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
@@ -41,7 +42,7 @@ class Basket extends BaseModel
         $image = str_replace(' ', '+', $image);
 
         $record = static::query()->create(['order' => 1, 'scaling_up_id' => $item['scaling_up_id']]);
-        $imageName = hash('sha256', $record->id.time()).'.png';
+        $imageName = hash('sha256', $record->id. Date::now()->getTimestamp()).'.png';
 
         $disk = Storage::disk(self::BASKET_DISK);
         $image_path = self::BASKET_FOLDER.$imageName;

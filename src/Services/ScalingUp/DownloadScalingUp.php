@@ -2,6 +2,7 @@
 
 namespace ImetCore\Services\ScalingUp;
 
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 use ImetCore\Models\Imet\ScalingUp\Basket;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
@@ -28,7 +29,7 @@ class DownloadScalingUp
 
             if (count($files) > 1) {
                 $path = Zip::compress($files,
-                    'Scaling_up_'.count($files).'_'.date('m-d-Y_hisu').'.zip',
+                    'Scaling_up_'.count($files).'_'. Date::now()->format('m-d-Y_hisu').'.zip',
                     false);
 
                 return File::download($path);
