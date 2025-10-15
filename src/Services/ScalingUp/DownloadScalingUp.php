@@ -29,7 +29,7 @@ class DownloadScalingUp
 
             if (count($files) > 1) {
                 $path = Zip::compress($files,
-                    'Scaling_up_'.count($files).'_'. Date::now()->format('m-d-Y_hisu').'.zip',
+                    'Scaling_up_'.count($files).'_'.Date::now()->format('m-d-Y_hisu').'.zip',
                     false);
 
                 return File::download($path);

@@ -21,12 +21,12 @@ return RectorConfig::configure()
     ->withPaths([
 
         // Development environment folders
-        //        __DIR__ . '/app',
-        //        __DIR__ . '/bootstrap',
-        //        __DIR__ . '/config',
-        //        __DIR__ . '/public',
-        //        __DIR__ . '/resources',
-        //        __DIR__ . '/routes',
+        PATH_TO_DEV.'/app',
+        PATH_TO_DEV.'/bootstrap',
+        PATH_TO_DEV.'/config',
+        PATH_TO_DEV.'/public',
+        PATH_TO_DEV.'/resources',
+        PATH_TO_DEV.'/routes',
 
         // imet-core package folders
         PATH_TO_PACKAGE,

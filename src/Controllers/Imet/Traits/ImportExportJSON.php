@@ -225,7 +225,7 @@ trait ImportExportJSON
 
         $path = $files[0];
         if (count($files) > 1) {
-            $fileName = 'IMETS_'.count($files).'_'. Date::now()->format('m-d-Y_hisu').'.zip';
+            $fileName = 'IMETS_'.count($files).'_'.Date::now()->format('m-d-Y_hisu').'.zip';
             $path = Zip::compress($files, $fileName);
         }
 
