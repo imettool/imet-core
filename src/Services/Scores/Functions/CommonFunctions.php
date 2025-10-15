@@ -12,6 +12,8 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 trait CommonFunctions
 {
     /**
@@ -45,7 +47,7 @@ trait CommonFunctions
             ->groupBy($group_field)
             ->map(function ($group) use ($module_field) {
                 $group_values = $group
-                    ->filter(function (array $value) use ($module_field): bool {
+                    ->filter(function (ImetModule $value) use ($module_field): bool {
                         return $value[$module_field] != -99;
                     })
                     ->pluck($module_field)

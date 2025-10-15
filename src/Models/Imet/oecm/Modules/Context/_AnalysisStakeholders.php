@@ -243,7 +243,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     public static function getAnalysisElements(?int $form_id): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records = static::getModuleRecords($form_id)['records'];
 
         $items = [];
         foreach ($records as $record) {

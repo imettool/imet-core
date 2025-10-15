@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var mixed $definitions */
+/** @var mixed $vueData */
 /** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);

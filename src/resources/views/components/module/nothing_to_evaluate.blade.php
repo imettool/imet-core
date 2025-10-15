@@ -1,10 +1,9 @@
 <?php
 /** @var string $num_cols  */
-/** @var string $mode [optional]  */
+/** @var ?string $mode [optional]  */
 
 use \ModularForms\Enums\ModuleViewModes;
 
-$attributes = $attributes ?? '';
 $num_cols = $num_cols ?? 3;
 $mode = $mode ?? ModuleViewModes::EDIT;
 

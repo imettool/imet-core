@@ -4,8 +4,8 @@ use \Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 
 
 $original_definitions = $definitions;

@@ -2,8 +2,8 @@
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 
 ?>
 

@@ -1,5 +1,5 @@
 <?php
-/** @var Mixed $definitions */
+/** @var mixed $definitions */
 $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['module_type']==="GROUP_ACCORDION"
     ? 'index' : '0';
 

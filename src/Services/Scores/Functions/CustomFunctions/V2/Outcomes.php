@@ -19,7 +19,7 @@ trait Outcomes
     protected static function score_oc2(int $imet_id): ?float
     {
         $values = KeyConservationTrend::getModule($imet_id)
-            ->filter(function (array $record): bool {
+            ->filter(function (KeyConservationTrend $record): bool {
                 return intval($record['Condition']) !== -99
                     && $record['Condition'] !== null
                     && intval($record['Trend']) !== -99

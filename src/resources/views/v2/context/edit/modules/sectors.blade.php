@@ -1,8 +1,8 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-/** @var String $group_key (optional - only for GROUP_TABLE) */
+/** @var mixed $definitions */
+/** @var mixed $vueData */
+/** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;

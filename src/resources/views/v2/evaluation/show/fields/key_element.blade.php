@@ -1,5 +1,5 @@
 <?php
-/** @var String $value */
+/** @var string $value */
 
 use \ModularForms\Helpers\Input\SelectionList;
 use \ImetCore\Models\Species;

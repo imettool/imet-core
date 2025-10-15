@@ -23,3 +23,16 @@ parameters:
                 - package/imet-core/src/resources/views/v2/context/show/fields/*
                 - package/imet-core/src/resources/views/v2/context/edit/modules/*
                 - package/imet-core/src/resources/views/v2/context/edit/fields/*
+
+                - package/imet-core/src/resources/views/oecm/evaluation/show/modules/*
+                - package/imet-core/src/resources/views/oecm/evaluation/show/fields/*
+                - package/imet-core/src/resources/views/oecm/evaluation/edit/modules/*
+                - package/imet-core/src/resources/views/oecm/evaluation/edit/fields/*
+                - package/imet-core/src/resources/views/oecm/context/show/modules/*
+                - package/imet-core/src/resources/views/oecm/context/show/fields/*
+                - package/imet-core/src/resources/views/oecm/context/edit/modules/*
+                - package/imet-core/src/resources/views/oecm/context/edit/fields/*
+
+
+# Note: file src/Models/Imet/Components/Modules/ImetModule.php raise 4 errors on constant override, but they are false positives
+#       See https://github.com/phpstan/phpstan/issues/13119

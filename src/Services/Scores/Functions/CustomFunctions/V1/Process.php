@@ -12,6 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\ActorsRelations;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\Control;
 use ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
@@ -24,10 +25,10 @@ trait Process
         $records = $records ?? StaffCompetence::getModule($imet_id);
 
         $values = $records
-            ->filter(function (array $record): bool {
+            ->filter(function (ImetModule $record): bool {
                 return $record['EvaluationScore'] !== null;
             })
-            ->map(function (array $record) use ($staff_weights): array {
+            ->map(function (ImetModule $record) use ($staff_weights): ImetModule {
                 $record['eval_score'] = $record['EvaluationScore'] ?: $staff_weights[$record['Theme']]['ratio03'];
                 $record['weight'] = $record['EvaluationScore'] === null ? $staff_weights[$record['Theme']]['w_avg'] : 1;
 
@@ -35,7 +36,7 @@ trait Process
             });
 
         $sum_weight = $values->sum('weight');
-        $sum_weight_score = $values->sum(function (array $item): int|float {
+        $sum_weight_score = $values->sum(function (ImetModule $item): int|float {
             return $item['eval_score'] * $item['weight'];
         });
 
@@ -76,13 +77,11 @@ trait Process
 
     protected static function score_pr13(int $imet_id): ?float
     {
-        $records = ActorsRelations::getModule($imet_id);
-
-        $values = $records
-            ->filter(function (array $record): bool {
+        $values = ActorsRelations::getModule($imet_id)
+            ->filter(function (ActorsRelations $record): bool {
                 return $record['EvaluationScore'] !== null;
             })
-            ->map(function (array $record): \ModularForms\Models\Module {
+            ->map(function (ActorsRelations $record): ActorsRelations {
                 $record['eval'] =
                     $record['EvaluationScore'] === -99
                         ? null
@@ -94,7 +93,7 @@ trait Process
         $count = $values->count();
         $sum = null;
         $values
-            ->map(function (array $record) use (&$sum): void {
+            ->map(function (ActorsRelations $record) use (&$sum): void {
                 if ($record['eval'] !== null) {
                     $sum += $record['eval'];
                 }

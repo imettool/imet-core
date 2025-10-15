@@ -24,10 +24,9 @@ trait Process
     protected static function score_pr1(int $imet_id): ?float
     {
         $staff_weights = static::staff_weights($imet_id);
-        $records = StaffCompetence::getModule($imet_id);
 
-        $values = $records
-            ->map(function (array $record) use ($staff_weights): \ModularForms\Models\Module {
+        $values = StaffCompetence::getModule($imet_id)
+            ->map(function (StaffCompetence $record) use ($staff_weights): StaffCompetence {
                 if ($record['EvaluationScore'] !== null) {
                     $eval_score = $record['EvaluationScore'];
                 } elseif (isset($staff_weights[$record['Theme']])) {
@@ -49,7 +48,7 @@ trait Process
             });
 
         $weights = $values->sum('weight');
-        $weighted_eval_core = $values->sum(function (array $item): int|float {
+        $weighted_eval_core = $values->sum(function (StaffCompetence $item): int|float {
             return intval($item['eval_score']) * $item['weight'];
         });
         $weighted_percentage = (function ($data): null|int|float {
@@ -82,7 +81,7 @@ trait Process
 
         $sum = null;
         if ($records->isNotEmpty()) {
-            $sum = $records->sum(function (array $item): int {
+            $sum = $records->sum(function (GovernanceLeadership $item): int {
                 return intval($item['EvaluationScoreGovernace']) + intval($item['EvaluationScoreLeadership']);
             });
         }
@@ -98,10 +97,8 @@ trait Process
 
     protected static function score_pr6(int $imet_id): ?float
     {
-        $records = EquipmentMaintenance::getModule($imet_id);
-
-        $values = $records
-            ->map(function (array $record): \ModularForms\Models\Module {
+        $values = EquipmentMaintenance::getModule($imet_id)
+            ->map(function (EquipmentMaintenance $record): EquipmentMaintenance {
                 $record['numerator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];
@@ -155,11 +152,9 @@ trait Process
 
     protected static function score_pr10(int $imet_id): ?float
     {
-        $records = StakeholderCooperation::getModule($imet_id);
-
-        $values = $records
+        $values = StakeholderCooperation::getModule($imet_id)
             ->sortBy('Element')
-            ->map(function (array $record): \ModularForms\Models\Module {
+            ->map(function (StakeholderCooperation $record): StakeholderCooperation {
                 $record['score'] = $record['Cooperation'] === -99 ? 0 : $record['Cooperation'];
                 $record['weight'] =
                     ($record['MPInvolvement'] ?? 0) +

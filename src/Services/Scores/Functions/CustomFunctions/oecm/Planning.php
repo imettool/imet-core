@@ -54,22 +54,21 @@ trait Planning
 
     public static function score_p6(int $imet_id): ?float
     {
-        $records = Objectives::getModule($imet_id)
-            ->toArray();
+        $records = Objectives::getModule($imet_id);
 
-        $denominator = collect($records)
-            ->filter(function (array $item): bool {
+        $denominator = $records
+            ->filter(function (Objectives $item): bool {
                 return $item['EvaluationScore'] !== null;
             })
-            ->map(function (array $item): int {
+            ->map(function (Objectives $item): int {
                 return $item['group_key'] === 'group0'
                     ? 3
                     : 1;
             })
             ->sum();
 
-        $score = collect($records)
-            ->map(function (array $item) {
+        $score = $records
+            ->map(function (Objectives $item) {
                 return $item['group_key'] === 'group0'
                     ? $item['EvaluationScore'] * 3
                     : $item['EvaluationScore'];

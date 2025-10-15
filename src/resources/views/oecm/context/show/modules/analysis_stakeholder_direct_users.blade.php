@@ -4,8 +4,8 @@ use \ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use \Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 
 $form_id = $collection[0]['FormID'];
 

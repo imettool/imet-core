@@ -52,7 +52,7 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
     }
 
     #[\Override]
-    protected static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): ?array
     {
         $predefined_values = parent::getPredefined($form_id);
 

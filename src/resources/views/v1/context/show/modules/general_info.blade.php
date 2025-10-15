@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $item */
+/** @var mixed $definitions */
+/** @var mixed $item */
 
     if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
         $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($item->wdpa_id);

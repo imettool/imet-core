@@ -18,16 +18,14 @@ trait Outcomes
 {
     protected static function score_oc2(int $imet_id): ?float
     {
-        $records = KeyElementsImpact::getModule($imet_id)
-            ->filter(function (array $item): bool {
+        return KeyElementsImpact::getModule($imet_id)
+            ->filter(function (KeyElementsImpact $item): bool {
                 return $item['EffectSH'] !== null
                     && $item['ReliabilitySH'] !== null
                     && $item['EffectER'] !== null
                     && $item['ReliabilityER'] !== null;
-            });
-
-        return collect($records)
-            ->map(function (array $item): \ModularForms\Models\Module {
+            })
+            ->map(function (KeyElementsImpact $item): KeyElementsImpact {
 
                 if ($item['ReliabilitySH'] === 'high') {
                     $reliabilitySH = 3;

@@ -183,9 +183,7 @@ class Common
         }
 
         // form_id means oecm
-        if ($form_id) {
-            $ids = $form_id;
-        }
+        $ids = $form_id ?? $ids;
 
         $years_size = count($years);
         if ($years_size === 0) {

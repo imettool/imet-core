@@ -1,8 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 $table_id = 'table_' . $definitions['module_key'];
@@ -43,7 +43,7 @@ $UnderControlPatrolManDay = 0;
     <tbody class="{{ $group_key }}">
     @foreach($records as $record)
 
-            <?php 
+            <?php
 $area_percentage = null;
 $average_time = null;
 if (floatval($area) > 0 && floatval($record['UnderControlArea']) > 0) {
@@ -116,4 +116,4 @@ $UnderControlPatrolManDay += floatval($record['UnderControlPatrolManDay']);
 
 @include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
 
-<?php 
+<?php

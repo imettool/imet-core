@@ -55,7 +55,7 @@ class Create extends Modules\Component\ImetModule
         $records[0]['wdpa_id'] = $pa->wdpa_id;
         $records[0]['name'] = $pa->name;
 
-        $records[0]['version'] = Imet::version;
+        $records[0]['version'] = Imet::$version;
 
         $request->merge(['records_json' => Payload::encode($records)]);
 

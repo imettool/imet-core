@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use ImetCore\Controllers;
+use ImetCore\Exceptions\UnrecognizedVersionException;
 use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet;
@@ -47,7 +49,7 @@ trait ImportExportJSON
     use Upload;
 
     /**
-     * Upload file
+     * Upload a JSON file and import the IMET
      *
      * @throws Throwable
      */
@@ -56,10 +58,10 @@ trait ImportExportJSON
         $file = $request->file('file');
         $ext = $file->extension();
         $files = [];
+
         try {
             // upload file
             $uploaded = static::uploadFile($file);
-            $import = new static;
             // and then check if is zip or json
             if ($ext == 'zip') {
                 $uploaded_path = Storage::disk(File::TEMP_STORAGE)->path($uploaded['temp_filename']);
@@ -68,14 +70,14 @@ trait ImportExportJSON
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
                         $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
-                        $files[] = $import->import(new Request, $json, false);
+                        $files[] = (new (get_called_class()))->import(new Request, $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
                 $json = json_decode(static::getUploadFileContent($uploaded), true);
-                $files[] = $import->import(new Request, $json, false);
+                $files[] = (new (get_called_class()))->import(new Request, $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
 
@@ -284,6 +286,8 @@ trait ImportExportJSON
                 'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
                 'Report' => Imet\oecm\Report::export($imet_id),
             ];
+        } else {
+            throw new UnrecognizedVersionException($imet_form['version']);
         }
 
         if (ProtectedAreaNonWdpa::isNonWdpa($imet_form['wdpa_id'])) {
@@ -355,16 +359,19 @@ trait ImportExportJSON
 
             DB::commit();
 
-            // Force refresh scores
-            if ($version === Imet\Imet::IMET_V1 ||
-                $version === Imet\Imet::IMET_V2) {
+            // Force refresh scores && backup
+            if ($version === Imet\Imet::IMET_V1){
                 ImetScores::refresh_scores($formID);
+                (new Controllers\Imet\v1\Controller())->backup($formID, $version);
+            } elseif ($version === Imet\Imet::IMET_V2) {
+                ImetScores::refresh_scores($formID);
+                (new Controllers\Imet\v2\Controller())->backup($formID, $version);
             } elseif ($version === Imet\Imet::IMET_OECM) {
                 OecmScores::refresh_scores($formID);
+                (new Controllers\Imet\oecm\Controller())->backup($formID, $version);
+            } else {
+                throw new UnrecognizedVersionException($version);
             }
-
-            // backup in JSON
-            (new static)->backup($formID, $version);
 
             $response['modules'] = $modules_imported;
         } catch (Exception $exception) {
@@ -418,6 +425,8 @@ trait ImportExportJSON
             if ($with_report) {
                 Imet\oecm\Report::import($formID, $json['Report'] ?? null);
             }
+        } else {
+            throw new UnrecognizedVersionException($version);
         }
 
         return [$formID, $modules_imported];

@@ -1,8 +1,8 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
+/** @var mixed $definitions */
 
-/** @var Mixed $vueData */
+/** @var mixed $vueData */
 
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;

@@ -50,7 +50,7 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-        $formula = function (array $item): int|float {
+        $formula = function (AreaDominationMPA $item): int|float {
             return (
                 $item['Patrol'] +
                 $item['RapidIntervention'] +

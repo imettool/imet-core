@@ -52,7 +52,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
     }
 
     #[\Override]
-    protected static function getPredefined($form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): ?array
     {
         if (static::$cache_predefined_values === null) {
             $key_elements = $form_id != null

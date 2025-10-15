@@ -76,25 +76,28 @@ trait ConvertSQLite
      */
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
-        if (! method_exists(get_called_class(), 'conversionParameters')) {
+        /** @var class-string $called_class */
+        $called_class = get_called_class();
+
+        if (! method_exists($called_class, 'conversionParameters')) {
             return [];
         }
 
-        $sqlite_structure = static::conversionParameters();
+        $sqlite_structure = $called_class::conversionParameters();
 
         return $sqlite_connection->table('ProtectedAreas_'.$sqlite_structure['table'])
             ->select()
             ->where('FormID', $imet_data->FormID)
             ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
-            ->map(function ($record) use ($sqlite_structure): array {
+            ->map(function ($record) use ($sqlite_structure, $called_class): array {
 
                 $record = (array) $record;
                 $json = [];
 
                 // Review data from SQLITE whenever necessary
-                if (method_exists(get_called_class(), 'conversionDataReview')) {
-                    $record = static::conversionDataReview($record);
+                if (method_exists($called_class, 'conversionDataReview')) {
+                    $record = $called_class::conversionDataReview($record);
                 }
 
                 // Match SQLite fields to current module fields

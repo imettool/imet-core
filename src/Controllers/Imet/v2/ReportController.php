@@ -23,7 +23,7 @@ use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
 use ReflectionException;
 
-class ReportController extends BaseReportController
+final class ReportController extends BaseReportController
 {
     protected static ?string $form_class = Imet::class;
 
@@ -40,7 +40,6 @@ class ReportController extends BaseReportController
         $form_id = $item->getKey();
 
         $show_general_info = false;
-        $wdpa_extent = null;
 
         $connection = ImetEnv::isConnectionAvailable();
 
@@ -80,7 +79,6 @@ class ReportController extends BaseReportController
             'report' => \ImetCore\Models\Imet\v2\Report::getByForm($form_id),
             'connection' => $connection,
             'show_general_info' => $show_general_info,
-            'wdpa_extent' => $wdpa_extent[0]->extent ?? null,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
             'general_info' => $general_info[0] ?? null,

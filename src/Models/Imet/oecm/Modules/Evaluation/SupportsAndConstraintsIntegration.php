@@ -59,7 +59,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     }
 
     #[\Override]
-    protected static function getPredefined($form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): ?array
     {
         $predefined_values = $form_id !== null
             ? [

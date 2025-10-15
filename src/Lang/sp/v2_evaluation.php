@@ -1281,7 +1281,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A => Este elemento no está relacionado con la gestión del área protegida',
+                'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
                 '0' => 'Completamente inadecuado (0-30%)',
                 '1' => 'Algo inadecuado (31-60%)',
                 '2' => 'Adecuado (61-90%)',

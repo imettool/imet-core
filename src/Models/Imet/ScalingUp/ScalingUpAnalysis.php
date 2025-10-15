@@ -40,7 +40,7 @@ class ScalingUpAnalysis extends Model
 
     public $timestamps = false;
 
-    public static $scaling_id;
+    public static int $scaling_id;
 
     public const UNDEFINED_VALUE = -99999999;
 

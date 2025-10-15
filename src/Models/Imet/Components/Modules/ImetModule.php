@@ -25,7 +25,7 @@ class ImetModule extends Module
     use Dependencies;
     use InjectInView;
 
-    protected static ?string $form_clas;
+    protected static ?string $form_class;
 
     public const CREATED_AT = 'UpdateDate';
 
@@ -51,7 +51,8 @@ class ImetModule extends Module
 
     protected bool $enable_raw_export = true;
 
-    public $ratingLegend;
+    /** @phpstan-var null|array<string, array<string|int, string>> $ratingLegend */
+    public array $ratingLegend;
 
     public $module_subTitle;
 
@@ -109,7 +110,7 @@ class ImetModule extends Module
     /**
      * Override: Get predefined_values according to form language
      */
-    protected static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): ?array
     {
         static::forceLanguage($form_id);
 

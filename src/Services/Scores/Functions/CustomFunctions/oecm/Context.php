@@ -42,15 +42,13 @@ trait Context
 
     protected static function score_key_elements(int $imet_id): ?float
     {
-        $module_class = KeyElements::class;
-
-        $records = $module_class::getModule($imet_id);
+        $records = KeyElements::getModule($imet_id);
         $values = $records
-            ->filter(function (array $record): bool {
+            ->filter(function (KeyElements $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0;
             })
-            ->map(function (array $item): \ModularForms\Models\Module {
+            ->map(function (KeyElements $item): KeyElements {
                 $importance = $item['Importance'];
                 $integration = $item['EvaluationScore'];
                 $toPrioritize = $item['IncludeInStatistics'];

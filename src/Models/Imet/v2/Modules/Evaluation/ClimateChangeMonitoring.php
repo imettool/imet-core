@@ -53,7 +53,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
      * Prefill from CTX
      */
     #[\Override]
-    protected static function getPredefined($form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): ?array
     {
         $predefined_values = $form_id !== null
             ? array_merge(

@@ -4,8 +4,8 @@ use \ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var mixed $definitions */
+/** @var mixed $vueData */
 
 $stakeholders = Stakeholders::calculateWeights($vueData['form_id'], Stakeholders::ONLY_INDIRECT);
 arsort($stakeholders);

@@ -20,7 +20,7 @@ use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
 
 class Imet extends BaseImetForm
 {
-    public const version = 'v1';
+    public static string $version = 'v1';
 
     protected static ?string $schema = Database::IMET_SCHEMA;
 

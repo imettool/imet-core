@@ -18,7 +18,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use ImetCore\Controllers\__Controller;
 
-class EvalController extends __Controller
+abstract class EvalController extends __Controller
 {
     /**
      * Override edit route

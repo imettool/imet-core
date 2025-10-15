@@ -82,7 +82,7 @@ abstract class Encoder extends BaseModel
                 // Remove primary key
                 unset($encoder['id']);
                 // Create model and fill it with data
-                $item = new static;
+                $item = new (get_called_class());
                 $item->fill($encoder);
                 $item['FormID'] = $form_id;
                 unset($item['name']);

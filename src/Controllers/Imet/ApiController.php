@@ -13,6 +13,7 @@
 namespace ImetCore\Controllers\Imet;
 
 use ErrorException;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -24,6 +25,7 @@ use ImetCore\Models\Country;
 use ImetCore\Models\Imet;
 use ImetCore\Models\Imet\API\Assessment\ReportV1;
 use ImetCore\Models\Imet\API\Assessment\ReportV2;
+use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Api\ImetDetails;
 use ImetCore\Services\Scores\ImetScores;
@@ -175,7 +177,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws Exception
      */
     public function get_protected_areas_list(Request $request, string $language = 'en'): object
     {
@@ -207,7 +209,11 @@ class ApiController extends Controller
                 $region_name .= '_'.$language;
             }
 
-            $item['Type'] = \ImetCore\Models\Imet\v1\Modules\Context\GeneralInfo::query()->where('FormID', $item['FormID'])->pluck('Type')->first();
+            $item['Type'] = GeneralInfo::query()
+                ->where('FormID', $item['FormID'])
+                ->first()
+                ->Type;
+
             if (! $hasType || (! $type && $item['Type'] === null) || $type === $item['Type']) {
                 if ($item->country->region) {
                     $region_item = [

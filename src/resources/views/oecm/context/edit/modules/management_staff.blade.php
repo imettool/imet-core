@@ -6,8 +6,8 @@ use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var mixed $definitions */
+/** @var mixed $vueData */
 
 $view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"

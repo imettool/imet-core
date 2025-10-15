@@ -1,7 +1,7 @@
 <?php
-/** @var Mixed $definitions */
-/** @var Mixed $records */
-/** @var String $group_key (optional - only for GROUP_TABLE) */
+/** @var mixed $definitions */
+/** @var mixed $records */
+/** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = $group_key ?? null;
 

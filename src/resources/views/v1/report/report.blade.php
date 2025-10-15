@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\App;
 /** @var array $labels */
 /** @var array $key_elements */
 /** @var array $report */
-/** @var array $wdpa_extent */
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */

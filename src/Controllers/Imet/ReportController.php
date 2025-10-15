@@ -16,10 +16,14 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use ImetCore\Models\Imet\Imet;
 use ReflectionException;
 
 use function view;
 
+/**
+ * @method array __retrieve_report_data(Imet $imet)
+ */
 abstract class ReportController extends Controller
 {
     /**

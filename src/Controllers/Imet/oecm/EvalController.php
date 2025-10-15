@@ -15,7 +15,7 @@ namespace ImetCore\Controllers\Imet\oecm;
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\oecm\Imet_Eval;
 
-class EvalController extends BaseEvalController
+final class EvalController extends BaseEvalController
 {
     protected static ?string $form_class = Imet_Eval::class;
 

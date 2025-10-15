@@ -13,6 +13,7 @@
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
 use Illuminate\Support\Facades\App;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Models\Imet\v1\Modules\Context\Equipments;
 use ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff;
@@ -28,7 +29,7 @@ trait Inputs
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
-            ->map(function (array $record): array {
+            ->map(function (ImetModule $record): ImetModule {
                 $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, ($record['ActualPermanent'] ?? 0) / ($expected))
@@ -53,8 +54,9 @@ trait Inputs
 
     protected static function score_i2(int $imet_id): ?float
     {
-        $records = Staff::getModule($imet_id);
-        $functions = $records->pluck('Theme')->toArray();
+        $functions = Staff::getModule($imet_id)
+            ->pluck('Theme')
+            ->toArray();
 
         $staff_weights = collect(static::staff_weights($imet_id))
             ->filter(function (array $item) use ($functions): bool {

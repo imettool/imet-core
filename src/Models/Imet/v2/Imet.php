@@ -28,7 +28,7 @@ use ImetCore\Services\Scores\ImetScores;
 
 class Imet extends BaseImetForm
 {
-    public const version = 'v2';
+    public static string $version = 'v2';
 
     protected static ?string $schema = Database::IMET_SCHEMA;
 
@@ -146,7 +146,7 @@ class Imet extends BaseImetForm
 
         // backup to JSON
         if ($return['status'] == 'success') {
-            (new Controller)->backup($item, Imet::version);
+            (new Controller)->backup($item, Imet::$version);
         }
 
         // Update encoder UPDATED_AT

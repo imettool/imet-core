@@ -4,10 +4,15 @@ use ImetCore\Models\Imet;
 use ImetCore\Services\Assessment\ImetAssessment;
 use ImetCore\Services\Scores\Functions\_Scores;
 
-/** @var String $step */
+/** @var string $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
+/** @var string $version */
+/** @var ?bool $radar_show */
 
-$scores = $version === Imet\Imet::IMET_OECM ? ApiController::scores_oecm($item->getKey())->getData() : ApiController::scores($item->getKey())->getData();
+
+$scores = $version === Imet\Imet::IMET_OECM
+    ? ApiController::scores_oecm($item->getKey())->getData()
+    : ApiController::scores($item->getKey())->getData();
 
 $labels = ImetAssessment::get_scores_labels($item->version, $item->language);
 ?>

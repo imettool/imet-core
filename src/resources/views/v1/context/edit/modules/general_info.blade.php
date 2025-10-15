@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var mixed $definitions */
+/** @var mixed $vueData */
 
 
     $imet = \ImetCore\Models\Imet\v1\Imet::query()->find($vueData['form_id']);

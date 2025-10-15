@@ -10,14 +10,16 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Controllers\Imet\v1;
+namespace ImetCore\Exceptions;
 
-use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
-use ImetCore\Models\Imet\v1\Imet_Eval;
+use Exception;
+use Throwable;
 
-final class EvalController extends BaseEvalController
+class UnrecognizedVersionException extends Exception
 {
-    protected static ?string $form_class = Imet_Eval::class;
-
-    protected static ?string $form_view_prefix = 'imet-core::v1.evaluation';
+    public function __construct(string $version, $code = 0, ?Throwable $previous = null)
+    {
+        $message = 'Unrecognized version of IMET assessment: ' . $version;
+        parent::__construct($message, $code, $previous);
+    }
 }

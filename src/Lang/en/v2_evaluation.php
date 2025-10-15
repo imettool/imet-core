@@ -1280,7 +1280,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
-                'N/A => this element is not related to the management of the protected area',
+                'N/A' => 'this element is not related to the management of the protected area',
                 '0' => 'Completely inadequate (0-30%)',
                 '1' => 'somewhat inadequate (31-60%)',
                 '2' => 'adequate (61-90%)',

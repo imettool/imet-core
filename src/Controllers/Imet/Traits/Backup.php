@@ -35,10 +35,10 @@ trait Backup
 
             if ($version === Imet\Imet::IMET_V1) {
                 $form = (new Imet\v1\Imet)->find($item);
-            } elseif ($version === Imet\Imet::IMET_V2) {
-                $form = (new Imet\v2\Imet)->find($item);
             } elseif ($version === Imet\Imet::IMET_OECM) {
                 $form = (new Imet\oecm\Imet)->find($item);
+            } else {
+                $form = (new Imet\v2\Imet)->find($item);
             }
 
             $now = Date::now();

@@ -98,7 +98,7 @@ trait CreateAndStoreNonWdpa
                 ->toArray();
             $form_record['wdpa_id'] = $new_pa->getKey();
             $form_record['Country'] = $records[0]['country'];
-            $form_record['version'] = (static::$form_class)::version;
+            $form_record['version'] = (static::$form_class)::$version;
             $form_record = array_filter($form_record);
             $request->merge(['records_json' => Payload::encode([$form_record])]);
 
@@ -133,7 +133,7 @@ trait CreateAndStoreNonWdpa
         $non_wdpa_id = Payload::decode($request->input('records_json'))[0]['wdpa_id'];
         $non_wdpa = ProtectedAreaNonWdpa::query()->find($non_wdpa_id);
 
-        if ($records[0]['version'] == Imet::version) {
+        if ($records[0]['version'] == Imet::$version) {
             V2GeneralInfo::query()->create([
                 'FormID' => $form_id,
                 'CompleteName' => $non_wdpa->name,

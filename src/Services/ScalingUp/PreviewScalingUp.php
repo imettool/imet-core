@@ -17,6 +17,7 @@ class PreviewScalingUp
     public static function preview(int $id): array
     {
         $areas_names_concat = '';
+        $areas_names = [];
         $records = ModelScalingUpAnalysis::query()->where('id', $id)->first();
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {

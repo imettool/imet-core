@@ -1,4 +1,19 @@
 <?php
+/** @var Imet $item */
+/** @var string $action */
+/** @var array $scores */
+/** @var array $labels */
+/** @var array $key_elements_ecosystem_charts */
+/** @var array $key_elements_biodiversity_charts */
+/** @var array $key_elements_biodiversity */
+/** @var array $key_elements_ecosystem */
+/** @var array $report */
+/** @var array $report_schema */
+/** @var array $area */
+/** @var bool $show_non_wdpa */
+/** @var Array $non_wdpa */
+/** @var Array $governance */
+/** @var Array $stake_analysis */
 
 use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Controllers\Imet\v2\Controller;
@@ -9,23 +24,10 @@ use ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\Imet\oecm;
 
-/** @var string $action */
-/** @var Imet $item */
-/** @var array $scores */
-/** @var array $labels */
-/** @var array $key_elements */
-/** @var array $main_threats */
-/** @var array $report */
-/** @var array $report_schema */
-/** @var bool $show_non_wdpa */
-/** @var Array $non_wdpa */
-/** @var Array $governance */
-/** @var Array $stake_analysis */
-
 const REPORT_PREFIX = oecm\Controller::ROUTE_PREFIX;
 
 // Force Language
-if ($item->language != App::getLocale()) {
+if ($item!==null && $item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
 

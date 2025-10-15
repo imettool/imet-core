@@ -24,7 +24,7 @@ trait Inputs
     {
         $records = CapacityAdequacy::getModuleRecords($imet_id)['records'];
 
-        return _Common::score_staff($imet_id, $records);
+        return static::score_staff($imet_id, $records);
     }
 
     protected static function score_i3(int $imet_id): ?float
@@ -90,12 +90,12 @@ trait Inputs
             })->toArray();
 
         $values = ManagementEquipmentAdequacy::getModule($imet_id)
-            ->filter(function (array $item) use ($ctx_adequacy): bool {
+            ->filter(function (ManagementEquipmentAdequacy $item) use ($ctx_adequacy): bool {
                 $adequacy = $ctx_adequacy[$item['Equipment']] ?? null;
 
                 return $adequacy !== null && $item['PresentNeeds'] !== null;
             })
-            ->map(function (array $item) use ($ctx_adequacy): \ModularForms\Models\Module {
+            ->map(function (ManagementEquipmentAdequacy $item) use ($ctx_adequacy): ManagementEquipmentAdequacy {
                 $adequacy = $ctx_adequacy[$item['Equipment']];
                 $item['__present_needs'] = $item['PresentNeeds'] + 1;
                 $item['__prod'] = $item['__present_needs'] * $adequacy;

@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
 
 trait _Common
 {
-    public static function score_staff(int $imet_id, $records): ?float
+    public static function score_staff(int $imet_id, array $records): ?float
     {
         $values = collect($records)
             ->filter(function (array $record): bool {

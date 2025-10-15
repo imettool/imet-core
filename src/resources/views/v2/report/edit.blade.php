@@ -3,7 +3,6 @@
 /** @var array $assessment */
 /** @var array $key_elements */
 /** @var array $report */
-/** @var array $wdpa_extent */
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
@@ -19,7 +18,6 @@
     'labels' => $labels,
     'key_elements' => $key_elements,
     'report' => $report,
-    'wdpa_extent' => $wdpa_extent,
     'general_info' => $general_info,
     'vision' => $vision,
     'area' => $area,

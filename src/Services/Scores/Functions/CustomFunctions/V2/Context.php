@@ -28,14 +28,12 @@ trait Context
 
     protected static function score_c12(int $imet_id): ?float
     {
-        $records = ImportanceSpecies::getModule($imet_id);
-
-        $values = $records
-            ->filter(function (array $record): bool {
+        $values =  ImportanceSpecies::getModule($imet_id)
+            ->filter(function (ImportanceSpecies $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0
                     && $record['IncludeInStatistics'] == 1;
-            })->map(function (array $record): \ModularForms\Models\Module {
+            })->map(function (ImportanceSpecies $record): ImportanceSpecies {
                 $record['SignificativeSpecies'] = $record['SignificativeSpecies'] === null
                     ? 0
                     : $record['SignificativeSpecies'];
@@ -43,10 +41,10 @@ trait Context
                 return $record;
             });
 
-        $numerator = $values->sum(function (array $item): int|float {
+        $numerator = $values->sum(function (ImportanceSpecies $item): int|float {
             return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
         });
-        $denominator = $values->sum(function (array $item): int|float {
+        $denominator = $values->sum(function (ImportanceSpecies $item): int|float {
             return 1 + 2 * $item['SignificativeSpecies'];
         });
 
@@ -61,14 +59,12 @@ trait Context
 
     protected static function score_c13(int $imet_id): ?float
     {
-        $records = ImportanceHabitats::getModule($imet_id);
-
-        $values = $records
-            ->filter(function (array $record): bool {
+        $values = ImportanceHabitats::getModule($imet_id)
+            ->filter(function (ImportanceHabitats $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0
                     && $record['IncludeInStatistics'] == 1;
-            })->map(function (array $record): \ModularForms\Models\Module {
+            })->map(function (ImportanceHabitats $record): ImportanceHabitats {
                 $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
                     ? 1
                     : $record['EvaluationScore2'];
@@ -76,7 +72,7 @@ trait Context
                 return $record;
             });
 
-        $numerator = $values->sum(function (array $item): int|float {
+        $numerator = $values->sum(function (ImportanceHabitats $item): int|float {
             return $item['EvaluationScore2'] * $item['EvaluationScore'];
         });
         $denominator = $values->sum('EvaluationScore2');
@@ -94,7 +90,7 @@ trait Context
     protected static function score_c15(int $imet_id): ?float
     {
         $ecosystem_services = EcosystemServices::getModule($imet_id)
-            ->map(function (array $record): \ModularForms\Models\Module {
+            ->map(function (EcosystemServices $record): EcosystemServices {
                 $record['weight'] = (
                     (floatval($record['Importance']) ?? 0) +
                     ($record['ImportanceRegional'] !== null ? $record['ImportanceRegional'] / 3 : 0) +
@@ -105,9 +101,9 @@ trait Context
             })->keyBy('Element');
 
         $values = ImportanceEcosystemServices::getModule($imet_id)
-            ->filter(function (array $record): bool {
+            ->filter(function (ImportanceEcosystemServices $record): bool {
                 return $record['IncludeInStatistics'] == 1;
-            })->map(function (array $record) use ($ecosystem_services): \ModularForms\Models\Module {
+            })->map(function (ImportanceEcosystemServices $record) use ($ecosystem_services): ImportanceEcosystemServices {
                 $record['score'] = $record['EvaluationScore'] < 0
                     ? null
                     : $record['EvaluationScore'];
@@ -117,11 +113,11 @@ trait Context
 
                 return $record;
             })
-            ->filter(function (array $record): bool {
+            ->filter(function (ImportanceEcosystemServices $record): bool {
                 return $record['score'] !== null;
             });
 
-        $numerator = $values->sum(function (array $item): int|float {
+        $numerator = $values->sum(function (ImportanceEcosystemServices $item): int|float {
             return ($item['weight'] ?? 0) * ($item['score'] / 3 ?? 0);
         });
         $denominator = $values->sum(function ($item) {
@@ -138,15 +134,13 @@ trait Context
 
     protected static function score_c2(int $imet_id): ?float
     {
-        $records = SupportsAndConstraints::getModule($imet_id);
-
-        $values = $records
-            ->filter(function (array $record): bool {
+        $values = SupportsAndConstraints::getModule($imet_id)
+            ->filter(function (SupportsAndConstraints $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) > -4
                     && $record['EvaluationScore2'] !== null
                     && intval($record['EvaluationScore2']) > -4;
-            })->map(function (array $record): \ModularForms\Models\Module {
+            })->map(function (SupportsAndConstraints $record): SupportsAndConstraints {
                 $record['EvaluationScore2'] = $record['EvaluationScore2'] === null
                     ? 1
                     : $record['EvaluationScore2'];
@@ -154,7 +148,7 @@ trait Context
                 return $record;
             });
 
-        $numerator = $values->sum(function (array $item): int|float {
+        $numerator = $values->sum(function (SupportsAndConstraints $item): int|float {
             return $item['EvaluationScore2'] * $item['EvaluationScore'];
         });
         $denominator = $values->sum('EvaluationScore');

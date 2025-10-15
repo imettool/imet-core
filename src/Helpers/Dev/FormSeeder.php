@@ -35,7 +35,7 @@ class FormSeeder
         $form_id = Imet\v2\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
-            'version' => Imet\v2\Imet::version,
+            'version' => Imet\v2\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
@@ -61,7 +61,7 @@ class FormSeeder
         $form_id = Imet\oecm\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
-            'version' => Imet\oecm\Imet::version,
+            'version' => Imet\oecm\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,

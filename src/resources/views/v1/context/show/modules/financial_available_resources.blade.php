@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 
 $record = $records[0];
 $total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();

@@ -12,7 +12,7 @@
 
 namespace ImetCore\Controllers\Imet\v1;
 
-class ContextController extends Controller
+final class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::v1.context';
 

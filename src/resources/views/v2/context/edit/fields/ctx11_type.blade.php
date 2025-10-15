@@ -1,11 +1,11 @@
 <?php
-/** @var String $type */
-/** @var String $v_value */
-/** @var String $id */
-/** @var String $class */
-/** @var String $rules */
-/** @var String $other */
-/** @var Mixed $definitions */
+/** @var string $type */
+/** @var string $v_value */
+/** @var string $id */
+/** @var string $class */
+/** @var string $rules */
+/** @var string $other */
+/** @var mixed $definitions */
 
 
 

@@ -22,15 +22,13 @@ trait Process
     {
         $records = StaffCompetence::getModuleRecords($imet_id)['records'];
 
-        return _Common::score_staff($imet_id, $records);
+        return static::score_staff($imet_id, $records);
     }
 
     protected static function score_pr5(int $imet_id): ?float
     {
-        $records = EquipmentMaintenance::getModule($imet_id);
-
-        $values = $records
-            ->map(function (array $record): \ModularForms\Models\Module {
+        $values = EquipmentMaintenance::getModule($imet_id)
+            ->map(function (EquipmentMaintenance $record): EquipmentMaintenance {
                 $record['numerator'] = $record['EvaluationScore'] === -99 || $record['EvaluationScore'] === null
                     ? null
                     : intval($record['EvaluationScore']) * $record['AdequacyLevel'];

@@ -73,10 +73,8 @@ class ReportScalingUp
 
         if ($item->count() === 0) {
             $item = ModelScalingUpAnalysis::query()->create(['wdpas' => $items]);
-            if (isset($item)) {
-                $areas = $item['wdpas'];
-                $scaling_up_id = $item['id'];
-            }
+            $areas = $item['wdpas'];
+            $scaling_up_id = $item['id'];
         } else {
             $areas = $item[0]['wdpas'];
             $scaling_up_id = $item[0]['id'];

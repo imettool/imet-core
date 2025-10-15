@@ -21,9 +21,8 @@ if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
     $step_labels = 'oecm_common.steps';
 }
 
-if (Str::contains($controller, 'ContextController')) {
-    $phase = 'context';
-} elseif (Str::contains($controller, 'EvalController')) {
+$phase = 'context';
+if (Str::contains($controller, 'EvalController')) {
     $phase = 'evaluation';
     $step_labels = 'common.steps_eval';
 }

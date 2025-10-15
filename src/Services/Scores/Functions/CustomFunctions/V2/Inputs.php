@@ -12,6 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\Equipments;
 use ImetCore\Models\Imet\v2\Modules\Context\ManagementStaff;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\BudgetAdequacy;
@@ -26,7 +27,7 @@ trait Inputs
         $records = $staff ?? ManagementStaff::getModule($imet_id);
 
         return $records
-            ->map(function (array $record): array {
+            ->map(function (ImetModule $record): ImetModule {
                 $expected = intval($record['ExpectedPermanent']) === 0 ? null : $record['ExpectedPermanent'];
                 $record['ratio'] = $expected !== null
                     ? min(1, (($record['ActualPermanent'] ?? 0) + ($record['ActualPermanentPartnersOrCommunities'] ?? 0)) / ($expected))
@@ -52,7 +53,7 @@ trait Inputs
     protected static function score_i2(int $imet_id): ?float
     {
         $values = Staff::getModule($imet_id)
-            ->map(function (array $item): int|float {
+            ->map(function (Staff $item): int|float {
                 return $item['StaffCapacityAdequacy'] * $item['StaffNumberAdequacy'] / 12 * 100;
             })
             ->all();
@@ -123,7 +124,7 @@ trait Inputs
             });
 
         $equipment_adequacy = ManagementEquipmentAdequacy::getModule($imet_id)
-            ->map(function (array $record): \ModularForms\Models\Module {
+            ->map(function (ManagementEquipmentAdequacy $record): ManagementEquipmentAdequacy {
                 $record['Importance'] = $record['Importance'] !== null
                     ? floatval($record['Importance'])
                     : 0;

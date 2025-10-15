@@ -1,5 +1,5 @@
 <?php
-/** @var bool $is_wdpa */
+/** @var ?bool $is_wdpa */
 
 use ImetCore\Models\Imet\oecm\Modules\Context\Create;
 use ImetCore\Models\Imet\oecm\Modules\Context\CreateNonWdpa;

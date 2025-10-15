@@ -1,5 +1,5 @@
 <?php
-/** @var String $version */
+/** @var string $version */
 
 use ModularForms\Helpers\Template;
 

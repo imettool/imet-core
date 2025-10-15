@@ -3,12 +3,12 @@ use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 /** @var Array $stakeholders */
 /** @var Array $key_elements_importance */
-/** @var String $current_stakeholder */
-/** @var String $summary_title */
+/** @var string $current_stakeholder */
+/** @var string $summary_title */
 
 $form_id = $collection[0]['FormID'];
 

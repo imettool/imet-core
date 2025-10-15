@@ -190,9 +190,9 @@ class Common
      *
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
-    public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false)
+    public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false, int $scaling_id = 0)
     {
-        $area = static::get_protected_area_data($form_id, $show_original_names);
+        $area = static::get_protected_area_data($form_id, $show_original_names, $scaling_id);
         if ($area !== null) {
             $area->name = Common::add_the_indicator_to_the_field($area->wdpa_id, $area->name, $area->Year);
 
@@ -205,7 +205,7 @@ class Common
     /**
      * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    private static function get_protected_area_data(int $form_id, bool $show_original_names = false)
+    private static function get_protected_area_data(int $form_id, bool $show_original_names = false, int $scaling_id = 0)
     {
         if ($show_original_names) {
             $protected_area = Imet::query()->where('FormID', $form_id)->get();
@@ -213,7 +213,7 @@ class Common
                 return $protected_area[0];
             }
         } else {
-            $protected_area = ScalingUpWdpa::getByFormID(static::$scaling_id, $form_id);
+            $protected_area = ScalingUpWdpa::getByFormID($scaling_id, $form_id);
             if (($protected_area)) {
                 return $protected_area;
             }
@@ -291,7 +291,7 @@ class Common
             return ScalingUpWdpa::getCustomNames($id, $scaling_id);
         }
 
-        return static::protected_areas_duplicate_fixes($id, true);
+        return static::protected_areas_duplicate_fixes($id, true, $scaling_id);
     }
 
     public static function get_all_indicator_labels_cached()

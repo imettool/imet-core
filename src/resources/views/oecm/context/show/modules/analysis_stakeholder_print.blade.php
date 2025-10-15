@@ -3,7 +3,7 @@
 use ImetCore\Models\Imet\oecm\Imet;
 
 /** @var Imet $item */
-/** @var String $stakeholder */
+/** @var string $stakeholder */
 /** @var Array $categories */
 /** @var Array $definitions */
 

@@ -21,7 +21,7 @@ trait Planning
     protected static function score_p3(int $imet_id): ?float
     {
         $values = BoundaryLevel::getModule($imet_id)
-            ->map(function (array $record): \ModularForms\Models\Module {
+            ->map(function (BoundaryLevel $record): BoundaryLevel {
                 $record['score'] =
                     $record['EvaluationScore'] === null || intval($record['EvaluationScore']) === -99
                         ? 0
@@ -31,19 +31,19 @@ trait Planning
             });
 
         $not_null = $values
-            ->filter(function (array $record): bool {
+            ->filter(function (BoundaryLevel $record): bool {
                 return $record['EvaluationScore'] !== null;
             })
             ->count();
 
         $value1 = ($values
-            ->map(function (array $record): int|float {
+            ->map(function (BoundaryLevel $record): int|float {
                 return $record['Boundaries'] / 6;
             })
             ->avg() * 100 / 2) ?? 0;
 
         $value2 = $values
-            ->map(function (array $record): int|float {
+            ->map(function (BoundaryLevel $record): int|float {
                 return (($record['score'] / 3 * 100) ?? 0) / 2;
             })
             ->sum();

@@ -41,7 +41,7 @@ class ImetDetails
                             $values = static::animalScientificName($field[$value['name']]);
                         }
 
-                        $filtered_fields[$value['name']] = $values;
+                        $filtered_fields[$value['name']] = $values ?? null;
                         $labels[$value['name']] = $value['label'];
                     }
                 }

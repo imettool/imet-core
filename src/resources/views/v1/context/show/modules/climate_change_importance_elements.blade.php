@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var mixed $definitions */
+/** @var mixed $records */
 
 $labels = trans('imet-core::v1_context.ClimateChangeImportanceElements.Element');
 foreach ($records as $index=>$record){

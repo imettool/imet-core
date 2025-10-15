@@ -22,7 +22,7 @@ use ImetCore\Models\Imet\v2\Imet_Eval;
 
 use function view;
 
-class EvalController extends BaseEvalController
+final class EvalController extends BaseEvalController
 {
     protected static ?string $form_class = Imet_Eval::class;
 

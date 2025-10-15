@@ -21,7 +21,7 @@ use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Reports\OECM;
 use ImetCore\Services\Scores\OecmScores;
 
-class ReportController extends BaseReportController
+final class ReportController extends BaseReportController
 {
     protected static ?string $form_class = Imet::class;
 
@@ -30,14 +30,14 @@ class ReportController extends BaseReportController
     /**
      * Retrieve data to populate report view
      */
-    protected function __retrieve_report_data(Imet $item): array
+    protected function __retrieve_report_data(Imet $imet): array
     {
-        $form_id = $item->getKey();
+        $form_id = $imet->getKey();
         $show_non_wdpa = false;
 
-        if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+        if (ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)) {
             $show_non_wdpa = true;
-            $non_wdpa = ProtectedAreaNonWdpa::query()->find($item->wdpa_id)->toArray();
+            $non_wdpa = ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)->toArray();
         }
 
         $governance = Modules\Context\Governance::getModuleRecords($form_id);
@@ -47,7 +47,7 @@ class ReportController extends BaseReportController
             ->toArray();
 
         return [
-            'item' => $item,
+            'item' => $imet,
             'main_threats' => OECM::getThreats($form_id),
             'key_elements_ecosystem_charts' => OECM::getBiodiversityThreats($threats, true),
             'key_elements_biodiversity_charts' => OECM::getBiodiversityThreats($threats),
@@ -62,7 +62,7 @@ class ReportController extends BaseReportController
             'labels' => OecmScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_OECM),
             'report' => Report::getByForm($form_id),
             'report_schema' => Report::getSchema(),
-            'show_non_wdpa' => $show_non_wdpa ?? false,
+            'show_non_wdpa' => $show_non_wdpa,
             'non_wdpa' => $non_wdpa ?? null,
             'governance' => $governance['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id),
@@ -86,11 +86,11 @@ class ReportController extends BaseReportController
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     #[\Override]
-    public function report_update($item, Request $request): array
+    public function report_update($imet, Request $request): array
     {
-        $this->authorize('edit', (static::$form_class)::find($item));
+        $this->authorize('edit', (static::$form_class)::find($imet));
 
-        Report::updateByForm($item, $request->input('report'));
+        Report::updateByForm($imet, $request->input('report'));
 
         return ['status' => 'success'];
     }

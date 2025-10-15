@@ -29,7 +29,7 @@ use ModularForms\Helpers\Type\Chars;
 
 class Imet extends BaseImetForm
 {
-    public const version = 'oecm';
+    public static string $version = 'oecm';
 
     protected static ?string $schema = Database::OECM_SCHEMA;
 
@@ -210,7 +210,7 @@ class Imet extends BaseImetForm
 
         // backup to JSON
         if ($return['status'] == 'success') {
-            (new Controller)->backup($item, Imet::version);
+            (new Controller)->backup($item, Imet::$version);
         }
 
         // Update encoder UPDATED_AT

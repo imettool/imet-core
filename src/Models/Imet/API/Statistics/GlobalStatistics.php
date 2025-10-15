@@ -163,7 +163,10 @@ class GlobalStatistics
 
             $countries = Country::getByRegion($region['id']);
 
-            $list[$region['name']] = \ImetCore\Models\Imet\Imet::query()->select('FormID')->whereIn('Country', $countries)->get()->count();
+            $list[$region['name']] = \ImetCore\Models\Imet\Imet::query()
+                ->select('FormID')
+                ->whereIn('Country', $countries)
+                ->count();
         }
 
         return ['data' => $list];

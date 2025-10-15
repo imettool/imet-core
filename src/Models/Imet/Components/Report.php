@@ -64,7 +64,7 @@ abstract class Report extends BaseModel
     {
         $report = static::query()->where('FormID', $form_id)->first();
         if ($report == null) {
-            $report = new static;
+            $report = new (get_called_class());
         }
 
         $data['FormID'] = $form_id;
@@ -93,7 +93,7 @@ abstract class Report extends BaseModel
      */
     public static function import($form_id, array $data): void
     {
-        $report = new static;
+        $report = new (get_called_class());
         $data['FormID'] = $form_id;
         $report->fill($data);
         $report->save();

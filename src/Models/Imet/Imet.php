@@ -16,14 +16,13 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\hasOne;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
-use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Country;
 use ImetCore\Models\ProtectedArea;
@@ -53,6 +52,8 @@ abstract class Imet extends Form
     const IMET_V2 = 'v2';
 
     const IMET_OECM = 'oecm';
+
+    public static string $version;
 
     protected static ?string $schema = null;
 
@@ -84,7 +85,7 @@ abstract class Imet extends Form
     /**
      * Relation to Country
      */
-    public function country(): hasOne
+    public function country(): HasOne
     {
         return $this->hasOne(Country::class, 'iso3', 'Country');
     }
@@ -246,7 +247,7 @@ abstract class Imet extends Form
     {
         // filters
         $this->commonFilters($query, $params);
-        $query->where('version', static::version);
+        $query->where('version', static::$version);
 
         // sort
         $query->orderBy(static::$sortBy, static::$sortDirection)
