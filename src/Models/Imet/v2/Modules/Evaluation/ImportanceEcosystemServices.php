@@ -12,9 +12,10 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Module;
 
 class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 {
@@ -74,7 +75,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? static::getEcosystemServices($form_id)
-                    ->map(function ($item) {
+                    ->map(function (Modules\Context\EcosystemServices $item) {
                         return $item['Element'];
                     })
                 : [],
@@ -97,13 +98,13 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    private static function getEcosystemServices(?int $form_id)
+    private static function getEcosystemServices(?int $form_id): Collection
     {
         return Modules\Context\EcosystemServices::getModule($form_id)
             ->filter(function ($item): bool {
                 return $item['Importance'] !== null;
             })
-            ->map(function ($item) {
+            ->map(function (Modules\Context\EcosystemServices $item): Modules\Context\EcosystemServices {
                 $item['_rank'] = (floatval($item['Importance'])
                         + ($item['ImportanceRegional'] / 3)
                         + ((2 - $item['ImportanceGlobal']) / 4)) / 3 * 100;

@@ -59,12 +59,12 @@ abstract class Encoder extends BaseModel
     /**
      * Export model
      */
-    public static function exportModule($form_id): array
+    public static function exportModule(int $form_id): array
     {
         return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['FormID', 'id'])
-            ->map(function ($item): static {
+            ->map(function (Encoder $item): static {
                 $item['UpdateDate'] = Date::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
 
                 return $item;

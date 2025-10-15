@@ -69,7 +69,7 @@ class Stakeholders extends Modules\Component\ImetModule
      * Remove all empty records: where "Element" is empty
      */
     #[\Override]
-    public static function updateModuleRecords($records, $form_id): void
+    public static function updateModuleRecords(array $records, ?int $form_id): void
     {
         foreach ($records as $index => $record) {
             // Ensure no "newline" (or other not allowed entities) are saved
@@ -165,10 +165,10 @@ class Stakeholders extends Modules\Component\ImetModule
         $records = $query->toArray();
 
         return collect($records)
-            ->filter(function ($item): bool {
+            ->filter(function (array $item): bool {
                 return filled($item['Element']);
             })
-            ->map(function ($item): array {
+            ->map(function (array $item): array {
 
                 $UsesCategories = filled($item['UsesCategories']) ? json_decode($item['UsesCategories']) : null;
                 $UsesCategories = is_array($UsesCategories) ? count($UsesCategories) : null;

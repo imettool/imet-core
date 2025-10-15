@@ -101,7 +101,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     public static function getPrioritizedElements(?int $form_id): array
     {
         return collect(static::getModuleRecords($form_id)['records'])
-            ->filter(function ($item) {
+            ->filter(function (array $item) {
                 return $item['IncludeInStatistics'];
             })
             ->pluck('Stakeholder')

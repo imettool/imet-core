@@ -81,7 +81,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         $records = $records ?? static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function ($item) use ($weights): array {
+            ->map(function (array $item) use ($weights): array {
                 // Retrieve Stakeholders weights
                 $item['__stakeholder_weight'] = $weights[$item['Stakeholder']] ?? null;
                 // Retrieve weighted importance per each record
@@ -89,7 +89,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 return $item;
             })
-            ->filter(function ($item): bool {
+            ->filter(function (array $item): bool {
                 return $item['__weighted_importance'] != null;
             })
             ->groupBy('Element')
@@ -115,7 +115,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                     ->groupBy('Stakeholder')
                     ->map(function ($group_stakeholder): array {
                         $importance = $group_stakeholder
-                            ->map(function ($item): ?float {
+                            ->map(function (array $item): ?float {
                                 return $item['__weighted_importance'];
                             })
                             ->avg();
@@ -132,7 +132,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
                 // Aggregate importance on element
                 $importance = $group_element
-                    ->map(function ($item): float|int|null {
+                    ->map(function (array $item): float|int|null {
                         return $item['__weighted_importance'];
                     })
                     ->sum();
@@ -182,7 +182,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         }
 
         $key_elements_importance_direct = collect($key_elements_importance_direct)
-            ->map(function ($item) {
+            ->map(function (array $item) {
                 $item['importance_direct'] = $item['importance'];
                 $item['stakeholder_direct_count'] = $item['stakeholder_count'];
                 unset($item['importance'], $item['stakeholder_count']);
@@ -193,7 +193,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
                 return [$item['element'] => $item];
             });
         $key_elements_importance_indirect = collect($key_elements_importance_indirect)
-            ->map(function ($item) {
+            ->map(function (array $item) {
                 $item['importance_indirect'] = $item['importance'];
                 $item['stakeholder_indirect_count'] = $item['stakeholder_count'];
                 unset($item['importance'], $item['stakeholder_count']);
@@ -213,7 +213,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         });
 
         // Sum importances & counts
-        $key_elements_importances = $key_elements_importances->map(function ($item): array {
+        $key_elements_importances = $key_elements_importances->map(function (array $item): array {
             $item['importance_direct'] = $item['importance_direct'] ?? 0;
             $item['importance_indirect'] = $item['importance_indirect'] ?? 0;
             $item['stakeholder_direct_count'] = $item['stakeholder_direct_count'] ?? 0;
@@ -227,7 +227,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
         // rescale to 0-100
         $max_importance = $key_elements_importances->max('importance');
-        $key_elements_importances = $key_elements_importances->map(function ($item) use ($max_importance): array {
+        $key_elements_importances = $key_elements_importances->map(function (array $item) use ($max_importance): array {
             $item['importance_direct'] = round($item['importance_direct'] * 100 / $max_importance, 1);
             $item['importance_indirect'] = round($item['importance_indirect'] * 100 / $max_importance, 1);
             $item['importance'] = round($item['importance'] * 100 / $max_importance, 1);

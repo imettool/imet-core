@@ -89,7 +89,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function ($item): array {
+            ->map(function (array $item): array {
                 $item['__score'] = $item['Weight'] !== null && $item['ConstraintLevel'] !== null
                     ? $item['ConstraintLevel'] * $item['Weight']
                     : null;

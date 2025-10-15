@@ -54,7 +54,7 @@ class ManagementStaff extends Modules\Component\ImetModule
         $records = static::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function ($item): array {
+            ->map(function (array $item): array {
                 $item['__weight'] = round(sqrt($item['Number']), 2);
 
                 return $item;

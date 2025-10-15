@@ -15,12 +15,12 @@ namespace ImetCore\Commands;
 trait Utils
 {
     /**
-     * @param class-string $item
+     * @param  class-string  $item
      */
     private function dispatch(string $item, $args = null): void
     {
         $time_start = microtime(true);
-        $this->info('Executing '. $item);
+        $this->info('Executing '.$item);
         $item::dispatch($args);
         $this->info('Finished in '.round((microtime(true) - $time_start), 2).' seconds');
     }

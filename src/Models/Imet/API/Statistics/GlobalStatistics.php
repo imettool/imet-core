@@ -19,6 +19,7 @@ use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\v1;
 use ImetCore\Models\Imet\v2;
 use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
+use ImetCore\Models\ProtectedArea;
 use ImetCore\Services\Scores\ImetScores;
 
 class GlobalStatistics
@@ -54,7 +55,7 @@ class GlobalStatistics
             return $item;
         };
 
-        \ImetCore\Models\ProtectedArea::query()->select('wdpa_id', 'iucn_category')
+        ProtectedArea::query()->select('wdpa_id', 'iucn_category')
             ->whereIn('wdpa_id', array_keys($wdpa_ids))
             ->get()
             ->map($fn);
@@ -73,18 +74,24 @@ class GlobalStatistics
     public static function get_pa_number_per_iucn_categories(array $form_ids): array
     {
 
-        $list_v1 = \ImetCore\Models\Imet\Imet::query()->whereIn('FormID', $form_ids)->select()->pluck('wdpa_id')
+        $list_v1 = \ImetCore\Models\Imet\Imet::query()
+            ->whereIn('FormID', $form_ids)
+            ->select()
+            ->pluck('wdpa_id')
             ->toArray();
 
-        $number_of_pas_per_iucn_categories = \ImetCore\Models\ProtectedArea::query()->select(DB::raw('iucn_category'), DB::raw('count("iucn_category") as total'));
+        $number_of_pas_per_iucn_categories = ProtectedArea::query()
+            ->select(DB::raw('iucn_category'), DB::raw('count("iucn_category") as total'));
 
         if (count($list_v1) > 0) {
             $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories->whereIn('wdpa_id', $list_v1);
         }
 
-        $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories->groupBy(DB::raw('iucn_category'))
+        $number_of_pas_per_iucn_categories = $number_of_pas_per_iucn_categories
+            ->groupBy(DB::raw('iucn_category'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item): array {
+            ->get()
+            ->map(function (ProtectedArea $item): array {
                 return [
                     'iucn_category' => $item['iucn_category'],
                     'total' => $item['total'],
@@ -104,7 +111,7 @@ class GlobalStatistics
 
         $pa_number_or_marines_and_terrestrials = $pa_number_or_marines_and_terrestrials->groupBy(DB::raw('"Type"'))
             ->orderBy('total', 'desc')
-            ->get()->map(function ($item): array {
+            ->get()->map(function (array $item): array {
                 $values = [];
                 if ($item['Type'] === 'terrestrial') {
                     $values['Type'] = ucfirst(trans('imet-core::common.terrestrial'));

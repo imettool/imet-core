@@ -138,12 +138,13 @@ class ProtectedArea extends BaseProtectedArea
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::query()->where(function ($query) use ($search_key, $country): void {
-            $query = $query->like($search_key);
-            if ($country != null) {
-                $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
-            }
-        })
+        $protected_areas = static::query()
+            ->where(function ($query) use ($search_key, $country): void {
+                $query = $query->like($search_key);
+                if ($country != null) {
+                    $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
+                }
+            })
             ->where(function ($query) use ($allowed_wdpas): void {
                 if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
@@ -164,14 +165,15 @@ class ProtectedArea extends BaseProtectedArea
             ->sort()
             ->toArray();
 
-        return $protected_areas->map(function ($item) use ($countries): \ArrayAccess&\stdClass {
-            foreach (static::parseISOs([$item->country]) as $iso) {
-                $item['country_name'] .= $countries[$iso].', ';
-            }
+        return $protected_areas
+            ->map(function (ProtectedArea $item) use ($countries): ProtectedArea {
+                foreach (static::parseISOs([$item->country]) as $iso) {
+                    $item['country_name'] .= $countries[$iso].', ';
+                }
 
-            $item['country_name'] = rtrim($item['country_name'], ', ');
+                $item['country_name'] = rtrim($item['country_name'], ', ');
 
-            return $item;
-        });
+                return $item;
+            });
     }
 }

@@ -71,7 +71,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
             'field' => static::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? static::getMenacesPressions($form_id)
-                    ->map(function ($item) {
+                    ->map(function (Modules\Context\MenacesPressions $item) {
                         return $item['Value'];
                     })
                 : [],
@@ -99,7 +99,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
     private static function getMenacesPressions(?int $form_id)
     {
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
-            ->map(function ($item){
+            ->map(function (Modules\Context\MenacesPressions $item): Modules\Context\MenacesPressions {
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
                     [$item['Impact'], $item['Extension'], $item['Duration'], $item['Trend'], $item['Probability']],
                     true

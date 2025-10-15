@@ -89,7 +89,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
             ->pluck($dependency_on)
             ->toArray();
         $updated_values = collect($records)
-            ->filter(function ($item): bool {
+            ->filter(function (array $item): bool {
                 return $item['group_key'] === 'group0'
                     || $item['Existence'];
             })

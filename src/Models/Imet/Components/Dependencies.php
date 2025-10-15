@@ -148,7 +148,7 @@ trait Dependencies
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return static::getModule($form_id)
-            ->filter(function ($item) use ($dependency_field): bool {
+            ->filter(function (Modules\ImetModule $item) use ($dependency_field): bool {
                 return filled($item[$dependency_field]);
             })
             ->pluck($dependency_field)
