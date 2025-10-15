@@ -1,5 +1,5 @@
 <?php
-/** @var mixed $definitions */
+/** @var array $definitions */
 $vue_record_index = '0';
 
 ?>

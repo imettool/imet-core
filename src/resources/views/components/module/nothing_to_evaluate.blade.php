@@ -1,5 +1,5 @@
 <?php
-/** @var string $num_cols  */
+/** @var ?string $num_cols  */
 /** @var ?string $mode [optional]  */
 
 use \ModularForms\Enums\ModuleViewModes;

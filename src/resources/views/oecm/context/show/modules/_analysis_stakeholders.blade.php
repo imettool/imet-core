@@ -1,14 +1,14 @@
 <?php
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
-use Illuminate\Database\Eloquent\Collection;
-
 /** @var Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
-/** @var Array $stakeholders */
-/** @var Array $key_elements_importance */
+/** @var array $definitions */
+/** @var array $records */
+/** @var array $stakeholders */
+/** @var array $key_elements_importance */
 /** @var string $current_stakeholder */
 /** @var string $summary_title */
+
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use Illuminate\Database\Eloquent\Collection;
 
 $form_id = $collection[0]['FormID'];
 

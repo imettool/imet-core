@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $vueData */
+/** @var array $definitions */
+/** @var array $records */
 
 ?>
 

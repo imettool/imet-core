@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 /** @var Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 /** @var Array $stakeholders */
 

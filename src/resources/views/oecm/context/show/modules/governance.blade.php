@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>

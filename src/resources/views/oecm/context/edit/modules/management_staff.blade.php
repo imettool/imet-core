@@ -6,7 +6,7 @@ use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /** @var Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 
 $view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();

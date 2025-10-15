@@ -1,8 +1,7 @@
 <?php
-/** @var mixed $definitions */
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
-
-$group_key = '';
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
 
 $table_id = 'table_' . $definitions['module_key'];
 
@@ -20,7 +19,7 @@ $table_id = 'table_' . $definitions['module_key'];
     </thead>
 
     {{-- inputs --}}
-    <tbody class="{{ $group_key }}">
+    <tbody>
     @foreach($records as $index => $record)
         <tr class="module-table-item">
             {{--  fields  --}}

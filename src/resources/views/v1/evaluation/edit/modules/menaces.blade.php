@@ -1,6 +1,6 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;

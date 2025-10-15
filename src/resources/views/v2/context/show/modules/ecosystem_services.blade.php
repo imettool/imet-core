@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 

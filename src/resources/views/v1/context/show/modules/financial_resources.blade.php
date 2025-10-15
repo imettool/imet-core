@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 $record = $records[0];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);

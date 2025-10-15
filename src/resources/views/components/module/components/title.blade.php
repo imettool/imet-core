@@ -1,5 +1,5 @@
 <?php
-/** @var mixed $definitions */
+/** @var array $definitions */
 ?>
 
 <div class="module-header">

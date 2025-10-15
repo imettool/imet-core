@@ -1,11 +1,12 @@
 <?php
+/** @var Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-/** @var Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
 
 
 $original_definitions = $definitions;

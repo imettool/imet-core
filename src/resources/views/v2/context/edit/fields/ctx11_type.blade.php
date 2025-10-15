@@ -5,7 +5,7 @@
 /** @var string $class */
 /** @var string $rules */
 /** @var string $other */
-/** @var mixed $definitions */
+/** @var array $definitions */
 
 
 

@@ -97,8 +97,8 @@ class ImetModule extends Module
     public static function getDefinitions(?int $form_id = null): array
     {
         $definitions = parent::getDefinitions($form_id);
-        $model = new static;
-        $definitions['ratingLegend'] = $model->ratingLegend;
+        $model = new (get_called_class());
+        $definitions['ratingLegend'] = $model->ratingLegend ?? null;
         $definitions['module_subTitle'] = $model->module_subTitle;
         $definitions['module_info_EvaluationQuestion'] = $model->module_info_EvaluationQuestion;
         $definitions['module_info_Rating'] = $model->module_info_Rating;

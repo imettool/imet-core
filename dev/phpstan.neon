@@ -15,20 +15,20 @@ parameters:
                 - variable.undefined
                 - varTag.differentVariable
             paths:
-                - package/imet-core/src/resources/views/v2/evaluation/show/modules/*
+                #- package/imet-core/src/resources/views/v2/evaluation/show/modules/*
                 - package/imet-core/src/resources/views/v2/evaluation/show/fields/*
                 - package/imet-core/src/resources/views/v2/evaluation/edit/modules/*
                 - package/imet-core/src/resources/views/v2/evaluation/edit/fields/*
-                - package/imet-core/src/resources/views/v2/context/show/modules/*
+                #- package/imet-core/src/resources/views/v2/context/show/modules/*
                 - package/imet-core/src/resources/views/v2/context/show/fields/*
                 - package/imet-core/src/resources/views/v2/context/edit/modules/*
                 - package/imet-core/src/resources/views/v2/context/edit/fields/*
 
-                - package/imet-core/src/resources/views/oecm/evaluation/show/modules/*
+                #- package/imet-core/src/resources/views/oecm/evaluation/show/modules/*
                 - package/imet-core/src/resources/views/oecm/evaluation/show/fields/*
                 - package/imet-core/src/resources/views/oecm/evaluation/edit/modules/*
                 - package/imet-core/src/resources/views/oecm/evaluation/edit/fields/*
-                - package/imet-core/src/resources/views/oecm/context/show/modules/*
+                #- package/imet-core/src/resources/views/oecm/context/show/modules/*
                 - package/imet-core/src/resources/views/oecm/context/show/fields/*
                 - package/imet-core/src/resources/views/oecm/context/edit/modules/*
                 - package/imet-core/src/resources/views/oecm/context/edit/fields/*

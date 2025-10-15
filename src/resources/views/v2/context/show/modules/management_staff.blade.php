@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;

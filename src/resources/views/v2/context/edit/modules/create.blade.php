@@ -4,7 +4,7 @@ use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 /** @var Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 

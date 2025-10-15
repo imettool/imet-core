@@ -1,12 +1,12 @@
 <?php
-
-use ImetCore\Models\Imet\oecm\Imet;
-
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
 /** @var Imet $item */
 /** @var string $stakeholder */
 /** @var Array $categories */
-/** @var Array $definitions */
 
+use ImetCore\Models\Imet\oecm\Imet;
 $categories = $categories !== null ? json_decode($categories) : [];
 
 ?>

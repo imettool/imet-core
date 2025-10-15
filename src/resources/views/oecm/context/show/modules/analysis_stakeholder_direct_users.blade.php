@@ -1,11 +1,10 @@
 <?php
+/** @var Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
 
 use \ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use \Illuminate\Database\Eloquent\Collection;
-
-/** @var Collection $collection */
-/** @var mixed $definitions */
-/** @var mixed $records */
 
 $form_id = $collection[0]['FormID'];
 

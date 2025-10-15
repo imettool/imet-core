@@ -1,5 +1,5 @@
 <?php
-/** @var mixed $definitions */
+/** @var array $definitions */
 $definitions['label_width'] = 7;
 
 use \ImetCore\Helpers\Template;

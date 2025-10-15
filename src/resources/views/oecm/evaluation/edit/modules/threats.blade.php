@@ -1,6 +1,6 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 
 $vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');

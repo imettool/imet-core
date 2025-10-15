@@ -1,5 +1,5 @@
 <?php
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = '';

@@ -1,7 +1,10 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
-
 
 // Get the original table view
 $view_table = View::make('modular-forms::module.show.type.table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();

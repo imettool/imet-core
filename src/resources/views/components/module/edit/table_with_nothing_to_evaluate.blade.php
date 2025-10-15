@@ -1,6 +1,6 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var mixed $definitions */
+/** @var array $definitions */
 /** @var mixed $vueData */
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 

@@ -1,6 +1,6 @@
 <?php
-/** @var mixed $definitions */
-/** @var mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = $group_key ?? null;
