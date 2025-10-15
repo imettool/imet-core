@@ -1,14 +1,11 @@
 <?php
-/** @var string $type */
+/** @var string $v_id */
 /** @var string $v_value */
-/** @var string $id */
-/** @var string $class */
-/** @var string $rules */
-/** @var string $other */
-/** @var array $definitions */
-
-
-
+/** @var string $class  */
+/** @var ?string $other [optional] */
+/** @var ?string $rules [optional] */
+/** @var string $type */
+/** @var string $module_key */
 ?>
 
 <label class="radio-inline">
