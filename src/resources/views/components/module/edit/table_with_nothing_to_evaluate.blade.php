@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
 /** @var array $definitions */
-/** @var mixed $vueData */
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;

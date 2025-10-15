@@ -3,7 +3,9 @@
 /** @var array $records */
 /** @var array $definitions */
 
+$records = $records[0];
 $PlanExistence = boolval($records['PlanExistence']);
+
 @endphp
 
 @foreach($definitions['fields'] as $index=>$field)

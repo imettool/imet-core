@@ -1,4 +1,8 @@
 <?php
+/** @var Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
+/** @var array $stakeholders */
 
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
@@ -7,11 +11,6 @@ use ModularForms\Helpers\DOM;
 use ModularForms\Helpers\Template;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-
-/** @var Collection $collection */
-/** @var array $definitions */
-/** @var mixed $vueData */
-/** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);
 

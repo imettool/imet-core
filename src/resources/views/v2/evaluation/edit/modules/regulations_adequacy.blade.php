@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
 /** @var array $definitions */
-/** @var mixed $vueData */
 
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\RegulationsAdequacy;

@@ -1,5 +1,7 @@
 <?php
-use Illuminate\Database\Eloquent\Collection;
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 
 $vue_record_index = '0';
 

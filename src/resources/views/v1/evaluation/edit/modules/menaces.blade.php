@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
 /** @var array $definitions */
-/** @var mixed $vueData */
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;

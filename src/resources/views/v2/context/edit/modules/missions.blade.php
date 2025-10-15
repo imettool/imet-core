@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
