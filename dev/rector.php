@@ -45,7 +45,7 @@ return RectorConfig::configure()
             PATH_TO_PACKAGE.'/Lang',                    // Keep always same quote style in lang files
         ],
     ])
-    ->withPhpSets(php83: true)
+    ->withPhpSets(php84: true)
     ->withSetProviders(LaravelSetProvider::class)
     ->withComposerBased(laravel: true)
     ->withPreparedSets(

@@ -30,8 +30,8 @@ return new class extends Migration
         // Read the CSV file and extract the countries
         $handle = fopen($filename, 'r');
         if ($handle) {
-            $header = fgetcsv($handle);
-            while (($row = fgetcsv($handle)) !== false) {
+            $header = fgetcsv($handle, escape: '\\');
+            while (($row = fgetcsv($handle, escape: '\\')) !== false) {
                 $row = array_combine($header, $row);
                 if ($row !== []) {
                     $row = [

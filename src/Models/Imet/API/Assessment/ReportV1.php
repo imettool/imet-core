@@ -108,23 +108,23 @@ class ReportV1
     protected static function get_key_elements(int $form_id): array
     {
         return [
-            'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(fn($item): mixed => $item['IncludeInStatistics'])
-                ->pluck('Aspect')->map(fn($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
+            'species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                ->pluck('Aspect')->map(fn ($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
                 ->toArray(),
             'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
-                ->filter(fn($item): mixed => $item['IncludeInStatistics'])
+                ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                 ->pluck('Aspect')
                 ->toArray(),
             'climate_change' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
-                ->filter(fn($item): mixed => $item['IncludeInStatistics'])
+                ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                 ->pluck('Aspect')
                 ->toArray(),
             'ecosystem_services' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
-                ->filter(fn($item): mixed => $item['IncludeInStatistics'])
+                ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                 ->pluck('Aspect')
                 ->toArray(),
             'threats' => Modules\Evaluation\Menaces::getModule($form_id)
-                ->filter(fn($item): mixed => $item['IncludeInStatistics'])
+                ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                 ->pluck('Aspect')
                 ->toArray(),
         ];

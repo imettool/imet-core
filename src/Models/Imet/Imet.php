@@ -361,10 +361,6 @@ abstract class Imet extends Form
             ->toArray();
     }
 
-    /**
-     * @deprecated
-     * Retrieve years for existing IMETs
-     */
     public static function getAvailableYears(): array
     {
         return static::getDistinctField('Year');
@@ -521,21 +517,13 @@ abstract class Imet extends Form
         return array_keys(static::$modules);
     }
 
-    /**
-     * @deprecated Replace with get_assessments_list()
-     *
-     * @return mixed
-     */
+    #[\Deprecated(message: 'Replace with get_assessments_list()')]
     protected static function retrieve_list(Request $request, array $relations = [])
     {
         return static::get_assessments_list($request, $relations);
     }
 
-    /**
-     * @deprecated Replace with get_assessments_list_with_extras()
-     *
-     * @return mixed
-     */
+    #[\Deprecated(message: 'Replace with get_assessments_list_with_extras()')]
     protected static function get_list(Request $request)
     {
         return static::get_assessments_list_with_extras($request);

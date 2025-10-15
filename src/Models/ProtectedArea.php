@@ -57,7 +57,6 @@ class ProtectedArea extends BaseProtectedArea
     }
 
     /**
-     * @deprecated
      * Get by global_id
      */
     public static function getByGlobalId($global_id): ?ProtectedArea
