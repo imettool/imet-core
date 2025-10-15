@@ -103,6 +103,7 @@ class ImetPolicy
         if (Role::isRole(Role::ROLE_ENCODER, $user)) {
             return true;
         }
+
         if (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user)) {
             return true;
         }

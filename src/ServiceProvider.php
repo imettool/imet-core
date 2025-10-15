@@ -89,6 +89,7 @@ class ServiceProvider extends BaseServiceProvider
                 'prefix' => config('imet-core.web_routes_prefix'),
             ];
         }
+
         if ($route_file === 'api' && config('imet-core.api_routes_prefix') !== null) {
             return [
                 'prefix' => config('imet-core.api_routes_prefix'),

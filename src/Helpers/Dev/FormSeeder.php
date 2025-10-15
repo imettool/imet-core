@@ -192,9 +192,11 @@ class FormSeeder
         if (Str::contains($type, 'ctx11_type')) {
             return array_rand(ImetSelectionList::getCustomList('Imet_PaType'));
         }
+
         if (Str::contains($type, '_EcosystemServicesImportance')) {
             return collect([0, 1])->random();
         }
+
         if (Str::contains($type, '.SubGovernanceModel')
             && Str::contains(Str::lower($type), 'oecm')) {
             $list = SelectionList::getList('ImetOECM_SubGovernanceModel');
@@ -202,6 +204,7 @@ class FormSeeder
 
             return collect($random_group)->random();
         }
+
         if (Str::contains($type, 'ImetOECM_AnalysisStakeholders')) {
             $group_key = array_rand(trans('imet-core::oecm_context.AnalysisStakeholders.lists'));
             $list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key);
@@ -209,17 +212,20 @@ class FormSeeder
 
             return collect($list)->random();
         }
+
         if ($name === 'Stakeholder' && $type === 'hidden' && Str::contains($module, 'AnalysisStakeholder')) {
             $list = Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id);
 
             return collect($list)->random();
         }
+
         // CUSTOM
         if (Str::contains($module, 'SupportsAndConstraintsIntegration') && $name === 'Stakeholder') {
             if ($group_key === 'group0') {
                 return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_DIRECT))
                     ->random();
             }
+
             if ($group_key === 'group1') {
                 return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_INDIRECT))
                     ->random();
@@ -231,6 +237,7 @@ class FormSeeder
 
                 return $key_elements->keys()->random();
             }
+
             if ($group_key === 'group1') {
                 $biodiversity_key_elements = collect(Imet\oecm\Modules\Evaluation\ThreatsBiodiversity::calculateRanking($form_id))
                     ->sortBy('_score');
@@ -238,42 +245,54 @@ class FormSeeder
                 return $biodiversity_key_elements->pluck('Criteria')->random();
             }
         }
+
         // Standard
         if ($type === 'text') {
             return fake()->words(3, true);
         }
+
         if ($type === 'textarea' || $type === 'text-area') {
             return fake()->words(4, true);
         }
+
         if ($type === 'url') {
             return fake()->url();
         }
+
         if ($type === 'email') {
             return fake()->email();
         }
+
         if ($type === 'password') {
             return fake()->password();
         }
+
         if (in_array($type, ['integer', 'code', 'numeric'], true)) {
             return fake()->randomNumber(4);
         }
+
         if ($type === 'float'
             || $type === 'currency') {
             return fake()->randomFloat(2);
         }
+
         if ($type === 'date') {
             return fake()->date();
         }
+
         if ($type === 'dateMaxToday') {
             return fake()->dateTimeBetween('-4 years', 'now');
         }
+
         if ($type === 'year') {
             return fake()->year();
         }
+
         if ($type === 'yearMaxCurrent'
             || $type === 'yearMaxPrev') {
             return fake()->dateTimeBetween('-4 years', '-1 year')->format('Y');
         }
+
         if (Str::contains($type, '-boolean')) {
             $values = Str::contains($type, 'numeric')
                 ? [0, 1]
@@ -281,9 +300,11 @@ class FormSeeder
 
             return collect($values)->random();
         }
+
         if (Str::contains($type, 'yes_no')) {
             return collect(['true', 'false'])->random();
         }
+
         if (Str::contains($type, 'dropdown')
             || Str::contains($type, 'suggestion')
             || Str::contains($type, 'toggle')
@@ -296,6 +317,7 @@ class FormSeeder
                 ->keys()
                 ->random(Str::contains($type, 'multiple') ? rand(2, 4) : null);
         }
+
         if (Str::contains($type, 'rating')) {
             $values = [];
             $rating_type = last(explode('-', $type));
@@ -303,16 +325,19 @@ class FormSeeder
                 $values[] = '-99';
                 $rating_type = Str::replace('WithNA', '', $rating_type);
             }
+
             [$min, $max] = explode('to', $rating_type);
             if (Str::contains($min, 'Minus')) {
                 $min = Str::replace('Minus', '-', $min);
             }
+
             $min = intval($min);
             $max = intval($max);
             $values = array_merge($values, range($min, $max));
 
             return collect($values)->random();
         }
+
         if (Str::contains($type, 'selector-species')) {
             $species = Species::query()->inRandomOrder()->first();
 
@@ -323,6 +348,7 @@ class FormSeeder
                 .'|'.$species->genus
                 .'|'.$species->species;
         }
+
         // Standard
         if (Str::contains($type, 'selector-wdpa')) {
             if (Str::contains($type, 'multiple')) {

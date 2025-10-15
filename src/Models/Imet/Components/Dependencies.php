@@ -109,6 +109,7 @@ trait Dependencies
         foreach ($records_to_be_dropped as $record) {
             static::destroy($record[(new static)->primaryKey]);
         }
+
         // Propagate to eventual related dependencies
         static::propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped);
     }

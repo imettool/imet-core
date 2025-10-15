@@ -28,13 +28,16 @@ class CustomInput extends Input
             return parent::render();
 
         }
+
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa_multiple')) {
             return view('imet-core::components.inputs.selector-wdpa_multiple');
         }
+
         if (Str::contains($this->type, 'selector-wdpa')) {
             return view('imet-core::components.inputs.selector-wdpa');
         }
+
         // Species selector
         if (Str::contains($this->type, 'selector-species')) {
             return view('imet-core::components.inputs.selector-species');

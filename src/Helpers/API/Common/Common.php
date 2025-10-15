@@ -190,11 +190,12 @@ class Common
         if ($years_size === 0) {
             return static::getRecordsByWdpaID($fields, $ids, $key);
         }
+
         if ($years_size === 1) {
             return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
-        } else {
-            return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
         }
+
+        return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
     }
 
     private static function getRecordsByWdpaID(array $fields, array $ids, string $key): Collection
@@ -271,6 +272,7 @@ class Common
         if ($keys_not_match === []) {
             return $collection;
         }
+
         throw new ErrorException(trans('imet-core::api.error_messages.no_combination_found').implode(',', $keys_not_match));
     }
 

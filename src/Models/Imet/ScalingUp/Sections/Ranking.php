@@ -264,7 +264,7 @@ class Ranking
         $raw_values = [];
         $percent = ['values' => [], 'legends' => [], 'xAxis' => []];
 
-        $assessments = count($assessment) ? $assessment : Common::get_assessments($form_ids);
+        $assessments = $assessment !== [] ? $assessment : Common::get_assessments($form_ids);
         $items = $assessments['data'];
 
         usort($items['assessments'], function (array $first, array $second): bool {

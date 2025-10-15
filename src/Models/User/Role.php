@@ -150,18 +150,23 @@ class Role extends BaseModel
         if (static::isAdmin($user)) {
             return true;
         }
+
         if (static::isRole(static::ROLE_NATIONAL_AUTHORITY, $user)) {
             return true;
         }
+
         if (static::isRole(static::ROLE_REGIONAL_AUTHORITY, $user)) {
             return true;
         }
+
         if (static::isRole(static::ROLE_REGIONAL_OBSERVATORY, $user)) {
             return true;
         }
+
         if (static::isRole(static::ROLE_INTERNATIONAL_INSTITUTIION, $user)) {
             return true;
         }
+
         if (static::isRole(static::ROLE_DONOR, $user)) {
             return true;
         }

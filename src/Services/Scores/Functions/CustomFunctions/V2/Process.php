@@ -178,9 +178,11 @@ trait Process
                         if ($item['score'] === null) {
                             continue;
                         }
+
                         if ($item['weight'] === null) {
                             continue;
                         }
+
                         $sum += ($item['score'] / 3 * $item['weight']);
                     }
 

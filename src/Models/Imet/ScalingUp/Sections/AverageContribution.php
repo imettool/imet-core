@@ -50,7 +50,7 @@ class AverageContribution
 
         $average_contribution = static::calculate_data_average_contribution($average_contribution, $data, $colors, $label, $type);
 
-        $average_contribution['options'] = count($options) ? $options : null;
+        $average_contribution['options'] = $options !== [] ? $options : null;
         $average_contribution['indicators'] = $indicators_average_contribution;
 
         if (array_key_exists('data', $average_contribution)) {
@@ -106,7 +106,7 @@ class AverageContribution
 
         $average_contribution = [];
         $average_contribution = static::calculate_data_average_contribution($average_contribution, $data[$type], $colors, $label, $type);
-        $average_contribution['options'] = count($options) ? $options : null;
+        $average_contribution['options'] = $options !== [] ? $options : null;
         if (strpos($origType, '_') !== false) {
             $name = explode('_', $origType);
             $legend_name = trans('imet-core::analysis_report.assessment.'.$legends_match[$origType]);
@@ -140,7 +140,7 @@ class AverageContribution
                 });
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
                 $percentile_90 = Common::round_number(Common::get_percentile($values, 90));
-                $average_value = count($values) ? Common::round_number(array_sum($values) / count($values)) : 0; // check
+                $average_value = $values !== [] ? Common::round_number(array_sum($values) / count($values)) : 0; // check
                 $average[] = $average_value;
                 $average_contribution = self::getAverage_contribution($average_value, $percentile_10, $percentile_90, $v, $colors, $average_contribution, $i, $index, $label, $type);
             }

@@ -53,7 +53,7 @@ class Group
 
     public static function calculate_indicators_by_group(array $indicator, array $parameters, array $form_ids, array $assessments = [], int $scaling_id = 0): array
     {
-        $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
+        $assessments = $assessments !== [] ? $assessments : Common::get_assessments($form_ids, $scaling_id);
 
         foreach (array_keys($indicator) as $indi) {
             foreach ($assessments['data']['assessments'] as $assessment) {

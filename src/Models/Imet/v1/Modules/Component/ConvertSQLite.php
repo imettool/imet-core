@@ -140,7 +140,7 @@ trait ConvertSQLite
         $label = array_search($record[$group_field], (new static)->module_groups, true);
 
         // FR corresponding label
-        if (! $label) {
+        if ($label === 0 || ($label === '' || $label === '0') || $label === false) {
             App::setLocale('fr');
             $label = array_search($record[$group_field], (new static)->module_groups, true);
         }
@@ -149,7 +149,7 @@ trait ConvertSQLite
             $record[$group_field] = $label;
         }
 
-        if (! $label && $record[$group_field] !== '') {
+        if ((in_array($label, ['', '0', 0], true) || $label === false) && $record[$group_field] !== '') {
             dd('LABEL not found: "'.$record[$group_field].'" ('.$group_field.' - '.static::class.')');
         }
 

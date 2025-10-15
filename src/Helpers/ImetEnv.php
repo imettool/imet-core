@@ -57,6 +57,7 @@ class ImetEnv
         if (Str::contains($env, 'dev')) {
             return true;
         }
+
         if (Str::contains($env, 'local')) {
             return true;
         }

@@ -66,6 +66,7 @@ class Country extends BaseCountry
         if (strlen($region) === 2) {
             return static::query()->where('region_id', $region)->pluck('iso3')->toArray();
         }
+
         throw new Exception('Wrong size for region: '.$region);
     }
 

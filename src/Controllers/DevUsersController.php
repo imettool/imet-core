@@ -167,6 +167,7 @@ class DevUsersController extends __Controller
             return to_route('dashboard');
 
         }
+
         abort(404);
     }
 }

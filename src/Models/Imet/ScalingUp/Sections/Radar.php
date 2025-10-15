@@ -133,7 +133,7 @@ class Radar
     public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, ?int $scaling_id = 0): array
     {
         $start_time = microtime(true);
-        $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
+        $assessments = $assessments !== [] ? $assessments : Common::get_assessments($form_ids, $scaling_id);
 
         $indicator = [
             'context' => [],

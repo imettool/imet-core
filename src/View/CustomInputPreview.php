@@ -38,6 +38,7 @@ class CustomInputPreview extends InputPreview
 
                 return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
             }
+
             // Wdpa selector
             if (Str::contains($this->type, 'selector-species')) {
                 $name = null;

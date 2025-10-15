@@ -43,6 +43,7 @@ class DependencyParser extends BaseDependencyParser
         if ($copyright === null && $packageInfo['name'] === 'vue3-colorpicker') {
             return 'Copyright (c) 2021-present vue3-colorpicker';
         }
+
         if ($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
             return 'Copyright 2017-2025 The Apache Software Foundation';
         }

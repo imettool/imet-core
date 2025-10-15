@@ -58,20 +58,24 @@ class V1ToV2Scores extends _Scores
             if ($value === null) {
                 return null;
             }
+
             if ($value === 0) {
                 return 0;
             }
+
             if ($value <= 25) {
                 return 0.8 * $value;
             }
+
             if ($value <= 62.5) {
                 return 20 + ($value - 25) / (62.5 - 25) * 40;
             }
+
             if ($value <= 87.5) {
                 return 60 + ($value - 62.5) / (87.5 - 62.5) * 30;
-            } else {
-                return 90 + ($value - 87.5) / 12.5 * 10;
             }
+
+            return 90 + ($value - 87.5) / 12.5 * 10;
         };
 
         $scores = [
@@ -109,34 +113,40 @@ class V1ToV2Scores extends _Scores
             if ($value === 0) {
                 return 0;
             }
+
             if ($value <= 17.5) {
                 return (26 / 17.5) * $value;
             }
+
             if ($value <= 53) {
                 return 26 + ($value - 17.5) / (53 - 17.5) * 26;
             }
+
             if ($value <= 85.5) {
                 return 52 + ($value - 53) / (85.5 - 53) * 34;
-            } else {
-                return 86 + ($value - 85.5) / 14.5 * 14;
             }
+
+            return 86 + ($value - 85.5) / 14.5 * 14;
         };
 
         $conditional_i4 = function ($value): int|float {
             if ($value === 0) {
                 return 0;
             }
+
             if ($value <= 16.7) {
                 return (5 / 16.7) * $value;
             }
+
             if ($value <= 50) {
                 return 5 + ($value - 16.7) / (50 - 16.7) * 31.6666667;
             }
+
             if ($value <= 83.3) {
                 return 36.666667 + ($value - 50) / (83.3 - 50) * 36.66666667;
-            } else {
-                return 73.333333333 + ($value - 83.3) / 16.7 * 26.6666666666667;
             }
+
+            return 73.333333333 + ($value - 83.3) / 16.7 * 26.6666666666667;
         };
 
         $scores = [
