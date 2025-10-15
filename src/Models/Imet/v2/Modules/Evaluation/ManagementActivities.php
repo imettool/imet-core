@@ -95,7 +95,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if (blank($imet_version) || $imet_version < 'v2.7.6b') {
             // group3 merged into group2
-            $record = static::replaceGroup($record, 'group_key', 'group3', 'group2');
+            return static::replaceGroup($record, 'group_key', 'group3', 'group2');
         }
 
         return $record;

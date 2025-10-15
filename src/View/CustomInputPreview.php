@@ -26,7 +26,6 @@ class CustomInputPreview extends InputPreview
 
         // ### imet-core custom inputs ###
         if (Str::startsWith($this->type, 'imet-core::')) {
-
             // Wdpa selector
             if (Str::contains($this->type, 'selector-wdpa_multiple')) {
                 $list = '';
@@ -39,9 +38,8 @@ class CustomInputPreview extends InputPreview
 
                 return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
             }
-
-            // Species selector
-            elseif (Str::contains($this->type, 'selector-species')) {
+            // Wdpa selector
+            if (Str::contains($this->type, 'selector-species')) {
                 $name = null;
                 if (filled($this->value)) {
                     $name = Species::getPlainNameByTaxonomy($this->value);
@@ -49,7 +47,6 @@ class CustomInputPreview extends InputPreview
 
                 return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
             }
-
         }
 
         return parent::render();

@@ -133,14 +133,13 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     private static function row_stats(array $record): ?float
     {
-        $stat = null;
         if ($record['Importance'] !== null && $record['ImportanceRegional'] !== null && $record['ImportanceGlobal'] !== null) {
-            $stat = floatval($record['Importance'])
+            return floatval($record['Importance'])
                 + (floatval($record['ImportanceRegional']) / 3)
                 + ((2 - floatval($record['ImportanceGlobal'])) / 4);
         }
 
-        return $stat;
+        return null;
     }
 
     #[\Override]

@@ -175,11 +175,13 @@ trait Process
                 $wi = (function ($data): int|float|null {
                     $sum = null;
                     foreach ($data as $item) {
-                        if ($item['score'] === null || $item['weight'] === null) {
+                        if ($item['score'] === null) {
                             continue;
-                        } else {
-                            $sum += ($item['score'] / 3 * $item['weight']);
                         }
+                        if ($item['weight'] === null) {
+                            continue;
+                        }
+                        $sum += ($item['score'] / 3 * $item['weight']);
                     }
 
                     return $sum;

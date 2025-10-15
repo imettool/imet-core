@@ -166,8 +166,7 @@ class DevUsersController extends __Controller
 
             return to_route('dashboard');
 
-        } else {
-            abort(404);
         }
+        abort(404);
     }
 }

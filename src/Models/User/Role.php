@@ -147,14 +147,26 @@ class Role extends BaseModel
     public static function hasAnyRole($user = null): bool
     {
         $user = $user ?? Auth::user();
+        if (static::isAdmin($user)) {
+            return true;
+        }
+        if (static::isRole(static::ROLE_NATIONAL_AUTHORITY, $user)) {
+            return true;
+        }
+        if (static::isRole(static::ROLE_REGIONAL_AUTHORITY, $user)) {
+            return true;
+        }
+        if (static::isRole(static::ROLE_REGIONAL_OBSERVATORY, $user)) {
+            return true;
+        }
+        if (static::isRole(static::ROLE_INTERNATIONAL_INSTITUTIION, $user)) {
+            return true;
+        }
+        if (static::isRole(static::ROLE_DONOR, $user)) {
+            return true;
+        }
 
-        return static::isAdmin($user)
-            || static::isRole(static::ROLE_NATIONAL_AUTHORITY, $user)
-            || static::isRole(static::ROLE_REGIONAL_AUTHORITY, $user)
-            || static::isRole(static::ROLE_REGIONAL_OBSERVATORY, $user)
-            || static::isRole(static::ROLE_INTERNATIONAL_INSTITUTIION, $user)
-            || static::isRole(static::ROLE_DONOR, $user)
-            || static::isRole(static::ROLE_ENCODER, $user);
+        return static::isRole(static::ROLE_ENCODER, $user);
     }
 
     /**

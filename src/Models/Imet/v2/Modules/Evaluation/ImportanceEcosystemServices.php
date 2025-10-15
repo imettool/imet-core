@@ -13,7 +13,6 @@
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 

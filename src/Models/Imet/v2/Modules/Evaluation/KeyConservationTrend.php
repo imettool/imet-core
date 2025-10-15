@@ -95,16 +95,13 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
     #[\Override]
     public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
         if ($record['Condition'] !== null
             || $record['Trend'] !== null
             || $record['Reliability'] !== null
-            || $record['Comments'] !== null
-        ) {
-            $isEmpty = false;
+            || $record['Comments'] !== null) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
 }

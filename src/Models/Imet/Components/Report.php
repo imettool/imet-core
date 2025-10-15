@@ -45,18 +45,16 @@ abstract class Report extends BaseModel
         $report = static::query()->where('FormID', $form_id)->first();
 
         if ($report === null) {
-            $report = array_fill_keys(static::$report_fields, '');
-        } else {
-            $report = array_map(function ($item) {
-                if ($item === null) {
-                    return '';
-                }
-
-                return $item;
-            }, $report->toArray());
+            return array_fill_keys(static::$report_fields, '');
         }
 
-        return $report;
+        return array_map(function ($item) {
+            if ($item === null) {
+                return '';
+            }
+
+            return $item;
+        }, $report->toArray());
     }
 
     /**

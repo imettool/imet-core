@@ -66,8 +66,6 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     #[\Override]
     public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
         if ($record['Description'] !== null
             || $record['Support'] !== null
             || $record['Guidelines'] !== null
@@ -75,12 +73,11 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
             || $record['Status'] === true
             || $record['Trend'] === true
             || $record['Threats'] === true
-            || $record['Comments'] !== null
-        ) {
-            $isEmpty = false;
+            || $record['Comments'] !== null) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
 
     public static function calculateKeyElementImportance($item): ?float
@@ -123,8 +120,8 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
             ) * 100 / $max_score;
 
             return $item['__importance'] * $item['__stakeholder_weight'];
-        } else {
-            return null;
         }
+
+        return null;
     }
 }

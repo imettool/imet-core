@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\Components;
 
 use Illuminate\Support\Str;
 use ImetCore\Exceptions\MissingDependencyConfigurationException;
+use Throwable;
 
 trait Dependencies
 {
@@ -93,30 +94,23 @@ trait Dependencies
      * Drop orphans records (where reference field values had been removed form parent) adn propagate to eventual related dependencies
      *
      * @throws MissingDependencyConfigurationException
+     * @throws Throwable
      */
     public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, ?string $dependency_on = null): void
     {
-        if ($dependency_on == null && static::$DEPENDENCY_ON === null) {
-            throw new MissingDependencyConfigurationException(static::class);
-        } else {
-
-            $dependency_on = $dependency_on ?? static::$DEPENDENCY_ON;
-
-            // Drop records (where reference field values had been removed form parent)
-            $records_to_be_dropped = static::getModule($form_id)
-                ->filter(function (array $record) use ($to_be_dropped, $dependency_on): bool {
-                    return in_array($record[$dependency_on], $to_be_dropped);
-                })
-                ->toArray();
-
-            foreach ($records_to_be_dropped as $record) {
-                static::destroy($record[(new static)->primaryKey]);
-            }
-
-            // Propagate to eventual related dependencies
-            static::propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped);
+        throw_if($dependency_on == null && static::$DEPENDENCY_ON === null, MissingDependencyConfigurationException::class, static::class);
+        $dependency_on = $dependency_on ?? static::$DEPENDENCY_ON;
+        // Drop records (where reference field values had been removed form parent)
+        $records_to_be_dropped = static::getModule($form_id)
+            ->filter(function (array $record) use ($to_be_dropped, $dependency_on): bool {
+                return in_array($record[$dependency_on], $to_be_dropped);
+            })
+            ->toArray();
+        foreach ($records_to_be_dropped as $record) {
+            static::destroy($record[(new static)->primaryKey]);
         }
-
+        // Propagate to eventual related dependencies
+        static::propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped);
     }
 
     /**

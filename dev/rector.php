@@ -53,10 +53,10 @@ return RectorConfig::configure()
         codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
-        //        privatization: true,
+        privatization: true,
         // //        naming: true,                 // not necessary, and sometimes harmful
-        //        instanceOf: true,
-        //        earlyReturn: true,
+        instanceOf: true,
+        earlyReturn: true,
         //        strictBooleans: true,
         //        carbon: true,
         // //        rectorPreset: true,           // To be decided: introduce strict type declaration

@@ -49,9 +49,9 @@ class ImetPolicy
     {
         if (is_null($form)) {
             return Role::hasAnyRole($user);
-        } else {
-            return Role::isWdpaAllowed($form->wdpa_id, $user);
         }
+
+        return Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -61,10 +61,10 @@ class ImetPolicy
     {
         if (is_null($form)) {
             return Role::isRole(Role::ROLE_ENCODER);
-        } else {
-            return Role::isRole(Role::ROLE_ENCODER)
-                && Role::isWdpaAllowed($form->wdpa_id, $user);
         }
+
+        return Role::isRole(Role::ROLE_ENCODER)
+            && Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -100,10 +100,14 @@ class ImetPolicy
     public function export_button($user, $form = null): bool
     {
         $user = $user ?? Auth::user();
+        if (Role::isRole(Role::ROLE_ENCODER, $user)) {
+            return true;
+        }
+        if (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user)) {
+            return true;
+        }
 
-        return Role::isRole(Role::ROLE_ENCODER, $user) ||
-            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
+        return Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
     }
 
     /**
@@ -156,7 +160,11 @@ class ImetPolicy
 
     public function role_national_or_observatory(): bool
     {
-        return Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY);
+        if (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY)) {
+            return true;
+        }
+
+        return Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY);
     }
 
     /**

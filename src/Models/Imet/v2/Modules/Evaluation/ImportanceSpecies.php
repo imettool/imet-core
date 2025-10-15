@@ -85,17 +85,14 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     #[\Override]
     public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
         if ($record['EvaluationScore'] !== null
             || $record['SignificativeSpecies'] !== null
             || $record['IncludeInStatistics'] !== null
-            || $record['Comments'] !== null
-        ) {
-            $isEmpty = false;
+            || $record['Comments'] !== null) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
 
     #[\Override]

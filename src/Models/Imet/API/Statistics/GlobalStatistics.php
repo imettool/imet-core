@@ -309,7 +309,7 @@ class GlobalStatistics
         }
 
         if (count($form_ids) > 0 && $type !== null) {
-            $form_ids = GeneralInfo::query()->where('Type', $type)
+            return GeneralInfo::query()->where('Type', $type)
                 ->whereIn('FormID', $form_ids)
                 ->pluck('FormID')
                 ->toArray();

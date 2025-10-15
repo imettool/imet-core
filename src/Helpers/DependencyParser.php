@@ -39,13 +39,16 @@ class DependencyParser extends BaseDependencyParser
     protected static function retrieveCopyright(array $packageInfo, string $mode): ?string
     {
         $copyright = parent::retrieveCopyright($packageInfo, $mode);
-
         // Hardcode copyright for specific packages
         if ($copyright === null && $packageInfo['name'] === 'vue3-colorpicker') {
             return 'Copyright (c) 2021-present vue3-colorpicker';
-        } elseif ($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
+        }
+        if ($packageInfo['name'] === 'echarts' && str_contains($copyright, 'yyyy')) {
             return 'Copyright 2017-2025 The Apache Software Foundation';
-        } elseif (str_contains($packageInfo['name'], 'modular-forms')) {
+        }
+
+        // Hardcode copyright for specific packages
+        if (str_contains($packageInfo['name'], 'modular-forms')) {
             return BaseDependencyParser::COPYRIGHT;
         }
 

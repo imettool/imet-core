@@ -65,17 +65,14 @@ class KeyElements extends Modules\Component\ImetModule_Eval
     #[\Override]
     public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
         if ($record['EvaluationScore'] !== null
             || ($record['IncludeInStatistics'] !== null && $record['IncludeInStatistics'] !== false)
             || $record['Comments'] !== null
-            || ($record['group_key'] === 'group0' && $record['Importance'] !== null)
-        ) {
-            $isEmpty = false;
+            || ($record['group_key'] === 'group0' && $record['Importance'] !== null)) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
 
     /**

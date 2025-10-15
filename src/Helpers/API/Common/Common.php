@@ -189,7 +189,8 @@ class Common
         $years_size = count($years);
         if ($years_size === 0) {
             return static::getRecordsByWdpaID($fields, $ids, $key);
-        } elseif ($years_size === 1) {
+        }
+        if ($years_size === 1) {
             return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
         } else {
             return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
@@ -269,9 +270,8 @@ class Common
 
         if ($keys_not_match === []) {
             return $collection;
-        } else {
-            throw new ErrorException(trans('imet-core::api.error_messages.no_combination_found').implode(',', $keys_not_match));
         }
+        throw new ErrorException(trans('imet-core::api.error_messages.no_combination_found').implode(',', $keys_not_match));
     }
 
     private static function checkIfRequestedPAHaveImetRecords(int $requested, int $exists): void

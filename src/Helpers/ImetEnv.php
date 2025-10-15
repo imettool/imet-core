@@ -24,8 +24,11 @@ class ImetEnv
      */
     public static function isImetEnv(): bool
     {
-        return Str::contains(App::environment(), 'imet')
-            || ImetEnv::isImetOfflineEnv();
+        if (Str::contains(App::environment(), 'imet')) {
+            return true;
+        }
+
+        return ImetEnv::isImetOfflineEnv();
     }
 
     /**
@@ -51,10 +54,14 @@ class ImetEnv
     public static function isDevEnv(): bool
     {
         $env = Str::lower(App::environment());
+        if (Str::contains($env, 'dev')) {
+            return true;
+        }
+        if (Str::contains($env, 'local')) {
+            return true;
+        }
 
-        return Str::contains($env, 'dev') ||
-            Str::contains($env, 'local') ||
-            static::isImetGlobalDevEnv();
+        return static::isImetGlobalDevEnv();
     }
 
     /**

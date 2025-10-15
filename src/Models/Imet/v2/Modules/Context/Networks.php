@@ -78,9 +78,11 @@ class Networks extends Modules\Component\ImetModule
                     $model = \ImetCore\Models\ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
 
                     return $model->wdpa_id ?? null;
-                } else {
-                    return explode('_', $pa)[1]; // for other regions: global_id is region + wdpa
                 }
+
+                return explode('_', $pa)[1];
+                // for other regions: global_id is region + wdpa
+
             })->all();
 
             // Convert JSON to comma-separated list

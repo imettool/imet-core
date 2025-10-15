@@ -23,20 +23,21 @@ class CustomInput extends Input
     {
 
         // ### imet-core custom inputs ###
-        if (Str::startsWith($this->type, 'imet-core::')) {
+        if (! Str::startsWith($this->type, 'imet-core::')) {
 
-            // Wdpa selector
-            if (Str::contains($this->type, 'selector-wdpa_multiple')) {
-                return view('imet-core::components.inputs.selector-wdpa_multiple');
-            } elseif (Str::contains($this->type, 'selector-wdpa')) {
-                return view('imet-core::components.inputs.selector-wdpa');
-            }
+            return parent::render();
 
-            // Species selector
-            elseif (Str::contains($this->type, 'selector-species')) {
-                return view('imet-core::components.inputs.selector-species');
-            }
-
+        }
+        // Wdpa selector
+        if (Str::contains($this->type, 'selector-wdpa_multiple')) {
+            return view('imet-core::components.inputs.selector-wdpa_multiple');
+        }
+        if (Str::contains($this->type, 'selector-wdpa')) {
+            return view('imet-core::components.inputs.selector-wdpa');
+        }
+        // Species selector
+        if (Str::contains($this->type, 'selector-species')) {
+            return view('imet-core::components.inputs.selector-species');
         }
 
         return parent::render();

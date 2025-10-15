@@ -54,9 +54,9 @@ class OecmScores
             unset($scores['imet_index']);
 
             return array_combine($labels, $scores);
-        } else {
-            return $scores;
         }
+
+        return $scores;
     }
 
     /**

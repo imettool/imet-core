@@ -135,8 +135,11 @@ class Imet extends BaseImetForm
             // Replacement for PostgreSQL unaccent() function
             ->filter(function (Imet $item) use ($request): bool {
                 if ($request->filled('search')) {
-                    return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
-                        || Str::contains($item['wdpa_id'], $request->input('search'));
+                    if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
+                        return true;
+                    }
+
+                    return Str::contains($item['wdpa_id'], $request->input('search'));
                 }
 
                 return true;

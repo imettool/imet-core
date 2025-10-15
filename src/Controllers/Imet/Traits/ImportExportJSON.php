@@ -297,9 +297,9 @@ trait ImportExportJSON
                 $json,
                 $download
             );
-        } else {
-            return $json;
         }
+
+        return $json;
     }
 
     public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array

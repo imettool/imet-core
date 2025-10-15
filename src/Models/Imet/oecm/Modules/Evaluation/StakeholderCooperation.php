@@ -87,12 +87,6 @@ class StakeholderCooperation extends Modules\Component\ImetModule_Eval
     #[\Override]
     public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
-        if ($record['Element'] !== null) {
-            $isEmpty = false;
-        }
-
-        return $isEmpty;
+        return $record['Element'] === null;
     }
 }
