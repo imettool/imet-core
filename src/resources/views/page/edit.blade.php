@@ -27,7 +27,7 @@ if (Str::contains($controller, 'EvalController')) {
     $step_labels = 'common.steps_eval';
 }
 
-$steps = $phase=='evaluation' && Str::contains($controller, Models\Imet\Imet::IMET_V2)
+$steps = $phase === 'evaluation' && Str::contains($controller, Models\Imet\Imet::IMET_V2)
     ? Imet\v2\EvalController::steps($item)
     : array_keys($item::modules());
 

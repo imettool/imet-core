@@ -51,10 +51,15 @@ abstract class _Scores
     }
 
     abstract public static function scores_context(int $imet_id): array;
+
     abstract public static function scores_planning(int $imet_id): array;
+
     abstract public static function scores_inputs(int $imet_id): array;
+
     abstract public static function scores_process(int $imet_id): array;
+
     abstract public static function scores_outputs(int $imet_id): array;
+
     abstract public static function scores_outcomes(int $imet_id): array;
 
     /**

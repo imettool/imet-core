@@ -19,7 +19,7 @@ class UnrecognizedVersionException extends Exception
 {
     public function __construct(string $version, $code = 0, ?Throwable $previous = null)
     {
-        $message = 'Unrecognized version of IMET assessment: ' . $version;
+        $message = 'Unrecognized version of IMET assessment: '.$version;
         parent::__construct($message, $code, $previous);
     }
 }

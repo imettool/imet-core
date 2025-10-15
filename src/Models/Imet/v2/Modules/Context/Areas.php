@@ -135,9 +135,10 @@ class Areas extends Modules\Component\ImetModule
 
         if ($records['records'][0] === $records['empty_record']) {
             $wdpa = Imet::query()->find($form_id);
-            if(!$wdpa || !$wdpa->wdpa_id){
+            if (! $wdpa || ! $wdpa->wdpa_id) {
                 return $records;
             }
+
             $wdpa_id = $wdpa->wdpa_id;
             $pa_area_km2 = ProtectedArea::getByWdpa($wdpa_id)->area;
             if ($pa_area_km2 !== null && $pa_area_km2 > 0) {

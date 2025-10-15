@@ -43,7 +43,7 @@ final class EvalController extends BaseEvalController
      * return if any discrepancies are found for cross analysis
      * and also the classes to be used for indication in the menu
      */
-    protected function get_cross_analysis(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $form): array
+    private function get_cross_analysis(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $form): array
     {
         $classes = [];
         $warnings = CrossAnalysis::getIndicators($form);

@@ -538,7 +538,7 @@ class ScalingUpAnalysis extends Model
     public static function get_averages_of_each_indicator_of_six_elements(array $form_ids, array $assessments = [], bool $overall = false, int $scaling_id = 0): array
     {
         $id = $scaling_id;
-        if (static::$scaling_id) {
+        if (static::$scaling_id !== 0) {
             $id = static::$scaling_id;
         }
 

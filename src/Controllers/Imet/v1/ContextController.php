@@ -18,27 +18,27 @@ final class ContextController extends Controller
 
     protected static ?string $form_default_step = 'general_info';
 
-    protected static $total_budget = 0;
+    private static $total_budget = 0;
 
-    protected static $financial_available_resources_totals = 0;
+    private static $financial_available_resources_totals = 0;
 
     public static function get_records_total_budget()
     {
-        return static::$total_budget;
+        return self::$total_budget;
     }
 
     public static function set_records_total_budget($value): void
     {
-        static::$total_budget = $value;
+        self::$total_budget = $value;
     }
 
     public static function get_financial_available_resources_totals()
     {
-        return static::$financial_available_resources_totals;
+        return self::$financial_available_resources_totals;
     }
 
     public static function set_financial_available_resources_totals($value): void
     {
-        static::$financial_available_resources_totals = $value;
+        self::$financial_available_resources_totals = $value;
     }
 }

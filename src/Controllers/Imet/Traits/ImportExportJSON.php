@@ -360,15 +360,15 @@ trait ImportExportJSON
             DB::commit();
 
             // Force refresh scores && backup
-            if ($version === Imet\Imet::IMET_V1){
+            if ($version === Imet\Imet::IMET_V1) {
                 ImetScores::refresh_scores($formID);
-                (new Controllers\Imet\v1\Controller())->backup($formID, $version);
+                (new Controllers\Imet\v1\Controller)->backup($formID, $version);
             } elseif ($version === Imet\Imet::IMET_V2) {
                 ImetScores::refresh_scores($formID);
-                (new Controllers\Imet\v2\Controller())->backup($formID, $version);
+                (new Controllers\Imet\v2\Controller)->backup($formID, $version);
             } elseif ($version === Imet\Imet::IMET_OECM) {
                 OecmScores::refresh_scores($formID);
-                (new Controllers\Imet\oecm\Controller())->backup($formID, $version);
+                (new Controllers\Imet\oecm\Controller)->backup($formID, $version);
             } else {
                 throw new UnrecognizedVersionException($version);
             }

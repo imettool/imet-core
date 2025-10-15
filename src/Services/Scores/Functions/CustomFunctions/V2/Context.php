@@ -28,7 +28,7 @@ trait Context
 
     protected static function score_c12(int $imet_id): ?float
     {
-        $values =  ImportanceSpecies::getModule($imet_id)
+        $values = ImportanceSpecies::getModule($imet_id)
             ->filter(function (ImportanceSpecies $record): bool {
                 return $record['EvaluationScore'] !== null
                     && intval($record['EvaluationScore']) >= 0
