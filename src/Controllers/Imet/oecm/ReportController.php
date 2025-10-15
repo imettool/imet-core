@@ -88,7 +88,7 @@ final class ReportController extends BaseReportController
     #[\Override]
     public function report_update($imet, Request $request): array
     {
-        $this->authorize('edit', (static::$form_class)::find($imet));
+        $this->authorize('edit', (self::$form_class)::find($imet));
 
         Report::updateByForm($imet, $request->input('report'));
 

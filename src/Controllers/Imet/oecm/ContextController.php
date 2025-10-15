@@ -22,12 +22,12 @@ final class ContextController extends Controller
 
     public function print_sa($item): View
     {
-        $this->authorize('view', (static::$form_class)::find($item));
+        $this->authorize('view', (self::$form_class)::find($item));
 
-        $form = new static::$form_class;
+        $form = new self::$form_class;
         $form = $form->find($item);
 
-        return view(static::$form_view_prefix.'.print_sa', [
+        return view(self::$form_view_prefix.'.print_sa', [
             'item' => $form,
         ]);
     }

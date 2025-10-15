@@ -62,14 +62,14 @@ final class EvalController extends BaseEvalController
     #[\Override]
     public function edit($item, $step = null): Application|View|Factory
     {
-        $imet = (static::$form_class)::find($item);
+        $imet = (self::$form_class)::find($item);
         $this->authorize('edit', $imet);
 
         $step = $step == null ? 'context' : $step;
         [$warnings, $classes] = $this->get_cross_analysis($imet);
 
-        return view(static::$form_view_prefix.'.edit', [
-            'controller' => static::class,
+        return view(self::$form_view_prefix.'.edit', [
+            'controller' => self::class,
             'item' => $imet,
             'step' => $step,
             'warnings' => $warnings,
@@ -85,14 +85,14 @@ final class EvalController extends BaseEvalController
     #[\Override]
     public function show($item, $step = null): Application|View|Factory
     {
-        $imet = (static::$form_class)::find($item);
+        $imet = (self::$form_class)::find($item);
         $this->authorize('view', $imet);
 
         $step = $step == null ? 'context' : $step;
         [$warnings, $classes] = $this->get_cross_analysis($imet);
 
-        return view(static::$form_view_prefix.'.show', [
-            'controller' => static::class,
+        return view(self::$form_view_prefix.'.show', [
+            'controller' => self::class,
             'item' => $imet,
             'step' => $step,
             'warnings' => $warnings,
