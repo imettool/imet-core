@@ -12,16 +12,9 @@
 
 namespace Database\Seeders;
 
-use Auth;
 use Exception;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
-use ImetCore\Factories\ProtectedAreaFactory;
-use ImetCore\Factories\SpeciesFactory;
-use ImetCore\Helpers\Dev\FormSeeder as DevDatabaseSeeder;
-use ImetCore\Models\ProtectedArea;
-use ImetCore\Models\User\Role;
+use ImetCore\Models\Imet\Imet;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,35 +27,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Add administrator user
-        DB::table('users')
-            ->insert([
-                'id' => 0,
-                'first_name' => 'John',
-                'last_name' => 'Smith',
-                'email' => 'john.smith@email.com',
-                'organisation' => 'IMET',
-                'function' => 'Developer',
-                'imet_role' => Role::ROLE_ADMINISTRATOR,
-            ]);
-
-        // Authenticate as administrator
-        Auth::loginUsingId(0);
+        // Seed admin user and login
+        (new UserSeeder)->run();
 
         // Seed protected areas
-        ProtectedAreaFactory::new()->count(50)->create();
+        (new ProtectedAreaSeeder)->run();
 
         // Seed species
-        SpeciesFactory::new()->count(1000)->create();
+        (new SpeciesSeeder)->run();
 
         // Seed forms with modules
-        $pas = ProtectedArea::all()->random(10);
-        for ($i = 1; $i <= self::NUM_FORMS; $i++) {
-            $language = collect(['en', 'fr', 'sp', 'pt'])->random();
-            App::setLocale($language);
-            DevDatabaseSeeder::seedFormImetV2($pas->random(), $language);
-            DevDatabaseSeeder::seedFormImetOecm($pas->random(), $language);
-        }
+        (new FormSeeder)->run(Imet::IMET_V2);
+        (new FormSeeder)->run(Imet::IMET_OECM );
 
     }
 }

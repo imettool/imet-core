@@ -1,18 +1,11 @@
 <?php
 
-/*
- * Copyright (C) 2025 European Union
- * This program is free software: you can redistribute it and/or modify it under the terms of the
- * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
- * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
- * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
- */
-
-namespace ImetCore\Helpers\Dev;
+namespace Database\Seeders;
 
 use Exception;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -23,8 +16,58 @@ use ImetCore\Models\Species;
 use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Module;
 
-class FormSeeder
+class FormSeeder extends Seeder
 {
+    use WithoutModelEvents;
+
+    const int NUM_FORMS = 5;
+
+    /**
+     * Run the database seeders.
+     * @throws Exception
+     */
+    public function run(string $version, ?int $num = self::NUM_FORMS): void
+    {
+        for ($i = 1; $i <= $num; $i++) {
+            $language = collect(['en', 'fr', 'sp', 'pt'])->random();
+            $pa = ProtectedArea::query()->inRandomOrder()->first();
+            App::setLocale($language);
+            if($version === Imet\Imet::IMET_V1){
+                static::seedFormImetV1($pa, $language);
+            } elseif($version === Imet\Imet::IMET_V2){
+                static::seedFormImetV2($pa, $language);
+            } elseif($version === Imet\Imet::IMET_OECM){
+                static::seedFormImetOecm($pa, $language);
+            }
+        }
+    }
+
+    /**
+     * Create a new form (IMETV 1) for the given (or random) protected area and populate it with fake data
+     *
+     * @throws Exception
+     */
+    public static function seedFormImetV1(ProtectedArea $protected_area, string $language): void
+    {
+        $form_id = Imet\v1\Imet::query()->insertGetId([
+            'Country' => $protected_area->country,
+            'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
+            'version' => Imet\v1\Imet::$version,
+            'language' => $language,
+            'wdpa_id' => $protected_area->wdpa_id,
+            'name' => $protected_area->name,
+            'UpdateDate' => now()->toDateTimeString(),
+            'UpdateBy' => 0,
+        ]);
+
+        $modules = array_merge(
+            Imet\v1\Imet::allModules(),
+            Imet\v1\Imet_Eval::allModules()
+        );
+
+        static::seedFormModules($form_id, $modules);
+    }
+
     /**
      * Create a new form (IMETV 2) for the given (or random) protected area and populate it with fake data
      *
@@ -139,7 +182,7 @@ class FormSeeder
                 if (Str::contains((new $module)->module_type, 'GROUP')) {
                     $random_predefined_value
                         = array_key_exists($group_key, $predefined['values'])
-                            && count($predefined['values'][$group_key]) > 0
+                    && count($predefined['values'][$group_key]) > 0
                         ? collect($predefined['values'][$group_key])->random()
                         : null;
                 } else {
@@ -360,4 +403,7 @@ class FormSeeder
 
         return null;
     }
+
+
+
 }
