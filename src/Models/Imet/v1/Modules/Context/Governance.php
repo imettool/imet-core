@@ -36,11 +36,18 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'dropdown-ImetV1_GovernanceType',   'label' => trans('imet-core::v1_context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Governance.fields.Comments')],
+            ['name' => 'GovernanceModel',      'type' => 'dropdown-ImetV1_GovernanceType',   'label' => trans('imet-core::v1_context.Governance.fields.Type')],
+            ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Governance.fields.Comments')],
         ];
 
         parent::__construct($attributes);
+    }
+
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // Rename fields to match the new DB column names
+        $record = static::renameField($record, 'Type', 'GovernanceModel');
+        return static::renameField($record, 'Comments', 'AdditionalInfo');
     }
 
     /**
