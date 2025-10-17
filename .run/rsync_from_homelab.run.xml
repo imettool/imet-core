@@ -4,11 +4,11 @@
                 value="rsync -aiv --delete
                 --exclude='.git/'
                 --exclude='.idea/'
-                --exclude='vendor/'
-                --exclude='node_modules/'
-                --exclude='dev/storage/app/'
-                --exclude='dev/storage/framework/'
-                --exclude='dev/package/'
+                --exclude='./vendor/'
+                --exclude='./node_modules/'
+                --exclude='./dev/storage/app/'
+                --exclude='./dev/storage/framework/'
+                --exclude='./dev/package/'
                 imet-core.homelab7a.work:/workspace/ ./" />
         <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
         <option name="SCRIPT_PATH" value="" />

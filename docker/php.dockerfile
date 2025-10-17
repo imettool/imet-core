@@ -1,7 +1,4 @@
-FROM php:8.4-fpm-alpine
-
-# Update
-RUN apk update
+FROM php:8.4-fpm-bookworm
 
 # Retrieve last version of install-php-extensions
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -13,8 +10,17 @@ RUN install-php-extensions bcmath
 
 # Install optional PHP Extensions
 RUN install-php-extensions \
-    pdo_pgsql \
+    pcntl \
+    sockets \
     zip
+
+# Install nodejs and npm (for playwright - required by pest browser testing)
+RUN mkdir /.npm
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt-get install -y nodejs
+
+# install Plawright (via npm) and dependencies
+RUN npm i -g playwright && npx playwright install-deps chromium # firefox webkit
 
 WORKDIR /var/www/html
 
@@ -33,5 +39,10 @@ RUN composer config -g github-oauth.github.com ${COMPOSER_GITHUB_TOKEN}
 # Use host user (to fix file permission). Required on Linux
 ARG UID
 RUN chown -R ${UID} /var/www/
+RUN chown -R ${UID} /.npm
+RUN mkdir /.cache && chown -R ${UID} /.cache
 USER ${UID}
+
+# Install Playwright browsers (as non-root user)
+RUN npx playwright install chromium #firefox webkit
 
