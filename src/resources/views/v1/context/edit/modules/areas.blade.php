@@ -15,22 +15,26 @@ $vue_record_index = '0';
             'label_width' => $definitions['label_width']
         ])
 
-
         @if(in_array($field_index, [0, 1, 2]))
+
+            @php
+                $convert_to_km = "@input=convertToKm(\"{$field['name']}\")";
+                $convert_to_ha = "@input=convertToHa(\"{$field['name']}\")";
+            @endphp
 
             {{-- input field --}}
             @include('modular-forms::module.edit.field.module-to-vue', [
                 'definitions' => $definitions,
                 'field' => $field,
                 'vue_record_index' => $vue_record_index,
-                'vue_directives' => '@input=convertToKm("' . $field['name'] . '")'
+                'vue_directives' => $convert_to_km
             ])
             <span class="ml-2 mr-4">[ha]</span>
 
             <x-modular-forms::module.components.field.input
                 :type="$field['type']"
                 :value="$field['name'].'_km2'"
-                :other="'@input=convertToHa('.$field['name'].')'"
+                :other="$convert_to_ha"
             ></x-modular-forms::module.components.field.input>
             <span class="ml-2">[km2]</span>
 
