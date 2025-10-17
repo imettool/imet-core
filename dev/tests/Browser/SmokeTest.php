@@ -38,7 +38,7 @@ function getAllRoutes(string $version, array $steps_context, array $steps_eval):
     foreach (['edit', 'show'] as $mode){
         $routes[] = "/imet/{$version}/context/{form-id}/{$mode}";
         $routes[] = "/imet/{$version}/evaluation/{form-id}/{$mode}";
-        //$routes[] = "/imet/{$version}/report/{form-id}/{$mode}";
+        $routes[] = "/imet/{$version}/report/{form-id}/{$mode}";
         foreach ($steps_context as $step) {
             $routes[] = "/imet/{$version}/context/{form-id}/{$mode}/{$step}";
         }
