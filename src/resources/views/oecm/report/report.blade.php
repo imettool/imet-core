@@ -41,7 +41,8 @@ if ($item!==null && $item->language != App::getLocale()) {
 
     {{--  Phase  --}}
     @include('imet-core::components.phase', ['phase' => 'report'])
-    <div id="imet_report">
+
+    <div id="imet_report" class="imet_report">
 
         {{-- AR.1 --}}
         @include('imet-core::oecm.report.components.non_wdpa', [
@@ -86,7 +87,6 @@ if ($item!==null && $item->language != App::getLocale()) {
                     @include('imet-core::components.scores', [
                         'item' => $item,
                         'step' => null,
-                        'radar_show' => false,
                         'version' => \ImetCore\Models\Imet\Imet::IMET_OECM,
                     ])
                     <div class="w-4/12">

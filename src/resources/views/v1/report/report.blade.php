@@ -38,7 +38,7 @@ if ($item->language != App::getLocale()) {
     {{--  Phase  --}}
     @include('imet-core::components.phase', ['phase' => 'report'])
 
-    <div id="imet_report">
+    <div id="imet_report_map" class="imet_report">
 
         @if ($show_general_info)
             <div class="module-container">
@@ -46,8 +46,11 @@ if ($item->language != App::getLocale()) {
                     <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
                 </div>
                 <div class="module-body">
-                    <div id="map" v-if=connection></div>
-                    <div v-else class="connection_not_available">@lang('imet-core::common.connection_not_available')</div>
+                    @if($connection)
+                        <div id="map"></div>
+                    @else
+                        <div class="connection_not_available">@lang('imet-core::common.connection_not_available')</div>
+                    @endif
                     <div style="display: flex;">
                         <div>
                             <div>
@@ -104,6 +107,10 @@ if ($item->language != App::getLocale()) {
             'non_wdpa' => $non_wdpa,
         ])
 
+    </div>
+
+    <div class="imet_report">
+
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">@lang('imet-core::v2_report..evaluation_elements')</div>
@@ -113,7 +120,6 @@ if ($item->language != App::getLocale()) {
                     @include('imet-core::components.scores', [
                         'item' => $item,
                         'step' => null,
-                        'radar_show' => false,
                         'version' => \ImetCore\Models\Imet\Imet::IMET_V1,
                     ])
                     <div class="w-4/12">
@@ -143,6 +149,10 @@ if ($item->language != App::getLocale()) {
                 </table>
             </div>
         </div>
+
+    </div>
+
+    <div id="imet_report" class="imet_report">
 
         <div class="module-container">
             <div class="module-header">
@@ -283,17 +293,22 @@ if ($item->language != App::getLocale()) {
             padding-left: 15px !important;
         }
     </style>
+
+    <script type="module">
+        const appMap = (new window.ImetCore.Apps.AnalysisMap({
+            wdpa_id: '{{ $item->wdpa_id }}'
+        }));
+
+        appMap.mount('#imet_report_map');
+    </script>
+
     <script type="module">
         const app = (new window.ImetCore.Apps.Analysis({
             report: @json($report),
             scores: @json($scores),
             labels: @json($labels),
             version: "{{ \ImetCore\Models\Imet\Imet::IMET_V1 }}",
-            loading: false,
-            error: false,
             status: 'idle',
-            connection: {{ $connection ? 'true' : 'false' }},
-            report_map: null,
             url: '{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
         }));
 

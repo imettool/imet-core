@@ -32,7 +32,6 @@ final class ReportController extends BaseReportController
     /**
      * Retrieve data to populate report view
      *
-     * @throws ReflectionException
      * @throws ConnectionException
      */
     protected function __retrieve_report_data(Imet $item): array
@@ -85,7 +84,7 @@ final class ReportController extends BaseReportController
             'show_general_info' => $show_general_info,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
-            'general_info' => $general_info[0] ?? null,
+            'general_info' => $general_info['records'][0] ?? null,
             'vision' => $vision['records'][0] ?? null,
             'area' => Modules\Context\Areas::getArea($form_id),
         ];
