@@ -53,7 +53,7 @@ function getAllRoutes(string $version, array $steps_context, array $steps_eval):
     return $routes;
 }
 
-// Use RefreshDatabase to migrate the database
+// Migrate the database
 uses(RefreshDatabase::class);
 
 // Seed the database before each test
