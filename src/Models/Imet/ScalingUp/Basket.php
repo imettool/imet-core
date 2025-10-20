@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 
-class Basket extends BaseModel
+final class Basket extends BaseModel
 {
     public const BASKET_DISK = 'public_folder';
 
@@ -33,7 +33,7 @@ class Basket extends BaseModel
 
     public static function retrieve_by_scaling_id($id)
     {
-        return static::query()->where('scaling_up_id', $id)->orderBy('id', 'asc')->get();
+        return self::query()->where('scaling_up_id', $id)->orderBy('id', 'asc')->get();
     }
 
     public static function save_item(array $item)
@@ -41,7 +41,7 @@ class Basket extends BaseModel
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);
 
-        $record = static::query()->create(['order' => 1, 'scaling_up_id' => $item['scaling_up_id']]);
+        $record = self::query()->create(['order' => 1, 'scaling_up_id' => $item['scaling_up_id']]);
         $imageName = hash('sha256', $record->id.Date::now()->getTimestamp()).'.png';
 
         $disk = Storage::disk(self::BASKET_DISK);

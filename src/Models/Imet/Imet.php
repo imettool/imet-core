@@ -47,11 +47,11 @@ use function session;
  */
 abstract class Imet extends Form
 {
-    const IMET_V1 = 'v1';
+    const string IMET_V1 = 'v1';
 
-    const IMET_V2 = 'v2';
+    const string IMET_V2 = 'v2';
 
-    const IMET_OECM = 'oecm';
+    const string IMET_OECM = 'oecm';
 
     public static string $version;
 
@@ -79,7 +79,7 @@ abstract class Imet extends Form
     #[\Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(static::$schema, parent::getTable());
     }
 
     /**

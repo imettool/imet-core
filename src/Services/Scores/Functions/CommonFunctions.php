@@ -19,7 +19,7 @@ trait CommonFunctions
     /**
      * Standard function for TABLE type modules
      */
-    private static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3): ?float
+    protected static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
@@ -38,7 +38,7 @@ trait CommonFunctions
     /**
      * Standard function for GROUP type modules
      */
-    private static function score_group(int $imet_id, $module_class, string $module_field, string $group_field): ?float
+    protected static function score_group(int $imet_id, $module_class, string $module_field, string $group_field): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records

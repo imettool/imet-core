@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Functions\OECMScores as OECMScoresFunctions;
 
-class OecmScores
+final class OecmScores
 {
     use Labels;
 
@@ -34,23 +34,23 @@ class OecmScores
     /**
      * Retrieve IMET OECM assessment's scores (all)
      */
-    public static function get_all(ImetOecm|int|string $imet): array
+    public static function get_all(ImetOecm|int|string $imet, bool $refresh_cache = false): array
     {
-        $imet_id = static::getAsId($imet);
+        $imet_id = self::getAsId($imet);
 
-        return OECMScoresFunctions::get_scores($imet_id);
+        return OECMScoresFunctions::get_scores($imet_id, $refresh_cache);
     }
 
     /**
      * Retrieve IMET OECM assessment's radar scores
      */
-    public static function get_radar(ImetOecm|int|string $imet, bool $with_abbreviations = false): array
+    public static function get_radar(ImetOecm|int|string $imet, bool $with_abbreviations = false, bool $refresh_cache = false): array
     {
-        $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
+        $scores = self::get_all($imet, $refresh_cache)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
         if ($with_abbreviations) {
-            $labels = static::labels(true);
+            $labels = self::labels(true);
             unset($scores['imet_index']);
 
             return array_combine($labels, $scores);
@@ -62,9 +62,9 @@ class OecmScores
     /**
      * Retrieve IMET OECM assessment's given step scores
      */
-    public static function get_step(ImetOecm|int|string $imet, string $step): array
+    public static function get_step(ImetOecm|int|string $imet, string $step, bool $refresh_cache = false): array
     {
-        return static::get_all($imet)[$step];
+        return self::get_all($imet, $refresh_cache)[$step];
     }
 
     /**
@@ -72,7 +72,7 @@ class OecmScores
      */
     public static function get_score(ImetOecm|int|string $imet): array
     {
-        return static::get_radar($imet)['imet_index'];
+        return self::get_radar($imet)['imet_index'];
     }
 
     /**
@@ -80,7 +80,7 @@ class OecmScores
      */
     public static function refresh_scores(ImetOecm|int|string $imet): array
     {
-        $imet_id = static::getAsId($imet);
+        $imet_id = self::getAsId($imet);
 
         return OECMScoresFunctions::get_scores($imet_id, true);
     }
@@ -90,7 +90,7 @@ class OecmScores
      */
     public static function labels(bool $only_abbreviations = false): array
     {
-        return static::get_labels(Imet::IMET_OECM, $only_abbreviations);
+        return self::get_labels(Imet::IMET_OECM, $only_abbreviations);
     }
 
     /**
@@ -98,6 +98,6 @@ class OecmScores
      */
     public static function indicators_labels(?string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_scores_labels($version);
+        return self::get_scores_labels($version);
     }
 }

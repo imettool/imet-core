@@ -36,15 +36,18 @@ function getAllRoutes(string $version, array $steps_context, array $steps_eval):
 
     // Add edit/view routes for each form
     foreach (['edit', 'show'] as $mode){
+        // Context routes
         $routes[] = "/imet/{$version}/context/{form-id}/{$mode}";
-        $routes[] = "/imet/{$version}/evaluation/{form-id}/{$mode}";
-        $routes[] = "/imet/{$version}/report/{form-id}/{$mode}";
         foreach ($steps_context as $step) {
             $routes[] = "/imet/{$version}/context/{form-id}/{$mode}/{$step}";
         }
+        // Evaluation routes
+        $routes[] = "/imet/{$version}/evaluation/{form-id}/{$mode}";
         foreach ($steps_eval as $step) {
             $routes[] = "/imet/{$version}/evaluation/{form-id}/{$mode}/{$step}";
         }
+        // Report routes
+        $routes[] = "/imet/{$version}/report/{form-id}/{$mode}";
     }
 
     return $routes;

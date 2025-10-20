@@ -60,7 +60,7 @@ class ControlLevel extends Modules\Component\ImetModule
         $result = null;
         $value = $record['UnderControlArea'];
         $value2 = $area;
-        if (static::isValid($value2) && static::isValid($value) && $value > 0) {
+        if (self::isValid($value2) && self::isValid($value) && $value > 0) {
             $result = (float) ($value) / (float) ($value2) * 100;
             $result = round($result, 2);
         }
@@ -73,7 +73,7 @@ class ControlLevel extends Modules\Component\ImetModule
         $result = null;
         $value = $record['UnderControlPatrolManDay'];
         $value2 = $area;
-        if (static::isValid($value2) && static::isValid($value) && $value > 0) {
+        if (self::isValid($value2) && self::isValid($value) && $value > 0) {
             $result = (float) ($value) / (float) ($value2);
             $result = round($result, 2);
         }
@@ -86,7 +86,7 @@ class ControlLevel extends Modules\Component\ImetModule
         $result = null;
         $value = $record['UnderControlPatrolKm'];
         $value2 = $area;
-        if (static::isValid($value2) && static::isValid($value) && $value > 0) {
+        if (self::isValid($value2) && self::isValid($value) && $value > 0) {
             $result = (float) ($value) / (float) ($value2) * 10;
             $result = round($result, 2);
         }
@@ -99,7 +99,7 @@ class ControlLevel extends Modules\Component\ImetModule
         $result = null;
         $value = $record['UnderControlPatrolKm'];
         $value2 = $record['UnderControlArea'];
-        if (static::isValid($area) && static::isValid($value) && $value > 0) {
+        if (self::isValid($area) && self::isValid($value) && $value > 0) {
             $result = (float) ($value) / (float) ($value2);
             $result = round($result, 2);
         }
@@ -112,7 +112,7 @@ class ControlLevel extends Modules\Component\ImetModule
         $result = null;
         $value = $record['EcologicalMonitoringPatrolKm'];
         $value2 = $area;
-        if (static::isValid($value2) && static::isValid($value) && $value > 0) {
+        if (self::isValid($value2) && self::isValid($value) && $value > 0) {
             $result = (float) ($value) / (float) ($value2) * 10;
             $result = round($result, 2);
         }

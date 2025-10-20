@@ -19,7 +19,7 @@ use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Services\Scores\Labels;
 
-class ImetAssessment
+final class ImetAssessment
 {
     use Labels;
 
@@ -42,15 +42,15 @@ class ImetAssessment
     /**
      * Retrieve IMET info and scores
      */
-    public static function getAssessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true): array
+    public static function getAssessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
-            ? ImetScores::get_all($imet)
+            ? ImetScores::get_all($imet, refresh_cache: $refresh_cache)
             : (
                 $step == _Scores::RADAR_SCORES
-                    ? ImetScores::get_radar($imet)
-                    : ImetScores::get_step($imet, $step)
+                    ? ImetScores::get_radar($imet, refresh_cache: $refresh_cache)
+                    : ImetScores::get_step($imet, $step, refresh_cache: $refresh_cache)
             );
 
         $result = [
@@ -63,7 +63,7 @@ class ImetAssessment
         ];
 
         return $with_labels
-            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
+            ? array_merge($result, ['labels' => self::get_scores_labels($imet->version)])
             : $result;
     }
 

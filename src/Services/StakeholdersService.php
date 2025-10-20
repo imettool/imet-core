@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
-class StakeholdersService
+final class StakeholdersService
 {
     /**
      * Retrieve all the stakeholders records (both direct and indirect)

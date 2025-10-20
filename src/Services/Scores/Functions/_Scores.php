@@ -22,21 +22,21 @@ abstract class _Scores
 
     const CACHE_PREFIX = 'imet_scores';
 
-    const RADAR_SCORES = 'global';
+    const string RADAR_SCORES = 'global';
 
-    const ALL_SCORES = 'ALL';
+    const string ALL_SCORES = 'ALL';
 
-    const CONTEXT = 'context';
+    const string CONTEXT = 'context';
 
-    const PLANNING = 'planning';
+    const string PLANNING = 'planning';
 
-    const INPUTS = 'inputs';
+    const string INPUTS = 'inputs';
 
-    const PROCESS = 'process';
+    const string PROCESS = 'process';
 
-    const OUTPUTS = 'outputs';
+    const string OUTPUTS = 'outputs';
 
-    const OUTCOMES = 'outcomes';
+    const string OUTCOMES = 'outcomes';
 
     /**
      * Ensure to return IMET model
@@ -65,7 +65,7 @@ abstract class _Scores
     /**
      * Calculate all assessment scores
      */
-    private static function calculate_scores(int $imet_id): array
+    protected static function calculate_scores(int $imet_id): array
     {
         // Granular scores per each step
         $scores = [
@@ -100,7 +100,7 @@ abstract class _Scores
         return $scores;
     }
 
-    public static function get_scores(int $imet_id, bool $refresh_cache = false): array
+    public static function get_scores(int $imet_id, bool $refresh_cache = true): array
     {
         // Retrieve scores from cache
         $cache_key = Cache::buildKey(static::CACHE_PREFIX, ['id' => $imet_id]);

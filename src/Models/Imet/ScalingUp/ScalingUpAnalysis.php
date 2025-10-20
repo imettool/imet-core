@@ -28,7 +28,10 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ModularForms\Helpers\Locale;
 
-class ScalingUpAnalysis extends Model
+/**
+ * @property string $wdpas
+ */
+final class ScalingUpAnalysis extends Model
 {
     protected static $ttl = 2;
 
@@ -50,7 +53,7 @@ class ScalingUpAnalysis extends Model
     #[\Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(self::$schema, parent::getTable());
     }
 
     /**
@@ -58,7 +61,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_scaling_up_by_wdpas(string $wdpas)
     {
-        return static::query()->where('wdpas', $wdpas)->get();
+        return self::query()->where('wdpas', $wdpas)->get();
     }
 
     /**
@@ -70,7 +73,7 @@ class ScalingUpAnalysis extends Model
     {
         $items = [];
         foreach ($form_ids as $k => $form_id) {
-            $pa = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
+            $pa = ScalingUpWdpa::getCustomNames($form_id, self::$scaling_id);
             $items[$k] = $pa;
             $items[$k]['Country_name'] = Country::getByISO($pa['Country']);
         }
@@ -190,8 +193,8 @@ class ScalingUpAnalysis extends Model
         $species_count = ['group0' => [], 'group1' => []];
 
         foreach ($form_ids as $form_id) {
-            if (static::$scaling_id !== null) {
-                $protected_area = ScalingUpWdpa::getCustomNames($form_id, static::$scaling_id);
+            if (self::$scaling_id !== null) {
+                $protected_area = ScalingUpWdpa::getCustomNames($form_id, self::$scaling_id);
             } else {
                 $protected_area = \ImetCore\Models\Imet\v2\Imet::query()->where(['FormID' => $form_id])->first();
             }
@@ -271,9 +274,9 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_threats_categories_per_protected_area(array $form_ids): array
     {
-        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '', static::$scaling_id);
-        $ranking = Ranking::ranking_threats_indicators($form_ids, static::$scaling_id);
-        $radar = Radar::get_threats_radar_indicators($form_ids, static::$scaling_id);
+        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '', self::$scaling_id);
+        $ranking = Ranking::ranking_threats_indicators($form_ids, self::$scaling_id);
+        $radar = Radar::get_threats_radar_indicators($form_ids, self::$scaling_id);
 
         return ['status' => 'success', 'data' => ['values' => $radar['total_categories'], 'average_contribution' => $averages['average_contribution'], 'ranking' => $ranking, 'radar' => $radar['radar']]];
     }
@@ -285,16 +288,16 @@ class ScalingUpAnalysis extends Model
     {
         $time_start = microtime(true);
         $assessments = [];
-        $synthetic_indicators_table = Common::get_assessments($form_ids, static::$scaling_id);
+        $synthetic_indicators_table = Common::get_assessments($form_ids, self::$scaling_id);
         $assessments['data'] = $synthetic_indicators_table['data'];
         // filter out and reindex the assessments starting from 0
 
         $index_ranking = Ranking::get_overall_ranking($form_ids, $assessments);
-        $radars = static::get_protected_areas_diagram_compare($form_ids, $assessments, true);
-        $averages_six_elements = static::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
+        $radars = self::get_protected_areas_diagram_compare($form_ids, $assessments, true);
+        $averages_six_elements = self::get_averages_of_each_indicator_of_six_elements($form_ids, $assessments, true);
         Common::reset_areas_ids();
-        $scatter_plots = static::get_scatter_grouping_analysis(array_map(function (int $value): array {
-            $pa = ScalingUpWdpa::getCustomNames($value, static::$scaling_id);
+        $scatter_plots = self::get_scatter_grouping_analysis(array_map(function (int $value): array {
+            $pa = ScalingUpWdpa::getCustomNames($value, self::$scaling_id);
 
             return ['id' => $value, 'group' => $value, 'name' => $pa['name'], 'color' => $pa['color']];
         }, $form_ids), $assessments, true);
@@ -449,7 +452,7 @@ class ScalingUpAnalysis extends Model
         $time_start = microtime(true);
         foreach ($table_indicators[$type] as $t => $array) {
             Common::reset_areas_ids();
-            $data[$type][$t] = static::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type);
+            $data[$type][$t] = self::analysis_diagram_protected_areas($form_ids, $origType, $array, $options[$origType], $type);
         }
 
         $time_end = microtime(true);
@@ -475,13 +478,13 @@ class ScalingUpAnalysis extends Model
         ];
 
         // radar data
-        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $type, $colors[$type], $options, '', static::$scaling_id);
+        $radar = Radar::get_radar_analysis_indicators($form_ids, $table_indicators, $type, $colors[$type], $options, '', self::$scaling_id);
 
         // table data
-        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $type, static::$scaling_id, true);
+        $tables = DataTable::get_datatable_analysis_indicators($form_ids, $table_indicators, $type, self::$scaling_id, true);
 
         // radar data
-        $ranking = Ranking::ranking_indicators($form_ids, $type, $table_indicators, static::$scaling_id);
+        $ranking = Ranking::ranking_indicators($form_ids, $type, $table_indicators, self::$scaling_id);
         // average data
         $averages = AverageContribution::average_contribution_calculations($form_ids, $table_indicators, $type, $colors[$type], $options, 'imet-core::analysis_report.assessment.', $custom_type);
 
@@ -495,7 +498,7 @@ class ScalingUpAnalysis extends Model
 
     public static function get_protected_areas_diagram_compare(array $form_ids, array $assessments = [], bool $overall = false): array
     {
-        $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, static::$scaling_id);
+        $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, self::$scaling_id);
         unset($data['diagrams']['upper limit']);
         unset($data['diagrams']['lower limit']);
 
@@ -508,8 +511,8 @@ class ScalingUpAnalysis extends Model
     public static function get_averages_of_each_indicator_of_six_elements(array $form_ids, array $assessments = [], bool $overall = false, int $scaling_id = 0): array
     {
         $id = $scaling_id;
-        if (static::$scaling_id !== 0) {
-            $id = static::$scaling_id;
+        if (self::$scaling_id !== 0) {
+            $id = self::$scaling_id;
         }
 
         $locale = App::getLocale();
@@ -541,7 +544,7 @@ class ScalingUpAnalysis extends Model
     {
         $start_time = microtime(true);
 
-        $radar = Radar::get_radar_indicators($form_ids, $width, $assessments, $overall, static::$scaling_id);
+        $radar = Radar::get_radar_indicators($form_ids, $width, $assessments, $overall, self::$scaling_id);
         $end_time = microtime(true);
         $execution_time = $end_time - $start_time;
 
@@ -552,7 +555,7 @@ class ScalingUpAnalysis extends Model
 
     public static function get_grouping_analysis(array $parameters, array $assessments = []): array
     {
-        $average = Group::get_calculation_grouping_analysis($parameters, $assessments, static::$scaling_id);
+        $average = Group::get_calculation_grouping_analysis($parameters, $assessments, self::$scaling_id);
 
         foreach (array_keys($average) as $key) {
             $average[$key]['legend_selected'] = true;
@@ -566,14 +569,14 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false): array
     {
-        return Scatter::get_scatter_grouping_analysis($parameters, $assessments, $not_grouped, static::$scaling_id);
+        return Scatter::get_scatter_grouping_analysis($parameters, $assessments, $not_grouped, self::$scaling_id);
     }
 
     public static function get_wdpas_by_form_id(array $form_ids): array
     {
         $protected_area = [];
         foreach ($form_ids as $k => $form_id) {
-            $protected_area[$k] = ScalingUpWdpa::getByFormID(static::$scaling_id, $form_id);
+            $protected_area[$k] = ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id);
         }
 
         return $protected_area;
@@ -584,7 +587,7 @@ class ScalingUpAnalysis extends Model
      */
     public static function get_assessments(array $form_ids): array
     {
-        $assessments = Common::get_assessments($form_ids, static::$scaling_id);
+        $assessments = Common::get_assessments($form_ids, self::$scaling_id);
         unset($assessments['data']['assessments']);
 
         return $assessments;

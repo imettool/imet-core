@@ -76,7 +76,7 @@ class ImetModule extends Module
     public function getTable(): ?string
     {
         return static::$schema !== null ?
-            Database::getTable(static::$schema, $this->table)
+            Database::getTable(static::$schema, parent::getTable())
             : null;
     }
 

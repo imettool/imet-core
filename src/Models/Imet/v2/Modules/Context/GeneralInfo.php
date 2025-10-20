@@ -72,7 +72,6 @@ class GeneralInfo extends Modules\Component\ImetModule
 
         $vue_data['records'][0]['CompleteName'] ??= $pa->name;
         $vue_data['records'][0]['WDPA'] ??= ProtectedAreaNonWdpa::isNonWdpa($pa->wdpa_id) ? null : $pa->wdpa_id;
-        $vue_data['records'][0]['Type'] ??= $imet->Type;
         $vue_data['records'][0]['IUCNCategory1'] ??= $pa->iucn_category;
         $vue_data['records'][0]['Country'] ??= $pa->country;
         $vue_data['records'][0]['CreationYear'] ??= $pa->creation_date !== null ? substr($pa->creation_date, 0, 4) : null;

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 
-class ScalingUpWdpa extends BaseModel
+final class ScalingUpWdpa extends BaseModel
 {
     protected static ?string $schema = Database::IMET_SCHEMA;
 
@@ -30,7 +30,7 @@ class ScalingUpWdpa extends BaseModel
      */
     public static function retrieve_by_scaling_id($id)
     {
-        return static::query()->where('scaling_id', $id)->orderBy('name', 'asc')->get();
+        return self::query()->where('scaling_id', $id)->orderBy('name', 'asc')->get();
     }
 
     /**
@@ -38,7 +38,7 @@ class ScalingUpWdpa extends BaseModel
      */
     public static function getByFormID($scaling_id, $id)
     {
-        return static::query()->where(['scaling_id' => $scaling_id, 'FormID' => $id])->first();
+        return self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $id])->first();
     }
 
     public static function save_pas($scaling_id, $areas): array
@@ -46,7 +46,7 @@ class ScalingUpWdpa extends BaseModel
         $saved_pas = [];
         foreach ($areas as $area) {
             $rand_color = '#'.substr(md5(random_int(0, mt_getrandmax())), 0, 6); // 'rgb(' . rand(30, 220) . ',' . rand(40, 220) . ',' . rand(35, 220) . ')';//str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
-            $saved_pas[] = static::query()->create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
+            $saved_pas[] = self::query()->create(['scaling_id' => $scaling_id, 'FormID' => $area->FormID, 'name' => $area->name, 'Country' => $area->Country, 'wdpa_id' => $area->wdpa_id, 'color' => $rand_color]);
         }
 
         return $saved_pas;
@@ -54,7 +54,7 @@ class ScalingUpWdpa extends BaseModel
 
     public static function update_item($scaling_id, $form_id, $value, $color)
     {
-        $record = static::query()->where(['scaling_id' => $scaling_id, 'FormID' => $form_id])->first();
+        $record = self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $form_id])->first();
         if ($record) {
             $record->name = $value;
             $record->color = $color;
@@ -71,7 +71,7 @@ class ScalingUpWdpa extends BaseModel
      */
     public static function getCustomNames(int $form_id, $scaling_id)
     {
-        $protected_area = static::getByFormID($scaling_id, $form_id);
+        $protected_area = self::getByFormID($scaling_id, $form_id);
         if (($protected_area)) {
             return $protected_area;
         }

@@ -78,7 +78,7 @@ trait Planning
             : null;
     }
 
-    private static function score_p4_p5(int $imet_id, $records): ?float
+    protected static function score_p4_p5(int $imet_id, $records): ?float
     {
         $record = $records[0] ?? null;
 

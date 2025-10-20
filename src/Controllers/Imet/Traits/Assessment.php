@@ -13,22 +13,25 @@
 namespace ImetCore\Controllers\Imet\Traits;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use ImetCore\Services\Assessment\ImetAssessment;
 use ImetCore\Services\Assessment\OecmAssessment;
 use ImetCore\Services\Scores\Functions\_Scores;
 
 trait Assessment
 {
-    public static function scores($item): JsonResponse
+    public static function scores(Request $request, string $item): JsonResponse
     {
-        $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
+        $refresh_cache = $request->query('refresh', false);
+        $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
 
         return new JsonResponse($stats);
     }
 
-    public static function scores_oecm($item): JsonResponse
+    public static function scores_oecm(Request $request, string $item): JsonResponse
     {
-        $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false);
+        $refresh_cache = $request->query('refresh', false);
+        $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
 
         return new JsonResponse($stats);
     }

@@ -25,6 +25,6 @@ abstract class BaseModel extends Model
     #[\Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(static::$schema, parent::getTable());
     }
 }

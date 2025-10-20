@@ -17,7 +17,7 @@ use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Labels;
 use ImetCore\Services\Scores\OecmScores;
 
-class OecmAssessment
+final class OecmAssessment
 {
     use Labels;
 
@@ -31,15 +31,15 @@ class OecmAssessment
             : $imet;
     }
 
-    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true): array
+    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
-            ? OecmScores::get_all($imet)
+            ? OecmScores::get_all($imet, refresh_cache: $refresh_cache)
             : (
                 $step == _Scores::RADAR_SCORES
-                    ? OecmScores::get_radar($imet)
-                    : OecmScores::get_step($imet, $step)
+                    ? OecmScores::get_radar($imet, refresh_cache: $refresh_cache)
+                    : OecmScores::get_step($imet, $step, refresh_cache: $refresh_cache)
             );
 
         $result = [
@@ -52,7 +52,7 @@ class OecmAssessment
         ];
 
         return $with_labels
-            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
+            ? array_merge($result, ['labels' => self::get_scores_labels($imet->version)])
             : $result;
     }
 }

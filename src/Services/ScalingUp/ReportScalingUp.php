@@ -104,26 +104,26 @@ class ReportScalingUp
         // if not return 404
         abort_if($items_array === [] || (count($filtered_array) !== count($items_array)), 404);
 
-        [$areas, $scaling_up_id] = static::loadItemsAndScalingUpID($items);
+        [$areas, $scaling_up_id] = self::loadItemsAndScalingUpID($items);
 
         $protected_areas = ModelScalingUpAnalysis::get_protected_area(explode(',', (string) $areas), true);
 
-        static::saveForm($request, $items, $scaling_up_id);
+        self::saveForm($request, $items, $scaling_up_id);
 
-        static::save_default_names($scaling_up_id, $protected_areas['models']);
+        self::save_default_names($scaling_up_id, $protected_areas['models']);
 
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
         uasort($protected_areas['models'], fn (array $a, array $b): bool => $a['name'] > $b['name']);
 
-        [$custom_colors, $custom_items, $custom_names, $protected_areas_names] = static::protectedAreaNames($scaling_up_id);
+        [$custom_colors, $custom_items, $custom_names, $protected_areas_names] = self::protectedAreaNames($scaling_up_id);
 
         App::setLocale($locale);
 
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
 
         return [
-            'templates' => static::templates(),
+            'templates' => self::templates(),
             'labels' => $labels,
             'pa_ids' => $pa_ids,
             'protected_areas_names' => $protected_areas_names,
@@ -140,13 +140,13 @@ class ReportScalingUp
     {
         if ($request->input('save_form')) {
             ModelCommon::reset_areas_ids();
-            static::update_custom_names($request, $items, $scaling_up_id);
+            self::update_custom_names($request, $items, $scaling_up_id);
         }
     }
 
     private static function protectedAreaNames(int $scaling_up_id): array
     {
-        $custom_items = static::retrieve_custom_names($scaling_up_id);
+        $custom_items = self::retrieve_custom_names($scaling_up_id);
 
         $custom_names = array_map(fn ($v) => $v->name, $custom_items);
 

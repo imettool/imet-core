@@ -17,7 +17,6 @@
         $vueData['records'][0]['Country'] ??= $pa->country;
         $vueData['records'][0]['CreationYear'] ??= $pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null;
     }
-    $vueData['records'][0]['Type'] ??= $item->Type;
 
 ?>
 @include('modular-forms::module.show.body',  compact(['collection', 'definitions']))

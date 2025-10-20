@@ -19,7 +19,7 @@ use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use ImetCore\Services\Scores\Functions\V2Scores;
 
-class ImetScores
+final class ImetScores
 {
     use Labels;
 
@@ -42,26 +42,26 @@ class ImetScores
     /**
      * Retrieve IMET assessment's scores (all)
      */
-    public static function get_all(ImetV1|ImetV2|int|string $imet): array
+    public static function get_all(ImetV1|ImetV2|int|string $imet, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
 
         return $imet->version === Imet::IMET_V1
-            ? V1ToV2Scores::get_scores($imet->getKey())
-            : V2Scores::get_scores($imet->getKey());
+            ? V1ToV2Scores::get_scores($imet->getKey(), $refresh_cache)
+            : V2Scores::get_scores($imet->getKey(), $refresh_cache);
     }
 
     /**
      * Retrieve IMET assessment's radar scores
      */
-    public static function get_radar(ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false): array
+    public static function get_radar(ImetV1|ImetV2|int|string $imet, bool $with_abbreviations = false, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
-        $scores = static::get_all($imet)[_Scores::RADAR_SCORES];
+        $imet = self::getAsModel($imet);
+        $scores = self::get_all($imet, $refresh_cache)[_Scores::RADAR_SCORES];
 
         // use abbreviations instead of keys
         if ($with_abbreviations) {
-            $labels = static::labels($imet->version, true);
+            $labels = self::labels($imet->version, true);
             unset($scores['imet_index']);
 
             return array_combine($labels, $scores);
@@ -73,9 +73,9 @@ class ImetScores
     /**
      * Retrieve IMET assessment's given step scores
      */
-    public static function get_step(ImetV1|ImetV2|int|string $imet, string $step): array
+    public static function get_step(ImetV1|ImetV2|int|string $imet, string $step, bool $refresh_cache = false): array
     {
-        return static::get_all($imet)[$step];
+        return self::get_all($imet, $refresh_cache)[$step];
     }
 
     /**
@@ -83,7 +83,7 @@ class ImetScores
      */
     public static function get_score(ImetV1|ImetV2|int|string $imet): array
     {
-        return static::get_radar($imet)['imet_index'];
+        return self::get_radar($imet)['imet_index'];
     }
 
     /**
@@ -91,7 +91,7 @@ class ImetScores
      */
     public static function refresh_scores(ImetV1|ImetV2|int|string $imet): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
 
         return $imet->version === Imet::IMET_V1
             ? V1ToV2Scores::get_scores($imet->getKey(), true)
@@ -103,7 +103,7 @@ class ImetScores
      */
     public static function labels(?string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_labels($version, $only_abbreviations);
+        return self::get_labels($version, $only_abbreviations);
     }
 
     /**
@@ -111,6 +111,6 @@ class ImetScores
      */
     public static function indicators_labels(?string $version = null, bool $only_abbreviations = false): array
     {
-        return static::get_scores_labels($version);
+        return self::get_scores_labels($version);
     }
 }

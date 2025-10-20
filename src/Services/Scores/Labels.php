@@ -33,7 +33,7 @@ trait Labels
         return $labels;
     }
 
-    private static function all_labels(): array
+    protected static function all_labels(): array
     {
         return [
             Imet\Imet::IMET_V1 => [

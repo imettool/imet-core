@@ -84,8 +84,8 @@ class OECM
 
         $integration_threats = array_filter($key_elements, fn (array $item): bool => $item['group_key'] === 'group1');
 
-        $chart_integration = static::getChartValues($integration_threats, 'Aspect');
-        $chart_global = static::getChartValues($global_threats, 'Threat');
+        $chart_integration = self::getChartValues($integration_threats, 'Aspect');
+        $chart_global = self::getChartValues($global_threats, 'Threat');
 
         return ['global' => $chart_global, 'integration' => $chart_integration];
     }
@@ -140,7 +140,7 @@ class OECM
     {
         $trend_and_threats = static::getThreatsIntegration($form_id);
 
-        return static::getChartValues($trend_and_threats, 'Threat');
+        return self::getChartValues($trend_and_threats, 'Threat');
     }
 
     public static function getKeyElementsEcosystems(array $values): array
@@ -165,18 +165,18 @@ class OECM
 
         $objectives = ['context' => [], 'evaluation' => []];
         $objectives['context'] = array_merge(
-            static::objectivesSchema('context', 'obj1', Modules\Context\Objectives1::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj2', Modules\Context\Objectives2::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj3', Modules\Context\Objectives3::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj4', Modules\Context\Objectives4::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj5', Modules\Context\AnalysisStakeholdersObjectives::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj6', Modules\Context\StakeholdersObjectives::getModuleRecords($form_id)['records']));
+            self::objectivesSchema('context', 'obj1', Modules\Context\Objectives1::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj2', Modules\Context\Objectives2::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj3', Modules\Context\Objectives3::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj4', Modules\Context\Objectives4::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj5', Modules\Context\AnalysisStakeholdersObjectives::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj6', Modules\Context\StakeholdersObjectives::getModuleRecords($form_id)['records']));
 
         $objectives['evaluation'] = array_merge(
-            static::objectivesSchema('evaluation', 'context', Modules\Evaluation\ObjectivesContext::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'intrants', Modules\Evaluation\ObjectivesIntrants::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'context', Modules\Evaluation\ObjectivesContext::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'intrants', Modules\Evaluation\ObjectivesIntrants::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
         );
 
         return $objectives;

@@ -45,7 +45,7 @@ class Country extends BaseCountry
     #[Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(static::$schema, parent::getTable());
     }
 
     /**

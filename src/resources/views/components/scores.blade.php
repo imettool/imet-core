@@ -1,7 +1,8 @@
 <?php
+
 use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Models\Imet;
-use ImetCore\Services\Assessment\ImetAssessment;
+use ImetCore\Services\Assessment;
 use ImetCore\Services\Scores\Functions\_Scores;
 
 /** @var ?string $step */
@@ -10,11 +11,14 @@ use ImetCore\Services\Scores\Functions\_Scores;
 
 $step = $step ?? null;
 
-$scores = $version === Imet\Imet::IMET_OECM
-    ? ApiController::scores_oecm($item->getKey())->getData()
-    : ApiController::scores($item->getKey())->getData();
 
-$labels = ImetAssessment::get_scores_labels($item->version, $item->language);
+if($version === Imet\Imet::IMET_OECM){
+    $scores = Assessment\OecmAssessment::getAssessment($item->getKey(), _Scores::ALL_SCORES);
+    $labels = Assessment\OecmAssessment::get_scores_labels($item->version, $item->language);
+} else {
+    $scores = Assessment\ImetAssessment::getAssessment($item->getKey(), _Scores::ALL_SCORES);
+    $labels = Assessment\ImetAssessment::get_scores_labels($item->version, $item->language);
+}
 
 ?>
 
@@ -30,8 +34,8 @@ $labels = ImetAssessment::get_scores_labels($item->version, $item->language);
 @push('scripts')
     <script type="module">
         window.AssessmentScores = (new window.ImetCore.Apps.AssessmentScores({
-                api_data: @json($scores),
-            }))
+            api_data: @json($scores),
+        }))
             .mount('#assessment_scores');
     </script>
 @endpush
