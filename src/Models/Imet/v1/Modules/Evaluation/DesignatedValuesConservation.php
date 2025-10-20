@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class DesignatedValuesConservation extends Modules\Component\ImetModule_Eval
+final class DesignatedValuesConservation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_designated_values_conservation';
 
@@ -67,6 +67,6 @@ class DesignatedValuesConservation extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupValue');
+        return self::convertGroupLabelToKey($record, 'GroupValue');
     }
 }

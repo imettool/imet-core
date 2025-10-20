@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class KeyElementsImpact extends Modules\Component\ImetModule_Eval
+final class KeyElementsImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_elements_impact';
 
@@ -71,7 +71,7 @@ class KeyElementsImpact extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }

@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class ManagementActivities extends Modules\Component\ImetModule_Eval
+final class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
 
@@ -62,7 +62,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
                     'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
@@ -85,7 +85,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if (blank($imet_version) || $imet_version < 'v2.7.6b') {
             // group3 merged into group2
-            return static::replaceGroup($record, 'group_key', 'group3', 'group2');
+            return self::replaceGroup($record, 'group_key', 'group3', 'group2');
         }
 
         return $record;

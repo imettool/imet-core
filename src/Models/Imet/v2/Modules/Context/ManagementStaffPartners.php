@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementStaffPartners extends Modules\Component\ImetModule
+final class ManagementStaffPartners extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff_partners';
 

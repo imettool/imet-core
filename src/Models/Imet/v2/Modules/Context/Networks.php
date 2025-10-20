@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Type\JSON;
 
-class Networks extends Modules\Component\ImetModule
+final class Networks extends Modules\Component\ImetModule
 {
     protected $table = 'context_networks';
 
@@ -58,7 +58,7 @@ class Networks extends Modules\Component\ImetModule
         $models->map(function ($model): void {
             $model->timestamps = false;
             $model->fill(
-                static::upgradeModule($model->toArray())
+                self::upgradeModule($model->toArray())
             )->save();
         });
 

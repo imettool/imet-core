@@ -16,7 +16,7 @@ use Exception;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Governance extends Modules\Component\ImetModule
+final class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'context_governance';
 
@@ -53,19 +53,19 @@ class Governance extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // #### not in predefined lists ####
-        $record['InstitutionType'] = static::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');
-        $record['PartnershipsType1'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
-        $record['PartnershipsType2'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
-        $record['PartnershipsType3'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
+        $record['InstitutionType'] = self::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');
+        $record['PartnershipsType1'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
+        $record['PartnershipsType2'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
+        $record['PartnershipsType3'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
         if (array_key_exists('Type', $record)) {
-            $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType'); // until v2.13.7
+            $record['Type'] = self::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType'); // until v2.13.7
         } elseif (array_key_exists('GovernanceType', $record)) {
-            $record['GovernanceModel'] = static::dropIfValueNotInPredefinedList($record['GovernanceModel'], 'GovernanceType'); // after v3.*
+            $record['GovernanceModel'] = self::dropIfValueNotInPredefinedList($record['GovernanceModel'], 'GovernanceType'); // after v3.*
         }
 
         // ####  v2.13.7 -> v3.*  ####
-        $record = static::renameField($record, 'Type', 'GovernanceModel');
+        $record = self::renameField($record, 'Type', 'GovernanceModel');
 
-        return static::renameField($record, 'Comments', 'AdditionalInfo');
+        return self::renameField($record, 'Comments', 'AdditionalInfo');
     }
 }

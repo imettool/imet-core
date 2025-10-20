@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class KeyConservationTrend extends Modules\Component\ImetModule_Eval
+final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_conservation_trends';
 
@@ -63,7 +63,7 @@ class KeyConservationTrend extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
                     'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')->pluck('Aspect')->toArray(),

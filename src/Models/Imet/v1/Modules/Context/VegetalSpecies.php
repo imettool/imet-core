@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class VegetalSpecies extends Modules\Component\ImetModule
+final class VegetalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_vegetal_presence';
 

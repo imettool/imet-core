@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class LocalCommunitiesImpact extends Modules\Component\ImetModule_Eval
+final class LocalCommunitiesImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_local_communities_impact';
 

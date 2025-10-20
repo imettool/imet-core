@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Equipments extends Modules\Component\ImetModule
+final class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
 
@@ -82,7 +82,7 @@ class Equipments extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
-        $record = static::replacePredefinedValue($record, 'Resource', 'Hydraulic electric facility', 'Hydropower electric facility');
+        $record = self::replacePredefinedValue($record, 'Resource', 'Hydraulic electric facility', 'Hydropower electric facility');
 
         return $record;
     }

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Implications extends Modules\Component\ImetModule_Eval
+final class Implications extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_implications';
 
@@ -74,6 +74,6 @@ class Implications extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupActor');
+        return self::convertGroupLabelToKey($record, 'GroupActor');
     }
 }

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Governance extends Modules\Component\ImetModule
+final class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'context_governance';
 
@@ -46,8 +46,8 @@ class Governance extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // Rename fields to match the new DB column names
-        $record = static::renameField($record, 'Type', 'GovernanceModel');
-        return static::renameField($record, 'Comments', 'AdditionalInfo');
+        $record = self::renameField($record, 'Type', 'GovernanceModel');
+        return self::renameField($record, 'Comments', 'AdditionalInfo');
     }
 
     /**

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class FinancialResources extends Modules\Component\ImetModule
+final class FinancialResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_resources';
 
@@ -46,13 +46,13 @@ class FinancialResources extends Modules\Component\ImetModule
 
     public static function getCurrency(?int $form_id)
     {
-        return static::getModule($form_id)->first()
+        return self::getModule($form_id)->first()
             ->Currency ?? null;
     }
 
     public static function getTotalBudget(?int $form_id)
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
 
         return $records[0]['TotalBudget'];
     }

@@ -85,7 +85,7 @@ class Species extends Animal
             ->get();
 
         // Sort by Levenshtein distance
-        $species = static::sortByLevenshteinDistance($species, $search_key);
+        $species = self::sortByLevenshteinDistance($species, $search_key);
 
         return $species;
     }

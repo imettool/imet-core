@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class InformationAvailability extends Modules\Component\ImetModule_Eval
+final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_information_availability';
 
@@ -72,6 +72,6 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupElement');
+        return self::convertGroupLabelToKey($record, 'GroupElement');
     }
 }

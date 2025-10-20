@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules\Context\_Objectives;
 use ImetCore\Models\User\Role;
 
-class ObjectivesContext extends _Objectives
+final class ObjectivesContext extends _Objectives
 {
     protected $table = 'eval_objectives_context';
 

@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 
-class CreateNonWdpa extends Modules\Component\ImetModule
+final class CreateNonWdpa extends Modules\Component\ImetModule
 {
     protected $table = 'forms';
 

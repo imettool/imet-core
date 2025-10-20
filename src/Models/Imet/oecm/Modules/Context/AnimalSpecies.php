@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class AnimalSpecies extends Modules\Component\ImetModule
+final class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_animal_presence';
 
@@ -74,7 +74,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
      */
     public static function getReferenceList($form_id, $dependency_field): array
     {
-        return static::getModule($form_id)
+        return self::getModule($form_id)
             ->filter(fn ($item): bool => filled($item['species']))
             ->pluck('species')
             ->map(fn ($item): mixed => Str::contains($item, '|')

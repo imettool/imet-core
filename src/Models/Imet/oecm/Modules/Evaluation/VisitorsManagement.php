@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class VisitorsManagement extends Modules\Component\ImetModule_Eval
+final class VisitorsManagement extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_visitors_management';
 

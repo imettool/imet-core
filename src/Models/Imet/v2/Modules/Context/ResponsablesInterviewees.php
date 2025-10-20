@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ResponsablesInterviewees extends Modules\Component\ImetModule
+final class ResponsablesInterviewees extends Modules\Component\ImetModule
 {
     protected $table = 'context_encoding_responsables_interviewees';
 
@@ -44,7 +44,7 @@ class ResponsablesInterviewees extends Modules\Component\ImetModule
 
     public static function getNames(?int $form_id)
     {
-        return static::getModule($form_id)
+        return self::getModule($form_id)
             ->map->only(['Name', 'Institution', 'Function'])
             ->toArray();
     }

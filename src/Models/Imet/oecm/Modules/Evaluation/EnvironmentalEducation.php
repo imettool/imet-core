@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class EnvironmentalEducation extends Modules\Component\ImetModule_Eval
+final class EnvironmentalEducation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_actors_relations';
 

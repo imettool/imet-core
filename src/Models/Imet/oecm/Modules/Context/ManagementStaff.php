@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementStaff extends Modules\Component\ImetModule
+final class ManagementStaff extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff';
 
@@ -51,7 +51,7 @@ class ManagementStaff extends Modules\Component\ImetModule
      */
     public static function calculateWeights(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
 
         return collect($records)
             ->map(function (array $item): array {

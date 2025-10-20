@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class LifeQualityImpact extends Modules\Component\ImetModule_Eval
+final class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_life_quality_impact';
 

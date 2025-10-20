@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementActivities extends Modules\Component\ImetModule_Eval
+final class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
 
@@ -64,7 +64,7 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? KeyElements::getPrioritizedElements($form_id)
                 : [],

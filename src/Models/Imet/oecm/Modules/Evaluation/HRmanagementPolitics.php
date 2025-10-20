@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class HRmanagementPolitics extends Modules\Component\ImetModule_Eval
+final class HRmanagementPolitics extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_hr_management_politics';
 

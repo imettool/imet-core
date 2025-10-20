@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class InformationAvailability extends Modules\Component\ImetModule_Eval
+final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_information_availability';
 
@@ -62,7 +62,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
                     'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)

@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
 use ImetCore\Models\User\Role;
 
-class StakeholdersObjectives extends _Objectives
+final class StakeholdersObjectives extends _Objectives
 {
     protected $table = 'context_stakeholders_objectives';
 

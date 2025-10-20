@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class TerritorialReferenceContext extends Modules\Component\ImetModule
+final class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
     protected $table = 'context_territorial_reference_context';
 
@@ -44,11 +44,11 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public static function upgradeModule($record, $imet_version = null): array
     {
-        $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
-        $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
-        $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
+        $record = self::renameField($record, 'FunctionalArea', 'BenefitKm2');
 
-        return static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
+        return self::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
     }
 
     /**

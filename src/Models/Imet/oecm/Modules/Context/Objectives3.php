@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
 use ImetCore\Models\User\Role;
 
-class Objectives3 extends _Objectives
+final class Objectives3 extends _Objectives
 {
     protected $table = 'context_objectives3';
 

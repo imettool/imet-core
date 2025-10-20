@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class AchievedObjectives extends Modules\Component\ImetModule_Eval
+final class AchievedObjectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_achived_objectives';
 
@@ -60,7 +60,7 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $p6_values,
         ];
     }

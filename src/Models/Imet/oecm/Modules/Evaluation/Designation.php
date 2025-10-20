@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class Designation extends Modules\Component\ImetModule_Eval
+final class Designation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'designation';
 
@@ -55,7 +55,7 @@ class Designation extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? array_filter(Modules\Context\SpecialStatus::getModule($form_id)->pluck('Designation')->toArray())
                 : [],
@@ -67,7 +67,7 @@ class Designation extends Modules\Component\ImetModule_Eval
      */
     public static function getPrioritizedElements(?int $form_id): array
     {
-        return collect(static::getModuleRecords($form_id)['records'])
+        return collect(self::getModuleRecords($form_id)['records'])
             ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Aspect')
             ->toArray();
@@ -76,7 +76,7 @@ class Designation extends Modules\Component\ImetModule_Eval
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->where('IncludeInStatistics', true)
             ->pluck($dependency_on)
             ->toArray();

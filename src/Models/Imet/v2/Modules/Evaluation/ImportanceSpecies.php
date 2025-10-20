@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class ImportanceSpecies extends Modules\Component\ImetModule_Eval
+final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c13';
 
@@ -74,7 +74,7 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class GeographicalLocation extends Modules\Component\ImetModule
+final class GeographicalLocation extends Modules\Component\ImetModule
 {
     protected $table = 'context_localization';
 

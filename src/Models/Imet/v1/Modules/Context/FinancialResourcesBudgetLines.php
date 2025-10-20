@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
+final class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_resources_budget_lines';
 

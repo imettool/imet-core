@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
+final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_research_and_monitoring';
 

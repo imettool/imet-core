@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedArea;
 use ModularForms\Models\Traits\Payload;
 
-class Create extends Modules\Component\ImetModule
+final class Create extends Modules\Component\ImetModule
 {
     protected $table = 'forms';
 

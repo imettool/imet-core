@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class BudgetSecurization extends Modules\Component\ImetModule_Eval
+final class BudgetSecurization extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_budget_securization';
 

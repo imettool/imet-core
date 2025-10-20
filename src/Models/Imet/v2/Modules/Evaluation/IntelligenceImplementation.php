@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
+final class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_intelligence_implementation';
 
@@ -80,17 +80,17 @@ class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Element',
+        $record = self::replacePredefinedValue($record, 'Element',
             'Intelligence and investigations units orienting ranger patrols actions ',
             'Intelligence and investigations units orienting and supporting ranger patrols actions');
-        $record = static::replacePredefinedValue($record, 'Element',
+        $record = self::replacePredefinedValue($record, 'Element',
             'Unités de renseignement et d’enquête orientant les actions des patrouilles de surveillants',
             'Unités de renseignement et d’enquête orientant et soutenant les actions des patrouilles de surveillants');
-        $record = static::replacePredefinedValue($record, 'Element',
+        $record = self::replacePredefinedValue($record, 'Element',
             'Unidades de inteligência e investigação que orientam as acções de patrulhamento dos fiscais',
             'Unidades de inteligência e investigação que orientam e apoiam as acções de patrulhamento dos fiscais');
 
-        return static::replacePredefinedValue($record, 'Element',
+        return self::replacePredefinedValue($record, 'Element',
             'Las unidades de seguimiento de indicios y cruce de información orientan las acciones de las patrullajes de los guardaparques',
             'Las unidades de seguimiento de indicios y cruce de información orientan y apoyan las acciones de las patrullajes de los guardaparques');
     }

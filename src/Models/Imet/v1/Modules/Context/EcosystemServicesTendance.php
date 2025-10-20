@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class EcosystemServicesTendance extends Modules\Component\ImetModule
+final class EcosystemServicesTendance extends Modules\Component\ImetModule
 {
     protected $table = 'context_ecosystem_services_tendance';
 
@@ -73,6 +73,6 @@ class EcosystemServicesTendance extends Modules\Component\ImetModule
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'Group');
+        return self::convertGroupLabelToKey($record, 'Group');
     }
 }

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ObjectivesIntrants extends Modules\Component\ImetModule_Eval
+final class ObjectivesIntrants extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_objectives_intrants';
 

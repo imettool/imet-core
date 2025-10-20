@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class MenacesPressions extends Modules\Component\ImetModule
+final class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'context_menaces_pressions';
 
@@ -120,14 +120,14 @@ class MenacesPressions extends Modules\Component\ImetModule
     public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
 
         return $vue_data;
     }
 
     public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
 
         // ### row stats ###
@@ -138,19 +138,19 @@ class MenacesPressions extends Modules\Component\ImetModule
                 $valuesByRecord[] = $record[$field];
             }
 
-            $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
+            $row_stats[$record[self::$group_key_field]][] = self::calculateStats($valuesByRecord, true);
         }
 
         // ### group stats ###
         $group_stats = [];
         foreach ($row_stats as $group => $values) {
-            $group_stats[$group] = static::calculateStats($values);
+            $group_stats[$group] = self::calculateStats($values);
         }
 
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupsByCategory as $index => $groups) {
+        foreach (self::$groupsByCategory as $index => $groups) {
             $valuesByCategory[$index] = [];
             foreach ($groups as $group) {
                 $valuesByCategory[$index][] = $group_stats[$group] ?? null;
@@ -158,7 +158,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         foreach ($valuesByCategory as $values) {
-            $category_stats[] = static::calculateStats($values);
+            $category_stats[] = self::calculateStats($values);
         }
 
         return [
@@ -209,6 +209,6 @@ class MenacesPressions extends Modules\Component\ImetModule
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupValue');
+        return self::convertGroupLabelToKey($record, 'GroupValue');
     }
 }

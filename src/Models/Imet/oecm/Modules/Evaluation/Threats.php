@@ -17,7 +17,7 @@ use ImetCore\Models\User\Role;
 use ImetCore\Services\StakeholdersService;
 use ImetCore\Services\ThreatsService;
 
-class Threats extends Modules\Component\ImetModule_Eval
+final class Threats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_threats';
 
@@ -88,7 +88,7 @@ class Threats extends Modules\Component\ImetModule_Eval
      */
     public static function calculateRanking(?int $form_id, ?array $records = null): array
     {
-        $records ??= static::getModuleRecords($form_id)['records'];
+        $records ??= self::getModuleRecords($form_id)['records'];
 
         return ThreatsService::calculateRanking($records);
     }

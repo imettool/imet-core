@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
+final class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_resources_budget_lines';
 
@@ -67,8 +67,8 @@ class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
         if (filled($data['FinancialResources'])) {
             $currency = $data['FinancialResources'][0]['Currency'];
             if ($currency !== null) {
-                foreach ($data[static::getShortClassName()] as $i => $record) {
-                    $data[static::getShortClassName()][$i]['Currency'] = $currency;
+                foreach ($data[self::getShortClassName()] as $i => $record) {
+                    $data[self::getShortClassName()][$i]['Currency'] = $currency;
                 }
             }
         }

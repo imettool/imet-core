@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class Stakeholders extends Modules\Component\ImetModule
+final class Stakeholders extends Modules\Component\ImetModule
 {
     protected $table = 'context_stakeholders_natural_resources';
 
@@ -99,7 +99,7 @@ class Stakeholders extends Modules\Component\ImetModule
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records and compare
-        $existing_values = static::getModule($form_id)->pluck('DirectUser', 'Element')->toArray();
+        $existing_values = self::getModule($form_id)->pluck('DirectUser', 'Element')->toArray();
         $updated_values = collect($records)->pluck('DirectUser', 'Element')->toArray();
 
         // Make diff to find out what to drop
@@ -118,11 +118,11 @@ class Stakeholders extends Modules\Component\ImetModule
      */
     public static function getStakeholders(?int $form_id, int $mode = self::ALL_USERS, bool $with_categories = false): array
     {
-        $query = static::getModule($form_id);
+        $query = self::getModule($form_id);
 
-        if ($mode == static::ONLY_DIRECT) {
+        if ($mode == self::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } elseif ($mode == static::ONLY_INDIRECT) {
+        } elseif ($mode == self::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 
@@ -154,11 +154,11 @@ class Stakeholders extends Modules\Component\ImetModule
      */
     public static function calculateWeights(?int $form_id, int $mode = self::ALL_USERS): array
     {
-        $query = static::getModule($form_id);
+        $query = self::getModule($form_id);
 
-        if ($mode == static::ONLY_DIRECT) {
+        if ($mode == self::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } elseif ($mode == static::ONLY_INDIRECT) {
+        } elseif ($mode == self::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 

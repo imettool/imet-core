@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class InformationAvailability extends Modules\Component\ImetModule_Eval
+final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_information_availability';
 
@@ -73,7 +73,7 @@ class InformationAvailability extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $key_elements,
         ];
     }

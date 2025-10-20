@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class DesignAdequacy extends Modules\Component\ImetModule_Eval
+final class DesignAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_design_adequacy';
 

@@ -17,7 +17,7 @@ use ImetCore\Models\User\Role;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-class MenacesPressions extends Modules\Component\ImetModule
+final class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'context_menaces_pressions';
 
@@ -131,7 +131,7 @@ class MenacesPressions extends Modules\Component\ImetModule
     public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
 
         return $vue_data;
     }
@@ -139,19 +139,19 @@ class MenacesPressions extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
-        $record = static::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
-        $record = static::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
-        $record = static::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
+        $record = self::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
+        $record = self::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
+        $record = self::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
+        $record = self::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
+        $record = self::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
+        $record = self::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
 
-        return static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
+        return self::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
     }
 
     public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
 
         // ### row stats ###
@@ -162,19 +162,19 @@ class MenacesPressions extends Modules\Component\ImetModule
                 $valuesByRecord[] = $record[$field];
             }
 
-            $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
+            $row_stats[$record[self::$group_key_field]][] = self::calculateStats($valuesByRecord, true);
         }
 
         // ### group stats ###
         $group_stats = [];
         foreach ($row_stats as $group => $values) {
-            $group_stats[$group] = static::calculateStats($values);
+            $group_stats[$group] = self::calculateStats($values);
         }
 
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupsByCategory as $index => $groups) {
+        foreach (self::$groupsByCategory as $index => $groups) {
             $valuesByCategory[$index] = [];
             foreach ($groups as $group) {
                 $valuesByCategory[$index][] = $group_stats[$group] ?? null;
@@ -182,7 +182,7 @@ class MenacesPressions extends Modules\Component\ImetModule
         }
 
         foreach ($valuesByCategory as $values) {
-            $stat = static::calculateStats($values);
+            $stat = self::calculateStats($values);
             $category_stats[] = $stat > 0 ? round($stat * 100 / 3, 2) : '';
         }
 

@@ -18,7 +18,7 @@ use ImetCore\Models\User\Role;
 /**
  * @property $titles
  */
-class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
+final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints';
 
@@ -62,7 +62,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }
@@ -86,7 +86,7 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
     public static function calculateRanking(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
 
         return collect($records)
             ->map(function (array $item): array {

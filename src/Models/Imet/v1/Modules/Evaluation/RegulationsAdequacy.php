@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
+final class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_regulations_adequacy';
 

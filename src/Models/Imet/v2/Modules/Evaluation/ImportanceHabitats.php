@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceHabitats extends Modules\Component\ImetModule_Eval
+final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c14';
 
@@ -65,7 +65,7 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }

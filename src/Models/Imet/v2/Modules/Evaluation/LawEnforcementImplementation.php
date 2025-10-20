@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
+final class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_law_enforcement_implementation';
 
@@ -76,18 +76,18 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if (blank($imet_version) || $imet_version < 'v2.7.6b') {
             // add new "group_key" filed and set to "group0"
-            $record = static::addField($record, 'group_key');
-            $record = static::replaceGroup($record, 'group_key', null, 'group0');
+            $record = self::addField($record, 'group_key');
+            $record = self::replaceGroup($record, 'group_key', null, 'group0');
         }
 
-        $record = static::replacePredefinedValue($record, 'Element',
+        $record = self::replacePredefinedValue($record, 'Element',
             'Non collaborative (technology: radar, optical-infrared, radio monitoring Vs technology poor performance, qualified rangers)',
             'Non collaborative (technology: digital data, aerial monitoring, etc. Vs technology poor performance, qualified rangers)');
-        $record = static::replacePredefinedValue($record, 'Element',
+        $record = self::replacePredefinedValue($record, 'Element',
             'Não colaborativo (tecnologia: radar, infravermelho óptico, tecnologia de monitorização de rádio Vs mau desempenho, rangers fiscais qualificados)',
             'Não colaborativo (tecnologia: dados digitais, monitoramento aéreo, etc Vs mau desempenho, rangers fiscais qualificados)');
 
-        return static::replacePredefinedValue($record, 'Element',
+        return self::replacePredefinedValue($record, 'Element',
             'No colaborativo (tecnología: radar, óptico-infrarrojo, vigilancia por radio vs. tecnología de bajo rendimiento, guardaparques calificados)',
             'No colaborativo (tecnología: datos digitales, vigilancia por aéreo, etc. vs. tecnología de bajo rendimiento, guardaparques calificados)');
     }

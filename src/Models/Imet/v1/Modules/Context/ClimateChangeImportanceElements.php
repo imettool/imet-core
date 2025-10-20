@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ClimateChangeImportanceElements extends Modules\Component\ImetModule
+final class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 {
     protected $table = 'context_climate_change_importance_elements';
 

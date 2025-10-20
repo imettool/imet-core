@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
+final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_equipment_adequacy';
 
@@ -57,7 +57,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         $new_records = [];
-        $adequacy = static::calculateEquipmentAdequacy($form_id);
+        $adequacy = self::calculateEquipmentAdequacy($form_id);
         foreach ($predefined_values['values'] as $i => $predefined_value) {
             if ($adequacy[$i] !== null) {
                 $records[$i]['__adequacy'] = $adequacy[$i];

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Menaces extends Modules\Component\ImetModule_Eval
+final class Menaces extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_menaces';
 
@@ -68,9 +68,9 @@ class Menaces extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
-                ? static::getMenacesPressions($form_id)
+                ? self::getMenacesPressions($form_id)
                     ->map(fn (Modules\Context\MenacesPressions $item): mixed => $item['Value'])
                 : [],
         ];
@@ -82,7 +82,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         // Inject rankings
-        foreach (static::getMenacesPressions($form_id)->values()->toArray() as $index => $record) {
+        foreach (self::getMenacesPressions($form_id)->values()->toArray() as $index => $record) {
             $records[$index]['_rank'] = -$record['_rank'] * 100 / 3.0;
             $records[$index]['_Impact'] = $record['Impact'];
             $records[$index]['_Extension'] = $record['Extension'];

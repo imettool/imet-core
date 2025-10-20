@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\ThreatsService;
 
-class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
+final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_threats_biodiversity';
 
@@ -72,7 +72,7 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }
@@ -84,13 +84,13 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
      */
     protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
     {
-        $predefined_values = static::getPredefined($form_id);
-        $records = static::arrange_records($predefined_values, $records, $empty_record);
+        $predefined_values = self::getPredefined($form_id);
+        $records = self::arrange_records($predefined_values, $records, $empty_record);
 
         // Ensure to removed dropped items
         foreach ($records as $record) {
-            if (! in_array($record[static::$DEPENDENCY_ON], $predefined_values['values'][$record['group_key']])) {
-                static::dropOrphansDependencyRecords($form_id, [$record[static::$DEPENDENCY_ON]]);
+            if (! in_array($record[self::$DEPENDENCY_ON], $predefined_values['values'][$record['group_key']])) {
+                self::dropOrphansDependencyRecords($form_id, [$record[self::$DEPENDENCY_ON]]);
             }
         }
 
@@ -102,7 +102,7 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
      */
     public static function calculateRanking(?int $form_id, ?array $records = null): array
     {
-        $records ??= static::getModuleRecords($form_id)['records'];
+        $records ??= self::getModuleRecords($form_id)['records'];
 
         return ThreatsService::calculateRanking($records);
     }

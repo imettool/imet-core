@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class VisitorsManagement extends Modules\Component\ImetModule_Eval
+final class VisitorsManagement extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_visitors_management';
 
@@ -71,6 +71,6 @@ class VisitorsManagement extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupAspect');
+        return self::convertGroupLabelToKey($record, 'GroupAspect');
     }
 }

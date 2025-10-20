@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ObjectivesProcessus extends Modules\Component\ImetModule_Eval
+final class ObjectivesProcessus extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_objectives_processus';
 

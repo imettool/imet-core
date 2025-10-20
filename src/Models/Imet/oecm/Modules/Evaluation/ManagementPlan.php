@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
 
-class ManagementPlan extends Modules\Component\ImetModule_Eval
+final class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_plan';
 
@@ -63,7 +63,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
     public static function updateModule(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));
-        $records[0] = static::ensureNullValues($records[0]);
+        $records[0] = self::ensureNullValues($records[0]);
         $request->merge(['records_json' => Payload::encode($records)]);
 
         return parent::updateModule($request);
@@ -72,7 +72,7 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
     #[\Override]
     public static function importModule(int $form_id, ?array $data): void
     {
-        $data = static::ensureNullValues($data);
+        $data = self::ensureNullValues($data);
         parent::importModule($form_id, $data);
     }
 }

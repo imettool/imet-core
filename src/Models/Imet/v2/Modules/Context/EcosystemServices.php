@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Input\SelectionList;
 
-class EcosystemServices extends Modules\Component\ImetModule
+final class EcosystemServices extends Modules\Component\ImetModule
 {
     protected $table = 'context_ecosystem_services';
 
@@ -90,7 +90,7 @@ class EcosystemServices extends Modules\Component\ImetModule
     public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
 
         return $vue_data;
     }
@@ -98,10 +98,10 @@ class EcosystemServices extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Element', 'other');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
 
-        return static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
+        return self::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
     }
 
     /**
@@ -109,15 +109,15 @@ class EcosystemServices extends Modules\Component\ImetModule
      */
     public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $category_stats = [];
 
-        foreach (static::$groupsByCategory as $category_index => $groups) {
+        foreach (self::$groupsByCategory as $category_index => $groups) {
             $category_sum = 0;
             $category_count = 0;
             foreach ($records as $record) {
                 if (in_array($record['group_key'], $groups)) {
-                    $row_stats = static::row_stats($record);
+                    $row_stats = self::row_stats($record);
                     if ($row_stats !== null) {
                         $category_sum += floatval($row_stats);
                         $category_count++;

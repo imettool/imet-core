@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Equipments extends Modules\Component\ImetModule
+final class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
 
@@ -93,6 +93,6 @@ class Equipments extends Modules\Component\ImetModule
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupResources');
+        return self::convertGroupLabelToKey($record, 'GroupResources');
     }
 }

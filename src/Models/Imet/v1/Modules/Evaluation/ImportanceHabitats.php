@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceHabitats extends Modules\Component\ImetModule_Eval
+final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c14';
 
@@ -66,6 +66,6 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupAspect');
+        return self::convertGroupLabelToKey($record, 'GroupAspect');
     }
 }

@@ -18,7 +18,7 @@ use ImetCore\Models\User\Role;
 /**
  * @property $titles
  */
-class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
+final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints_integration';
 
@@ -69,7 +69,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }
@@ -100,7 +100,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
      */
     public static function getPrioritizedElements(?int $form_id): array
     {
-        return collect(static::getModuleRecords($form_id)['records'])
+        return collect(self::getModuleRecords($form_id)['records'])
             ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Stakeholder')
             ->toArray();
@@ -109,7 +109,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->where('IncludeInStatistics', true)
             ->pluck($dependency_on)
             ->toArray();

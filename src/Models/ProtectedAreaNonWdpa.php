@@ -67,7 +67,7 @@ class ProtectedAreaNonWdpa extends BaseModel
         $max_id ??= ProtectedAreaNonWdpa::query()->max('id');
 
         return $max_id === null || ! static::isNonWdpa($max_id)
-            ? static::START_FAKE_ID
+            ? self::START_FAKE_ID
             : intval($max_id) + 1;
     }
 
@@ -76,7 +76,7 @@ class ProtectedAreaNonWdpa extends BaseModel
      */
     public static function isNonWdpa($wdpa_id): bool
     {
-        return $wdpa_id >= ProtectedAreaNonWdpa::START_FAKE_ID;
+        return $wdpa_id >= self::START_FAKE_ID;
     }
 
     /**

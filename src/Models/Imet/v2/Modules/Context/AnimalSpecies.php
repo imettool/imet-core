@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class AnimalSpecies extends Modules\Component\ImetModule
+final class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_animal_presence';
 

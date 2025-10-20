@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class CapacityAdequacy extends Modules\Component\ImetModule_Eval
+final class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_capacity_adequacy';
 
@@ -57,7 +57,7 @@ class CapacityAdequacy extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }

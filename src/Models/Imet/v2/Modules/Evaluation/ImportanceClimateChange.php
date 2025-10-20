@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
+final class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c15';
 
@@ -79,7 +79,7 @@ class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         }
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? $ctx_records
                     ->map(fn ($item): mixed => $item['Value'])

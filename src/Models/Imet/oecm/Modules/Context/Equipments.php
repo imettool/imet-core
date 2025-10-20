@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class Equipments extends Modules\Component\ImetModule
+final class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
 
@@ -75,7 +75,7 @@ class Equipments extends Modules\Component\ImetModule
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->whereNotNull('AdequacyLevel')
             ->pluck('group_key')->unique()->toArray();
         $updated_values = collect($records)

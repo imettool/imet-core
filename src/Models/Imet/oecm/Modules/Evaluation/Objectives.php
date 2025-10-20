@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class Objectives extends Modules\Component\ImetModule_Eval
+final class Objectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_objectives';
 
@@ -54,7 +54,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
     #[\Override]
     public static function getPredefined(?int $form_id = null): ?array
     {
-        if (static::$cache_predefined_values === null) {
+        if (self::$cache_predefined_values === null) {
             $key_elements = $form_id != null
                 ? array_merge(
                     KeyElements::getPrioritizedElements($form_id),
@@ -66,8 +66,8 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
             $key_elements = array_filter($key_elements);
 
-            static::$cache_predefined_values = [
-                'field' => static::$DEPENDENCY_ON,
+            self::$cache_predefined_values = [
+                'field' => self::$DEPENDENCY_ON,
                 'values' => [
                     'group0' => [],
                     'group1' => $key_elements,
@@ -75,13 +75,13 @@ class Objectives extends Modules\Component\ImetModule_Eval
             ];
         }
 
-        return static::$cache_predefined_values;
+        return self::$cache_predefined_values;
     }
 
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->filter(fn ($item): bool => $item['group_key'] === 'group0'
                 || $item['Existence'])
             ->pluck($dependency_on)

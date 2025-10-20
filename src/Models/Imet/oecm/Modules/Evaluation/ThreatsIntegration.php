@@ -18,7 +18,7 @@ use ImetCore\Models\User\Role;
 /**
  * @property $titles
  */
-class ThreatsIntegration extends Modules\Component\ImetModule_Eval
+final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_threats_integration';
 
@@ -85,7 +85,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
      */
     public static function getPrioritizedElements(?int $form_id): array
     {
-        return collect(static::getModuleRecords($form_id)['records'])
+        return collect(self::getModuleRecords($form_id)['records'])
             ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Threat')
             ->toArray();
@@ -94,7 +94,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->where('IncludeInStatistics', true)
             ->pluck($dependency_on)
             ->toArray();

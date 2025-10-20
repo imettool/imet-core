@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Habitats extends Modules\Component\ImetModule
+final class Habitats extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats';
 
@@ -53,27 +53,27 @@ class Habitats extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.8 -> v2.10 (revised habitat list)  ####
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest temperate', 'forest_temperate_boreal');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Forest boreal', 'forest_temperate_boreal');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist lowland', 'forest_moist_lowland');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist montane', 'forest_moist_montane');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical dry', 'forest_dry');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical swamp', 'swamp');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Savanna-moist', 'savanna_moist');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Savanna-dry', 'savanna_dry');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical dry', 'shrubland_dry_moist');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical moist', 'shrubland_dry_moist');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical high altitude', 'shrubland_high_altitude');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland temperate', 'shrubland_temperate_boreal');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Shrubland boreal', 'shrubland_temperate_boreal');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Grassland Temperate', 'grassland_temperate');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Grassland subtropical/tropical dry', 'grassland_dry_moist');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Wetlands (inland)-Permanent freshwater lakes', 'wetlands_lakes');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Temperate', 'desert');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert – Cold', 'desert');
-        $record = static::replacePredefinedValue($record, 'EcosystemType', 'Desert - Hot', 'desert');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Forest temperate', 'forest_temperate_boreal');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Forest boreal', 'forest_temperate_boreal');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist lowland', 'forest_moist_lowland');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical moist montane', 'forest_moist_montane');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical dry', 'forest_dry');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Subtropical/tropical swamp', 'swamp');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Savanna-moist', 'savanna_moist');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Savanna-dry', 'savanna_dry');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical dry', 'shrubland_dry_moist');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical moist', 'shrubland_dry_moist');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Shrubland-Subtropical/tropical high altitude', 'shrubland_high_altitude');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Shrubland temperate', 'shrubland_temperate_boreal');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Shrubland boreal', 'shrubland_temperate_boreal');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Grassland Temperate', 'grassland_temperate');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Grassland subtropical/tropical dry', 'grassland_dry_moist');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Wetlands (inland)-Permanent freshwater lakes', 'wetlands_lakes');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert – Temperate', 'desert');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert – Cold', 'desert');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert - Hot', 'desert');
 
-        return static::replacePredefinedValue($record, 'EcosystemType', 'Plantations', 'artificial');
+        return self::replacePredefinedValue($record, 'EcosystemType', 'Plantations', 'artificial');
     }
 
     /**
@@ -92,9 +92,9 @@ class Habitats extends Modules\Component\ImetModule
                     'Presente', 'Ausente', 'Dominante', // PT
                 ]) ? $record['Presence'] : null;
 
-                $data[static::getShortClassName()][] = [
-                    static::UPDATED_AT => $record[static::UPDATED_AT],
-                    static::UPDATED_BY => $record[static::UPDATED_BY],
+                $data[self::getShortClassName()][] = [
+                    self::UPDATED_AT => $record[self::UPDATED_AT],
+                    self::UPDATED_BY => $record[self::UPDATED_BY],
                     'EcosystemType' => $record['HabitatType'],
                     'Value' => $record['Presence'],
                     'Area' => $record['Area'],
@@ -113,9 +113,9 @@ class Habitats extends Modules\Component\ImetModule
     {
         if (array_key_exists('LandCover', $data) && filled($data['LandCover'])) {
             foreach ($data['LandCover'] as $record) {
-                $data[static::getShortClassName()][] = [
-                    static::UPDATED_AT => $record[static::UPDATED_AT],
-                    static::UPDATED_BY => $record[static::UPDATED_BY],
+                $data[self::getShortClassName()][] = [
+                    self::UPDATED_AT => $record[self::UPDATED_AT],
+                    self::UPDATED_BY => $record[self::UPDATED_BY],
                     'EcosystemType' => $record['CoverType'],
                     'Area' => $record['HistoricalArea'],
                     'DesiredConservationStatus' => $record['ConservationStatusArea'] ?? null,

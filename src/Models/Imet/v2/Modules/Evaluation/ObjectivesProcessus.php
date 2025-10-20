@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\User\Role;
 
-class ObjectivesProcessus extends _Objectives
+final class ObjectivesProcessus extends _Objectives
 {
     protected $table = 'eval_objectives_processus';
 

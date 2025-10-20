@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
+final class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_empowerment_governance';
 

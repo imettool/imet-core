@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Input\SelectionList;
 
-class Habitats extends Modules\Component\ImetModule
+final class Habitats extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats';
 
@@ -59,7 +59,7 @@ class Habitats extends Modules\Component\ImetModule
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->pluck('EcosystemDescription', 'EcosystemType')
             ->unique()
             ->toArray();
@@ -89,7 +89,7 @@ class Habitats extends Modules\Component\ImetModule
      */
     public static function getReferenceList($form_id, $dependency_field): array
     {
-        return static::getModule($form_id)
+        return self::getModule($form_id)
             ->filter(fn ($item): bool => filled($item['EcosystemType']))
             ->map(function ($item) {
                 $labels = SelectionList::getList('ImetOECM_Habitats');

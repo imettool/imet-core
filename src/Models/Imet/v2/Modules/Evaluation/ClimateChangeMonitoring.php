@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
+final class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_climate_change_monitoring';
 
@@ -63,7 +63,7 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $predefined_values,
         ];
     }
@@ -71,17 +71,17 @@ class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Program',
+        $record = self::replacePredefinedValue($record, 'Program',
             'Managing adaptation of habitats and the land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)',
             'Managing adaptation of habitats and the related dimensions of land cover – use – take in and outside of the protected area (avoid forest fragmentation, bare ground, etc.)');
-        $record = static::replacePredefinedValue($record, 'Program',
+        $record = self::replacePredefinedValue($record, 'Program',
             'Gestion de l’adaptation pour les habitats et le territoire (couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)',
             'Gestion de l’adaptation pour les habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols à l’intérieur et à l’extérieur de l’aire protégée (éviter la fragmentation des forêts, les sols dénudés, etc.)');
-        $record = static::replacePredefinedValue($record, 'Program',
+        $record = self::replacePredefinedValue($record, 'Program',
             'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
             'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)');
 
-        return static::replacePredefinedValue($record, 'Program',
+        return self::replacePredefinedValue($record, 'Program',
             'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
             'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)');
     }

@@ -16,7 +16,7 @@ use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class Areas extends Modules\Component\ImetModule
+final class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'context_areas';
 
@@ -33,12 +33,12 @@ class Areas extends Modules\Component\ImetModule
             [
                 'name' => 'TerrestrialArea',
                 'type' => 'numeric',
-                'label' => Template::module_scope(static::TERRESTRIAL).' '.trans('imet-core::oecm_context.Areas.fields.TerrestrialArea'),
+                'label' => Template::module_scope(self::TERRESTRIAL).' '.trans('imet-core::oecm_context.Areas.fields.TerrestrialArea'),
             ],
             [
                 'name' => 'MarineArea',
                 'type' => 'numeric',
-                'label' => Template::module_scope(static::MARINE).' '.trans('imet-core::oecm_context.Areas.fields.MarineArea'),
+                'label' => Template::module_scope(self::MARINE).' '.trans('imet-core::oecm_context.Areas.fields.MarineArea'),
             ],
             [
                 'name' => 'AdministrativeArea',
@@ -55,7 +55,7 @@ class Areas extends Modules\Component\ImetModule
 
     public static function getArea(?int $form_id): int|float|null
     {
-        $areas = static::getModuleRecords($form_id)['records'];
+        $areas = self::getModuleRecords($form_id)['records'];
         $area = 0;
         if (count($areas) > 0) {
             $area = null;

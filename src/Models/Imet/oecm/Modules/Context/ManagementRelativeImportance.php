@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementRelativeImportance extends Modules\Component\ImetModule
+final class ManagementRelativeImportance extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_relative_importance';
 

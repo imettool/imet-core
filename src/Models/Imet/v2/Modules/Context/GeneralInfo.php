@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
 
-class GeneralInfo extends Modules\Component\ImetModule
+final class GeneralInfo extends Modules\Component\ImetModule
 {
     protected $table = 'context_general_info';
 
@@ -46,7 +46,7 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'IUCNCategory2',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory2')],
             ['name' => 'IUCNCategory3',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory3')],
             ['name' => 'MarineDesignation',  'type' => 'suggestion_multiple-ImetV2_MarineDesignation',
-                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
+                'label' => Template::module_scope(self::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
             ['name' => 'Country',  'type' => 'dropdown-ImetV2_Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'Institution',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Institution')],
@@ -82,15 +82,15 @@ class GeneralInfo extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Marine', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Mixed', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Maritime', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Mixte', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Marine', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Mixed', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Maritime', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Mixte', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
 
-        return static::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
+        return self::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
     }
 }

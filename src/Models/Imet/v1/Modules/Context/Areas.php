@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Areas extends Modules\Component\ImetModule
+final class Areas extends Modules\Component\ImetModule
 {
     protected $table = 'context_areas';
 
@@ -94,7 +94,7 @@ class Areas extends Modules\Component\ImetModule
 
     public static function getArea(?int $form_id): int|float|null
     {
-        $areas = static::getModuleRecords($form_id)['records'];
+        $areas = self::getModuleRecords($form_id)['records'];
         $area = 0;
         if (count($areas) > 0 && array_key_exists('AdministrativeArea', $areas[0])) {
             $area = $areas[0]['AdministrativeArea'];

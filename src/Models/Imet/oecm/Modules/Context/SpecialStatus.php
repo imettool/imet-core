@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class SpecialStatus extends Modules\Component\ImetModule
+final class SpecialStatus extends Modules\Component\ImetModule
 {
     protected $table = 'context_special_status';
 

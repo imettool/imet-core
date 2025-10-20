@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Staff extends Modules\Component\ImetModule_Eval
+final class Staff extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_staff';
 
@@ -59,7 +59,7 @@ class Staff extends Modules\Component\ImetModule_Eval
             $collection = Modules\Context\ManagementStaff::getModule($form_id);
             $predefined_values['values'] = $collection->pluck('Function')->toArray();
             $predefined_values['additional_values'] = $collection
-                ->map(fn ($item): ?int => static::calculateStaffStatus(
+                ->map(fn ($item): ?int => self::calculateStaffStatus(
                     $item['ActualPermanent'] + $item['ActualPermanentPartnersOrCommunities'],
                     $item['ExpectedPermanent']))->all();
         }

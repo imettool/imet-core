@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
+final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_and_constaints';
 

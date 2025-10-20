@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class EcosystemServices extends Modules\Component\ImetModule_Eval
+final class EcosystemServices extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_ecosystem_services';
 
@@ -51,7 +51,7 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
                 : [],

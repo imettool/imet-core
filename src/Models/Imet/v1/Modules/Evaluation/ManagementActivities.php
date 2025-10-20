@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementActivities extends Modules\Component\ImetModule_Eval
+final class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
 
@@ -68,6 +68,6 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupActivity');
+        return self::convertGroupLabelToKey($record, 'GroupActivity');
     }
 }

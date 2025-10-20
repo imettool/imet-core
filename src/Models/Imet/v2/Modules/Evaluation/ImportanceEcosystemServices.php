@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
+final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c16';
 
@@ -71,9 +71,9 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): ?array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
+            'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
-                ? static::getEcosystemServices($form_id)
+                ? self::getEcosystemServices($form_id)
                     ->map(fn (Modules\Context\EcosystemServices $item): mixed => $item['Element'])
                 : [],
         ];
@@ -85,7 +85,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         // Inject rankings
-        foreach (static::getEcosystemServices($form_id)->values()->toArray() as $index => $record) {
+        foreach (self::getEcosystemServices($form_id)->values()->toArray() as $index => $record) {
             $records[$index]['_rank'] = $record['_rank'];
             $records[$index]['_Importance'] = $record['Importance'];
             $records[$index]['_ImportanceRegional'] = $record['ImportanceRegional'];

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class VisitorsImpact extends Modules\Component\ImetModule_Eval
+final class VisitorsImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_visitors_impact';
 
@@ -71,6 +71,6 @@ class VisitorsImpact extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupImpact');
+        return self::convertGroupLabelToKey($record, 'GroupImpact');
     }
 }

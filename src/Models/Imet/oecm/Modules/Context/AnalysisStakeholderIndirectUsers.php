@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 /**
  * @property $titles
  */
-class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
+final class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
 {
     protected $table = 'context_analysis_stakeholders_indirect_users';
 
@@ -55,7 +55,7 @@ class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     public static function updateModule(Request $request): array
     {
         $return = parent::updateModule($request);
-        $return['key_elements_importance'] = static::calculateKeyElementsImportances($return['id'], $return['records']);
+        $return['key_elements_importance'] = self::calculateKeyElementsImportances($return['id'], $return['records']);
 
         return $return;
     }

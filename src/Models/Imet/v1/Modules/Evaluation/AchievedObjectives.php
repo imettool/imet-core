@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class AchievedObjectives extends Modules\Component\ImetModule_Eval
+final class AchievedObjectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_achived_objectives';
 

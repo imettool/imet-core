@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class EcosystemServices extends Modules\Component\ImetModule_Eval
+final class EcosystemServices extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_ecosystem_services';
 
@@ -71,6 +71,6 @@ class EcosystemServices extends Modules\Component\ImetModule_Eval
      */
     protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupIntervention');
+        return self::convertGroupLabelToKey($record, 'GroupIntervention');
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Services\Scores\ImetScores;
 
-class CrossAnalysis extends Model
+final class CrossAnalysis extends Model
 {
     private static float $threshold = 34.0;
 
@@ -48,11 +48,11 @@ class CrossAnalysis extends Model
     {
         $filteredArray = [];
         $compareElements = [];
-        foreach (array_keys(static::$indicators) as $step_key) {
+        foreach (array_keys(self::$indicators) as $step_key) {
 
             $scores = ImetScores::get_step($item, $step_key);
             $filteredArray = array_merge($filteredArray,
-                array_intersect_key($scores, array_flip(static::$indicators[$step_key]))
+                array_intersect_key($scores, array_flip(self::$indicators[$step_key]))
             );
 
             foreach ($item::modules()[$step_key] as $module) {
@@ -69,7 +69,7 @@ class CrossAnalysis extends Model
             }
         }
 
-        return static::compareValues($compareElements);
+        return self::compareValues($compareElements);
     }
 
     /**
@@ -79,7 +79,7 @@ class CrossAnalysis extends Model
     {
         $error_indicators = [];
         $j = 0;
-        foreach (static::$compares as $item) {
+        foreach (self::$compares as $item) {
             $array_length = count($item);
             for ($i = 0; $i < $array_length; $i++) {
                 for ($k = $i + 1; $k < $array_length; $k++) {
@@ -87,7 +87,7 @@ class CrossAnalysis extends Model
                         $value_indi1 = Common::values_correction($item[$i], $elements[$item[$i]]['value']);
                         $value_indi2 = Common::values_correction($item[$k], $elements[$item[$k]]['value']);
                         $value = abs((float) $value_indi1 - (float) $value_indi2);
-                        if (($value) > static::$threshold) {
+                        if (($value) > self::$threshold) {
                             $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
                             $error_indicators[$j][$item[$k]] = $elements[$item[$k]];
                         }
