@@ -25,6 +25,8 @@ use ModularForms\Models\BaseModel;
  * @property string $Type
  * @property string $iucn_category
  * @property string $creation_date
+ * @property int $status_year
+ * @property string $ownership_type
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
@@ -59,8 +61,6 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Generate a fake wdpa id
-     *
-     * @return int|mixed|string
      */
     public static function generate_fake_wdpa(?int $max_id = null): int
     {

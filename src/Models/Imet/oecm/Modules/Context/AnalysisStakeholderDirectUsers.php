@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Context;
 use Illuminate\Http\Request;
 
 /**
- * @property $titles
+ * @property string[] $titles
  */
 final class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 {

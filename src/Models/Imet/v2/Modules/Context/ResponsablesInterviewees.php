@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-final class ResponsablesInterviewees extends Modules\Component\ImetModule
+class ResponsablesInterviewees extends Modules\Component\ImetModule
 {
     protected $table = 'context_encoding_responsables_interviewees';
 

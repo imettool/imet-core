@@ -77,7 +77,7 @@ trait ConvertSQLite
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
         /** @var class-string $called_class */
-        $called_class = static::class;
+        $called_class = self::class;
 
         if (! method_exists($called_class, 'conversionParameters')) {
             return [];

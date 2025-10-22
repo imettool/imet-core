@@ -114,7 +114,7 @@ class ReportScalingUp
 
         $pa_ids = implode(',', array_keys($protected_areas['models']));
 
-        uasort($protected_areas['models'], fn (array $a, array $b): bool => $a['name'] > $b['name']);
+        uasort($protected_areas['models'], fn (ImetAlias $a, ImetAlias $b): bool => $a['name'] > $b['name']);
 
         [$custom_colors, $custom_items, $custom_names, $protected_areas_names] = self::protectedAreaNames($scaling_up_id);
 

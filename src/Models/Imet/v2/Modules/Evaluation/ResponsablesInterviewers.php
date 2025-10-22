@@ -14,4 +14,4 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
 
-final class ResponsablesInterviewers extends Modules\Context\ResponsablesInterviewers {}
+class ResponsablesInterviewers extends Modules\Context\ResponsablesInterviewers {}

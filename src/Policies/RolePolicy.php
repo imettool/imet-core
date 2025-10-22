@@ -14,6 +14,7 @@ namespace ImetCore\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use ImetCore\Models\User\Role;
+use ImetCore\Models\User\User;
 
 class RolePolicy
 {
@@ -21,10 +22,8 @@ class RolePolicy
 
     /**
      * Perform pre-authorization checks
-     *
-     * @param  \App\Models\User\User|\ImetUser  $user
      */
-    public function before($user, string $ability): ?bool
+    public function before(User $user, string $ability): ?bool
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {
@@ -36,10 +35,8 @@ class RolePolicy
 
     /**
      * Determine whether the user can manage Roles
-     *
-     * @param  \App\Models\User\User|\ImetUser  $user
      */
-    public function manage($user): bool
+    public function manage(User $user): bool
     {
         // TODO: ROLE_REGIONAL_OBSERVATORY ?
         return false;

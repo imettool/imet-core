@@ -44,6 +44,7 @@ use function session;
  * @property string $version
  * @property string $wdpa_id
  * @property string $Year
+ *
  */
 abstract class Imet extends Form
 {
@@ -84,6 +85,7 @@ abstract class Imet extends Form
 
     /**
      * Relation to Country
+     * @return HasOne<Country, Imet>
      */
     public function country(): HasOne
     {
@@ -100,6 +102,9 @@ abstract class Imet extends Form
 
     /**
      * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
+     * @param  array<string> $relations
+     * @param  array<string> $countries
+     * @return Collection<int, v1\Imet|v2\Imet>
      */
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
@@ -164,18 +169,16 @@ abstract class Imet extends Form
 
     /**
      * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
-     *
-     * @return mixed
      */
     public static function get_assessments_list_with_extras(Request $request)
     {
         $hasDuplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item) use ($hasDuplicates): \Illuminate\Database\Eloquent\Model {
+            ->map(function (v1\Imet|v2\Imet $item) use ($hasDuplicates): v1\Imet|v2\Imet {
 
                 // Add encoders
-                $item->encoders_responsibles = [
+                $item['encoders_responsibles'] = [
                     'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
                     'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
                     'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),
@@ -263,8 +266,7 @@ abstract class Imet extends Form
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
-            ->map(function ($imet): void {
-                /** @var Imet $imet */
+            ->map(function (Imet $imet): void {
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
                     ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
                     : ProtectedArea::getByWdpa($imet->wdpa_id);
@@ -276,8 +278,6 @@ abstract class Imet extends Form
 
     /**
      * Retrieve form language
-     *
-     * @return mixed
      */
     public static function getLanguage(string $form_id)
     {
@@ -315,8 +315,6 @@ abstract class Imet extends Form
 
     /**
      * Retrieve the IMET version
-     *
-     * @return HigherOrderCollectionProxy|mixed|string|null
      */
     public static function getVersion($form_id)
     {
@@ -349,21 +347,16 @@ abstract class Imet extends Form
     }
 
     /**
-     * Retrieve an array of distinct values for the given field
+     * Retrieve an array of available years
      */
-    private static function getDistinctField(string $field): array
-    {
-        return static::query()->select($field)
-            ->distinct()
-            ->orderBy($field)
-            ->get()
-            ->pluck($field)
-            ->toArray();
-    }
-
     public static function getAvailableYears(): array
     {
-        return static::getDistinctField('Year');
+        return static::query()->select('Year')
+            ->distinct()
+            ->orderBy('Year')
+            ->get()
+            ->pluck('Year')
+            ->toArray();
     }
 
     /**
@@ -388,8 +381,6 @@ abstract class Imet extends Form
 
     /**
      * Import form from array
-     *
-     * @return array
      */
     public static function importForm(array $data): int
     {
@@ -418,8 +409,6 @@ abstract class Imet extends Form
 
     /**
      * Import all modules from records array
-     *
-     * @throws FileNotFoundException
      */
     #[\Override]
     public static function importModules($records, $formID, $imet_version = null): array

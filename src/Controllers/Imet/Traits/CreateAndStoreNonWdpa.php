@@ -77,7 +77,7 @@ trait CreateAndStoreNonWdpa
      *
      * @throws Exception
      */
-    private function store_non_wdpa(Request $request): array
+    protected function store_non_wdpa(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));
 
@@ -110,7 +110,7 @@ trait CreateAndStoreNonWdpa
         }
     }
 
-    private static function redirect_to_edit($request): array
+    protected static function redirect_to_edit($request): array
     {
         $form = new static::$form_class;
         $result = $form->store($request);
@@ -123,7 +123,7 @@ trait CreateAndStoreNonWdpa
         return $result;
     }
 
-    private static function redirect_to_edit_non_wdpa($request): array
+    protected static function redirect_to_edit_non_wdpa($request): array
     {
         $records = Payload::decode($request->input('records_json'));
         $form = new static::$form_class;

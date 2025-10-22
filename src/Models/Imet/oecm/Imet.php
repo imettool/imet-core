@@ -88,6 +88,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to Encoder (only name)
+     * @return HasMany<Encoder, Imet>
      */
     public function encoder(): HasMany
     {
@@ -97,6 +98,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewees
+     * @return HasMany<ResponsablesInterviewees, Imet>
      */
     public function responsible_interviewees(): HasMany
     {
@@ -106,6 +108,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewers
+     * @return HasMany<ResponsablesInterviewers, Imet>
      */
     public function responsible_interviewers(): HasMany
     {
@@ -157,10 +160,10 @@ class Imet extends BaseImetForm
         $duplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item) use ($duplicates): \Illuminate\Database\Eloquent\Model {
+            ->map(function (Imet $item) use ($duplicates): Imet {
 
                 // Add encoders
-                $item->encoders_responsibles = [
+                $item['encoders_responsibles'] = [
                     'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
                     'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
                     'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),

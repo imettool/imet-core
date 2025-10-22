@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
 
 trait Data
 {
-    private static function retrieve_data(array $items, array $indicators, string $type = 'context'): array
+    protected static function retrieve_data(array $items, array $indicators, string $type = 'context'): array
     {
         $api = [];
         $table = ScalingUpDataTable::get_datatable_analysis_indicators($items, $indicators, $type);

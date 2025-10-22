@@ -50,6 +50,7 @@ class Country extends BaseCountry
 
     /**
      * Get the region associated with the country.
+     * @return BelongsTo<Region, Country>
      */
     public function region(): BelongsTo
     {

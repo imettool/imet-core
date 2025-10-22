@@ -57,12 +57,12 @@ abstract class Controller extends __Controller
     public function index(Request $request): View
     {
         $this->authorize('viewAny', static::$form_class);
-        HTTP::sanitize($request, self::sanitization_rules);
+        HTTP::sanitize($request, static::sanitization_rules);
 
         // set filter status
         $filter_selected = filled(array_filter($request->except('_token')));
 
-        /** @var Imet $form_class */
+        /** @var class-string<Imet> $form_class */
         $form_class = static::$form_class;
 
         // retrieve IMET list

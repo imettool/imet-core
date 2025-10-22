@@ -17,11 +17,17 @@ use Illuminate\Support\Facades\Storage;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 
+/**
+ * @property string $item
+ * @property int $order
+ * @property string $comment
+ * @property int $scaling_up_id
+ */
 final class Basket extends BaseModel
 {
-    public const BASKET_DISK = 'public_folder';
+    public const string BASKET_DISK = 'public_folder';
 
-    public const BASKET_FOLDER = 'basket/';
+    public const string BASKET_FOLDER = 'basket/';
 
     public $timestamps = false;
 
@@ -53,8 +59,6 @@ final class Basket extends BaseModel
 
             return json_encode($record);
         }
-
-        // $path = $disk->url($image_path);
 
         return null;
     }

@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\ScalingUp\Sections\AverageContribution;
 
 trait Average
 {
-    private static function retrieve_average(array $items, array $indicators, string $type = 'context'): array
+    protected static function retrieve_average(array $items, array $indicators, string $type = 'context'): array
     {
         $api = [];
         $average = AverageContribution::average_contribution_calculations($items, $indicators, $type, '', [], 'imet-core::analysis_report.assessment.');

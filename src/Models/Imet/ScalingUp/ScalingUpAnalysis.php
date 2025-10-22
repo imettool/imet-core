@@ -24,6 +24,7 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Group;
 use ImetCore\Models\Imet\ScalingUp\Sections\Radar;
 use ImetCore\Models\Imet\ScalingUp\Sections\Ranking;
 use ImetCore\Models\Imet\ScalingUp\Sections\Scatter;
+use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ModularForms\Helpers\Locale;
@@ -56,9 +57,6 @@ final class ScalingUpAnalysis extends Model
         return Database::getTable(self::$schema, parent::getTable());
     }
 
-    /**
-     * @return mixed
-     */
     public static function get_scaling_up_by_wdpas(string $wdpas)
     {
         return self::query()->where('wdpas', $wdpas)->get();
@@ -97,16 +95,11 @@ final class ScalingUpAnalysis extends Model
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
-
         return ['models' => $protected_area, 'categories' => $categories];
     }
 
     /**
      * get general info of protected areas by form ids
-     *
-     * @return \array[][]
-     *
-     * @throws \ReflectionException
      */
     public static function general_info(array $form_ids): array
     {
@@ -168,8 +161,6 @@ final class ScalingUpAnalysis extends Model
 
     /**
      * get management context for protected areas by form ids
-     *
-     * @return \array[][]
      */
     public static function get_management_context(array $form_ids): array
     {
@@ -196,7 +187,7 @@ final class ScalingUpAnalysis extends Model
             if (self::$scaling_id !== null) {
                 $protected_area = ScalingUpWdpa::getCustomNames($form_id, self::$scaling_id);
             } else {
-                $protected_area = \ImetCore\Models\Imet\v2\Imet::query()->where(['FormID' => $form_id])->first();
+                $protected_area = Imet::query()->where(['FormID' => $form_id])->first();
             }
 
             $name = $protected_area['name'];

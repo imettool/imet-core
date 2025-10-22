@@ -15,7 +15,11 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Models\Module;
 
+/**
+ * @property string $Currency
+ */
 final class FinancialAvailableResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_available_resources';
@@ -60,7 +64,7 @@ final class FinancialAvailableResources extends Modules\Component\ImetModule
     {
         return parent::getModule($form_id)
             ->map(
-                function ($item) use ($form_id): \ModularForms\Models\Module {
+                function (self $item) use ($form_id): Module {
                     $item->Currency ??= FinancialResources::getCurrency($form_id);
 
                     return $item;

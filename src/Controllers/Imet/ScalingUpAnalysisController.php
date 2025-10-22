@@ -13,7 +13,6 @@
 namespace ImetCore\Controllers\Imet;
 
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -23,10 +22,9 @@ use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Services\ScalingUp\DownloadScalingUp;
 use ImetCore\Services\ScalingUp\PreviewScalingUp;
 use ImetCore\Services\ScalingUp\ReportScalingUp;
-use ModularForms\Helpers\File\File;
-use ModularForms\Helpers\File\Zip;
 use ModularForms\Helpers\HTTP;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Throwable;
 
 class ScalingUpAnalysisController extends __Controller
 {
@@ -44,11 +42,10 @@ class ScalingUpAnalysisController extends __Controller
 
     /**
      * Index route for scaling up
-     *
-     * @throws AuthorizationException
+     * @throws Throwable
      */
     #[\Override]
-    public function index(Request $request): View|Factory
+    public function index(Request $request): View
     {
         HTTP::sanitize($request, self::sanitization_rules);
 
@@ -97,12 +94,9 @@ class ScalingUpAnalysisController extends __Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     *
-     * @throws \ReflectionException
      * @throws AuthorizationException
      */
-    public function report(Request $request, ?string $items = null): View|Factory
+    public function report(Request $request, ?string $items = null): View
     {
         $result = ReportScalingUp::report($request, $items);
 
@@ -117,7 +111,7 @@ class ScalingUpAnalysisController extends __Controller
         return DownloadScalingUp::zipFile($scaling_id);
     }
 
-    public function preview_template(int $id): View|Factory
+    public function preview_template(int $id): View
     {
         $result = PreviewScalingUp::preview($id);
 

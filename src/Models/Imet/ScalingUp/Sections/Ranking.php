@@ -17,7 +17,7 @@ use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
 use ImetCore\Models\Imet\v2\Modules;
 
-class Ranking
+final class Ranking
 {
     /**
      * @return array[]|\array[][]
@@ -32,7 +32,7 @@ class Ranking
 
         // only for process sub-indicators average
         if (isset($indicators['PRE'])) {
-            $result = static::process_subindicators_for_ranking_protected_areas($form_ids, $type);
+            $result = self::process_subindicators_for_ranking_protected_areas($form_ids, $type);
             $filtered = $result[0];
             $indicators_numbers = $result[1];
         } else {
@@ -95,7 +95,7 @@ class Ranking
             $i++;
         }
 
-        return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
+        return self::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
     private static function get_values_ranking(array $ranking, array $sum_values, array $separated_values_by_pa, array $percent_values, array $items_to_calculate = []): array
@@ -195,7 +195,6 @@ class Ranking
     }
 
     /**
-     * @param  int|null  $scaling_id
      * @return array[]|\array[][]
      */
     public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
@@ -242,7 +241,7 @@ class Ranking
             $ranking['wdpa_ids'][$j] = $wdpa_id;
         }
 
-        return static::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
+        return self::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
     /**

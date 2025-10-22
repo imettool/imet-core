@@ -128,9 +128,6 @@ class GlobalStatistics
         return ['data' => $pa_areas_large['data']];
     }
 
-    /**
-     * @param  string  $lang
-     */
     public static function get_pa_areas_large(array $form_ids, string $order = 'desc', int $limit = 5): array
     {
         $pa_areas = \ImetCore\Models\Imet\v2\Modules\Context\Areas::query()->select(['WDPAArea', 'FormID']);
@@ -198,16 +195,23 @@ class GlobalStatistics
     {
         $name = 'name_'.$language;
 
-        $number_of_pas_by_country = Imet::with('country')
+        $number_of_pas_by_country = v2\Imet::with('country')
             ->select(DB::raw('"Country"'), DB::raw('count("Country") as total'));
 
         if ($form_ids !== []) {
             $number_of_pas_by_country = $number_of_pas_by_country->whereIn('FormID', $form_ids);
         }
 
-        $number_of_pas_by_country = $number_of_pas_by_country->groupBy(DB::raw('"Country"'))
+        $number_of_pas_by_country = $number_of_pas_by_country
+            ->groupBy(DB::raw('"Country"'))
             ->orderBy('total', 'desc')
-            ->get()->map(fn ($item): array => ['country' => $item->country->$name, 'total' => $item->total]);
+            ->get()
+            ->map(function ($item) use ($name): array {
+                return [
+                    'country' => $item->country->$name,
+                    'total' => $item['total'],
+                ];
+            });
 
         return ['data' => $number_of_pas_by_country];
     }

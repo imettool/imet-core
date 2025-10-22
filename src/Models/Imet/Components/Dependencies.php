@@ -115,7 +115,7 @@ trait Dependencies
     /**
      * Propagate to eventual related dependencies
      */
-    private static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped): void
+    protected static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped): void
     {
         if (static::$DEPENDENCIES !== null) {
             foreach (static::$DEPENDENCIES as $dependency) {

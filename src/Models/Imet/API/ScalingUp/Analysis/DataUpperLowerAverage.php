@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Radar as ScalingUpRadar;
 
 trait DataUpperLowerAverage
 {
-    private static function retrieve_data_upper_low_average(array $items, array $indicators, string $type = 'context'): array
+    protected static function retrieve_data_upper_low_average(array $items, array $indicators, string $type = 'context'): array
     {
         $keys = array_keys($indicators);
         $api = [];

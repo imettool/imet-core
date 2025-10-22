@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use ImetCore\Helpers\ScalingUp\Common;
 
-class DataTable
+final class DataTable
 {
     /**
      * @return array|array[]

@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\v2\Modules;
 
-class AverageContribution
+final class AverageContribution
 {
     public static function average_contribution_calculations_threat(array $form_ids, string $colors = '', array $options = [], string $label = '', string $type = '', int $scaling_id = 0): array
     {
@@ -48,7 +48,7 @@ class AverageContribution
             krsort($data);
         }
 
-        $average_contribution = static::calculate_data_average_contribution($average_contribution, $data, $colors, $label, $type);
+        $average_contribution = self::calculate_data_average_contribution($average_contribution, $data, $colors, $label, $type);
 
         $average_contribution['options'] = $options !== [] ? $options : null;
         $average_contribution['indicators'] = $indicators_average_contribution;
@@ -62,9 +62,6 @@ class AverageContribution
         return ['average_contribution' => $average_contribution];
     }
 
-    /**
-     * @return array|array[]
-     */
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = '', string $colors = '', array $options = [], string $label = '', string $origType = ''): array
     {
         $data = [$type => []];
@@ -103,7 +100,7 @@ class AverageContribution
         }
 
         $average_contribution = [];
-        $average_contribution = static::calculate_data_average_contribution($average_contribution, $data[$type], $colors, $label, $type);
+        $average_contribution = self::calculate_data_average_contribution($average_contribution, $data[$type], $colors, $label, $type);
         $average_contribution['options'] = $options !== [] ? $options : null;
         if (str_contains($origType, '_')) {
             $name = explode('_', $origType);
@@ -117,9 +114,6 @@ class AverageContribution
         return ['average_contribution' => $average_contribution];
     }
 
-    /**
-     * @return array|mixed
-     */
     private static function calculate_data_average_contribution(array $average_contribution, array $data, string $colors, string $label, string $type): array
     {
         $i = 0;

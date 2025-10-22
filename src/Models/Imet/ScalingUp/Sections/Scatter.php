@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use ImetCore\Helpers\ScalingUp\Common;
 
-class Scatter
+final class Scatter
 {
     public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false, int $scaling_id = 0): array
     {

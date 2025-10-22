@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\v2\Modules;
 
-class Radar
+final class Radar
 {
     public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = '', int $scaling_id = 0): array
     {
@@ -110,7 +110,7 @@ class Radar
 
     public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = '', string $colors = '', array $options = [], string $label = '', ?int $scaling_id = 0): array
     {
-        $response = static::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
+        $response = self::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
 
         $response['values']['upper limit']['lineStyle'] = 'dashed';
         $response['values']['upper limit']['color'] = 'green';

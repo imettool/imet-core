@@ -19,11 +19,12 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Models\Imet\Imet as ImetAlias;
 use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ImetCore\Models\Imet\v2\Imet;
 use Throwable;
 
-class Common
+final class Common
 {
     private static int $max_id = 999999999;
 
@@ -33,7 +34,7 @@ class Common
     private static function validate_wdpa(Request $request)
     {
         $year = Date::now()->format('Y');
-        $max_wdpa_id = static::$max_id;
+        $max_wdpa_id = self::$max_id;
         $wdpa_size = '';
 
         if (strpos($request->path(), '/scaling-up/')) {
@@ -75,7 +76,7 @@ class Common
         $year = Date::now()->format('Y');
         $parameters = [];
         $rules = [];
-        $max_wdpa_id = static::$max_id;
+        $max_wdpa_id = self::$max_id;
 
         $parameters['lang'] = $request->route('lang', 'en');
         $rules['lang'] = ['required',
@@ -117,10 +118,10 @@ class Common
         $errors = [];
 
         if (strpos($request->path(), '/groups/')) {
-            $validator = static::validate_group($request);
+            $validator = self::validate_group($request);
             $response['type'] = 'group';
         } else {
-            $validator = static::validate_wdpa($request);
+            $validator = self::validate_wdpa($request);
         }
 
         if ($validator->fails()) {
@@ -173,13 +174,14 @@ class Common
     }
 
     /**
+     * @return Collection<Imet|ImetOecm>
      * @throws ErrorException
      */
     public static function wdpa_id_and_year_to_form_id(Request $request, array $ids = [], array $years = [], string $key = ''): Collection
     {
         $fields = ['FormID', 'Year', 'wdpa_id', 'Country', 'version', 'name'];
         if ($ids === []) {
-            [$ids, $years, $key, $form_id] = static::get_querystring_values($request);
+            [$ids, $years, $key, $form_id] = self::get_querystring_values($request);
         }
 
         // form_id means oecm
@@ -187,20 +189,23 @@ class Common
 
         $years_size = count($years);
         if ($years_size === 0) {
-            return static::getRecordsByWdpaID($fields, $ids, $key);
+            return self::getRecordsByWdpaID($fields, $ids, $key);
         }
 
         if ($years_size === 1) {
-            return static::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
+            return self::getRecordsByWdpaIDAndSingleYear($fields, $ids, $key, $years);
         }
 
-        return static::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
+        return self::getRecordByWdpaIdsAndYears($fields, $ids, $key, $years);
     }
 
+    /**
+     * @return Collection<Imet|ImetOecm>
+     */
     private static function getRecordsByWdpaID(array $fields, array $ids, string $key): Collection
     {
         $ids_size = count($ids);
-        if ($key === Imet::IMET_OECM) {
+        if ($key === ImetAlias::IMET_OECM) {
             $records = ImetOecm::query()->select($fields)->whereIn('FormID', $ids);
         } else {
             $records = Imet::query()->select($fields)->whereIn('wdpa_id', $ids);
@@ -211,13 +216,13 @@ class Common
         }
 
         $records = $records->get();
-        static::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
+        self::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
 
         return $records;
     }
 
     /**
-     * @return Imet[]|Collection
+     * @return Collection<Imet|ImetOecm>
      */
     private static function getRecordsByWdpaIDAndSingleYear(array $fields, array $ids, string $key, array $years): Collection
     {
@@ -233,12 +238,13 @@ class Common
         }
 
         $records = $records->get();
-        static::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
+        self::checkIfRequestedPAHaveImetRecords($ids_size, $records->count());
 
         return $records;
     }
 
     /**
+     * @return Collection<Imet|ImetOecm>
      * @throws ErrorException
      */
     private static function getRecordByWdpaIdsAndYears(array $fields, array $ids, string $key, array $years): Collection
@@ -266,7 +272,7 @@ class Common
             }
         }
 
-        static::checkIfRequestedPAHaveImetRecords($ids_size, $collection->count());
+        self::checkIfRequestedPAHaveImetRecords($ids_size, $collection->count());
 
         if ($keys_not_match === []) {
             return $collection;

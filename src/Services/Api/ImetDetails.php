@@ -15,7 +15,7 @@ namespace ImetCore\Services\Api;
 use ImetCore\Models\Species;
 use ModularForms\Helpers\ModuleKey;
 
-class ImetDetails
+final class ImetDetails
 {
     private static array $exclude_types = [
         'upload',
@@ -36,9 +36,9 @@ class ImetDetails
                 $filtered_fields = [];
                 foreach ($field->module_fields as $value) {
                     if (isset($value['type']) && ! in_array($value['type'],
-                        static::$exclude_types)) {
+                        self::$exclude_types)) {
                         if (is_string($field[$value['name']])) {
-                            $values = static::animalScientificName($field[$value['name']]);
+                            $values = self::animalScientificName($field[$value['name']]);
                         }
 
                         $filtered_fields[$value['name']] = $values ?? null;

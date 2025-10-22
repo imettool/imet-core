@@ -18,6 +18,9 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
 
+/**
+ * @property string $Type
+ */
 final class GeneralInfo extends Modules\Component\ImetModule
 {
     protected $table = 'context_general_info';

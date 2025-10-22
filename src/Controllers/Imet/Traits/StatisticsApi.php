@@ -21,9 +21,6 @@ use function abort;
 
 trait StatisticsApi
 {
-    /**
-     * @param  string|null  $year
-     */
     public function get_global_statistics(Request $request, string $lang, string $slug): object
     {
         $api = [];

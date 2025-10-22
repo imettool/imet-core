@@ -12,6 +12,7 @@
 
 namespace ImetCore\Helpers;
 
+use Exception;
 use ImetCore\Models\Country;
 use ModularForms\Helpers\Template as BaseTemplate;
 
@@ -20,9 +21,9 @@ class Template
     /**
      * Return country flag + name from ISO
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function flag_and_name($iso): string
+    public static function flag_and_name(string $iso): string
     {
         if ($iso != '') {
             $country = Country::getByISO($iso);
@@ -38,9 +39,9 @@ class Template
     /**
      * Return country flag from ISO
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function flag($iso): string
+    public static function flag(string $iso): string
     {
         if ($iso != '') {
             $country = Country::getByISO($iso);

@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
 /**
- * @property $titles
+ * @property string[] $titles
  */
 final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {

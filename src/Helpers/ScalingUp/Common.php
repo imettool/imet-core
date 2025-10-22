@@ -18,19 +18,11 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
-class Common
+final class Common
 {
     private static array $protected_areas_ids = [];
 
-    public static function random_color(): string
-    {
-        return '#'.substr(md5(random_int(0, mt_getrandmax())), 0, 6);
-    }
-
-    /**
-     * @return float
-     */
-    public static function round_number($val, int $round = 1)
+    public static function round_number($val, int $round = 1): float|string
     {
         if ($val == '-') {
             return $val;
@@ -55,7 +47,9 @@ class Common
             }
         });
 
-        return $items_number !== 0 ? array_sum($array) / $items_number : null;
+        return $items_number !== 0
+            ? array_sum($array) / $items_number
+            : null;
     }
 
     public static function indicator_label(string $id, string $label, string $path = 'imet-core::v2_common.assessment.'): string
@@ -63,10 +57,7 @@ class Common
         return strtoupper((string) trans($path.$id)[0]).' '.trans($label.$id);
     }
 
-    /**
-     * @return float|int|mixed
-     */
-    public static function get_percentile(array $array, $percentile)
+    public static function get_percentile(array $array, int $percentile): float|int
     {
         sort($array);
         $result = 0;
@@ -75,7 +66,7 @@ class Common
             if (isset($array[$index - 1])) {
                 $result = ($array[$index - 1] + $array[$index]) / 2;
             } else {
-                // todo maybe is wrong i have to discuss it
+                // TODO: maybe is wrong i have to discuss it
                 // $result = 0;
             }
         } else {
@@ -90,11 +81,11 @@ class Common
      */
     public static function add_the_indicator_to_the_field(string $search_with, string $in_value, string $add_value): string
     {
-        if (in_array($search_with, static::$protected_areas_ids)) {
+        if (in_array($search_with, self::$protected_areas_ids)) {
             $in_value .= sprintf(' (%s)', $add_value);
         }
 
-        static::$protected_areas_ids[] = $search_with;
+        self::$protected_areas_ids[] = $search_with;
 
         return $in_value;
     }
@@ -108,29 +99,23 @@ class Common
 
     public static function reset_areas_ids(): void
     {
-        static::$protected_areas_ids = [];
+        self::$protected_areas_ids = [];
     }
 
-    /**
-     * @return float
-     */
-    public static function values_correction(string $indicator, $value)
+    public static function values_correction(string $indicator, $value): float
     {
         if ($indicator === 'C3') {
             if ($value < 0 && ! is_string($value)) {
-                return static::round_number((100 + $value), 3);
+                return self::round_number((100 + $value), 3);
             }
         } elseif (in_array($indicator, ['C2', 'OC2', 'OC3'])) {
-            return static::round_number(50 + ((float) $value / 2), 3);
+            return self::round_number(50 + ((float) $value / 2), 3);
         }
 
         return $value;
     }
 
-    /**
-     * @return float
-     */
-    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], ?string $indicator = null)
+    public static function ranking_values_correction($value, int $length_to_divide, array $process_indicators = [], ?string $indicator = null): float
     {
         if ($value === 0) {
             return 0;
@@ -145,10 +130,10 @@ class Common
         if ($indicator && isset($process_indicators[$indicator])) {
             $length_to_divide = array_sum($process_indicators);
 
-            return static::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
+            return self::round_number(($value * $process_indicators[$indicator]) / $length_to_divide, 2);
         }
 
-        return static::round_number($value / $length_to_divide, 2);
+        return self::round_number($value / $length_to_divide, 2);
     }
 
     public static function filtered_indicators_and_round_values(array $form_ids, string $type, array $indicators = [], bool $add_synthetic_indicator = false): array
@@ -170,13 +155,13 @@ class Common
 
             // loop through imet sub indicators to create an average value in order to sort in the ranking
             // and pass the correct value where needed
-            $average = static::get_average($filtered[$form_id], $number_of_indicators);
+            $average = self::get_average($filtered[$form_id], $number_of_indicators);
 
             if ($filtered[$form_id] && $add_synthetic_indicator) {
-                $filtered[$form_id][$type] = static::round_number($results[$form_id]['avg_indicator']);
+                $filtered[$form_id][$type] = self::round_number($results[$form_id]['avg_indicator']);
             }
 
-            $filtered[$form_id]['avg'] = $average !== null ? static::round_number($average) : '-';
+            $filtered[$form_id]['avg'] = $average !== null ? self::round_number($average) : '-';
             $filtered[$form_id]['indicators_number'] = $number_of_indicators;
         }
 
@@ -185,12 +170,10 @@ class Common
 
     /**
      * if names are duplicate add the year
-     *
-     * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|null
      */
-    public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false, int $scaling_id = 0)
+    public static function protected_areas_duplicate_fixes(int $form_id, bool $show_original_names = false, int $scaling_id = 0): Imet|ScalingUpWdpa|null
     {
-        $area = static::get_protected_area_data($form_id, $show_original_names, $scaling_id);
+        $area = self::get_protected_area_data($form_id, $show_original_names, $scaling_id);
         if ($area !== null) {
             $area->name = Common::add_the_indicator_to_the_field($area->wdpa_id, $area->name, $area->Year);
 
@@ -200,24 +183,15 @@ class Common
         return null;
     }
 
-    /**
-     * @return Imet[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    private static function get_protected_area_data(int $form_id, bool $show_original_names = false, int $scaling_id = 0)
+    private static function get_protected_area_data(int $form_id, bool $show_original_names = false, int $scaling_id = 0): Imet|ScalingUpWdpa|null
     {
         if ($show_original_names) {
-            $protected_area = Imet::query()->where('FormID', $form_id)->get();
-            if (count($protected_area) > 0) {
-                return $protected_area[0];
-            }
+            return Imet::query()
+                ->where('FormID', $form_id)
+                ?->first();
         } else {
-            $protected_area = ScalingUpWdpa::getByFormID($scaling_id, $form_id);
-            if (($protected_area)) {
-                return $protected_area;
-            }
+            return ScalingUpWdpa::getByFormID($scaling_id, $form_id);
         }
-
-        return null;
     }
 
     /**
@@ -243,7 +217,7 @@ class Common
 
             $assessments[$i] = ImetScores::get_radar($form_id);
 
-            $name = static::get_pa_name($form_id, $scaling_id);
+            $name = self::get_pa_name($form_id, $scaling_id);
 
             $assessments[$i]['name'] = $name->name;
             $assessments[$i]['color'] = $name->color;
@@ -251,9 +225,9 @@ class Common
             $assessments[$i]['form_id'] = (int) $form_id;
             $assessments[$i]['year'] = (int) $name->Year;
 
-            $assessments[$i]['imet_index'] = static::round_number($assessments[$i]['imet_index']);
+            $assessments[$i]['imet_index'] = self::round_number($assessments[$i]['imet_index']);
             foreach ($indicators as $indicator) {
-                $assessments[$i][$indicator] = static::round_number($assessments[$i][$indicator]);
+                $assessments[$i][$indicator] = self::round_number($assessments[$i][$indicator]);
             }
 
             $i++;
@@ -269,7 +243,7 @@ class Common
                 }
             }
 
-            $assessments[0][$item] = static::round_number($sum / $count);
+            $assessments[0][$item] = self::round_number($sum / $count);
         }
 
         uasort($assessments, fn (array $a, array $b): int => $b['name'] <=> $a['name']);
@@ -279,13 +253,13 @@ class Common
         return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
     }
 
-    public static function get_pa_name(int $id, int $scaling_id = 0)
+    public static function get_pa_name(int $id, int $scaling_id = 0): Imet|ScalingUpWdpa|null
     {
         if ($scaling_id > 0) {
             return ScalingUpWdpa::getCustomNames($id, $scaling_id);
         }
 
-        return static::protected_areas_duplicate_fixes($id, true, $scaling_id);
+        return self::protected_areas_duplicate_fixes($id, true, $scaling_id);
     }
 
     public static function get_all_indicator_labels_cached()

@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\ScalingUp\Sections\Ranking as ScalingUpRanking;
 
 trait Ranking
 {
-    private static function retrieve_data_ranking(array $items, array $indicators, string $type = 'context'): array
+    protected static function retrieve_data_ranking(array $items, array $indicators, string $type = 'context'): array
     {
         $ranking = ScalingUpRanking::ranking_indicators($items, $type, $indicators);
         $api = static::parse_data($ranking);
@@ -143,7 +143,7 @@ trait Ranking
         return ['data' => $api, 'labels' => $indicators];
     }
 
-    private static function parse_data(array $data): array
+    protected static function parse_data(array $data): array
     {
         $api = [];
         foreach ($data['xAxis'] as $key => $xAxi) {

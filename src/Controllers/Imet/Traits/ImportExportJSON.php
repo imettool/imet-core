@@ -103,7 +103,7 @@ trait ImportExportJSON
         $this->authorize('exportAll', static::$form_class);
         HTTP::sanitize($request, self::sanitization_rules);
 
-        /** @var Imet\Imet $form_class */
+        /** @var class-string<Imet\Imet> $form_class */
         $form_class = static::$form_class;
 
         // retrieve IMET list
@@ -124,10 +124,8 @@ trait ImportExportJSON
 
     /**
      * export records for specific module to csv format
-     *
-     * @return BinaryFileResponse|string|null
      */
-    public function exportModuleToCsv(string $ids, string $module_key): ?BinaryFileResponse
+    public function exportModuleToCsv(string $ids, string $module_key): BinaryFileResponse|string|null
     {
         $model = ModuleKey::KeyToClassName($module_key);
 
@@ -162,7 +160,10 @@ trait ImportExportJSON
         $temp_array = [];
 
         // retrieve all form records and manipulate array result
-        $results = Imet\Imet::query()->select('FormID')->distinct()->commonSearchWithWdpa($request)->get();
+        $results = Imet\Imet::query()
+            ->select('FormID')
+            ->distinct()
+            ->commonSearchWithWdpa($request)->get();
 
         // add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
@@ -234,8 +235,7 @@ trait ImportExportJSON
 
     /**
      * Export the IMET form in json
-     *
-     * @throws AuthorizationException
+     * @throws UnrecognizedVersionException
      */
     public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
     {
@@ -327,13 +327,9 @@ trait ImportExportJSON
     /**
      * Import a full IMET from json file
      *
-     * @param  Request|null  $request
-     * @return array|JsonResponse|string[]
-     *
-     * @throws FileNotFoundException
      * @throws Throwable
      */
-    public function import(Request $request, $json = null, bool $returnJson = true): array|\Illuminate\Http\JsonResponse
+    public function import(Request $request, $json = null, bool $returnJson = true): array|JsonResponse
     {
         try {
             if ($json === null) {
@@ -387,8 +383,7 @@ trait ImportExportJSON
 
     /**
      * Import all the IMET modules
-     *
-     * @throws FileNotFoundException
+     * @throws UnrecognizedVersionException
      */
     protected static function import_modules(array $json, bool $with_report = true): array
     {

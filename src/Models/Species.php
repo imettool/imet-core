@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\Database;
 use ModularForms\Models\Utils\Animal;
 
+/**
+ * @property string $binomial
+ */
 class Species extends Animal
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;

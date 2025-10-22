@@ -12,9 +12,16 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 
+/**
+ * @property string $name
+ * @property string $color
+ * @property int $scaling_id
+ * @property int $FormID
+ */
 final class ScalingUpWdpa extends BaseModel
 {
     protected static ?string $schema = Database::IMET_SCHEMA;
@@ -26,22 +33,22 @@ final class ScalingUpWdpa extends BaseModel
     public $timestamps = false;
 
     /**
-     * @return mixed
+     * @return Collection<ScalingUpWdpa>
      */
-    public static function retrieve_by_scaling_id($id)
+    public static function retrieve_by_scaling_id(int $id): Collection
     {
-        return self::query()->where('scaling_id', $id)->orderBy('name', 'asc')->get();
+        return self::query()
+            ->where('scaling_id', $id)
+            ->orderBy('name', 'asc')
+            ->get();
     }
 
-    /**
-     * @return mixed
-     */
-    public static function getByFormID($scaling_id, $id)
+    public static function getByFormID(int $scaling_id, int $id): ?ScalingUpWdpa
     {
-        return self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $id])->first();
+        return self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $id])?->first();
     }
 
-    public static function save_pas($scaling_id, $areas): array
+    public static function save_pas(int $scaling_id, $areas): array
     {
         $saved_pas = [];
         foreach ($areas as $area) {
@@ -66,16 +73,8 @@ final class ScalingUpWdpa extends BaseModel
         return null;
     }
 
-    /**
-     * @return array
-     */
-    public static function getCustomNames(int $form_id, $scaling_id)
+    public static function getCustomNames(int $form_id, int $scaling_id): ?ScalingUpWdpa
     {
-        $protected_area = self::getByFormID($scaling_id, $form_id);
-        if (($protected_area)) {
-            return $protected_area;
-        }
-
-        return null;
+        return self::getByFormID($scaling_id, $form_id);
     }
 }

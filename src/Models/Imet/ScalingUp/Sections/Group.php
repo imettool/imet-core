@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use ImetCore\Helpers\ScalingUp\Common;
 
-class Group
+final class Group
 {
     public static function get_calculation_grouping_analysis(array $parameters, array $assessments = [], int $scaling_id = 0): array
     {
@@ -35,7 +35,7 @@ class Group
             $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null];
         }
 
-        $indicator = static::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
+        $indicator = self::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
 
         krsort($groups);
 
