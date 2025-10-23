@@ -1,9 +1,9 @@
 # Development/Envirnoment
 .idea/
-.env
+/.env
 composer
-composer.lock
-package-lock.json
+/composer.lock
+/package-lock.json
 sbom-*.xml
 
 # Modules & Libraries
