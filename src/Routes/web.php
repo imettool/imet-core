@@ -73,11 +73,13 @@ Route::middleware([SetLocale::class, 'web'])->group(function () {
                 Route::get('{item}/show/{step?}',   [v1\ContextController::class, 'show'])->name(v1\Controller::ROUTE_PREFIX . 'context_show');
                 Route::get('{item}/edit/{step?}',   [v1\ContextController::class, 'edit'])->name(v1\Controller::ROUTE_PREFIX . 'context_edit');
                 Route::patch('{item}',              [v1\ContextController::class, 'update']);
+                Route::get('raw_export/{item}/{slug}',[v1\ContextController::class, 'raw_export']);
             });
             Route::group(['prefix' => 'evaluation'], function () {
                 Route::get('{item}/show/{step?}',   [v1\EvalController::class, 'show'])->name(v1\Controller::ROUTE_PREFIX . 'evaluation_show');
                 Route::get('{item}/edit/{step?}',   [v1\EvalController::class, 'edit'])->name(v1\Controller::ROUTE_PREFIX . 'evaluation_edit');
                 Route::patch('{item}',              [v1\EvalController::class, 'update']);
+                Route::get('raw_export/{item}/{slug}',[v1\EvalController::class, 'raw_export']);
             });
             Route::group(['prefix' => 'report'], function () {
                 Route::get('{item}/edit',   [v1\ReportController::class, 'report'])->name(v1\Controller::ROUTE_PREFIX . 'report_edit');
