@@ -211,6 +211,7 @@ trait ImportExportJSON
 
     /**
      * Export IMET json in batch (zip file) or if only one is selected as json file
+     *
      * @throws UnrecognizedVersionException
      */
     public function export_batch(Request $request): BinaryFileResponse

@@ -127,7 +127,7 @@ final class AverageContribution
                     $v = (int) $index + 1;
                 }
 
-                $values = array_filter(array_values($value), fn ($v): bool => is_numeric($v));
+                $values = array_filter(array_values($value), is_numeric(...));
                 $percentile_10 = Common::round_number(Common::get_percentile($values, 10));
                 $percentile_90 = Common::round_number(Common::get_percentile($values, 90));
                 $average_value = $values !== [] ? Common::round_number(array_sum($values) / count($values)) : 0; // check

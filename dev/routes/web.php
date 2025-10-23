@@ -9,7 +9,7 @@ Route::middleware(['web'])->group(function (): void {
     Route::get('/', fn (): View => view('index'))->name('home');
 
     // Debug/dev
-    Route::get('info', fn (): true => phpinfo())->name('info');
+    Route::get('info', phpinfo(...))->name('info');
 
     // ###### File upload/download ######
     Route::post('file/upload', [UploadFileController::class, 'upload'])->name('upload.file');

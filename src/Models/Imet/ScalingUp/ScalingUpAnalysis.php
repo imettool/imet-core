@@ -266,7 +266,7 @@ final class ScalingUpAnalysis extends Model
      */
     public static function get_threats_categories_per_protected_area(array $form_ids): array
     {
-        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '', self::$scaling_id);
+        $averages = AverageContribution::average_contribution_calculations_threat($form_ids, '#C23531', ['height' => '850px'], 'imet-core::v2_context.MenacesPressions.categories.title', '');
         $ranking = Ranking::ranking_threats_indicators($form_ids, self::$scaling_id);
         $radar = Radar::get_threats_radar_indicators($form_ids, self::$scaling_id);
 
@@ -509,7 +509,7 @@ final class ScalingUpAnalysis extends Model
 
         $locale = App::getLocale();
         $data = Radar::get_radar_indicators($form_ids, false, $assessments, $overall, $id);
-        $response = ['Average' => []];
+        $response = [];
 
         $average = $data['data']['diagrams']['Average'];
         $upperLimit = $data['data']['diagrams']['upper limit'];

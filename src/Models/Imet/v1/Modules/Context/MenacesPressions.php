@@ -168,7 +168,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    private static function calculateStats($values, bool $rows = false): ?float
+    private static function calculateStats(array $values, bool $rows = false): ?float
     {
         $numCategories = 4;
         $prod = 1;

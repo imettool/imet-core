@@ -21,7 +21,7 @@ trait InjectInView
     /**
      * Inject marine/terrestre icon to predefined criteria (EDIT mode with Vue)
      */
-    public static function injectIconToPredefinedCriteriaWithVue($icon_type, $view, string $vue_if): string
+    public static function injectIconToPredefinedCriteriaWithVue(?string $icon_type, $view, string $vue_if): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         foreach ($dom->filter('tbody') as $tbody) {
@@ -43,7 +43,7 @@ trait InjectInView
     /**
      * Inject marine/terrestre icon to predefined criteria (SHOW mode)
      */
-    public static function injectIconToPredefinedCriteria($icon_type, $view, $predefined_with_icon): string
+    public static function injectIconToPredefinedCriteria(?string $icon_type, $view, $predefined_with_icon): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
         foreach ($dom->filter('tbody') as $tbody) {
