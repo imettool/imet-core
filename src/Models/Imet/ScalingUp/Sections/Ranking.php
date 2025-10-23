@@ -87,7 +87,7 @@ final class Ranking
                     $sum_values[$i] = 0;
                 }
 
-                $sum_values[$i] += (float) ($correction_value);
+                $sum_values[$i] += $correction_value;
             }
 
             $ranking['xAxis'][$i] = $protected_area;
@@ -116,7 +116,7 @@ final class Ranking
             }
         }
 
-        $average_values = array_map(fn ($value, $i) => $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0, $sum_values, array_keys($sum_values));
+        $average_values = array_map(fn ($value, $i): float|string|int => $items_to_calculate[$i] > 0 ? Common::round_number($value / $items_to_calculate[$i]) : 0, $sum_values, array_keys($sum_values));
         foreach ($percent_values as $k => $values) {
             foreach ($values as $kk => $value) {
                 if ($value !== ScalingUpAnalysis::UNDEFINED_VALUE) {

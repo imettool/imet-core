@@ -25,7 +25,7 @@ class Template
      */
     public static function flag_and_name(string $iso): string
     {
-        if ($iso != '') {
+        if ($iso !== '') {
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
             $label = '&nbsp;'.$country->name;
@@ -43,7 +43,7 @@ class Template
      */
     public static function flag(string $iso): string
     {
-        if ($iso != '') {
+        if ($iso !== '') {
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
 

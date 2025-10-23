@@ -86,7 +86,7 @@ final class CrossAnalysis extends Model
                     if (isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
                         $value_indi1 = Common::values_correction($item[$i], $elements[$item[$i]]['value']);
                         $value_indi2 = Common::values_correction($item[$k], $elements[$item[$k]]['value']);
-                        $value = abs((float) $value_indi1 - (float) $value_indi2);
+                        $value = abs($value_indi1 - $value_indi2);
                         if (($value) > self::$threshold) {
                             $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
                             $error_indicators[$j][$item[$k]] = $elements[$item[$k]];

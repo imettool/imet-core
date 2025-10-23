@@ -96,6 +96,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to Encoder (only name)
+     *
      * @return HasMany<Encoder, Imet>
      */
     public function encoder(): HasMany
@@ -106,6 +107,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewees
+     *
      * @return HasMany<ResponsablesInterviewees, Imet>
      */
     public function responsible_interviewees(): HasMany
@@ -116,6 +118,7 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewers
+     *
      * @return HasMany<ResponsablesInterviewers, Imet>
      */
     public function responsible_interviewers(): HasMany

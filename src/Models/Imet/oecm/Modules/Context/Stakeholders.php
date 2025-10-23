@@ -87,11 +87,11 @@ final class Stakeholders extends Modules\Component\ImetModule
         parent::updateModuleRecords($records, $form_id);
     }
 
-    public const ALL_USERS = 0;
+    public const int ALL_USERS = 0;
 
-    public const ONLY_DIRECT = 1;
+    public const int ONLY_DIRECT = 1;
 
-    public const ONLY_INDIRECT = 2;
+    public const int ONLY_INDIRECT = 2;
 
     /**
      * Override: get the list with direct/indirect
@@ -120,9 +120,9 @@ final class Stakeholders extends Modules\Component\ImetModule
     {
         $query = self::getModule($form_id);
 
-        if ($mode == self::ONLY_DIRECT) {
+        if ($mode === self::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } elseif ($mode == self::ONLY_INDIRECT) {
+        } elseif ($mode === self::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 
@@ -156,9 +156,9 @@ final class Stakeholders extends Modules\Component\ImetModule
     {
         $query = self::getModule($form_id);
 
-        if ($mode == self::ONLY_DIRECT) {
+        if ($mode === self::ONLY_DIRECT) {
             $query = $query->where('DirectUser', true);
-        } elseif ($mode == self::ONLY_INDIRECT) {
+        } elseif ($mode === self::ONLY_INDIRECT) {
             $query = $query->where('DirectUser', '!=', true);
         }
 

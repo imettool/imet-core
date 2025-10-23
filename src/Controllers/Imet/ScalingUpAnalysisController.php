@@ -42,6 +42,7 @@ class ScalingUpAnalysisController extends __Controller
 
     /**
      * Index route for scaling up
+     *
      * @throws Throwable
      */
     #[\Override]
@@ -81,7 +82,7 @@ class ScalingUpAnalysisController extends __Controller
         foreach ($parameters as $value) {
             if (is_array($value)) {
                 $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value['id']));
-            } else if ((int)$value > 0) {
+            } elseif ((int) $value > 0) {
                 $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value));
             }
         }

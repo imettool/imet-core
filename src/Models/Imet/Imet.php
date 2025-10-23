@@ -12,7 +12,6 @@
 
 namespace ImetCore\Models\Imet;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -21,7 +20,6 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\HigherOrderCollectionProxy;
 use Illuminate\Support\Str;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Country;
@@ -44,7 +42,6 @@ use function session;
  * @property string $version
  * @property string $wdpa_id
  * @property string $Year
- *
  */
 abstract class Imet extends Form
 {
@@ -85,6 +82,7 @@ abstract class Imet extends Form
 
     /**
      * Relation to Country
+     *
      * @return HasOne<Country, Imet>
      */
     public function country(): HasOne
@@ -102,8 +100,9 @@ abstract class Imet extends Form
 
     /**
      * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
-     * @param  array<string> $relations
-     * @param  array<string> $countries
+     *
+     * @param  array<string>  $relations
+     * @param  array<string>  $countries
      * @return Collection<int, v1\Imet|v2\Imet>
      */
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection

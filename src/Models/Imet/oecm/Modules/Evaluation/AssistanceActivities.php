@@ -55,7 +55,7 @@ final class AssistanceActivities extends Modules\Component\ImetModule_Eval
 
     public static function get_terrestrial_predefined(): array
     {
-        $predefined = (new static)->predefined_values['values'];
+        $predefined = (new self)->predefined_values['values'];
 
         return [
             $predefined['group0'][17],
@@ -64,7 +64,7 @@ final class AssistanceActivities extends Modules\Component\ImetModule_Eval
 
     public static function get_marine_predefined(): array
     {
-        $predefined = (new static)->predefined_values['values'];
+        $predefined = (new self)->predefined_values['values'];
 
         return [
             $predefined['group0'][18],

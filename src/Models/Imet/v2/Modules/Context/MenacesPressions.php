@@ -217,7 +217,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_marine_predefined(): array
     {
-        $predefined = (new static)->predefined_values['values'];
+        $predefined = (new self)->predefined_values['values'];
 
         return [
             $predefined['group0'][4],
@@ -234,7 +234,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new static)->module_groups;
+        $groups = (new self)->module_groups;
 
         return [
             $groups['group1'],
@@ -248,7 +248,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_marine_groups(): array
     {
-        $groups = (new static)->module_groups;
+        $groups = (new self)->module_groups;
 
         return [
             $groups['group4'],

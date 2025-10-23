@@ -13,7 +13,6 @@
 namespace ImetCore\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 use ImetCore\Models\User\Role;
 
 class ImetPolicy
@@ -128,5 +127,4 @@ class ImetPolicy
     {
         return true;
     }
-
 }

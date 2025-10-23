@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Auth;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use ImetCore\Models\User\Role;
 

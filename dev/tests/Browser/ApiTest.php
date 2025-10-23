@@ -29,7 +29,7 @@ beforeEach(function () {
 
 describe('Score APIs', function () {
 
-    it( 'hits IMET v1 scores', function () {
+    it('hits IMET v1 scores', function () {
         (new FormSeeder)->run(Imet\Imet::IMET_V1, 1);
 
         $form = Imet\v1\Imet::query()->first();
@@ -43,7 +43,7 @@ describe('Score APIs', function () {
             ->and($response->json('scores.global'))->toBeArray();
     });
 
-    it( 'hits IMET v2 scores', function () {
+    it('hits IMET v2 scores', function () {
         (new FormSeeder)->run(Imet\Imet::IMET_V2, 1);
 
         $form = Imet\v2\Imet::query()->first();
@@ -57,7 +57,7 @@ describe('Score APIs', function () {
             ->and($response->json('scores.global'))->toBeArray();
     });
 
-    it( 'hits IMET OECM scores', function () {
+    it('hits IMET OECM scores', function () {
         (new FormSeeder)->run(Imet\Imet::IMET_OECM, 1);
 
         $form = Imet\oecm\Imet::query()->first();

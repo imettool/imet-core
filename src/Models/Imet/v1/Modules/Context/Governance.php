@@ -47,6 +47,7 @@ final class Governance extends Modules\Component\ImetModule
     {
         // Rename fields to match the new DB column names
         $record = self::renameField($record, 'Type', 'GovernanceModel');
+
         return self::renameField($record, 'Comments', 'AdditionalInfo');
     }
 

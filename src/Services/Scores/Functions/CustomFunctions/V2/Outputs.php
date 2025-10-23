@@ -50,17 +50,15 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-//        dd($values->toArray());
+        //        dd($values->toArray());
 
-
-        $formula = function(AreaDominationMPA $item): int|float
-        {
+        $formula = function (AreaDominationMPA $item): int|float {
             $denom = (
-                    ($item['Patrol'] === null ? 0 : 3) +
-                    ($item['RapidIntervention'] === null ? 0 : 3) +
-                    ($item['DetectionRemoteSensing'] === null ? 0 : 1) +
-                    ($item['SpecialMeansRapidIntervention'] === null ? 0 : 1)
-                ) * 100;
+                ($item['Patrol'] === null ? 0 : 3) +
+                ($item['RapidIntervention'] === null ? 0 : 3) +
+                ($item['DetectionRemoteSensing'] === null ? 0 : 1) +
+                ($item['SpecialMeansRapidIntervention'] === null ? 0 : 1)
+            ) * 100;
 
             if ($denom === 0) {
                 return 0;

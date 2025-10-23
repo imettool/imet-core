@@ -21,7 +21,6 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
-use ReflectionException;
 
 final class ReportController extends BaseReportController
 {

@@ -61,7 +61,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
     }
 
     #[\Override]
-    public static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): array
     {
         $key_elements = $form_id !== null
             ? array_merge(

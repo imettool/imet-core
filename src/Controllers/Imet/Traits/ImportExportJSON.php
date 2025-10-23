@@ -14,7 +14,6 @@ namespace ImetCore\Controllers\Imet\Traits;
 
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -212,8 +211,7 @@ trait ImportExportJSON
 
     /**
      * Export IMET json in batch (zip file) or if only one is selected as json file
-     *
-     * @throws AuthorizationException
+     * @throws UnrecognizedVersionException
      */
     public function export_batch(Request $request): BinaryFileResponse
     {
@@ -235,6 +233,7 @@ trait ImportExportJSON
 
     /**
      * Export the IMET form in json
+     *
      * @throws UnrecognizedVersionException
      */
     public function export($item, bool $exclude_attachments = false, bool $to_file = true, bool $download = true): BinaryFileResponse|array|string
@@ -305,7 +304,10 @@ trait ImportExportJSON
         return $json;
     }
 
-    public function export_no_attachments($item, bool $to_file = true, bool $download = true): BinaryFileResponse|array
+    /**
+     * @throws UnrecognizedVersionException
+     */
+    public function export_no_attachments($item): BinaryFileResponse|array
     {
         return $this->export($item, true);
     }
@@ -383,6 +385,7 @@ trait ImportExportJSON
 
     /**
      * Import all the IMET modules
+     *
      * @throws UnrecognizedVersionException
      */
     protected static function import_modules(array $json, bool $with_report = true): array

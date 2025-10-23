@@ -59,7 +59,7 @@ final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
      * Inject additional predefined values (last 3 groups) retrieved from CTX
      */
     #[\Override]
-    public static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): array
     {
         parent::getPredefined($form_id);
 

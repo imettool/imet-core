@@ -74,7 +74,7 @@ class ProtectedArea extends BaseProtectedArea
         $parsed_isos = [];
         foreach ($countries as $iso) {
             if (Str::contains($iso, ';')) {
-                foreach (explode(';', (string)$iso) as $i) {
+                foreach (explode(';', (string) $iso) as $i) {
                     $parsed_isos[] = $i;
                 }
             } else {
@@ -120,7 +120,7 @@ class ProtectedArea extends BaseProtectedArea
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
-        return Country::query()->select(['iso3', 'iso2', 'name_' . Locale::lower()])
+        return Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
             ->where(function ($query) use ($countries): void {
                 if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
@@ -142,7 +142,7 @@ class ProtectedArea extends BaseProtectedArea
             ->where(function (Builder $query) use ($search_key, $country): void {
                 $query = $query->like($search_key);
                 if ($country != null) {
-                    $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
+                    $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
                 }
             })
             ->where(function (Builder $query) use ($allowed_wdpas): void {
@@ -159,19 +159,19 @@ class ProtectedArea extends BaseProtectedArea
         );
 
         // Retrieve country names
-        $countries = Country::query()->select(['iso3', 'name_' . Locale::lower()])
+        $countries = Country::query()->select(['iso3', 'name_'.Locale::lower()])
             ->whereIn('iso3', $protected_areas_countries)
-            ->pluck('name_' . Locale::lower(), 'iso3')
+            ->pluck('name_'.Locale::lower(), 'iso3')
             ->sort()
             ->toArray();
 
         return $protected_areas
             ->map(function (ProtectedArea $item) use ($countries): ProtectedArea {
                 foreach (static::parseISOs([$item->country]) as $iso) {
-                    $item['country_name'] .= $countries[$iso] . ', ';
+                    $item['country_name'] .= $countries[$iso].', ';
                 }
 
-                $item['country_name'] = rtrim((string)$item['country_name'], ', ');
+                $item['country_name'] = rtrim((string) $item['country_name'], ', ');
 
                 return $item;
             });

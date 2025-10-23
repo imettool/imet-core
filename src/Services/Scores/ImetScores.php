@@ -109,7 +109,7 @@ final class ImetScores
     /**
      * Retrieve the indicators labels
      */
-    public static function indicators_labels(?string $version = null, bool $only_abbreviations = false): array
+    public static function indicators_labels(?string $version = null): array
     {
         return self::get_scores_labels($version);
     }

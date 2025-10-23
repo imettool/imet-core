@@ -29,8 +29,6 @@ final class AnimalSpecies extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'species'],
     ];
 
-    protected array|\Illuminate\Contracts\Translation\Translator|string $validation_min3;
-
     public function __construct(array $attributes = [])
     {
 
@@ -52,8 +50,6 @@ final class AnimalSpecies extends Modules\Component\ImetModule
         ];
 
         $this->module_info = trans('imet-core::v2_context.AnimalSpecies.module_info');
-
-        $this->validation_min3 = trans('imet-core::v2_context.AnimalSpecies.validation_min3');
 
         parent::__construct($attributes);
     }

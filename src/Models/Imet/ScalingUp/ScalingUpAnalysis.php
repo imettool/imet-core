@@ -34,9 +34,9 @@ use ModularForms\Helpers\Locale;
  */
 final class ScalingUpAnalysis extends Model
 {
-    protected static $ttl = 2;
+    private static int $ttl = 2;
 
-    protected static ?string $schema = Database::IMET_SCHEMA;
+    private static ?string $schema = Database::IMET_SCHEMA;
 
     protected $table = 'scaling_up';
 
@@ -46,7 +46,7 @@ final class ScalingUpAnalysis extends Model
 
     public static int $scaling_id;
 
-    public const UNDEFINED_VALUE = -99999999;
+    public const int UNDEFINED_VALUE = -99999999;
 
     /**
      * Override: get the table name with schema
@@ -95,6 +95,7 @@ final class ScalingUpAnalysis extends Model
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
             }
         }
+
         return ['models' => $protected_area, 'categories' => $categories];
     }
 

@@ -60,7 +60,7 @@ final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
      * Prefill from CTX
      */
     #[\Override]
-    public static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): array
     {
         return [
             'field' => self::$DEPENDENCY_ON,

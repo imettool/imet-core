@@ -64,7 +64,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
      * Prefill from CTX
      */
     #[\Override]
-    public static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): array
     {
         $predefined_values = $form_id !== null
             ? [

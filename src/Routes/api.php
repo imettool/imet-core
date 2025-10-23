@@ -13,15 +13,14 @@
 use Illuminate\Support\Facades\Route;
 use ImetCore\Controllers\Imet\Controller;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'api'], function () {
-    Route::group(['prefix' => 'imet'], function () {
+Route::group(['prefix' => 'api'], function (): void {
+    Route::group(['prefix' => 'imet'], function (): void {
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
     });
 });

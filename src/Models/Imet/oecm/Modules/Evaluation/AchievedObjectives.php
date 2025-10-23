@@ -47,7 +47,7 @@ final class AchievedObjectives extends Modules\Component\ImetModule_Eval
      * Prefill from P6
      */
     #[\Override]
-    public static function getPredefined(?int $form_id = null): ?array
+    public static function getPredefined(?int $form_id = null): array
     {
         $p6_values = $form_id !== null
             ? collect(Objectives::getModuleRecords($form_id)['records'])

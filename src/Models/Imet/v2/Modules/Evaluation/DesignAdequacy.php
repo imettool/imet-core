@@ -47,7 +47,7 @@ final class DesignAdequacy extends Modules\Component\ImetModule_Eval
 
     public static function get_marine_predefined(): array
     {
-        $predefined = (new static)->predefined_values['values'];
+        $predefined = (new self)->predefined_values['values'];
 
         return [
             $predefined[7],

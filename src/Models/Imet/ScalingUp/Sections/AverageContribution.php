@@ -17,7 +17,7 @@ use ImetCore\Models\Imet\v2\Modules;
 
 final class AverageContribution
 {
-    public static function average_contribution_calculations_threat(array $form_ids, string $colors = '', array $options = [], string $label = '', string $type = '', int $scaling_id = 0): array
+    public static function average_contribution_calculations_threat(array $form_ids, string $colors = '', array $options = [], string $label = '', string $type = ''): array
     {
         $indicators = [];
         $indicators_average_contribution = [];
@@ -141,7 +141,7 @@ final class AverageContribution
         return $average_contribution;
     }
 
-    private static function getAverage_contribution($average_value, $percentile_10, $percentile_90, int|string $v, string $colors, array $average_contribution, int $i, int|string $index, string $label, string $type): array
+    private static function getAverage_contribution(float|string|int $average_value, float|string $percentile_10, float|string $percentile_90, int|string $v, string $colors, array $average_contribution, int $i, int|string $index, string $label, string $type): array
     {
         $average_contribution['data']['Average'][$i] = [
             'value' => $average_value,

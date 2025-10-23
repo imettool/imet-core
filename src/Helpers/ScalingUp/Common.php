@@ -189,9 +189,9 @@ final class Common
             return Imet::query()
                 ->where('FormID', $form_id)
                 ?->first();
-        } else {
-            return ScalingUpWdpa::getByFormID($scaling_id, $form_id);
         }
+
+        return ScalingUpWdpa::getByFormID($scaling_id, $form_id);
     }
 
     /**

@@ -7,7 +7,7 @@ use ImetCore\Models\Imet\Scores\AssessmentsScores;
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
 /** @var string $version */
 
-$step = $step ?? null;
+$step ??= null;
 
 if($version === Imet\Imet::IMET_OECM){
     $scores = AssessmentsScores::scores_oecm($item->getKey())->getData();

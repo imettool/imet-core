@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Exception;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -24,6 +24,7 @@ class FormSeeder extends Seeder
 
     /**
      * Run the database seeders.
+     *
      * @throws Exception
      */
     public function run(string $version, ?int $num = self::NUM_FORMS): void
@@ -32,11 +33,11 @@ class FormSeeder extends Seeder
             $language = collect(['en', 'fr', 'sp', 'pt'])->random();
             $pa = ProtectedArea::query()->inRandomOrder()->first();
             App::setLocale($language);
-            if($version === Imet\Imet::IMET_V1){
+            if ($version === Imet\Imet::IMET_V1) {
                 static::seedFormImetV1($pa, $language);
-            } elseif($version === Imet\Imet::IMET_V2){
+            } elseif ($version === Imet\Imet::IMET_V2) {
                 static::seedFormImetV2($pa, $language);
-            } elseif($version === Imet\Imet::IMET_OECM){
+            } elseif ($version === Imet\Imet::IMET_OECM) {
                 static::seedFormImetOecm($pa, $language);
             }
         }
@@ -403,7 +404,4 @@ class FormSeeder extends Seeder
 
         return null;
     }
-
-
-
 }

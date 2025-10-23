@@ -59,7 +59,7 @@ final class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new static)->module_groups;
+        $groups = (new self)->module_groups;
 
         return [
             $groups['group0'],
@@ -69,7 +69,7 @@ final class IntelligenceImplementation extends Modules\Component\ImetModule_Eval
 
     public static function get_marine_groups(): array
     {
-        $groups = (new static)->module_groups;
+        $groups = (new self)->module_groups;
 
         return [
             $groups['group0b'],
