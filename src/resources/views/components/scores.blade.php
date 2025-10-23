@@ -1,13 +1,12 @@
 <?php
-use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Models\Imet;
 use ImetCore\Services\Assessment\ImetAssessment;
-use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Models\Imet\Scores\AssessmentsScores;
 
 /** @var String $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
 
-$scores = $version === Imet\Imet::IMET_OECM ? ApiController::scores_oecm($item->getKey())->getData() : ApiController::scores($item->getKey())->getData();
+$scores = $version === Imet\Imet::IMET_OECM ? AssessmentsScores::scores_oecm($item->getKey())->getData() : AssessmentsScores::scores($item->getKey())->getData();
 
 $labels = ImetAssessment::get_scores_labels($item->version, $item->language);
 ?>

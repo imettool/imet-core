@@ -167,9 +167,9 @@ class ScalingUpAnalysisController extends __Controller
 //        dd(ModelScalingUpAnalysis::$scaling_id);
         foreach ($parameters as $value) {
             if (is_array($value)) {
-                $this->authorize('api_scaling_up', (static::$form_class)::find($value['id']));
+                $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value['id']));
             } else if ((int)$value > 0) {
-                $this->authorize('api_scaling_up', (static::$form_class)::find($value));
+                $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value));
             }
         }
 

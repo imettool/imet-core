@@ -1,5 +1,5 @@
 <?php
-use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Services\Scores\AssessmentsScores;
 /** @var array $scores */
 /** @var array $labels */
 
@@ -11,7 +11,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th rowspan="2">
             <div>@lang('imet-core::common.steps_eval.context')</div>
-            <div class="badge {!! ApiController::score_class($scores['context']['avg_indicator']) !!}">{{ $scores['context']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['context']['avg_indicator']) !!}">{{ $scores['context']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['context']['C1'], 'assessment_label' => $labels['C1']])
         @include('imet-core::v2.report.components.row_evaluation', [
@@ -45,7 +45,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th>
             <div>@lang('imet-core::common.steps_eval.planning')</div>
-            <div class="badge {!! ApiController::score_class($scores['planning']['avg_indicator']) !!}">{{ $scores['planning']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['planning']['avg_indicator']) !!}">{{ $scores['planning']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['planning']['P1'], 'assessment_label' => $labels['P1']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['planning']['P2'], 'assessment_label' => $labels['P2']])
@@ -60,7 +60,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th>
             <div>@lang('imet-core::common.steps_eval.inputs')</div>
-            <div class="badge {!! ApiController::score_class($scores['inputs']['avg_indicator']) !!}">{{ $scores['inputs']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['inputs']['avg_indicator']) !!}">{{ $scores['inputs']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['inputs']['I1'], 'assessment_label' => $labels['I1']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['inputs']['I2'], 'assessment_label' => $labels['I2']])
@@ -75,7 +75,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th rowspan="7">
             <div>@lang('imet-core::common.steps_eval.process')</div>
-            <div class="badge {!! ApiController::score_class($scores['process']['avg_indicator']) !!}">{{ $scores['process']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['process']['avg_indicator']) !!}">{{ $scores['process']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['process']['PRA'], 'assessment_label' => $labels['PRA']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['process']['PRB'], 'assessment_label' => $labels['PRB']])
@@ -162,7 +162,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th>
             <div>@lang('imet-core::common.steps_eval.outputs')</div>
-            <div class="badge {!! ApiController::score_class($scores['outputs']['avg_indicator']) !!}">{{ $scores['outputs']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['outputs']['avg_indicator']) !!}">{{ $scores['outputs']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outputs']['OP1'], 'assessment_label' => $labels['OP1']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outputs']['OP1'], 'assessment_label' => $labels['OP2']])
@@ -175,7 +175,7 @@ use ImetCore\Controllers\Imet\ApiController;
     <tr>
         <th>
             <div>@lang('imet-core::common.steps_eval.outcomes')</div>
-            <div class="badge {!! ApiController::score_class($scores['outcomes']['avg_indicator']) !!}">{{ $scores['outcomes']['avg_indicator'] }}</div>
+            <div class="badge {!! AssessmentsScores::score_class($scores['outcomes']['avg_indicator']) !!}">{{ $scores['outcomes']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outcomes']['OC1'], 'assessment_label' => $labels['OC1']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outcomes']['OC2'], 'assessment_label' => $labels['OC2']])

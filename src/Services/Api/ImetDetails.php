@@ -36,7 +36,7 @@ class ImetDetails
                 $filtered_fields = [];
                 foreach ($field->module_fields as $value) {
                     if (isset($value['type']) && !in_array($value['type'],
-                        static::$exclude_types)) {
+                            static::$exclude_types)) {
                         if (is_string($field[$value['name']])) {
                             $values = static::animalScientificName($field[$value['name']]);
                         }

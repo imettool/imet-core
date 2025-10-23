@@ -14,7 +14,7 @@ trait Common
      * @return void
      * @throws AuthorizationException
      */
-    protected static function checkAuthorization(array $wdpas, string $ability = 'api_scaling_up'): void
+    protected static function checkAuthorization(array $wdpas, string $ability = 'wdpa_scaling_up'): void
     {
         foreach ($wdpas as $wdpa) {
             if (Gate::denies($ability, Imet::find($wdpa))) {
