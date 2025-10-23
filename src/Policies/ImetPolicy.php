@@ -99,11 +99,8 @@ class ImetPolicy
      */
     public function export_button($user, $form = null): bool
     {
-        $user ??= Auth::user();
-
-        return Role::isRole(Role::ROLE_ENCODER, $user) ||
-            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
+        // if user can VIEW can also export
+        return $this->view($user, $form);
     }
 
     /**
@@ -111,13 +108,8 @@ class ImetPolicy
      */
     public function export($user, $form = null): bool
     {
-        $user ??= Auth::user();
-
-        return Role::isWdpaAllowed($form->wdpa_id, $user) && (
-            Role::isRole(Role::ROLE_ENCODER, $user) ||
-            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
-        );
+        // if user can VIEW can also export
+        return $this->view($user, $form);
     }
 
     /**
