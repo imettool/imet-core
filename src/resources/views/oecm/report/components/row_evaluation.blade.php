@@ -4,7 +4,7 @@
 /** @var ?string $additional_classes [optional] */
 /** @var ?boolean $threats [optional] */
 
-use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Services\Scores\AssessmentsScores;
 
 $additional_classes ??= null;
 $threats ??= false;
@@ -16,11 +16,11 @@ $constraints ??= false;
 $classes = '';
 if ($color_scores) {
     if ($threats) {
-        $classes = ApiController::score_class_threats($assessment_value);
+        $classes = AssessmentsScores::score_class_threats($assessment_value);
     } elseif ($constraints) {
-        $classes = ApiController::score_class_threats($assessment_value, 'score_constraints_success');
+        $classes = AssessmentsScores::score_class_threats($assessment_value, 'score_constraints_success');
     } else {
-        $classes = ApiController::score_class($assessment_value);
+        $classes = AssessmentsScores::score_class($assessment_value);
     }
 }
 

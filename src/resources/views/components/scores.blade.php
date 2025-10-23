@@ -1,9 +1,7 @@
 <?php
-
-use ImetCore\Controllers\Imet\ApiController;
 use ImetCore\Models\Imet;
 use ImetCore\Services\Assessment;
-use ImetCore\Services\Scores\Functions\_Scores;
+use ImetCore\Models\Imet\Scores\AssessmentsScores;
 
 /** @var ?string $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
@@ -11,12 +9,11 @@ use ImetCore\Services\Scores\Functions\_Scores;
 
 $step = $step ?? null;
 
-
 if($version === Imet\Imet::IMET_OECM){
-    $scores = Assessment\OecmAssessment::getAssessment($item->getKey(), _Scores::ALL_SCORES);
+    $scores = AssessmentsScores::scores_oecm($item->getKey())->getData();
     $labels = Assessment\OecmAssessment::get_scores_labels($item->version, $item->language);
 } else {
-    $scores = Assessment\ImetAssessment::getAssessment($item->getKey(), _Scores::ALL_SCORES);
+    $scores = AssessmentsScores::scores($item->getKey())->getData();
     $labels = Assessment\ImetAssessment::get_scores_labels($item->version, $item->language);
 }
 

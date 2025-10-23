@@ -100,15 +100,10 @@ class ImetPolicy
     public function export_button($user, $form = null): bool
     {
         $user ??= Auth::user();
-        if (Role::isRole(Role::ROLE_ENCODER, $user)) {
-            return true;
-        }
 
-        if (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user)) {
-            return true;
-        }
-
-        return Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
+        return Role::isRole(Role::ROLE_ENCODER, $user) ||
+            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
+            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
     }
 
     /**
@@ -135,45 +130,11 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can view api_assessment
+     * Determine whether the user can view wdpa_scaling_up
      */
-    public function api_assessment($user, $form = null): bool
+    public function wdpa_scaling_up($user, $form = null): bool
     {
-        return $this->role_national_or_observatory() &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
+        return true;
     }
 
-    /**
-     * Determine whether the user can view api_scaling_up
-     */
-    public function api_scaling_up($user, $form = null): bool
-    {
-        return $this->role_national_or_observatory() && Role::isWdpaAllowed($form->wdpa_id, $user);
-    }
-
-    /**
-     * Determine whether the user is a national authority or an observatory
-     */
-    public function scaling_up(): bool
-    {
-        return $this->role_national_or_observatory();
-    }
-
-    public function role_national_or_observatory(): bool
-    {
-        if (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY)) {
-            return true;
-        }
-
-        return Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY);
-    }
-
-    /**
-     * Determine whether the user can view api_details
-     */
-    public function api_details($user, $form = null, $model = null): bool
-    {
-        return Role::hasRequiredAccessLevel($model) &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
-    }
 }

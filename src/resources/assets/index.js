@@ -53,9 +53,6 @@ window.ImetCore.Apps.AnalysisMap = AnalysisMap;
 import OECMAnalysis from "./js/apps/Modules/Oecm/OECMAnalysis.js";
 window.ImetCore.Apps.OECMAnalysis = OECMAnalysis;
 
-import Roles from "./js/roles/Roles.js";
-window.ImetCore.Apps.Roles = Roles;
-
 import ExportApp from "./js/apps/Export.js";
 window.ImetCore.Apps.ExportApp = ExportApp;
 
