@@ -44,7 +44,7 @@ final class AverageContribution
         }
 
         $average_contribution = [];
-        if (array_filter(array_keys($data), 'is_string') === []) {
+        if (array_filter(array_keys($data), is_string(...)) === []) {
             krsort($data);
         }
 
@@ -95,7 +95,7 @@ final class AverageContribution
             }
         }
 
-        if (array_filter(array_keys($data), 'is_string') === []) {
+        if (array_filter(array_keys($data), is_string(...)) === []) {
             krsort($data[$type]);
         }
 

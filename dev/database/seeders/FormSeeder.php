@@ -53,7 +53,7 @@ class FormSeeder extends Seeder
     {
         $form_id = Imet\v1\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
-            'Year' => fake()->dateTimeBetween('-4 years' )->format('Y'),
+            'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
             'version' => Imet\v1\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
@@ -72,6 +72,7 @@ class FormSeeder extends Seeder
 
     /**
      * Create a new form (IMETV 2) for the given (or random) protected area and populate it with fake data
+     *
      * @throws Throwable
      */
     public static function seedFormImetV2(ProtectedArea $protected_area, string $language): void
@@ -164,7 +165,8 @@ class FormSeeder extends Seeder
     /**
      * Insert a record in the given module
      *
-     * @param class-string<Module> $module
+     * @param  class-string<Module>  $module
+     *
      * @throws Throwable
      */
     private static function createRecord(string $module, int $form_id, ?string $group_key = null): array

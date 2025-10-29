@@ -19,7 +19,7 @@ class Math
         $sum = 0;
         $count = 0;
         foreach ($records as $record) {
-            if (!in_array($record[$field], [null, -99, '-99'], true)) {
+            if (! in_array($record[$field], [null, -99, '-99'], true)) {
                 $sum += intval($record[$field]);
                 $count++;
             }

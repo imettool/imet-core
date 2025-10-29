@@ -34,7 +34,6 @@ class Currency extends BaseModel
 
     public $incrementing = false;
 
-
     public const array MINIMAL_CURRENCIES = ['EUR', 'USD'];
 
     /**

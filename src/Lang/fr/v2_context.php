@@ -886,8 +886,8 @@ return [
         ],
         'predefined_values' => [
             'group0' => ['Approvisionnement en eau (disponibilité, épuration)', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.)', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes)', 'Médicaments / pharmacopée', 'Aliments pour l’élevage (poissons et bétail)'],
-            'group1' => ['Bois à haute valeur économique', 'Bois pour la construction locale', 'Fibres de tiges (palmiers, kénaf, jute, etc.)', 'Autres fibres (kapok, coco,  etc.)', 'Ornementale (graines, coquilles, etc.)', 'Sable (bâtiment)', 'Algues/coquillages', 'Terres cultivées (agriculture, élevage, forêts)', ],
-            'group2' => ['Bois de feu et biocarburants', 'Eau pour énergie', 'Engrais (production – transformation)',],
+            'group1' => ['Bois à haute valeur économique', 'Bois pour la construction locale', 'Fibres de tiges (palmiers, kénaf, jute, etc.)', 'Autres fibres (kapok, coco,  etc.)', 'Ornementale (graines, coquilles, etc.)', 'Sable (bâtiment)', 'Algues/coquillages', 'Terres cultivées (agriculture, élevage, forêts)'],
+            'group2' => ['Bois de feu et biocarburants', 'Eau pour énergie', 'Engrais (production – transformation)'],
             'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)', 'Contrôle de l’érosion éolienne'],
             'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne', 'Prévention de l\'érosion côtière'],
             'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Navigation de plaisance, natation et plongée', 'Plongée en apnée, navigation de plaisance et plongée', 'Chasse ou pêche si autorisée', 'Pêche traditionnelle spécifiée'],
