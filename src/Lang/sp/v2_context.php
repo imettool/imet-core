@@ -154,8 +154,8 @@ return [
             'group1' => 'Red de paisaje (áreas protegidas terrestres y marinas) - Red (red marina)',
             'group2' => 'Otras redes',
         ],
-        'module_info' => 'Esta sección describe la pertenencia del área protegida a diversas redes de gestión a nivel local, 
-            transfronterizo y paisajístico. Identifica vínculos con otras áreas protegidas dentro de estas redes y 
+        'module_info' => 'Esta sección describe la pertenencia del área protegida a diversas redes de gestión a nivel local,
+            transfronterizo y paisajístico. Identifica vínculos con otras áreas protegidas dentro de estas redes y
             destaca los marcos de colaboración para la conservación y la gestión relevantes para el área protegida.',
     ],
 
@@ -868,9 +868,9 @@ return [
             'group9' => 'Servicios de apoyo',
         ],
         'predefined_values' => [
-            'group0' => ['Suministro de agua - ilegal', 'Suministro de agua - legal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - ilegal', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) - legal', 'Alimentación humana  - animal (carne silvestre/de granja, insectos) - ilegal', 'Alimentación humana  - animal (carne silvestre/de granja, insectos) - legal', 'Medicamentos y biotecnología azul (aceite de pescado) - ilegal', 'Medicamentos y biotecnología azul (aceite de pescado) - legal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - ilegal', 'Alimentación con peces y ganado (silvestre, de granja, cebo) - legal'],
-            'group1' => ['Madera de alto valor - ilegal', 'Madera de alto valor - legal', 'Madera para la construcción local - ilegal', 'Madera para la construcción local - legal', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - ilegal', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) - legal', 'Otras fibras (hojas, kapok, coco, etc.) - ilegal', 'Otras fibras (hojas, kapok, coco, etc.) - legal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - ilegal', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) - legal', 'Arena (para la construcción) - ilegal', 'Arena (para la construcción) - legal', 'Algas/conchas - ilegal', 'Algas/conchas - legal', 'Tierras de cultivo (agricultura, ganadería, bosques) - ilegal', 'Tierras de cultivo (agricultura, ganadería, bosques) - legal'],
-            'group2' => ['Leña y biocombustibles - ilegal', 'Leña y biocombustibles - legal', 'Generación de energía con agua - ilegal', 'Generación de energía con agua - legal', 'Fertilizante - ilegal', 'Fertilizante - legal'],
+            'group0' => ['Suministro de agua ', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) ', 'Alimentación humana  - animal (carne silvestre/de granja, insectos) ', 'Medicamentos y biotecnología azul (aceite de pescado) ', 'Alimentación con peces y ganado (silvestre, de granja, cebo) '],
+            'group1' => ['Madera de alto valor ', 'Madera para la construcción local ', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) ', 'Otras fibras (hojas, kapok, coco, etc.) ', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) ', 'Arena (para la construcción) ', 'Algas/conchas ', 'Tierras de cultivo (agricultura, ganadería, bosques) '],
+            'group2' => ['Leña y biocombustibles ', 'Generación de energía con agua ', 'Fertilizante '],
             'group3' => ['Regulación de gases (secuestro C)', 'Disposición /Enterramiento/eliminación/neutralización de residuos', 'Regulación de los desechos (absorción de nutrientes)', 'Prevención de la erosión costera'],
             'group4' => ['Control de inundaciones', 'Control de sequías', 'Protección contra tormentas', 'Control de la erosión hídrica', 'Control de la erosión eólica', 'Prevención de la erosión costera'],
             'group5' => ['Beneficios estéticos y paisajíticos (integridad del ecosistema)', 'Ecoturismo y observación de la naturaleza', 'Caminatas, excursiones y recreación en general', 'Navegación, natación y buceo', 'Snorkel, navegación y buceo', 'Caza o pesca si está permitido', 'Pesca tradicional especificada'],

@@ -150,8 +150,8 @@ return [
             'group1' => 'Rede paisagistica (áreas protegidas terrestres e marinhas) - Rede (rede marinha)',
             'group2' => 'Outras redes',
         ],
-        'module_info' => 'Esta secção descreve a participação da área protegida em diversas redes de gestão a nível local, transfronteiriço 
-            e paisagístico. Identifica ligações com outras áreas protegidas dentro destas redes e destaca 
+        'module_info' => 'Esta secção descreve a participação da área protegida em diversas redes de gestão a nível local, transfronteiriço
+            e paisagístico. Identifica ligações com outras áreas protegidas dentro destas redes e destaca
             estruturas colaborativas para a conservação e gestão relevantes para a área protegida.',
     ],
 
@@ -866,9 +866,9 @@ return [
             'group9' => 'Serviços de apoio',
         ],
         'predefined_values' => [
-            'group0' => ['Abastecimento de água - ilegal', 'Abastecimento de água - legal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - ilegal', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.) - legal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos) - ilegal', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe) - ilegal', 'Medicamentos e biotecnologia azul (óleo de peixe) - legal', 'Alimento para peixes/animais (selvagens, de criação, isco) - ilegal', 'Alimento para peixes/animais (selvagens, de criação, isco) - legal'],
-            'group1' => ['Madeira de alto valor - ilegal', 'Madeira de alto valor - legal', 'Madeira para a construção local - ilegal', 'Madeira para a construção local - legal', 'Fibras de caule (palmeiras, kenaf, etc.) - ilegal', 'Fibras de caule (palmeiras, kenaf, etc.) - legal', 'Outras fibras (folhas, sumaúma, coco, etc.) - ilegal', 'Outras fibras (folhas, sumaúma, coco, etc.) - legal', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes) - ilegal', 'Recursos ornamentais e aquários (coleção de sementes, conchas e peixes) - legal', 'Areia (construção) - ilegal', 'Areia (construção) - legal', 'Algal/conchas - ilegal', 'Algal/conchas - legal', 'Terras de cultivo (agricultura, pecuária, florestas) - ilegal', 'Terras de cultivo (agricultura, pecuária, florestas) - legal'],
-            'group2' => ['Lenha e biocombustíveis - ilegal', 'Lenha e biocombustíveis - legal', 'Água para a energia - ilegal', 'Água para a energia - legal', 'Fertilizante - ilegal', 'Fertilizante - legal'],
+            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)'],
+            'group1' => ['Madeira de alto valor', 'Madeira para a construção local', 'Fibras de caule (palmeiras, kenaf, etc.)', 'Outras fibras (folhas, sumaúma, coco, etc.)', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes)', 'Areia (construção)', 'Algal/conchas', 'Terras de cultivo (agricultura, pecuária, florestas)'],
+            'group2' => ['Lenha e biocombustíveis', 'Água para a energia', 'Fertilizante'],
             'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Prevenção da erosão costeira'],
             'group4' => ['Controlo das cheias', 'Controlo da Seca', 'Protecção contra tempestades', 'Controlo da erosão da água', 'Controlo da erosão Ecological', 'Prevenção da erosão costeira'],
             'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'Navegação, natação e mergulho', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],

@@ -150,8 +150,8 @@ return [
             'group1' => 'Landscape network (terrestrial and marine protected areas) - Network (marine network)',
             'group2' => 'Other networks',
         ],
-        'module_info' => 'This section describes the protected area\'s membership of various management networks at local, transboundary 
-            and landscape levels. It identifies links with other protected areas within these networks and highlights 
+        'module_info' => 'This section describes the protected area\'s membership of various management networks at local, transboundary
+            and landscape levels. It identifies links with other protected areas within these networks and highlights
             collaborative frameworks for conservation and management relevant to the protected area',
     ],
 
@@ -870,9 +870,9 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, insects) - illegal', 'Human food - animal (wild / farmed meat, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
-            'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal', 'Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Algal/shells - illegal', 'Algal/shells - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
-            'group2' => ['Fuelwood and biofuels - illegal', 'Fuelwood and biofuels - legal', 'Water for energy - illegal', 'Water for energy - legal', 'Fertiliser - illegal', 'Fertiliser - legal'],
+            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)'],
+            'group1' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, fruits...) (kapok, coco, etc.)', 'Ornamental and aquaria resources (seeds, shells and fishes collection)', 'Sand (building)', 'Algal/shells', 'Cultivation land (agriculture, livestock, forests)'],
+            'group2' => ['Fuelwood and biofuels', 'Water for energy', 'Fertiliser'],
             'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)', 'Prevention of coastal erosion'],
             'group4' => ['Flood control', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
             'group5' => ['Aesthetic (ecosystem integrity) benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Snorkeling, boating and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],

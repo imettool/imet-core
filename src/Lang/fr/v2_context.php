@@ -154,8 +154,8 @@ return [
             'group1' => 'Paysage terrestre - Landscape (réseau des AP terrestres) - Paysage marin - seascape (réseau des AP marines)',
             'group2' => 'Autre réseau',
         ],
-        'module_info' => 'Cette section décrit l\'appartenance de l\'aire protégée à divers réseaux de gestion aux niveaux local, 
-            transfrontalier et paysager. Elle identifie les liens avec d\'autres aires protégées au sein de ces réseaux 
+        'module_info' => 'Cette section décrit l\'appartenance de l\'aire protégée à divers réseaux de gestion aux niveaux local,
+            transfrontalier et paysager. Elle identifie les liens avec d\'autres aires protégées au sein de ces réseaux
             et met en évidence les cadres collaboratifs de conservation et de gestion pertinents pour l\'aire protégée.',
     ],
 
@@ -885,9 +885,9 @@ return [
             'group9' => 'Support / Soutien',
         ],
         'predefined_values' => [
-            'group0' => ['Approvisionnement en eau (disponibilité, épuration) - illégal', 'Approvisionnement en eau (disponibilité, épuration) - légal', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.) - illégal', 'Alimentation humaine - végétale (tubercules, feuilles, fruits, miel, champignons, etc.) - légal', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes) - illégal', 'Alimentation humaine - animal (viande sauvage/d’élevage, insectes) - légal', 'Médicaments / pharmacopée - illégal', 'Médicaments / pharmacopée - légal', 'Aliments pour l’élevage (poissons et bétail) - illégal', 'Aliments pour l’élevage (poissons et bétail) - légal'],
-            'group1' => ['Bois à haute valeur économique - illégal', 'Bois à haute valeur économique - légal', 'Bois pour la construction locale - illégal', 'Bois pour la construction locale - légal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - illégal', 'Fibres de tiges (palmiers, kénaf, jute, etc.) - légal', 'Autres fibres (kapok, coco,  etc.) - illégal', 'Autres fibres (kapok, coco,  etc.) - légal', 'Ornementale (graines, coquilles, etc.) - illégal', 'Ornementale (graines, coquilles, etc.) - légal', 'Sable (bâtiment) - illégal', 'Sable (bâtiment) - légal', 'Algues/coquillages - illégal', 'Algues/coquillages - légal', 'Terres cultivées (agriculture, élevage, forêts) - illégal', 'Terres cultivées (agriculture, élevage, forêts) - légal'],
-            'group2' => ['Bois de feu et biocarburants - illégal', 'Bois de feu et biocarburants - légal', 'Eau pour énergie - illégal', 'Eau pour énergie - légal', 'Engrais (production – transformation) - illégal', 'Engrais (production – transformation) - légal'],
+            'group0' => ['Approvisionnement en eau (disponibilité, épuration)', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.)', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes)', 'Médicaments / pharmacopée', 'Aliments pour l’élevage (poissons et bétail)'],
+            'group1' => ['Bois à haute valeur économique', 'Bois pour la construction locale', 'Fibres de tiges (palmiers, kénaf, jute, etc.)', 'Autres fibres (kapok, coco,  etc.)', 'Ornementale (graines, coquilles, etc.)', 'Sable (bâtiment)', 'Algues/coquillages', 'Terres cultivées (agriculture, élevage, forêts)', ],
+            'group2' => ['Bois de feu et biocarburants', 'Eau pour énergie', 'Engrais (production – transformation)',],
             'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)', 'Contrôle de l’érosion éolienne'],
             'group4' => ['Contrôle des inondations', 'Lutte contre la sécheresse', 'Protection contre les tempêtes', 'Contrôle de l’érosion par l’eau', 'Contrôle de l’érosion éolienne', 'Prévention de l\'érosion côtière'],
             'group5' => ['Esthétique (intégrité de l’écosystème)', 'Ecotourisme et observation de la nature', 'Marche, randonnée pédestre et loisirs généraux', 'Navigation de plaisance, natation et plongée', 'Plongée en apnée, navigation de plaisance et plongée', 'Chasse ou pêche si autorisée', 'Pêche traditionnelle spécifiée'],
