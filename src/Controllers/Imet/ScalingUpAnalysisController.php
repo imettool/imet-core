@@ -32,9 +32,9 @@ class ScalingUpAnalysisController extends __Controller
 
     protected static ?string $form_view_prefix = 'imet-core::';
 
-    protected const PAGINATE = false;
+    protected const false PAGINATE = false;
 
-    public const sanitization_rules = [
+    public const array sanitization_rules = [
         'search' => 'custom_text|nullable',
         'year' => 'digits:4|integer|nullable',
         'country' => 'min:3|max:3|alpha|nullable',

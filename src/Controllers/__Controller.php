@@ -19,5 +19,5 @@ use ModularForms\Controllers\FormController;
  */
 class __Controller extends FormController
 {
-    public const AUTHORIZE_BY_POLICY = true;
+    public const bool AUTHORIZE_BY_POLICY = true;
 }

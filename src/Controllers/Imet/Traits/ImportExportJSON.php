@@ -68,14 +68,14 @@ trait ImportExportJSON
                 $num_extracted = 0;
                 foreach ($extractFiles as $item) {
                     if (Str::endsWith($item, '.json') && $num_extracted < 10) {
-                        $json = json_decode(static::getUploadFileContent(['temp_filename' => $item]), true);
+                        $json = json_decode(static::getUploadFileContent($item), true);
                         $files[] = (new (static::class))->import(new Request, $json, false);
                         Storage::disk(File::TEMP_STORAGE)->delete($item);
                         $num_extracted++;
                     }
                 }
             } else {
-                $json = json_decode(static::getUploadFileContent($uploaded), true);
+                $json = json_decode(static::getUploadFileContent($uploaded['temp_filename']), true);
                 $files[] = (new (static::class))->import(new Request, $json, false);
                 Storage::disk(File::TEMP_STORAGE)->delete($uploaded['temp_filename']);
             }
@@ -336,7 +336,7 @@ trait ImportExportJSON
     {
         try {
             if ($json === null) {
-                $fileContent = static::getUploadFileContent($request->get('json_file'));
+                $fileContent = static::getUploadFileContent($request->get('json_file')['temp_filename']);
                 $json = json_decode($fileContent, true);
             }
 
