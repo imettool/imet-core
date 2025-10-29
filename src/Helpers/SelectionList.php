@@ -36,7 +36,7 @@ class SelectionList
             } elseif ($matches[2] == 'Country') {
                 $list = Country::selectionList();
             } elseif ($matches[2] == 'Currency') {
-                $list = Currency::imetV1List();
+                $list = Currency::selectionList();
             } elseif ($matches[2] == 'PaType') {
                 $list = [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),

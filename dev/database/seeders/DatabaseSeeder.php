@@ -15,6 +15,7 @@ namespace Database\Seeders;
 use Exception;
 use Illuminate\Database\Seeder;
 use ImetCore\Models\Imet\Imet;
+use Throwable;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public function run(): void
     {
@@ -36,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // Seed species
         (new SpeciesSeeder)->run();
 
-        // Seed forms with modules
+//        // Seed forms with modules
         (new FormSeeder)->run(Imet::IMET_V1);
         (new FormSeeder)->run(Imet::IMET_V2);
         (new FormSeeder)->run(Imet::IMET_OECM);

@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\Components;
 
 use Illuminate\Support\Str;
 use ImetCore\Exceptions\MissingDependencyConfigurationException;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use Throwable;
 
 trait Dependencies
@@ -102,7 +103,7 @@ trait Dependencies
         $dependency_on ??= static::$DEPENDENCY_ON;
         // Drop records (where reference field values had been removed form parent)
         $records_to_be_dropped = static::getModule($form_id)
-            ->filter(fn (array $record): bool => in_array($record[$dependency_on], $to_be_dropped))
+            ->filter(fn (ImetModule $record): bool => in_array($record[$dependency_on], $to_be_dropped))
             ->toArray();
         foreach ($records_to_be_dropped as $record) {
             static::destroy($record[(new static)->primaryKey]);

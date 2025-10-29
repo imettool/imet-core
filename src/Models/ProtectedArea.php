@@ -13,13 +13,13 @@
 namespace ImetCore\Models;
 
 use Closure;
+use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Locale;
-use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
 
 /**
  * Class ProtectedArea
@@ -32,7 +32,7 @@ use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
  * @property string $creation_date
  * @property numeric $area
  */
-class ProtectedArea extends BaseProtectedArea
+class ProtectedArea extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
 
@@ -40,21 +40,39 @@ class ProtectedArea extends BaseProtectedArea
 
     public $primaryKey = 'global_id';
 
-    public const CREATED_AT = null;
+    public $incrementing = false;       // required for textual primary_key
 
-    public const UPDATED_AT = null;
+    public const string LABEL = 'name';
 
-    public const UPDATED_BY = null;
-
-    public const CREATED_BY = null;
+    public $timestamps = false;
 
     /**
-     * Override: get the table name with schema
+     * Scope a query by search key
+     *
+     * @phpstan-param Builder<$this> $query
      */
-    #[\Override]
-    public function getTable(): string
+    #[Scope]
+    public function like(Builder $query, ?string $searchKey = null): void
     {
-        return Database::getTable(static::$schema, parent::getTable());
+        $like_operator = $this->getConnection()->getDriverName() == 'sqlite'
+            ? 'LIKE'
+            : '~~*'; // PostgreSQL case insensitive
+
+        if ($searchKey !== null && $searchKey !== '') {
+            $query = $query->where('name', $like_operator, '%'.$searchKey.'%');
+            if (is_numeric($searchKey)) {
+                $query->orWhere('wdpa_id', $searchKey);
+            }
+        }
+    }
+
+    /**
+     * Get by WDPA id
+     */
+    public static function getByWdpa(string $wdpa): static
+    {
+        return static::query()->where('wdpa_id', $wdpa)
+            ->firstOrFail();
     }
 
     /**
@@ -120,7 +138,7 @@ class ProtectedArea extends BaseProtectedArea
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
-        return Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
+        return Country::query()->select(['iso3', 'iso2', Country::labelKey()])
             ->where(function ($query) use ($countries): void {
                 if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
@@ -159,9 +177,9 @@ class ProtectedArea extends BaseProtectedArea
         );
 
         // Retrieve country names
-        $countries = Country::query()->select(['iso3', 'name_'.Locale::lower()])
+        $countries = Country::query()->select(['iso3', Country::labelKey()])
             ->whereIn('iso3', $protected_areas_countries)
-            ->pluck('name_'.Locale::lower(), 'iso3')
+            ->pluck(Country::labelKey(), 'iso3')
             ->sort()
             ->toArray();
 
@@ -175,5 +193,20 @@ class ProtectedArea extends BaseProtectedArea
 
                 return $item;
             });
+    }
+
+    /**
+     * Get selection list
+     */
+    public static function selectionList(): array
+    {
+        $label_attribute = self::labelKey();
+        $key_attribute = (new self)->getKeyName();
+
+        return static::query()
+            ->get()
+            ->sortBy($label_attribute, SORT_NATURAL | SORT_FLAG_CASE)
+            ->pluck($label_attribute, $key_attribute)
+            ->toArray();
     }
 }

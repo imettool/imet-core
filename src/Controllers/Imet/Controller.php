@@ -26,6 +26,7 @@ use ImetCore\Controllers\Imet\Traits\Pame;
 use ImetCore\Models\Imet\Imet;
 use ModularForms\Helpers\HTTP;
 
+use Throwable;
 use function view;
 
 abstract class Controller extends __Controller
@@ -52,6 +53,7 @@ abstract class Controller extends __Controller
 
     /**
      * Override index route
+     * @throws Throwable
      */
     #[\Override]
     public function index(Request $request): View

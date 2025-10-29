@@ -81,6 +81,7 @@ final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
      * Override: ensure to removed dropped items
      *
      * @throws MissingDependencyConfigurationException
+     * @throws \Throwable
      */
     protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
     {

@@ -243,7 +243,7 @@ class Role extends BaseModel
 
         return $only_iso
             ? $parsed_isos
-            : Country::query()->select(['iso3', 'iso2', 'name_'.Locale::lower()])
+            : Country::query()->select(['iso3', 'iso2', Country::labelKey()])
                 ->whereIn('iso3', $parsed_isos)
                 ->get();
     }

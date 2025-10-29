@@ -12,14 +12,21 @@
 
 namespace ImetCore\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\Database;
-use ModularForms\Models\Utils\Animal;
+use ImetCore\Models\Imet\Components\BaseModel;
 
 /**
+ * @property string $phylum
+ * @property string $class
+ * @property string $order
+ * @property string $family
+ * @property string $genus
+ * @property string $species
  * @property string $binomial
  */
-class Species extends Animal
+class Species extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
 
@@ -27,13 +34,18 @@ class Species extends Animal
 
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     /**
-     * Override: get the table name with schema
+     * Get the country's name attribute according to the current locale
      */
-    #[\Override]
-    public function getTable(): string
+    protected function binomial(): Attribute
     {
-        return Database::getTable(static::$schema, parent::getTable());
+        return Attribute::make(
+            get: fn () => array_key_exists('genus', $this->attributes) && array_key_exists('species', $this->attributes)
+                ? $this->attributes['genus'].' '.$this->attributes['species']
+                : null
+        );
     }
 
     public static function getScientificName($taxonomy): ?string
@@ -57,7 +69,6 @@ class Species extends Animal
     /**
      * Search Species by given string
      */
-    #[\Override]
     public static function searchSpecies(string $search_key): Collection
     {
         // Query the database for species matching the search key
@@ -122,5 +133,47 @@ class Species extends Animal
                 return $item;
             })
             ->sortBy('__levenshtein');
+    }
+
+    /**
+     * Retrieve species by taxonomy
+     */
+    public static function getByTaxonomy(?string $taxonomy = null, string $separator = '|'): Species
+    {
+        return static::isTaxonomy($taxonomy)
+            ? (static::query()->where(static::parseTaxonomy($taxonomy, $separator))
+                ->first() ?? new static)
+            : new static;
+    }
+
+    /**
+     * Check if the given string contains taxonomy (parts divided by |)
+     */
+    public static function isTaxonomy(?string $taxonomy = null): bool
+    {
+        return $taxonomy !== null && substr_count($taxonomy, '|') === 5;
+    }
+
+    /**
+     * Parse a taxonomy string (all ranking from phylum to species in a single string)
+     *
+     * @phpstan-return array<string, string>
+     */
+    public static function parseTaxonomy(string $taxonomy, string $separator = '|'): array
+    {
+        if (static::isTaxonomy($taxonomy)) {
+            $taxonomy_array = explode($separator, $taxonomy);
+
+            return [
+                'phylum' => $taxonomy_array[0],
+                'class' => $taxonomy_array[1],
+                'order' => $taxonomy_array[2],
+                'family' => $taxonomy_array[3],
+                'genus' => $taxonomy_array[4],
+                'species' => $taxonomy_array[5],
+            ];
+        }
+
+        return [];
     }
 }

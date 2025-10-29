@@ -15,6 +15,7 @@ use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
 use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\Models\Module;
+use Throwable;
 
 class FormSeeder extends Seeder
 {
@@ -25,7 +26,7 @@ class FormSeeder extends Seeder
     /**
      * Run the database seeders.
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public function run(string $version, ?int $num = self::NUM_FORMS): void
     {
@@ -46,13 +47,13 @@ class FormSeeder extends Seeder
     /**
      * Create a new form (IMETV 1) for the given (or random) protected area and populate it with fake data
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public static function seedFormImetV1(ProtectedArea $protected_area, string $language): void
     {
         $form_id = Imet\v1\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
-            'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
+            'Year' => fake()->dateTimeBetween('-4 years' )->format('Y'),
             'version' => Imet\v1\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
@@ -71,14 +72,13 @@ class FormSeeder extends Seeder
 
     /**
      * Create a new form (IMETV 2) for the given (or random) protected area and populate it with fake data
-     *
-     * @throws Exception
+     * @throws Throwable
      */
     public static function seedFormImetV2(ProtectedArea $protected_area, string $language): void
     {
         $form_id = Imet\v2\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
-            'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
+            'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
             'version' => Imet\v2\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
@@ -98,13 +98,13 @@ class FormSeeder extends Seeder
     /**
      * Create a new form (IMET OECM) for the given (or random) protected area and populate it with fake data
      *
-     * @throws Exception
+     * @throws Throwable
      */
     public static function seedFormImetOecm(ProtectedArea $protected_area, string $language): void
     {
         $form_id = Imet\oecm\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
-            'Year' => fake()->dateTimeBetween('-4 years', 'now')->format('Y'),
+            'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
             'version' => Imet\oecm\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
@@ -124,7 +124,7 @@ class FormSeeder extends Seeder
     /**
      * Populate all the form's modules with fake data
      *
-     * @throws Exception
+     * @throws Throwable
      */
     private static function seedFormModules(int $form_id, array $modules): void
     {
@@ -164,7 +164,8 @@ class FormSeeder extends Seeder
     /**
      * Insert a record in the given module
      *
-     * @throws Exception
+     * @param class-string<Module> $module
+     * @throws Throwable
      */
     private static function createRecord(string $module, int $form_id, ?string $group_key = null): array
     {
@@ -175,7 +176,6 @@ class FormSeeder extends Seeder
         ];
 
         // Inject predefined values
-        /** @var $module Module */
         $predefined = $module::getPredefined($form_id);
         if ($predefined !== null) {
             $values[$predefined['field']] = null;
@@ -228,11 +228,12 @@ class FormSeeder extends Seeder
     /**
      * Generate a fake value for a given field type
      *
-     * @throws Exception
+     * @throws Throwable
      */
     private static function fakeValueByType(string $type, string $name, string $module, int $form_id, ?string $group_key): mixed
     {
         // CUSTOM
+
         if (Str::contains($type, 'ctx11_type')) {
             return array_rand(ImetSelectionList::getCustomList('Imet_PaType'));
         }
@@ -263,7 +264,6 @@ class FormSeeder extends Seeder
             return collect($list)->random();
         }
 
-        // CUSTOM
         if (Str::contains($module, 'SupportsAndConstraintsIntegration') && $name === 'Stakeholder') {
             if ($group_key === 'group0') {
                 return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_DIRECT))
@@ -325,7 +325,7 @@ class FormSeeder extends Seeder
         }
 
         if ($type === 'dateMaxToday') {
-            return fake()->dateTimeBetween('-4 years', 'now');
+            return fake()->dateTimeBetween('-4 years');
         }
 
         if ($type === 'year') {
@@ -393,7 +393,6 @@ class FormSeeder extends Seeder
                 .'|'.$species->species;
         }
 
-        // Standard
         if (Str::contains($type, 'selector-wdpa')) {
             if (Str::contains($type, 'multiple')) {
                 return implode(',', ProtectedArea::query()->inRandomOrder()->limit(random_int(2, 5))->get()->pluck('wdpa_id')->toArray());

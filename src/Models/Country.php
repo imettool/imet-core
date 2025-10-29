@@ -13,13 +13,12 @@
 namespace ImetCore\Models;
 
 use Exception;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
-use ModularForms\Models\Utils\Country as BaseCountry;
-use Override;
 
 /**
  * Class Country
@@ -27,9 +26,8 @@ use Override;
  * @property int $iso2
  * @property int $iso3
  * @property string $name
- * @property string $Name
  */
-class Country extends BaseCountry
+class Country extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
 
@@ -37,15 +35,28 @@ class Country extends BaseCountry
 
     public $primaryKey = 'iso3';
 
+    public $incrementing = false;
+
     public static ?string $foreign_key = 'region_id';
 
+    protected $appends = ['name'];
+
     /**
-     * Override: get the table name with schema
+     * Get the key for the "name" field in the current locale
      */
-    #[Override]
-    public function getTable(): string
+    public static function labelKey(): string
     {
-        return Database::getTable(static::$schema, parent::getTable());
+        return 'name_'.Locale::lower();
+    }
+
+    /**
+     * Get the country's name attribute according to the current locale
+     */
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->attributes[static::labelKey()],
+        );
     }
 
     /**
@@ -73,20 +84,42 @@ class Country extends BaseCountry
     }
 
     /**
-     * Override: get only allowed countries
+     * Get country by iso
+     *
+     * @throws Exception
      */
-    #[Override]
-    public static function selectionList(string $type = 'PAIRS', ?Collection $collection = null, array $fields = []): array
+    public static function getByISO(string $iso): ?Country
     {
+        if (strlen($iso) === 2) {
+            return static::query()->where('iso2', $iso)->first();
+        }
+
+        if (strlen($iso) === 3) {
+            return static::query()->where('iso3', $iso)->first();
+        }
+
+        throw new Exception('Wrong size for iso: '.$iso);
+    }
+
+    /**
+     * Get only allowed countries
+     */
+    public static function selectionList(): array
+    {
+        $label_attribute = static::labelKey();
+        $key_attribute = 'iso3';
         $allowed_countries = Role::allowedCountries();
-        $collection = static::query()->select(['iso3', 'name_'.Locale::lower()])
+
+        return static::query()
+            ->select([$label_attribute, $key_attribute])
             ->where(function ($query) use ($allowed_countries): void {
                 if ($allowed_countries !== null) {
                     $query->whereIn('iso3', array_values($allowed_countries));
                 }
             })
-            ->get();
-
-        return parent::selectionList('FIELDS', $collection);
+            ->get()
+            ->sortBy($label_attribute, SORT_NATURAL | SORT_FLAG_CASE)
+            ->pluck($label_attribute, $key_attribute)
+            ->toArray();
     }
 }

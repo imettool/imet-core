@@ -181,7 +181,7 @@ trait ImportExportJSON
         }
 
         // retrieve countries labels and ids in an array for selections
-        $countries = Country::all()->sortBy(Country::LABEL)->keyBy('iso3')->toArray();
+        $countries = Country::all()->sortBy(Country::labelKey())->keyBy('iso3')->toArray();
         $countries = array_map(fn (array $item) => $item['name'], $countries);
 
         $imet_keys = Imet\v2\Imet::getModulesKeys();

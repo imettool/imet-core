@@ -61,13 +61,13 @@ class ImetModule extends Module
     public $module_info_Rating;
 
     // Override modular-forms views
-    public const MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
+    public const string MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
 
-    public const MODULE_INFO_BAR_VIEW = 'imet-core::components.module.components.bars.info';
+    public const string MODULE_INFO_BAR_VIEW = 'imet-core::components.module.components.bars.info';
 
-    public const MODULE_SCRIPT_EDIT_VIEW = 'imet-core::components.module.edit.script';
+    public const string MODULE_SCRIPT_EDIT_VIEW = 'imet-core::components.module.edit.script';
 
-    public const MODULE_SCRIPT_SHOW_VIEW = 'imet-core::components.module.show.script';
+    public const string MODULE_SCRIPT_SHOW_VIEW = 'imet-core::components.module.show.script';
 
     /**
      * Override: get the table name with schema
