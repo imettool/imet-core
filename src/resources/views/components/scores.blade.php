@@ -1,7 +1,8 @@
 <?php
+
 use ImetCore\Models\Imet;
 use ImetCore\Services\Assessment;
-use ImetCore\Models\Imet\Scores\AssessmentsScores;
+use ImetCore\Services\Scores\AssessmentsScores;
 
 /** @var ?string $step */
 /** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
@@ -9,7 +10,7 @@ use ImetCore\Models\Imet\Scores\AssessmentsScores;
 
 $step ??= null;
 
-if($version === Imet\Imet::IMET_OECM){
+if ($version === Imet\Imet::IMET_OECM) {
     $scores = AssessmentsScores::scores_oecm($item->getKey())->getData();
     $labels = Assessment\OecmAssessment::get_scores_labels($item->version, $item->language);
 } else {
