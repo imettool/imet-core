@@ -14,5 +14,6 @@ CHANGELOG.md export-ignore
 dev export-ignore
 docker export-ignore
 .dockerignore export-ignore
+.editorconfig export-ignore
 docker-compose.yml export-ignore
 notice-generator.php export-ignore
