@@ -6,6 +6,13 @@
 *.md diff=markdown
 *.php diff=php
 
+# Exclude files and directories from the exported archive
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
+.run export-ignore
+dev export-ignore
+docker export-ignore
+.dockerignore export-ignore
+docker-compose.yml export-ignore
+notice-generator.php export-ignore
