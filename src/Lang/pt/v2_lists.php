@@ -129,21 +129,38 @@ return [
         'PPP (Parceria/Pública/Privada)',
     ],
 
-    'GovernanceType' => [
-        'Conservação baseada na comunidade (Community-based conservation-CBC)',
-        'Gestão baseada na comunidade (Community-based management-CBM)',
-        'Área Baseada na Conservação (Conservation Based Area-CBA)',
-        'Áreas Marítimas Geridas Localmente (Locally Managed Marine Areas - LMMA)',
-        'Áreas Conservadas pela Comunidade Indígena (Indigenous Community Conserved Areas - ICCAs)',
-        'Áreas Protegidas e Conservadas (Protected and Conserved Areas-PCAs)',
-        'Outros',
+    'GovernanceModel' => [
+        'government' => 'Governança pelo governo',
+        'shared' => 'Governança partilhada',
+        'private' => 'Governança privada',
+        'indigenous' => 'Governança por povos indígenas e comunidades locais',
+        'not_reported' => 'Não reportado',
     ],
 
     'SubGovernanceModel' => [
-        'Governação colaborativa',
-        'Governação conjunta',
-        'Outros',
-        'Governação transfronteiriça',
+        'government' => [
+            'national' => 'Ministério ou agência federal/nacional',
+            'sub_national' => 'Ministério ou agência subnacional',
+            'delegated' => 'Gestão delegada pelo governo',
+            'other' => 'Outro',
+        ],
+        'shared' => [
+            'transboundary' => 'Governança transfronteiriça',
+            'collaborative' => 'Governança colaborativa',
+            'joint' => 'Governança conjunta',
+            'other' => 'Outro',
+        ],
+        'private' => [
+            'individual' => 'Proprietários de terras individuais',
+            'non_profit' => 'Organização sem fins lucrativos',
+            'for_profit' => 'Organizações com fins lucrativos',
+            'other' => 'Outro',
+        ],
+        'indigenous' => [
+            'indigenous' => 'Povos indígenas',
+            'local_communities' => 'Comunidades locais',
+            'other' => 'Outro',
+        ],
     ],
 
     'TerrestrialOrMarine' => [

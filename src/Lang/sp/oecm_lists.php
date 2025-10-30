@@ -12,4 +12,38 @@
 
 return [
 
+    'GovernanceModel' => [
+        'government' => 'Gobernanza por el gobierno',
+        'shared' => 'Gobernanza compartida',
+        'private' => 'Gobernanza privada',
+        'indigenous' => 'Gobernanza por pueblos indígenas y comunidades locales',
+        'not_reported' => 'No informado',
+    ],
+
+    'SubGovernanceModel' => [
+        'government' => [
+            'national' => 'Ministerio o agencia federal o nacional',
+            'sub_national' => 'Ministerio o agencia subnacional',
+            'delegated' => 'Gestión delegada por el gobierno',
+            'other' => 'Otro',
+        ],
+        'shared' => [
+            'transboundary' => 'Gobernanza transfronteriza',
+            'collaborative' => 'Gobernanza colaborativa',
+            'joint' => 'Gobernanza conjunta',
+            'other' => 'Otro',
+        ],
+        'private' => [
+            'individual' => 'Propietarios individuales',
+            'non_profit' => 'Organización sin fines de lucro',
+            'for_profit' => 'Organizaciones con fines de lucro',
+            'other' => 'Otro',
+        ],
+        'indigenous' => [
+            'indigenous' => 'Pueblos indígenas',
+            'local_communities' => 'Comunidades locales',
+            'other' => 'Otro',
+        ],
+    ],
+
 ];

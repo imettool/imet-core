@@ -129,21 +129,38 @@ return [
         'PPP (Public/Private Partnership)',
     ],
 
-    'GovernanceType' => [
-        'Community-based conservation (CBC)',
-        'CBM (Community-based management (CBM)',
-        'CBA (Conservation Based Area)',
-        'Locally Managed Marine Areas - LMMA',
-        'Indigenous Community Conserved Areas - ICCAs',
-        'Protected and Conserved Areas (PCAs)',
-        'Other',
+    'GovernanceModel' => [
+        'government' => 'Governance by government',
+        'shared' => 'Shared governance',
+        'private' => 'Private governance',
+        'indigenous' => 'Governance by indigenous peoples and local communities',
+        'not_reported' => 'Not Reported',
     ],
 
     'SubGovernanceModel' => [
-        'Collaborative governance',
-        'Joint governance',
-        'Other',
-        'Transboundary governance',
+        'government' => [
+            'national' => 'Federal or national ministry or agency',
+            'sub_national' => 'Sub-national ministry or agency',
+            'delegated' => 'Government-delegated management',
+            'other' => 'Other',
+        ],
+        'shared' => [
+            'transboundary' => 'Transboundary governance',
+            'collaborative' => 'Collaborative governance',
+            'joint' => 'Joint governance',
+            'other' => 'Other',
+        ],
+        'private' => [
+            'individual' => 'Individual landowners',
+            'non_profit' => 'Non-profit organisation',
+            'for_profit' => 'For-profit organisations',
+            'other' => 'Other',
+        ],
+        'indigenous' => [
+            'indigenous' => 'Indigenous peoples',
+            'local_communities' => 'Local communities',
+            'other' => 'Other',
+        ],
     ],
 
     'TerrestrialOrMarine' => [

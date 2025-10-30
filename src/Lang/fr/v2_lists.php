@@ -129,21 +129,38 @@ return [
         'PPP (Partenariat Publique/Privé)',
     ],
 
-    'GovernanceType' => [
-        'Conservation à base communautaire (CBC - Community-based conservation)',
-        'Gestion à base communautaire (CBM - Community-based managemen)',
-        'Aire basée sur la conservation (CBA - Conservation Based Area)',
-        'Aires marines gérées localement (LMMA - Locally Managed Marine Areas)',
-        'Aires conservées par les communautés autochtones (ICCAs - ndigenous Community Conserved Areas)',
-        'Aires protégées et conservées (PCAs - Protected and Conserved Areas)',
-        'Autre',
+    'GovernanceModel' => [
+        'government' => 'Gouvernance par le gouvernement',
+        'shared' => 'Gouvernance partagée',
+        'private' => 'Gouvernance privée',
+        'indigenous' => 'Gouvernance par les peuples indigènes et les communautés locales',
+        'not_reported' => 'Non communiqué',
     ],
 
     'SubGovernanceModel' => [
-        'Gouvernance collaborative',
-        'Gouvernance conjointe',
-        'Autre',
-        'Gouvernance transfrontalière',
+        'government' => [
+            'national' => 'Ministère ou agence nationale (fédérale)',
+            'sub_national' => 'Ministère ou agence infranationale',
+            'delegated' => 'Gestion déléguée par le gouvernement',
+            'other' => 'Autre',
+        ],
+        'shared' => [
+            'transboundary' => 'Gouvernance transfrontalière',
+            'collaborative' => 'Gouvernance collaborative',
+            'joint' => 'Gouvernance conjointe',
+            'other' => 'Autre',
+        ],
+        'private' => [
+            'individual' => 'Propriétaires fonciers individuels',
+            'non_profit' => 'Organisation à but non lucratif',
+            'for_profit' => 'Organisations à but lucratif',
+            'other' => 'Autre',
+        ],
+        'indigenous' => [
+            'indigenous' => 'Peuples indigènes',
+            'local_communities' => 'Communautés locales',
+            'other' => 'Autre',
+        ],
     ],
 
     'TerrestrialOrMarine' => [

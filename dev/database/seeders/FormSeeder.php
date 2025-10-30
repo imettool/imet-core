@@ -245,10 +245,12 @@ class FormSeeder extends Seeder
         }
 
         if (Str::contains($type, '.SubGovernanceModel')
-            && Str::contains(Str::lower($type), 'oecm')) {
-            $list = SelectionList::getList('ImetOECM_SubGovernanceModel');
+            && (Str::contains(Str::lower($type), 'v2')
+                || Str::contains(Str::lower($type), 'oecm'))) {
+            $list = Str::contains(Str::lower($type), 'v2')
+                ? SelectionList::getList('ImetV2_SubGovernanceModel')
+                : SelectionList::getList('ImetOECM_SubGovernanceModel');
             $random_group = collect($list)->random();
-
             return collect($random_group)->random();
         }
 
