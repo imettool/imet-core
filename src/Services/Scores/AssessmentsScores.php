@@ -22,7 +22,7 @@ use ImetCore\Services\Scores\Functions\_Scores;
 
 class AssessmentsScores
 {
-    public static function scores(ImetV1|ImetV2 $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
+    public static function scores(ImetV1|ImetV2|int $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
     {
         $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
 
@@ -31,7 +31,7 @@ class AssessmentsScores
             : $stats;
     }
 
-    public static function scores_oecm(ImetOecm $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
+    public static function scores_oecm(ImetOecm|int $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
     {
         $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
 
