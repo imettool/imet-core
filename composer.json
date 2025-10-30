@@ -1,7 +1,7 @@
 {
     "name": "andreamarelli/imet-core",
     "description": "Imet core package",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "authors": [
         {
             "name": "Andrea Marelli",
@@ -45,6 +45,18 @@
     "scripts": {
         "post-update-cmd": [
             "php notice-generator.php"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            ".run",
+            "dev",
+            "docker",
+            ".dockerignore",
+            ".gitattributes",
+            ".gitignore",
+            "docker-compose.yml",
+            "notice-generator.php"
         ]
     },
     "config": {
