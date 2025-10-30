@@ -1235,10 +1235,10 @@
             "dist": {
                 "type": "path",
                 "url": "./package/imet-core",
-                "reference": "8d08cdd475f35620e97eed99b12d62472d4bee64"
+                "reference": "acce1970f0f8700d6aeaf562f15b432d19303337"
             },
             "require": {
-                "andreamarelli/modular-forms": "^3.4.8",
+                "andreamarelli/modular-forms": "^3.4.9",
                 "ext-json": "*",
                 "php": ">=8.4"
             },
@@ -1286,16 +1286,16 @@
         },
         {
             "name": "andreamarelli/modular-forms",
-            "version": "3.4.8",
+            "version": "3.4.9",
             "source": {
                 "type": "git",
                 "url": "git@github.com:andreamarelli/modular-forms.git",
-                "reference": "41837db9a6d680731e6deb2ca1fb99baf0f9e498"
+                "reference": "c49452b0df566326def6cc3edd6c5fc3ada4e47c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/41837db9a6d680731e6deb2ca1fb99baf0f9e498",
-                "reference": "41837db9a6d680731e6deb2ca1fb99baf0f9e498",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/c49452b0df566326def6cc3edd6c5fc3ada4e47c",
+                "reference": "c49452b0df566326def6cc3edd6c5fc3ada4e47c",
                 "shasum": ""
             },
             "require": {
@@ -1360,10 +1360,10 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.4.8",
+                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.4.9",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2025-10-30T07:19:26+00:00"
+            "time": "2025-10-30T09:01:21+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",

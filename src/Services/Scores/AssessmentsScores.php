@@ -15,6 +15,7 @@ namespace ImetCore\Services\Scores;
 use Illuminate\Http\JsonResponse;
 use ImetCore\Models\Imet\v1\Imet as ImetV1;
 use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ImetCore\Services\Assessment\ImetAssessment;
 use ImetCore\Services\Assessment\OecmAssessment;
 use ImetCore\Services\Scores\Functions\_Scores;
@@ -30,7 +31,7 @@ class AssessmentsScores
             : $stats;
     }
 
-    public static function scores_oecm(ImetV1|ImetV2 $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
+    public static function scores_oecm(ImetOecm $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
     {
         $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
 
