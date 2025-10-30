@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,45 +12,53 @@
 
 namespace ImetCore\Models\Imet\ScalingUp;
 
-use ImetCore\Helpers\Database;
-use ModularForms\Helpers\File\File;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
+use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 
-
-class Basket extends BaseModel
+/**
+ * @property string $item
+ * @property int $order
+ * @property string $comment
+ * @property int $scaling_up_id
+ */
+final class Basket extends BaseModel
 {
-    public const BASKET_DISK = 'public_folder';
-    public const BASKET_FOLDER = 'basket/';
+    public const string BASKET_DISK = 'public_folder';
+
+    public const string BASKET_FOLDER = 'basket/';
 
     public $timestamps = false;
+
     protected static ?string $schema = Database::IMET_SCHEMA;
+
     protected $table = 'scaling_up_basket';
+
     protected $fillable = ['item', 'order', 'comment', 'scaling_up_id'];
 
     public static function retrieve_by_scaling_id($id)
     {
-        return static::where('scaling_up_id', $id)->orderBy('id','asc')->get();
+        return self::query()->where('scaling_up_id', $id)->orderBy('id', 'asc')->get();
     }
 
-    public static function save_item($item)
+    public static function save_item(array $item)
     {
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);
 
-        $record = static::create(["order" => 1, 'scaling_up_id' => $item['scaling_up_id']]);
-        $imageName = hash('sha256', $record->id . time()) . '.png';
+        $record = self::query()->create(['order' => 1, 'scaling_up_id' => $item['scaling_up_id']]);
+        $imageName = hash('sha256', $record->id.Date::now()->getTimestamp()).'.png';
 
         $disk = Storage::disk(self::BASKET_DISK);
-        $image_path = self::BASKET_FOLDER . $imageName;
+        $image_path = self::BASKET_FOLDER.$imageName;
         if ($disk->put($image_path, base64_decode($image))) {
-            $record->item = config('app.asset_url') ? ltrim(config('app.asset_url'), '/') . ltrim($image_path, '/') : $image_path;
+            $record->item = config('app.asset_url') ? ltrim((string) config('app.asset_url'), '/').ltrim($image_path, '/') : $image_path;
             $record->comment = $item['comment'];
             $record->save();
+
             return json_encode($record);
         }
-        //$path = $disk->url($image_path);
 
         return null;
     }

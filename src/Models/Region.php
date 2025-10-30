@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,18 +14,15 @@ namespace ImetCore\Models;
 
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Region
- *
- *
- * @package ImetCore\Models
  */
 class Region extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
-    protected $table = 'regions';
-    protected $keyType = 'string';
 
+    protected $table = 'regions';
+
+    protected $keyType = 'string';
 }

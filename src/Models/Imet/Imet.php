@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,28 +13,24 @@
 namespace ImetCore\Models\Imet;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Query\JoinClause;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
-use ImetCore\Controllers\Imet\Controller;
+use Illuminate\Support\Str;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Country;
 use ImetCore\Models\ProtectedArea;
-use ImetCore\Models\Imet\v1;
-use ImetCore\Models\Imet\v2;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Type\Chars;
 use ModularForms\Models\Form;
-use Carbon\Carbon;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\hasOne;
-use Illuminate\Http\Request;
 
-use Illuminate\Support\HigherOrderCollectionProxy;
-use Illuminate\Support\Str;
+use Override;
 use function session;
 
 /**
@@ -46,22 +43,31 @@ use function session;
  * @property string $version
  * @property string $wdpa_id
  * @property string $Year
- *
  */
 abstract class Imet extends Form
 {
-    const IMET_V1 = 'v1';
-    const IMET_V2 = 'v2';
-    const IMET_OECM = 'oecm';
+    const string IMET_V1 = 'v1';
+
+    const string IMET_V2 = 'v2';
+
+    const string IMET_OECM = 'oecm';
+
+    public static string $version;
 
     protected static ?string $schema = null;
+
     protected $table = 'forms';
+
     protected $primaryKey = 'FormID';
+
     public const CREATED_AT = 'UpdateDate';
+
     public const UPDATED_AT = 'UpdateDate';
+
     public const UPDATED_BY = 'UpdateBy';
 
     public static $sortBy = 'Year';
+
     public static $sortDirection = 'desc';
 
     public static ?array $modules = [];
@@ -69,33 +75,36 @@ abstract class Imet extends Form
     /**
      * Override: get the table name with schema
      */
+    #[Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(static::$schema, parent::getTable());
     }
 
     /**
      * Relation to Country
-     * @return hasOne
+     *
+     * @return HasOne<Country, Imet>
      */
-    public function country(): hasOne
+    public function country(): HasOne
     {
         return $this->hasOne(Country::class, 'iso3', 'Country');
     }
 
-
     /**
      * Mutator: ensure to retrieve in lowercase
-     * @param $value
-     * @return string
      */
     public function getLanguageAttribute($value): string
     {
-        return strtolower($value);
+        return strtolower((string) $value);
     }
 
     /**
      * Retrieve the IMET assessments list (clean, without statistics):  V1 & v2 merged
+     *
+     * @param  array<string>  $relations
+     * @param  array<string>  $countries
+     * @return Collection<int, v1\Imet|v2\Imet>
      */
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
@@ -103,155 +112,112 @@ abstract class Imet extends Form
             ? Role::allowedWdpas()
             : null;
 
-        $list_v1 = v1\Imet::query()
-            ->filterList($request->all())
-            ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries) {
-                if ($allowed_wdpas !== null) {
-                    $query->whereIn('wdpa_id', $allowed_wdpas);
-                }
-                if(count($countries)){
-                    $query->whereIn('Country', $countries);
-                }
-            })
-            ->get()
-            // Replacement for PostgreSQL unaccent() function
-            ->filter(function($item) use ($request){
-                if ($request->filled('search')){
-                    return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
-                        || Str::contains($item['wdpa_id'], $request->input('search'));
-                }
-               return true;
-            });
+        // Create a Collection merging v1 and v2 IMETs
+        $list = new Collection();
+        foreach ([v1\Imet::class, v2\Imet::class] as $imet_class) {
+            $list = $list->merge(
+                $imet_class::query()
+                    ->byRequestParams($request->all())
+                    ->with($relations)
+                    ->where(function ($query) use ($allowed_wdpas, $countries): void {
+                        if ($allowed_wdpas !== null) {
+                            $query->whereIn('wdpa_id', $allowed_wdpas);
+                        }
 
-        $list_v2 = v2\Imet::query()
-            ->filterList($request->all())
-            ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries) {
-                if ($allowed_wdpas !== null) {
-                    $query->whereIn('wdpa_id', $allowed_wdpas);
-                }
-                if(count($countries)){
-                    $query->whereIn('Country', $countries);
-                }
-            })
-            ->get()
-            // Replacement for PostgreSQL unaccent() function
-            ->filter(function($item) use ($request){
-                if ($request->filled('search')){
-                    return Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))
-                        || Str::contains($item['wdpa_id'], $request->input('search'));
-                }
-                return true;
-            });
+                        if ($countries !== []) {
+                            $query->whereIn('Country', $countries);
+                        }
+                    })
+                    ->get()
+                    // Replacement for PostgreSQL unaccent() function
+                    ->filter(function ($item) use ($request): bool {
+                        if ($request->filled('search')) {
+                            if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
+                                return true;
+                            }
 
-        return $list_v1->merge($list_v2);
-    }
+                            return Str::contains($item['wdpa_id'], $request->input('search'));
+                        }
 
-    /**
-     * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
-     *
-     * @param Request $request
-     * @return mixed
-     */
-    public static function get_assessments_list_with_extras(Request $request)
-    {
-        $hasDuplicates = static::foundDuplicates();
-        $list = static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function ($item)  use ($hasDuplicates) {
-
-            // Add encoders
-            $item->encoders_responsibles = [
-                'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
-                'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
-                'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),
-            ];
-
-            // Add radar
-            $item['assessment_radar'] = ImetScores::get_radar($item, true);
-
-            // Non WDPA
-            if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
-                $item->wdpa_id = null;
-            }
-
-            // Last IMET update
-            $item['last_update'] = $item->getLastUpdate();
-
-            // has duplicates
-            $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
-
-            return $item;
-        })
-            ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
+                        return true;
+                    })
+            );
+        }
 
         return $list;
     }
 
     /**
-     * Common search filters with wdpa
-     * @param Builder<static> $query
-     * @param array<string, scalar> $params
+     * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
      */
-    #[Scope]
-    public function commonSearchWithWdpa(Builder $query, array $params): void
+    public static function get_assessments_list_with_extras(Request $request): Collection
     {
-        $this->commonFilters($query, $params);
-        if (array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
-            $query->where('wdpa_id', $params['wdpa']);
-        }
+        $hasDuplicates = static::foundDuplicates();
+
+        return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
+            ->map(function (v1\Imet|v2\Imet $item) use ($hasDuplicates): v1\Imet|v2\Imet {
+
+                // Add encoders
+                $item['encoders_responsibles'] = [
+                    'encoders' => array_values($item->encoder->flatten()->unique()->toArray()),
+                    'internal' => array_values($item->responsible_interviewers->flatten()->unique()->toArray()),
+                    'external' => array_values($item->responsible_interviewees->flatten()->unique()->toArray()),
+                ];
+
+                // Add radar
+                $item['assessment_radar'] = ImetScores::get_radar($item, true);
+
+                // Non WDPA
+                if (ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
+                    $item->wdpa_id = null;
+                }
+
+                // Last IMET update
+                $item['last_update'] = $item->getLastUpdate();
+
+                // has duplicates
+                $item['has_duplicates'] = in_array($item->getKey(), $hasDuplicates);
+
+                return $item;
+            })
+            ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
     }
 
-    /**
-     * Common method to use it in various searches queries
-     * @param Builder<static> $query
-     * @param array<string, scalar> $params
-     */
-    #[Scope]
-    private function commonFilters(Builder $query, array $params): void
+    #[Scope, Override]
+    protected function byRequestParams(Builder $query, array $params): void
     {
-        if (array_key_exists('country', $params) && $params['country'] !== null) {
-            $query->where('Country', $params['country']);
+        if(array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
+            $params['wdpa_id'] = $params['wdpa'];
         }
-        if (array_key_exists('year', $params) && $params['year'] !== null) {
-            $query->where('Year', $params['year']);
-        }
-        if (array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null) {
-            $query->where('wdpa_id', $params['wdpa_id']);
-        }
-    }
 
-    /**
-     * Override filterList()
-     * @
-     */
-    #[Scope]
-    public function filterList(Builder $query, array $params): void
-    {
-        // filters
-        $this->commonFilters($query, $params);
-        $query->where('version', static::version);
-
-        // sort
-        $query->orderBy(static::$sortBy, static::$sortDirection)
+        // filters & sort
+        $query
+            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params) {
+                $q->where('wdpa_id', $params['wdpa_id']);
+            })
+            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params) {
+                $q->where('Year', $params['year']);
+            })
+            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params) {
+                $q->where('Country', $params['country']);
+            })
+            ->where('version', static::$version)
+            ->orderBy(static::$sortBy, static::$sortDirection)
             ->orderBy('name', 'desc');
     }
 
     /**
      * Check and add missing Pa data (country, wdpa_id, pa_name) to form
-     *
-     * @return void
      */
-    public static function checkMissingPaData()
+    public static function checkMissingPaData(): void
     {
-        static::where('Country', null)
+        static::query()->where('Country', null)
             ->orWhere('wdpa_id', null)
             ->orWhere('name', null)
             ->get()
-            ->map(function ($imet) {
-                /** @var Imet $imet */
+            ->map(function (Imet $imet): void {
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
-                    ? ProtectedAreaNonWdpa::find($imet->wdpa_id)
+                    ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
                     : ProtectedArea::getByWdpa($imet->wdpa_id);
                 $imet->Country = $pa->country;
                 $imet->name = $pa->name;
@@ -261,27 +227,21 @@ abstract class Imet extends Form
 
     /**
      * Retrieve form language
-     *
-     * @param $form_id
-     * @return mixed
      */
-    public static function getLanguage($form_id)
+    public static function getLanguage(string $form_id)
     {
-        $session_key = 'imet_language_' . $form_id;
+        $session_key = 'imet_language_'.$form_id;
         $language = session($session_key, null);
-        if ($language === null || $language === "") {
-            $language = strtolower(static::find($form_id)->language);
+        if ($language === null || $language === '') {
+            $language = strtolower(static::query()->find($form_id)->language);
             session([$session_key => $language]);
         }
+
         return $language;
     }
 
     /**
      * Retrieve the IMET responsible
-     *
-     * @param $form_id
-     * @param $version
-     * @return array
      */
     public static function getResponsibles($form_id, $version): array
     {
@@ -298,39 +258,36 @@ abstract class Imet extends Form
         return [
             'encoders' => $encoders,
             'internal' => $internal,
-            'external' => $external
+            'external' => $external,
         ];
     }
 
     /**
      * Retrieve the IMET version
-     *
-     * @param $form_id
-     * @return HigherOrderCollectionProxy|mixed|string|null
      */
     public static function getVersion($form_id)
     {
-        $form = static::find($form_id);
+        $form = static::query()->find($form_id);
+
         return $form ? $form->version : null;
     }
 
     /**
      * Retrieve specific fields and return them in different arrays in an array
      *
-     * @param string[] $fields
-     * @return array
+     * @param  string[]  $fields
      */
     public static function getFieldsSplitToArrays(array $fields = ['Country', 'Year', 'wdpa_id', 'FormID']): array
     {
 
-        $getRecords = static::select($fields)
+        $getRecords = static::query()->select($fields)
             ->distinct()
             ->get()
             ->toArray();
 
         $records = [];
-        foreach ($getRecords as $key => $field) {
-            foreach ($fields as $k => $f) {
+        foreach ($getRecords as $field) {
+            foreach ($fields as $f) {
                 $records[$f][$field[$f]] = $field[$f];
             }
         }
@@ -339,62 +296,44 @@ abstract class Imet extends Form
     }
 
     /**
-     * Retrieve an array of distinct values for the given field
-     *
-     * @param string $field
-     * @return array
-     */
-    private static function getDistinctField(string $field): array
-    {
-        return static::select($field)
-            ->distinct()
-            ->orderBy($field)
-            ->get()
-            ->pluck($field)
-            ->toArray();
-    }
-
-    /**
-     * @return array
-     * @deprecated
-     * Retrieve years for existing IMETs
-     *
+     * Retrieve an array of available years
      */
     public static function getAvailableYears(): array
     {
-        return static::getDistinctField('Year');
+        return static::query()->select('Year')
+            ->distinct()
+            ->orderBy('Year')
+            ->get()
+            ->pluck('Year')
+            ->toArray();
     }
 
     /**
      * Retrieve protected area data
      *
-     * @param $wdpa_id
      * @return ProtectedAreaNonWdpa|ProtectedArea
      */
     public static function getProtectedArea($wdpa_id)
     {
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
-            $pa = ProtectedAreaNonWdpa::find($wdpa_id);
+            $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($wdpa_id);
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
             $pa->iucn_category = null;
-            $pa->creation_date = $pa->creation_date ?? null;
+            $pa->creation_date ??= null;
         } else {
             $pa = ProtectedArea::getByWdpa($wdpa_id);
         }
+
         return $pa;
     }
 
-
     /**
      * Import form from array
-     *
-     * @param $data
-     * @return array
      */
-    public static function importForm($data)
+    public static function importForm(array $data): int
     {
-        if (!array_key_exists('wdpa_id', $data) || $data['wdpa_id'] === null) {
+        if (! array_key_exists('wdpa_id', $data) || $data['wdpa_id'] === null) {
             $pa = ProtectedArea::getByGlobalId($data['protected_area_global_id']);
         } else {
             $pa = static::getProtectedArea($data['wdpa_id']);
@@ -413,18 +352,14 @@ abstract class Imet extends Form
         $form->wdpa_id = $pa->wdpa_id;
         $form->Country = $pa->country;
         $form->save();
+
         return $form->getKey();
     }
 
     /**
      * Import all modules from records array
-     *
-     * @param $records
-     * @param $formID
-     * @param null $imet_version
-     * @return array
-     * @throws FileNotFoundException
      */
+    #[Override]
     public static function importModules($records, $formID, $imet_version = null): array
     {
         $records = static::upgradeModules($records, $imet_version);
@@ -438,17 +373,14 @@ abstract class Imet extends Form
                 }
             }
         }
+
         return $modules_imported;
     }
 
     /**
      * Upgrade modules from previous versions
-     *
-     * @param $data
-     * @param null $imet_version
-     * @return array
      */
-    public static function upgradeModules($data, $imet_version = null): array
+    public static function upgradeModules(array $data, $imet_version = null): array
     {
         $upgraded_data = [];
         /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
@@ -458,60 +390,55 @@ abstract class Imet extends Form
                     = $module_class::upgradeModuleRecords($data[$module_class::getShortClassName()], $imet_version);
             }
         }
+
         return $upgraded_data;
     }
 
     /**
      * Generate a filename for exporting form
-     *
-     * @param $extension
-     * @return string
      */
-    public function filename($extension): string
+    public function filename(string $extension): string
     {
         $name = Chars::clean(Chars::replaceAccents($this->name));
-        $now = Carbon::now()->format('Y-m-d');
+        $now = Date::now()->format('Y-m-d');
 
-        $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '_' . $this->wdpa_id;
+        $wdpa_id = ProtectedAreaNonWdpa::isNonWdpa($this->wdpa_id) ? '' : '_'.$this->wdpa_id;
 
-        return 'IMET' .
-            $wdpa_id .
-            '-' . $this->Year .
-            '-' . $name .
-            '-' . $this->FormID .
-            '_' . $now .
-            '.' . $extension;
+        return 'IMET'.
+            $wdpa_id.
+            '-'.$this->Year.
+            '-'.$name.
+            '-'.$this->FormID.
+            '_'.$now.
+            '.'.$extension;
     }
 
     /**
      * Get the list of duplicates IMETs (same PA and year)
-     *
-     * @return array
      */
     public function getDuplicates(): array
     {
-        $query = static::select('FormID')
+        $query = static::query()->select('FormID')
             ->where($this->getKeyName(), '!=', $this->getKey())
             ->where('version', $this->version)
             ->where('Year', $this->Year)
             ->where('wdpa_id', $this->wdpa_id);
+
         return $query->get()->pluck('FormID')->toArray();
     }
 
     /**
      *  Get the list of IMET ids which have duplicates (same PA and year)
-     *
-     * @return array
      */
     public static function foundDuplicates(): array
     {
         $table = (new static)->getTable();
 
-        $duplicates_query = static::select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
+        $duplicates_query = static::query()->select('Year', 'wdpa_id', 'version', DB::raw('COUNT(*) as count'))
             ->groupBy('Year', 'wdpa_id', 'version')
             ->having(DB::raw('COUNT(*)'), '>', 1);
 
-        return static::joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table){
+        return static::query()->joinSub($duplicates_query, 'dp', function (JoinClause $join) use ($table): void {
             $join->on($table.'.Year', '=', 'dp.Year')
                 ->on($table.'.wdpa_id', '=', 'dp.wdpa_id')
                 ->on($table.'.version', '=', 'dp.version');
@@ -522,35 +449,21 @@ abstract class Imet extends Form
 
     /**
      * Return array keys of modules
-     *
-     * @return array
      */
     public static function getModulesKeys(): array
     {
         return array_keys(static::$modules);
     }
 
-    /**
-     * @deprecated Replace with get_assessments_list()
-     *
-     * @param Request $request
-     * @param array $relations
-     * @return mixed
-     */
+    #[\Deprecated(message: 'Replace with get_assessments_list()')]
     protected static function retrieve_list(Request $request, array $relations = [])
     {
         return static::get_assessments_list($request, $relations);
     }
 
-    /**
-     * @deprecated Replace with get_assessments_list_with_extras()
-     *
-     * @param Request $request
-     * @return mixed
-     */
+    #[\Deprecated(message: 'Replace with get_assessments_list_with_extras()')]
     protected static function get_list(Request $request)
     {
         return static::get_assessments_list_with_extras($request);
     }
-
 }

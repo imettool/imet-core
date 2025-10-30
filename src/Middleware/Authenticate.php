@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,18 +19,16 @@ use ImetCore\Helpers\ImetEnv;
 
 class Authenticate extends Middleware
 {
-
     /**
      * Create a new middleware instance.
      */
     public function __construct(Auth $auth)
     {
         // Force Authentication of user 0 in DEV and offline environments
-        if((ImetEnv::isDevEnv() || ImetEnv::isImetOfflineEnv()) && !AuthFacade::check()){
+        if ((ImetEnv::isDevEnv() || ImetEnv::isImetOfflineEnv()) && ! AuthFacade::check()) {
             AuthFacade::loginUsingId(0, true);
         }
 
         parent::__construct($auth);
     }
-
 }

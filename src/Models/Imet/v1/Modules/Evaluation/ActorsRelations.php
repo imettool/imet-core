@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ActorsRelations extends Modules\Component\ImetModule_Eval
+final class ActorsRelations extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_actors_relations';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR13';
@@ -34,7 +36,7 @@ class ActorsRelations extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Activity',
-            'values' => trans('imet-core::v1_evaluation.ActorsRelations.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.ActorsRelations.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.ActorsRelations.module_info_EvaluationQuestion');
@@ -46,16 +48,14 @@ class ActorsRelations extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_ActorsRelations',
             'fields' => [
-                'Activity', 'EvaluationScore', 'Percentage', 'Comments'
-            ]
+                'Activity', 'EvaluationScore', 'Percentage', 'Comments',
+            ],
         ];
     }
 }

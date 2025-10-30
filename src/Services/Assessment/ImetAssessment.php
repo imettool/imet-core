@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,14 +12,14 @@
 
 namespace ImetCore\Services\Assessment;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v1\Imet as ImetV1;
 use ImetCore\Models\Imet\v2\Imet as ImetV2;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Services\Scores\Labels;
-use Illuminate\Database\Eloquent\Collection;
 
-class ImetAssessment
+final class ImetAssessment
 {
     use Labels;
 
@@ -27,27 +28,29 @@ class ImetAssessment
      */
     private static function getAsModel(ImetV1|ImetV2|int|string $imet): ImetV1|ImetV2
     {
-        if(is_int($imet) or is_string($imet)) {
-            $imet_model = ImetV2::find($imet);
-            return $imet_model->version===ImetV2::version
+        if (is_int($imet) || is_string($imet)) {
+            $imet_model = ImetV2::query()->find($imet);
+
+            return $imet_model->version === ImetV2::$version
                 ? $imet_model
-                : ImetV1::find($imet);
+                : ImetV1::query()->find($imet);
         }
+
         return $imet;
     }
 
     /**
      * Retrieve IMET info and scores
      */
-    public static function getAssessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true): array
+    public static function getAssessment(ImetV1|ImetV2|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
-            ? ImetScores::get_all($imet)
+            ? ImetScores::get_all($imet, refresh_cache: $refresh_cache)
             : (
                 $step == _Scores::RADAR_SCORES
-                    ? ImetScores::get_radar($imet)
-                    : ImetScores::get_step($imet, $step)
+                    ? ImetScores::get_radar($imet, refresh_cache: $refresh_cache)
+                    : ImetScores::get_step($imet, $step, refresh_cache: $refresh_cache)
             );
 
         $result = [
@@ -56,11 +59,11 @@ class ImetAssessment
             'iso3' => $imet->Country,
             'name' => $imet->name,
             'version' => $imet->version,
-            'scores' => $scores
+            'scores' => $scores,
         ];
 
         return $with_labels
-            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
+            ? array_merge($result, ['labels' => self::get_scores_labels($imet->version)])
             : $result;
     }
 
@@ -69,7 +72,7 @@ class ImetAssessment
      */
     public static function getLast($wdpa_id): ?ImetV2
     {
-        return ImetV2::where('wdpa_id', $wdpa_id)
+        return ImetV2::query()->where('wdpa_id', $wdpa_id)
             ->orderBy('Year', 'DESC')
             ->first();
     }
@@ -79,9 +82,8 @@ class ImetAssessment
      */
     public static function getAvailableYears($wdpa_id): Collection
     {
-        return ImetV2
-            ::where('wdpa_id', $wdpa_id)
-            ->orderBy('Year','DESC')
+        return ImetV2::query()->where('wdpa_id', $wdpa_id)
+            ->orderBy('Year', 'DESC')
             ->get();
     }
 
@@ -90,17 +92,17 @@ class ImetAssessment
      */
     public static function getAssessmentByCountry($country, bool $with_scores = true): array
     {
-        return ImetV2::select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
+        return ImetV2::query()->select(['FormID', 'wdpa_id', 'Country', 'Year', 'name', 'language', 'version'])
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()
-            ->map(function ($item) use($with_scores) {
-                if($with_scores) {
+            ->map(function (array $item) use ($with_scores): \stdClass {
+                if ($with_scores) {
                     $item['scores'] = ImetScores::get_radar($item, true);
                 }
+
                 return $item;
             })
             ->toArray();
     }
-
 }

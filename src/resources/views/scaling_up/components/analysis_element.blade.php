@@ -1,3 +1,9 @@
+<?php
+/** @var string $name */
+/** @var string $sub_class */
+/** @var ?bool $dontShowTitle */
+?>
+
 <div class="max-w-full m-auto" v-for="(value, index) in data.props" :id="'{{$name}}-'+index">
 
     <div v-for="(section_data, section) in value" :id="'{{$name}}-'+section">

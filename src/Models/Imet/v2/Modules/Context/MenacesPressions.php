@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,12 +14,10 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-class MenacesPressions extends Modules\Component\ImetModule
+final class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'context_menaces_pressions';
 
@@ -32,19 +31,19 @@ class MenacesPressions extends Modules\Component\ImetModule
     ];
 
     public static $groupsByCategory = [
-            ['group0'],
-            ['group1', 'group2', 'group3', 'group4', 'group5'],
-            ['group6'],
-            ['group7'],
-            ['group8', 'group9', 'group10', 'group11'],
-            ['group12'],
-            ['group13', 'group14', 'group15'],
-            ['group16'],
-            ['group17', 'group18', 'group19', 'group20', 'group21', 'group22'],
-            ['group23'],
-            ['group24'],
-            ['group25'],
-        ];
+        ['group0'],
+        ['group1', 'group2', 'group3', 'group4', 'group5'],
+        ['group6'],
+        ['group7'],
+        ['group8', 'group9', 'group10', 'group11'],
+        ['group12'],
+        ['group13', 'group14', 'group15'],
+        ['group16'],
+        ['group17', 'group18', 'group19', 'group20', 'group21', 'group22'],
+        ['group23'],
+        ['group24'],
+        ['group25'],
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -99,7 +98,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group2' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group2'),
                 'group3' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group3'),
                 'group4' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group4'),
-//                'group5' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group5'),
+                //                'group5' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group5'),
                 'group6' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group6'),
                 'group7' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group7'),
                 'group8' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group8'),
@@ -109,7 +108,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group12' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group12'),
                 'group13' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group13'),
                 'group14' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group14'),
-//                'group15' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group15'),
+                //                'group15' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group15'),
                 'group16' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group16'),
                 'group17' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group17'),
                 'group18' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group18'),
@@ -120,7 +119,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group23' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group23'),
                 'group24' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group24'),
                 'group25' => trans('imet-core::v2_context.MenacesPressions.predefined_values.group25'),
-            ]
+            ],
         ];
         $this->ratingLegend = trans('imet-core::v2_context.MenacesPressions.ratingLegend');
         $this->module_info = trans('imet-core::v2_context.MenacesPressions.module_info');
@@ -128,61 +127,63 @@ class MenacesPressions extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $records, $definitions): array
+    #[\Override]
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
+
         return $vue_data;
     }
 
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
-        $record = static::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
-        $record = static::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
-        $record = static::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
-        $record = static::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
+        $record = self::replacePredefinedValue($record, 'Value', 'Other: Increased rainfall and seasonal changes', 'Increased rainfall and seasonal changes');
+        $record = self::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
+        $record = self::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
+        $record = self::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
+        $record = self::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
+        $record = self::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
 
-        return $record;
+        return self::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');
     }
 
-    public static function getStats($form_id)
+    public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
 
         // ### row stats ###
         $row_stats = [];
-        foreach ($records as $record){
+        foreach ($records as $record) {
             $valuesByRecord = [];
-            foreach ($fields as $field){
+            foreach ($fields as $field) {
                 $valuesByRecord[] = $record[$field];
             }
-            $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
+
+            $row_stats[$record[self::$group_key_field]][] = self::calculateStats($valuesByRecord, true);
         }
 
         // ### group stats ###
         $group_stats = [];
-        foreach ($row_stats as $group=>$values){
-            $group_stats[$group] = static::calculateStats($values);
+        foreach ($row_stats as $group => $values) {
+            $group_stats[$group] = self::calculateStats($values);
         }
-
 
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupsByCategory as $index=>$groups){
+        foreach (self::$groupsByCategory as $index => $groups) {
             $valuesByCategory[$index] = [];
-            foreach ($groups as $group){
-                $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
+            foreach ($groups as $group) {
+                $valuesByCategory[$index][] = $group_stats[$group] ?? null;
             }
         }
-        foreach ($valuesByCategory as $values){
-            $stat = static::calculateStats($values);
-            $category_stats[] = $stat>0 ? round($stat*100/3,2): '';
+
+        foreach ($valuesByCategory as $values) {
+            $stat = self::calculateStats($values);
+            $category_stats[] = $stat > 0 ? round($stat * 100 / 3, 2) : '';
         }
 
         return [
@@ -191,31 +192,33 @@ class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    public static function calculateStats($values, $rows=false)
+    public static function calculateStats($values, $rows = false): ?float
     {
         $numCategories = 4;
         $prod = 1;
         $count = 0;
 
-        foreach ($values as $index=>$value){
-            if($value!==null){
-                if($index===3 && $rows===true){
-                    $prod *= ($numCategories+1)/2 - $value*($numCategories-1)/4;
+        foreach ($values as $index => $value) {
+            if ($value !== null) {
+                if ($index === 3 && $rows === true) {
+                    $prod *= ($numCategories + 1) / 2 - $value * ($numCategories - 1) / 4;
                 } else {
                     $prod *= $numCategories - $value;
                 }
+
                 $count++;
             }
         }
 
-        return $count>0
-            ? (4 - round(pow($prod, 1/($count)),2))
+        return $count > 0
+            ? (4 - round($prod ** (1 / $count), 2))
             : null;
     }
 
     public static function get_marine_predefined(): array
     {
-        $predefined = (new static())->predefined_values['values'];
+        $predefined = (new self)->predefined_values['values'];
+
         return [
             $predefined['group0'][4],
             $predefined['group0'][5],
@@ -231,55 +234,53 @@ class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new static())->module_groups;
+        $groups = (new self)->module_groups;
+
         return [
             $groups['group1'],
             $groups['group2'],
             $groups['group3'],
             $groups['group8'],
             $groups['group9'],
-            $groups['group10']
+            $groups['group10'],
         ];
     }
 
     public static function get_marine_groups(): array
     {
-        $groups = (new static())->module_groups;
+        $groups = (new self)->module_groups;
+
         return [
             $groups['group4'],
-            $groups['group11']
+            $groups['group11'],
         ];
     }
 
-    public static function injectGroupTitle($view, $module_key, $beforeGroup, $title): string
+    public static function injectGroupTitle($view, string $module_key, string $beforeGroup, string $title): string
     {
-        $searchFor = '<h5 class="highlight group_title_' . $module_key . '_' . $beforeGroup . '"';
-        $textToAdd = '<h3 class="group_title_' . $module_key . '_' . $beforeGroup . '">' . $title . '</h3>';
-        return str_replace($searchFor, $textToAdd . $searchFor, $view);
+        $searchFor = '<h5 class="highlight group_title_'.$module_key.'_'.$beforeGroup.'"';
+        $textToAdd = '<h3 class="group_title_'.$module_key.'_'.$beforeGroup.'">'.$title.'</h3>';
+
+        return str_replace($searchFor, $textToAdd.$searchFor, $view);
     }
 
     /**
      * Inject
-     *
-     * @param $view
-     * @param $parent
-     * @param $groups
-     * @return string
      */
-    public static function injectShowHideCategories($view, $parent, $groups): string
+    public static function injectShowHideCategories($view, string $parent, $groups): string
     {
         $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
-        $vueIfDirective = 'isSubCategoryVisibly(' . $parent . ')';
+        $vueIfDirective = 'isSubCategoryVisibly('.$parent.')';
         $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
-        foreach ($groups as $i => $group) {
-            foreach($elements as $k => $element) {
-                $dom->filter($k . '['.$element.'*="_' . $group . '"]')->setAttribute('v-if', $vueIfDirective);
+        foreach ($groups as $group) {
+            foreach ($elements as $k => $element) {
+                $dom->filter($k.'['.$element.'*="_'.$group.'"]')->setAttribute('v-if', $vueIfDirective);
             }
-            $dom->filter('table[id*="_' . $group . '"] + br')->setAttribute('v-if', $vueIfDirective);
-            $dom->filter('table[id*="_' . $group . '"] + br + br')->setAttribute('v-if', $vueIfDirective);
+
+            $dom->filter('table[id*="_'.$group.'"] + br')->setAttribute('v-if', $vueIfDirective);
+            $dom->filter('table[id*="_'.$group.'"] + br + br')->setAttribute('v-if', $vueIfDirective);
         }
 
         return $dom->saveHTML();
     }
-
 }

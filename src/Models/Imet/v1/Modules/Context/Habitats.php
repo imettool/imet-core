@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Habitats extends Modules\Component\ImetModule
+final class Habitats extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.3.1';
@@ -35,7 +37,6 @@ class Habitats extends Modules\Component\ImetModule
             ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Sectors')],
         ];
 
-
         $this->module_info = trans('imet-core::v1_context.Habitats.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.Habitats.ratingLegend');
 
@@ -44,8 +45,6 @@ class Habitats extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -58,8 +57,8 @@ class Habitats extends Modules\Component\ImetModule
                 'DesiredConservationStatus',
                 'Trend',
                 'Reliability',
-                'Sectors'
-            ]
+                'Sectors',
+            ],
         ];
     }
 }

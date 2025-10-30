@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,13 +17,12 @@ use ImetCore\Helpers\Database;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'countries'), function (Blueprint $table) {
+        Schema::create(Database::getTable(Database::COMMON_SCHEMA, 'countries'), function (Blueprint $table): void {
             $table->text('iso2')->nullable();
             $table->text('iso3')->primary();
             $table->integer('iso')->nullable();

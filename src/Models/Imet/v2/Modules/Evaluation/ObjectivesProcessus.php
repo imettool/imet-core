@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,9 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-
 use ImetCore\Models\User\Role;
 
-class ObjectivesProcessus extends _Objectives
+final class ObjectivesProcessus extends _Objectives
 {
     protected $table = 'eval_objectives_processus';
 

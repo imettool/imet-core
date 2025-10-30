@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,27 +12,27 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class ImportanceHabitats extends Modules\Component\ImetModule_Eval
+final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c14';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
         [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.3';
@@ -56,37 +57,32 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
     /**
      * Override
-     * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    #[\Override]
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
-        if($record['EvaluationScore']!==null
-            || $record['EvaluationScore2']!==null
-            || $record['IncludeInStatistics']!==null
-            || $record['Comments']!==null
-        ){
-            $isEmpty = false;
+        if ($record['EvaluationScore'] !== null
+            || $record['EvaluationScore2'] !== null
+            || $record['IncludeInStatistics'] !== null
+            || $record['Comments'] !== null) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
-
 }

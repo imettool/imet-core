@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,10 +13,10 @@
 return [
 
     'languages' => [
-        'fr'        => 'French',
-        'en'        => 'English',
-        'sp'        => 'Spanish',
-        'pt'        => 'Portuguese'
+        'fr' => 'French',
+        'en' => 'English',
+        'sp' => 'Spanish',
+        'pt' => 'Portuguese',
     ],
 
     'NonWdpaPaDef' => [
@@ -27,13 +28,13 @@ return [
         'Regional',
         'Nacional',
         'Internacional',
-        'Não aplicável'
+        'Não aplicável',
     ],
 
     'NonWdpaTypology' => [
         '2' => 'principalmente ou inteiramente marinho',
         '1' => 'costeiro: marinho e terrestre',
-        '0' => 'principalmente ou totalmente terrestre'
+        '0' => 'principalmente ou totalmente terrestre',
     ],
 
     'NonWdpaStatus' => [
@@ -41,7 +42,7 @@ return [
         'Inscrita',
         'Adotada',
         'Designada',
-        'Estabelecida'
+        'Estabelecida',
     ],
 
     'OwnershipType' => [
@@ -57,23 +58,23 @@ return [
     ],
 
     'PaType' => [
-        'terrestrial'           => 'terrestre',
-        'marine_and_coastal'    => 'Marinho e costeiro',
-        'oecm_terrestrial'      => 'Conserved area - Terrestrial',
-        'oecm_marine'           => 'Conserved area - Marine',
-        'icca_terrestrial'      => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
-        'icca_marine'           => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine'
+        'terrestrial' => 'terrestre',
+        'marine_and_coastal' => 'Marinho e costeiro',
+        'oecm_terrestrial' => 'Conserved area - Terrestrial',
+        'oecm_marine' => 'Conserved area - Marine',
+        'icca_terrestrial' => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Terrestrial',
+        'icca_marine' => 'Territories and areas conserved by indigenous peoples and local communities (ICCAs) - Marine',
     ],
 
     'IUCNDesignation' => [
-        'IA'    => 'IA Reserva Natural Estricta',
-        'IB'    => 'IB Área Selvagem ',
-        'II'    => 'II Parque Nacional',
-        'III'   => 'III Monumento ou Característica Natural ',
-        'IV'    => 'IV Área de Gestão de Habitats ou Espécies',
-        'V'     => 'V Paisagem Protegida ',
-        'VI'    => 'VI Área Protegida com Utilização Sustentável de Qescurces Naturais',
-        'not_reported' => 'Não reportado'
+        'IA' => 'IA Reserva Natural Estricta',
+        'IB' => 'IB Área Selvagem ',
+        'II' => 'II Parque Nacional',
+        'III' => 'III Monumento ou Característica Natural ',
+        'IV' => 'IV Área de Gestão de Habitats ou Espécies',
+        'V' => 'V Paisagem Protegida ',
+        'VI' => 'VI Área Protegida com Utilização Sustentável de Qescurces Naturais',
+        'not_reported' => 'Não reportado',
     ],
 
     'MarineDesignation' => [
@@ -100,7 +101,7 @@ return [
         'Area húmida',
         'Mangais',
         'Costa',
-        'Mar/Oceano'
+        'Mar/Oceano',
     ],
 
     'InstitutionType' => [
@@ -112,7 +113,7 @@ return [
         'Privado',
         'Projecto / Programa',
         'Público (Estado)',
-        'Outro'
+        'Outro',
     ],
 
     'PartnershipsType' => [
@@ -125,7 +126,7 @@ return [
         'serviço de entrega',
         'concessão (exemplo, turismo)',
         'colaboração',
-        'PPP (Parceria/Pública/Privada)'
+        'PPP (Parceria/Pública/Privada)',
     ],
 
     'GovernanceType' => [
@@ -135,14 +136,14 @@ return [
         'Áreas Marítimas Geridas Localmente (Locally Managed Marine Areas - LMMA)',
         'Áreas Conservadas pela Comunidade Indígena (Indigenous Community Conserved Areas - ICCAs)',
         'Áreas Protegidas e Conservadas (Protected and Conserved Areas-PCAs)',
-        'Outros'
+        'Outros',
     ],
 
     'SubGovernanceModel' => [
         'Governação colaborativa',
         'Governação conjunta',
         'Outros',
-        'Governação transfronteiriça'
+        'Governação transfronteiriça',
     ],
 
     'TerrestrialOrMarine' => [
@@ -166,44 +167,44 @@ return [
         'Areas humidas de Ramsar',
         'Espécies de grade',
         'UNESCO MAB',
-        'Sítios de Património Mundial'
+        'Sítios de Património Mundial',
     ],
 
     'SpeciesReliability' => [
-        'Alta', 'Média', 'Pobre'
+        'Alta', 'Média', 'Pobre',
     ],
 
     'Habitats' => [
-        'artificial'                => 'Artificial - plantations, gardens, pasturelands',
-        'desert'                    => 'Desert – hot, cold, temperate',
-        'forest_temperate_boreal'   => 'Forest - boreal and temperate',
-        'forest_dry'                => 'Forest - subtropical/tropical dry',
-        'forest_moist_lowland'      => 'Forest - subtropical/tropical moist lowland',
-        'forest_moist_montane'      => 'Forest - subtropical/tropical moist montane',
-        'grassland_dry_moist'       => 'Grassland - subtropical/tropical dry or moist',
-        'grassland_temperate'       => 'Grassland - temperate',
-        'marine_coastal'            => 'Marine - coastal',
-        'marine_coral_reefs'        => 'Marine - coral reefs',
-        'marine_intertidal'         => 'Marine - intertidal',
-        'marine_oceanic'            => 'Marine - oceanic and deep ocean',
-        'marine_pelagic'            => 'Marine - pelagic',
-        'marine_subtidal'           => 'Marine - subtidal',
-        'rocky'                     => 'Rocky areas - mountains, cliffs',
-        'savanna_dry'               => 'Savanna - dry',
-        'savanna_moist'             => 'Savanna - moist',
+        'artificial' => 'Artificial - plantations, gardens, pasturelands',
+        'desert' => 'Desert – hot, cold, temperate',
+        'forest_temperate_boreal' => 'Forest - boreal and temperate',
+        'forest_dry' => 'Forest - subtropical/tropical dry',
+        'forest_moist_lowland' => 'Forest - subtropical/tropical moist lowland',
+        'forest_moist_montane' => 'Forest - subtropical/tropical moist montane',
+        'grassland_dry_moist' => 'Grassland - subtropical/tropical dry or moist',
+        'grassland_temperate' => 'Grassland - temperate',
+        'marine_coastal' => 'Marine - coastal',
+        'marine_coral_reefs' => 'Marine - coral reefs',
+        'marine_intertidal' => 'Marine - intertidal',
+        'marine_oceanic' => 'Marine - oceanic and deep ocean',
+        'marine_pelagic' => 'Marine - pelagic',
+        'marine_subtidal' => 'Marine - subtidal',
+        'rocky' => 'Rocky areas - mountains, cliffs',
+        'savanna_dry' => 'Savanna - dry',
+        'savanna_moist' => 'Savanna - moist',
         'shrubland_temperate_boreal' => 'Shrubland - boreal and temperate',
-        'shrubland_dry_moist'       => 'Shrubland - Subtropical/tropical dry or moist',
-        'shrubland_high_altitude'   => 'Shrubland - Subtropical/tropical high altitude',
-        'swamp'                     => 'Swamp - subtropical/tropical',
-        'wetlands_lakes'            => 'Wetlands (inland) - lake',
-        'wetlands_rivers'           => 'Wetlands (inland) - rivers, streams, waterfalls',
-        'wetlands_shrub'            => 'Wetlands (inland) - shrub dominated wetlands',
+        'shrubland_dry_moist' => 'Shrubland - Subtropical/tropical dry or moist',
+        'shrubland_high_altitude' => 'Shrubland - Subtropical/tropical high altitude',
+        'swamp' => 'Swamp - subtropical/tropical',
+        'wetlands_lakes' => 'Wetlands (inland) - lake',
+        'wetlands_rivers' => 'Wetlands (inland) - rivers, streams, waterfalls',
+        'wetlands_shrub' => 'Wetlands (inland) - shrub dominated wetlands',
     ],
 
     'EcosystemServicesImportance' => [
         'null' => null,        // need to force string keys
         '0' => 'Local',
         '1' => 'Maior',
-    ]
+    ],
 
 ];

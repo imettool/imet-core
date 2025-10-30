@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,19 +16,22 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
 /**
- * @property $titles
+ * @property string[] $titles
  */
-class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
+final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2.1';
@@ -47,9 +51,10 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
@@ -57,45 +62,40 @@ class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
-        foreach($records as $idx => $record){
-            if(array_key_exists($record['Stakeholder'], $weight)){
-                $records[$idx]['Weight'] = $weight[$record['Stakeholder']];
-            } else {
-                $records[$idx]['Weight'] = null;
-            }
+        foreach ($records as $idx => $record) {
+            $records[$idx]['Weight'] = $weight[$record['Stakeholder']] ?? null;
         }
 
         return collect($records)
             ->sortByDesc('Weight')
             ->values()
-            ->toArray();
+            ->all();
     }
 
-    public static function calculateRanking($form_id): array
+    public static function calculateRanking(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
 
         return collect($records)
-            ->map(function($item){
+            ->map(function (array $item): array {
                 $item['__score'] = $item['Weight'] !== null && $item['ConstraintLevel'] !== null
                     ? $item['ConstraintLevel'] * $item['Weight']
                     : null;
+
                 return $item;
             })
-            ->toArray();
+            ->all();
     }
-
-
 }

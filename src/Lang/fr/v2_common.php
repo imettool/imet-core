@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,19 +12,19 @@
 
 return [
 
-    'management'        => 'gestion des formulaires IMET (v2 - Consolidé)',
+    'management' => 'gestion des formulaires IMET (v2 - Consolidé)',
     'v2' => 'v2 - Consolidé',
 
     'steps' => [
-        'general_info'          => 'Informations générales sur l\'aire protégée',
-        'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',
-        'resources'             => 'Ressources humaines, financières et matérielles',
-        'key_elements'          => 'Eléments clés',
-        'threats'               => 'Pressions et menaces',
-        'climate'               => 'Changements climatiques et conservation',
-        'ecosystem_services'    => 'Services écosystémiques et dépendance des collectivités',
-        'objectives'            => 'Objectifs et Gestion',
-        'cross_analysis'  => 'Cross Analysis',
+        'general_info' => 'Informations générales sur l\'aire protégée',
+        'areas' => 'Superficies, limites et indice de forme, niveau de contrôle',
+        'resources' => 'Ressources humaines, financières et matérielles',
+        'key_elements' => 'Eléments clés',
+        'threats' => 'Pressions et menaces',
+        'climate' => 'Changements climatiques et conservation',
+        'ecosystem_services' => 'Services écosystémiques et dépendance des collectivités',
+        'objectives' => 'Objectifs et Gestion',
+        'cross_analysis' => 'Cross Analysis',
     ],
 
     'assessment' => [
@@ -39,6 +40,6 @@ return [
         'PRE' => 'Suivi et Recherche',
         'PRF' => 'Chang. Climatique et Serv. Écosystémiques',
 
-    ]
+    ],
 
 ];

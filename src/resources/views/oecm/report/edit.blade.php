@@ -1,17 +1,24 @@
 <?php
-/** @var \ImetCore\Models\Imet\oecm\Imet $item */
+/** @var Imet $item */
 /** @var array $scores */
 /** @var array $labels */
+/** @var array $key_elements_ecosystem_charts */
+/** @var array $key_elements_biodiversity_charts */
 /** @var array $key_elements_biodiversity */
 /** @var array $key_elements_ecosystem */
 /** @var array $report */
-/** @var array $wdpa_extent */
+/** @var array $report_schema */
 /** @var array $area */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
+/** @var Array $governance */
+/** @var Array $stake_analysis */
+
+use ImetCore\Models\Imet\oecm\Imet;
 ?>
 
 @include('imet-core::oecm.report.report', [
+    'item' => $item,
     'action' => 'edit',
     'scores' => $scores,
     'labels' => $labels,
@@ -21,6 +28,5 @@
     'report_schema' => $report_schema,
     'area' => $area,
     'show_non_wdpa' => $show_non_wdpa,
-    'non_wdpa' => $non_wdpa,
-    'type' => 'edit'
+    'non_wdpa' => $non_wdpa
 ])

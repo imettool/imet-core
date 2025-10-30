@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,15 +14,8 @@ namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use ImetCore\Helpers\ScalingUp\Common;
 
-class Scatter
+final class Scatter
 {
-    /**
-     * @param array $parameters
-     * @param array $assessments
-     * @param bool $not_grouped
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false, int $scaling_id = 0): array
     {
         $groups = [];
@@ -38,7 +32,7 @@ class Scatter
 
         foreach ($parameters as $form) {
             $form_ids[] = $form['id'];
-            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null, $form['id'], $form['wdpa_id']?? null];
+            $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null, $form['id'], $form['wdpa_id'] ?? null];
         }
 
         $indicator = Group::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
@@ -58,12 +52,14 @@ class Scatter
                     $group_color = $group[0] - 1;
                     $average[$group[1]]['color'] = $colors[$group_color] ?? $colors[9];
                 }
+
                 $average[$group[1]]['form_id'] = $group[3];
                 $average[$group[1]]['wdpa_id'] = $group[4];
                 $average[$group[1]]['legend_selected'] = true;
                 $i++;
             }
         }
+
         $final_average = [];
         $i = 0;
         foreach ($average as $key => $value) {
@@ -76,10 +72,10 @@ class Scatter
             $final_average[$i]['itemStyle']['borderColor'] = $value['color'];
             $final_average[$i]['itemStyle']['color'] = 'transparent';
             $final_average[$i]['itemStyle']['borderWidth'] = '4';
-            $final_average[$i]['label'] = ["position" => "inside",
-                "color" => $value['color'],
-                "backgroundColor" => "transparent",
-                "show" => true
+            $final_average[$i]['label'] = ['position' => 'inside',
+                'color' => $value['color'],
+                'backgroundColor' => 'transparent',
+                'show' => true,
             ];
             $i++;
         }

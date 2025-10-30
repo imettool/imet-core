@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementStaffCommunities extends Modules\Component\ImetModule
+final class ManagementStaffCommunities extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff_communities';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.3';
@@ -33,5 +35,4 @@ class ManagementStaffCommunities extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
 }

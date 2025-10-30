@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,54 +13,78 @@
 namespace ImetCore\Models;
 
 use Closure;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Locale;
-use ModularForms\Models\Utils\ProtectedArea as BaseProtectedArea;
-
 
 /**
  * Class ProtectedArea
  *
  * @property string $global_id
  * @property string $country
- * @property integer $wdpa_id
+ * @property int $wdpa_id
  * @property string $name
  * @property string $iucn_category
  * @property string $creation_date
  * @property numeric $area
- *
- * @package ImetCore\Models
  */
-class ProtectedArea extends BaseProtectedArea
+class ProtectedArea extends BaseModel
 {
-
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'protected_areas';
+
     public $primaryKey = 'global_id';
 
-    public const CREATED_AT = null;
-    public const UPDATED_AT = null;
-    public const UPDATED_BY = null;
-    public const CREATED_BY = null;
+    public $incrementing = false;       // required for textual primary_key
+
+    public $timestamps = false;
 
     /**
-     * Override: get the table name with schema
+     * Scope a query by search key
+     *
+     * @phpstan-param Builder<$this> $query
      */
-    public function getTable(): string
+    #[Scope]
+    protected function like(Builder $query, ?string $searchKey = null): void
     {
-        return Database::getTable(static::$schema, $this->table);
+        if($searchKey !== null && $searchKey !== ''){
+
+            if (is_numeric($searchKey)) {
+                $query->where('wdpa_id', $searchKey);
+
+            } else {
+
+                $like_operator = $this->getConnection()->getDriverName() == 'sqlite'
+                    ? 'LIKE'
+                    : '~~*'; // PostgreSQL case insensitive
+
+                $query->where('name', $like_operator, '%'.$searchKey.'%');
+            }
+        }
     }
 
     /**
-     * @deprecated
+     * Get by WDPA id
+     */
+    public static function getByWdpa(string $wdpa): static
+    {
+        return static::query()
+            ->where('wdpa_id', $wdpa)
+            ->firstOrFail();
+    }
+
+    /**
      * Get by global_id
      */
-    public static function getByGlobalId($global_id) : ?ProtectedArea
+    public static function getByGlobalId($global_id): ?ProtectedArea
     {
-        return static::where('global_id', '=', $global_id)
+        return static::query()
+            ->where('global_id', '=', $global_id)
             ->first();
     }
 
@@ -71,17 +96,17 @@ class ProtectedArea extends BaseProtectedArea
         $parsed_isos = [];
         foreach ($countries as $iso) {
             if (Str::contains($iso, ';')) {
-                foreach (explode(';', $iso) as $i) {
+                foreach (explode(';', (string) $iso) as $i) {
                     $parsed_isos[] = $i;
                 }
             } else {
                 $parsed_isos[] = $iso;
             }
         }
-        $parsed_isos = array_unique($parsed_isos);
-        $parsed_isos = array_values($parsed_isos);
 
-        return $parsed_isos;
+        $parsed_isos = array_unique($parsed_isos);
+
+        return array_values($parsed_isos);
     }
 
     /**
@@ -91,17 +116,18 @@ class ProtectedArea extends BaseProtectedArea
     {
         $iso3s = [];
 
-        ProtectedArea::select('country')
+        ProtectedArea::query()
+            ->select('country')
             ->distinct()
-            ->where(function ($query)  use ($custom_where){
-                if($custom_where !== null){
+            ->where(function ($query) use ($custom_where): void {
+                if ($custom_where instanceof Closure) {
                     $custom_where($query);
                 }
             })
             ->get()
             ->pluck('country')
             ->sort()
-            ->each(function($iso) use (&$iso3s){
+            ->each(function ($iso) use (&$iso3s): void {
                 $iso3s = array_merge($iso3s, explode(';', $iso));
             });
 
@@ -117,9 +143,10 @@ class ProtectedArea extends BaseProtectedArea
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
-        return Country::select(['iso3', 'iso2', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($countries){
-                if($countries!==null){
+        return Country::query()
+            ->select(['iso3', 'iso2', Country::labelKey()])
+            ->where(function ($query) use ($countries): void {
+                if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
                 }
             })
@@ -135,15 +162,15 @@ class ProtectedArea extends BaseProtectedArea
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::
-        where(function($query) use($search_key, $country){
-            $query = $query->like($search_key);
-            if($country != null){
-                $query->orWhere('country', 'LIKE', '%' . $country . '%');  // use LIKE for over-national WDPAs
-            }
-        })
-            ->where(function($query) use($allowed_wdpas){
-                if($allowed_wdpas !== null){
+        $protected_areas = self::query()
+            ->like($search_key)
+            ->where(function (Builder $query) use ($country): void {
+                if ($country != null) {
+                    $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
+                }
+            })
+            ->where(function (Builder $query) use ($allowed_wdpas): void {
+                if ($allowed_wdpas !== null) {
                     $query->whereIn('wdpa_id', $allowed_wdpas);
                 }
             })
@@ -156,20 +183,37 @@ class ProtectedArea extends BaseProtectedArea
         );
 
         // Retrieve country names
-        $countries = Country::select(['iso3', 'name_'.Locale::lower()])
+        $countries = Country::query()
+            ->select(['iso3', Country::labelKey()])
             ->whereIn('iso3', $protected_areas_countries)
-            ->pluck('name_'.Locale::lower(), 'iso3')
+            ->pluck(Country::labelKey(), 'iso3')
             ->sort()
             ->toArray();
 
-        return $protected_areas->map(function($item) use($countries){
-            foreach (static::parseISOs([$item->country]) as $iso){
-                $item['country_name'] .= $countries[$iso] . ', ';
-            }
-            $item['country_name'] = rtrim($item['country_name'], ', ');
-            return $item;
-        });
+        return $protected_areas
+            ->map(function (ProtectedArea $item) use ($countries): ProtectedArea {
+                foreach (static::parseISOs([$item->country]) as $iso) {
+                    $item['country_name'] .= $countries[$iso].', ';
+                }
+
+                $item['country_name'] = rtrim((string) $item['country_name'], ', ');
+
+                return $item;
+            });
     }
 
+    /**
+     * Get selection list
+     */
+    public static function selectionList(): array
+    {
+        $label_attribute = 'name';
+        $key_attribute = (new self)->getKeyName();
 
+        return static::query()
+            ->get()
+            ->sortBy($label_attribute, SORT_NATURAL | SORT_FLAG_CASE)
+            ->pluck($label_attribute, $key_attribute)
+            ->toArray();
+    }
 }

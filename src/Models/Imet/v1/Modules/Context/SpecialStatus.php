@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,16 +14,15 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 
-class SpecialStatus extends Modules\Component\ImetModule
+final class SpecialStatus extends Modules\Component\ImetModule
 {
     protected $table = 'context_special_status';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_ACCORDION';
         $this->module_code = 'CTX 1.3';
@@ -37,43 +37,35 @@ class SpecialStatus extends Modules\Component\ImetModule
         ];
 
         $this->module_groups = [
-            'conventions'   => trans('imet-core::v1_context.SpecialStatus.groups.conventions'),
-            'networks'      => trans('imet-core::v1_context.SpecialStatus.groups.networks'),
-            'conservation'  => trans('imet-core::v1_context.SpecialStatus.groups.conservation'),
-            'marine_pa'     => trans('imet-core::v1_context.SpecialStatus.groups.marine_pa'),
+            'conventions' => trans('imet-core::v1_context.SpecialStatus.groups.conventions'),
+            'networks' => trans('imet-core::v1_context.SpecialStatus.groups.networks'),
+            'conservation' => trans('imet-core::v1_context.SpecialStatus.groups.conservation'),
+            'marine_pa' => trans('imet-core::v1_context.SpecialStatus.groups.marine_pa'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.SpecialStatus.module_info');
-
 
         parent::__construct($attributes);
     }
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'SpecialStatus',
             'fields' => [
-                'Designation', 'RegistrationDate', 'Code', 'Area', 'DesignationCriteria', 'upload', 'DesignationGroup'
-            ]
+                'Designation', 'RegistrationDate', 'Code', 'Area', 'DesignationCriteria', 'upload', 'DesignationGroup',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'DesignationGroup');
+        return self::convertGroupLabelToKey($record, 'DesignationGroup');
     }
-
 }

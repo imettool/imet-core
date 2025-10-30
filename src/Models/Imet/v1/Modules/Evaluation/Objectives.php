@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -20,7 +21,8 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'P6';
@@ -33,7 +35,7 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Objective',
-            'values' => trans('imet-core::v1_evaluation.Objectives.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.Objectives.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.Objectives.module_info_EvaluationQuestion');
@@ -45,16 +47,14 @@ class Objectives extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_Objectives',
             'fields' => [
-                'Objective', 'EvaluationScore','Comments'
-            ]
+                'Objective', 'EvaluationScore', 'Comments',
+            ],
         ];
     }
 }

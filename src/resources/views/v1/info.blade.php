@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 ?>
 
@@ -52,17 +52,11 @@
         <div class="message">
             <b><i>Evaluez le champ sur la base du barême suivant:</i></b><br />
             @foreach($definitions['ratingLegend'] as $field_name => $ratingLegend)
-                <?php
-                    $field_label = null;
-                    foreach ($definitions['fields'] as $field){
-                        if($field_name===$field['name']){
-                            $field_label = $field['label'];
-                        }
-                    }
-                ?>
-                @if($field_label!==null)
-                    <b class="blue">{{ $field_label }}</b>:
-                @endif
+                @foreach ($definitions['fields'] as $field)
+                    @if($field_name === $field['name'])
+                        <div class="blue">{{ $field['label'] }}</div>
+                    @endif
+                @endforeach
                 <ul>
                     @foreach($ratingLegend as $rating=>$label)
                         <li><i><b>{{ $rating }}</b></i>: {{ $label }}</li>

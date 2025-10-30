@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,16 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class FinancialAvailableResources extends Modules\Component\ImetModule
+final class FinancialAvailableResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_available_resources';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.2';
@@ -40,7 +43,7 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'BudgetType',
-            'values' => trans('imet-core::v1_context.FinancialAvailableResources.predefined_values')
+            'values' => trans('imet-core::v1_context.FinancialAvailableResources.predefined_values'),
         ];
 
         parent::__construct($attributes);
@@ -48,16 +51,14 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'FinancialAvailableResources',
             'fields' => [
-                'BudgetType', 'NationalBudget', 'OwnRevenues',  'Disputes', 'Partners', 'Currency'
-            ]
+                'BudgetType', 'NationalBudget', 'OwnRevenues',  'Disputes', 'Partners', 'Currency',
+            ],
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,19 +12,20 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
+final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c16';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
@@ -36,9 +38,8 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         'ImportanceRegional' => '_ImportanceRegional',
         'ImportanceGlobal' => '_ImportanceGlobal'];
 
-
-
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.5';
@@ -52,7 +53,7 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => null
+            'values' => null,
         ];
 
         $this->module_subTitle = trans('imet-core::v2_evaluation.ImportanceEcosystemServices.module_subTitle');
@@ -63,30 +64,28 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' =>  $form_id !== null
-                ? static::getEcosystemServices($form_id)
-                    ->map(function ($item){
-                        return $item['Element'];
-                    })
-                : []
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? self::getEcosystemServices($form_id)
+                    ->map(fn (Modules\Context\EcosystemServices $item): mixed => $item['Element'])
+                : [],
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
-        $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
 
         // Inject rankings
-        foreach (static::getEcosystemServices($form_id)->values()->toArray() as $index=>$record){
+        foreach (self::getEcosystemServices($form_id)->values()->toArray() as $index => $record) {
             $records[$index]['_rank'] = $record['_rank'];
             $records[$index]['_Importance'] = $record['Importance'];
             $records[$index]['_ImportanceRegional'] = $record['ImportanceRegional'];
@@ -96,18 +95,17 @@ class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    private static function getEcosystemServices($form_id){
+    private static function getEcosystemServices(?int $form_id): Collection
+    {
         return Modules\Context\EcosystemServices::getModule($form_id)
-            ->filter(function ($item){
-                return $item['Importance']!==null;
-            })
-            ->map(function ($item){
+            ->filter(fn ($item): bool => $item['Importance'] !== null)
+            ->map(function (Modules\Context\EcosystemServices $item): Modules\Context\EcosystemServices {
                 $item['_rank'] = (floatval($item['Importance'])
-                        + ($item['ImportanceRegional']/3)
-                        + ((2-$item['ImportanceGlobal'])/4)) /3 * 100;
+                        + ($item['ImportanceRegional'] / 3)
+                        + ((2 - $item['ImportanceGlobal']) / 4)) / 3 * 100;
+
                 return $item;
             })
             ->sortByDesc('_rank');
     }
-
 }

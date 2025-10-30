@@ -1,12 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
+/** @var array $definitions */
 /** @var Array $records */
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 $stats = \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
 
 
@@ -28,21 +28,21 @@ foreach (MenacesPressions::$groupsByCategory as $i => $category) {
 
 // inject row and group stats
 $allSpaces = '[\s\t\n\r]*';
-foreach (MenacesPressions::$groupsByCategory as $i => $category) {
+foreach (MenacesPressions::$groupsByCategory as $category) {
 
-    foreach ($category as $index => $group) {
+    foreach ($category as $group) {
         if (isset($stats['row_stats'][$group])) {
-            foreach ($stats['row_stats'][$group] as $r => $value) {
-                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", $view_groupTable, $matched1);
+            foreach ($stats['row_stats'][$group] as $value) {
+                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", (string) $view_groupTable, $matched1);
                 $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
-                if (count($matched1) > 0) {
+                if ($matched1 !== []) {
                     $matched1[0] = '/' . preg_quote($matched1[0], '/') . '/';
-                    $view_groupTable = preg_replace($matched1[0], $textToAdd, $view_groupTable, 1);
+                    $view_groupTable = preg_replace($matched1[0], $textToAdd, (string) $view_groupTable, 1);
                 }
             }
         }
         if (isset($stats['group_stats'][$group])) {
-            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", $view_groupTable, $matched);
+            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", (string) $view_groupTable, $matched);
             $textToAdd = '<th>
                           <input type="text" disabled="disabled" value="' . $stats['group_stats'][$group] . '"
                                 class="field-disabled field-edit field-numeric text-center"/>

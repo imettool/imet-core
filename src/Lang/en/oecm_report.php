@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -74,7 +75,7 @@ return [
         'intervention_context' => 'Context of Intervention',
         'management_evaluation' => 'Management Evaluation',
         'objectives_title' => 'List of the short- long-term objectives for element',
-        'prioritize_in_management' => 'To be prioritize in management'
+        'prioritize_in_management' => 'To be prioritize in management',
     ],
     'stakeholder_users_managing_oecm' => 'Stakeholders users and managing the conserved area',
     'stakeholder_direct_users' => 'Stakeholders Direct users',
@@ -91,13 +92,12 @@ return [
         'status_from_stakeholders' => 'Status from stakeholders',
         'trend_from_stakeholders' => 'Trend from stakeholders',
         'status_from_external_source' => 'Status from external source',
-        'trend_from_external_source' => 'Trend from external source'
+        'trend_from_external_source' => 'Trend from external source',
     ],
     'ecosystem_services' => 'Ecosystem services',
     'key_biodiversity_elements' => 'Biodiversity key elements',
 
     'stakeholders' => 'Ecosystem services identified by the stakeholder for their governance and management',
     'score' => 'value',
-
 
 ];

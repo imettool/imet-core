@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,24 +14,23 @@ namespace ImetCore\Jobs;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-trait Utils {
-
-    private static function log($message, $type='comment')
+trait Utils
+{
+    private static function log($message, $type = 'comment'): void
     {
-        if(is_array($message) || is_object($message)){
+        if (is_array($message) || is_object($message)) {
             $message = print_r($message, true);
         }
 
-        $output = new ConsoleOutput();
-        if($type=='info'){
-            $output->writeln("<info>".$message."</info>");
-        } elseif($type=='comment'){
-            $output->writeln("<comment>".$message."</comment>");
-        } elseif($type=='error'){
-            $output->writeln("<error>".$message."</error>");
-        } elseif($type==null){
+        $output = new ConsoleOutput;
+        if ($type == 'info') {
+            $output->writeln('<info>'.$message.'</info>');
+        } elseif ($type == 'comment') {
+            $output->writeln('<comment>'.$message.'</comment>');
+        } elseif ($type == 'error') {
+            $output->writeln('<error>'.$message.'</error>');
+        } elseif ($type == null) {
             $output->writeln($message);
         }
     }
-
 }

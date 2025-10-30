@@ -1,5 +1,7 @@
 <?php
-/** @var Mixed $definitions */
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 $definitions['label_width'] = 7;
 
 use \ImetCore\Helpers\Template;

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,25 +18,29 @@ use ModularForms\View\Module\Components\Field\Input;
 
 class CustomInput extends Input
 {
+    #[\Override]
     public function render(): View
     {
 
         // ### imet-core custom inputs ###
-        if(Str::startsWith($this->type, 'imet-core::')){
+        if (! Str::startsWith($this->type, 'imet-core::')) {
 
-            // Wdpa selector
-            if(Str::contains($this->type, 'selector-wdpa_multiple')){
-                return view('imet-core::components.inputs.selector-wdpa_multiple');
-            }
-            else if(Str::contains($this->type, 'selector-wdpa')){
-                return view('imet-core::components.inputs.selector-wdpa');
-            }
+            return parent::render();
 
-            // Species selector
-            else if(Str::contains($this->type, 'selector-species')){
-                return view('imet-core::components.inputs.selector-species');
-            }
+        }
 
+        // Wdpa selector
+        if (Str::contains($this->type, 'selector-wdpa_multiple')) {
+            return view('imet-core::components.inputs.selector-wdpa_multiple');
+        }
+
+        if (Str::contains($this->type, 'selector-wdpa')) {
+            return view('imet-core::components.inputs.selector-wdpa');
+        }
+
+        // Species selector
+        if (Str::contains($this->type, 'selector-species')) {
+            return view('imet-core::components.inputs.selector-species');
         }
 
         return parent::render();

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_Eval
+final class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_designated_values_conservation_tendency';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'E/I3';
@@ -49,28 +51,22 @@ class DesignatedValuesConservationTendency extends Modules\Component\ImetModule_
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_DesignatedValuesConservationTendency',
             'fields' => [
-                'Value', 'EvaluationScore', 'Comments', 'GroupValue'
-            ]
+                'Value', 'EvaluationScore', 'Comments', 'GroupValue',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupValue');
+        return self::convertGroupLabelToKey($record, 'GroupValue');
     }
 }

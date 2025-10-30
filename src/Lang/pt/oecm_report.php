@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -72,7 +73,7 @@ return [
         'intervention_context' => 'Contexto de Intervenção',
         'management_evaluation' => 'Avaliação de gestão',
         'objectives_title' => 'Lista de objetivos a curto e longo prazo para o elemento',
-        'prioritize_in_management' => 'A ser priorizado na gestão'
+        'prioritize_in_management' => 'A ser priorizado na gestão',
     ],
     'stakeholder_users_managing_oecm' => 'Usuários das partes interessadas e gerenciamento do OECM',
     'stakeholder_direct_users' => 'Usuários diretos das partes interessadas',
@@ -89,13 +90,12 @@ return [
         'status_from_stakeholders' => 'Status das partes interessadas',
         'trend_from_stakeholders' => 'Tendência das partes interessadas',
         'status_from_external_source' => 'Status de fonte externa',
-        'trend_from_external_source' => 'Tendência de fonte externa'
+        'trend_from_external_source' => 'Tendência de fonte externa',
     ],
     'ecosystem_services' => 'Serviços ecossistêmicos',
     'key_biodiversity_elements' => 'Elementos-chave da biodiversidade',
 
     'stakeholders' => 'Serviços ecossistêmicos identificados pelas partes interessadas para sua governança e gestão',
-    'score' => 'valor'
-
+    'score' => 'valor',
 
 ];

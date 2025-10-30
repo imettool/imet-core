@@ -10,7 +10,7 @@
             <preview_template :scaling_up_id="{{ $scaling_up_id }}"></preview_template>
         </div>
 
-        <div id="imet_report" class="scrollButtons">
+        <div id="imet_report" cclass="imet_report scrollButtons">
             <div class="standalone" @click="downloadFiles">
                 {!! \ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
             <div class="standalone" @click="printReport">
@@ -27,7 +27,7 @@
         }
 
         @media print {
-            #imet_report {
+            .imet_report {
                 visibility: hidden;
             }
 

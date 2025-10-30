@@ -1,21 +1,23 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 // Get the original group table view
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 // Load the view into a DOM parser
 $dom = HtmlPageCrawler::create('<div>'.$view_groupTable.'</div>');
 foreach (['group0', 'group1'] as $group) {
 
     // Filter records by group
-    $group_records = array_values(array_filter($records, function ($r) use ($group) {
-        return ($r['group_key'] == $group);
-    }));
+    $group_records = array_values(array_filter($records, fn(array $r): bool => $r['group_key'] == $group));
 
     // Inject scores into group table
-    $dom->filter('table#group_table_imet__oecm__evaluation__supports_and_constraints_integration_' . $group . ' tr')->each(function ($tr, $index) use ($group_records) {
+    $dom->filter('table#group_table_imet__oecm__evaluation__supports_and_constraints_integration_' . $group . ' tr')->each(function ($tr, $index) use ($group_records): void {
         $score = $index > 0 ? $group_records[$index - 1]['__score'] : null; // -1 because of header row
         if($score !== null){
             $score_text =
@@ -26,7 +28,7 @@ foreach (['group0', 'group1'] as $group) {
                 </div>
             </div>';
 
-            $tr->filter('td')->first()->each(function ($td, $_) use($score_text) {
+            $tr->filter('td')->first()->each(function ($td, $_) use($score_text): void {
                 $td->append($score_text);
             });
         }

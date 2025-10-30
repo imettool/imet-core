@@ -1,13 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\AssistanceActivities;
 use Illuminate\Support\Facades\View;
 
-$view = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$view = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 // Inject marine icon on criteria
 $view = ImetModule::injectIconToPredefinedCriteria(ImetModule::TERRESTRIAL, $view, AssistanceActivities::get_terrestrial_predefined());

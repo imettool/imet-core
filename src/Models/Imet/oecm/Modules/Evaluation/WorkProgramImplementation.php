@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,7 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
+final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_work_program_implementation';
 
@@ -40,6 +41,4 @@ class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 
         parent::__construct($attributes);
     }
-
-
 }

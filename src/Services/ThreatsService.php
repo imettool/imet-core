@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,38 +12,38 @@
 
 namespace ImetCore\Services;
 
-class ThreatsService{
-
+class ThreatsService
+{
     /**
      * Calculate threat's ranking
      */
     public static function calculateRanking(array $records): array
     {
         return collect($records)
-            ->map(function($item){
+            ->map(function (array $item): array {
 
                 $prod = 1
-                    * ($item['Impact']!=null ? 4-$item['Impact'] : 1)
-                    * ($item['Extension']!=null ? 4-$item['Extension'] : 1)
-                    * ($item['Duration']!=null ? 4-$item['Duration'] : 1)
-                    * ($item['Trend']!=null ? (5/2 - $item['Trend']*3/4) : 1)
-                    * ($item['Probability']!=null ? 4-$item['Probability'] : 1);
+                    * ($item['Impact'] != null ? 4 - $item['Impact'] : 1)
+                    * ($item['Extension'] != null ? 4 - $item['Extension'] : 1)
+                    * ($item['Duration'] != null ? 4 - $item['Duration'] : 1)
+                    * ($item['Trend'] != null ? (5 / 2 - $item['Trend'] * 3 / 4) : 1)
+                    * ($item['Probability'] != null ? 4 - $item['Probability'] : 1);
 
-                $count = ($item['Impact']!=null ? 1 : 0)
-                    + ($item['Extension']!=null ? 1 : 0)
-                    + ($item['Duration']!=null ? 1 : 0)
-                    + ($item['Trend']!=null ? 1 : 0)
-                    + ($item['Probability']!=null ? 1 : 0);
+                $count = ($item['Impact'] != null ? 1 : 0)
+                    + ($item['Extension'] != null ? 1 : 0)
+                    + ($item['Duration'] != null ? 1 : 0)
+                    + ($item['Trend'] != null ? 1 : 0)
+                    + ($item['Probability'] != null ? 1 : 0);
 
-                $score = $count>0
-                    ? (4 - pow($prod, 1/($count)))
+                $score = $count > 0
+                    ? (4 - $prod ** (1 / $count))
                     : null;
 
-                $score = $score!==null
+                $score = $score !== null
                     ? (0 - $score) * 100 / 3
                     : null;
 
-                $score = $score!==null
+                $score = $score !== null
                     ? round($score, 1)
                     : null;
 
@@ -51,7 +52,6 @@ class ThreatsService{
                 return $item;
             })
             ->sortBy('__score')
-            ->toArray();
+            ->all();
     }
-
 }

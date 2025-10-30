@@ -1,6 +1,8 @@
 <?php
-/** @var Mixed $definitions */
-/** @var String $group_key (optional - only for GROUP_TABLE) */
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
+/** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = '';
 $table_id = 'table_'.$definitions['module_key'];

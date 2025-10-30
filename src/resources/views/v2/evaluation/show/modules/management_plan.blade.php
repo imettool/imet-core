@@ -1,13 +1,12 @@
-<?php
+@php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 $records = $records[0];
-
 $PlanExistence = boolval($records['PlanExistence']);
 
-?>
+@endphp
 
 @foreach($definitions['fields'] as $index=>$field)
 

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
-class Governance extends Modules\Component\ImetModule
+final class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'context_governance';
 

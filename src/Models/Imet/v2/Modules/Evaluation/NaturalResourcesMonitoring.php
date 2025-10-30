@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
+final class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_natural_resources_monitoring';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR15';
@@ -33,7 +35,7 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.predefined_values')
+            'values' => trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.NaturalResourcesMonitoring.module_info_EvaluationQuestion');
@@ -46,24 +48,22 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Aspect',
-         'Monitoring ecosystems and habitats',
-         'Monitoring habitats and related dimensions of land cover, land use, land take');
-        $record = static::replacePredefinedValue($record, 'Aspect',
-         'Suivi des écosystèmes et des habitats',
-         'Suivi des habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols');
-        $record = static::replacePredefinedValue($record, 'Aspect',
-         'Monitorização de ecossistemas e habitats',
-         'Monitorização de habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação');
-        $record = static::replacePredefinedValue($record, 'Aspect',
-         'Monitoreo de los ecosistemas y los hábitats',
-         'Monitoreo de los hábitats y las dimensiones relacionadas de la cobertura del suelo, uso del suelo y tenencia del territorio');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoring land cover–land use–land take');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Suivi de la couverture terrestre, utilisation et occupation des sols');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitorização de terrenos (cobretura do solo, uso e ocupacão)');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio');
+        $record = self::replacePredefinedValue($record, 'Aspect',
+            'Monitoring ecosystems and habitats',
+            'Monitoring habitats and related dimensions of land cover, land use, land take');
+        $record = self::replacePredefinedValue($record, 'Aspect',
+            'Suivi des écosystèmes et des habitats',
+            'Suivi des habitats et les dimensions connexes de couverture terrestre, utilisation et occupation des sols');
+        $record = self::replacePredefinedValue($record, 'Aspect',
+            'Monitorização de ecossistemas e habitats',
+            'Monitorização de habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação');
+        $record = self::replacePredefinedValue($record, 'Aspect',
+            'Monitoreo de los ecosistemas y los hábitats',
+            'Monitoreo de los hábitats y las dimensiones relacionadas de la cobertura del suelo, uso del suelo y tenencia del territorio');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoring land cover–land use–land take');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Suivi de la couverture terrestre, utilisation et occupation des sols');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitorização de terrenos (cobretura do solo, uso e ocupacão)');
 
-        return $record;
+        return self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio');
     }
-
 }

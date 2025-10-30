@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,17 +14,17 @@ namespace ImetCore\Helpers;
 
 class Math
 {
-
-    public static function records_average($records, $field)
+    public static function records_average($records, $field): int|float
     {
-        $sum = $count = 0;
+        $sum = 0;
+        $count = 0;
         foreach ($records as $record) {
-            if ($record[$field] !== null && $record[$field] !== -99 && $record[$field] !== '-99') {
+            if (! in_array($record[$field], [null, -99, '-99'], true)) {
                 $sum += intval($record[$field]);
                 $count++;
             }
         }
+
         return $count > 0 ? ($sum / $count) : 0;
     }
-
 }

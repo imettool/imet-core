@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,34 +15,34 @@ return [
     'Objectives' => [
         'title' => 'Setting target objectives',
         'fields' => [
-            'Status' =>         'Baseline',
-            'Benchmark1' =>     'Benchmark 1',
-            'Benchmark2' =>     'Benchmark 2',
-            'Benchmark3' =>     'Benchmark 3',
-            'Objective' =>      'Objective - expected conditions',
-        ]
+            'Status' => 'Baseline',
+            'Benchmark1' => 'Benchmark 1',
+            'Benchmark2' => 'Benchmark 2',
+            'Benchmark3' => 'Benchmark 3',
+            'Objective' => 'Objective - expected conditions',
+        ],
     ],
 
     'Objectives1' => [
-        'module_info' => 'Setting target conservation objectives and indicators for governance and partnership, status, membership network and mission and the historical, political, legal, institutional and other contexts of the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => 'Setting target conservation objectives and indicators for governance and partnership, status, membership network and mission and the historical, political, legal, institutional and other contexts of the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives2' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>land areas, boundaries, shape index and level of control</b> of the protected area</b><br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>land areas, boundaries, shape index and level of control</b> of the protected area</b><br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives3' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>for human and financial resources/support from partnerships in managing</b> the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>for human and financial resources/support from partnerships in managing</b> the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives4' => [
-        'module_info' => ' Setting target conservation objectives and indicators for key factors: <b> i) species and plants flagship, endangered, endemic, invasive, exploited, with insufficient data; ii) habitats; iii) land-cover-change and iv) management of natural ressources</b><br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => ' Setting target conservation objectives and indicators for key factors: <b> i) species and plants flagship, endangered, endemic, invasive, exploited, with insufficient data; ii) habitats; iii) land-cover-change and iv) management of natural ressources</b><br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives5' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>pressures and threats</b> facing the protected areae<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>pressures and threats</b> facing the protected areae<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives6' => [
-        'module_info' => 'Setting target conservation objectives and indicators for <b>climate change</b> facing the protected areae<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.'
+        'module_info' => 'Setting target conservation objectives and indicators for <b>climate change</b> facing the protected areae<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives.',
     ],
     'Objectives7' => [
-        'module_info' => 'Setting objectives associated with <b>he maintenance of ecosystem services and the dependence on these services of communities</b> in the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives'
+        'module_info' => 'Setting objectives associated with <b>he maintenance of ecosystem services and the dependence on these services of communities</b> in the protected area<br /> The objectives and benchmarks to be entered in the table below are to be used for managing and monitoring activities in the protected area and, more specifically, for the planning, resource (input) mobilisation and process phases, and in identifying outputs and outcome objectives',
     ],
 
     'GeneralInfo' => [
@@ -64,7 +65,7 @@ return [
             'ReferenceText' => 'Citation for existing funding legislation',
             'ReferenceTextDocument' => '',
             'ReferenceTextValues' => 'What are the main values for which the area has been designated? (Provide a brief description)',
-        ]
+        ],
     ],
 
     'Governance' => [
@@ -77,7 +78,7 @@ return [
             'PartnershipsType3' => 'third',
             'Type' => 'Tick the governance model',
             'Comments' => 'Additional information on governance model (if required)',
-        ]
+        ],
     ],
 
     'SpecialStatus' => [
@@ -91,12 +92,12 @@ return [
             'upload' => 'upload',
         ],
         'groups' => [
-            'conventions'  => 'Accreditations and registrations in the lists of the international conventions (World Heritage, RAMSAR, etc.)',
-            'networks'     => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
+            'conventions' => 'Accreditations and registrations in the lists of the international conventions (World Heritage, RAMSAR, etc.)',
+            'networks' => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Accreditation of the status of conservation interest by international bodies (IBA, AZE, etc.)',
-            'marine_pa'    => 'Status of marine protected areas',
+            'marine_pa' => 'Status of marine protected areas',
         ],
-        'module_info' => 'Designation Name 1 (for example, UNESCO World Heritage site (Endangered site - Outstanding universal value)'
+        'module_info' => 'Designation Name 1 (for example, UNESCO World Heritage site (Endangered site - Outstanding universal value)',
     ],
 
     'Networks' => [
@@ -109,7 +110,7 @@ return [
             'group0' => 'Transboundary network',
             'group1' => 'Landscape network (terrestrial and marine protected areas) - Network (marine network)',
             'group2' => 'Other network',
-        ]
+        ],
     ],
 
     'Missions' => [
@@ -126,7 +127,7 @@ return [
             'InternationalSource' => 'Source',
             'InternationalManagementPlan' => 'File (Management plan)',
             'Observation' => 'Observation',
-        ]
+        ],
     ],
 
     'Contexts' => [
@@ -143,9 +144,9 @@ return [
             'Socio-economic context',
             'Political context (in country)',
             'Legal context',
-            'Institutional context'
+            'Institutional context',
         ],
-        'module_info' => 'Filling of data at national level with verification at local level'
+        'module_info' => 'Filling of data at national level with verification at local level',
     ],
 
     'GeographicalLocation' => [
@@ -157,7 +158,7 @@ return [
             'Coordinates' => 'Geographic coordinates (baseline for or key point in the park)',
             'SourceCoords' => 'Source',
             'AdministrativeLocation' => 'Administrative location of the protected area (province, region, etc.)',
-        ]
+        ],
     ],
 
     'Areas' => [
@@ -174,25 +175,25 @@ return [
             'PercentageLandscapeNetwork' => '% of landscape/network',
             'Index' => 'Shape index (Km²/Km = good > 23; average de 23 à 17;  poor < 17)',
             'Observations' => 'Notes',
-        ]
+        ],
     ],
 
     'ControlLevel' => [
         'title' => 'Level of control of the protected area',
         'fields' => [
-            'UnderControlArea'              => 'Km² under control',
-            'UnderControlPatrolManDay'      => 'Person / day of patrol',
-            'UnderControlPatrolKm'          => 'Km of patrols',
-            'EcologicalMonitoringPatrolKm'  => 'Area subject to environmental monitoring',
-            'Source'                        => 'Source',
-            'Observations'                  => 'Notes',
+            'UnderControlArea' => 'Km² under control',
+            'UnderControlPatrolManDay' => 'Person / day of patrol',
+            'UnderControlPatrolKm' => 'Km of patrols',
+            'EcologicalMonitoringPatrolKm' => 'Area subject to environmental monitoring',
+            'Source' => 'Source',
+            'Observations' => 'Notes',
         ],
-        'area'                          => 'Land area in the protected area',
-        'under_control_area'            => 'Protected area under control (anti-poaching protection) during the last 12 months (or specify the reference period)',
-        'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average p/d/ km² per year of the total area',
-        'area_percentage_conversion'    => '% of the area (conversion)',
-        'average_time_controlled'       => 'Average p/d/km² per year of the area under control'
+        'area' => 'Land area in the protected area',
+        'under_control_area' => 'Protected area under control (anti-poaching protection) during the last 12 months (or specify the reference period)',
+        'area_percentage' => '% of the area',
+        'average_time' => 'Average p/d/ km² per year of the total area',
+        'area_percentage_conversion' => '% of the area (conversion)',
+        'average_time_controlled' => 'Average p/d/km² per year of the area under control',
     ],
 
     'Sectors' => [
@@ -207,7 +208,7 @@ return [
             'SectorMap' => 'Zoning maps',
             'Source' => 'Source',
             'Observations' => 'Notes',
-        ]
+        ],
     ],
 
     'TerritorialReferenceContext' => [
@@ -220,7 +221,7 @@ return [
             'FunctionalAreaPopulation' => 'Estimation of the local population',
             'SocioEconomicAspects' => 'Socio-economic and administrative factors, e.g. the relationships of traditional and modern authorities with the landscapes of the protected area (in km2) (Km2)',
             'SpillOverEffect' => 'SPILL-OVER effect in the marine protected area',
-        ]
+        ],
     ],
 
     'ManagementStaff' => [
@@ -233,7 +234,7 @@ return [
             'difference' => 'Difference',
             'Source' => 'Source',
         ],
-        'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area'
+        'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area',
     ],
 
     'ManagementStaffPartners' => [
@@ -243,7 +244,7 @@ return [
             'Coordinators' => 'Coordinators',
             'Technicians' => 'Techniciens/ Administrators',
             'Auxiliaries' => 'Auxiliary staff',
-        ]
+        ],
     ],
 
     'ManagementStaffCommunities' => [
@@ -256,7 +257,7 @@ return [
             'StaffNUmberRole2' => 'Number',
             'Role3' => 'Role',
             'StaffNUmberRole3' => 'Number',
-        ]
+        ],
     ],
 
     'FinancialResources' => [
@@ -268,11 +269,11 @@ return [
             'OperationalWorkPlanCosts' => 'Total budget estimated from the operational plan / working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget - Forecasts',
         ],
-        'amount'                        => 'Montant',
-        'functioning_costs'             => 'Total budget ($/km2/year or currency/km2/year)',
-        'estimation_financial_plan'     => '% of estimates in financial plan / working plan (budgeted annually)',
-        'estimation_operational_plan'   => '% of estimation of the working plan (budgeted annually)',
-        'module_info' => 'Estimated total costs based on Management plan/Financial plan'
+        'amount' => 'Montant',
+        'functioning_costs' => 'Total budget ($/km2/year or currency/km2/year)',
+        'estimation_financial_plan' => '% of estimates in financial plan / working plan (budgeted annually)',
+        'estimation_operational_plan' => '% of estimation of the working plan (budgeted annually)',
+        'module_info' => 'Estimated total costs based on Management plan/Financial plan',
     ],
 
     'FinancialAvailableResources' => [
@@ -285,11 +286,11 @@ return [
             'Partners' => 'Contributions from the partners',
             'Currency' => 'Currency',
         ],
-        "predefined_values" => [
-            "Total annual budget available",
-            "Total annual budget available for operating",
-            "Total annual budget available for investments"
-        ]
+        'predefined_values' => [
+            'Total annual budget available',
+            'Total annual budget available for operating',
+            'Total annual budget available for investments',
+        ],
     ],
 
     'FinancialResourcesBudgetLines' => [
@@ -299,7 +300,7 @@ return [
             'Amount' => 'Amount (currency/an)',
             'BudgetSource' => 'Source of funding',
             'Currency' => 'Currency',
-        ]
+        ],
     ],
 
     'FinancialResourcesPartners' => [
@@ -312,7 +313,7 @@ return [
             'EndDate' => 'Expected end',
             'Observations' => 'Notes',
             'Currency' => 'Currency',
-        ]
+        ],
     ],
 
     'Equipments' => [
@@ -337,19 +338,19 @@ return [
             'group12' => 'Transportation for the protected area',
         ],
         'predefined_values' => [
-            'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific research','Suitably equipped garage and workshop','Miscellaneous services (magazine, radio, etc.)','Dispensaries','Other buildings'],
-            'group1' =>  ['Officers and deputy officers', 'Ranger staff', 'Support staff', 'Reception', 'Other buildings'],
-            'group2' =>  ['Hotels Tinga', 'Eco-lodges camp nomade', 'Salamat', 'Reception facilities for tourists', 'Miradors', 'Number of rooms', 'Number of guides on service:', 'Available tourist routes (km)', 'Other buildings'],
-            'group3' =>  ['Cars', 'Motorbyke/Quads', 'Bicycles', 'Boats', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines', 'Horses'],
-            'group4' =>  ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment', 'Other means of anti-poaching equipment'],
-            'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection', 'Other means of communication'],
-            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Other means of IT'],
-            'group7' =>  ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water'],
-            'group8' =>  ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
-            'group9' =>  ['Penetration roads/tracks into the protected area', 'Penetration paths into the protected area', 'Road for the outside'],
+            'group0' => ['Offices', 'Patrol posts', 'Barrier points', 'Scientific research', 'Suitably equipped garage and workshop', 'Miscellaneous services (magazine, radio, etc.)', 'Dispensaries', 'Other buildings'],
+            'group1' => ['Officers and deputy officers', 'Ranger staff', 'Support staff', 'Reception', 'Other buildings'],
+            'group2' => ['Hotels Tinga', 'Eco-lodges camp nomade', 'Salamat', 'Reception facilities for tourists', 'Miradors', 'Number of rooms', 'Number of guides on service:', 'Available tourist routes (km)', 'Other buildings'],
+            'group3' => ['Cars', 'Motorbyke/Quads', 'Bicycles', 'Boats', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines', 'Horses'],
+            'group4' => ['Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment', 'Other means of anti-poaching equipment'],
+            'group5' => ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection', 'Other means of communication'],
+            'group6' => ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Other means of IT'],
+            'group7' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water'],
+            'group8' => ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
+            'group9' => ['Penetration roads/tracks into the protected area', 'Penetration paths into the protected area', 'Road for the outside'],
             'group10' => ['Penetration waterways into the protected area', 'Other waterways'],
             'group11' => ['Airstrips inside and outside the protected area', 'Other airstrips'],
-            'group12' => ['Major land-based communication routes', 'Inland and maritime waterways', 'National and international air connections', 'Other transportation for the protected area']
+            'group12' => ['Major land-based communication routes', 'Inland and maritime waterways', 'National and international air connections', 'Other transportation for the protected area'],
         ],
         'ratingLegend' => [
             'AdequacyLevel' => [
@@ -357,8 +358,8 @@ return [
                 '1' => 'inadequate',
                 '2' => 'adequate',
                 '3' => 'excellent',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'AnimalSpecies' => [
@@ -386,7 +387,7 @@ return [
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (least - most significant)',
             ],
-        ]
+        ],
     ],
 
     'VegetalSpecies' => [
@@ -412,7 +413,7 @@ return [
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (least - most significant)',
             ],
-        ]
+        ],
 
     ],
 
@@ -435,7 +436,7 @@ return [
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (least - most significant)',
             ],
-        ]
+        ],
 
     ],
 
@@ -458,9 +459,9 @@ return [
             'Pelagic stratus',
             'Abyssal stratus',
             'Benthic stratus',
-            'Open sea'
+            'Open sea',
         ],
-        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Marin habitats with important and significant features of the protected area, Land cover et Land use<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presence, extent and distribution of key marine habitats</span></b>'
+        'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Marin habitats with important and significant features of the protected area, Land cover et Land use<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Presence, extent and distribution of key marine habitats</span></b>',
     ],
 
     'LandCover' => [
@@ -484,7 +485,7 @@ return [
             'Water',
             'Crops/Plantations',
             'Dwellings',
-            'Roads'
+            'Roads',
         ],
         'module_info' => '<i><span style="color: Blue;">Indicateur</span></i>: Ecosystem and habitats with important and significant features of the protected area, Land cover and Land use<br /> <i><span style="color: Blue;">Sous indicateur</span></i>: <b><span style="font-style: normal;">Maintenance of land cover (or physical terrain - forest, water, roads, etc.) [for total values see point # 2.2]</span></b><br /> <b>Land cover categories (basis: Land Cover Classification System - LCCS, main categories, example)<br /> <b>Reliability of information</b> <ul> <li>High</b>: methodology that is officially recognised</li> <li><b>Medium</b>: methodology that is not officially recognised</li> <li><b>Poor</b>: non-existent methodology, information is usually estimated</li> </ul>',
         'ratingLegend' => [
@@ -493,7 +494,7 @@ return [
                 '0' => 'Stable',
                 ' +1 / +2' => 'Positive (least - most significant)',
             ],
-        ]
+        ],
     ],
 
     'NonSustainableUsage' => [
@@ -523,7 +524,7 @@ return [
             'Invasive species',
             'Pests and diseases',
             'Fires',
-            'Accessibility and relative impacts'
+            'Accessibility and relative impacts',
         ],
         'module_info' => '<b>Reliability of information</b> <ul> <li>High = methodology that is officially recognised</li> <li>Medium = methodology that is not officially recognised</li> <li>Poor = non-existent methodology, information is usually estimated</li> </ul>',
         'ratingLegend' => [
@@ -532,7 +533,7 @@ return [
                 '0' => 'Stable',
                 ' +1 / +2' => 'Negative = (least - most severe)',
             ],
-        ]
+        ],
     ],
 
     'MenacesPressions' => [
@@ -571,7 +572,7 @@ return [
             'group22' => 'Excessive energy use',
             'group23' => 'Geological phenomena',
             'group24' => 'Climate change and phenomenas',
-            'group25' => 'Other pressures and threats'
+            'group25' => 'Other pressures and threats',
         ],
         'predefined_values' => [
             'group0' => [
@@ -647,7 +648,7 @@ return [
                 'Viral or prion diseases',
                 'Disease of unknown cause'],
             'group17' => [
-                'Waste water and sewers',],
+                'Waste water and sewers', ],
             'group18' => [
                 'Oil slick',
                 'Mining leak'],
@@ -679,8 +680,8 @@ return [
                 'Storms and flooding',
                 'Other: Increased rainfall and seasonal changes'],
             'group25' => [
-                'Human-Wildlife Conflict'
-            ]
+                'Human-Wildlife Conflict',
+            ],
         ],
         'categories' => [
             'title1' => 'Commercial and residential',
@@ -692,9 +693,9 @@ return [
             'title7' => 'Changes in the natural system',
             'title8' => 'Invasive / problematique species',
             'title9' => 'Pollution',
-            'title10' =>'Geological phenomena',
-            'title11' =>'Climate change and phenomenas',
-            'title12' =>'Other pressures and threats'
+            'title10' => 'Geological phenomena',
+            'title11' => 'Climate change and phenomenas',
+            'title12' => 'Other pressures and threats',
         ],
         'ratingLegend' => [
             'Impact' => [
@@ -728,7 +729,7 @@ return [
                 '2' => 'average',
                 '3' => 'high',
             ],
-        ]
+        ],
     ],
 
     'ClimateChangeImportanceElements' => [
@@ -749,7 +750,7 @@ return [
             'Intersectoral planning',
             'Environmental policy',
             'Sustainable financing',
-            'Socioeconomic'
+            'Socioeconomic',
         ],
         'Element' => [
             'Support for REDD+ projects (areas with high biodiversity and high carbon storage possibilities)',
@@ -761,7 +762,7 @@ return [
             'Integration of protected areas in the general planning of mitigation and adaptation responses to climate change effects to increase the effectiveness of conservation on biodiversity',
             'Integration of mitigation and adaptation responses to climate change in the policies and legislations on environment and protected areas',
             'Integration of measures on mitigation and adaptation responses to climate change in the provision of funds for biodiversity and natural resource management',
-            'Integration of mitigation and adaptation responses to in the issues of socio-economic problems of the local population'
+            'Integration of mitigation and adaptation responses to in the issues of socio-economic problems of the local population',
         ],
         'module_info' => '<ul> <li>The results of this analysis help to establish the management decisions regarding the effects of climate change on conservation. The analyse helps to promote the integration of the effects of climate change in the management of the protected area</li> <li>Write down each estimation based on your information according to the scale: high; average; low; very weak</li> <li>You do not need to measure accurately the value to ratee</li> </ul>',
         'ratingLegend' => [
@@ -770,8 +771,8 @@ return [
                 '1' => 'applies to some extent',
                 '2' => 'applies',
                 '3' => 'applies to a considerable extent',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'ClimateChange' => [
@@ -797,8 +798,8 @@ return [
                 '-3 / -2 / -1' => 'Negative (least - most severe)',
                 '0' => 'Stable',
                 '1 / 2 / 3' => 'Positive (least - most significant)',
-            ]
-        ]
+            ],
+        ],
 
     ],
 
@@ -848,7 +849,7 @@ return [
                 '2' => 'average',
                 '3' => 'high',
             ],
-        ]
+        ],
     ],
 
     'EcosystemServicesTendance' => [
@@ -890,7 +891,7 @@ return [
                 'Average' => 'Methodology that is not officially recognised',
                 'Low' => 'Non-existent methodology, information is usually estimated',
             ],
-        ]
+        ],
     ],
 
 ];

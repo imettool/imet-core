@@ -1,13 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-/** @var String $group_key (optional - only for GROUP_TABLE) */
+/** @var array $vueData */
+/** @var array $definitions */
+/** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_' . $definitions['module_key'];
 

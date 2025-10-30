@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,15 +16,14 @@ return [
     'oecm_short' => 'IMET espace conservé',
 
     'steps' => [
-        'general_info'          => 'Informations générales sur l’espace conservé',
-        'areas'                 => 'Areas',
-        'resources'             => 'Ressources humaines, financières et matérielles',
-        'key_elements'          => 'Espèces animales et végétales clés',
-        'stakeholders'          => 'Parties prenantes impliquées dans la gestion ou l\'utilisation des ressources naturelles',
-        'stakeholder_analysis'  => 'Analyse des parties prenantes',
-        'objectives'            => 'Objectifs'
+        'general_info' => 'Informations générales sur l’espace conservé',
+        'areas' => 'Areas',
+        'resources' => 'Ressources humaines, financières et matérielles',
+        'key_elements' => 'Espèces animales et végétales clés',
+        'stakeholders' => 'Parties prenantes impliquées dans la gestion ou l\'utilisation des ressources naturelles',
+        'stakeholder_analysis' => 'Analyse des parties prenantes',
+        'objectives' => 'Objectifs',
     ],
-
 
     'assessment' => [
 
@@ -34,6 +34,6 @@ return [
         'PRB' => 'Gestion / Protection des valeurs',
         'PRC' => 'Relations avec les parties prenantes',
 
-    ]
+    ],
 
 ];

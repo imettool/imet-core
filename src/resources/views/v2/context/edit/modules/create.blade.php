@@ -1,11 +1,14 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 
 use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $definitions */
+/** @var mixed $vueData */
 /** @var Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
 $vue_record_index = 0;

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -9,7 +10,7 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-include_once __DIR__ . '/vendor/autoload.php';
+include_once __DIR__.'/vendor/autoload.php';
 
 use ImetCore\Helpers\DependencyParser;
 
@@ -18,6 +19,6 @@ const WITH_DEV = false;
 try {
     DependencyParser::generateNoticeFile(WITH_DEV);
 } catch (Exception $e) {
-    print($e->getMessage());
-    die();
+    echo $e->getMessage();
+    exit();
 }

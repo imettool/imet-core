@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,10 +14,10 @@ namespace ImetCore\Services\Assessment;
 
 use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
 use ImetCore\Services\Scores\Functions\_Scores;
-use ImetCore\Services\Scores\OecmScores;
 use ImetCore\Services\Scores\Labels;
+use ImetCore\Services\Scores\OecmScores;
 
-class OecmAssessment
+final class OecmAssessment
 {
     use Labels;
 
@@ -25,20 +26,20 @@ class OecmAssessment
      */
     private static function getAsModel(ImetOecm|int|string $imet): ImetOecm
     {
-        return (is_int($imet) or is_string($imet))
-            ? ImetOecm::find($imet)
+        return (is_int($imet) || is_string($imet))
+            ? ImetOecm::query()->find($imet)
             : $imet;
     }
 
-    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true): array
+    public static function getAssessment(ImetOecm|int|string $imet, $step = _Scores::RADAR_SCORES, $with_labels = true, bool $refresh_cache = false): array
     {
-        $imet = static::getAsModel($imet);
+        $imet = self::getAsModel($imet);
         $scores = $step === _Scores::ALL_SCORES
-            ? OecmScores::get_all($imet)
+            ? OecmScores::get_all($imet, refresh_cache: $refresh_cache)
             : (
                 $step == _Scores::RADAR_SCORES
-                    ? OecmScores::get_radar($imet)
-                    : OecmScores::get_step($imet, $step)
+                    ? OecmScores::get_radar($imet, refresh_cache: $refresh_cache)
+                    : OecmScores::get_step($imet, $step, refresh_cache: $refresh_cache)
             );
 
         $result = [
@@ -47,12 +48,11 @@ class OecmAssessment
             'iso3' => $imet->Country,
             'name' => $imet->name,
             'version' => $imet->version,
-            'scores' => $scores
+            'scores' => $scores,
         ];
 
         return $with_labels
-            ? array_merge($result, ['labels' => static::get_scores_labels($imet->version)])
+            ? array_merge($result, ['labels' => self::get_scores_labels($imet->version)])
             : $result;
     }
-
 }

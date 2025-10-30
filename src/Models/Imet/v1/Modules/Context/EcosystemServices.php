@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class EcosystemServices extends Modules\Component\ImetModule
+final class EcosystemServices extends Modules\Component\ImetModule
 {
     protected $table = 'context_ecosystem_services';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 7.1';
@@ -45,8 +47,8 @@ class EcosystemServices extends Modules\Component\ImetModule
                 'group6' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group6'),
                 'group7' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group7'),
                 'group8' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group8'),
-                'group9' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group9')
-            ]
+                'group9' => trans('imet-core::v1_context.EcosystemServices.predefined_values.group9'),
+            ],
         ];
 
         $this->module_groups = [
@@ -62,7 +64,6 @@ class EcosystemServices extends Modules\Component\ImetModule
             'group9' => trans('imet-core::v1_context.EcosystemServices.groups.group9'),
         ];
 
-
         $this->module_info = trans('imet-core::v1_context.EcosystemServices.module_info');
         $this->ratingLegend = trans('imet-core::v1_context.EcosystemServices.ratingLegend');
         parent::__construct($attributes);
@@ -70,28 +71,22 @@ class EcosystemServices extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'EcosystemServices',
             'fields' => [
-                'Element', 'Importance', null, null, 'Observations', 'GroupElement'
-            ]
+                'Element', 'Importance', null, null, 'Observations', 'GroupElement',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupElement');
+        return self::convertGroupLabelToKey($record, 'GroupElement');
     }
 }

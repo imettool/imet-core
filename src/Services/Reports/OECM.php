@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,25 +12,17 @@
 
 namespace ImetCore\Services\Reports;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
-use ImetCore\Models\Imet\oecm\Modules\Component\ImetModule_Eval;
 use ImetCore\Models\Imet\oecm\Report;
-
 
 class OECM
 {
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getElementImpacts(int $form_id): array
     {
-        //dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
-        return array_map(function ($item) {
-            ($item);
+        // dd(Modules\Evaluation\KeyElementsImpact::getModuleRecords($form_id)['records']);
+        return array_map(function (array $item): array {
             $effects = ['EffectSH', 'EffectER'];
-            $item['average'] = "";
+            $item['average'] = '';
             $total_effect = 0;
             $total_effect_length = 0;
             foreach ($effects as $effect) {
@@ -38,9 +31,11 @@ class OECM
                     $total_effect_length++;
                 }
             }
+
             if ($total_effect_length > 0) {
                 $item['average'] = $total_effect / $total_effect_length;
             }
+
             return $item;
 
         },
@@ -48,7 +43,6 @@ class OECM
     }
 
     /**
-     * @param int $form_id
      * @return array[]
      */
     public static function getStakeholderDirectIndirect(int $form_id): array
@@ -64,7 +58,6 @@ class OECM
     }
 
     /**
-     * @param int $form_id
      * @return array[]
      */
     public static function getStakeAnalysis(int $form_id): array
@@ -85,184 +78,119 @@ class OECM
      * @param $key_elements
      * @return array
      */
-    public static function getBiodiversityGlobalThreats($form_id, $key_elements): array
+    public static function getBiodiversityGlobalThreats(int $form_id, $key_elements): array
     {
-        $global_threats = array_filter(static::getThreatsIntegration($form_id), function ($item) {
-            return $item['IncludeInStatistics'] !== null;
-        });
+        $global_threats = array_filter(static::getThreatsIntegration($form_id), fn (array $item): bool => $item['IncludeInStatistics'] !== null);
 
-        $integration_threats = array_filter($key_elements, function ($item) {
-            return $item['group_key'] === 'group1';
-        });
+        $integration_threats = array_filter($key_elements, fn (array $item): bool => $item['group_key'] === 'group1');
 
-        $chart_integration = static::getChartValues($integration_threats, 'Aspect');
-        $chart_global = static::getChartValues($global_threats, 'Threat');
-
+        $chart_integration = self::getChartValues($integration_threats, 'Aspect');
+        $chart_global = self::getChartValues($global_threats, 'Threat');
 
         return ['global' => $chart_global, 'integration' => $chart_integration];
     }
 
-    /**
-     * @param array $values
-     * @param string $label
-     * @return array
-     */
     private static function getChartValues(array $values, string $label): array
     {
         $fields = [];
-        uasort($values, function ($a, $b) {
+        uasort($values, fn (array $a, array $b): int => $b['__score'] <=> $a['__score']);
 
-            if ($a['__score'] == $b['__score']) {
-                return 0;
-            }
-            return ($a['__score'] > $b['__score']) ? -1 : 1;
-        });
-
-        foreach ($values as $k => $value) {
-            if ($value['__score'] !== null) {
-                $fields[$value[$label]] = round($value['__score'], 2);
-            } else {
-                $fields[$value[$label]] = "-";
-            }
+        foreach ($values as $value) {
+            $fields[$value[$label]] = $value['__score'] !== null ? round($value['__score'], 2) : '-';
         }
 
         return ['values' => $values, 'chart' => ['values' => (($fields))]];
     }
 
-    /**
-     * @param array $threats
-     * @param bool $ecosystem
-     * @return array
-     */
     public static function getBiodiversityThreats(array $threats, bool $ecosystem = false): array
     {
         $fields = [];
         $score_field = $ecosystem ? 'Importance' : '__score';
 
         if ($ecosystem) {
-            $threats = array_filter($threats, function ($item) {
-                return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] !== null;
-            });
+            $threats = array_filter($threats, fn (array $item): bool => array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] !== null);
         } else {
-            $threats = array_filter($threats, function ($item) {
-                return array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] === null;
-            });
+            $threats = array_filter($threats, fn (array $item): bool => array_key_exists('__group_stakeholders', $item) && $item['__group_stakeholders'] === null);
         }
 
-        uasort($threats, function ($a, $b) use ($score_field) {
+        uasort($threats, fn (array $a, array $b): int => $b[$score_field] <=> $a[$score_field]);
 
-            if ($a[$score_field] == $b[$score_field]) {
-                return 0;
-            }
-            return ($a[$score_field] > $b[$score_field]) ? -1 : 1;
-        });
-
-        foreach ($threats as $k => $value) {
+        foreach ($threats as $value) {
             if ($value[$score_field] !== null) {
-                if (isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== "-") {
-                    $fields[$value['Aspect'] . ' ' . $value['Comments']] = round($value['__score'], 2);
+                if (isset($fields[$value['Aspect']]) && $fields[$value['Aspect']] !== '-') {
+                    $fields[$value['Aspect'].' '.$value['Comments']] = round($value['__score'], 2);
                 } else {
                     $fields[$value['Aspect']] = round($value[$score_field], 2);
                 }
             } else {
-                $fields[$value['Aspect']] = "-";
+                $fields[$value['Aspect']] = '-';
             }
         }
 
         return ['values' => $threats, 'chart' => ['values' => (($fields))]];
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getThreatsIntegration(int $form_id): array
     {
         return collect(Modules\Evaluation\ThreatsIntegration::getModuleRecords($form_id)['records'])
             ->toArray();
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getThreats(int $form_id): array
     {
-        $fields = [];
         $trend_and_threats = static::getThreatsIntegration($form_id);
 
-        return static::getChartValues($trend_and_threats, 'Threat');
+        return self::getChartValues($trend_and_threats, 'Threat');
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     public static function getKeyElementsEcosystems(array $values): array
     {
-        return array_filter($values, function ($item) {
-            return $item['__group_stakeholders'] !== null;
-        });
+        return array_filter($values, fn (array $item): bool => $item['__group_stakeholders'] !== null);
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     public static function getKeyElementsBiodiversity(array $values): array
     {
-        return array_filter($values, function ($item) {
-            return $item['__group_stakeholders'] === null;
-        });
+        return array_filter($values, fn (array $item): bool => $item['__group_stakeholders'] === null);
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getKeyElements(int $form_id): array
     {
         return collect(Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'])
-            ->filter(function ($item) {
-                return $item['IncludeInStatistics'];
-            })
+            ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->toArray();
     }
 
-    /**
-     * @param int $form_id
-     * @return array
-     */
     public static function getObjectives(int $form_id): array
     {
 
         $objectives = ['context' => [], 'evaluation' => []];
         $objectives['context'] = array_merge(
-            static::objectivesSchema('context', 'obj1', Modules\Context\Objectives1::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj2', Modules\Context\Objectives2::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj3', Modules\Context\Objectives3::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj4', Modules\Context\Objectives4::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj5', Modules\Context\AnalysisStakeholdersObjectives::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('context', 'obj6', Modules\Context\StakeholdersObjectives::getModuleRecords($form_id)['records']));
+            self::objectivesSchema('context', 'obj1', Modules\Context\Objectives1::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj2', Modules\Context\Objectives2::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj3', Modules\Context\Objectives3::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj4', Modules\Context\Objectives4::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj5', Modules\Context\AnalysisStakeholdersObjectives::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('context', 'obj6', Modules\Context\StakeholdersObjectives::getModuleRecords($form_id)['records']));
 
         $objectives['evaluation'] = array_merge(
-            static::objectivesSchema('evaluation', 'context', Modules\Evaluation\ObjectivesContext::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'intrants', Modules\Evaluation\ObjectivesIntrants::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
-            static::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'context', Modules\Evaluation\ObjectivesContext::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'intrants', Modules\Evaluation\ObjectivesIntrants::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'planning', Modules\Evaluation\ObjectivesPlanification::getModuleRecords($form_id)['records']),
+            self::objectivesSchema('evaluation', 'process', Modules\Evaluation\ObjectivesProcessus::getModuleRecords($form_id)['records']),
         );
 
         return $objectives;
     }
 
-    private static function objectivesSchema($index, $label, $items): array
+    private static function objectivesSchema(string $index, string $label, $items): array
     {
         $elements = [];
-        foreach ($items as $key => $item) {
-            if ($item["id"]) {
-                $elements[$label . "_" . $item['ShortOrLongTerm'] . "_" . $index . "_" . $item["id"]] = $item["Element"];
+        foreach ($items as $item) {
+            if ($item['id']) {
+                $elements[$label.'_'.$item['ShortOrLongTerm'].'_'.$index.'_'.$item['id']] = $item['Element'];
             }
         }
+
         return $elements;
     }
 
@@ -272,19 +200,20 @@ class OECM
         $report = Report::getByForm($form_id);
 
         if (count($report) && array_key_exists('objectives', $report[0])) {
-            if($report[0]['objectives']) {
-                $result = json_decode($report[0]['objectives'], true);
+            if ($report[0]['objectives']) {
+                $result = json_decode((string) $report[0]['objectives'], true);
                 foreach ($result as $item) {
-                    if (str_contains($item['id'], '_context')) {
+                    if (str_contains((string) $item['id'], '_context')) {
                         $objectives['context'][$item['id']] = $item['value'];
                     } else {
                         $objectives['evaluation'][$item['id']] = $item['value'];
                     }
                 }
-            }else {
+            } else {
                 return [];
             }
         }
+
         return $objectives;
     }
 }

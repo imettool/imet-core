@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,13 @@
 
 namespace ImetCore\Controllers;
 
-use ImetCore\Models\ProtectedArea;
-use ModularForms\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
+use ImetCore\Models\ProtectedArea;
+use ModularForms\Controllers\Controller;
 
 class ProtectedAreaController extends Controller
 {
-
     /**
      * Search by search string or country
      */
@@ -35,7 +34,7 @@ class ProtectedAreaController extends Controller
         return static::sendAPIResponse($list->toArray(), null, 200, [
             'countries' => $list->pluck('country_name', 'country')
                 ->sort()
-                ->toArray()
+                ->toArray(),
         ]);
     }
 
@@ -46,24 +45,23 @@ class ProtectedAreaController extends Controller
     {
         $pairs = [];
 
-        if($request->filled('id')){
+        if ($request->filled('id')) {
 
             // Retrieve IDs list: can be comma separated string or json array
             $ids = $request->input('id');
-            if(is_int($ids)){
+            if (is_int($ids)) {
                 $pas = [$ids];  // force array if single integer
             } else {
                 $pas = json_validate($ids)
                     ? json_decode($ids)
-                    : explode(',', $ids);
+                    : explode(',', (string) $ids);
             }
 
-            $pairs = ProtectedArea::select(['wdpa_id', 'name'])
+            $pairs = ProtectedArea::query()->select(['wdpa_id', 'name'])
                 ->whereIn('wdpa_id', $pas)
                 ->get();
         }
 
         return static::sendAPIResponse($pairs);
     }
-
 }

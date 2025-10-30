@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,24 +12,24 @@
 
 return [
 
-    'management'        => 'gestion des formulaires IMET',
+    'management' => 'gestion des formulaires IMET',
     'v1' => 'v1',
 
     'region' => 'région',
 
-    'indicator'     => 'Indicateur',
-    'methodology'   => 'Méthodologie',
-    'criteria'      => 'Critères - Concept mesuré - Variables',
+    'indicator' => 'Indicateur',
+    'methodology' => 'Méthodologie',
+    'criteria' => 'Critères - Concept mesuré - Variables',
 
     'steps' => [
-        'general_info'     => 'Informations générales',
-        'areas'                 => 'Superficies, limites et indice de forme, niveau de contrôle',
-        'resources'             => 'Ressources humaines, financières et matérielles',
-        'key_elements'          => 'Eléments clés',
-        'threats'               => 'Pressions et menaces',
-        'climate'               => 'Changements climatiques et conservation',
-        'ecosystem_services'    => 'Services écosystémiques et dépendance des collectivités',
-        'objectives'            => 'Objectifs et Gestion',
+        'general_info' => 'Informations générales',
+        'areas' => 'Superficies, limites et indice de forme, niveau de contrôle',
+        'resources' => 'Ressources humaines, financières et matérielles',
+        'key_elements' => 'Eléments clés',
+        'threats' => 'Pressions et menaces',
+        'climate' => 'Changements climatiques et conservation',
+        'ecosystem_services' => 'Services écosystémiques et dépendance des collectivités',
+        'objectives' => 'Objectifs et Gestion',
     ],
 
     'assessment' => [       // Same as v2
@@ -44,6 +45,6 @@ return [
         'PRE' => 'Suivi et Recherche',
         'PRF' => 'Chang. Climatique et Serv. Écosystémiques',
 
-    ]
+    ],
 
 ];

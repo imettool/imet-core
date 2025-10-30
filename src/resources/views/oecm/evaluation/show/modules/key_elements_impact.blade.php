@@ -1,9 +1,9 @@
 <?php
-use Illuminate\Database\Eloquent\Collection;
-
 /** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
+
+use Illuminate\Database\Eloquent\Collection;
 
 ?>
 

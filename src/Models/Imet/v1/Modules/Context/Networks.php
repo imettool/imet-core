@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,19 +13,20 @@
 namespace ImetCore\Models\Imet\v1\Modules\Context;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Str;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Type\JSON;
-use Illuminate\Support\Str;
 
-class Networks extends Modules\Component\ImetModule
+final class Networks extends Modules\Component\ImetModule
 {
     protected $table = 'context_networks';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 1.4';
@@ -43,19 +45,19 @@ class Networks extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-
     /**
      * Override: upgrade module records during retrieving
      */
-    public static function getModule(int $form_id = null): Collection
+    #[\Override]
+    public static function getModule(?int $form_id = null): Collection
     {
         $models = parent::getModule($form_id);
 
         // Upgrade existing data
-        $models->map(function ($model){
+        $models->map(function ($model): void {
             $model->timestamps = false;
             $model->fill(
-                static::upgradeModule($model->toArray())
+                self::upgradeModule($model->toArray())
             )->save();
         });
 
@@ -65,62 +67,54 @@ class Networks extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
 
-        if($record['ProtectedAreas']!==null && Str::contains($record['ProtectedAreas'], '[')){
+        if ($record['ProtectedAreas'] !== null && Str::contains($record['ProtectedAreas'], '[')) {
 
             $pas = json_decode($record['ProtectedAreas']);
             $pas = array_filter($pas);
 
             // Convert local_id to wdpa
-            $pas = collect($pas)->map(function ($pa) {
-                $model = ProtectedArea::find('OFAC_'.$pa);
+            $pas = collect($pas)->map(function (string $pa) {
+                $model = ProtectedArea::query()->find('OFAC_'.$pa);
+
                 return $model->wdpa_id ?? null;
-            })->toArray();
+            })->all();
             $pas = array_filter($pas);
 
             // Convert JSON to comma-separated list
             $record['ProtectedAreas'] = implode(',', $pas);
         }
+
         return $record;
     }
 
-
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Networks',
             'fields' => [
-                'NetworkName', 'ProtectedAreas', 'NetworkType'
-            ]
+                'NetworkName', 'ProtectedAreas', 'NetworkType',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
     protected static function conversionDataReview($record, $sqlite_connection): array
     {
-        $record =  self::convertGroupLabelToKey($record, 'NetworkType');
+        $record = self::convertGroupLabelToKey($record, 'NetworkType');
 
-        if(!empty($record['ProtectedAreas'])){
-            $pas = json_decode($record['ProtectedAreas']);
+        if (filled($record['ProtectedAreas'])) {
+            $pas = json_decode((string) $record['ProtectedAreas']);
             $pas = array_filter($pas);
-            $pas = collect($pas)->map(function ($pa) use ($sqlite_connection) {
-                return Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection);
-            })->toArray();
+            $pas = collect($pas)->map(fn ($pa): ?string => Modules\Component\ImetModule::wdpaBySqliteProtectedAreaID($pa, $sqlite_connection))->all();
             $pas = array_filter($pas);
             $record['ProtectedAreas'] = implode(',', $pas);
         }
 
         return $record;
     }
-
 }

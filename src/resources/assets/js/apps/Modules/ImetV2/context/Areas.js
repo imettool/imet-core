@@ -23,14 +23,17 @@ export default class Areas extends ModuleImet {
         const GISArea_km2 = ref(input_data.records[0]['GISArea']/100);
 
         function convertToKm(fieldName) {
-            if(fieldName==='AdministrativeArea'){
-                AdministrativeArea_km2.value = parseFloat(setup_obj.records[0][fieldName])/100;
-            } else if(fieldName==='WDPAArea'){
-                WDPAArea_km2.value = parseFloat(setup_obj.records[0][fieldName])/100;
-            } else if(fieldName==='GISArea'){
-                GISArea_km2.value = parseFloat(setup_obj.records[0][fieldName])/100;
-            }
+            nextTick().then(() => {
+                if (fieldName === 'AdministrativeArea') {
+                    AdministrativeArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                } else if (fieldName === 'WDPAArea') {
+                    WDPAArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                } else if (fieldName === 'GISArea') {
+                    GISArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                }
+            });
         }
+
         function convertToHa(fieldName) {
             nextTick().then(() => {
                 if(fieldName==='AdministrativeArea'){

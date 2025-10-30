@@ -1,10 +1,10 @@
 <?php
-/** @var bool $is_wdpa */
+/** @var ?bool $is_wdpa */
 
 use ImetCore\Models\Imet\oecm\Modules\Context\Create;
 use ImetCore\Models\Imet\oecm\Modules\Context\CreateNonWdpa;
 
-$is_wdpa = $is_wdpa ?? true;
+$is_wdpa ??= true;
 ?>
 
 @extends('modular-forms::page.create', [

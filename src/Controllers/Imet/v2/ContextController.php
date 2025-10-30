@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,13 +12,9 @@
 
 namespace ImetCore\Controllers\Imet\v2;
 
-
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-
-
-class ContextController extends Controller
+final class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::v2.context';
-    protected static ?string $form_default_step = 'general_info';
 
+    protected static ?string $form_default_step = 'general_info';
 }

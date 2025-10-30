@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementStaffPartners extends Modules\Component\ImetModule
+final class ManagementStaffPartners extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff_partners';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.2';
@@ -37,16 +39,14 @@ class ManagementStaffPartners extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'ManagementStaffPartners',
             'fields' => [
-                'Partner', 'Coordinators', 'Technicians', 'Auxiliaries'
-            ]
+                'Partner', 'Coordinators', 'Technicians', 'Auxiliaries',
+            ],
         ];
     }
 }

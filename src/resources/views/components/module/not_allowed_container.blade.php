@@ -1,5 +1,5 @@
 <?php
-/** @var String $controller */
+/** @var string $controller */
 /** @var \ModularForms\Models\Module $module_class */
 /** @var int $form_id */
 

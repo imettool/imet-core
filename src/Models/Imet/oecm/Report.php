@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -17,6 +18,7 @@ use ImetCore\Models\Imet\Components\Report as BaseReport;
 class Report extends BaseReport
 {
     protected static ?string $schema = Database::OECM_SCHEMA;
+
     protected $table = 'report';
 
     protected static array $report_fields = [
@@ -47,7 +49,7 @@ class Report extends BaseReport
         'annual_targets2_activity5',
         'outcome2',
         'group_key',
-        'objectives'
+        'objectives',
     ];
 
     protected static $boolean_fields = [
@@ -126,13 +128,11 @@ class Report extends BaseReport
 
     /**
      * Retrieve report
-     *
-     * @param $form_id
-     * @return array
      */
+    #[\Override]
     public static function getByForm($form_id): array
     {
-        $report = Report::where('FormID', $form_id)->get();
+        $report = Report::query()->where('FormID', $form_id)->get();
 
         return $report->isEmpty()
             ? [static::getSchema()]
@@ -141,22 +141,19 @@ class Report extends BaseReport
 
     public static function getSchema()
     {
-        return array_fill_keys(static::$report_fields, "") + array_fill_keys(static::$boolean_fields, false);
+        return array_fill_keys(static::$report_fields, '') + array_fill_keys(static::$boolean_fields, false);
     }
 
     /**
      * Update report
-     *
-     * @param $form_id
-     * @param $data
-     * @return void
      */
-    public static function updateByForm($form_id, $data)
+    #[\Override]
+    public static function updateByForm($form_id, $data): void
     {
 
-        Report::where('FormID', $form_id)->delete();
+        Report::query()->where('FormID', $form_id)->delete();
         foreach ($data as $key => $value) {
-            $report = new Report();
+            $report = new Report;
             $data[$key]['FormID'] = $form_id;
             $report->fill($data[$key]);
             if ($report->isDirty()) {

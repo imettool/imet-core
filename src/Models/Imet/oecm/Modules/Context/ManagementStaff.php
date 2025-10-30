@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,13 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
-use ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
+use ImetCore\Models\User\Role;
 
-class ManagementStaff extends Modules\Component\ImetModule
+final class ManagementStaff extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff';
 
@@ -25,10 +23,11 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\StaffCompetence::class, 'Function'],
-        [Modules\Evaluation\CapacityAdequacy::class, 'Function']
+        [Modules\Evaluation\CapacityAdequacy::class, 'Function'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.2';
@@ -39,7 +38,7 @@ class ManagementStaff extends Modules\Component\ImetModule
             ['name' => 'Male',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.Male')],
             ['name' => 'Female',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.Female')],
             ['name' => 'Descriptions',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.Descriptions')],
-            ['name' => 'AdequateNumber',  'type' => 'integer',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.AdequateNumber')]
+            ['name' => 'AdequateNumber',  'type' => 'integer',   'label' => trans('imet-core::oecm_context.ManagementStaff.fields.AdequateNumber')],
         ];
 
         $this->module_info = trans('imet-core::oecm_context.ManagementStaff.module_info');
@@ -49,16 +48,15 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     /**
      * Calculate weights
-     *
-     * @param $form_id
-     * @return array
      */
-    public static function calculateWeights($form_id): array
+    public static function calculateWeights(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
+
         return collect($records)
-            ->map(function($item){
+            ->map(function (array $item): array {
                 $item['__weight'] = round(sqrt($item['Number']), 2);
+
                 return $item;
             })
             ->pluck('__weight', 'Function')

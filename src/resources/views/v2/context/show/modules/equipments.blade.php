@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $records */
+/** @var array $definitions */
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -7,13 +10,11 @@ use ModularForms\View\Module\Components\Field\InputPreview;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create($view_groupTable);
 foreach ($definitions['groups'] as $group_key => $group) {
-    $group_records = array_filter($records, function ($item) use ($group_key) {
-        return $item['group_key'] === $group_key;
-    });
+    $group_records = array_filter($records, fn(array $item): bool => $item['group_key'] === $group_key);
     $input = '<thead>
                 <th></th>
                 <th>

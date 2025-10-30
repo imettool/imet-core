@@ -1,9 +1,11 @@
 <?php
-
-/** @var String $v_value */
-/** @var String $v_id */
-/** @var String $class  */
-/** @var String $other [optional] */
+/** @var string $v_id */
+/** @var string $v_value */
+/** @var string $class  */
+/** @var ?string $other [optional] */
+/** @var ?string $rules [optional] */
+/** @var string $type */
+/** @var string $module_key */
 
 $vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($v_id, $v_value);
 

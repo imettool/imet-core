@@ -2,26 +2,26 @@
 
 namespace ImetCore\Services\ScalingUp;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use ImetCore\Models\Imet\Imet as ImetAlias;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Services\Scores\ImetScores;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class PreviewScalingUp
 {
     use Common;
+
     /**
-     * @param int $id
-     * @return array
      * @throws AuthorizationException
      */
     public static function preview(int $id): array
     {
-        $areas_names_concat = "";
-        $records = ModelScalingUpAnalysis::where('id', $id)->first();
+        $areas_names_concat = '';
+        $areas_names = [];
+        $records = ModelScalingUpAnalysis::query()->where('id', $id)->first();
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
-            $wdpas = explode(',', $records->wdpas);
+            $wdpas = explode(',', (string) $records->wdpas);
             static::checkAuthorization($wdpas);
             ModelScalingUpAnalysis::$scaling_id = $id;
 
@@ -36,11 +36,9 @@ class PreviewScalingUp
         }
 
         return [
-            "scaling_up_id" => $id,
+            'scaling_up_id' => $id,
             'labels' => $labels,
-            'protected_areas' => $areas_names_concat
+            'protected_areas' => $areas_names_concat,
         ];
     }
-
-
 }

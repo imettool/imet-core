@@ -1,3 +1,7 @@
+@php
+/** @var string $value */
+@endphp
+
 <div class="field-preview">
 
     @if($value==='terrestrial')

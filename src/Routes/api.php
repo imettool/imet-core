@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -9,9 +10,8 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Support\Facades\Route;
-
+use ImetCore\Controllers\Imet\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::group(['prefix' => 'api'], function () {
-    Route::group(['prefix' => 'imet'], function () {
+Route::group(['prefix' => 'api'], function (): void {
+    Route::group(['prefix' => 'imet'], function (): void {
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
     });
 });

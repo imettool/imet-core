@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -19,7 +20,7 @@ return [
             'wdpa_id' => 'espace conservé',
             'language' => 'langue',
             'pré-remplissage avec les données de l’année précédente ',
-        ]
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -103,8 +104,8 @@ return [
                 '1' => '30–50% total population of the conserved area',
                 '2' => '51–75% total population of the conserved area',
                 '3' => 'More than 75% of the total population of the conserved area',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'SpecialStatus' => [
@@ -122,7 +123,7 @@ return [
             'networks' => 'Appartenance à un réseau international officiellement reconnu (MAB, RAPAC, etc.)',
             'conservation' => 'Désignation du statut d’importance pour la conservation par des organismes internationaux (IBA, AZE, etc.)',
             'marine_pa' => 'Autres désignations',
-        ]
+        ],
     ],
 
     'Networks' => [
@@ -135,7 +136,7 @@ return [
             'group0' => 'Réseau transfrontalier',
             'group1' => 'Réseau d’un paysage (terrestre et marine espace conservé)',
             'group2' => 'Autres réseaux',
-        ]
+        ],
     ],
 
     'Missions' => [
@@ -146,7 +147,7 @@ return [
             'LocalObjective' => 'Objectifs',
             'LocalSource' => 'Source',
             'Observation' => 'Observation',
-        ]
+        ],
     ],
 
     'Contexts' => [
@@ -163,9 +164,9 @@ return [
             'Contexte socio-économique',
             'Contexte politique (pays)',
             'Contexte juridiquet',
-            'Contexte institutionnel'
+            'Contexte institutionnel',
         ],
-        'module_info' => 'Données au niveau national avec vérification au niveau local'
+        'module_info' => 'Données au niveau national avec vérification au niveau local',
     ],
 
     'Objectives' => [
@@ -173,24 +174,24 @@ return [
         'fields' => [
             'Element' => 'Objectif',
             'ShortOrLongTerm' => 'Court/long terme',
-            'Comments' => 'Comments'
-        ]
+            'Comments' => 'Comments',
+        ],
     ],
 
     'Objectives1' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour la gouvernance, les partenariats et la désignation <b>de l’espace conservé</b><br /> Les objectifs fournis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour la gouvernance, les partenariats et la désignation <b>de l’espace conservé</b><br /> Les objectifs fournis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé',
     ],
 
     'Objectives2' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’espace conservé</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’espace conservé'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>l’aire de l’espace conservé</b><br /> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus particulièrement pour les phases de planification, de mobilisation des ressources (intrants), de processus, et pour le suivi des activités de gestion de l’espace conservé',
     ],
 
     'Objectives3' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>les ressources humaines et financières/le soutien des partenariats dans la gestion </b>de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé',
     ],
 
     'Objectives4' => [
-        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé'
+        'module_info' => 'Établir et décrire les objectifs de conservation pour <b>espèces animales et végétales clés</b> de l’espace conservé<br/> Les objectifs saisis ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification, la mobilisation des ressources (intrants), les phases du processus, et pour le suivi des activités de gestion de l’espace conservé',
     ],
 
     'GeographicalLocation' => [
@@ -202,7 +203,7 @@ return [
             'Coordinates' => 'Coordonnées géographiques (ligne de base ou point clé dans le parc)',
             'SourceCoords' => 'Source',
             'AdministrativeLocation' => 'Situation administrative de l’espace conservé (province, région, etc.)',
-        ]
+        ],
     ],
 
     'Areas' => [
@@ -213,8 +214,8 @@ return [
             'GISArea' => 'Surface réelle (SIG du parc ou de l’autorité responsable des espace conservé) correspondant au fichier téléchargé',
             'StrictConservationArea' => 'Superficie de la zone de conservation stricte (zone de non-prélèvement, zone centrale) (le cas échéant)',
             'TerrestrialArea' => 'Surface de l’espace conservé terrestre, de la forêt communautaire, des ICCA, autre',
-            'MarineArea' => 'Surface de l’espace conservé marine et côtière, des ICCA, des LMMA, autres'
-        ]
+            'MarineArea' => 'Surface de l’espace conservé marine et côtière, des ICCA, des LMMA, autres',
+        ],
     ],
 
     'ManagementStaff' => [
@@ -226,10 +227,10 @@ return [
             'Female' => 'Femme',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Nombre adéquat',
-            'Difference' => 'Différence'
+            'Difference' => 'Différence',
         ],
         'module_info' => 'Nombre et catégories de membres de l’organe de gestion de l’espace conservé',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I2, PR1</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I2, PR1</i>',
     ],
 
     'ManagementStaffPartners' => [
@@ -240,19 +241,19 @@ return [
             'Coordinators' => 'Coordinateurs (nombre)',
             'Technicians' => 'Personnel technique et administratif (nombre)',
             'Auxiliaries' => 'Personnel auxiliaire (nombre)',
-        ]
+        ],
     ],
 
     'ManagementRelativeImportance' => [
-        'title' =>'Implication relative du personnel et des parties prenantes dans la gestion',
+        'title' => 'Implication relative du personnel et des parties prenantes dans la gestion',
         'fields' => [
-            'RelativeImportance' => 'Implication relative du personnel et des parties prenantes'
+            'RelativeImportance' => 'Implication relative du personnel et des parties prenantes',
         ],
         'staff' => 'staff',
         'stakeholders' => 'Parties prenantes',
-        'equal' =>  'Implication égale entre le personnel et les parties prenantes',
-        'majority_by' =>  'Implication majoritaire par',
-        'all_by' =>  'Implication de tous',
+        'equal' => 'Implication égale entre le personnel et les parties prenantes',
+        'majority_by' => 'Implication majoritaire par',
+        'all_by' => 'Implication de tous',
     ],
 
     'FinancialResources' => [
@@ -261,7 +262,7 @@ return [
             'Currency' => 'Devise',
             'TotalAnnualBudgetAvailable' => 'Budget annuel total disponible',
         ],
-        'module_info' => 'Estimation des coûts totaux de gestion de l’espace conservé'
+        'module_info' => 'Estimation des coûts totaux de gestion de l’espace conservé',
     ],
 
     'Equipments' => [
@@ -269,7 +270,7 @@ return [
         'fields' => [
             'Resource' => 'Catégorie',
             'AdequacyLevel' => 'Adéquation',
-            'Comments' => 'Source / Note'
+            'Comments' => 'Source / Note',
         ],
         'groups' => [
             'group0' => 'Bâtiments administratifs',
@@ -281,7 +282,7 @@ return [
             'group6' => 'Équipement de production d’énergie',
             'group7' => 'Routes et pistes',
             'group8' => 'Voies navigables',
-            'group9' => 'Liens et connexions de l’espace conservé avec le monde extérieur'
+            'group9' => 'Liens et connexions de l’espace conservé avec le monde extérieur',
         ],
         'predefined_values' => [
             'group0' => ['Bureaux', 'Centre d’information', 'Bâtiments de service (magazine, etc.)', 'Centre de soins de santé'],
@@ -293,7 +294,7 @@ return [
             'group6' => ['Générateurs d’électricité', 'Installation électrique solaire', 'Installation électrique hydroélectrique', 'Installation électrique éolienne'],
             'group7' => ['Routes/pistes à l’intérieur de l’espace conservé', 'Chemins à l’intérieur de l’espace conservé', 'Route le long de la frontière'],
             'group8' => ['Voies navigables à l’intérieur de l’espace conservé'],
-            'group9' => ['Grandes voies de communication terrestres', 'Voies navigables intérieures et maritimes']
+            'group9' => ['Grandes voies de communication terrestres', 'Voies navigables intérieures et maritimes'],
         ],
         'ratingLegend' => [
             'AdequacyLevel' => [
@@ -301,9 +302,9 @@ return [
                 '1' => 'Quelque peu inadéquat (31-60% des besoins)',
                 '2' => 'Adéquat (61-90% des besoins)',
                 '3' => 'Tout à fait adéquat (91-100% des besoins)',
-            ]
+            ],
         ],
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>I5, PR5</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>I5, PR5</i>',
     ],
 
     'AnimalSpecies' => [
@@ -324,7 +325,7 @@ return [
             <li><b>PRT</b>: Espèces protégées</li>
             <li><b>DSG</b>: Espèces en voie de disparition</li>
             <li><b>INV</b>: Espèces envahissantes</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2</i>',
     ],
 
     'VegetalSpecies' => [
@@ -344,7 +345,7 @@ return [
             <li><b>PRT</b>: Espèces protégées</li>
             <li><b>DSG</b>: Espèces en voie de disparition</li>
             <li><b>INV</b>: Espèces envahissantes</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés): <i>SA 2</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés): <i>SA 2</i>',
     ],
 
     'Habitats' => [
@@ -359,8 +360,7 @@ return [
             'DescribeEstimation' => 'Décrire l’état optimal',
             'Comments' => 'Source / Note',
         ],
-        'module_info' =>
-            'Les types d\'habitats énumérés ci-dessous sont des termes standard utilisés pour décrire le ou les principaux habitats
+        'module_info' => 'Les types d\'habitats énumérés ci-dessous sont des termes standard utilisés pour décrire le ou les principaux habitats
             (<a href="https://www.iucnredlist.org/resources/habitat-classification-scheme">https://www.iucnredlist.org/resources/habitat-classification-scheme</a>).
                  Identifiez la catégorie principale dans la liste suggérée d\'habitats, puis ajoutez un deuxième niveau de description qui
                  prend en compte votre domaine spécifique.<br />
@@ -368,7 +368,7 @@ return [
                 <li><b>EXP</b>: Exploité</li>
                 <li><b>PRT</b>: Protégé</li>
                 <li><b>DSG</b>: En voie de disparition</li></ul>',
-        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>SA 2</i>'
+        'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>SA 2</i>',
     ],
 
     'Stakeholders' => [
@@ -401,12 +401,11 @@ return [
             'group7' => 'Collectivités locales (identifier les élus locaux et les parlementaires, les conseils territoriaux / départementaux et municipaux, les services fonciers, les services de l’environnement, etc.)',
             'group8' => 'Autorités nationales (identifier le ministère ou le département national chargé de la gestion des RN) Gouvernement central Forces armées (police paramilitaire et marine, etc.)',
             'group9' => 'ONG (identifiez les ONG de défense des droits sociaux, les ONG de protection de l’environnement, les ONG de développement, etc.)',
-            'group10' =>'Scientifiques/Chercheurs (Identifier les scientifiques/chercheurs, etc.)',
-            'group11' =>'Donateurs (identifier les donateurs privés et publics, etc.)',
+            'group10' => 'Scientifiques/Chercheurs (Identifier les scientifiques/chercheurs, etc.)',
+            'group11' => 'Donateurs (identifier les donateurs privés et publics, etc.)',
 
         ],
-        'module_info' =>
-            'Identifier les acteurs impliqués dans la gestion ou l\'utilisation des ressources naturelles de l\'espace conservé<br />
+        'module_info' => 'Identifier les acteurs impliqués dans la gestion ou l\'utilisation des ressources naturelles de l\'espace conservé<br />
              <b>Vivant à l’intérieur ou à proximité (moins d\'une heure de marche)</b>: Vivre dans ou à proximité d\'une zone conservée peut donner accès à des
              services écosystémiques, mais peut également nécessiter des restrictions et des réglementations.<br />
              <b>Catégories d\'usages ou de gestion des éléments clés de l\'espace conservé</b>: différentes manières dont les parties prenantes interagissent avec
@@ -439,16 +438,15 @@ return [
                 '1' => 'Faible expertise dans la gestion des terres et des ressources naturelles',
                 '2' => 'Expertise modérée dans la gestion des terres et des ressources naturelles',
                 '3' => 'Expertise important dans la gestion des terres et des ressources naturelles',
-            ]
+            ],
         ],
-        'warning_on_save' => 'AVERTISSEMENT !! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
+        'warning_on_save' => 'AVERTISSEMENT !! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>',
     ],
 
     'StakeholdersObjectives' => [
-        'module_info' =>
-            'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou l\'utilisation des
+        'module_info' => 'Établir et décrire des objectifs de conservation pour les parties prenantes impliquées dans la gestion ou l\'utilisation des
              ressources naturelles de l\'espace conservé. Les objectifs inscrits ci-dessous serviront à améliorer la gestion, et plus particulièrement
-             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.'
+             pour la planification, la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.',
     ],
 
     'AnalysisStakeholders' => [
@@ -477,8 +475,7 @@ return [
             'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
-            'group0' =>
-                '<p>La fourniture de services écosystémiques - nutrition fait référence à la fourniture d’aliments essentiels à la santé et au bien-être de l’homme.
+            'group0' => '<p>La fourniture de services écosystémiques - nutrition fait référence à la fourniture d’aliments essentiels à la santé et au bien-être de l’homme.
                     Il est important de comprendre et de gérer la fourniture de nourriture en maintenant la santé des écosystèmes par la conservation des sols et de l’eau,
                     forêts, biodiversité, etc. Exemple de fourniture de services écosystémiques - la nutrition</p>
                     <ul>
@@ -486,59 +483,51 @@ return [
                         <li>Les animaux destinés à l’alimentation humaine sont la viande sauvage ou d’élevage, les œufs, les insectes, les aliments pour poissons ou animaux d’élevage (sauvages, d’élevage, appâts), etc.</li>
                         <li>Médicaments (quinine contre la malaria, compléments à base de plantes, huiles aromatiques, anti-venins, etc.) et biotechnologie bleue (huile de poisson)</li>
                     </ul>',
-            'group1' =>
-                '<p>L’approvisionnement de services écosystémiques – Eau - comprend la fourniture d’eau propre pour la boisson, l’usage humain et l’irrigation. La gestion de l’approvisionnement en eau implique protéger les bassins versants, les zones humides et les autres écosystèmes aquatiques, promouvoir des pratiques durables d’utilisation de l’eau et réduire la pollution et la dégradation de l’eau. Exemple de fourniture de services écosystémiques – l’eau.
+            'group1' => '<p>L’approvisionnement de services écosystémiques – Eau - comprend la fourniture d’eau propre pour la boisson, l’usage humain et l’irrigation. La gestion de l’approvisionnement en eau implique protéger les bassins versants, les zones humides et les autres écosystèmes aquatiques, promouvoir des pratiques durables d’utilisation de l’eau et réduire la pollution et la dégradation de l’eau. Exemple de fourniture de services écosystémiques – l’eau.
                     Exemple L’approvisionnement de services écosystémiques – Eau</p>
                     <ul>
                         <li>L’approvisionnement en eau et la qualité de l’eau à usage humain : consommation, assainissement et hygiène.</li>
                         <li>L’eau pour l’irrigation des cultures ou d’autres activités agricoles et pour la consommation des poissons et du bétail</li>
                         <li>Réserve d’eau accessible en période de sécheresse ou de faible disponibilité de l’eau</li>
                      </ul>',
-            'group2' =>
-                '<p>L’approvisionnement de services écosystémiques - matériaux comprend la fourniture de bois, de fibres et d’autres matériaux qui sont utilisés pour la construction et la fabrication. La gestion des écosystèmes passe par la promotion de pratiques d’exploitation durables et l’exploration de matériaux et de technologies de substitution. Exemple de fourniture de services écosystémiques - matériaux</p>
+            'group2' => '<p>L’approvisionnement de services écosystémiques - matériaux comprend la fourniture de bois, de fibres et d’autres matériaux qui sont utilisés pour la construction et la fabrication. La gestion des écosystèmes passe par la promotion de pratiques d’exploitation durables et l’exploration de matériaux et de technologies de substitution. Exemple de fourniture de services écosystémiques - matériaux</p>
                     <ul>
                         <li>Le bois d’œuvre comme bois de grande valeur ; bois pour la construction locale, piquets, tiges, etc.</li>
                         <li>Fibres végétales, telles que le coton, le lin, les palmiers, le kenaf, etc.</li>
                         <li>Ressources ornementales en général et aquariophiles (graines, coquillages et collection de poissons), etc.</li>
                         <li>Minéraux tels que l’or, l’argent, le cuivre, le sable (construction), etc.</li>
                      </ul>',
-            'group3' =>
-                '<p>L’approvvisionement de services écosystémiques - énergie comprend l’utilisation de la biomasse, comme le bois de chauffage ou les résidus de récolte, l’énergie solaire ou éolienne et d’autres besoins énergétiques comme l’engrais, afin de fournir des services essentiels tels que la cuisine, le chauffage, l’éclairage et la productivité agricole dans les communautés rurales qui n’ont pas toujours accès à des sources d’énergie modernes. La gestion durable des systèmes naturels, tels que les forêts et les terres agricoles, est essentielle pour garantir la disponibilité de ces services.). Exemple de services écosystémiques</p>
+            'group3' => '<p>L’approvvisionement de services écosystémiques - énergie comprend l’utilisation de la biomasse, comme le bois de chauffage ou les résidus de récolte, l’énergie solaire ou éolienne et d’autres besoins énergétiques comme l’engrais, afin de fournir des services essentiels tels que la cuisine, le chauffage, l’éclairage et la productivité agricole dans les communautés rurales qui n’ont pas toujours accès à des sources d’énergie modernes. La gestion durable des systèmes naturels, tels que les forêts et les terres agricoles, est essentielle pour garantir la disponibilité de ces services.). Exemple de services écosystémiques</p>
                     <ul>
                         <li>Biomasse provenant de matières végétales telles que le bois, les résidus de culture et les herbes qui peuvent être brûlées ou converties en biocarburants pour produire de l’énergie.</li>
                         <li>Biomasse à convertir en engrais</li>
                         <li>Autres sources d’électricité verte : L’eau courante, le vent, l’énergie solaire ou géothermique qui peuvent être exploités pour produire de l’électricité.</li>
                      </ul>',
-            'group4' =>
-                '<p>L’approvisionnement de services écosystémiques - services culturels fait référence aux avantages que les systèmes naturels procurent à l’homme pour son plaisir et son bien-être. Ces avantages peuvent inclure des possibilités de loisirs en plein air, comme la randonnée, le camping et l’observation de la faune et de la flore, ainsi que la beauté esthétique des paysages naturels, tels que les montagnes, les forêts et les plages. Les services écosystémiques pour l’appréciation esthétique, les loisirs et le tourisme peuvent contribuer aux économies locales grâce au développement de l’écotourisme et d’autres industries basées sur la nature. Il est important de garantir la disponibilité de ces des services écosystémiques pour les générations futures. Exemple de services écosystémiques</p>
+            'group4' => '<p>L’approvisionnement de services écosystémiques - services culturels fait référence aux avantages que les systèmes naturels procurent à l’homme pour son plaisir et son bien-être. Ces avantages peuvent inclure des possibilités de loisirs en plein air, comme la randonnée, le camping et l’observation de la faune et de la flore, ainsi que la beauté esthétique des paysages naturels, tels que les montagnes, les forêts et les plages. Les services écosystémiques pour l’appréciation esthétique, les loisirs et le tourisme peuvent contribuer aux économies locales grâce au développement de l’écotourisme et d’autres industries basées sur la nature. Il est important de garantir la disponibilité de ces des services écosystémiques pour les générations futures. Exemple de services écosystémiques</p>
                     <ul>
                         <li>Ecotourisme et observation de la nature : beaux paysages terrestres ou marins, paysages naturels, biodiversité et faune sauvage qui peuvent être appréciés pour les loisirs généraux, le camping, la marche, la randonnée, la navigation de plaisance, la natation, l’observation de la faune et de la flore et d’autres activités récréatives.</li>
                         <li>Le tourisme culturel consiste à visiter des sites historiques, des lieux d’intérêt et des attractions culturelles situés dans des aires naturelles.</li>
                         <li>Chasse ou pêche traditionnelle, aires conservées pour des pratiques de chasse ou de pêche traditionnelles spécifiées</li>
                      </ul>',
-            'group5' =>
-                '<p>L’approvisionnement de services écosystémiques - les services culturels désignent les avantages que les systèmes naturels procurent à l’éducation, à la recherche, à l’enseignement et l’expression artistique. Ces services peuvent contribuer au développement des connaissances humaines, du patrimoine culturel et de l’expression créative, qui sont importants pour le bien-être personnel et sociétal. La gestion durable des systèmes naturels est essentielle pour garantir la disponibilité de ces services écosystémiques pour les générations futures. Exemple de services écosystémiques</p>
+            'group5' => '<p>L’approvisionnement de services écosystémiques - les services culturels désignent les avantages que les systèmes naturels procurent à l’éducation, à la recherche, à l’enseignement et l’expression artistique. Ces services peuvent contribuer au développement des connaissances humaines, du patrimoine culturel et de l’expression créative, qui sont importants pour le bien-être personnel et sociétal. La gestion durable des systèmes naturels est essentielle pour garantir la disponibilité de ces services écosystémiques pour les générations futures. Exemple de services écosystémiques</p>
                     <ul>
                         <li>Les possibilités d’enseignement et la recherche scientifique dans de nombreuses disciplines, y compris l’écologie, la botanique et la zoologie, pour comprendre les concepts scientifiques et les processus écologiques.</li>
                         <li>Les pratiques traditionnelles et les connaissances écologiques qui constituent une part importante de l’identité et du patrimoine de la communauté liés à la nature et à l’environnement, tels que la pharmacopée traditionnelle et les médicaments</li>
                         <li>Inspiration et créativité pour les artistes, les écrivains, les photographes et autres créateurs afin de développer de nouvelles idées et de nouvelles œuvres.</li>
                      </ul>',
-            'group6' =>
-                '<p>L’approvisionnement de services écosystémiques - les services culturels spirituels et emblématiques sont ceux qui fournissent des services culturels et symboliques aux sociétés humaines. Les services écosystémiques spirituels peuvent inclure les expériences esthétiques et émotionnelles que les humains tirent des éléments suivants nature. Les services écosystémiques emblématiques sont ceux qui sont associés à une identité culturelle ou à une icône particulière. Ces services sont importants pour le bien-être humain et l’identité culturelle. Exemple de services écosystémiques</p>
+            'group6' => '<p>L’approvisionnement de services écosystémiques - les services culturels spirituels et emblématiques sont ceux qui fournissent des services culturels et symboliques aux sociétés humaines. Les services écosystémiques spirituels peuvent inclure les expériences esthétiques et émotionnelles que les humains tirent des éléments suivants nature. Les services écosystémiques emblématiques sont ceux qui sont associés à une identité culturelle ou à une icône particulière. Ces services sont importants pour le bien-être humain et l’identité culturelle. Exemple de services écosystémiques</p>
                     <ul>
                         <li>Les sites sacrés, historiques ou religieux et les lieux de pèlerinage tels que les montagnes, les rivières ou les forêts, etc.</li>
                         <li>Icônes et symboles culturels tels que des espèces animales ou végétales comme le lion (au Kenya, symbole de courage et de force), l’éléphant, la grue à crête (en Ouganda, oiseau qui représente la beauté naturelle et la grâce du pays) ou l’arbre Baobab, etc.</li>
                         <li>Les paysages qui ont une signification spirituelle ou culturelle pour l’identité communale.</li>
                      </ul>',
-            'group7' =>
-                '<p>L’approvisionnement de services écosystémiques - l’assainissement des polluants de l’air et de l’eau implique la protection des écosystèmes afin de réduire les émissions de gaz à effet de serre la pollution et la dégradation, et la purification de l’eau et de l’air par des processus naturels. Exemples de la manière dont les habitats fournissent ces services écosystémiques</p>
+            'group7' => '<p>L’approvisionnement de services écosystémiques - l’assainissement des polluants de l’air et de l’eau implique la protection des écosystèmes afin de réduire les émissions de gaz à effet de serre la pollution et la dégradation, et la purification de l’eau et de l’air par des processus naturels. Exemples de la manière dont les habitats fournissent ces services écosystémiques</p>
                     <ul>
                         <li>Les zones humides sont très efficaces pour éliminer les polluants de l’eau, tels que les excès de nutriments, les métaux lourds et les composés organiques.</li>
                         <li>Les forêts peuvent contribuer à réduire la pollution de l’air en absorbant et en filtrant les polluants atmosphériques et en produisant de l’oxygène, ce qui contribue à atténuer le changement climatique.</li>
                         <li>Les zones de végétation peuvent aider à filtrer et contribuer à la purification de l’eau, à l’élimination/neutralisation des déchets, à la régulation des déchets, etc.</li>
                      </ul>',
-            'group8' =>
-                '<p>L’approvisionnement de services écosystémiques - prévention de l’érosion et maintien de la fertilité des sols fait référence à la protection des sols par les moyens suivants la végétation contre les forces physiques du vent et de l’eau, qui peuvent entraîner la perte de la couche arable et des nutriments. Le maintien de la fertilité des sols fait référence aux processus qui maintiennent la teneur en éléments nutritifs et la structure des sols. Ces services sont importants pour la durabilité de l’agriculture, de la sylviculture et d’autres industries basées sur la terre, et contribuent à maintenir la santé et la productivité des écosystèmes. Exemple de services écosystémiques.</p>
+            'group8' => '<p>L’approvisionnement de services écosystémiques - prévention de l’érosion et maintien de la fertilité des sols fait référence à la protection des sols par les moyens suivants la végétation contre les forces physiques du vent et de l’eau, qui peuvent entraîner la perte de la couche arable et des nutriments. Le maintien de la fertilité des sols fait référence aux processus qui maintiennent la teneur en éléments nutritifs et la structure des sols. Ces services sont importants pour la durabilité de l’agriculture, de la sylviculture et d’autres industries basées sur la terre, et contribuent à maintenir la santé et la productivité des écosystèmes. Exemple de services écosystémiques.</p>
                     <ul>
                         <li>Contrôle des inondations : les zones humides agissent comme des éponges naturelles, les rivières et les ruisseaux  fournissent des canaux pour l’eau excédentaire, la végétation et les forêts contribuent à absorber les précipitations et à ralentir l’écoulement de l’eau, les plaines d’inondation absorbent l’excès d’eau lors des inondations et protègent contre les tempêtes
                         and forests help absorb rainfall and slow down water flow, floodplains absorb excess water during floods and storm protection</li>
@@ -546,15 +535,13 @@ return [
                         <li>Contrôle de la sécheresse : La santé du sol et la couverture végétale jouent un rôle crucial dans la lutte contre la sécheresse en régulant le cycle de l’eau, en réduisant les pertes d’eau et en conservant l’eau</li>
                         <li>Contrôle des tempêtes : Les arbres aident à réduire l’impact des tempêtes, les barrières naturelles telles que les montagnes ou les îles peuvent agir comme des barrières en absorbant les tempêtes ou en absorbant une partie de l’énergie des vagues, les plans d’eau contribuent à modérer les températures, ce qui peut réduire la gravité des tempêtes.</li>
                      </ul>',
-            'group9' =>
-                '<p>Les services écosystémiques qui assurent la productivité de l’agriculture, de l’élevage et des forêts désignent les avantages que les écosystèmes naturels fournissent pour soutenir la production et la productivité de ces systèmes. Ces services comprennent le maintien de la fertilité des sols, le cycle des nutriments, la disponibilité et la régulation de l’eau, ainsi que la lutte contre les ravageurs et les maladies. Ces services d’approvisionnement sont essentiels pour maintenir la productivité des systèmes agricoles, d’élevage et forestiers tout en réduisant au minimum l’utilisation d’intrants synthétiques et la préservation des ressources naturelles. Exemple de services écosystémiques</p>
+            'group9' => '<p>Les services écosystémiques qui assurent la productivité de l’agriculture, de l’élevage et des forêts désignent les avantages que les écosystèmes naturels fournissent pour soutenir la production et la productivité de ces systèmes. Ces services comprennent le maintien de la fertilité des sols, le cycle des nutriments, la disponibilité et la régulation de l’eau, ainsi que la lutte contre les ravageurs et les maladies. Ces services d’approvisionnement sont essentiels pour maintenir la productivité des systèmes agricoles, d’élevage et forestiers tout en réduisant au minimum l’utilisation d’intrants synthétiques et la préservation des ressources naturelles. Exemple de services écosystémiques</p>
                     <ul>
                         <li>Formation, structure et fertilité du sol pour la culture, la production de bois, l’élevage, etc.</li>
                         <li>Disponibilité et régulation de l’eau</li>
                         <li>La lutte contre les parasites et les maladies</li>
                      </ul>',
-            'group10' =>
-                '<p>Les services écosystémiques des habitats pour les animaux et les plantes se réfèrent aux avantages que les écosystèmes naturels procurent pour soutenir la survie et la reproduction des espèces sauvages et des communautés végétales. Ces services comprennent la fourniture d’un habitat approprié pour diverses espèces, comme la nourriture, les abris et les sites de reproduction. La protection et la conservation des habitats naturels sont donc essentielles pour assurer la viabilité à long terme des espèces sauvages et des communautés végétales, ainsi que pour maintenir les nombreux avantages qu’elles procurent que les écosystèmes fournissent aux sociétés humaines. Exemple de services écosystémiques  </p>
+            'group10' => '<p>Les services écosystémiques des habitats pour les animaux et les plantes se réfèrent aux avantages que les écosystèmes naturels procurent pour soutenir la survie et la reproduction des espèces sauvages et des communautés végétales. Ces services comprennent la fourniture d’un habitat approprié pour diverses espèces, comme la nourriture, les abris et les sites de reproduction. La protection et la conservation des habitats naturels sont donc essentielles pour assurer la viabilité à long terme des espèces sauvages et des communautés végétales, ainsi que pour maintenir les nombreux avantages qu’elles procurent que les écosystèmes fournissent aux sociétés humaines. Exemple de services écosystémiques  </p>
                     <ul>
                         <li>Les habitats de nurserie et de nidification : Les écosystèmes fournissent des habitats à une grande variété d’espèces végétales et animales, notamment des zones d’alimentation et des abris contre les prédateurs, comme les sites de nidification des oiseaux, les frayères dans la mer, les rivières et les lacs, les habitats de reproduction (par exemple les coraux, les abeilles, etc.), etc.</li>
                         <li>Habitats pour la pollinisation : Les zones boisées et les zones de végétation offrent un soutien aux pollinisateurs tels que les abeilles, les papillons et les insectes les colibris, qui fournissent un service écosystémique important pour l’agriculture, car ils aident les plantes à produire des fruits, des semences et des graines d’autres structures reproductives. . </li>
@@ -574,12 +561,12 @@ return [
             'group7' => ['Purification de l’eau et de l’air', 'Régulation et élimination des déchets'],
             'group8' => ['Lutte contre les inondations', 'Lutte contre l’érosion', 'Lutte contre la sécheresse', 'Lutte contre les tempêtes'],
             'group9' => ['Fourniture de fertilité', 'Fourniture d’eau', 'Fourniture de lutte contre les maladies'],
-            'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation']
+            'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation'],
         ],
         'summary' => 'Importance des éléments et implication des parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
-        'involvement' => 'Implication de la partie prenante (0-100)'
+        'involvement' => 'Implication de la partie prenante (0-100)',
     ],
 
     'AnalysisStakeholderDirectUsers' => [
@@ -596,11 +583,10 @@ return [
             'Threats' => 'Menaces',
             'Comments' => 'Note',
         ],
-        'module_info' =>
-            '<p>Identifiez les éléments clés de votre groupe et évaluez son importance et sa gestion/gouvernance de votre propre point de vue</p>' .
-            '<b>Dependence</b>: La dépendance d’une partie prenante à l’égard des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus et l’identité culturelle dépendent des ressources naturelles et des processus écologiques. Il est donc essentiel de comprendre et de gérer la dépendance des parties prenantes vis-à-vis des services écosystémiques pour atteindre les objectifs de développement durable et de conservation.</br >' .
-            '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles et des services fournis par les écosystèmes. Si une partie prenante n’a pas accès à ces services, ses moyens de subsistance et son bien-être sont menacés et elle peut être confrontée à la pauvreté, à l’insécurité alimentaire et à des problèmes de santé.</br >' .
-            '<b>Rivalry</b>: La rivalité des parties prenantes dans les services écosystémiques fait référence à la concurrence ou au conflit entre les individus ou les parties prenantes pour l’accès ou les intérêts et les priorités dans la gestion et l’utilisation de ces services. La rivalité peut conduire à la surutilisation ou à l’épuisement des ressources, exacerber la dégradation de l’environnement et compromettre la disponibilité à long terme de ces services pour la ou les communautés.</br >' .
+        'module_info' => '<p>Identifiez les éléments clés de votre groupe et évaluez son importance et sa gestion/gouvernance de votre propre point de vue</p>'.
+            '<b>Dependence</b>: La dépendance d’une partie prenante à l’égard des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus et l’identité culturelle dépendent des ressources naturelles et des processus écologiques. Il est donc essentiel de comprendre et de gérer la dépendance des parties prenantes vis-à-vis des services écosystémiques pour atteindre les objectifs de développement durable et de conservation.</br >'.
+            '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles et des services fournis par les écosystèmes. Si une partie prenante n’a pas accès à ces services, ses moyens de subsistance et son bien-être sont menacés et elle peut être confrontée à la pauvreté, à l’insécurité alimentaire et à des problèmes de santé.</br >'.
+            '<b>Rivalry</b>: La rivalité des parties prenantes dans les services écosystémiques fait référence à la concurrence ou au conflit entre les individus ou les parties prenantes pour l’accès ou les intérêts et les priorités dans la gestion et l’utilisation de ces services. La rivalité peut conduire à la surutilisation ou à l’épuisement des ressources, exacerber la dégradation de l’environnement et compromettre la disponibilité à long terme de ces services pour la ou les communautés.</br >'.
 
             '<b>Dependence</b>: La dépendance d\'une partie prenante vis-à-vis des services écosystémiques fait référence à la mesure dans laquelle la subsistance, les revenus,
                  et l\'identité culturelle dépendent des ressources naturelles et des processus écologiques. Une faible dépendance signifie que l\'écosystème
@@ -610,16 +596,16 @@ return [
             '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles
                  et les services fournis par les écosystèmes. Si une partie prenante n\'a pas accès à ces services, ses moyens de subsistance et
                  leur bien-être sont menacés et ils peuvent être confrontés à la pauvreté, à l\'insécurité alimentaire et à des problèmes de santé..</br >',
-            '<b>Rivalry</b>: La rivalité des acteurs dans les services écosystémiques renvoie à la compétition ou au conflit entre individus
+        '<b>Rivalry</b>: La rivalité des acteurs dans les services écosystémiques renvoie à la compétition ou au conflit entre individus
                   ou les parties prenantes sur l\'accès et l\'utilisation de ces services. La rivalité peut entraîner une surexploitation ou un épuisement des ressources,
                   exacerbant la dégradation de l\'environnement et compromettant la disponibilité à long terme de ces services pour la communauté
                   ou communautés.</br >'.
-            '<b>Qualité des services écosystémiques</b> facteurs physiques, biologiques et écologiques qui permettent à l\'écosystème de perdurer
+        '<b>Qualité des services écosystémiques</b> facteurs physiques, biologiques et écologiques qui permettent à l\'écosystème de perdurer
                   pour fournir le service souhaité, ou pour que l\espèce continue d\'être viable. (Exemple : pas de pollution, présence de juvéniles,
                   biodiversité, etc.)'.
-            '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
+        '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
                   surface d\'une forêt, population d\'espèces, volume de cours d\'eau, etc.).</br >'.
-            '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element being assessed.</br >',
+        '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element being assessed.</br >',
         'ratingLegend' => [
             'Dependence' => [
                 '0' => 'Très faible',
@@ -659,29 +645,28 @@ return [
             'Threats' => 'Menaces',
             'Comments' => 'Note',
         ],
-        'module_info' =>
-            '<b>Soutien ou contribution</b>: Actions et efforts déployés par la partie prenante pour gérer et protéger
+        'module_info' => '<b>Soutien ou contribution</b>: Actions et efforts déployés par la partie prenante pour gérer et protéger
                 durablement les écosystèmes ou les espèces. Les domaines de soutien ou de contribution peuvent être l\'un des
                 suivants: financement, renforcement des capacités et assistance technique, recherche et suivi, application
-                de la loi, politique et plaidoyer, et engagement à long terme.</br >' .
+                de la loi, politique et plaidoyer, et engagement à long terme.</br >'.
             '<b>Lignes directrices et procédures</b>: Existence ou développement de lignes directrices et de procédures
                 claires élaborées par la partie prenante pour assurer une gestion et une gouvernance à long terme et durables
-                de l\'élément clé</br >' .
+                de l\'élément clé</br >'.
             '<b>Manque de collaboration entre les utilisateurs indirects et directs</b>: Absence ou insuffisance de coordination
                 entre les différents acteurs qui utilisent et bénéficient des services écosystémiques, ce qui pourrait conduire
-                à des conflits et à des pratiques non durables</br >' .
+                à des conflits et à des pratiques non durables</br >'.
             '<b>Statut des éléments clés de l\'espace conservé</b>: L\'état des éléments clés indique l\'état de la fourniture des services
                 écosystémiques ou de l\'élément clé de la biodiversité en termes de qualité. Un état très mauvais indique que
                 le service écosystémique fourni est de mauvaise qualité ou que l\'élément clé de la biodiversité risque sérieusement
                 de disparaître dans la zone de l\'espace conservé. Un très bon état indique que l\'élément clé est de bonne qualité ou
                 en expansion. Divers facteurs environnementaux tels que le climat et les conditions météorologiques, le
                 changement d\'utilisation des terres, la pollution et la surexploitation des ressources, la surexploitation
-                peuvent affecter l\'état des éléments clés de l\'espace conservé.</br >' .
+                peuvent affecter l\'état des éléments clés de l\'espace conservé.</br >'.
             '<b>Tendance des éléments clés de l\'espace conservé</b>: Les tendances actuelles des éléments clés indiquent le changement
                 dans la quantité de services écosystémiques fournis ou dans la taille-surface des éléments clés de la biodiversité.
                 Pour les services écosystémiques, il peut s\'agir de la quantité de services fournis, pour l\'élément clé
                 de la biodiversité, il peut s\'agir de la taille de la population (espèce), de la superficie (habitats,
-                couverture terrestre) ou de la quantité de production écologique.</br >' .
+                couverture terrestre) ou de la quantité de production écologique.</br >'.
             '<b>Menaces</b>: Activités ou processus humains qui ont impacté, impactent ou peuvent impacter l’élément clé
                 de l\'espace conservé évalué.</br >',
         'ratingLegend' => [
@@ -704,16 +689,15 @@ return [
                 '0' => 'Pas de changement',
                 '1' => 'Augmentation',
                 '2' => 'Forte augmentation',
-            ]
+            ],
         ],
         'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>C4</i>',
     ],
 
     'AnalysisStakeholdersObjectives' => [
-        'module_info' =>
-            'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'espace conservé.
+        'module_info' => 'Établir et décrire les objectifs de conservation pour les parties prenantes analyse des éléments clés de l\'espace conservé.
             Les objectifs inscrits ci-dessous seront utilisés pour améliorer la gestion, et plus spécifiquement pour la planification,
-            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.'
+            la mobilisation des ressources (intrants), les phases de processus et pour le suivi des activités de gestion de l\'espace conservé.',
     ],
 
 ];

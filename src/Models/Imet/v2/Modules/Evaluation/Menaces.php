@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,17 +14,17 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class Menaces extends Modules\Component\ImetModule_Eval
+final class Menaces extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_menaces';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
@@ -37,7 +38,8 @@ class Menaces extends Modules\Component\ImetModule_Eval
         'Trend' => '_Trend',
         'Probability' => '_Probability'];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C3';
@@ -50,7 +52,7 @@ class Menaces extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => null
+            'values' => null,
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.Menaces.module_info_EvaluationQuestion');
@@ -62,27 +64,26 @@ class Menaces extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' =>  $form_id !== null
-                ? static::getMenacesPressions($form_id)
-                    ->map(function ($item){
-                        return $item['Value'];
-                    })
-                : []
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $form_id !== null
+                ? self::getMenacesPressions($form_id)
+                    ->map(fn (Modules\Context\MenacesPressions $item): mixed => $item['Value'])
+                : [],
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
-        $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
 
         // Inject rankings
-        foreach (static::getMenacesPressions($form_id)->values()->toArray() as $index=>$record){
-            $records[$index]['_rank'] =  -$record['_rank']*100/3.0;
+        foreach (self::getMenacesPressions($form_id)->values()->toArray() as $index => $record) {
+            $records[$index]['_rank'] = -$record['_rank'] * 100 / 3.0;
             $records[$index]['_Impact'] = $record['Impact'];
             $records[$index]['_Extension'] = $record['Extension'];
             $records[$index]['_Duration'] = $record['Duration'];
@@ -93,29 +94,26 @@ class Menaces extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-
-    private static function getMenacesPressions($form_id){
+    private static function getMenacesPressions(?int $form_id)
+    {
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
-            ->map(function ($item){
+            ->map(function (Modules\Context\MenacesPressions $item): Modules\Context\MenacesPressions {
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
                     [$item['Impact'], $item['Extension'], $item['Duration'], $item['Trend'], $item['Probability']],
                     true
                 );
+
                 return $item;
             })
             ->sortByDesc('_rank');
 
         // Filter first 10
-        if(count($ctx_records)>10) {
+        if (count($ctx_records) > 10) {
             $max_allowed_rank = array_values($ctx_records->toArray())[9]['_rank'];
             $ctx_records = $ctx_records
-                ->filter(function ($item) use ($max_allowed_rank) {
-                    return $item['_rank'] >= $max_allowed_rank;
-                });
+                ->filter(fn ($item): bool => $item['_rank'] >= $max_allowed_rank);
         }
 
         return $ctx_records;
     }
-
-
 }

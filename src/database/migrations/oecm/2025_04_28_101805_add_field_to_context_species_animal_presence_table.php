@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -9,19 +10,19 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-use ImetCore\Helpers\Database;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use ImetCore\Helpers\Database;
 
-return new class extends Migration {
-
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table): void {
             $table->string('CommonName', 255)->nullable()->after('SpeciesID');
         });
     }
@@ -31,7 +32,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::OECM_SCHEMA, 'context_species_animal_presence'), function (Blueprint $table): void {
             $table->dropColumn('CommonName');
         });
     }

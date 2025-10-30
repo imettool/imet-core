@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,7 +19,7 @@ return [
         'regional_observatory' => 'regional observatory|regional observatories',
         'international_institution' => 'international institution|international institutions',
         'donor' => 'donor|donors',
-        'encoder' => 'encoder|encoders'
+        'encoder' => 'encoder|encoders',
     ],
 
     'attributes' => [
@@ -26,7 +27,6 @@ return [
         'email' => 'email',
         'country' => 'country',
         'organisation' => 'organisation',
-    ]
-
+    ],
 
 ];

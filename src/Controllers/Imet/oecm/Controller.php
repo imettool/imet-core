@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -18,12 +19,12 @@ use ImetCore\Models\Imet\oecm\Imet;
 
 class Controller extends BaseController
 {
-    use Prefill;
     use CreateAndStoreNonWdpa;
+    use Prefill;
 
     public const ROUTE_PREFIX = 'imet-core::oecm.';
 
     protected static ?string $form_class = Imet::class;
-    protected static ?string $form_view_prefix = 'imet-core::oecm';
 
+    protected static ?string $form_view_prefix = 'imet-core::oecm';
 }

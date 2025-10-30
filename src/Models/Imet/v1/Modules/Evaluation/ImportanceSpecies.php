@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceSpecies extends Modules\Component\ImetModule_Eval
+final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c13';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.3';
@@ -47,28 +49,22 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_ImportanceC13',
             'fields' => [
-                'Aspect',  'EvaluationScore', 'SignificativeSpecies', 'Comments', 'GroupAspect'
-            ]
+                'Aspect',  'EvaluationScore', 'SignificativeSpecies', 'Comments', 'GroupAspect',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupAspect');
+        return self::convertGroupLabelToKey($record, 'GroupAspect');
     }
 }

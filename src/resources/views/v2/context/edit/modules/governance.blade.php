@@ -1,8 +1,9 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-/** @var string $mode */
+/** @var array $vueData */
+/** @var array $definitions */
+
+use ModularForms\Enums\ModuleViewModes;
 
 ?>
 <div class="text-2xl font-bold highlight mb-3">@lang('imet-core::v2_context.Governance.governance')</div>
@@ -14,5 +15,5 @@
 <x-modular-forms::module.components.script
     :vue-data="$vueData"
     :definitions="$definitions"
-    :mode="$mode"
+    :mode="ModuleViewModes::EDIT"
 ></x-modular-forms::module.components.script>

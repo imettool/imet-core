@@ -1,15 +1,14 @@
 <?php
+/** @var Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-/** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-
-$view = View::make('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))->render();
+$view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
                 class="field-edit text-right"
                 v-bind:value="diffs[index]"

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -67,7 +68,7 @@ return [
                 'radar' => '6.1.1.3 Visualización por radar de los indicadores del contexto de gestión',
                 'ranking' => '6.1.1.1 Clasificación de los indicadores del contexto de gestión',
                 'average_contribution' => '6.1.1.2 Contribución media y variabilidad de los indicadores del Contexto de Gestión',
-                'datatable' => '6.1.1.4 Tabla de datos de los indicadores del contexto de gestión'
+                'datatable' => '6.1.1.4 Tabla de datos de los indicadores del contexto de gestión',
             ],
             'context_value_and_importance' => [
                 'title' => '6.1.2 Subindicadores de valor e importancia (todos los indicadores reescalados a 0-100)',
@@ -75,7 +76,7 @@ return [
                 'ranking' => '6.1.2.1 Clasificación de los subindicadores de valor e importancia',
                 'average_contribution' => '6.1.2.2 Contribución media y variabilidad de los subindicadores de valor e Importancia',
                 'datatable' => '6.1.2.4 Tabla de datos de los subindicadores de valor e Importancia',
-            ]
+            ],
         ],
         'threats' => [
             'threats' => [
@@ -83,8 +84,8 @@ return [
                 'radar' => '6.1.3.3 `Visualización por radar de los subindicadores de amenazas para cada área protegida',
                 'ranking' => '6.1.3.1 Contribución media de cada categoría de amenaza',
                 'average_contribution' => '6.1.3.2 Contribución media y variabilidad de los subindicadores de las categorías de amenaza',
-                'datatable' => '6.1.3.4 Clasificación por categorías de amenazas (subindicadores)'
-            ]
+                'datatable' => '6.1.3.4 Clasificación por categorías de amenazas (subindicadores)',
+            ],
         ],
         'planning' => [
             'main' => [
@@ -92,8 +93,8 @@ return [
                 'radar' => '6.2.3 Visualización por radar de los indicadores de planificación',
                 'ranking' => '6.2.1 Clasificación de los indicadores de planificación',
                 'average_contribution' => '6.2.2 Contribución media y variabilidad de los indicadores de planificación',
-                'datatable' => '6.2.4 Tabla de datos de los indicadores de planificación'
-            ]
+                'datatable' => '6.2.4 Tabla de datos de los indicadores de planificación',
+            ],
         ],
         'inputs' => [
             'main' => [
@@ -102,7 +103,7 @@ return [
                 'ranking' => '6.3.1 Clasificación de los indicadores de entrada',
                 'average_contribution' => '6.3.2 Contribución media y variabilidad de los indicadores de los insumos',
                 'datatable' => '6.3.4 Tabla de datos de los indicadores de entrada',
-            ]
+            ],
         ],
         'process' => [
             'process_sub_indicators' => [
@@ -119,7 +120,7 @@ return [
                 'ranking' => 'Clasificación de los sistemas y procesos de gestión interna',
                 'average_contribution' => 'Contribución media y variabilidad de los sistemas y procesos de gestión interna',
                 'datatable' => 'Cuadro de datos de los sistemas y procesos de gestión interna',
-                'datatable_average' => 'Sistemas y procesos de gestión interna'
+                'datatable_average' => 'Sistemas y procesos de gestión interna',
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Gestión/Protección de los valores',
@@ -127,7 +128,7 @@ return [
                 'ranking' => 'Clasificación de la gestión/protección de los valores',
                 'average_contribution' => 'Contribución media y variabilidad de la Gestión/Protección de los valores',
                 'datatable' => 'Tabla de datos de Gestión/Protección de los valores',
-                'datatable_average' => 'Gestión/Protección de los valores'
+                'datatable_average' => 'Gestión/Protección de los valores',
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Relaciones con las partes interesadas',
@@ -135,29 +136,29 @@ return [
                 'ranking' => 'Clasificación de las relaciones con las partes interesadas',
                 'average_contribution' => 'Contribución media y variabilidad de las relaciones con los grupos de interés',
                 'datatable' => 'Tabla de datos de las relaciones con las partes interesadas',
-                'datatable_average' => 'Relaciones con las partes interesadas'
+                'datatable_average' => 'Relaciones con las partes interesadas',
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Gestión del turismo',
                 'ranking' => 'Clasificación de la gestión del turismo',
                 'average_contribution' => 'Contribución media y variabilidad de la gestión del turismo',
                 'datatable' => 'Tabla de datos de la gestión del turismo',
-                'datatable_average' => 'Gestión del turismo'
+                'datatable_average' => 'Gestión del turismo',
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Seguimiento e investigación',
                 'ranking' => 'Clasificación del seguimiento y la investigación',
                 'average_contribution' => 'Contribución media y variabilidad del seguimiento y la investigación',
                 'datatable' => 'Tabla de datos de seguimiento e Investigación',
-                'datatable_average' => 'Seguimiento e investigación'
+                'datatable_average' => 'Seguimiento e investigación',
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Gestión de los efectos del cambio climático y de los servicios de los ecosistemas',
                 'ranking' => 'Clasificación de la gestión de los efectos del cambio climático y los servicios de los ecosistemas',
                 'average_contribution' => 'Contribución media y variabilidad de la gestión de los efectos del cambio climático y los servicios de los ecosistemas',
                 'datatable' => 'Tabla de datos de gestión de los efectos del cambio climático y servicios de los ecosistemas',
-                'datatable_average' => 'Gestión de los efectos del cambio climático y de los servicios de los ecosistemas'
-            ]
+                'datatable_average' => 'Gestión de los efectos del cambio climático y de los servicios de los ecosistemas',
+            ],
 
         ],
         'outputs' => [
@@ -167,7 +168,7 @@ return [
                 'ranking' => '6.5.1 Clasificación de los indicadores de resultados',
                 'average_contribution' => '6.5.2 Contribución media y variabilidad de los indicadores de resultados',
                 'datatable' => '6.5.4 Tabla de datos de los indicadores de resultados',
-            ]
+            ],
         ],
         'outcomes' => [
             'main' => [
@@ -176,7 +177,7 @@ return [
                 'ranking' => '6.6.1 Clasificación de los indicadores de resultados',
                 'average_contribution' => '6.6.2 Contribución media y variabilidad de los indicadores de resultados',
                 'datatable' => '6.6.4 Tabla de datos de los indicadores de resultados',
-            ]
+            ],
         ],
     ],
     'general_info' => [
@@ -191,11 +192,11 @@ return [
         'ecoregions' => 'Ecorregiones',
         'vision' => 'Áreas protegidas con una visión',
         'mission' => 'Zonas protegidas con una misión',
-        'objectives' => 'Zonas protegidas con objetivos'
+        'objectives' => 'Zonas protegidas con objetivos',
     ],
     'additional_options' => [
         'management_effectiveness_analysis' => '8.1 Análisis de la eficacia de la gestión',
-        'summary_key_elements_affecting_management_elements' => '8.2 Resumen de los elementos clave que afectan a la gestión'
+        'summary_key_elements_affecting_management_elements' => '8.2 Resumen de los elementos clave que afectan a la gestión',
     ],
     'grouping' => [
         'title' => '5.1 Agrupación',
@@ -206,7 +207,7 @@ return [
         'render_scatter' => 'Renderizar la dispersión',
         'scatter_plot' => '5.3 Visualización de grupos con un gráfico de dispersión',
         'radar' => '5.2 Visualización de grupos con un radar',
-        'group' => 'Grupo'
+        'group' => 'Grupo',
     ],
     'management_context' => [
         'key_species' => 'Especies clave',
@@ -234,7 +235,7 @@ return [
         'comments_plants_species' => 'Comentarios sobre las especies vegetales clave',
         'comments_animal_species' => 'Comentarios sobre las especies clave',
         'label_threats' => 'Amenazas',
-        'comment_on_management_context' => 'Comentarios para contexto de la gestión (elementos clave de la gestión)'
+        'comment_on_management_context' => 'Comentarios para contexto de la gestión (elementos clave de la gestión)',
     ],
     'protected_area_coverage_and_connectivity' => [
         'title',
@@ -246,8 +247,7 @@ return [
         'protected_marine_area' => 'Zona marina protegida [km2]',
         'marine_coverage' => 'Cobertura marítima [%]',
         'protected_connected_land' => 'Terrenos protegidos conectados [%]',
-    ]
-    ,
+    ],
     'land_degradation' => [
         'indicators' => [
             'title' => 'Degradación de la tierra',
@@ -257,7 +257,7 @@ return [
             'persistent_moderate' => 'Disminución moderada y persistente de la productividad [km2]',
             'stable_stressed' => 'Estable, pero estresado; fuertes variaciones interanuales persistentes de la productividad [km2]',
             'stable_productivity' => 'Productividad estable [km2]',
-            'persistent_increase' => 'Aumento persistente de la productividad [km2]'
+            'persistent_increase' => 'Aumento persistente de la productividad [km2]',
         ],
         'bar_indicators' => [
             'no_biomas' => 'No hay biomasa [km2]',
@@ -265,7 +265,7 @@ return [
             'persistent_moderate' => 'Disminución moderada y persistente de la productividad [km2]',
             'persistent_strong' => 'Estable, pero estresada; fuertes y persistentes variaciones interanuales de productividad [km2]',
             'stable_productivity' => 'Productividad estable [km2]',
-            'persistent_increase' => 'Aumento persistente de la productividad [km2]'
+            'persistent_increase' => 'Aumento persistente de la productividad [km2]',
         ],
     ],
     'total_carbon' => [
@@ -285,51 +285,51 @@ return [
             'process' => 'Contribución media de los indicadores del proceso',
             'process_sub_indicators' => 'Contribución media de los seis subelementos de los indicadores de proceso',
             'outputs' => 'Contribución media de los indicadores de resultados',
-            'outcomes' => 'Contribución media de los indicadores de resultados'
-        ]
+            'outcomes' => 'Contribución media de los indicadores de resultados',
+        ],
     ],
 
     'protected_area' => [
         'name' => 'Nombre',
         'gis_area' => 'Superficie [km2]',
-        'nature' => 'Tipo'
+        'nature' => 'Tipo',
     ],
     'map' => [
         'fields' => [
             'area_prot_terr_perc' => 'Terrenos protegidos',
-            'protconn' => 'Terrenos protegidos conectados'
-        ]
+            'protconn' => 'Terrenos protegidos conectados',
+        ],
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Clasificación del indicador IMET',
         'radar_visualization' => 'Visualización por radar de los indicadores sintéticos del IMET',
         'scatter_visualization' => 'Visualización del diagrama de dispersión en el IMET sintético',
         'average_contribution' => 'Contribución media y variabilidad de los indicadores sintéticos del IMET',
-        'synthetic_indicators' => 'Tabla de datos de los indicadores sintéticos del IMET'
+        'synthetic_indicators' => 'Tabla de datos de los indicadores sintéticos del IMET',
     ],
     'scale' => [
         'negative_positive' => ' - escala (mínimo: -100, máximo: 100)',
-        'zero_negative' => ' - escala (mínimo: -100, máximo: 0)'
+        'zero_negative' => ' - escala (mínimo: -100, máximo: 0)',
     ],
     'legends' => [
         'PRA' => [
-            'PR A'
+            'PR A',
         ],
         'PRB' => [
-            'PR B'
+            'PR B',
         ],
         'PRC' => [
-            'PR C'
+            'PR C',
         ],
         'PRD' => [
-            'PR D'
+            'PR D',
         ],
         'PRE' => [
-            'PR E'
+            'PR E',
         ],
         'PRF' => [
-            'PR F'
-        ]
+            'PR F',
+        ],
     ],
     'guidance' => [
         'info' => [
@@ -339,7 +339,7 @@ return [
             'scatter_plot' => 'Este gráfico de dispersión utiliza los ejes horizontal y vertical, así como el tamaño del cuadrado, para mostrar los valores de los indicadores IMET. La visualización muestra sólo las áreas protegidas que se seleccionaron al principio de esta sección.',
             'datatable' => 'La tabla proporciona una visión general de las puntuaciones de IMET para cada indicador para el conjunto de áreas protegidas seleccionadas. Puede ordenar cada columna de menor a mayor valor, de mayor a menor valor o alfabéticamente. La opción de ordenación está disponible para todas las tablas de datos.',
             'group_radar' => 'El análisis visualiza la eficacia de la gestión en cada uno de los grupos mediante la visualización de un radar y una tabla de datos.',
-            'group_scatter' => 'La visualización muestra un diagrama tridimensional utilizando los ejes horizontal y vertical, así como el tamaño para mostrar los valores de tres variables simultáneamente para cada grupo. También muestra la tabla de datos.'
+            'group_scatter' => 'La visualización muestra un diagrama tridimensional utilizando los ejes horizontal y vertical, así como el tamaño para mostrar los valores de tres variables simultáneamente para cada grupo. También muestra la tabla de datos.',
         ],
         'threats' => [
             'datatable' => 'Los gráficos de barras proporcionan una puntuación de la categoría de amenaza por área protegida.',
@@ -373,7 +373,7 @@ return [
             'info' => '<b>Orientación adicional</b>: La sección 6 presenta todos los indicadores pertenecientes a los seis elementos del ciclo de gestión. Este análisis puede utilizarse para responder a preguntas específicas (como ¿Qué amenazas son las más comunes? ¿Cómo se integran los efectos del cambio climático en la gestión de las áreas protegidas?), o para desarrollar planes de acción específicos para mejorar aspectos concretos (como el cumplimiento de la ley, la gestión del turismo, etc.) en las áreas protegidas seleccionadas. En total, la sección 6 contiene 14 análisis, todos ellos organizados con la misma estructura que en la sección 4 Gestión global de las puntuaciones de eficacia. Esta organización de los análisis facilita el uso de la herramienta de ampliación.<br/><br/> La sección 6, al igual que la sección 4, permite analizar todas las áreas protegidas seleccionadas en la ampliación o sólo algunas (pero al menos dos). Por ello, los análisis comienzan con la opción de seleccionar las áreas protegidas que aparecen en la tabla de selección. Las áreas protegidas pueden seleccionarse individualmente haciendo clic en la casilla correspondiente a la izquierda del nombre del área protegida o globalmente haciendo clic en el botón Seleccionar todo.<br/><br/> Una vez que haya seleccionado las áreas protegidas haciendo clic en el botón Aplicar, se activa el análisis.'],
         'context' => [
             'main' => [
-                'intro' => 'Esta subsección permite analizar el Contexto de gestión y sus 3 indicadores: C1 Valor e importancia, C2 Apoyos y limitaciones externas y C3 Amenazas con 3 análisis diferentes (1) global (ver 6.1.1), Contexto de gestión (ver 6.1.2), Amenazas (ver 6.1.3).'
+                'intro' => 'Esta subsección permite analizar el Contexto de gestión y sus 3 indicadores: C1 Valor e importancia, C2 Apoyos y limitaciones externas y C3 Amenazas con 3 análisis diferentes (1) global (ver 6.1.1), Contexto de gestión (ver 6.1.2), Amenazas (ver 6.1.3).',
             ],
             'overall_scores' => [
                 'intro' => 'Esta subsección presenta los indicadores de contexto de la gestión en uno de los 4 tipos de visualización disponibles (1) Clasificación, (2) Gráfico de barras de contribuciones medias y variabilidad, (3) Radar, (4) Tabla de datos. Seleccione las áreas protegidas que se mostrarán en el radar haciendo clic en su nombre. La tabla de datos aparecerá automáticamente. La selección manual permite realizar comparaciones entre áreas protegidas si es necesario (ver agrupación). <br/><br/>Puede ordenar cada columna de la tabla de datos de menor a mayor, de mayor a menor o alfabéticamente.'],
@@ -381,12 +381,12 @@ return [
                 'intro' => 'Esta subsección presenta los indicadores de contexto de la gestión en uno de los 4 tipos de visualización disponibles (1) Clasificación, (2) Gráfico de barras de contribuciones medias y variabilidad, (3) Radar, (4) Tabla de datos. Seleccione las áreas protegidas que se mostrarán en el radar haciendo clic en su nombre. La tabla de datos aparecerá automáticamente. La selección manual permite realizar comparaciones entre áreas protegidas si es necesario (ver agrupación). <br/><br/>Puede ordenar cada columna de la tabla de datos de menor a mayor, de mayor a menor o alfabéticamente.'],
             'threats' => [
                 'intro' => 'En este subapartado se analiza en profundidad las amenazas presentes en las áreas protegidas analizadas.',
-                'info' => '<b>Orientación adicional</b>: Presenta (1) Radar de amenazas sub-indicadores para cada área protegida (para identificar las amenazas más relevantes para cada área protegida), (2) Contribución media de cada categoría de amenaza (para identificar las amenazas más pertinentes en el grupo de áreas protegidas), (3) Contribución media y variabilidad de las categorías de amenaza sub-indicadores (para identificar cuán diverso es el impacto de cada amenaza dentro del grupo de áreas protegidas), (4) Ranking por categorías de amenaza sub-indicadores para todas las 12 categorías de amenaza (para identificar las áreas protegidas más afectadas). Obsérvese que el Radar de amenazas muestra una visualización opuesta a la de los demás radares. Los valores de las amenazas más importantes son los más cercanos al centro del radar.']
+                'info' => '<b>Orientación adicional</b>: Presenta (1) Radar de amenazas sub-indicadores para cada área protegida (para identificar las amenazas más relevantes para cada área protegida), (2) Contribución media de cada categoría de amenaza (para identificar las amenazas más pertinentes en el grupo de áreas protegidas), (3) Contribución media y variabilidad de las categorías de amenaza sub-indicadores (para identificar cuán diverso es el impacto de cada amenaza dentro del grupo de áreas protegidas), (4) Ranking por categorías de amenaza sub-indicadores para todas las 12 categorías de amenaza (para identificar las áreas protegidas más afectadas). Obsérvese que el Radar de amenazas muestra una visualización opuesta a la de los demás radares. Los valores de las amenazas más importantes son los más cercanos al centro del radar.'],
         ],
         'planning' => [
             'main' => [
                 'intro' => 'La subsección permite analizar la Planificación y sus seis indicadores.',
-                'info' => '<b>Orientación adicional</b>: Esta subsección presenta los indicadores de planificación en uno de los 4 tipos de visualizaciones disponibles (1) Ranking, (2) Gráfico de barras de contribución media y variabilidad, (3) Radar, (4) Tabla de datos. El análisis Radar de indicadores requiere la selección de áreas protegidas para el radar y la tabla de datos correspondiente. La selección manual permite realizar comparaciones entre zonas protegidas si es necesario (véase la agrupación).<br/><br/> Puede ordenar cada columna de la tabla de datos de menor a mayor, de mayor a menor o alfabéticamente.']
+                'info' => '<b>Orientación adicional</b>: Esta subsección presenta los indicadores de planificación en uno de los 4 tipos de visualizaciones disponibles (1) Ranking, (2) Gráfico de barras de contribución media y variabilidad, (3) Radar, (4) Tabla de datos. El análisis Radar de indicadores requiere la selección de áreas protegidas para el radar y la tabla de datos correspondiente. La selección manual permite realizar comparaciones entre zonas protegidas si es necesario (véase la agrupación).<br/><br/> Puede ordenar cada columna de la tabla de datos de menor a mayor, de mayor a menor o alfabéticamente.'],
         ],
         'inputs' => [
             'main' => [
@@ -426,7 +426,7 @@ return [
                 'info' => '<b>Orientación adicional</b>: La evaluación PAME se basa en la idea de que la gestión de áreas protegidas sigue un proceso agrupado en seis etapas distintas (que representan elementos de eficacia de la gestión): (1) comienza con la revisión del contexto y el establecimiento de una visión para la gestión del sitio (en el contexto del estado y las presiones existentes), (2) avanza a través de la planificación, (3) la asignación de recursos (insumos), (4) las acciones de gestión (proceso), que conducen a (5) la producción de bienes y servicios (productos), y (6) generan impactos o resultados. '],
             'specific_actions_mention' => [
                 'intro' => 'Todos los análisis disponibles en las secciones anteriores pueden utilizarse para generar un resumen o un comentario sobre los siguientes temas: 1) gobernanza y gestión, 2) elementos clave de conservación, 3) cambio climático y servicios ecosistémicos, 4) amenazas.',
-                'info' => '<b>Orientación adicional</b>: Con respecto a todos los elementos del área protegida identificados durante la evaluación (cf. 8.2 Análisis de la eficacia de la gestión), proporcione -si procede- consideraciones adicionales (sinergias, asociaciones, iniciativas, etc.)']
-        ]
-    ]
+                'info' => '<b>Orientación adicional</b>: Con respecto a todos los elementos del área protegida identificados durante la evaluación (cf. 8.2 Análisis de la eficacia de la gestión), proporcione -si procede- consideraciones adicionales (sinergias, asociaciones, iniciativas, etc.)'],
+        ],
+    ],
 ];

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ObjectivesClimateChange extends Modules\Component\ImetModule_Eval
+final class ObjectivesClimateChange extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_objectives_c15';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.5';
@@ -40,16 +42,14 @@ class ObjectivesClimateChange extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_ObjectivesC15',
             'fields' => [
-                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective'
-            ]
+                'Status', 'Benchmark1', 'Benchmark2', 'Benchmark3', 'Objective',
+            ],
         ];
     }
 }

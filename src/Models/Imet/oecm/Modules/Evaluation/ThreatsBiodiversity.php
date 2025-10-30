@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,16 +17,18 @@ use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\ThreatsService;
 
-class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
-
+final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
+{
     protected $table = 'eval_threats_biodiversity';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Criteria';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C3.1.1';
@@ -55,57 +58,53 @@ class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval {
     /**
      * Inject additional predefined values (last 3 groups) retrieved from CTX
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
         parent::getPredefined($form_id);
 
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getReferenceList($form_id, 'species'),
                 'group1' => Modules\Context\VegetalSpecies::getReferenceList($form_id, 'species'),
-                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType')
+                'group2' => Modules\Context\Habitats::getReferenceList($form_id, 'EcosystemType'),
             ]
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
     /**
      * Override: ensure to removed dropped items
+     *
      * @throws MissingDependencyConfigurationException
+     * @throws \Throwable
      */
     protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
     {
-        $predefined_values = static::getPredefined($form_id);
-        $records = static::arrange_records($predefined_values, $records, $empty_record);
+        $predefined_values = self::getPredefined($form_id);
+        $records = self::arrange_records($predefined_values, $records, $empty_record);
 
         // Ensure to removed dropped items
-        foreach ($records as $record){
-            if(!in_array($record[static::$DEPENDENCY_ON], $predefined_values['values'][$record['group_key']])){
-                static::dropOrphansDependencyRecords($form_id, [$record[static::$DEPENDENCY_ON]]);
+        foreach ($records as $record) {
+            if (! in_array($record[self::$DEPENDENCY_ON], $predefined_values['values'][$record['group_key']])) {
+                self::dropOrphansDependencyRecords($form_id, [$record[self::$DEPENDENCY_ON]]);
             }
         }
 
         return $records;
     }
 
-
     /**
      * Calculate threat's ranking
-     *
-     * @param $form_id
-     * @param $records
-     * @return array
      */
-    public static function calculateRanking($form_id, $records = null): array
+    public static function calculateRanking(?int $form_id, ?array $records = null): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records ??= self::getModuleRecords($form_id)['records'];
 
         return ThreatsService::calculateRanking($records);
     }
-
-
 }

@@ -1,17 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 $record = $records[0];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 \ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
-$fn = function ($value) {
-    if(!is_infinite($value) && $value > 0){
-        return true;
-    }
-    return false;
-};
+$fn = (fn($value): bool => !is_infinite($value) && $value > 0);
 
 $value_financial_plans_costs_value_1 = $record['ManagementFinancialPlanCosts'];
 $value_financial_plans_costs_value_2 = $area;

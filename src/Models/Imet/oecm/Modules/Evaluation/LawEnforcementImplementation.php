@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,19 +15,20 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
+final class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_law_enforcement_implementation';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'PR8';
         $this->module_title = trans('imet-core::oecm_evaluation.LawEnforcementImplementation.title');
         $this->module_fields = [
-            ['name' => 'Element',   'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.fields.Element'), 'other'=>'rows="3"'],
+            ['name' => 'Element',   'type' => 'text-area',          'label' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.fields.Element'), 'other' => 'rows="3"'],
             ['name' => 'Adequacy',  'type' => 'rating-0to3WithNA',  'label' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.fields.Adequacy')],
             ['name' => 'Comments',  'type' => 'text-area',               'label' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.fields.Comments')],
         ];
@@ -40,8 +42,8 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
             'field' => 'Element',
             'values' => [
                 'group0' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.predefined_values.group0'),
-                'group1' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.predefined_values.group1')
-            ]
+                'group1' => trans('imet-core::oecm_evaluation.LawEnforcementImplementation.predefined_values.group1'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.LawEnforcementImplementation.module_info_EvaluationQuestion');
@@ -53,17 +55,19 @@ class LawEnforcementImplementation extends Modules\Component\ImetModule_Eval
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new static())->module_groups;
+        $groups = (new self)->module_groups;
+
         return [
-            $groups['group0']
+            $groups['group0'],
         ];
     }
 
     public static function get_marine_groups(): array
     {
-        $groups = (new static())->module_groups;
+        $groups = (new self)->module_groups;
+
         return [
-            $groups['group1']
+            $groups['group1'],
         ];
     }
 }

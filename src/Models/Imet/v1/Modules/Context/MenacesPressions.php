@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,26 +15,26 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class MenacesPressions extends Modules\Component\ImetModule
+final class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'context_menaces_pressions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public static $groupsByCategory = [
-            ['group0'],
-            ['group1', 'group2', 'group3', 'group4', 'group5'],
-            ['group6'],
-            ['group7'],
-            ['group8', 'group9', 'group10', 'group11'],
-            ['group12'],
-            ['group13', 'group14', 'group15'],
-            ['group16'],
-            ['group17', 'group18', 'group19', 'group20', 'group21', 'group22'],
-            ['group23'],
-            ['group24'],
-            ['group25'],
-        ];
+        ['group0'],
+        ['group1', 'group2', 'group3', 'group4', 'group5'],
+        ['group6'],
+        ['group7'],
+        ['group8', 'group9', 'group10', 'group11'],
+        ['group12'],
+        ['group13', 'group14', 'group15'],
+        ['group16'],
+        ['group17', 'group18', 'group19', 'group20', 'group21', 'group22'],
+        ['group23'],
+        ['group24'],
+        ['group25'],
+    ];
 
     public function __construct(array $attributes = [])
     {
@@ -87,7 +88,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group2' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group2'),
                 'group3' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group3'),
                 'group4' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group4'),
-//                'group5' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group5'),
+                //                'group5' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group5'),
                 'group6' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group6'),
                 'group7' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group7'),
                 'group8' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group8'),
@@ -97,7 +98,7 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group12' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group12'),
                 'group13' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group13'),
                 'group14' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group14'),
-//                'group15' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group15'),
+                //                'group15' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group15'),
                 'group16' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group16'),
                 'group17' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group17'),
                 'group18' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group18'),
@@ -108,54 +109,57 @@ class MenacesPressions extends Modules\Component\ImetModule
                 'group23' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group23'),
                 'group24' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group24'),
                 'group25' => trans('imet-core::v1_context.MenacesPressions.predefined_values.group25'),
-            ]
+            ],
         ];
         $this->ratingLegend = trans('imet-core::v1_context.MenacesPressions.ratingLegend');
 
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $records, $definitions): array
+    #[\Override]
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
+
         return $vue_data;
     }
 
-    public static function getStats($form_id)
+    public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $fields = ['Impact', 'Extension', 'Duration', 'Trend', 'Probability'];
 
         // ### row stats ###
         $row_stats = [];
-        foreach ($records as $record){
+        foreach ($records as $record) {
             $valuesByRecord = [];
-            foreach ($fields as $field){
+            foreach ($fields as $field) {
                 $valuesByRecord[] = $record[$field];
             }
-            $row_stats[$record[static::$group_key_field]][] = static::calculateStats($valuesByRecord, true);
+
+            $row_stats[$record[self::$group_key_field]][] = self::calculateStats($valuesByRecord, true);
         }
 
         // ### group stats ###
         $group_stats = [];
-        foreach ($row_stats as $group=>$values){
-            $group_stats[$group] = static::calculateStats($values);
+        foreach ($row_stats as $group => $values) {
+            $group_stats[$group] = self::calculateStats($values);
         }
 
         // ### category stats ###
         $category_stats = [];
         $valuesByCategory = [];
-        foreach (static::$groupsByCategory as $index=>$groups){
+        foreach (self::$groupsByCategory as $index => $groups) {
             $valuesByCategory[$index] = [];
-            foreach ($groups as $group){
-                $valuesByCategory[$index][] = array_key_exists($group, $group_stats) ? $group_stats[$group] : null;
+            foreach ($groups as $group) {
+                $valuesByCategory[$index][] = $group_stats[$group] ?? null;
             }
         }
-        foreach ($valuesByCategory as $values){
-            $category_stats[] = static::calculateStats($values);
-        }
 
+        foreach ($valuesByCategory as $values) {
+            $category_stats[] = self::calculateStats($values);
+        }
 
         return [
             'row_stats' => $row_stats,
@@ -164,53 +168,47 @@ class MenacesPressions extends Modules\Component\ImetModule
         ];
     }
 
-    private static function calculateStats($values, $rows=false)
+    private static function calculateStats(array $values, bool $rows = false): ?float
     {
         $numCategories = 4;
         $prod = 1;
         $count = 0;
 
-        foreach ($values as $index=>$value){
-            if($value!==null){
-                if($index===3 && $rows===true){
-                    $prod *= ($numCategories+1)/2 - $value*($numCategories-1)/4;
+        foreach ($values as $index => $value) {
+            if ($value !== null) {
+                if ($index === 3 && $rows) {
+                    $prod *= ($numCategories + 1) / 2 - $value * ($numCategories - 1) / 4;
                 } else {
                     $prod *= $numCategories - $value;
                 }
+
                 $count++;
             }
         }
 
-        return $count>0
-            ? (4 - round(pow($prod, 1/($count)),2))
+        return $count > 0
+            ? (4 - round($prod ** (1 / $count), 2))
             : null;
     }
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'MenacesPressions',
             'fields' => [
-                'Value', 'Impact', 'Extension', 'Duration', 'Trend', 'Probability', 'GroupValue'
-            ]
+                'Value', 'Impact', 'Extension', 'Duration', 'Trend', 'Probability', 'GroupValue',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupValue');
+        return self::convertGroupLabelToKey($record, 'GroupValue');
     }
-
 }

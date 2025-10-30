@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,7 +16,6 @@ use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
 use ImetCore\Models\Imet\Components\Upgrade;
 use ImetCore\Models\Imet\v2\Imet;
-
 
 class ImetModule extends BaseImetModule
 {

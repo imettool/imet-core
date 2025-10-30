@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -8,15 +11,13 @@ use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$page = View::make('modular-forms::module.show.type.group_table', compact(['definitions', 'records']))->render();
+$page = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
     Helpers::trimNewlines($page)
 );
 
 foreach ($definitions['groups'] as $group_key => $group) {
-    $group_records = array_filter($records, function ($item) use ($group_key) {
-        return $item['group_key'] === $group_key;
-    });
+    $group_records = array_filter($records, fn(array $item): bool => $item['group_key'] === $group_key);
     $input = '<thead>
                 <th></th>
                 <th>

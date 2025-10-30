@@ -1,19 +1,17 @@
-<?php
+@php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $table_id = 'table_' . $definitions['module_key'];
-$group_key = '';
-
 $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);
-$sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
-
-?>
+$sumUnderControlArea = 0;
+$UnderControlPatrolKm = 0;
+$UnderControlPatrolManDay = 0;
+@endphp
 
 <table id="{{ $table_id }}" class="table module-table">
 
@@ -42,11 +40,12 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
     </thead>
 
     {{-- inputs --}}
-    <tbody class="{{ $group_key }}">
-    @foreach($records as $record)
+    <tbody>
+    @foreach($records as $i => $record)
 
-            <?php
-            $area_percentage = $average_time = null;
+        @php
+            $area_percentage = null;
+            $average_time = null;
             if (floatval($area) > 0 && floatval($record['UnderControlArea']) > 0) {
                 $area_percentage = round(floatval($record['UnderControlArea']) / $area * 100, 2);
             }
@@ -56,7 +55,7 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
             $sumUnderControlArea += floatval($record['UnderControlArea']);
             $UnderControlPatrolKm += floatval($record['UnderControlPatrolKm']);
             $UnderControlPatrolManDay += floatval($record['UnderControlPatrolManDay']);
-            ?>
+        @endphp
 
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $f_index=>$field)
@@ -117,3 +116,4 @@ $sumUnderControlArea = $UnderControlPatrolKm = $UnderControlPatrolManDay = 0
 
 @include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
 
+<?php

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,30 +12,33 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
 /**
- * @property $titles
+ * @property string[] $titles
  */
-class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
+final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_supports_constraints_integration';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
+
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Stakeholder'],
-        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder']
+        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
     ];
 
     protected static array $extra_raw_fields = ['Ranking' => '__score'];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C2.2';
@@ -54,9 +58,10 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_DIRECT),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id, Modules\Context\Stakeholders::ONLY_INDIRECT),
@@ -64,14 +69,14 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
-        $records  = parent::arrange_records($predefined_values, $records, $empty_record);
+        $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
 
         $weight = Modules\Context\Stakeholders::calculateWeights($form_id);
@@ -79,28 +84,24 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
             ->pluck('ConstraintLevel', 'Stakeholder')
             ->toArray();
 
-        foreach($records as $idx => $record){
+        foreach ($records as $idx => $record) {
             $records[$idx]['__weight'] = $weight[$record['Stakeholder']] ?? null;
-            $records[$idx]['__score'] = $ranking[$record['Stakeholder']]!==null ? $ranking[$record['Stakeholder']]*100/3 : null;
+            $records[$idx]['__score'] = $ranking[$record['Stakeholder']] !== null ? $ranking[$record['Stakeholder']] * 100 / 3 : null;
         }
 
         return collect($records)
             ->sortBy('__score')
             ->values()
-            ->toArray();
+            ->all();
     }
 
     /**
      * Provide the list of prioritized key elements
-     * @param $form_id
-     * @return array
      */
-    public static function getPrioritizedElements($form_id): array
+    public static function getPrioritizedElements(?int $form_id): array
     {
-        return collect(static::getModuleRecords($form_id)['records'])
-            ->filter(function ($item) {
-                return $item['IncludeInStatistics'];
-            })
+        return collect(self::getModuleRecords($form_id)['records'])
+            ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Stakeholder')
             ->toArray();
     }
@@ -108,7 +109,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->where('IncludeInStatistics', true)
             ->pluck($dependency_on)
             ->toArray();
@@ -119,7 +120,7 @@ class SupportsAndConstraintsIntegration extends Modules\Component\ImetModule_Eva
 
         // Make diff to find out what to drop
         $to_be_dropped = array_diff($existing_values, $updated_values);
+
         return array_values($to_be_dropped);
     }
-
 }

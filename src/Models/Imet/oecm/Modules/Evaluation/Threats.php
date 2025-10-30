@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -16,14 +17,16 @@ use ImetCore\Models\User\Role;
 use ImetCore\Services\StakeholdersService;
 use ImetCore\Services\ThreatsService;
 
-class Threats extends Modules\Component\ImetModule_Eval {
-
+final class Threats extends Modules\Component\ImetModule_Eval
+{
     protected $table = 'eval_threats';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C3.1.2';
@@ -39,7 +42,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
 
         $this->predefined_values = [
             'field' => 'Value',
-            'values' => trans('imet-core::oecm_lists.Threats')
+            'values' => trans('imet-core::oecm_lists.Threats'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.Threats.module_info_EvaluationQuestion');
@@ -49,7 +52,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -59,8 +62,8 @@ class Threats extends Modules\Component\ImetModule_Eval {
         $threats = StakeholdersService::keyElementsByThreat($stakeholder_records);
 
         // Inject num stakeholders and elements
-        foreach ($records as $index => $record){
-            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'));
+        foreach ($records as $index => $record) {
+            $threat_key = array_search($record['Value'], trans('imet-core::oecm_lists.Threats'), true);
 
             $records[$index]['__count_stakeholders_direct'] = null;
             $records[$index]['__count_stakeholders_indirect'] = null;
@@ -68,7 +71,7 @@ class Threats extends Modules\Component\ImetModule_Eval {
             $records[$index]['__elements_illegal_list'] = null;
             $records[$index]['__threat_key'] = $threat_key;
 
-            if(array_key_exists($threat_key, $threats)){
+            if (array_key_exists($threat_key, $threats)) {
                 $records[$index]['__count_stakeholders_direct'] = $threats[$threat_key]['count_stakeholders_direct'];
                 $records[$index]['__count_stakeholders_indirect'] = $threats[$threat_key]['count_stakeholders_indirect'];
                 $records[$index]['__elements_legal_list'] = $threats[$threat_key]['elements_legal_list'];
@@ -82,16 +85,11 @@ class Threats extends Modules\Component\ImetModule_Eval {
 
     /**
      * Calculate threat's ranking
-     *
-     * @param $form_id
-     * @param $records
-     * @return array
      */
-    public static function calculateRanking($form_id, $records = null): array
+    public static function calculateRanking(?int $form_id, ?array $records = null): array
     {
-        $records = $records ?? static::getModuleRecords($form_id)['records'];
+        $records ??= self::getModuleRecords($form_id)['records'];
 
         return ThreatsService::calculateRanking($records);
     }
-
 }

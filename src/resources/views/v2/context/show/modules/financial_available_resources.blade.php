@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $records */
+/** @var array $definitions */
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
@@ -20,10 +23,10 @@ foreach ($records as $index => $record) {
         : '';
     $totalSum += $records[$index]['__sum_row'];
 }
-$totalSum = $totalSum / 2;
+$totalSum /= 2;
 
 
-$table = View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$table = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
     Helpers::trimNewlines($table)
 );
@@ -34,7 +37,7 @@ $table_dom->filter('thead tr th')->eq(4)->after(
          <th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.percentage')) . '</th>
     ');
 
-$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records) {
+$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
     $tr->filter('td')->eq(4)->after(
         '<td>
             ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $records[$index]['__sum_row'])) . '

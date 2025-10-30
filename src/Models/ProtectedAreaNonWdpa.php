@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,6 @@ namespace ImetCore\Models;
 use ImetCore\Helpers\Database;
 use ModularForms\Models\BaseModel;
 
-
 /**
  * Class ProtectedAreaNonWdpa
  *
@@ -25,16 +25,18 @@ use ModularForms\Models\BaseModel;
  * @property string $Type
  * @property string $iucn_category
  * @property string $creation_date
- *
+ * @property int $status_year
+ * @property string $ownership_type
  */
 class ProtectedAreaNonWdpa extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'protected_areas_non_wdpa';
 
     public const LABEL = 'name';
 
-    private const START_FAKE_ID = 999990000;
+    private const int START_FAKE_ID = 999990000;
 
     protected $guarded = [];
 
@@ -43,15 +45,14 @@ class ProtectedAreaNonWdpa extends BaseModel
     /**
      * Override: get the table name with schema
      */
+    #[\Override]
     public function getTable(): string
     {
-        return Database::getTable(static::$schema, $this->table);
+        return Database::getTable(static::$schema, parent::getTable());
     }
 
     /**
      * Append "wdpa_id" as id alias
-     *
-     * @return string
      */
     public function getWdpaIdAttribute(): string
     {
@@ -60,38 +61,32 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Generate a fake wdpa id
-     *
-     * @param int|null $max_id
-     * @return int|mixed|string
      */
-    public static function generate_fake_wdpa(int $max_id = null)
+    public static function generate_fake_wdpa(?int $max_id = null): int
     {
-        $max_id = $max_id ?? ProtectedAreaNonWdpa::max('id');
-        return $max_id===null || !static::isNonWdpa($max_id)
-            ? static::START_FAKE_ID
+        $max_id ??= ProtectedAreaNonWdpa::query()->max('id');
+
+        return $max_id === null || ! static::isNonWdpa($max_id)
+            ? self::START_FAKE_ID
             : intval($max_id) + 1;
     }
 
     /**
      * Check if the given id is a fake WDPA or not
-     *
-     * @param $wdpa_id
-     * @return bool
      */
     public static function isNonWdpa($wdpa_id): bool
     {
-        return $wdpa_id >= ProtectedAreaNonWdpa::START_FAKE_ID;
+        return $wdpa_id >= self::START_FAKE_ID;
     }
 
     /**
      * Export to JSON
-     *
-     * @return array
      */
     public static function export($id): array
     {
-        $pa = static::findOrNew($id);
-        $pa->id = $pa->id ?? $id;
+        $pa = static::query()->findOrNew($id);
+        $pa->id ??= $id;
+
         return $pa
             ->makeHidden([static::UPDATED_AT, static::UPDATED_BY])
             ->toArray();
@@ -99,21 +94,20 @@ class ProtectedAreaNonWdpa extends BaseModel
 
     /**
      * Import from JSON
-     * @param $data
+     *
      * @return mixed
      */
-    public static function import($data)
+    public static function import(array $data)
     {
         unset($data['wdpa_id']);
         unset($data['id']);
 
-        $pa = ProtectedAreaNonWdpa::firstOrNew($data);
-        if($pa->isDirty()){
+        $pa = ProtectedAreaNonWdpa::query()->firstOrNew($data);
+        if ($pa->isDirty()) {
             $pa->id = ProtectedAreaNonWdpa::generate_fake_wdpa();
             $pa->save();
         }
+
         return $pa->id;
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,16 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class HabitatsMarine extends Modules\Component\ImetModule
+final class HabitatsMarine extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats_marine';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'ACCORDION';
         $this->module_code = 'CTX 4.3.2';
@@ -37,7 +40,7 @@ class HabitatsMarine extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'HabitatType',
-            'values' => trans('imet-core::v1_context.HabitatsMarine.predefined_values')
+            'values' => trans('imet-core::v1_context.HabitatsMarine.predefined_values'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.HabitatsMarine.module_info');
@@ -47,16 +50,14 @@ class HabitatsMarine extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'HabitatsMarine',
             'fields' => [
-                'HabitatType', 'Presence', 'Area', 'Fragmentation', 'Source', 'Description'
-            ]
+                'HabitatType', 'Presence', 'Area', 'Fragmentation', 'Source', 'Description',
+            ],
         ];
     }
 }

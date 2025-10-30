@@ -6,9 +6,9 @@
 
 use ImetCore\Services\Scores\AssessmentsScores;
 
-$additional_classes = $additional_classes ?? null;
-$threats            = $threats ?? false;
-$constraints        = $constraints ?? false;
+$additional_classes ??= null;
+$threats ??= false;
+$constraints ??= false;
 
 $classes = match(true) {
     $threats => AssessmentsScores::score_class_threats($assessment_value),

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,26 +13,26 @@
 namespace ImetCore;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use ImetCore\Commands\CalculateScores;
 use ImetCore\Commands\ConvertSQLite;
 use ImetCore\Commands\Export;
 use ImetCore\Commands\Import;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Policies\ImetPolicy;
 
-
 class ServiceProvider extends BaseServiceProvider
 {
-    const BASE_PATH = __DIR__ . '/';
+    const BASE_PATH = __DIR__.'/';
 
     /**
      * Register services.
      */
+    #[\Override]
     public function register(): void
     {
-        $this->mergeConfigFrom(static::BASE_PATH . 'config/config.php', 'imet-core');
+        $this->mergeConfigFrom(static::BASE_PATH.'config/config.php', 'imet-core');
         Gate::policy(Imet::class, ImetPolicy::class);
     }
 
@@ -43,33 +44,32 @@ class ServiceProvider extends BaseServiceProvider
 
         // Migrations
         $this->loadMigrationsFrom([
-            static::BASE_PATH . 'database/migrations/public',
-            static::BASE_PATH . 'database/migrations/imet',
-            static::BASE_PATH . 'database/migrations/oecm',
+            static::BASE_PATH.'database/migrations/public',
+            static::BASE_PATH.'database/migrations/imet',
+            static::BASE_PATH.'database/migrations/oecm',
         ]);
 
         // Views
-        $this->loadViewsFrom(static::BASE_PATH . 'resources/views', 'imet-core');
+        $this->loadViewsFrom(static::BASE_PATH.'resources/views', 'imet-core');
         $this->publishes([
-            static::BASE_PATH . 'resources/views/vendor/modular-forms' =>
-                resource_path('views/vendor/modular-forms') // Override ModularForms views
+            static::BASE_PATH.'resources/views/vendor/modular-forms' => resource_path('views/vendor/modular-forms'), // Override ModularForms views
         ], 'imet-core');
 
         // Routes
-        Route::group($this->routeConfiguration('web'), function (){
-            $this->loadRoutesFrom(static::BASE_PATH . 'Routes/web.php');
+        Route::group($this->routeConfiguration('web'), function (): void {
+            $this->loadRoutesFrom(static::BASE_PATH.'Routes/web.php');
         });
-        Route::group($this->routeConfiguration('api'), function (){
-            $this->loadRoutesFrom(static::BASE_PATH . 'Routes/api.php');
+        Route::group($this->routeConfiguration('api'), function (): void {
+            $this->loadRoutesFrom(static::BASE_PATH.'Routes/api.php');
         });
 
         // Config
         $this->publishes([
-            static::BASE_PATH . 'config/config.php' => config_path('imet-core.php')
+            static::BASE_PATH.'config/config.php' => config_path('imet-core.php'),
         ], 'imet-core');
 
-        //Lang
-        $this->loadTranslationsFrom(static::BASE_PATH . 'Lang', 'imet-core');
+        // Lang
+        $this->loadTranslationsFrom(static::BASE_PATH.'Lang', 'imet-core');
 
         // Commands
         if ($this->app->runningInConsole()) {
@@ -77,24 +77,25 @@ class ServiceProvider extends BaseServiceProvider
                 CalculateScores::class,
                 ConvertSQLite::class,
                 Export::class,
-                Import::class
+                Import::class,
             ]);
         }
     }
 
-    private function routeConfiguration($route_file): array
+    private function routeConfiguration(string $route_file): array
     {
-        if($route_file === 'web' && config('imet-core.web_routes_prefix')!==null){
+        if ($route_file === 'web' && config('imet-core.web_routes_prefix') !== null) {
             return [
-                'prefix' => config('imet-core.web_routes_prefix')
+                'prefix' => config('imet-core.web_routes_prefix'),
             ];
-        } else if ($route_file === 'api' && config('imet-core.api_routes_prefix')!==null){
+        }
+
+        if ($route_file === 'api' && config('imet-core.api_routes_prefix') !== null) {
             return [
-                'prefix' => config('imet-core.api_routes_prefix')
+                'prefix' => config('imet-core.api_routes_prefix'),
             ];
         }
 
         return [];
     }
-
 }

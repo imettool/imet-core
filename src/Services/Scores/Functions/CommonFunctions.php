@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,25 +12,25 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
-trait CommonFunctions {
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
+trait CommonFunctions
+{
     /**
      * Standard function for TABLE type modules
      */
-    private static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3): ?float
+    protected static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->pluck($module_field)
-            ->filter(function ($value) {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);
-        $score = $average!==null ? $average / $denominator * 100 : null;
+        $score = $average !== null ? $average / $denominator * 100 : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
@@ -37,34 +38,29 @@ trait CommonFunctions {
     /**
      * Standard function for GROUP type modules
      */
-    private static function score_group(int $imet_id, $module_class, string $module_field, string $group_field): ?float
+    protected static function score_group(int $imet_id, $module_class, string $module_field, string $group_field): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->groupBy($group_field)
-            ->map(function($group) use($module_field) {
+            ->map(function ($group) use ($module_field) {
                 $group_values = $group
-                    ->filter(function ($value) use($module_field) {
-                        return $value[$module_field] != -99;
-                    })
+                    ->filter(fn (ImetModule $value): bool => $value[$module_field] != -99)
                     ->pluck($module_field)
                     ->toArray();
-                return !empty($group_values)
+
+                return filled($group_values)
                     ? static::average($group_values, null)
                     : null;
             })
-            ->filter(function ($value) {
-                return $value != -99;
-            })
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);
-        $score = $average!==null ? $average / 3 * 100 : null;
+        $score = $average !== null ? $average / 3 * 100 : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
-
-
 }

@@ -3,23 +3,10 @@ includes:
     - vendor/nesbot/carbon/extension.neon
 
 parameters:
-    level: 1
+    level: 2
     paths:
         - app
         - package/imet-core/src
 
-    # Ignore errors in custom blade views: for some reason, PHPStan is not able to detect @var PHPDoc tags
-    ignoreErrors:
-        -
-            identifiers:
-                - variable.undefined
-                - varTag.differentVariable
-            paths:
-                - package/imet-core/src/resources/views/v2/evaluation/show/modules/*
-                - package/imet-core/src/resources/views/v2/evaluation/show/fields/*
-                - package/imet-core/src/resources/views/v2/evaluation/edit/modules/*
-                - package/imet-core/src/resources/views/v2/evaluation/edit/fields/*
-                - package/imet-core/src/resources/views/v2/context/show/modules/*
-                - package/imet-core/src/resources/views/v2/context/show/fields/*
-                - package/imet-core/src/resources/views/v2/context/edit/modules/*
-                - package/imet-core/src/resources/views/v2/context/edit/fields/*
+# Note: file src/Models/Imet/Components/Modules/ImetModule.php raise 4 errors on constant override, but they are false positives
+#       See https://github.com/phpstan/phpstan/issues/13119

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,18 +12,11 @@
 
 namespace ImetCore\Controllers\Imet\Traits;
 
-
-use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-trait Pame{
-
-    /**
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+trait Pame
+{
     public static function pame(Request $request): JsonResponse
     {
         $conditions = [];
@@ -30,8 +24,7 @@ trait Pame{
             $conditions[] = ['Country', '=', $request->input('iso')];
         }
 
-        $imets = (static::$form_class)
-            ::select(['Year as year', 'Country as iso', 'wdpa_id', 'name'])
+        $imets = (static::$form_class)::select(['Year as year', 'Country as iso', 'wdpa_id', 'name'])
             ->where($conditions)
             ->get()
             ->sortBy('wdpa_id')
@@ -41,5 +34,4 @@ trait Pame{
 
         return self::sendAPIResponse($imets, $request);
     }
-
 }

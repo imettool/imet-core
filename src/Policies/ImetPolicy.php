@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,8 @@
 
 namespace ImetCore\Policies;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
-
+use ImetCore\Models\User\Role;
 
 class ImetPolicy
 {
@@ -23,14 +22,15 @@ class ImetPolicy
     /**
      * Perform pre-authorization checks
      */
-    public function before($user, string $ability)
+    public function before($user, string $ability): ?bool
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {
             return true;
         }
-    }
 
+        return null;
+    }
 
     /**
      * Determine whether the user can INDEX
@@ -46,7 +46,11 @@ class ImetPolicy
      */
     public function view($user, $form = null): bool
     {
-        return true;
+        if (is_null($form)) {
+            return Role::hasAnyRole($user);
+        }
+
+        return Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -54,7 +58,12 @@ class ImetPolicy
      */
     public function edit($user, $form = null): bool
     {
-       return true;
+        if (is_null($form)) {
+            return Role::isRole(Role::ROLE_ENCODER);
+        }
+
+        return Role::isRole(Role::ROLE_ENCODER)
+            && Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -84,12 +93,22 @@ class ImetPolicy
         return $this->edit($user, $form);
     }
 
-   /**
+    /**
+     * Determine whether the user can view the EXPORT button
+     */
+    public function export_button($user, $form = null): bool
+    {
+        // if user can VIEW can also export
+        return $this->view($user, $form);
+    }
+
+    /**
      * Determine whether the user can EXPORT
      */
     public function export($user, $form = null): bool
     {
-        return true;
+        // if user can VIEW can also export
+        return $this->view($user, $form);
     }
 
     /**
@@ -102,25 +121,10 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can view wdpa_assessment
-     */
-    public function wdpa_assessment($user, $form = null): bool
-    {
-        return true;
-    }
-
-    /**
      * Determine whether the user can view wdpa_scaling_up
      */
     public function wdpa_scaling_up($user, $form = null): bool
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user is a national authority or an observatory
-     */
-    public function scaling_up(): bool{
         return true;
     }
 }

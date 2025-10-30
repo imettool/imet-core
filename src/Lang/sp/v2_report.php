@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -52,5 +53,5 @@ return [
     'std_dev' => 'Desviación estándar',
     'sum' => 'Suma',
     'protected_area' => 'Zona protegida',
-    'unprotected_buffer' => '10 km tampón no protegido'
+    'unprotected_buffer' => '10 km tampón no protegido',
 ];

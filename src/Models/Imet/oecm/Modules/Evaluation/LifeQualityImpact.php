@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class LifeQualityImpact extends Modules\Component\ImetModule_Eval
+final class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_life_quality_impact';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'O/C3';
         $this->module_title = trans('imet-core::oecm_evaluation.LifeQualityImpact.title');
@@ -32,15 +34,15 @@ class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 
         $this->module_groups = [
             'group0' => trans('imet-core::oecm_evaluation.LifeQualityImpact.groups.group0'),
-            'group1' => trans('imet-core::oecm_evaluation.LifeQualityImpact.groups.group1')
+            'group1' => trans('imet-core::oecm_evaluation.LifeQualityImpact.groups.group1'),
         ];
 
         $this->predefined_values = [
             'field' => 'Element',
             'values' => [
                 'group0' => trans('imet-core::oecm_evaluation.LifeQualityImpact.predefined_values.group0'),
-                'group1' => trans('imet-core::oecm_evaluation.LifeQualityImpact.predefined_values.group1')
-            ]
+                'group1' => trans('imet-core::oecm_evaluation.LifeQualityImpact.predefined_values.group1'),
+            ],
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.LifeQualityImpact.module_info_EvaluationQuestion');

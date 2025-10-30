@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,9 +15,10 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class StaffCompetence extends Modules\Component\ImetModule_Eval
+final class StaffCompetence extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_staff_competence';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
@@ -44,9 +46,10 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\ManagementStaff::getModule($form_id)->pluck('Function')->toArray(),
                 'group1' => Modules\Context\Stakeholders::getStakeholders($form_id),
@@ -54,12 +57,12 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -68,15 +71,14 @@ class StaffCompetence extends Modules\Component\ImetModule_Eval
         $weighted_staff = Modules\Context\ManagementStaff::calculateWeights($form_id);
         $weighted_stakeholder = Modules\Context\Stakeholders::calculateWeights($form_id);
 
-        foreach($records as $idx => $record){
-            if($record['group_key']==='group0'){
+        foreach ($records as $idx => $record) {
+            if ($record['group_key'] === 'group0') {
                 $records[$idx]['Weight'] = $weighted_staff[$record['Member']] ?? null;
-            } elseif($record['group_key']==='group1'){
+            } elseif ($record['group_key'] === 'group1') {
                 $records[$idx]['Weight'] = $weighted_stakeholder[$record['Member']] ?? null;
             }
         }
 
         return $records;
     }
-
 }

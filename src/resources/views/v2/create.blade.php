@@ -4,7 +4,7 @@
 use ImetCore\Models\Imet\v2\Modules\Context\Create;
 use ImetCore\Models\Imet\v2\Modules\Context\CreateNonWdpa;
 
-$is_wdpa = $is_wdpa ?? true;
+$is_wdpa ??= true;
 
 ?>
 

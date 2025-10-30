@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class TerritorialReferenceContext extends Modules\Component\ImetModule
+final class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
     protected $table = 'context_territorial_reference_context';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.5';
@@ -40,21 +42,17 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     }
 
-
     public static function upgradeModule($record, $imet_version = null): array
     {
-        $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
-        $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
-        $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
-        $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
+        $record = self::renameField($record, 'FunctionalArea', 'BenefitKm2');
 
-        return $record;
+        return self::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
     }
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -62,8 +60,8 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             'table' => 'TerritorialReferenceContext',
             'fields' => [
                 'ReferenceEcosystemAreaEstimation', 'ReferenceEcosystemAreaPopulation', 'EcologicalAspects', 'FunctionalArea',
-                 'FunctionalAreaPopulation', 'SocioEconomicAspects', 'SpillOverEffect'
-            ]
+                'FunctionalAreaPopulation', 'SocioEconomicAspects', 'SpillOverEffect',
+            ],
         ];
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,12 +13,10 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Models\Imet\v2\Modules;
-use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 use ImetCore\Models\Species;
+use ImetCore\Models\User\Role;
 
-class AnimalSpecies extends Modules\Component\ImetModule
+final class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_animal_presence';
 
@@ -30,9 +29,8 @@ class AnimalSpecies extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'species'],
     ];
 
-    protected $validation_min3 = '';
-
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.1';
@@ -53,19 +51,19 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
         $this->module_info = trans('imet-core::v2_context.AnimalSpecies.module_info');
 
-        $this->validation_min3 = trans('imet-core::v2_context.AnimalSpecies.validation_min3');
-
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
         if ($value && Species::isTaxonomy($value)) {
             $taxonomy = Species::parseTaxonomy($value);
-            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+
+            return $taxonomy['genus'].' '.$taxonomy['species'];
         }
+
         return $value;
     }
-
 }

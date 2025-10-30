@@ -1,8 +1,6 @@
 # Development/Envirnoment
 composer
 .env
-composer.lock
-package-lock.json
 /public/build/
 /public/hot
 /public/storage

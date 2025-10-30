@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -52,5 +53,5 @@ return [
     'std_dev' => 'Écart-type',
     'sum' => 'Somme',
     'protected_area' => 'Aire protégée',
-    'unprotected_buffer' => 'Zone tampon non protégée de 10 km'
+    'unprotected_buffer' => 'Zone tampon non protégée de 10 km',
 ];

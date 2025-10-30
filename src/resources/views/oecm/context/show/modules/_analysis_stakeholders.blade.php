@@ -1,14 +1,14 @@
 <?php
+/** @var Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+/** @var array $stakeholders */
+/** @var array $key_elements_importance */
+/** @var string $current_stakeholder */
+/** @var string $summary_title */
+
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
-
-/** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
-/** @var Array $stakeholders */
-/** @var Array $key_elements_importance */
-/** @var String $current_stakeholder */
-/** @var String $summary_title */
 
 $form_id = $collection[0]['FormID'];
 
@@ -17,9 +17,7 @@ $num_cols = count($definitions['fields']);
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
     ->groupBy('Stakeholder')
-    ->map(function ($group) {
-        return $group->groupBy('group_key');
-    })
+    ->map(fn($group) => $group->groupBy('group_key'))
     ->toArray();
 
 $stakeholders_categories = Stakeholders::getStakeholders(

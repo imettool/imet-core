@@ -1,12 +1,12 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+/** @var Imet $item */
+/** @var string $stakeholder */
+/** @var Array $categories */
 
 use ImetCore\Models\Imet\oecm\Imet;
-
-/** @var Imet $item */
-/** @var String $stakeholder */
-/** @var Array $categories */
-/** @var Array $definitions */
-
 $categories = $categories !== null ? json_decode($categories) : [];
 
 ?>
@@ -93,15 +93,17 @@ $categories = $categories !== null ? json_decode($categories) : [];
                                             type="checkbox-ImetOECM_Guidelines"
                                             :value="[]"
                                         ></x-modular-forms::module.components.field.input-preview>
+                                    @elseif($field['name'] === 'Element')
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="text"
+                                            value=""
+                                        ></x-modular-forms::module.components.field.input-preview>
+                                        <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
                                     @else
                                         <x-modular-forms::module.components.field.input-preview
                                             :type="$field['type']"
                                             :value="null"
                                         ></x-modular-forms::module.components.field.input-preview>
-                                    @endif
-
-                                    @if($field['name'] === 'Element')
-                                        <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
                                     @endif
 
                                 </div>

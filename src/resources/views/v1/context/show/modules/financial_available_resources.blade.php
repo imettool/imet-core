@@ -1,11 +1,11 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $record = $records[0];
 $total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_'.$definitions['module_key'];
 
@@ -20,11 +20,7 @@ foreach ($records as $index => $record) {
     $result[$index] = $result[$index] === 0 ? null : $result[$index];
 
     $total = floatval($result[$index]);
-    if($total > 0){
-        $percentage_results[$index] = round($total / $total_budget * 100, 1).' %';
-    } else {
-        $percentage_results[$index] = "";
-    }
+    $percentage_results[$index] = $total > 0 ? round($total / $total_budget * 100, 1).' %' : "";
 }
 \ImetCore\Controllers\Imet\v1\ContextController::set_financial_available_resources_totals($result);
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,18 +12,19 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
+use Illuminate\Http\Request;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class ManagementPlan extends Modules\Component\ImetModule_Eval
+final class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_plan';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'P4';
@@ -45,31 +47,32 @@ class ManagementPlan extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    private static function ensureNullValues($data)
+    private static function ensureNullValues(array $data): array
     {
-        if($data['PlanExistence'] === false || $data['PlanExistence'] === "false"){
+        if ($data['PlanExistence'] === false || $data['PlanExistence'] === 'false') {
             $data['PlanUptoDate'] = false;
             $data['PlanApproved'] = false;
             $data['PlanImplemented'] = false;
             $data['PlanAdequacyScore'] = 0;
         }
+
         return $data;
     }
 
+    #[\Override]
     public static function updateModule(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));
-        $records[0] = static::ensureNullValues($records[0]);
+        $records[0] = self::ensureNullValues($records[0]);
         $request->merge(['records_json' => Payload::encode($records)]);
+
         return parent::updateModule($request);
     }
 
-    public static function importModule($form_id, $data): void
+    #[\Override]
+    public static function importModule(int $form_id, ?array $data): void
     {
-        $data = static::ensureNullValues($data);
+        $data = self::ensureNullValues($data);
         parent::importModule($form_id, $data);
     }
-
-
-
 }

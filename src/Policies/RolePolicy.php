@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,9 @@
 
 namespace ImetCore\Policies;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
-
+use ImetCore\Models\User\Role;
+use ImetCore\Models\User\User;
 
 class RolePolicy
 {
@@ -21,29 +22,23 @@ class RolePolicy
 
     /**
      * Perform pre-authorization checks
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @param string $ability
-     * @return void|bool
      */
-    public function before($user, string $ability)
+    public function before(User $user, string $ability): ?bool
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {
             return true;
         }
+
+        return null;
     }
 
     /**
      * Determine whether the user can manage Roles
-     *
-     * @param \App\Models\User\User|\ImetUser $user
-     * @return bool
      */
-    public function manage($user): bool
+    public function manage(User $user): bool
     {
         // TODO: ROLE_REGIONAL_OBSERVATORY ?
         return false;
     }
-
 }

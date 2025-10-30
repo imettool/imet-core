@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,22 +12,23 @@
 
 namespace ImetCore\Controllers\Imet\oecm;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Contracts\View\View;
 
-class ContextController extends Controller
+final class ContextController extends Controller
 {
     protected static ?string $form_view_prefix = 'imet-core::oecm.context';
+
     protected static ?string $form_default_step = 'general_info';
 
-    public function print_sa($item)
+    public function print_sa($item): View
     {
-        $this->authorize('view', (static::$form_class)::find($item));
+        $this->authorize('view', (self::$form_class)::find($item));
 
-        $form = new static::$form_class();
+        $form = new self::$form_class;
         $form = $form->find($item);
-        return view(static::$form_view_prefix.'.print_sa', [
-            'item' => $form
+
+        return view(self::$form_view_prefix.'.print_sa', [
+            'item' => $form,
         ]);
     }
-
 }

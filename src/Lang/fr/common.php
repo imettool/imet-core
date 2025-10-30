@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,30 +12,30 @@
 
 return [
 
-    'id'                    => 'ID',
-    'name'                  => 'nom',
-    'year'                  => 'année',
-    'country'               => 'pays',
-    'language'              => 'langue',
-    'version'               => 'version',
-    'link'                  => 'lien|liens',
+    'id' => 'ID',
+    'name' => 'nom',
+    'year' => 'année',
+    'country' => 'pays',
+    'language' => 'langue',
+    'version' => 'version',
+    'link' => 'lien|liens',
 
     'staff' => [
-        'first_name'            => 'prénom',
-        'last_name'             => 'nom',
-        'institution'           => 'organisation',
-        'function'              => 'fonction',
-        'confirm_user_info'         => 'S\'il vous plaît confirmer vos informations'
+        'first_name' => 'prénom',
+        'last_name' => 'nom',
+        'institution' => 'organisation',
+        'function' => 'fonction',
+        'confirm_user_info' => 'S\'il vous plaît confirmer vos informations',
     ],
 
     'protected_area' => [
-        'protected_area'    => 'aire protégée|aires protégées',
-        'wdpa_id'           => 'code WDPA|codes WDPA',
-        'iucn_category'     => 'catégorie UICN',
+        'protected_area' => 'aire protégée|aires protégées',
+        'wdpa_id' => 'code WDPA|codes WDPA',
+        'iucn_category' => 'catégorie UICN',
     ],
 
-    'methodology'   => 'Question posée',
-    'criteria'      => 'Notation',
+    'methodology' => 'Question posée',
+    'criteria' => 'Notation',
 
     'terrestrial' => 'terrestre',
     'marine' => 'maritime et côtier',
@@ -44,48 +45,48 @@ return [
     'yes' => 'Oui',
 
     'languages' => [
-        'fr'        => 'Français',
-        'en'        => 'Anglais',
-        'sp'        => 'Espagnol',
-        'pt'        => 'Portugais'
+        'fr' => 'Français',
+        'en' => 'Anglais',
+        'sp' => 'Espagnol',
+        'pt' => 'Portugais',
     ],
     'switch_language' => 'Changer la langue actuelle en',
 
     'imet' => 'IMET: Outil intégré sur l’efficacité de gestion',
-    'imet_short'        => 'IMET',
+    'imet_short' => 'IMET',
 
-    'management'        => 'gestion des formulaires IMET',
+    'management' => 'gestion des formulaires IMET',
 
     'encoding_language' => 'Langue d\'encodage',
-    'encoders_responsible'      => 'Encodeurs and responsables',
-    'encoders'                  => 'Encodeurs',
-    'responsible_internal'      => 'Responsables (équipe de gestion)',
-    'responsible_external'      => 'Responsables (support extérieur)',
+    'encoders_responsible' => 'Encodeurs and responsables',
+    'encoders' => 'Encodeurs',
+    'responsible_internal' => 'Responsables (équipe de gestion)',
+    'responsible_external' => 'Responsables (support extérieur)',
 
-    'supervisors'              => 'Superviseurs',
-    'readonly'                 => 'Read-only',
+    'supervisors' => 'Superviseurs',
+    'readonly' => 'Read-only',
 
-    'encode'            => 'encoder',
-    'show'              => 'visualiser',
+    'encode' => 'encoder',
+    'show' => 'visualiser',
 
-    'context'           => 'Contexte',
-    'evaluation'        => 'Évaluation',
-    'cross_analysis'        => 'cross analysis',
-    'report'            => 'rapport d\'analyse',
-    'context_long'      => 'contexte d\'intervention',
-    'evaluation_long'   => 'Évaluation de gestion',
-    'cross_analysis_long'   => 'cross analysis',
-    'report_long'       => 'rapport d\'analyse',
+    'context' => 'Contexte',
+    'evaluation' => 'Évaluation',
+    'cross_analysis' => 'cross analysis',
+    'report' => 'rapport d\'analyse',
+    'context_long' => 'contexte d\'intervention',
+    'evaluation_long' => 'Évaluation de gestion',
+    'cross_analysis_long' => 'cross analysis',
+    'report_long' => 'rapport d\'analyse',
 
-    'import_imet'       => 'Importer un IMET à partir d\'un fichier',
-    'merge_tool'        => 'Outil de fusion',
-    'destination_form'        => 'Formulaire de destination',
+    'import_imet' => 'Importer un IMET à partir d\'un fichier',
+    'merge_tool' => 'Outil de fusion',
+    'destination_form' => 'Formulaire de destination',
     'set_as_destination_form' => 'Utiliser comme formulaire de destination',
-    'confirm_merge'     => 'Confirmer pour copier les données.',
-    'upgrade'           => 'Convertir en IMET v2',
-    'upgrade_confirm'   => 'Confirmer to convertir en IMET v2?<ul><li>Une copie du formulaire original sera créée.</li><li>Certaines données ne seront pas converties en v2</li>',
-    'upgrade_success'   => 'Conversion en IMET v2 terminée avec succès',
-    'upgrade_failed'    => 'Erreur lors de la conversion en IMET v2',
+    'confirm_merge' => 'Confirmer pour copier les données.',
+    'upgrade' => 'Convertir en IMET v2',
+    'upgrade_confirm' => 'Confirmer to convertir en IMET v2?<ul><li>Une copie du formulaire original sera créée.</li><li>Certaines données ne seront pas converties en v2</li>',
+    'upgrade_success' => 'Conversion en IMET v2 terminée avec succès',
+    'upgrade_failed' => 'Erreur lors de la conversion en IMET v2',
     'not_authorized_module' => 'Aucune autorisation de visualiser ces informations',
     'double_check_wdpa' => 'Assurez-vous de sélectionner la bonne WDPA',
     'nothing_to_evaluate' => 'Rien à évaluer',
@@ -95,25 +96,25 @@ return [
     'nothing_found' => 'Aucun résultat trouvé',
 
     'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexte index',
-        'planning'    => 'Planification index',
-        'inputs'      => 'Intrants index',
-        'process'     => 'Processus index',
-        'outputs'     => 'Resultats index',
-        'outcomes'    => 'Effects et Impacts index',
+        'imet' => 'IMET index',
+        'context' => 'Contexte index',
+        'planning' => 'Planification index',
+        'inputs' => 'Intrants index',
+        'process' => 'Processus index',
+        'outputs' => 'Resultats index',
+        'outcomes' => 'Effects et Impacts index',
     ],
 
     'steps_eval' => [
-        'context'                   => 'Contexte de gestion',
-        'planning'                  => 'Planification',
-        'inputs'                    => 'Intrants',
-        'process'                   => 'Processus',
-        'outputs'                   => 'Resultats',
-        'outcomes'                  => 'Effects et Impacts',
-        'objectives'                => 'Objectifs',
-        'management_effectiveness'  => 'Efficacité de gestion',
-        'cross_analysis'  => 'Analyse croisée',
+        'context' => 'Contexte de gestion',
+        'planning' => 'Planification',
+        'inputs' => 'Intrants',
+        'process' => 'Processus',
+        'outputs' => 'Resultats',
+        'outcomes' => 'Effects et Impacts',
+        'objectives' => 'Objectifs',
+        'management_effectiveness' => 'Efficacité de gestion',
+        'cross_analysis' => 'Analyse croisée',
     ],
 
     'Create' => [
@@ -124,7 +125,7 @@ return [
             'wdpa_id' => 'aire protégée',
             'language' => 'langue',
             'prefill_prev_year' => 'préremplir avec l\'année précédente',
-        ]
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -158,13 +159,13 @@ return [
     'ResponsablesInterviewers' => [
         'title' => 'Responsables de la compilation du fichier: Équipe de gestion et partenaires',
         'fields' => [
-            'Name'          => 'Nom',
-            'Institution'   => 'Organisation',
-            'Function'      => 'Fonction',
-            'Contacts'      => 'Coordonnées de contact',
-            'EncodingDate'  => 'Date de compilation',
-            'EncodingDuration' => 'Durée de l\'évaluation (h)'
-        ]
+            'Name' => 'Nom',
+            'Institution' => 'Organisation',
+            'Function' => 'Fonction',
+            'Contacts' => 'Coordonnées de contact',
+            'EncodingDate' => 'Date de compilation',
+            'EncodingDuration' => 'Durée de l\'évaluation (h)',
+        ],
     ],
 
     'ResponsablesInterviewees' => [
@@ -176,7 +177,7 @@ return [
             'Contacts' => 'Coordonnées de contact',
             'EncodingDate' => 'Date de compilation',
             'EncodingDuration' => 'Durée de l\'évaluation (h)',
-        ]
+        ],
     ],
 
     'dropzone' => [
@@ -189,29 +190,29 @@ return [
         'dict_cancel_upload' => 'Annuler le téléchargement',
         'dict_upload_canceled' => 'téléchargement annulé',
         'dict_cancel_upload_confirmation' => 'Êtes-vous sûr de vouloir annuler ce téléchargement ?',
-        'dict_remove_file'  => 'Supprimer le fichier',
+        'dict_remove_file' => 'Supprimer le fichier',
         'dictMaxFilesExceeded' => 'Vous avez dépassé le nombre maximum de fichiers pour le téléchargement. Veuillez supprimer des fichiers afin d\'en télécharger d\'autres',
     ],
 
     'species' => [
-        'species'           => 'espèce|espèces',
-        'common_names'      => 'Noms communs',
+        'species' => 'espèce|espèces',
+        'common_names' => 'Noms communs',
         'taxonomy' => [
-            'taxonomy'      => 'Taxonomie',
-            'domain'        => 'Domaine',
-            'kingdom'       => 'Règne',
-            'phylum'        => 'Division',
-            'class'         => 'Classe',
-            'order'         => 'Ordre',
-            'family'        => 'Famille',
-            'genus'         => 'Genre',
-            'species'       => 'Espèce',
-            'authority'     => 'Autorité'
+            'taxonomy' => 'Taxonomie',
+            'domain' => 'Domaine',
+            'kingdom' => 'Règne',
+            'phylum' => 'Division',
+            'class' => 'Classe',
+            'order' => 'Ordre',
+            'family' => 'Famille',
+            'genus' => 'Genre',
+            'species' => 'Espèce',
+            'authority' => 'Autorité',
         ],
         'links' => [
             'iucn_red_list' => 'Liste rouge de l’UICN',
-            'col'           => 'Catalogue de la vie',
-        ]
-    ]
+            'col' => 'Catalogue de la vie',
+        ],
+    ],
 
 ];

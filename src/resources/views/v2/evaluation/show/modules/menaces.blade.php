@@ -1,17 +1,17 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$page = \Illuminate\Support\Facades\View::make('imet-core::components.module.show.table_with_nothing_to_evaluate', compact(['definitions', 'records']))->render();
+$page = \Illuminate\Support\Facades\View::make('imet-core::components.module.show.table_with_nothing_to_evaluate', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
 );
 
-$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records) {
+$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records): void {
 
     $input = isset($records[$index]['_rank'])
         ? '<div class="text-left" style="padding: 4px;">
@@ -26,7 +26,7 @@ $dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($r
             </div>'
         : '';
 
-    $tr->filter('td')->first()->each(function ($td, $j) use ($input){
+    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void{
         $td->append($input);
     });
 });

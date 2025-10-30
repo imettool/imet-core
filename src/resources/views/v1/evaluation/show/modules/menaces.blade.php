@@ -1,12 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 /** @var array $item */
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['collection', 'records', 'definitions']))->render();
+$view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($view_table)
