@@ -130,7 +130,7 @@ class Imet extends BaseImetForm
             : null;
 
         return Imet::query()
-            ->filterList($request->all())
+            ->byRequestParams($request->all())
             ->with($relations)
             ->where(function ($query) use ($allowed_wdpas): void {
                 if ($allowed_wdpas !== null) {
@@ -154,11 +154,9 @@ class Imet extends BaseImetForm
 
     /**
      * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
-     *
-     * @return mixed
      */
     #[\Override]
-    public static function get_assessments_list_with_extras(Request $request)
+    public static function get_assessments_list_with_extras(Request $request): Collection
     {
         $duplicates = static::foundDuplicates();
 

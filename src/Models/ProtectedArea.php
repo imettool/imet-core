@@ -42,8 +42,6 @@ class ProtectedArea extends BaseModel
 
     public $incrementing = false;       // required for textual primary_key
 
-    public const string LABEL = 'name';
-
     public $timestamps = false;
 
     /**
@@ -52,16 +50,20 @@ class ProtectedArea extends BaseModel
      * @phpstan-param Builder<$this> $query
      */
     #[Scope]
-    public function like(Builder $query, ?string $searchKey = null): void
+    protected function like(Builder $query, ?string $searchKey = null): void
     {
-        $like_operator = $this->getConnection()->getDriverName() == 'sqlite'
-            ? 'LIKE'
-            : '~~*'; // PostgreSQL case insensitive
+        if($searchKey !== null && $searchKey !== ''){
 
-        if ($searchKey !== null && $searchKey !== '') {
-            $query = $query->where('name', $like_operator, '%'.$searchKey.'%');
             if (is_numeric($searchKey)) {
-                $query->orWhere('wdpa_id', $searchKey);
+                $query->where('wdpa_id', $searchKey);
+
+            } else {
+
+                $like_operator = $this->getConnection()->getDriverName() == 'sqlite'
+                    ? 'LIKE'
+                    : '~~*'; // PostgreSQL case insensitive
+
+                $query->where('name', $like_operator, '%'.$searchKey.'%');
             }
         }
     }
@@ -71,7 +73,8 @@ class ProtectedArea extends BaseModel
      */
     public static function getByWdpa(string $wdpa): static
     {
-        return static::query()->where('wdpa_id', $wdpa)
+        return static::query()
+            ->where('wdpa_id', $wdpa)
             ->firstOrFail();
     }
 
@@ -80,7 +83,8 @@ class ProtectedArea extends BaseModel
      */
     public static function getByGlobalId($global_id): ?ProtectedArea
     {
-        return static::query()->where('global_id', '=', $global_id)
+        return static::query()
+            ->where('global_id', '=', $global_id)
             ->first();
     }
 
@@ -112,7 +116,8 @@ class ProtectedArea extends BaseModel
     {
         $iso3s = [];
 
-        ProtectedArea::query()->select('country')
+        ProtectedArea::query()
+            ->select('country')
             ->distinct()
             ->where(function ($query) use ($custom_where): void {
                 if ($custom_where instanceof Closure) {
@@ -138,7 +143,8 @@ class ProtectedArea extends BaseModel
             ? Role::allowedCountries()
             : static::getCountriesISO();
 
-        return Country::query()->select(['iso3', 'iso2', Country::labelKey()])
+        return Country::query()
+            ->select(['iso3', 'iso2', Country::labelKey()])
             ->where(function ($query) use ($countries): void {
                 if ($countries !== null) {
                     $query->whereIn('iso3', array_values($countries));
@@ -156,9 +162,9 @@ class ProtectedArea extends BaseModel
         $allowed_wdpas = Role::allowedWdpas();
 
         // Retrieve Protected Areas (according to filters AND allowed)
-        $protected_areas = static::query()
-            ->where(function (Builder $query) use ($search_key, $country): void {
-                $query = $query->like($search_key);
+        $protected_areas = self::query()
+            ->like($search_key)
+            ->where(function (Builder $query) use ($country): void {
                 if ($country != null) {
                     $query->orWhere('country', 'LIKE', '%'.$country.'%');  // use LIKE for over-national WDPAs
                 }
@@ -177,7 +183,8 @@ class ProtectedArea extends BaseModel
         );
 
         // Retrieve country names
-        $countries = Country::query()->select(['iso3', Country::labelKey()])
+        $countries = Country::query()
+            ->select(['iso3', Country::labelKey()])
             ->whereIn('iso3', $protected_areas_countries)
             ->pluck(Country::labelKey(), 'iso3')
             ->sort()
@@ -200,7 +207,7 @@ class ProtectedArea extends BaseModel
      */
     public static function selectionList(): array
     {
-        $label_attribute = self::labelKey();
+        $label_attribute = 'name';
         $key_attribute = (new self)->getKeyName();
 
         return static::query()

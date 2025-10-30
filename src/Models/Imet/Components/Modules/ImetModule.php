@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Dependencies;
 use ImetCore\Models\User\Role;
+use ModularForms\Exceptions\ValidationException;
 use ModularForms\Models\Module;
 use ReflectionException;
 
@@ -52,7 +53,7 @@ class ImetModule extends Module
     protected bool $enable_raw_export = true;
 
     /** @phpstan-var null|array<string, array<string|int, string>> $ratingLegend */
-    public array $ratingLegend;
+    public ?array $ratingLegend;
 
     public $module_subTitle;
 
@@ -130,6 +131,8 @@ class ImetModule extends Module
 
     /**
      * Override: update dependent modules
+     *
+     * @throws ValidationException
      */
     #[\Override]
     public static function updateModuleRecords(array $records, ?int $form_id): void

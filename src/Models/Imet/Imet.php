@@ -30,6 +30,7 @@ use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Type\Chars;
 use ModularForms\Models\Form;
 
+use Override;
 use function session;
 
 /**
@@ -74,7 +75,7 @@ abstract class Imet extends Form
     /**
      * Override: get the table name with schema
      */
-    #[\Override]
+    #[Override]
     public function getTable(): string
     {
         return Database::getTable(static::$schema, parent::getTable());
@@ -111,65 +112,45 @@ abstract class Imet extends Form
             ? Role::allowedWdpas()
             : null;
 
-        $list_v1 = v1\Imet::query()
-            ->filterList($request->all())
-            ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries): void {
-                if ($allowed_wdpas !== null) {
-                    $query->whereIn('wdpa_id', $allowed_wdpas);
-                }
+        // Create a Collection merging v1 and v2 IMETs
+        $list = new Collection();
+        foreach ([v1\Imet::class, v2\Imet::class] as $imet_class) {
+            $list = $list->merge(
+                $imet_class::query()
+                    ->byRequestParams($request->all())
+                    ->with($relations)
+                    ->where(function ($query) use ($allowed_wdpas, $countries): void {
+                        if ($allowed_wdpas !== null) {
+                            $query->whereIn('wdpa_id', $allowed_wdpas);
+                        }
 
-                if ($countries !== []) {
-                    $query->whereIn('Country', $countries);
-                }
-            })
-            ->get()
-            // Replacement for PostgreSQL unaccent() function
-            ->filter(function (v1\Imet $item) use ($request): bool {
-                if ($request->filled('search')) {
-                    if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
+                        if ($countries !== []) {
+                            $query->whereIn('Country', $countries);
+                        }
+                    })
+                    ->get()
+                    // Replacement for PostgreSQL unaccent() function
+                    ->filter(function ($item) use ($request): bool {
+                        if ($request->filled('search')) {
+                            if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
+                                return true;
+                            }
+
+                            return Str::contains($item['wdpa_id'], $request->input('search'));
+                        }
+
                         return true;
-                    }
+                    })
+            );
+        }
 
-                    return Str::contains($item['wdpa_id'], $request->input('search'));
-                }
-
-                return true;
-            });
-
-        $list_v2 = v2\Imet::query()
-            ->filterList($request->all())
-            ->with($relations)
-            ->where(function ($query) use ($allowed_wdpas, $countries): void {
-                if ($allowed_wdpas !== null) {
-                    $query->whereIn('wdpa_id', $allowed_wdpas);
-                }
-
-                if ($countries !== []) {
-                    $query->whereIn('Country', $countries);
-                }
-            })
-            ->get()
-            // Replacement for PostgreSQL unaccent() function
-            ->filter(function (v2\Imet $item) use ($request): bool {
-                if ($request->filled('search')) {
-                    if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
-                        return true;
-                    }
-
-                    return Str::contains($item['wdpa_id'], $request->input('search'));
-                }
-
-                return true;
-            });
-
-        return $list_v1->merge($list_v2);
+        return $list;
     }
 
     /**
      * Retrieve the IMET assessments list with extra information (ex. responsible, statistics, and duplicates) for INDEX controller
      */
-    public static function get_assessments_list_with_extras(Request $request)
+    public static function get_assessments_list_with_extras(Request $request): Collection
     {
         $hasDuplicates = static::foundDuplicates();
 
@@ -202,57 +183,26 @@ abstract class Imet extends Form
             ->makeHidden(['encoder', 'responsible_interviewees', 'responsible_interviewers']);
     }
 
-    /**
-     * Common search filters with wdpa
-     *
-     * @param  Builder<static>  $query
-     * @param  array<string, scalar>  $params
-     */
-    #[Scope]
-    public function commonSearchWithWdpa(Builder $query, array $params): void
+    #[Scope, Override]
+    protected function byRequestParams(Builder $query, array $params): void
     {
-        $this->commonFilters($query, $params);
-        if (array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
-            $query->where('wdpa_id', $params['wdpa']);
-        }
-    }
-
-    /**
-     * Common method to use it in various searches queries
-     *
-     * @param  Builder<static>  $query
-     * @param  array<string, scalar>  $params
-     */
-    #[Scope]
-    private function commonFilters(Builder $query, array $params): void
-    {
-        if (array_key_exists('country', $params) && $params['country'] !== null) {
-            $query->where('Country', $params['country']);
+        if(array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
+            $params['wdpa_id'] = $params['wdpa'];
         }
 
-        if (array_key_exists('year', $params) && $params['year'] !== null) {
-            $query->where('Year', $params['year']);
-        }
-
-        if (array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null) {
-            $query->where('wdpa_id', $params['wdpa_id']);
-        }
-    }
-
-    /**
-     * Override filterList()
-     *
-     * @
-     */
-    #[Scope]
-    public function filterList(Builder $query, array $params): void
-    {
-        // filters
-        $this->commonFilters($query, $params);
-        $query->where('version', static::$version);
-
-        // sort
-        $query->orderBy(static::$sortBy, static::$sortDirection)
+        // filters & sort
+        $query
+            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params) {
+                $q->where('wdpa_id', $params['wdpa_id']);
+            })
+            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params) {
+                $q->where('Year', $params['year']);
+            })
+            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params) {
+                $q->where('Country', $params['country']);
+            })
+            ->where('version', static::$version)
+            ->orderBy(static::$sortBy, static::$sortDirection)
             ->orderBy('name', 'desc');
     }
 
@@ -409,7 +359,7 @@ abstract class Imet extends Form
     /**
      * Import all modules from records array
      */
-    #[\Override]
+    #[Override]
     public static function importModules($records, $formID, $imet_version = null): array
     {
         $records = static::upgradeModules($records, $imet_version);

@@ -126,13 +126,15 @@ trait ImportExportJSON
      */
     public function exportModuleToCsv(string $ids, string $module_key): BinaryFileResponse|string|null
     {
+        /** @var class-string<Imet\Components\Modules\ImetModule> $model */
         $model = ModuleKey::KeyToClassName($module_key);
 
-        $query = $model::where(function ($query) use ($ids): void {
-            if ($ids !== '' && $ids !== '0') {
-                $query->whereIn('FormID', explode(',', $ids));
-            }
-        })
+        $query = $model::query()
+            ->where(function ($query) use ($ids): void {
+                if ($ids !== '' && $ids !== '0') {
+                    $query->whereIn('FormID', explode(',', $ids));
+                }
+            })
             ->whereHas('imet', function ($q): void {
                 $q->where('version', Imet\Imet::IMET_V2);
             })
@@ -162,7 +164,8 @@ trait ImportExportJSON
         $results = Imet\Imet::query()
             ->select('FormID')
             ->distinct()
-            ->commonSearchWithWdpa($request)->get();
+            ->byRequestParams($request)
+            ->get();
 
         // add this to check if a filter is applied in order to return the ids or return 0 (all records)
         if ($request->filled('country') || $request->filled('year') || $request->filled('wdpa')) {
@@ -175,7 +178,11 @@ trait ImportExportJSON
         $filters = Imet\Imet::getFieldsSplitToArrays();
 
         // retrieve wdpa labels and ids in an array for selections
-        $wdpas = ProtectedArea::getRecordsArrayByFieldIds($filters['wdpa_id'], ['wdpa_id', 'name'], 'wdpa_id');
+        $wdpas = ProtectedArea::query()
+            ->select(['wdpa_id', 'name'])
+            ->distinct()
+            ->whereIn('wdpa_id', $filters['wdpa_id'])->get()
+            ->toArray();
         foreach ($wdpas as $a) {
             $wdpa_list[$a['wdpa_id']] = $a['name'];
         }

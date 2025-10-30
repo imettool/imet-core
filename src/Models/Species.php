@@ -61,8 +61,8 @@ class Species extends BaseModel
 
     public static function getPlainNameByTaxonomy($taxonomy): ?string
     {
-        return $taxonomy != null && static::isTaxonomy($taxonomy)
-            ? static::getScientificName($taxonomy)
+        return $taxonomy != null && self::isTaxonomy($taxonomy)
+            ? self::getScientificName($taxonomy)
             : $taxonomy;
     }
 
@@ -72,7 +72,7 @@ class Species extends BaseModel
     public static function searchSpecies(string $search_key): Collection
     {
         // Query the database for species matching the search key
-        $species = static::query()
+        $species = self::query()
             ->whereLike('phylum', $search_key.'%')
             ->orWhereLike('class', $search_key.'%')
             ->orWhereLike('order', $search_key.'%')
@@ -140,10 +140,10 @@ class Species extends BaseModel
      */
     public static function getByTaxonomy(?string $taxonomy = null, string $separator = '|'): Species
     {
-        return static::isTaxonomy($taxonomy)
-            ? (static::query()->where(static::parseTaxonomy($taxonomy, $separator))
-                ->first() ?? new static)
-            : new static;
+        return self::isTaxonomy($taxonomy)
+            ? (self::query()->where(self::parseTaxonomy($taxonomy, $separator))
+                ->first() ?? new self)
+            : new self;
     }
 
     /**
@@ -161,7 +161,7 @@ class Species extends BaseModel
      */
     public static function parseTaxonomy(string $taxonomy, string $separator = '|'): array
     {
-        if (static::isTaxonomy($taxonomy)) {
+        if (self::isTaxonomy($taxonomy)) {
             $taxonomy_array = explode($separator, $taxonomy);
 
             return [
