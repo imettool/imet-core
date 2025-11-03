@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,13 +14,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Input\SelectionList;
-use ImetCore\Models\Imet\v2\Modules;
 
-class GeneralInfo extends Modules\Component\ImetModule
+/**
+ * @property string $Type
+ */
+final class GeneralInfo extends Modules\Component\ImetModule
 {
     protected $table = 'context_general_info';
 
@@ -30,7 +32,8 @@ class GeneralInfo extends Modules\Component\ImetModule
         'Country' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 1.1';
@@ -46,7 +49,7 @@ class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'IUCNCategory2',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory2')],
             ['name' => 'IUCNCategory3',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory3')],
             ['name' => 'MarineDesignation',  'type' => 'suggestion_multiple-ImetV2_MarineDesignation',
-                'label' => Template::module_scope(static::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
+                'label' => Template::module_scope(self::MARINE).trans('imet-core::v2_context.GeneralInfo.fields.MarineDesignation')],
             ['name' => 'Country',  'type' => 'dropdown-ImetV2_Country',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'Institution',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Institution')],
@@ -62,20 +65,19 @@ class GeneralInfo extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getVueData($form_id, $records, $definitions): array
+    #[\Override]
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
 
-        $imet = Imet::find($vue_data['form_id']);
+        $imet = \ImetCore\Models\Imet\v2\Imet::query()->find($vue_data['form_id']);
         $pa = Imet::getProtectedArea($imet->wdpa_id);
 
-        $vue_data['records'][0]['CompleteName'] = $vue_data['records'][0]['CompleteName'] ?? $pa->name;
-        $vue_data['records'][0]['WDPA'] = $vue_data['records'][0]['WDPA'] ?? (ProtectedAreaNonWdpa::isNonWdpa($pa->wdpa_id) ? null : $pa->wdpa_id);
-        $vue_data['records'][0]['Type'] = $vue_data['records'][0]['Type'] ?? $imet->Type;
-        $vue_data['records'][0]['IUCNCategory1'] = $vue_data['records'][0]['IUCNCategory1'] ?? $pa->iucn_category;
-        $vue_data['records'][0]['Country'] = $vue_data['records'][0]['Country'] ?? $pa->country;
-        $vue_data['records'][0]['CreationYear'] = $vue_data['records'][0]['CreationYear'] ??
-            ($pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null);
+        $vue_data['records'][0]['CompleteName'] ??= $pa->name;
+        $vue_data['records'][0]['WDPA'] ??= ProtectedAreaNonWdpa::isNonWdpa($pa->wdpa_id) ? null : $pa->wdpa_id;
+        $vue_data['records'][0]['IUCNCategory1'] ??= $pa->iucn_category;
+        $vue_data['records'][0]['Country'] ??= $pa->country;
+        $vue_data['records'][0]['CreationYear'] ??= $pa->creation_date !== null ? substr($pa->creation_date, 0, 4) : null;
 
         return $vue_data;
     }
@@ -83,19 +85,15 @@ class GeneralInfo extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Marine', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Mixed', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Maritime', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Mixte', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
-        $record = static::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
-        $record = static::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestrial', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Marine', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Mixed', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Maritime', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Mixte', 'marine_and_coastal');
+        $record = self::replacePredefinedValue($record, 'Type', 'Terrestre', 'terrestrial');
+        $record = self::replacePredefinedValue($record, 'Type', 'Marinho', 'marine_and_coastal');
 
-
-        return $record;
+        return self::replacePredefinedValue($record, 'Type', 'Misturado', 'marine_and_coastal');
     }
-
-
 }

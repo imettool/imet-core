@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,13 +12,13 @@
 
 namespace ImetCore\Models\Imet\CrossAnalysis;
 
+use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Services\Scores\ImetScores;
-use Illuminate\Database\Eloquent\Model;
 
-class CrossAnalysis extends Model
+final class CrossAnalysis extends Model
 {
-    private static $threshold = 34.0;
+    private static float $threshold = 34.0;
 
     private static array $indicators = [
         'context' => ['C12', 'C2', 'C14', 'C15'],
@@ -25,7 +26,7 @@ class CrossAnalysis extends Model
         'inputs' => ['I2', 'I5'],
         'planning' => ['P1', 'P4'],
         'outcomes' => ['OC3'],
-        'outputs' => ['OP3']
+        'outputs' => ['OP3'],
     ];
 
     private static array $compares = [
@@ -37,72 +38,66 @@ class CrossAnalysis extends Model
         ['PR8', 'OP3'],
         ['P4', 'PR4', 'PR5'],
         ['PR11', 'OC3'],
-        ['C15', 'PR18']
+        ['C15', 'PR18'],
     ];
 
     /**
      * retrieve all indicators data
-     * @param $item
-     * @return array
      */
-    public static function getIndicators($item): array
+    public static function getIndicators(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $item): array
     {
         $filteredArray = [];
         $compareElements = [];
-        foreach (static::$indicators as $step_key => $indicators) {
+        foreach (array_keys(self::$indicators) as $step_key) {
 
             $scores = ImetScores::get_step($item, $step_key);
             $filteredArray = array_merge($filteredArray,
-                array_intersect_key($scores, array_flip(static::$indicators[$step_key]))
+                array_intersect_key($scores, array_flip(self::$indicators[$step_key]))
             );
 
             foreach ($item::modules()[$step_key] as $module) {
                 $definitions = $module::getDefinitions($item->FormID);
                 $code = strtolower(str_ireplace(['.', '/'], '', $definitions['module_code']));
-                if (isset($filteredArray[$code])) {
-                    if (is_array($definitions['module_info_EvaluationQuestion'])) {
-                        $compareElements[$code] = [
-                            'code' => $definitions['module_code'],
-                            'value' => $filteredArray[$code],
-                            'question' => $definitions['module_info_EvaluationQuestion'][0],
-                            'step' => $step_key,
-                            'key' => "module_" . $definitions['module_key']];
-                    }
+                if (isset($filteredArray[$code]) && is_array($definitions['module_info_EvaluationQuestion'])) {
+                    $compareElements[$code] = [
+                        'code' => $definitions['module_code'],
+                        'value' => $filteredArray[$code],
+                        'question' => $definitions['module_info_EvaluationQuestion'][0],
+                        'step' => $step_key,
+                        'key' => 'module_'.$definitions['module_key']];
                 }
             }
         }
-        return static::compareValues($compareElements);
+
+        return self::compareValues($compareElements);
     }
 
     /**
      * compare values of indicators
-     * @param $elements
-     * @return array
      */
-    private static function compareValues($elements): array
+    private static function compareValues(array $elements): array
     {
         $error_indicators = [];
         $j = 0;
-        foreach (static::$compares as $item) {
+        foreach (self::$compares as $item) {
             $array_length = count($item);
             for ($i = 0; $i < $array_length; $i++) {
                 for ($k = $i + 1; $k < $array_length; $k++) {
-                    if(isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
-                        $value_indi1 = Common::values_correction($item[$i] ,$elements[$item[$i]]['value']);
-                        $value_indi2 = Common::values_correction($item[$k] ,$elements[$item[$k]]['value']);
-                        $value = abs((double)$value_indi1 - (double)$value_indi2);
-                        if (($value) > static::$threshold) {
+                    if (isset($elements[$item[$i]]) && isset($elements[$item[$k]])) {
+                        $value_indi1 = Common::values_correction($item[$i], $elements[$item[$i]]['value']);
+                        $value_indi2 = Common::values_correction($item[$k], $elements[$item[$k]]['value']);
+                        $value = abs($value_indi1 - $value_indi2);
+                        if (($value) > self::$threshold) {
                             $error_indicators[$j][$item[$i]] = $elements[$item[$i]];
                             $error_indicators[$j][$item[$k]] = $elements[$item[$k]];
                         }
                     }
                 }
             }
+
             $j++;
         }
 
         return $error_indicators;
     }
-
-
 }

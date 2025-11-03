@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,82 +12,114 @@
 
 namespace ImetCore\Models;
 
+use Exception;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use ImetCore\Helpers\Database;
+use ImetCore\Models\Imet\Components\BaseModel;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Locale;
-use ModularForms\Models\Utils\Country as BaseCountry;
-use Exception;
-use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\Region;
-use Illuminate\Support\Facades\App;
-
 
 /**
  * Class Country
  *
- * @property integer $iso2
- * @property integer $iso3
+ * @property int $iso2
+ * @property int $iso3
  * @property string $name
- * @property string $Name
- *
- * @package ImetCore\Models
  */
-class Country extends BaseCountry
+class Country extends BaseModel
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'countries';
+
     public $primaryKey = 'iso3';
+
+    public $incrementing = false;
+
     public static ?string $foreign_key = 'region_id';
 
+    protected $appends = ['name'];
+
     /**
-     * Override: get the table name with schema
+     * Get the key for the "name" field in the current locale
      */
-    public function getTable(): string
+    public static function labelKey(): string
     {
-        return Database::getTable($this->schema, $this->table);
+        return 'name_'.Locale::lower();
+    }
+
+    /**
+     * Get the country's name attribute according to the current locale
+     */
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->attributes[static::labelKey()],
+        );
     }
 
     /**
      * Get the region associated with the country.
+     *
+     * @return BelongsTo<Region, Country>
      */
-    public function region()
+    public function region(): BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
 
     /**
      * Get country by regions
+     *
      * @throws Exception
      */
-    public static function getByRegion($region): array
+    public static function getByRegion(string $region): array
     {
-        if(strlen($region)==2){
-            return static::where('region_id', $region)->pluck('iso3')->toArray();
-        }else {
-            throw new Exception('Wrong size for region: '. $region);
+        if (strlen($region) === 2) {
+            return static::query()->where('region_id', $region)->pluck('iso3')->toArray();
         }
+
+        throw new Exception('Wrong size for region: '.$region);
     }
 
     /**
-     * Override: get only allowed countries
-     * @param string $type
-     * @param Collection|null $collection
-     * @param array $fields
-     * @return array
+     * Get country by iso
+     *
+     * @throws Exception
      */
-    public static function selectionList($type = 'PAIRS', Collection $collection = null, $fields = []): array
+    public static function getByISO(string $iso): ?Country
     {
+        if (strlen($iso) === 2) {
+            return static::query()->where('iso2', $iso)->first();
+        }
+
+        if (strlen($iso) === 3) {
+            return static::query()->where('iso3', $iso)->first();
+        }
+
+        throw new Exception('Wrong size for iso: '.$iso);
+    }
+
+    /**
+     * Get only allowed countries
+     */
+    public static function selectionList(): array
+    {
+        $label_attribute = static::labelKey();
+        $key_attribute = 'iso3';
         $allowed_countries = Role::allowedCountries();
-        $collection = static::select(['iso3', 'name_'.Locale::lower()])
-            ->where(function ($query) use ($allowed_countries){
-                if($allowed_countries!==null){
+
+        return static::query()
+            ->select([$label_attribute, $key_attribute])
+            ->where(function ($query) use ($allowed_countries): void {
+                if ($allowed_countries !== null) {
                     $query->whereIn('iso3', array_values($allowed_countries));
                 }
             })
-            ->get();
-
-        return parent::selectionList('FIELDS', $collection);
+            ->get()
+            ->sortBy($label_attribute, SORT_NATURAL | SORT_FLAG_CASE)
+            ->pluck($label_attribute, $key_attribute)
+            ->toArray();
     }
-
-
 }

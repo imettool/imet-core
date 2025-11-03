@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 use \ModularForms\Enums\ModuleViewModes;
 
@@ -32,10 +32,11 @@ $table_id = 'table_'.$definitions['module_key'];
                     @foreach($definitions['fields'] as $f_index=>$field)
                         <td>
                             @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
-                                @include('modular-forms::module.show.field', [
-                                    'type' => $field['type'],
-                                    'value' => $record[$field['name']]
-                               ])
+
+                                <x-modular-forms::module.components.field.input-preview
+                                    :type="$field['type']"
+                                    :value="$record[$field['name']]"
+                                ></x-modular-forms::module.components.field.input-preview>
                             @endif
                         </td>
                     @endforeach

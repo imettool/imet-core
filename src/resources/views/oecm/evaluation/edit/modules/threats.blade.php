@@ -1,15 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 $vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
 
 $threats_in_sa2 = collect($vueData['records'])
-    ->filter(function ($item) {
-        return $item['__count_stakeholders_direct'] !== null
-            || $item['__count_stakeholders_indirect'] !== null;
-    })
+    ->filter(fn(array $item): bool => $item['__count_stakeholders_direct'] !== null
+        || $item['__count_stakeholders_indirect'] !== null)
     ->pluck('__threat_key')
     ->toArray();
 ?>

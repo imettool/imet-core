@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+# Exclude files and directories from the exported archive
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+.run export-ignore
+dev export-ignore
+docker export-ignore
+.dockerignore export-ignore
+.editorconfig export-ignore
+docker-compose.yml export-ignore
+notice-generator.php export-ignore

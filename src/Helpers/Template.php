@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,59 +12,56 @@
 
 namespace ImetCore\Helpers;
 
+use Exception;
 use ImetCore\Models\Country;
-use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ModularForms\Helpers\Template as BaseTemplate;
 
-class Template{
-
+class Template
+{
     /**
      * Return country flag + name from ISO
-     * @param $iso
-     * @return string
-     * @throws \Exception
+     *
+     * @throws Exception
      */
-    public static function flag_and_name($iso): string
+    public static function flag_and_name(string $iso): string
     {
-        if($iso!=''){
+        if ($iso !== '') {
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
             $label = '&nbsp;'.$country->name;
+
             return BaseTemplate::flag($iso, $country->name).$label;
         }
+
         return '';
     }
 
     /**
      * Return country flag from ISO
      *
-     * @param $iso
-     * @return string
-     * @throws \Exception
+     * @throws Exception
      */
-    public static function flag($iso): string
+    public static function flag(string $iso): string
     {
-        if($iso!=''){
+        if ($iso !== '') {
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
+
             return BaseTemplate::flag($iso);
         }
+
         return '';
     }
 
     /**
      * Return scope icon (marine or terrestrial)
-     *
-     * @param $scope
-     * @return string
      */
-    public static function module_scope($scope): string
+    public static function module_scope(?string $scope): string
     {
-        if($scope !== null){
-            return "<scope-icon scope='" . $scope . "'></scope-icon>";
+        if ($scope !== null) {
+            return "<scope-icon scope='".$scope."'></scope-icon>";
         }
 
         return '';
     }
-
 }

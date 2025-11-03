@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,12 +12,12 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
+use Illuminate\Support\Str;
+use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
-use ImetCore\Models\Imet\oecm\Modules;
-use Illuminate\Support\Str;
 
-class AnimalSpecies extends Modules\Component\ImetModule
+final class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_animal_presence';
 
@@ -25,7 +26,7 @@ class AnimalSpecies extends Modules\Component\ImetModule
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ThreatsBiodiversity::class, 'species'],
         [Modules\Evaluation\KeyElementsImpact::class, 'species'],
-        [Modules\Evaluation\KeyElements::class, 'species']
+        [Modules\Evaluation\KeyElements::class, 'species'],
     ];
 
     public function __construct(array $attributes = [])
@@ -53,18 +54,14 @@ class AnimalSpecies extends Modules\Component\ImetModule
 
     /**
      * Override: replace values with scientific names
-     * @param $records
-     * @param $form_id
-     * @param $dependency_on
-     * @return array
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
 
         // ### replace values with labels ###
-        foreach ($to_be_dropped as $index => $item){
-            if(Str::contains('|', $item)){
+        foreach ($to_be_dropped as $index => $item) {
+            if (Str::contains('|', $item)) {
                 $to_be_dropped[$index] = Species::getScientificName($item);
             }
         }
@@ -77,17 +74,12 @@ class AnimalSpecies extends Modules\Component\ImetModule
      */
     public static function getReferenceList($form_id, $dependency_field): array
     {
-        return static::getModule($form_id)
-            ->filter(function ($item) use ($dependency_field){
-                return !empty($item['species']);
-            })
+        return self::getModule($form_id)
+            ->filter(fn ($item): bool => filled($item['species']))
             ->pluck('species')
-            ->map(function ($item) {
-                return Str::contains($item, '|')
-                    ? Species::getScientificName($item)
-                    : $item;
-            })
+            ->map(fn ($item): mixed => Str::contains($item, '|')
+                ? Species::getScientificName($item)
+                : $item)
             ->toArray();
     }
-
 }

@@ -1,0 +1,12 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+    level: 2
+    paths:
+        - app
+        - package/imet-core/src
+
+# Note: file src/Models/Imet/Components/Modules/ImetModule.php raise 4 errors on constant override, but they are false positives
+#       See https://github.com/phpstan/phpstan/issues/13119

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,16 +13,9 @@
 namespace ImetCore\Models\Imet\ScalingUp\Sections;
 
 use ImetCore\Helpers\ScalingUp\Common;
-use ImetCore\Models\Imet\v2\Modules;
 
-class Group
+final class Group
 {
-    /**
-     * @param array $parameters
-     * @param array $assessments
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_calculation_grouping_analysis(array $parameters, array $assessments = [], int $scaling_id = 0): array
     {
         $groups = [];
@@ -40,7 +34,8 @@ class Group
             $form_ids[] = $form['id'];
             $groups[$form['group']] = [$form['group'], $form['name'], $form['color'] ?? null];
         }
-        $indicator = static::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
+
+        $indicator = self::calculate_indicators_by_group($indicator, $parameters, $form_ids, $assessments, $scaling_id);
 
         krsort($groups);
 
@@ -56,19 +51,11 @@ class Group
         return $average;
     }
 
-    /**
-     * @param array $indicator
-     * @param array $parameters
-     * @param array $form_ids
-     * @param array $assessments
-     * @param int $scaling_id
-     * @return array
-     */
     public static function calculate_indicators_by_group(array $indicator, array $parameters, array $form_ids, array $assessments = [], int $scaling_id = 0): array
     {
-        $assessments = count($assessments) ? $assessments : Common::get_assessments($form_ids, $scaling_id);
+        $assessments = $assessments !== [] ? $assessments : Common::get_assessments($form_ids, $scaling_id);
 
-        foreach ($indicator as $indi => $value) {
+        foreach (array_keys($indicator) as $indi) {
             foreach ($assessments['data']['assessments'] as $assessment) {
                 foreach ($parameters as $form) {
 
@@ -79,6 +66,7 @@ class Group
                 }
             }
         }
+
         return $indicator;
     }
 }

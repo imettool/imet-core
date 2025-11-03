@@ -1,5 +1,5 @@
 <?php
-/** @var Mixed $definitions */
+/** @var array $definitions */
 
 ?>
 

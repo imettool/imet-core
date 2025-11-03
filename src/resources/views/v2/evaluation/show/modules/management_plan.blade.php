@@ -1,13 +1,12 @@
-<?php
+@php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $records */
+/** @var array $definitions */
 
 $records = $records[0];
-
 $PlanExistence = boolval($records['PlanExistence']);
 
-?>
+@endphp
 
 @foreach($definitions['fields'] as $index=>$field)
 
@@ -23,10 +22,10 @@ $PlanExistence = boolval($records['PlanExistence']);
 
             {{-- input --}}
             <div class="module-row__input">
-                @include('modular-forms::module.show.field', [
-                    'type' => $field['type'],
-                    'value' => $records[$field['name']]
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$records[$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
             </div>
 
         </div>

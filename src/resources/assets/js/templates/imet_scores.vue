@@ -20,7 +20,7 @@
             </div>
         </div>
         <!-- radar -->
-        <div v-if="props.render_radar">
+        <div>
             <imet_radar :values="radar_values" :width="380" :height="250"></imet_radar>
         </div>
     </div>
@@ -74,7 +74,7 @@
 
 <script setup>
 
-import { computed, ref, onMounted, defineComponent, createVNode, render } from "vue";
+import { computed } from "vue";
 import { storeToRefs } from "~/pinia";
 import imet_score_row from "./imet_score_row.vue";
 import imet_process_radar from "./imet_process_radar.vue";
@@ -92,10 +92,6 @@ const props = defineProps({
     labels: {
         type: Object,
         default: () => { }
-    },
-    render_radar: {
-        type: Boolean,
-        default: null
     },
     store: null
 });

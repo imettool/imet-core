@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,23 +12,22 @@
 
 namespace ImetCore\Controllers;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use ImetCore\Helpers\ImetEnv;
+use ImetCore\Models\User\Role;
 
-
-class DevUsersController extends __Controller {
-
+class DevUsersController extends __Controller
+{
     /**
      * Create DEV users (in dev env)
      */
     public function create_dev_users(): RedirectResponse
     {
-        if(is_imet_global_dev()){
-            
+        if (ImetEnv::isImetGlobalDevEnv()) {
+
             $userClass = (config('imet-core.user'))::class;
 
             // ######  Logout  ######
@@ -49,21 +49,21 @@ class DevUsersController extends __Controller {
             // Administrator
             $userClass::create([
                 'id' => 99999,
-                'first_name' =>  'TestUser',
+                'first_name' => 'TestUser',
                 'last_name' => 'Administrator',
                 'country' => 'ITA',
                 'organisation' => 'IMET dev team',
-                'imet_role' => Role::ROLE_ADMINISTRATOR
+                'imet_role' => Role::ROLE_ADMINISTRATOR,
             ]);
 
             // National Authority
             $user = $userClass::create([
                 'id' => 99998,
-                'first_name' =>  'TestUser',
+                'first_name' => 'TestUser',
                 'last_name' => 'National Authority',
                 'country' => 'GRL',
                 'organisation' => 'IMET national authorities',
-                'imet_role' => Role::ROLE_NATIONAL_AUTHORITY
+                'imet_role' => Role::ROLE_NATIONAL_AUTHORITY,
             ]);
             $user->imet_roles()->create(['country' => 'CMR']);
             $user->imet_roles()->create(['wdpa' => '61707']);
@@ -71,11 +71,11 @@ class DevUsersController extends __Controller {
             // Regional Authority
             $user = $userClass::create([
                 'id' => 99997,
-                'first_name' =>  'TestUser',
+                'first_name' => 'TestUser',
                 'last_name' => 'Regional Authority',
                 'country' => 'GRL',
                 'organisation' => 'IMET national authorities',
-                'imet_role' => Role::ROLE_REGIONAL_AUTHORITY
+                'imet_role' => Role::ROLE_REGIONAL_AUTHORITY,
             ]);
             $user->imet_roles()->create(['country' => 'CMR']);
             $user->imet_roles()->create(['country' => 'GAB']);
@@ -84,40 +84,40 @@ class DevUsersController extends __Controller {
 
             // Observatory
             $user = $userClass::create([
-                 'id' => 99996,
-                 'first_name' =>  'TestUser',
-                 'last_name' => 'Observatory',
-                 'imet_role' => Role::ROLE_REGIONAL_OBSERVATORY
-             ]);
+                'id' => 99996,
+                'first_name' => 'TestUser',
+                'last_name' => 'Observatory',
+                'imet_role' => Role::ROLE_REGIONAL_OBSERVATORY,
+            ]);
             $user->imet_roles()->create(['country' => 'BDI']);
 
             // International institution
             $user = $userClass::create([
-                 'id' => 99995,
-                 'first_name' =>  'TestUser',
-                 'last_name' => 'International institution',
-                 'imet_role' => Role::ROLE_INTERNATIONAL_INSTITUTIION
-             ]);
+                'id' => 99995,
+                'first_name' => 'TestUser',
+                'last_name' => 'International institution',
+                'imet_role' => Role::ROLE_INTERNATIONAL_INSTITUTIION,
+            ]);
             $user->imet_roles()->create(['country' => 'BDI']);
             $user->imet_roles()->create(['country' => 'GAB']);
 
             // Donor
             $user = $userClass::create([
-                 'id' => 99994,
-                 'first_name' =>  'TestUser',
-                 'last_name' => 'Donor',
-                 'imet_role' => Role::ROLE_DONOR
-             ]);
+                'id' => 99994,
+                'first_name' => 'TestUser',
+                'last_name' => 'Donor',
+                'imet_role' => Role::ROLE_DONOR,
+            ]);
             $user->imet_roles()->create(['country' => 'GAB']);
 
             // Encoder
             $user = $userClass::create([
                 'id' => 99993,
-                'first_name' =>  'TestUser',
+                'first_name' => 'TestUser',
                 'last_name' => 'Encoder',
                 'country' => 'ATA',
                 'organisation' => 'IMET encoders',
-                'imet_role' => Role::ROLE_ENCODER
+                'imet_role' => Role::ROLE_ENCODER,
             ]);
             $user->imet_roles()->create(['country' => 'BDI']);
             $user->imet_roles()->create(['wdpa' => '20166']);
@@ -129,8 +129,9 @@ class DevUsersController extends __Controller {
             // ######  Login as Administrator  ######
             Auth::loginUsingId(99999);
 
-            return redirect()->route('dashboard');
+            return to_route('dashboard');
         }
+
         abort(404);
     }
 
@@ -140,35 +141,33 @@ class DevUsersController extends __Controller {
     public function change_user(Request $request): RedirectResponse
     {
         // Create test users
-        if(is_imet_global_dev()){
+        if (ImetEnv::isImetGlobalDevEnv()) {
 
             $role = $request->input('imet_role');
             Auth::logout();
 
-            if($role == Role::ROLE_ADMINISTRATOR){
+            if ($role == Role::ROLE_ADMINISTRATOR) {
                 Auth::loginUsingId(99999);
-            } else if($role == Role::ROLE_NATIONAL_AUTHORITY){
+            } elseif ($role == Role::ROLE_NATIONAL_AUTHORITY) {
                 Auth::loginUsingId(99998);
-            } else if($role == Role::ROLE_REGIONAL_AUTHORITY){
+            } elseif ($role == Role::ROLE_REGIONAL_AUTHORITY) {
                 Auth::loginUsingId(99997);
-            } else if($role == Role::ROLE_REGIONAL_OBSERVATORY){
+            } elseif ($role == Role::ROLE_REGIONAL_OBSERVATORY) {
                 Auth::loginUsingId(99996);
-            } else if($role == Role::ROLE_INTERNATIONAL_INSTITUTIION){
+            } elseif ($role == Role::ROLE_INTERNATIONAL_INSTITUTIION) {
                 Auth::loginUsingId(99995);
-            } else if($role == Role::ROLE_DONOR){
+            } elseif ($role == Role::ROLE_DONOR) {
                 Auth::loginUsingId(99994);
-            } else if($role == Role::ROLE_ENCODER){
+            } elseif ($role == Role::ROLE_ENCODER) {
                 Auth::loginUsingId(99993);
             } else {
                 abort(505);
             }
 
-            return redirect()->route('dashboard');
+            return to_route('dashboard');
 
-        } else {
-            abort(404);
         }
+
+        abort(404);
     }
-
-
 }

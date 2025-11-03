@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -27,139 +28,112 @@ trait Context
 
     protected static function score_c12(int $imet_id): ?float
     {
-        $records = ImportanceSpecies::getModule($imet_id);
+        $values = ImportanceSpecies::getModule($imet_id)
+            ->filter(fn (ImportanceSpecies $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['IncludeInStatistics'] == 1)->map(function (ImportanceSpecies $record): ImportanceSpecies {
+                    $record['SignificativeSpecies'] ??= 0;
 
-        $values = $records
-            ->filter(function ($record){
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0
-                    && $record['IncludeInStatistics']==1;
-            })->map(function ($record){
-                $record['SignificativeSpecies'] = $record['SignificativeSpecies']===null
-                    ? 0
-                    : $record['SignificativeSpecies'];
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function ($item){
-            return (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore'];
-        });
-        $denominator = $values->sum(function ($item){
-            return (1 + 2 * $item['SignificativeSpecies']);
-        });
+        $numerator = $values->sum(fn (ImportanceSpecies $item): int|float => (1 + 2 * $item['SignificativeSpecies']) * $item['EvaluationScore']);
+        $denominator = $values->sum(fn (ImportanceSpecies $item): int|float => 1 + 2 * $item['SignificativeSpecies']);
 
-        $score = $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
 
     protected static function score_c13(int $imet_id): ?float
     {
-        $records = ImportanceHabitats::getModule($imet_id);
+        $values = ImportanceHabitats::getModule($imet_id)
+            ->filter(fn (ImportanceHabitats $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['IncludeInStatistics'] == 1)->map(function (ImportanceHabitats $record): ImportanceHabitats {
+                    $record['EvaluationScore2'] ??= 1;
 
-        $values = $records
-            ->filter(function ($record){
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) >= 0
-                    && $record['IncludeInStatistics']==1;
-            })->map(function ($record){
-                $record['EvaluationScore2'] = $record['EvaluationScore2']===null
-                    ? 1
-                    : $record['EvaluationScore2'];
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function ($item){
-            return $item['EvaluationScore2'] * $item['EvaluationScore'];
-        });
+        $numerator = $values->sum(fn (ImportanceHabitats $item): int|float => $item['EvaluationScore2'] * $item['EvaluationScore']);
         $denominator = $values->sum('EvaluationScore2');
-        $denominator = $denominator===0 ? null : $denominator;
+        $denominator = $denominator === 0 ? null : $denominator;
 
-        $score = $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
+
     protected static function score_c15(int $imet_id): ?float
     {
         $ecosystem_services = EcosystemServices::getModule($imet_id)
-            ->map(function ($record){
+            ->map(function (EcosystemServices $record): EcosystemServices {
                 $record['weight'] = (
-                        (floatval($record['Importance']) ?? 0) +
-                        ($record['ImportanceRegional']!==null ? $record['ImportanceRegional']/3 : 0) +
-                        ($record['ImportanceGlobal']!== null ? ((2 - $record['ImportanceGlobal'])/4) : 0)
-                    ) / 3;
+                    (floatval($record['Importance']) ?? 0) +
+                    ($record['ImportanceRegional'] !== null ? $record['ImportanceRegional'] / 3 : 0) +
+                    ($record['ImportanceGlobal'] !== null ? ((2 - $record['ImportanceGlobal']) / 4) : 0)
+                ) / 3;
+
                 return $record;
-            }) ->keyBy('Element');
+            })->keyBy('Element');
 
         $values = ImportanceEcosystemServices::getModule($imet_id)
-            ->filter(function ($record){
-                return $record['IncludeInStatistics']==1;
-            })->map(function ($record) use($ecosystem_services) {
-                $record['score'] = $record['EvaluationScore']<0
+            ->filter(fn (ImportanceEcosystemServices $record): bool => $record['IncludeInStatistics'] == 1)->map(function (ImportanceEcosystemServices $record) use ($ecosystem_services): ImportanceEcosystemServices {
+                $record['score'] = $record['EvaluationScore'] < 0
                     ? null
                     : $record['EvaluationScore'];
                 $record['weight'] = in_array($record['Aspect'], array_keys($ecosystem_services->toArray()))
                     ? $ecosystem_services[$record['Aspect']]['weight']
                     : null;
+
                 return $record;
             })
-            ->filter(function ($record){
-                return $record['score']!==null;
-            });
+            ->filter(fn (ImportanceEcosystemServices $record): bool => $record['score'] !== null);
 
-
-        $numerator = $values->sum(function ($item){
-            return ($item['weight'] ?? 0) * ($item['score']/3 ?? 0);
-        });
-        $denominator = $values->sum(function ($item){
-            return ($item['weight'] ?? 0);
-        });
-        $score = $denominator!==null && $denominator>0
-            ? $numerator/$denominator * 100
+        $numerator = $values->sum(fn (ImportanceEcosystemServices $item): int|float => ($item['weight'] ?? 0) * ($item['score'] / 3 ?? 0));
+        $denominator = $values->sum(fn ($item): mixed => $item['weight'] ?? 0);
+        $score = $denominator !== null && $denominator > 0
+            ? $numerator / $denominator * 100
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
+
     protected static function score_c2(int $imet_id): ?float
     {
-        $records = SupportsAndConstraints::getModule($imet_id);
+        $values = SupportsAndConstraints::getModule($imet_id)
+            ->filter(fn (SupportsAndConstraints $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) > -4
+                && $record['EvaluationScore2'] !== null
+                && intval($record['EvaluationScore2']) > -4)->map(function (SupportsAndConstraints $record): SupportsAndConstraints {
+                    $record['EvaluationScore2'] ??= 1;
 
-        $values = $records
-            ->filter(function ($record){
-                return $record['EvaluationScore'] !== null
-                    && intval($record['EvaluationScore']) > -4
-                    && $record['EvaluationScore2'] !== null
-                    && intval($record['EvaluationScore2']) > -4;
-            })->map(function ($record){
-                $record['EvaluationScore2'] = $record['EvaluationScore2']===null
-                    ? 1
-                    : $record['EvaluationScore2'];
-                return $record;
-            });
+                    return $record;
+                });
 
-        $numerator = $values->sum(function ($item){
-            return $item['EvaluationScore2'] * $item['EvaluationScore'];
-        });
+        $numerator = $values->sum(fn (SupportsAndConstraints $item): int|float => $item['EvaluationScore2'] * $item['EvaluationScore']);
         $denominator = $values->sum('EvaluationScore');
 
-        $score = $denominator>0
-            ? $numerator/$denominator * 100 / 3
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
             : null;
 
-        return $score!== null ?
+        return $score !== null ?
             round($score, 2)
             : null;
     }
+
     protected static function score_c3(int $imet_id): ?float
     {
         return V1Scores::score_c3($imet_id);

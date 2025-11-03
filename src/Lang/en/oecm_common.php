@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,15 +16,14 @@ return [
     'oecm_short' => 'IMET conserved area',
 
     'steps' => [
-        'general_info'          => 'General Information about the conserved area',
-        'areas'                 => 'Areas',
-        'resources'             => 'Human, financial and material resources',
-        'key_elements'          => 'Animals, plants habitats',
-        'stakeholders'          => 'Stakeholders involved in the management or use of natural resources',
-        'stakeholder_analysis'  => 'Stakeholder analysis of ecosystem services',
-        'objectives'            => 'Objectives'
+        'general_info' => 'General Information about the conserved area',
+        'areas' => 'Areas',
+        'resources' => 'Human, financial and material resources',
+        'key_elements' => 'Animals, plants habitats',
+        'stakeholders' => 'Stakeholders involved in the management or use of natural resources',
+        'stakeholder_analysis' => 'Stakeholder analysis of ecosystem services',
+        'objectives' => 'Objectives',
     ],
-
 
     'assessment' => [
 
@@ -33,6 +33,6 @@ return [
         'PRA' => 'Internal management systems and processes',
         'PRB' => 'Management / Protection of the values',
         'PRC' => 'Stakeholder relations',
-    ]
+    ],
 
 ];

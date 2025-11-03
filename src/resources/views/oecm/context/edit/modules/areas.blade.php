@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 $vue_record_index = '0';
 
@@ -27,12 +27,12 @@ $vue_record_index = '0';
             ])
             <span class="ml-2 mr-4">[ha]</span>
 
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => $field['type'],
-                'v_value' => $field['name'].'_km2',
-                'id' =>"'".$definitions['module_key'].\ModularForms\Helpers\ModuleKey::separator.$field['name']."_km2'",
-                'other' => '@input=convertToHa("' . $field['name'] . '")'
-            ])
+            <x-modular-forms::module.components.field.input
+                :type="$field['type']"
+                :value="$field['name'].'_km2'"
+                :other="'@input=convertToHa('.$field['name'].')'"
+            ></x-modular-forms::module.components.field.input>
+
             <span class="ml-2">[km2]</span>
 
         @else

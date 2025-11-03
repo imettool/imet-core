@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,16 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class Staff extends Modules\Component\ImetModule_Eval
+final class Staff extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_staff';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I2';
@@ -35,7 +38,7 @@ class Staff extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Theme',
-            'values' => null
+            'values' => null,
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.Staff.module_info_EvaluationQuestion');
@@ -47,18 +50,18 @@ class Staff extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): ?array
     {
         $predefined_values = parent::getPredefined($form_id);
 
-        if($form_id!==null){
+        if ($form_id !== null) {
             $collection = Modules\Context\ManagementStaff::getModule($form_id);
             $predefined_values['values'] = $collection->pluck('Function')->toArray();
-            $predefined_values['additional_values'] = $collection->map(function ($item) {
-                return static::calculateStaffStatus(
+            $predefined_values['additional_values'] = $collection
+                ->map(fn ($item): ?int => self::calculateStaffStatus(
                     $item['ActualPermanent'] + $item['ActualPermanentPartnersOrCommunities'],
-                    $item['ExpectedPermanent']);
-            })->toArray();
+                    $item['ExpectedPermanent']))->all();
         }
 
         return $predefined_values;
@@ -68,19 +71,20 @@ class Staff extends Modules\Component\ImetModule_Eval
     {
         $new_records = [];
 
-        if(count($predefined_values['values'])>1 && count($records)==1){
+        if (count($predefined_values['values']) > 1 && count($records) === 1) {
             $records = [];
         }
 
-        foreach($predefined_values['values'] as $p => $predefined_value){
+        foreach ($predefined_values['values'] as $p => $predefined_value) {
             $new_record = $empty_record;
-            foreach($records as $r=>$record){
-                if($record[$predefined_values['field']] == $predefined_value){
+            foreach ($records as $r => $record) {
+                if ($record[$predefined_values['field']] == $predefined_value) {
                     $new_record = $record;
                     unset($records[$r]);
                     break;
                 }
             }
+
             $new_record[$predefined_values['field']] = $predefined_value;
             $new_record['StaffNumberAdequacy'] = $predefined_values['additional_values'][$p];
             $new_record['__predefined'] = true;
@@ -90,39 +94,33 @@ class Staff extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-
-
-    private static function calculateStaffStatus($actual, $expected)
+    private static function calculateStaffStatus(float|int|array $actual, $expected): ?int
     {
         $actual = intval($actual);
         $expected = intval($expected);
 
-        if($actual===0){
+        if ($actual === 0) {
             return null;
         }
-        if($expected===0){
+
+        if ($expected === 0) {
             return 4;
         }
 
         $result = null;
-        $ratio = $actual/$expected;
-        if($ratio<=0.20  || $ratio>1.8){
+        $ratio = $actual / $expected;
+        if ($ratio <= 0.20 || $ratio > 1.8) {
             $result = 0;
-        } elseif($ratio<=0.4 || $ratio>1.6){
+        } elseif ($ratio <= 0.4 || $ratio > 1.6) {
             $result = 1;
-        } elseif($ratio<=0.6 || $ratio>1.4){
+        } elseif ($ratio <= 0.6 || $ratio > 1.4) {
             $result = 2;
-        } elseif($ratio<=0.8 || $ratio>1.2){
+        } elseif ($ratio <= 0.8 || $ratio > 1.2) {
             $result = 3;
-        } elseif($ratio<=1.2){
+        } elseif ($ratio <= 1.2) {
             $result = 4;
         }
+
         return $result;
     }
-
-
-
-
-
-
 }

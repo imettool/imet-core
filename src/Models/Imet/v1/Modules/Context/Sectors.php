@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Sectors extends Modules\Component\ImetModule
+final class Sectors extends Modules\Component\ImetModule
 {
     protected $table = 'context_sectors';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 2.4';
@@ -46,8 +48,6 @@ class Sectors extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -55,8 +55,8 @@ class Sectors extends Modules\Component\ImetModule
             'table' => 'Sectors',
             'fields' => [
                 'Name', 'UnderControlArea', 'UnderControlPatrolKm', 'UnderControlPatrolManDay', 'Objectives', 'Restrictions',
-                'SectorMap','Source','Observations'
-            ]
+                'SectorMap', 'Source', 'Observations',
+            ],
         ];
     }
 }

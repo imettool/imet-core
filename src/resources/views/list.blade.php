@@ -2,7 +2,6 @@
 
 use \ImetCore\Controllers;
 use \ImetCore\Models\Imet;
-use \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 use \ModularForms\Helpers\Template;
 use \Illuminate\Database\Eloquent\Collection;
 use \Illuminate\Http\Request;
@@ -38,49 +37,33 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 <!-- functional-buttons -->
 @section('functional-buttons')
 
-    @can('edit', $form_class)
-        {{-- Create new IMET --}}
-        <a class="btn-nav rounded-sm"
-           href="{{ route($route_prefix.'create') }}">
-            {!! Template::icon('plus-circle', 'white') !!}
-            {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
-        </a>
-        <a class="btn-nav rounded-sm"
-           href="{{ route($route_prefix.'create_non_wdpa') }}">
-            {!! Template::icon('plus-circle', 'white') !!}
-            {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
-        </a>
-        {{-- Import json IMETs --}}
-        <a class="btn-nav rounded-sm"
-           href="{{ route($route_prefix.'import') }}">
-            {!! Template::icon('file-import', 'white') !!}
-            {{ ucfirst(trans('modular-forms::common.import')) }}
-        </a>
-    @endcan
-
-    @if($scaling_up_enable)
-        @can('scaling_up', $form_class)
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
-            {{-- Scaling Up --}}
-            <a class="btn-nav rounded-sm"
-               href="{{ route('imet-core::scaling_up_index') }}">
-                {!! Template::icon('chart-bar', 'white') !!}
-                {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
-            </a>
-            @endcan
-    @endif
-
-    @can('exportAll', $form_class)
-        &nbsp;&nbsp;
-        &nbsp;&nbsp;
-        {{-- Export json IMETs --}}
-        <a class="btn-nav rounded-sm"
-           href="{{ route($route_prefix.'export_view') }}">
-            {!! Template::icon('file-export', 'white') !!}
-{{--            {{ ucfirst(trans('modular-forms::common.export')) }}--}}
-        </a>
-    @endcan
+    {{-- Create new IMET --}}
+    <a class="btn-nav rounded-sm"
+       href="{{ route($route_prefix.'create') }}">
+        {!! Template::icon('plus-circle', 'white') !!}
+        {{ ucfirst(trans($create_title_prefix.'Create.title')) }}
+    </a>
+    <a class="btn-nav rounded-sm"
+       href="{{ route($route_prefix.'create_non_wdpa') }}">
+        {!! Template::icon('plus-circle', 'white') !!}
+        {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
+    </a>
+    {{-- Import json IMETs --}}
+    <a class="btn-nav rounded-sm"
+       href="{{ route($route_prefix.'import') }}">
+        {!! Template::icon('file-import', 'white') !!}
+        {{ ucfirst(trans('modular-forms::common.import')) }}
+    </a>
+    {{-- Scaling Up --}}
+    <a class="btn-nav rounded-sm"
+       href="{{ route('imet-core::scaling_up_index') }}">
+        {!! Template::icon('chart-bar', 'white') !!}
+        {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
+    </a>
+    <a class="btn-nav rounded-sm"
+       href="{{ route($route_prefix.'export_view') }}">
+        {!! Template::icon('file-export', 'white') !!}
+    </a>
 
 @endsection
 
@@ -117,7 +100,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                         <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id!==null)
-                            (<a target="_blank" href="{{ ProtectedPlanet::WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                            (<a target="_blank" href="{{ PROTECTEDPLANET_WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
                         @endif
                         <br/>
                         {{-- country --}}
@@ -162,33 +145,25 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 {{-- Show --}}
                 @include('imet-core::components.buttons.show', ['version' => $item->version])
 
-                @can('edit', $form_class)
+                {{-- Edit --}}
+                @include('imet-core::components.buttons.edit', ['version' => $item->version])
 
-                    {{-- Edit --}}
-                    @include('imet-core::components.buttons.edit', ['version' => $item->version])
-
-                    {{-- Merge tool --}}
-                    @if($item->has_duplicates)
-                        @include('imet-core::components.buttons.merge', ['version' => $item->version])
-                    @endif
-
-                @endcan
+                {{-- Merge tool --}}
+                @if($item->has_duplicates)
+                    @include('imet-core::components.buttons.merge', ['version' => $item->version])
+                @endif
 
                 {{-- Export --}}
-                @can('export_button', $form_class)
-                    @include('imet-core::components.buttons.export', ['version' => $item->version])
-                @endcan
+                @include('imet-core::components.buttons.export', ['version' => $item->version])
 
                 {{-- Print --}}
                 @include('imet-core::components.buttons.print', ['version' => $item->version])
 
                 {{-- Delete --}}
-                @can('edit', $form_class)
-                    @include('imet-core::components.buttons.delete', [
+                @include('imet-core::components.buttons.delete', [
                        'item' => $item,
                        'version' => $item->version
-                    ])
-                @endcan
+                ])
 
             </td>
         </tr>

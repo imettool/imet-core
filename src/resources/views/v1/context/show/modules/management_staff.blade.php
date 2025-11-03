@@ -1,11 +1,11 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $record = $records[0];
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 $table_id = 'table_' . $definitions['module_key'];
 
 $diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($records);
@@ -39,10 +39,10 @@ $diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($record
             {{--  fields  --}}
             @foreach($definitions['fields'] as $index => $field)
                 <td>
-                    @include('modular-forms::module.show.field', [
-                         'type' =>$definitions['fields'][$index]['type'],
-                         'value' => $record[$definitions['fields'][$index]['name']]
-                    ])
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$definitions['fields'][$index]['type']"
+                        :value="$record[$definitions['fields'][$index]['name']]"
+                    ></x-modular-forms::module.components.field.input-preview>
                     @if($field['name']==="ActualPermanent")
                 </td>
                 <td>

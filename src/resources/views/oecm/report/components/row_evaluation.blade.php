@@ -1,28 +1,26 @@
 <?php
 /** @var string $assessment_value */
-
 /** @var string $assessment_label */
-/** @var string $additional_classes [optional] */
+/** @var ?string $additional_classes [optional] */
+/** @var ?boolean $threats [optional] */
 
-/** @var boolean $threats [optional] */
+use ImetCore\Services\Scores\AssessmentsScores;
 
-use ImetCore\Controllers\Imet\ApiController;
+$additional_classes ??= null;
+$threats ??= false;
 
-$assessment_value   = $assessment_value ?? null;
-$additional_classes = $additional_classes ?? null;
-$threats            = $threats ?? false;
 $colspan            = isset($colspan) ? "colspan=".$colspan : "";
-$color_scores       = $color_scores ?? true;
-$constraints = $constraints ?? false;
+$color_scores ??= true;
+$constraints ??= false;
 
 $classes = '';
 if ($color_scores) {
     if ($threats) {
-        $classes = ApiController::score_class_threats($assessment_value);
+        $classes = AssessmentsScores::score_class_threats($assessment_value);
     } elseif ($constraints) {
-        $classes = ApiController::score_class_threats($assessment_value, 'score_constraints_success');
+        $classes = AssessmentsScores::score_class_threats($assessment_value, 'score_constraints_success');
     } else {
-        $classes = ApiController::score_class($assessment_value);
+        $classes = AssessmentsScores::score_class($assessment_value);
     }
 }
 

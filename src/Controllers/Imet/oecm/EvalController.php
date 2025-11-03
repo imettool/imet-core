@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,11 +14,10 @@ namespace ImetCore\Controllers\Imet\oecm;
 
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\oecm\Imet_Eval;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class EvalController extends BaseEvalController
+final class EvalController extends BaseEvalController
 {
     protected static ?string $form_class = Imet_Eval::class;
-    protected static ?string $form_view_prefix = 'imet-core::oecm.evaluation';
 
+    protected static ?string $form_view_prefix = 'imet-core::oecm.evaluation';
 }

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,21 +12,23 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
-
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementActivities extends Modules\Component\ImetModule_Eval
+final class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Activity';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR6';
@@ -44,29 +47,27 @@ class ManagementActivities extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-
     /**
      * Override
-     * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    #[\Override]
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        if($record['EvaluationScore']!==null || $record['InManagementPlan']!==null || $record['Comments']!==null){
+        if ($record['EvaluationScore'] !== null || $record['InManagementPlan'] !== null || $record['Comments'] !== null) {
             return false;
         }
+
         return true;
     }
 
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $form_id !==null
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $form_id !== null
                 ? KeyElements::getPrioritizedElements($form_id)
-                : []
+                : [],
         ];
     }
-
 }

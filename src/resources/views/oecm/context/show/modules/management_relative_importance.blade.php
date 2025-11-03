@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $value = strval($records[0]['RelativeImportance']);
 

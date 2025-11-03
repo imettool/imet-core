@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Governance extends Modules\Component\ImetModule
+final class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'context_governance';
 
@@ -35,25 +36,31 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'Type',      'type' => 'dropdown-ImetV1_GovernanceType',   'label' => trans('imet-core::v1_context.Governance.fields.Type')],
-            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Governance.fields.Comments')],
+            ['name' => 'GovernanceModel',      'type' => 'dropdown-ImetV1_GovernanceType',   'label' => trans('imet-core::v1_context.Governance.fields.Type')],
+            ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Governance.fields.Comments')],
         ];
 
         parent::__construct($attributes);
     }
 
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // Rename fields to match the new DB column names
+        $record = self::renameField($record, 'Type', 'GovernanceModel');
+
+        return self::renameField($record, 'Comments', 'AdditionalInfo');
+    }
+
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Governance',
             'fields' => [
-                'Partner','InstitutionType','PartnershipsType1','PartnershipsType2','PartnershipsType3', 'Type', 'Comments'
-            ]
+                'Partner', 'InstitutionType', 'PartnershipsType1', 'PartnershipsType2', 'PartnershipsType3', 'Type', 'Comments',
+            ],
         ];
     }
 }

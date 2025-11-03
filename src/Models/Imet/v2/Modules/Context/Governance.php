@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,11 +13,10 @@
 namespace ImetCore\Models\Imet\v2\Modules\Context;
 
 use Exception;
-use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Input\SelectionList;
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\User\Role;
 
-class Governance extends Modules\Component\ImetModule
+final class Governance extends Modules\Component\ImetModule
 {
     protected $table = 'context_governance';
 
@@ -37,12 +37,12 @@ class Governance extends Modules\Component\ImetModule
         ];
 
         $this->module_common_fields = [
-            ['name' => 'GovernanceModel',      'type' => 'suggestion_multiple-ImetV2_GovernanceType',   'label' => trans('imet-core::v2_context.Governance.fields.GovernanceModel')],
-            ['name' => 'SubGovernanceModel',   'type' => 'dropdown-ImetV2_SubGovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
+            ['name' => 'GovernanceModel',      'type' => 'dropdown-ImetV2_GovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.GovernanceModel')],
+            ['name' => 'SubGovernanceModel',   'type' => 'blade-imet-core::v2.context.fields.SubGovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
             ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
 
-        $this->module_info =  trans('imet-core::v2_context.Governance.module_info');
+        $this->module_info = trans('imet-core::v2_context.Governance.module_info');
 
         parent::__construct($attributes);
     }
@@ -53,17 +53,19 @@ class Governance extends Modules\Component\ImetModule
     public static function upgradeModule($record, $imet_version = null): array
     {
         // #### not in predefined lists ####
-        $record['InstitutionType'] = static::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');
-        $record['PartnershipsType1'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
-        $record['PartnershipsType2'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
-        $record['PartnershipsType3'] = static::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
-        $record['Type'] = static::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType');
+        $record['InstitutionType'] = self::dropIfValueNotInPredefinedList($record['InstitutionType'], 'InstitutionType');
+        $record['PartnershipsType1'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType1'], 'PartnershipsType');
+        $record['PartnershipsType2'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType2'], 'PartnershipsType');
+        $record['PartnershipsType3'] = self::dropIfValueNotInPredefinedList($record['PartnershipsType3'], 'PartnershipsType');
+        if (array_key_exists('Type', $record)) {
+            $record['Type'] = self::dropIfValueNotInPredefinedList($record['Type'], 'GovernanceType'); // until v2.13.7
+        } elseif (array_key_exists('GovernanceType', $record)) {
+            $record['GovernanceModel'] = self::dropIfValueNotInPredefinedList($record['GovernanceModel'], 'GovernanceType'); // after v3.*
+        }
 
-        // v2.13.7 -> v3.*
-        $record = static::renameField($record, 'Type', 'GovernanceModel');
-        $record = static::renameField($record, 'Comments', 'AdditionalInfo');
+        // ####  v2.13.7 -> v3.*  ####
+        $record = self::renameField($record, 'Type', 'GovernanceModel');
 
-        return $record;
+        return self::renameField($record, 'Comments', 'AdditionalInfo');
     }
-
 }

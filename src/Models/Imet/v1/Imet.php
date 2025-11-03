@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,16 +12,18 @@
 
 namespace ImetCore\Models\Imet\v1;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Imet as BaseImetForm;
 use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewees;
 use ImetCore\Models\Imet\v1\Modules\Context\ResponsablesInterviewers;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Imet extends BaseImetForm
 {
-    public const version = 'v1';
-    protected string $schema = Database::IMET_SCHEMA;
+    public static string $version = 'v1';
+
+    protected static ?string $schema = Database::IMET_SCHEMA;
+
     protected $table = 'forms';
 
     public static ?array $modules = [
@@ -34,9 +37,9 @@ class Imet extends BaseImetForm
             Modules\Context\Networks::class,
             Modules\Context\Missions::class,
             Modules\Context\Contexts::class,
-            Modules\Context\Objectives1::class
+            Modules\Context\Objectives1::class,
         ],
-        'areas'                 => [
+        'areas' => [
             Modules\Context\GeographicalLocation::class,
             Modules\Context\Areas::class,
             Modules\Context\ControlLevel::class,
@@ -44,7 +47,7 @@ class Imet extends BaseImetForm
             Modules\Context\TerritorialReferenceContext::class,
             Modules\Context\Objectives2::class,
         ],
-        'resources'             => [
+        'resources' => [
             Modules\Context\ManagementStaff::class,
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\ManagementStaffCommunities::class,
@@ -55,7 +58,7 @@ class Imet extends BaseImetForm
             Modules\Context\Equipments::class,
             Modules\Context\Objectives3::class,
         ],
-        'key_elements'          => [
+        'key_elements' => [
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
             Modules\Context\Habitats::class,
@@ -64,21 +67,21 @@ class Imet extends BaseImetForm
             Modules\Context\NonSustainableUsage::class,
             Modules\Context\Objectives4::class,
         ],
-        'threats'               => [
+        'threats' => [
             Modules\Context\MenacesPressions::class,
             Modules\Context\Objectives5::class,
         ],
-        'climate'               => [
+        'climate' => [
             Modules\Context\ClimateChangeImportanceElements::class,
             Modules\Context\ClimateChange::class,
             Modules\Context\Objectives6::class,
         ],
-        'ecosystem_services'    => [
+        'ecosystem_services' => [
             Modules\Context\EcosystemServices::class,
             Modules\Context\EcosystemServicesTendance::class,
             Modules\Context\Objectives7::class,
         ],
-        'objectives'            => [
+        'objectives' => [
             Modules\Context\Objectives1::class,
             Modules\Context\Objectives2::class,
             Modules\Context\Objectives3::class,
@@ -86,14 +89,11 @@ class Imet extends BaseImetForm
             Modules\Context\Objectives5::class,
             Modules\Context\Objectives6::class,
             Modules\Context\Objectives7::class,
-        ]
+        ],
     ];
-
 
     /**
      * Relation to Encoder (only name)
-     *
-     * @return HasMany
      */
     public function encoder(): HasMany
     {
@@ -103,24 +103,19 @@ class Imet extends BaseImetForm
 
     /**
      * Relation to ResponsablesInterviewees
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function responsible_interviewees(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewees::class, $this->primaryKey, 'FormID')
-            ->select(['FormID','Name']);
+            ->select(['FormID', 'Name']);
     }
 
     /**
      * Relation to ResponsablesInterviewers
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function responsible_interviewers(): HasMany
     {
         return $this->hasMany(ResponsablesInterviewers::class, $this->primaryKey, 'FormID')
-            ->select(['FormID','Name']);
+            ->select(['FormID', 'Name']);
     }
-
 }

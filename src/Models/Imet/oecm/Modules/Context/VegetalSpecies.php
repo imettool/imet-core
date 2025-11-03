@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\User\Role;
 use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\User\Role;
 
-class VegetalSpecies extends Modules\Component\ImetModule
+final class VegetalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_vegetal_presence';
 
@@ -23,10 +24,11 @@ class VegetalSpecies extends Modules\Component\ImetModule
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ThreatsBiodiversity::class, 'species'],
         [Modules\Evaluation\KeyElementsImpact::class, 'species'],
-        [Modules\Evaluation\KeyElements::class, 'species']
+        [Modules\Evaluation\KeyElements::class, 'species'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.2';
         $this->module_title = trans('imet-core::oecm_context.VegetalSpecies.title');
@@ -45,5 +47,4 @@ class VegetalSpecies extends Modules\Component\ImetModule
 
         parent::__construct($attributes);
     }
-
 }

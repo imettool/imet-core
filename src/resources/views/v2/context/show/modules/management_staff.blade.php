@@ -1,26 +1,28 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use ModularForms\View\Module\Components\Field\InputPreview;
+use Wa72\HtmlPageDom\Helpers;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$table = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 $dom = HtmlPageCrawler::create(
-    \Wa72\HtmlPageDom\Helpers::trimNewlines($table)
+    Helpers::trimNewlines($table)
 );
 
-$table_dom = $dom->filter('table#table_'.$definitions['module_key']);
-$table_dom->filter('thead tr th')->eq(2)->after('<th>'.ucfirst(trans('imet-core::v2_context.ManagementStaff.fields.difference')).'</th>');
-$table_dom->filter('tbody tr')->each(function ($tr, $index) use($records) {
+$table_dom = $dom->filter('table#table_' . $definitions['module_key']);
+$table_dom->filter('thead tr th')->eq(2)->after('<th>' . ucfirst(trans('imet-core::v2_context.ManagementStaff.fields.difference')) . '</th>');
+$table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
+    $diff = intval($records[$index]['ActualPermanent']) + intval($records[$index]['ActualPermanentPartnersOrCommunities']) - intval($records[$index]['ExpectedPermanent']);
     $tr->filter('td')->eq(2)->after(
-        '<td>'.
-            \Illuminate\Support\Facades\View::make('modular-forms::module.show.field', [
-                'type' => 'integer',
-                'value' => intval($records[$index]['ActualPermanent']) + intval($records[$index]['ActualPermanentPartnersOrCommunities']) - intval($records[$index]['ExpectedPermanent'])
-            ]).
-        '</td>'
+        '<td>
+            ' . Blade::renderComponent((new InputPreview(type: 'integer', value: $diff))) . '
+        </td>'
     );
 });
 

@@ -1,6 +1,5 @@
 <?php
-/** @var $moduleClass \ModularForms\Models\Module */
-
+/** @var class-string $moduleClass */
 $definitions = $moduleClass::getDefinitions();
 
 ?>

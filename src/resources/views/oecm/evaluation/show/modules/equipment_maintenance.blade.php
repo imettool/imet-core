@@ -1,12 +1,11 @@
-<?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+@php
+    /** @var \Illuminate\Database\Eloquent\Collection $collection */
+    /** @var array $definitions */
+    /** @var array $records */
 
-foreach ($records as $i => $record){
-    $records[$i]['Equipment'] = $records[$i]['__predefined_label'];
-}
-
-?>
+    foreach ($records as $i => $record){
+        $records[$i]['Equipment'] = $record['__predefined_label'];
+    }
+@endphp
 
 @include('modular-forms::module.show.type.table', compact(['definitions', 'records']))

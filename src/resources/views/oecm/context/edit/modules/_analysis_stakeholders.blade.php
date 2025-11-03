@@ -1,4 +1,8 @@
 <?php
+/** @var Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
+/** @var array $stakeholders */
 
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
@@ -7,11 +11,6 @@ use ModularForms\Helpers\DOM;
 use ModularForms\Helpers\Template;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-
-/** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-/** @var Array $stakeholders */
 
 $num_cols = count($definitions['fields']);
 
@@ -65,7 +64,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                             @php
                                 $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
                                 $element_list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
-                                $element_list = array_combine($element_list, $element_list);
+                                $element_list = gettype($element_list) === 'string' ? [] : array_combine($element_list, $element_list);
                             @endphp
 
                             @if(
@@ -138,10 +137,10 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                 @endforeach
                                                 <td>
                                                     {{-- record id  --}}
-                                                    @include('modular-forms::module.edit.field.vue', [
-                                                        'type' => 'hidden',
-                                                        'v_value' => 'item.'.$definitions['primary_key']
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input
+                                                        type="hidden"
+                                                        :value="'item.'.$definitions['primary_key']"
+                                                    ></x-modular-forms::module.components.field.input>
                                                     <span v-if="typeof item.__predefined === 'undefined'">
                                                          <button type="button" class="btn-nav small red" v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
                                                              {!! Template::icon('trash', 'white') !!}

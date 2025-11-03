@@ -1,9 +1,11 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 $vue_record_index = '0';
+
+$index_id = "'" . $definitions['module_key'] . "_'+" . $vue_record_index . "+'_Index'";
 
 ?>
 
@@ -15,24 +17,27 @@ $vue_record_index = '0';
             'label_width' => $definitions['label_width']
         ])
 
-
         @if(in_array($field_index, [0, 1, 2]))
+
+            @php
+                $convert_to_km = "@input=convertToKm(\"{$field['name']}\")";
+                $convert_to_ha = "@input=convertToHa(\"{$field['name']}\")";
+            @endphp
 
             {{-- input field --}}
             @include('modular-forms::module.edit.field.module-to-vue', [
                 'definitions' => $definitions,
                 'field' => $field,
                 'vue_record_index' => $vue_record_index,
-                'vue_directives' => '@input=convertToKm("' . $field['name'] . '")'
+                'vue_directives' => $convert_to_km
             ])
             <span class="ml-2 mr-4">[ha]</span>
 
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => $field['type'],
-                'v_value' => $field['name'].'_km2',
-                'id' =>"'".$definitions['module_key'].\ModularForms\Helpers\ModuleKey::separator.$field['name']."_km2'",
-                'other' => '@input=convertToHa("' . $field['name'] . '")'
-            ])
+            <x-modular-forms::module.components.field.input
+                :type="$field['type']"
+                :value="$field['name'].'_km2'"
+                :other="$convert_to_ha"
+            ></x-modular-forms::module.components.field.input>
             <span class="ml-2">[km2]</span>
 
         @elseif($field_index===3)
@@ -42,7 +47,7 @@ $vue_record_index = '0';
                 'definitions' => $definitions,
                 'field' => $field,
                 'vue_record_index' => $vue_record_index,
-                'vue_directives' => 'v-on:change="calculateShapeIndex()"'
+                'vue_directives' => '@input="calculateShapeIndex()"'
             ])
             <span class="ml-2">[km2]</span>
 
@@ -69,12 +74,12 @@ $vue_record_index = '0';
 
         @elseif($field_index===10)
 
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'disabled',
-                'v_value' => 'records['.$vue_record_index.'].'.$field['name'],
-                'id' => "'".$definitions['module_key']."_'+".$vue_record_index."+'_".$field['name']."'",
-                'other' => 'style="max-width: 180px;"'
-            ])
+            <x-modular-forms::module.components.field.input
+                type="numeric"
+                :value="'records['.$vue_record_index.'].'.$field['name']"
+                :id="$index_id"
+                other='style="max-width: 180px;" disabled="disabled"'
+            ></x-modular-forms::module.components.field.input>
 
         @endif
 
@@ -84,7 +89,7 @@ $vue_record_index = '0';
 
 @push('scripts')
     <style>
-        #module_imet__v2__context__areas .module-row__input div{
+        #module_imet__v2__context__areas .module-row__input div {
             display: inline-block;
         }
     </style>

@@ -1,16 +1,14 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
-use \Wa72\HtmlPageDom\HtmlPageCrawler;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 
-$fistGroupPerCategory = array_map(function($category){
-    return $category[0];
-}, $vueData['groupsByCategory']);
+$fistGroupPerCategory = array_map(fn(array $category) => $category[0], $vueData['groupsByCategory']);
 
-$view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
 
 foreach ($fistGroupPerCategory as $i => $group){

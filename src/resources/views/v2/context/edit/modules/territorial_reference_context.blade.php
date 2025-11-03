@@ -1,5 +1,7 @@
 <?php
-/** @var Mixed $definitions */
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 $definitions['label_width'] = 7;
 
 use \ImetCore\Helpers\Template;
@@ -237,7 +239,11 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 @endforeach
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>
 
 @push('scripts')
     <style>

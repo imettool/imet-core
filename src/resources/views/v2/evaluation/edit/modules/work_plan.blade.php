@@ -1,5 +1,8 @@
 <?php
-/** @var Mixed $definitions */
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
+
 $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['module_type']==="GROUP_ACCORDION"
     ? 'index' : '0';
 

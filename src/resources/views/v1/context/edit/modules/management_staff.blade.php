@@ -1,9 +1,9 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 $table_id = 'table_'.$definitions['module_key'];
 
 ?>
@@ -58,10 +58,10 @@ $table_id = 'table_'.$definitions['module_key'];
         @endforeach
         <td>
             {{-- record id  --}}
-            @include('modular-forms::module.edit.field.vue', [
-                'type' => 'hidden',
-                'v_value' => 'item.'.$definitions['primary_key']
-            ])
+            <x-modular-forms::module.components.field.input
+                type="hidden"
+                :value="'item.'.$definitions['primary_key']"
+            ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
                 <x-modular-forms::module.components.buttons.delete-item />
             </span>

@@ -15,11 +15,11 @@ if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
     $context_modules = Models\Imet\v1\Imet::modules();
     $evaluation_modules = Models\Imet\v1\Imet_Eval::modules();
-} else if (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
+} elseif (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
     $version = Models\Imet\Imet::IMET_V2;
     $context_modules = Models\Imet\v2\Imet::modules();
     $evaluation_modules = Models\Imet\v2\Imet_Eval::modules();
-} else if (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
+} elseif (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
     $version = Models\Imet\Imet::IMET_OECM;
     $context_modules = Models\Imet\oecm\Imet::modules();
     $evaluation_modules = Models\Imet\oecm\Imet_Eval::modules();

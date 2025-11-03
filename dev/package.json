@@ -1,0 +1,19 @@
+{
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "imet-core": "file:./vendor/andreamarelli/imet-core/",
+        "modular-forms": "file:./vendor/andreamarelli/modular-forms/"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.12",
+        "@types/node": "^24.1.0",
+        "@vitejs/plugin-vue": "^6.0.0",
+        "laravel-vite-plugin": "^2.0.0",
+        "playwright": "^1.56.1",
+        "vite": "^7.0.6"
+    }
+}

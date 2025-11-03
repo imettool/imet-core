@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -19,7 +20,7 @@ return [
             'wdpa_id' => 'conserved area',
             'language' => 'language',
             'prefill_prev_year' => 'prefill with previous year',
-        ]
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -110,8 +111,8 @@ return [
                 '1' => '30–50% total population of the conserved areas',
                 '2' => '51–75% total population of the conserved areas',
                 '3' => 'More than 75% of the total population of the conserved areas',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'SpecialStatus' => [
@@ -129,7 +130,7 @@ return [
             'networks' => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Designation for the status of conservation importance by international bodies (IBA, AZE, etc.)',
             'marine_pa' => 'Other designations',
-        ]
+        ],
     ],
 
     'Networks' => [
@@ -142,7 +143,7 @@ return [
             'group0' => 'Transboundary network',
             'group1' => 'Landscape network (terrestrial and marine conserved areas)',
             'group2' => 'Other networks',
-        ]
+        ],
     ],
 
     'Missions' => [
@@ -153,7 +154,7 @@ return [
             'LocalObjective' => 'Objectives',
             'LocalSource' => 'Source',
             'Observation' => 'Observation',
-        ]
+        ],
     ],
 
     'Contexts' => [
@@ -170,9 +171,9 @@ return [
             'Socio-economic context',
             'Political context (country)',
             'Legal context',
-            'Institutional context'
+            'Institutional context',
         ],
-        'module_info' => 'Data at national level with verification at local level'
+        'module_info' => 'Data at national level with verification at local level',
     ],
 
     'Objectives' => [
@@ -180,24 +181,24 @@ return [
         'fields' => [
             'Element' => 'Objective',
             'ShortOrLongTerm' => 'Short/Long term',
-            'Comments' => 'Comments'
-        ]
+            'Comments' => 'Comments',
+        ],
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
+        'module_info' => 'Establish and describe conservation objectives for the governance, partnerships and the designation <b>of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area',
     ],
 
     'Objectives2' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>the area of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
+        'module_info' => 'Establish and describe conservation objectives for <b>the area of the conserved area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area',
     ],
 
     'Objectives3' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
+        'module_info' => 'Establish and describe conservation objectives for <b>human and financial resources/support from partnerships in managing </b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area',
     ],
 
     'Objectives4' => [
-        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area'
+        'module_info' => 'Establish and describe conservation objectives for <b>key animals and plant species</b>of the conserved area<br/> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area',
     ],
 
     'GeographicalLocation' => [
@@ -209,7 +210,7 @@ return [
             'Coordinates' => 'Geographic coordinates (baseline for or key point in the park)',
             'SourceCoords' => 'Source',
             'AdministrativeLocation' => 'Administrative location of the conserved area (province, region, etc.)',
-        ]
+        ],
     ],
 
     'Areas' => [
@@ -220,8 +221,8 @@ return [
             'GISArea' => 'Actual surface (GIS for the park or the authority responsible for conserved areas) corresponding to the uploaded file',
             'StrictConservationArea' => 'Surface of strict conservation area (no-take zone, core zone) (if any) ',
             'TerrestrialArea' => 'Surface of Terrestrial conserved area, Community Forest, ICCAs, Other',
-            'MarineArea' => 'Surface of Marine and coastal conserved area, ICCAs, LMMA, Other'
-        ]
+            'MarineArea' => 'Surface of Marine and coastal conserved area, ICCAs, LMMA, Other',
+        ],
     ],
 
     'ManagementStaff' => [
@@ -233,10 +234,10 @@ return [
             'Female' => 'Female',
             'Descriptions' => 'Descriptions',
             'AdequateNumber' => 'Adequate number',
-            'Difference' => 'Difference'
+            'Difference' => 'Difference',
         ],
         'module_info' => 'Number and categories of members of the conserved area Management Entity',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I2, PR1</i>',
     ],
 
     'ManagementStaffPartners' => [
@@ -247,19 +248,19 @@ return [
             'Coordinators' => 'Coordinators (number)',
             'Technicians' => 'Technical and administrative staff (number)',
             'Auxiliaries' => 'Auxiliary staff (number)',
-        ]
+        ],
     ],
 
     'ManagementRelativeImportance' => [
         'title' => 'Relative involvement of staff and stakeholders in management',
         'fields' => [
-            'RelativeImportance' => 'Relative involvement of staff and stakeholders'
+            'RelativeImportance' => 'Relative involvement of staff and stakeholders',
         ],
         'staff' => 'staff',
         'stakeholders' => 'stakeholders',
-        'equal' =>  'Equal involvement between Staff and stakeholders',
-        'majority_by' =>  'Involvement majority by',
-        'all_by' =>  'Involvement all by',
+        'equal' => 'Equal involvement between Staff and stakeholders',
+        'majority_by' => 'Involvement majority by',
+        'all_by' => 'Involvement all by',
     ],
 
     'FinancialResources' => [
@@ -268,7 +269,7 @@ return [
             'Currency' => 'Currency',
             'TotalAnnualBudgetAvailable' => 'Total annual budget available',
         ],
-        'module_info' => 'Estimated total management costs of the conserved area '
+        'module_info' => 'Estimated total management costs of the conserved area ',
     ],
 
     'Equipments' => [
@@ -276,7 +277,7 @@ return [
         'fields' => [
             'Resource' => 'Category',
             'AdequacyLevel' => 'Adequacy',
-            'Comments' => 'Source / Note'
+            'Comments' => 'Source / Note',
         ],
         'groups' => [
             'group0' => 'Administrative buildings',
@@ -288,7 +289,7 @@ return [
             'group6' => 'Power generation equipment',
             'group7' => 'Roads and tracks',
             'group8' => 'Waterways',
-            'group9' => 'Links and connections of the conserved area with the outer world'
+            'group9' => 'Links and connections of the conserved area with the outer world',
         ],
         'predefined_values' => [
             'group0' => ['Offices', 'Information centre', 'Service buildings (magazine, etc.)', 'Health care centre'],
@@ -300,7 +301,7 @@ return [
             'group6' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility'],
             'group7' => ['Roads/tracks inside the conserved area', 'Paths inside the conserved area', 'Road along the border'],
             'group8' => ['Waterways inside the conserved area'],
-            'group9' => ['Major land-based communication routes', 'Inland and maritime waterways']
+            'group9' => ['Major land-based communication routes', 'Inland and maritime waterways'],
         ],
         'ratingLegend' => [
             'AdequacyLevel' => [
@@ -308,9 +309,9 @@ return [
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
-            ]
+            ],
         ],
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I5, PR5</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>I5, PR5</i>',
     ],
 
     'AnimalSpecies' => [
@@ -331,7 +332,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 
     'VegetalSpecies' => [
@@ -351,7 +352,7 @@ return [
             <li><b>PRT</b>: Protected species</li>
             <li><b>DSG</b>: Disappearing species</li>
             <li><b>INV</b>: Invasive species</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 
     'Habitats' => [
@@ -366,8 +367,7 @@ return [
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
-        'module_info' =>
-            'The habitat types listed below are standard terms used to describe the main habitat(s)
+        'module_info' => 'The habitat types listed below are standard terms used to describe the main habitat(s)
                 (<a href="https://www.iucnredlist.org/resources/habitat-classification-scheme">https://www.iucnredlist.org/resources/habitat-classification-scheme</a>).
                 Identify the main category in the suggested list of habitats, then add a second level of description that
                 takes into account your specific area.<br />
@@ -375,7 +375,7 @@ return [
                 <li><b>EXP</b>: Exploited</li>
                 <li><b>PRT</b>: Protected</li>
                 <li><b>DSG</b>: Disappearing</li></ul>',
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 
     'Stakeholders' => [
@@ -411,8 +411,7 @@ return [
             'group11' => 'Donors (Identify private and public donors, etc.)',
 
         ],
-        'module_info' =>
-            'Identify the stakeholders involved in the management or use of the natural resources of the conserved area<br />
+        'module_info' => 'Identify the stakeholders involved in the management or use of the natural resources of the conserved area<br />
             <b>Living inside or in proximity to the conserved area</b>: Living in or near a conserved area can provide access to important
             ecosystem services but might also require restrictions and regulations.<br />
             <b>Categories of uses or management of conserved area’s key elements</b>: Various ways in which stakeholders interact with
@@ -446,16 +445,15 @@ return [
                 '1' => 'Low expertise in managing land and natural resources',
                 '2' => 'Moderate expertise in managing land and natural resources',
                 '3' => 'HIgh expertise in managing land and natural resources',
-            ]
+            ],
         ],
-        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2, C1.2, C2.2, I2, PR1, PR8</i>',
     ],
 
     'StakeholdersObjectives' => [
-        'module_info' =>
-            'Establish and describe conservation objectives for stakeholders involved in the management or use of
+        'module_info' => 'Establish and describe conservation objectives for stakeholders involved in the management or use of
             natural resources of the conserved area. The objectives entered below will be used for improving management, and more specifically
-            for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.'
+            for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.',
     ],
 
     'AnalysisStakeholders' => [
@@ -468,21 +466,20 @@ return [
             'title4' => 'Key Biodiversity elements',
         ],
         'groups' => [
-            'group0'  => 'Provisioning-Nutrition',
-            'group1'  => 'Provisioning-Water',
-            'group2'  => 'Provisioning-Materials',
-            'group3'  => 'Provisioning-Energy',
-            'group4'  => 'Cultural-Tourism (aesthetic appreciation, recreation, etc.)',
-            'group5'  => 'Cultural-Intellectual (educational, traditional knowledge, etc.)',
-            'group6'  => 'Cultural-Spiritual and/or emblematic',
-            'group7'  => 'Regulation-Remediation of air and water pollutants',
-            'group8'  => 'Regulation-Erosion prevention and maintenance of soil fertility',
-            'group9'  => 'Regulation-Lands (agriculture, livestock, forests)',
+            'group0' => 'Provisioning-Nutrition',
+            'group1' => 'Provisioning-Water',
+            'group2' => 'Provisioning-Materials',
+            'group3' => 'Provisioning-Energy',
+            'group4' => 'Cultural-Tourism (aesthetic appreciation, recreation, etc.)',
+            'group5' => 'Cultural-Intellectual (educational, traditional knowledge, etc.)',
+            'group6' => 'Cultural-Spiritual and/or emblematic',
+            'group7' => 'Regulation-Remediation of air and water pollutants',
+            'group8' => 'Regulation-Erosion prevention and maintenance of soil fertility',
+            'group9' => 'Regulation-Lands (agriculture, livestock, forests)',
             'group10' => 'Support-Habitats for animals and plants',
         ],
         'groups_descriptions' => [
-            'group0' =>
-                '<p>The provision of ecosystem services - nutrition refers to the provision of food that is essential for human health and well-being.
+            'group0' => '<p>The provision of ecosystem services - nutrition refers to the provision of food that is essential for human health and well-being.
                     It is important to understand and manage the provision of food by maintaining the health of ecosystems through the conservation of soil and water,
                     forests, biodiversity, etc. Example of ecosystem services provisioning – nutrition</p>
                     <ul>
@@ -490,8 +487,7 @@ return [
                         <li>Human food animal as wild/farmed meat, eggs, insects, fish/livestock feed (wild, farmed, bait), etc.</li>
                         <li>Medicines (quinine against malaria, herbal supplements, aromatic oils, anti-venoms, etc.) and blue biotechnology (fish oil)</li>
                     </ul>',
-            'group1' =>
-                '<p>The provision of ecosystem services - water includes the provision of clean water for drinking, human use and irrigation. Managing water supply involves
+            'group1' => '<p>The provision of ecosystem services - water includes the provision of clean water for drinking, human use and irrigation. Managing water supply involves
                     protecting watersheds, wetlands and other aquatic ecosystems, promoting sustainable water use practices and reducing water pollution and degradation.
                     Example of ecosystem services provisioning - water</p>
                     <ul>
@@ -499,8 +495,7 @@ return [
                         <li>Water for irrigation for crops or other agricultural activities and for fish/livestock consumption</li>
                         <li>Water storage which can be accessed during periods of drought or low water availability</li>
                      </ul>',
-            'group2' =>
-                '<p>The provision of ecosystem services - materials includes the provision of wood, fibres, and other materials that
+            'group2' => '<p>The provision of ecosystem services - materials includes the provision of wood, fibres, and other materials that
                     are used for construction, and manufacturing. Managing ecosystem involves promoting sustainable harvesting practices
                     and exploring alternative materials and technologies. Example of ecosystem services provisioning – materials</p>
                     <ul>
@@ -509,8 +504,7 @@ return [
                         <li>Ornamental in general and aquarian resources (seeds, shells and fish collection), </li>
                         <li>Minerals as gold, silver, copper, sand (building), etc.</li>
                      </ul>',
-            'group3' =>
-                '<p>The provision of ecosystem services-energy includes the use of biomass, such as firewood or crop residues, and solar or
+            'group3' => '<p>The provision of ecosystem services-energy includes the use of biomass, such as firewood or crop residues, and solar or
                     wind energy and other energy needs as fertiliser helps to provide essential services such as cooking, heating, lighting
                     and for agriculture productivity in rural communities that may lack access to modern energy sources. The sustainable management
                     of natural systems, such as forests and agricultural land, is critical to ensure the availability of these services.
@@ -520,8 +514,7 @@ return [
                         <li>Biomass to convert in fertiliser</li>
                         <li>Other green electricity sources: Flowing water, wind, solar or geothermal that can be harnessed to generate electricity.</li>
                      </ul>',
-            'group4' =>
-                '<p>The provision of ecosystem services – cultural services refers to the benefits that natural systems provide for the enjoyment and well-being of people.
+            'group4' => '<p>The provision of ecosystem services – cultural services refers to the benefits that natural systems provide for the enjoyment and well-being of people.
                     These benefits can include opportunities for outdoor recreation, such as hiking, camping and wildlife viewing, as well as the aesthetic beauty of
                     natural landscapes, such as mountains, forests and beaches. Ecosystem services for aesthetic appreciation, recreation, and tourism can contribute
                     to local economies through the development of ecotourism and other nature-based industries. It is important to ensure the availability of these
@@ -532,8 +525,7 @@ return [
                         <li>Cultural tourism which involves visiting historical sites, landmarks, and cultural attractions that are located within natural areas.</li>
                         <li>Traditional hunting or fishing, conserved areas for specified traditional hunting or fishing practices</li>
                      </ul>',
-            'group5' =>
-                '<p>The provision of ecosystem services – cultural services refer to the benefits that natural systems provide for education, research, and
+            'group5' => '<p>The provision of ecosystem services – cultural services refer to the benefits that natural systems provide for education, research, and
                     artistic expression. These benefits can include opportunities for scientific research, environmental education, and cultural activities
                     that are inspired by or conducted in natural settings. These services can contribute to the development of human knowledge, cultural
                     heritage, and creative expression, which are important for personal and societal well-being. Sustainable management of natural systems
@@ -543,8 +535,7 @@ return [
                         <li>Traditional practices and ecological knowledge that are important part of the community\'s identity and heritage related to nature and the environment such as traditional pharmacopeia, medicines</li>
                         <li>Inspiration and creativity for artists, writers, photographers and other creatives to develop new ideas and works.</li>
                      </ul>',
-            'group6' =>
-                '<p>The provision of ecosystem services – cultural services for spiritual and emblematic are those that provide cultural and symbolic
+            'group6' => '<p>The provision of ecosystem services – cultural services for spiritual and emblematic are those that provide cultural and symbolic
                     value to human societies. Spiritual ecosystem services may include the aesthetic and emotional experiences that people derive from
                     nature. Emblematic ecosystem services are those that are associated with a particular cultural identity or icon. These services
                     are important for human well-being and cultural identity. Example of ecosystem services</p>
@@ -553,8 +544,7 @@ return [
                         <li>Cultural icons and symbols as animal or plant species as Lion (in Kenya which is a symbol of courage and strength), Elephants, Crested Crane (in Uganda a bird which represents the country\'s natural beauty and grace) or Baobab tree, etc.</li>
                         <li>Landscapes that have spiritual or cultural significance for communal identity.</li>
                      </ul>',
-            'group7' =>
-                '<p>The provision of ecosystem services - remediation of air and water pollutants involves the protection of ecosystems to reduce
+            'group7' => '<p>The provision of ecosystem services - remediation of air and water pollutants involves the protection of ecosystems to reduce
                     pollution and degradation, and the purification of water and air through natural processes. Examples of how habitats provide
                     those ecosystem services</p>
                     <ul>
@@ -562,8 +552,7 @@ return [
                         <li>Forests can help to reduce air pollution by absorbing and filtering airborne pollutants and producing oxygen helping to mitigate climate change.</li>
                         <li>Vegetation zones can help to filter and contribute to water purification, waste removal/neutralisation, waste regulation, etc.</li>
                      </ul>',
-            'group8' =>
-                '<p>The provision of ecosystem services – erosion prevention and maintenance of soil fertility refers to the protection of soil by
+            'group8' => '<p>The provision of ecosystem services – erosion prevention and maintenance of soil fertility refers to the protection of soil by
                     the vegetation from the physical forces of wind and water, which can lead to the loss of topsoil and nutrients. Maintenance
                     of soil fertility refers to the processes that maintain the nutrient content and structure of soil. These services are important
                     for the sustainability of agriculture, forestry, and other land-based industries, and help to maintain the health and productivity
@@ -577,8 +566,7 @@ return [
                         <li>Storm control: Trees and help to reduce the impact of storms, natural barriers as mountains or islands can act as barriers to
                         storms or absorbing some of the energy from waves, bodies of water help to moderate temperatures, which can reduce the severity of storms.</li>
                      </ul>',
-            'group9' =>
-                '<p>Ecosystem services of provisioning productivity for agriculture, livestock, and forests refer to the benefits that natural ecosystems
+            'group9' => '<p>Ecosystem services of provisioning productivity for agriculture, livestock, and forests refer to the benefits that natural ecosystems
                     provide to support the production and productivity of these systems. These services include the maintenance of soil fertility,
                     nutrient cycling, water availability and regulation, and pest and disease control. These provisioning services are essential
                     for sustaining the productivity of agricultural, livestock, and forestry systems while minimizing the use of synthetic inputs
@@ -588,8 +576,7 @@ return [
                         <li>Water availability and regulation</li>
                         <li>Pest and disease control</li>
                      </ul>',
-            'group10' =>
-                '<p>Ecosystem services of habitats for animals and plants refer to the benefits that natural ecosystems provide to support the
+            'group10' => '<p>Ecosystem services of habitats for animals and plants refer to the benefits that natural ecosystems provide to support the
                     survival and reproduction of wildlife species and plant communities. These services include the provision of suitable habitat
                     for various species, such as food, shelter, and breeding sites. Protecting and conserving natural habitats is therefore essential
                     for ensuring the long-term viability of wildlife species and plant communities, as well as for maintaining the many benefits
@@ -601,7 +588,7 @@ return [
                         <li>Habitats for pollination: Woodland and vegetation areas provide support for pollinators such as bees, butterflies and
                         hummingbirds which provide an important ecosystem service for agriculture as they help plants to produce fruit, seeds and
                         other reproductive structures. </li>
-                     </ul>'
+                     </ul>',
         ],
         'lists' => [
             'group0' => ['Human food vegetal', 'Human food animal', 'Medicines'],
@@ -614,14 +601,14 @@ return [
             'group7' => ['Water and air purification', 'Waste regulation and removal'],
             'group8' => ['Flood control', 'Erosion control', 'Drought control', 'Storm control'],
             'group9' => ['Provisioning fertility', 'Provisioning water', 'Provisioning disease control'],
-            'group10' => ['Nursery and nesting habitats', 'Habitats for pollination']
+            'group10' => ['Nursery and nesting habitats', 'Habitats for pollination'],
         ],
         'summary' => 'Importance of elements & Involvement of stakeholders',
         'element' => 'Criteria',
         'elements_importance' => 'Importance of elements by the stakeholders',
         'involvement_ranking' => 'Involvement of stakeholders',
         'importance' => 'Importance (0-100)',
-        'involvement' => 'Involvement of the stakeholder (0-100)'
+        'involvement' => 'Involvement of the stakeholder (0-100)',
     ],
 
     'AnalysisStakeholderDirectUsers' => [
@@ -638,25 +625,24 @@ return [
             'Threats' => 'Threats',
             'Comments' => 'Note',
         ],
-        'module_info' =>
-            '<p>Identify key elements for your group, and assess its importance and its management/governance from your own perspective</p>' .
+        'module_info' => '<p>Identify key elements for your group, and assess its importance and its management/governance from your own perspective</p>'.
             '<b>Dependence</b>: A stakeholder’s dependence on ecosystem services refers to the extent to which subsistence, income,
                 and cultural identity depend on natural resources and ecological processes. Low dependence means that the ecosystem
                 services can be replaced without significant difficulty or cost. High dependency refers to a higher degree of
                 irreplaceability of the key element. Therefore, understanding and managing the dependence of stakeholders on
-                ecosystem services is essential for achieving sustainable development and conservation goals.</br >' .
+                ecosystem services is essential for achieving sustainable development and conservation goals.</br >'.
             '<b>Access</b>: A stakeholder’s access to ecosystem services refers to their ability to benefit from the natural resources
                 and services provided by ecosystems. If a stakeholder does not have access to these services, their livelihoods and
-                well-being are at risk and they may face poverty, food insecurity and health problems..</br >' .
+                well-being are at risk and they may face poverty, food insecurity and health problems..</br >'.
             '<b>Rivalry</b>: The stakeholders’ rivalry in the ecosystem services refers to competition or conflict between individuals
                  or stakeholders over access and use of these services. Rivalry can lead to overuse or depletion of resources,
                  exacerbating environmental degradation and undermining the long-term availability of these services for the community
-                 or communities.</br >' .
+                 or communities.</br >'.
             '<b>Quality of the ecosystem services</b>: Physical, biological and ecological factors that enable the ecosystem to continue
                  to provide the desired service, or for the species, to continue to be viable. (Example: no pollution, presence of juveniles,
-                 biodiverse, etc.).</br >' .
+                 biodiverse, etc.).</br >'.
             '<b>Quantity of the ecosystem services</b>: Amount, volume or size of the ecosystem services or the species (Example:
-                 surface of a forest, species population, volume of water stream, etc.).</br >' .
+                 surface of a forest, species population, volume of water stream, etc.).</br >'.
             '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element
                  being assessed.</br >',
         'ratingLegend' => [
@@ -698,25 +684,24 @@ return [
             'Threats' => 'Threats',
             'Comments' => 'Note',
         ],
-        'module_info' =>
-            '<b>Support or Contribution</b>: Actions and efforts taken by the stakeholder to sustainably manage and protect
+        'module_info' => '<b>Support or Contribution</b>: Actions and efforts taken by the stakeholder to sustainably manage and protect
                 ecosystems or species. Areas for support or contribution can be one of the following: financing, capacity-building
-                and technical assistance, research and monitoring, law enforcement, policy and advocacy, and long-term commitment.</br >' .
+                and technical assistance, research and monitoring, law enforcement, policy and advocacy, and long-term commitment.</br >'.
             '<b>Guidelines and procedures</b>: Existence or development of clear guidelines and procedures developed by the
-                stakeholder to ensure long-term and sustainable management and governance of the key element </br >' .
+                stakeholder to ensure long-term and sustainable management and governance of the key element </br >'.
             '<b>Lack of collaboration between non-direct and direct users</b>: Absence or insufficient coordination among
                 various stakeholders who use and benefit from ecosystem services, which could lead to conflicts and unsustainable
-                practices</br >' .
+                practices</br >'.
             '<b>Status of conserved area’s key elements</b>: Status of the key elements indicates the status of the provision of ecosystem
                 services or key biodiversity element in terms of quality. Very poor status indicates that the ecosystem service
                 being provided is of poor quality or that the key biodiversity element is at serious risk of disappearing
                 in the conserved areas. Very good status indicates that the key element is of good quality or expanding. Various
                 environmental factors such as climate and weather, land use change, pollution, and overexploitation of resources,
-                overexploitation can affect the status of conserved area’s key elements.</br >' .
+                overexploitation can affect the status of conserved area’s key elements.</br >'.
             '<b>Trend of conserved area’s key elements</b>: Current trends of the key elements indicate the change in the quantity of
                 ecosystem services provision or in the size-surface of key biodiversity elements. For ecosystem services this
                  can be the quantity of services provided, for the key biodiversity element it can be the size of the
-                 population (species), the area (habitats, land cover) or the quantity of ecological production.</br >' .
+                 population (species), the area (habitats, land cover) or the quantity of ecological production.</br >'.
             '<b>Threats</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s
                  key element being assessed. </br >',
         'ratingLegend' => [
@@ -739,16 +724,15 @@ return [
                 '0' => 'No change',
                 '1' => 'Increasing',
                 '2' => 'Strongly Increasing',
-            ]
+            ],
         ],
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>C4</i>',
     ],
 
     'AnalysisStakeholdersObjectives' => [
-        'module_info' =>
-            'Establish and describe conservation objectives for the stakeholders analysis of the key elements of the conserved area.
+        'module_info' => 'Establish and describe conservation objectives for the stakeholders analysis of the key elements of the conserved area.
             The objectives entered below will be used for improving management, and more specifically for the planning,
-            resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.'
+            resource (input) mobilisation, process phases, and for monitoring management activities of the conserved area.',
     ],
 
 ];

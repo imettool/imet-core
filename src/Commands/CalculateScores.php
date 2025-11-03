@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,9 +12,9 @@
 
 namespace ImetCore\Commands;
 
-use ImetCore\Jobs;
 use Exception;
 use Illuminate\Console\Command;
+use ImetCore\Jobs;
 
 class CalculateScores extends Command
 {
@@ -33,7 +34,6 @@ class CalculateScores extends Command
      */
     protected $description = 'Calculate all IMET and OECM scores.';
 
-
     /**
      * Create a new command instance.
      *
@@ -46,21 +46,20 @@ class CalculateScores extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle(): int
     {
-        try{
+        try {
             $this->dispatch(Jobs\CalculateScores::class);
             $this->info('Command successfully executed.');
+
             return self::SUCCESS;
 
-        } catch (Exception $e) {
+        } catch (Exception) {
             $this->error('Execution filed');
+
             return self::FAILURE;
         }
 
     }
-
 }

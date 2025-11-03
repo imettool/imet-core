@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,44 +12,45 @@
 
 namespace ImetCore\Models\Imet\Components;
 
-use ImetCore\Models\Imet\Components\BaseModel;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Date;
 
 abstract class Encoder extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
+
     public const UPDATED_AT = 'UpdateDate';
+
     public const UPDATED_BY = null;
 
     protected $guarded = [];
 
-    protected $table = null;
+    protected $table;
 
     protected $appends = ['name'];
 
     /**
      * Accessor to full name
-     * @return string
      */
-    public function getNameAttribute(): string {
+    public function getNameAttribute(): string
+    {
         return $this->attributes['last_name'].' '.$this->attributes['first_name'];
     }
 
-    public static function touchOnFormUpdate($formId, $user_info)
+    public static function touchOnFormUpdate($formId, array $user_info): void
     {
         // Insert encoder (if not present in the day)
-        $encoder = static::where('first_name', $user_info['first_name'])
+        $encoder = static::query()->where('first_name', $user_info['first_name'])
             ->where('last_name', $user_info['last_name'])
             ->where('FormID', $formId)
-            ->whereDate(static::UPDATED_AT, Carbon::today())
+            ->whereDate(static::UPDATED_AT, Date::today())
             ->first();
-        if($encoder){
+        if ($encoder) {
             $encoder->touch();
         } else {
-            static::create(array_merge(
+            static::query()->create(array_merge(
                 $user_info,
                 [
-                    'FormID' => $formId
+                    'FormID' => $formId,
                 ]
             ));
         }
@@ -57,13 +59,14 @@ abstract class Encoder extends BaseModel
     /**
      * Export model
      */
-    public static function exportModule($form_id): array
+    public static function exportModule(int $form_id): array
     {
-        return static::where('FormID', $form_id)
+        return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['FormID', 'id'])
-            ->map(function ($item){
-                $item['UpdateDate'] = Carbon::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
+            ->map(function (Encoder $item): static {
+                $item['UpdateDate'] = Date::parse($item['UpdateDate'])->setHour(0)->setMinute(0)->setSecond(0);
+
                 return $item;
             })
             ->toArray();
@@ -71,19 +74,15 @@ abstract class Encoder extends BaseModel
 
     /**
      * Import model
-     *
-     * @param $form_id
-     * @param $encoders
-     * @return void
      */
-    public static function importModule($form_id, $encoders = null)
+    public static function importModule($form_id, $encoders = null): void
     {
-        if($encoders!==null){
-            foreach ($encoders as $encoder){
+        if ($encoders !== null) {
+            foreach ($encoders as $encoder) {
                 // Remove primary key
                 unset($encoder['id']);
                 // Create model and fill it with data
-                $item = new static();
+                $item = new (static::class);
                 $item->fill($encoder);
                 $item['FormID'] = $form_id;
                 unset($item['name']);
@@ -94,13 +93,11 @@ abstract class Encoder extends BaseModel
 
     /**
      * Retrieve the form encoders' list
-     *
-     * @param $form_id
-     * @return array
      */
-    public static function getNames($form_id): array {
+    public static function getNames($form_id): array
+    {
         return array_values(
-            static::where('FormID', $form_id)
+            static::query()->where('FormID', $form_id)
                 ->orderBy('UpdateDate', 'desc')
                 ->get()
                 ->map->only(['name', 'organisation', 'function'])
@@ -108,5 +105,4 @@ abstract class Encoder extends BaseModel
                 ->toArray()
         );
     }
-
 }

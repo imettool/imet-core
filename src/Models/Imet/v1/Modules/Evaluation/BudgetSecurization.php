@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class BudgetSecurization extends Modules\Component\ImetModule_Eval
+final class BudgetSecurization extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_budget_securization';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'I4';
@@ -40,16 +42,14 @@ class BudgetSecurization extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_BudgetSecurization',
             'fields' => [
-                'EvaluationScore', 'Percentage', 'Comments'
-            ]
+                'EvaluationScore', 'Percentage', 'Comments',
+            ],
         ];
     }
 }

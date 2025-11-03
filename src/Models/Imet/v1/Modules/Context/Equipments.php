@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,16 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class Equipments extends Modules\Component\ImetModule
+final class Equipments extends Modules\Component\ImetModule
 {
     protected $table = 'context_equipments';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 3.3';
@@ -44,10 +47,10 @@ class Equipments extends Modules\Component\ImetModule
                 'group7' => trans('imet-core::v1_context.Equipments.predefined_values.group7'),
                 'group8' => trans('imet-core::v1_context.Equipments.predefined_values.group8'),
                 'group9' => trans('imet-core::v1_context.Equipments.predefined_values.group9'),
-                'group10' =>trans('imet-core::v1_context.Equipments.predefined_values.group10'),
-                'group11' =>trans('imet-core::v1_context.Equipments.predefined_values.group11'),
-                'group12' =>trans('imet-core::v1_context.Equipments.predefined_values.group12')
-            ]
+                'group10' => trans('imet-core::v1_context.Equipments.predefined_values.group10'),
+                'group11' => trans('imet-core::v1_context.Equipments.predefined_values.group11'),
+                'group12' => trans('imet-core::v1_context.Equipments.predefined_values.group12'),
+            ],
         ];
 
         $this->module_groups = [
@@ -74,28 +77,22 @@ class Equipments extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Equipments',
             'fields' => [
-                'Resource', 'AdequacyLevel', 'GroupResources'
-            ]
+                'Resource', 'AdequacyLevel', 'GroupResources',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupResources');
+        return self::convertGroupLabelToKey($record, 'GroupResources');
     }
 }

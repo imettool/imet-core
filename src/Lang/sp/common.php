@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,81 +12,81 @@
 
 return [
 
-    'id'                    => 'ID',
-    'name'                  => 'nombre',
-    'year'                  => 'año',
-    'country'               => 'país',
-    'language'              => 'idioma',
-    'version'               => 'versión',
-    'link'                  => 'enlace|enlaces',
+    'id' => 'ID',
+    'name' => 'nombre',
+    'year' => 'año',
+    'country' => 'país',
+    'language' => 'idioma',
+    'version' => 'versión',
+    'link' => 'enlace|enlaces',
 
     'staff' => [
-        'first_name'            => 'nombre',
-        'last_name'             => 'apellido',
-        'institution'           => 'institución',
-        'function'              => 'function',
-        'confirm_user_info'         => 'Confirma tu información'
+        'first_name' => 'nombre',
+        'last_name' => 'apellido',
+        'institution' => 'institución',
+        'function' => 'function',
+        'confirm_user_info' => 'Confirma tu información',
     ],
 
     'protected_area' => [
-        'protected_area'    => 'área protegida|áreas protegidas',
-        'wdpa_id'           => 'WDPA id|WDPA ids',
-        'iucn_category'     => 'Categoría UICN',
+        'protected_area' => 'área protegida|áreas protegidas',
+        'wdpa_id' => 'WDPA id|WDPA ids',
+        'iucn_category' => 'Categoría UICN',
     ],
 
-    'methodology'   => 'Pregunta de evaluación',
-    'criteria'      => 'Clasificación',
+    'methodology' => 'Pregunta de evaluación',
+    'criteria' => 'Clasificación',
 
     'terrestrial' => 'terrestre',
     'marine' => 'marítimo y costero',
 
-    'dopa_not_available' => 'Servicios DOPA no disponibles',
+    'connection_not_available' => 'Conexión no disponible',
     'no' => 'No',
     'yes' => 'Sí',
 
     'languages' => [
-        'fr'        => 'Francés',
-        'en'        => 'Inglés',
-        'sp'        => 'Español',
-        'pt'        => 'Portugués'
+        'fr' => 'Francés',
+        'en' => 'Inglés',
+        'sp' => 'Español',
+        'pt' => 'Portugués',
     ],
     'switch_language' => 'Cambiar el idioma actual a',
 
     'imet' => 'IMET: por sus siglas en inglés Herramienta de Efectividad de Manejo Integral',
-    'imet_short'        => 'IMET',
+    'imet_short' => 'IMET',
 
-    'management'        => 'Gestión del IMET',
+    'management' => 'Gestión del IMET',
 
-    'encoding_language'         => 'Lenguaje de codificación',
-    'encoders_responsible'      => 'Codificadores y responsables',
-    'encoders'                  => 'Codificadores',
-    'responsible_internal'      => 'Responsables (equipo directivo)',
-    'responsible_external'      => 'Responsables (apoyo externo)',
+    'encoding_language' => 'Lenguaje de codificación',
+    'encoders_responsible' => 'Codificadores y responsables',
+    'encoders' => 'Codificadores',
+    'responsible_internal' => 'Responsables (equipo directivo)',
+    'responsible_external' => 'Responsables (apoyo externo)',
 
-    'supervisors'              => 'Supervisores',
-    'readonly'                 => 'Sólo lectura',
+    'supervisors' => 'Supervisores',
+    'readonly' => 'Sólo lectura',
 
-    'encode'            => 'codificar',
-    'show'              => 'mostrar',
+    'encode' => 'codificar',
+    'show' => 'mostrar',
 
-    'context'           => 'contexto',
-    'evaluation'        => 'evaluación',
-    'cross_analysis'        => 'cross analysis',
-    'report'            => 'informe de análisis',
-    'context_long'      => 'contexto de intervención',
-    'evaluation_long'   => 'evaluación de la gestión',
-    'cross_analysis_long'   => 'cross analysis',
-    'report_long'       => 'informe de análisis',
+    'context' => 'contexto',
+    'evaluation' => 'evaluación',
+    'cross_analysis' => 'cross analysis',
+    'report' => 'informe de análisis',
+    'context_long' => 'contexto de intervención',
+    'evaluation_long' => 'evaluación de la gestión',
+    'cross_analysis_long' => 'cross analysis',
+    'report_long' => 'informe de análisis',
 
-    'import_imet'       => 'Importar IMET desde un archivo',
-    'merge_tool'        => 'Herramienta de combinación',
-    'destination_form'        => 'Formulario de destino',
+    'import_imet' => 'Importar IMET desde un archivo',
+    'merge_tool' => 'Herramienta de combinación',
+    'destination_form' => 'Formulario de destino',
     'set_as_destination_form' => 'Establecer como forma de destino',
-    'confirm_merge'     => 'Confirmar para copiar de datos',
-    'upgrade'           => 'Actualización a IMET v2',
-    'upgrade_confirm'   => 'Confirmar la actualización a IMET v2?<ul><li>Se creará una copia del formulario original.</li><li>Algunos datos no han podido ser convertidos a v2</li>',
-    'upgrade_success'   => 'Actualización a IMET v2 completada con éxito',
-    'upgrade_failed'    => 'Error al actualizar a IMET v2',
+    'confirm_merge' => 'Confirmar para copiar de datos',
+    'upgrade' => 'Actualización a IMET v2',
+    'upgrade_confirm' => 'Confirmar la actualización a IMET v2?<ul><li>Se creará una copia del formulario original.</li><li>Algunos datos no han podido ser convertidos a v2</li>',
+    'upgrade_success' => 'Actualización a IMET v2 completada con éxito',
+    'upgrade_failed' => 'Error al actualizar a IMET v2',
     'not_authorized_module' => 'Sin autorización para visualizar esta información',
     'double_check_wdpa' => 'Asegúrese de seleccionar la WDPA correcta',
     'nothing_to_evaluate' => 'Nada que evaluar',
@@ -95,25 +96,25 @@ return [
     'nothing_found' => 'No se han encontrado resultados',
 
     'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Índice de contexto',
-        'planning'    => 'Índice de planificación',
-        'inputs'      => 'Índice de insumos',
-        'process'     => 'Índice de procesos',
-        'outputs'     => 'Índice de resultados',
-        'outcomes'    => 'Índice de Efectos/impactos',
+        'imet' => 'IMET index',
+        'context' => 'Índice de contexto',
+        'planning' => 'Índice de planificación',
+        'inputs' => 'Índice de insumos',
+        'process' => 'Índice de procesos',
+        'outputs' => 'Índice de resultados',
+        'outcomes' => 'Índice de Efectos/impactos',
     ],
 
     'steps_eval' => [
-        'context'                   => 'Contexto de gestión',
-        'planning'                  => 'Planificación',
-        'inputs'                    => 'Insumos',
-        'process'                   => 'Procesos',
-        'outputs'                   => 'Resultados',
-        'outcomes'                  => 'Efectos/impactos',
-        'objectives'                => 'Objetivos',
-        'management_effectiveness'  => 'Efectividad de manejo',
-        'cross_analysis'  => 'Análisis cruzado',
+        'context' => 'Contexto de gestión',
+        'planning' => 'Planificación',
+        'inputs' => 'Insumos',
+        'process' => 'Procesos',
+        'outputs' => 'Resultados',
+        'outcomes' => 'Efectos/impactos',
+        'objectives' => 'Objetivos',
+        'management_effectiveness' => 'Efectividad de manejo',
+        'cross_analysis' => 'Análisis cruzado',
     ],
 
     'Create' => [
@@ -124,7 +125,7 @@ return [
             'wdpa_id' => 'área protegida',
             'language' => 'idioma',
             'prefill_prev_year' => 'Pre-rellenado con el año anterior',
-        ]
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -158,25 +159,25 @@ return [
     'ResponsablesInterviewers' => [
         'title' => 'Responsabilidad para el llenado del formulario: Personal del área protegida y socios',
         'fields' => [
-            'Name'          => 'Nombre',
-            'Institution'   => 'Organización',
-            'Function'      => 'Rol en el trabajo',
-            'Contacts'      => 'Datos de contacto',
-            'EncodingDate'  => 'Fecha de compilación',
-            'EncodingDuration' => 'Tiempo necesario para completar la evaluación (horas)'
-        ]
+            'Name' => 'Nombre',
+            'Institution' => 'Organización',
+            'Function' => 'Rol en el trabajo',
+            'Contacts' => 'Datos de contacto',
+            'EncodingDate' => 'Fecha de compilación',
+            'EncodingDuration' => 'Tiempo necesario para completar la evaluación (horas)',
+        ],
     ],
 
     'ResponsablesInterviewees' => [
         'title' => 'Responsabilidad de llenar el formulario: Apoyo externo para el análisis y la evaluación de la gestión',
         'fields' => [
             'Name' => 'Nombre',
-            'Institution'   => 'Organización',
-            'Function'      => 'Rol en el trabajo',
+            'Institution' => 'Organización',
+            'Function' => 'Rol en el trabajo',
             'Contacts' => 'Datos de contacto',
             'EncodingDate' => 'Fecha de compilación',
             'EncodingDuration' => 'Tiempo de evaluación (horas)',
-        ]
+        ],
     ],
 
     'dropzone' => [
@@ -189,29 +190,29 @@ return [
         'dict_cancel_upload' => 'Cancela la subida',
         'dict_upload_canceled' => 'Carga cancelada',
         'dict_cancel_upload_confirmation' => '¿Seguro que quiere cancelar esta subida?',
-        'dict_remove_file'  => 'Eliminar archivo',
+        'dict_remove_file' => 'Eliminar archivo',
         'dictMaxFilesExceeded' => 'Has superado el máximo de archivos para subir. Por favor, elimine los archivos para poder subir más',
     ],
 
     'species' => [
-        'species'           => 'especie|especies',
-        'common_names'  => 'Nombres comunes',
+        'species' => 'especie|especies',
+        'common_names' => 'Nombres comunes',
         'taxonomy' => [
-            'taxonomy'      => 'Taxonomía',
-            'domain'        => 'Dominio',
-            'kingdom'       => 'Reino',
-            'phylum'        => 'Filo',
-            'class'         => 'Clase',
-            'order'         => 'Orden',
-            'family'        => 'Familia',
-            'genus'         => 'Género',
-            'species'       => 'Especies',
-            'authority'     => 'Autoridad'
+            'taxonomy' => 'Taxonomía',
+            'domain' => 'Dominio',
+            'kingdom' => 'Reino',
+            'phylum' => 'Filo',
+            'class' => 'Clase',
+            'order' => 'Orden',
+            'family' => 'Familia',
+            'genus' => 'Género',
+            'species' => 'Especies',
+            'authority' => 'Autoridad',
         ],
         'links' => [
             'iucn_red_list' => 'Lista Roja de la UICN',
-            'col'           => 'Catálogo de la Vida',
-        ]
+            'col' => 'Catálogo de la Vida',
+        ],
     ],
 
 ];

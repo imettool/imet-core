@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class LandCover extends Modules\Component\ImetModule
+final class LandCover extends Modules\Component\ImetModule
 {
     protected $table = 'context_land_cover';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 4.4';
@@ -42,7 +44,7 @@ class LandCover extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'CoverType',
-            'values' => trans('imet-core::v1_context.LandCover.predefined_values')
+            'values' => trans('imet-core::v1_context.LandCover.predefined_values'),
         ];
 
         $this->module_info = trans('imet-core::v1_context.LandCover.module_info');
@@ -53,8 +55,6 @@ class LandCover extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -69,8 +69,8 @@ class LandCover extends Modules\Component\ImetModule
                 'Reliability',
                 'Notes',
                 'HistoricalAreaData',
-                'PreviousEstimationAreaData'
-            ]
+                'PreviousEstimationAreaData',
+            ],
         ];
     }
 }

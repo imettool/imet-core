@@ -1,7 +1,7 @@
 {
     "name": "andreamarelli/imet-core",
     "description": "Imet core package",
-    "version": "2.0.22",
+    "version": "3.1.3",
     "authors": [
         {
             "name": "Andrea Marelli",
@@ -14,9 +14,9 @@
     ],
     "license": "EUPL-1.2",
     "require": {
-        "php": ">=8.2",
+        "php": ">=8.4",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "^2.0.7"
+        "andreamarelli/modular-forms": "^3.4.9"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"
@@ -45,6 +45,18 @@
     "scripts": {
         "post-update-cmd": [
             "php notice-generator.php"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            ".run",
+            "dev",
+            "docker",
+            ".dockerignore",
+            ".gitattributes",
+            ".gitignore",
+            "docker-compose.yml",
+            "notice-generator.php"
         ]
     },
     "config": {

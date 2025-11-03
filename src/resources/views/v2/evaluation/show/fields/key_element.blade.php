@@ -1,5 +1,5 @@
 <?php
-/** @var String $value */
+/** @var string $value */
 
 use \ModularForms\Helpers\Input\SelectionList;
 use \ImetCore\Models\Species;
@@ -7,7 +7,7 @@ use \ImetCore\Models\Species;
 if (Species::isTaxonomy($value)) {
     $taxonomy = Species::parseTaxonomy($value);
     $value = $taxonomy['genus'] . ' ' . $taxonomy['species'];
-} else if (array_key_exists($value, SelectionList::getList('ImetV2_Habitats'))) {
+} elseif (array_key_exists($value, SelectionList::getList('ImetV2_Habitats'))) {
     $value = SelectionList::getLabel('ImetV2_Habitats', $value);
 }
 

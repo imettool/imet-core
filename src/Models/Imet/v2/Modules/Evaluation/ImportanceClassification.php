@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceClassification extends Modules\Component\ImetModule_Eval
+final class ImportanceClassification extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c12';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C1.1';

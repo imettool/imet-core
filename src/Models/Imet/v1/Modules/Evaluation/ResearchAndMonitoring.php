@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
+final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_research_and_monitoring';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR17';
@@ -33,7 +35,7 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Program',
-            'values' => trans('imet-core::v1_evaluation.ResearchAndMonitoring.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.ResearchAndMonitoring.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.ResearchAndMonitoring.module_info_EvaluationQuestion');
@@ -45,16 +47,14 @@ class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_ResearchAndMonitoring',
             'fields' => [
-                'Program', 'EvaluationScore', 'Comments'
-            ]
+                'Program', 'EvaluationScore', 'Comments',
+            ],
         ];
     }
 }

@@ -41,7 +41,7 @@ $definitions_indirect = AnalysisStakeholderIndirectUsers::getDefinitions($item->
                             <div class="module-title">@lang('imet-core::oecm_context.AnalysisStakeholders.analysis')
                                 - {{ $stakeholder }}</div>
                         </div>
-                        @include('modular-forms::module.info', ['definitions' => $definitions_direct])
+                        @include('modular-forms::module.components.bars.info', ['definitions' => $definitions_direct])
                         <div class="module-body">
                             @include('imet-core::oecm.context.show.modules.analysis_stakeholder_print', [
                                 'item' => $item,
@@ -62,7 +62,7 @@ $definitions_indirect = AnalysisStakeholderIndirectUsers::getDefinitions($item->
                             <div class="module-title">@lang('imet-core::oecm_context.AnalysisStakeholders.analysis')
                                 - {{ $stakeholder }}</div>
                         </div>
-                        @include('modular-forms::module.info', ['definitions' => $definitions_indirect])
+                        @include('modular-forms::module.components.bars.info', ['definitions' => $definitions_indirect])
                         <div class="module-body">
                             @include('imet-core::oecm.context.show.modules.analysis_stakeholder_print', [
                                 'item' => $item,

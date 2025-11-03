@@ -1,23 +1,23 @@
 <?php
-/** @var String $type */
-/** @var String $v_value */
-/** @var String $id */
-/** @var String $class */
-/** @var String $rules */
-/** @var String $other */
-/** @var Mixed $definitions */
+/** @var string $v_id */
+/** @var string $v_value */
+/** @var string $class  */
+/** @var ?string $other [optional] */
+/** @var ?string $rules [optional] */
+/** @var string $type */
+/** @var string $module_key */
 
 ?>
 
-@include('modular-forms::module.edit.field.vue', [
-    'type' => 'text-area',
-    'v_value' => $v_value,
-    'id' => $id,
-    'class' => $class,
-    'rules' => $rules,
-    'other' => $other,
-    'module_key' => $definitions['module_key']
-])
+<x-modular-forms::module.components.field.input
+    type="text-area"
+    :value="$v_value"
+    :id="$id"
+    :class="$class"
+    :rules="$rules"
+    :other="$other"
+    :module_key="$module_key"
+></x-modular-forms::module.components.field.input>
 
 
 <ul class="text-xs" style="margin-top: 10px; padding-inline-start: 30px;">

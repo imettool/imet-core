@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,7 +15,7 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class GeneralInfo extends Modules\Component\ImetModule
+final class GeneralInfo extends Modules\Component\ImetModule
 {
     protected $table = 'context_general_info';
 
@@ -25,7 +26,8 @@ class GeneralInfo extends Modules\Component\ImetModule
         'Country' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 1.1';
@@ -56,8 +58,6 @@ class GeneralInfo extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
@@ -81,8 +81,8 @@ class GeneralInfo extends Modules\Component\ImetModule
                 'Ecotype',
                 'ReferenceText',
                 'ReferenceTextDocument',
-                'ReferenceTextValues'
-            ]
+                'ReferenceTextValues',
+            ],
         ];
     }
 }

@@ -1,20 +1,17 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $record = $records[0];
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_'.$definitions['module_key'];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $totals = \ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();
-$totalBudget = array_reduce($totals, function ($carry, $item) {
-    $carry += $item;
-    return $carry;
-});
+$totalBudget = array_reduce($totals, fn($carry, $item): float|int|array => $carry + $item);
 
 $cost = [];
 $percentage = [];
@@ -28,11 +25,7 @@ foreach ($records as $index => $record) {
     $cost[$index] = $cost[$index] === 0 ? null : round($cost[$index], 2);
 
     $val = floatval($cost[$index]);
-    if($val > 0 && $totalBudget > 0){
-        $percentage[$index] = round($val / $totalBudget * 100, 1).' %';
-    } else {
-        $percentage[$index] = "";
-    }
+    $percentage[$index] = $val > 0 && $totalBudget > 0 ? round($val / $totalBudget * 100, 1).' %' : "";
 }
 
 ?>
@@ -65,10 +58,10 @@ foreach ($records as $index => $record) {
             {{--  fields  --}}
             @foreach($definitions['fields'] as $f_index => $field)
                 <td>
-                    @include('modular-forms::module.show.field', [
-                        'type' =>$definitions['fields'][$f_index]['type'],
-                         'value' => $record[$definitions['fields'][$f_index]['name']]
-                    ])
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$definitions['fields'][$f_index]['type']"
+                        :value="$record[$definitions['fields'][$f_index]['name']]"
+                    ></x-modular-forms::module.components.field.input-preview>
                 </td>
             @endforeach
             <td>

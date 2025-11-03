@@ -11,7 +11,6 @@
 import ModuleImet from "../../../Module.js";
 
 import { ref, computed } from "vue";
-import imetScoreBar from "../../../../templates/imet_score_bar.vue";
 
 export default class EcosystemServices extends ModuleImet {
 
@@ -24,10 +23,7 @@ export default class EcosystemServices extends ModuleImet {
             }
         };
 
-        return super(input_data, custom_props)
-
-            // Register components
-            .component('imet_score_bar', imetScoreBar);
+        return super(input_data, custom_props);
     }
 
     setupApp(props, input_data) {

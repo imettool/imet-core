@@ -1,13 +1,13 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
-/** @var String $group_key (optional - only for GROUP_TABLE) */
+/** @var array $vueData */
+/** @var array $definitions */
+/** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 use \ImetCore\Helpers\Template;
 use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
-$group_key = $group_key ?? '';
+$group_key ??= '';
 
 $table_id = 'table_' . $definitions['module_key'];
 
@@ -73,10 +73,10 @@ $table_id = 'table_' . $definitions['module_key'];
             @endforeach
             <td>
                 {{-- record id  --}}
-                @include('modular-forms::module.edit.field.vue', [
-                    'type' => 'hidden',
-                    'v_value' => 'item.'.$definitions['primary_key']
-                ])
+                <x-modular-forms::module.components.field.input
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
+                ></x-modular-forms::module.components.field.input>
                 @if(!$definitions['fixed_rows'])
                     <span v-if="typeof item.__predefined === 'undefined'">
                         <x-modular-forms::module.components.buttons.delete-item />

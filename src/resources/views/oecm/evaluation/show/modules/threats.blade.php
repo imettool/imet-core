@@ -1,23 +1,21 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
-$page = View::make('modular-forms::module.show.type.table', compact(['definitions', 'records']))->render();
+$page = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
 
 $threats = trans('imet-core::oecm_lists.Threats');
 
 $threats_in_sa2 = collect($records)
-    ->filter(function ($item) {
-        return $item['__count_stakeholders_direct'] !== null
-            || $item['__count_stakeholders_indirect'] !== null;
-    })
+    ->filter(fn(array $item): bool => $item['__count_stakeholders_direct'] !== null
+        || $item['__count_stakeholders_indirect'] !== null)
     ->pluck('__threat_key')
     ->toArray();
 
@@ -55,14 +53,4 @@ $stats = collect(\ImetCore\Services\ThreatsService::calculateRanking($records))
     @endforeach
 </div>
 
-
 {!! $dom->saveHTML() !!}
-
-@push('scripts')
-    <script>
-        new Vue({
-            el: '#threat_histograms',
-        });
-    </script>
-@endpush
-

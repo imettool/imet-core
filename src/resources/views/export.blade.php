@@ -68,7 +68,7 @@ use \ImetCore\Models\Imet\Imet;
                         <div class="imet_pa_name">
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             (<a target="_blank"
-                                :href="'{{ \ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet::WEBSITE_URL }}'+ item.wdpa_id">@{{
+                                :href="'{{ PROTECTEDPLANET_WEBSITE_URL }}'+ item.wdpa_id">@{{
                                 item.wdpa_id }}</a>)
                             <br/>
                         </div>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,10 +15,9 @@ namespace ImetCore\Controllers\Imet\v1;
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\v1\Imet_Eval;
 
-
-class EvalController extends BaseEvalController
+final class EvalController extends BaseEvalController
 {
     protected static ?string $form_class = Imet_Eval::class;
-    protected static ?string $form_view_prefix = 'imet-core::v1.evaluation';
 
+    protected static ?string $form_view_prefix = 'imet-core::v1.evaluation';
 }

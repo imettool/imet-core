@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,12 +12,10 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Component;
 
-
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
 use ImetCore\Models\Imet\Components\Upgrade;
 use ImetCore\Models\Imet\oecm\Imet;
-
 
 class ImetModule extends BaseImetModule
 {
@@ -24,8 +23,7 @@ class ImetModule extends BaseImetModule
 
     public const MODULE_SCOPE = null;
 
-    protected string $schema = Database::OECM_SCHEMA;
+    protected static ?string $schema = Database::OECM_SCHEMA;
 
     protected static ?string $form_class = Imet::class;
-
 }

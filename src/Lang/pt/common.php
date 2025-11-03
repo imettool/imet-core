@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,81 +12,82 @@
 
 return [
 
-    'id'                    => 'ID',
-    'name'                  => 'nome',
-    'year'                  => 'ano',
-    'country'               => 'país',
-    'language'              => 'língua',
-    'version'               => 'versão',
-    'link'                  => 'ligação|ligações',
+    'id' => 'ID',
+    'name' => 'nome',
+    'year' => 'ano',
+    'country' => 'país',
+    'language' => 'língua',
+    'version' => 'versão',
+    'link' => 'ligação|ligações',
 
     'staff' => [
-        'first_name'            => 'primeiro nome',
-        'last_name'             => 'sobrenome',
-        'institution'           => 'instituição',
-        'function'              => 'função',
-        'confirm_user_info'         => 'Por favor, confirme as suas informações'
+        'first_name' => 'primeiro nome',
+        'last_name' => 'sobrenome',
+        'institution' => 'instituição',
+        'function' => 'função',
+        'confirm_user_info' => 'Por favor, confirme as suas informações',
     ],
 
     'protected_area' => [
-        'protected_area'    => 'zona protegida|áreas protegidas',
-        'wdpa_id'           => 'WDPA id|WDPA ids',
-        'iucn_category'     => 'Categoria UICN',
+        'protected_area' => 'zona protegida|áreas protegidas',
+        'wdpa_id' => 'WDPA id|WDPA ids',
+        'iucn_category' => 'Categoria UICN',
     ],
 
-    'methodology'   => 'Questão de Avaliação',
-    'criteria'      => 'Classificação',
+    'methodology' => 'Questão de Avaliação',
+    'criteria' => 'Classificação',
 
     'terrestrial' => 'terrestre',
     'marine' => 'marítima e costeira',
 
-    'dopa_not_available' => 'DOPA serviços não disponíveis',
+    'connection_not_available' => 'Ligação não disponível',
+
     'no' => 'Não',
     'yes' => 'Sim',
 
     'languages' => [
-        'fr'        => 'Francês',
-        'en'        => 'Inglês',
-        'sp'        => 'Espanhol',
-        'pt'        => 'Português'
+        'fr' => 'Francês',
+        'en' => 'Inglês',
+        'sp' => 'Espanhol',
+        'pt' => 'Português',
     ],
     'switch_language' => 'Mudar a língua actual para',
 
     'imet' => 'IMET: Ferramenta de Eficácia de Gestão Integrada',
-    'imet_short'        => 'IMET',
+    'imet_short' => 'IMET',
 
-    'management'        => 'Gestão do IMET',
+    'management' => 'Gestão do IMET',
 
-    'encoding_language'         => 'Linguagem de codificação',
-    'encoders_responsible'      => 'Codificadores e responsáveis',
-    'encoders'                  => 'Codificadores',
-    'responsible_internal'      => 'Responsáveis (equipa de gestão)',
-    'responsible_external'      => 'Responsáveis (apoio externo)',
+    'encoding_language' => 'Linguagem de codificação',
+    'encoders_responsible' => 'Codificadores e responsáveis',
+    'encoders' => 'Codificadores',
+    'responsible_internal' => 'Responsáveis (equipa de gestão)',
+    'responsible_external' => 'Responsáveis (apoio externo)',
 
-    'supervisors'              => 'Supervisores',
-    'readonly'                 => 'Apenas leitura',
+    'supervisors' => 'Supervisores',
+    'readonly' => 'Apenas leitura',
 
-    'encode'            => 'codificar',
-    'show'              => 'mostrar',
+    'encode' => 'codificar',
+    'show' => 'mostrar',
 
-    'context'           => 'contexto',
-    'evaluation'        => 'avaliação',
-    'cross_analysis'        => 'cross analysis',
-    'report'            => 'relatório de análise',
-    'context_long'      => 'contexto de intervenção',
-    'evaluation_long'   => 'avaliação da gestão',
-    'cross_analysis_long'   => 'cross analysis',
-    'report_long'       => 'relatório de análise',
+    'context' => 'contexto',
+    'evaluation' => 'avaliação',
+    'cross_analysis' => 'cross analysis',
+    'report' => 'relatório de análise',
+    'context_long' => 'contexto de intervenção',
+    'evaluation_long' => 'avaliação da gestão',
+    'cross_analysis_long' => 'cross analysis',
+    'report_long' => 'relatório de análise',
 
-    'import_imet'       => 'Importar IMET',
-    'merge_tool'        => 'Ferramenta de fusão',
-    'destination_form'        => 'Formulário de destino',
+    'import_imet' => 'Importar IMET',
+    'merge_tool' => 'Ferramenta de fusão',
+    'destination_form' => 'Formulário de destino',
     'set_as_destination_form' => 'Definir como forma de destino',
-    'confirm_merge'     => 'Confirmar para copiar dados',
-    'upgrade'           => 'Actualização para IMET v2',
-    'upgrade_confirm'   => 'Confirmar a actualização para IMET v2?<ul><li> Será criada uma cópia do formulário original.</li><li>alguns dados não puderam ser convertidos para v2</li>',
-    'upgrade_success'   => 'Actualização para IMET v2 concluída com sucesso',
-    'upgrade_failed'    => 'Erro na actualização para IMET v2',
+    'confirm_merge' => 'Confirmar para copiar dados',
+    'upgrade' => 'Actualização para IMET v2',
+    'upgrade_confirm' => 'Confirmar a actualização para IMET v2?<ul><li> Será criada uma cópia do formulário original.</li><li>alguns dados não puderam ser convertidos para v2</li>',
+    'upgrade_success' => 'Actualização para IMET v2 concluída com sucesso',
+    'upgrade_failed' => 'Erro na actualização para IMET v2',
     'not_authorized_module' => 'Sem autorização para visualizar esta informação',
     'double_check_wdpa' => 'Certifique-se de selecionar a WDPA correta',
     'nothing_to_evaluate' => 'Nada a avaliar',
@@ -95,25 +97,25 @@ return [
     'nothing_found' => 'Nada encontrado',
 
     'indexes' => [
-        'imet'        => 'IMET index',
-        'context'     => 'Contexto index',
-        'planning'    => 'Plaeamento index',
-        'inputs'      => 'Recursos index',
-        'process'     => 'Processo index',
-        'outputs'     => 'Produtos index',
-        'outcomes'    => 'Resultados index',
+        'imet' => 'IMET index',
+        'context' => 'Contexto index',
+        'planning' => 'Plaeamento index',
+        'inputs' => 'Recursos index',
+        'process' => 'Processo index',
+        'outputs' => 'Produtos index',
+        'outcomes' => 'Resultados index',
     ],
 
     'steps_eval' => [
-        'context'                   => 'Contexto de Gestão',
-        'planning'                  => 'Planeamento',
-        'inputs'                    => 'Recursos',
-        'process'                   => 'Procesos',
-        'outputs'                   => 'Produtos',
-        'outcomes'                  => 'Resultados',
-        'objectives'                => 'Objectivos',
-        'management_effectiveness'  => 'Efectividade de Gestão',
-        'cross_analysis'  => 'Análise Cruzada',
+        'context' => 'Contexto de Gestão',
+        'planning' => 'Planeamento',
+        'inputs' => 'Recursos',
+        'process' => 'Procesos',
+        'outputs' => 'Produtos',
+        'outcomes' => 'Resultados',
+        'objectives' => 'Objectivos',
+        'management_effectiveness' => 'Efectividade de Gestão',
+        'cross_analysis' => 'Análise Cruzada',
     ],
 
     'Create' => [
@@ -123,8 +125,8 @@ return [
             'Year' => 'Ano sujeito a avaliação',
             'wdpa_id' => 'zona protegida',
             'language' => 'língua',
-            'prefill_prev_year' => 'pré-preencher com o ano anterior'
-        ]
+            'prefill_prev_year' => 'pré-preencher com o ano anterior',
+        ],
     ],
 
     'CreateNonWdpa' => [
@@ -163,8 +165,8 @@ return [
             'Function' => 'Função',
             'Contacts' => 'Detalhes de contacto',
             'EncodingDate' => 'Data de compilação',
-            'EncodingDuration' => 'Tempo levado para a avaliação (horas)'
-        ]
+            'EncodingDuration' => 'Tempo levado para a avaliação (horas)',
+        ],
     ],
 
     'ResponsablesInterviewees' => [
@@ -176,7 +178,7 @@ return [
             'Contacts' => 'Detalhes de contacto',
             'EncodingDate' => 'Data de compilação',
             'EncodingDuration' => 'Tempo levado para a Avaliação (horas)',
-        ]
+        ],
     ],
 
     'dropzone' => [
@@ -189,29 +191,29 @@ return [
         'dict_cancel_upload' => 'Cancelar carregamento',
         'dict_upload_canceled' => 'Upload cancelado',
         'dict_cancel_upload_confirmation' => 'Tem a certeza de que quer cancelar este carregamento?',
-        'dict_remove_file'  => 'Remover ficheiro',
+        'dict_remove_file' => 'Remover ficheiro',
         'dictMaxFilesExceeded' => 'Excedeu o máximo de ficheiros para carregamento. Por favor remova os ficheiros para carregar mais',
     ],
 
     'species' => [
-        'species'           => 'espécie|espécies',
-        'common_names'      => 'Nomes comuns',
+        'species' => 'espécie|espécies',
+        'common_names' => 'Nomes comuns',
         'taxonomy' => [
-            'taxonomy'      => 'Taxonomia',
-            'domain'        => 'Domínio',
-            'phylum'        => 'Filo',
-            'kingdom'       => 'Reino',
-            'class'         => 'Classe',
-            'order'         => 'Ordem',
-            'family'        => 'Família',
-            'genus'         => 'Género',
-            'species'       => 'Espécie',
-            'authority'     => 'Autoridade'
+            'taxonomy' => 'Taxonomia',
+            'domain' => 'Domínio',
+            'phylum' => 'Filo',
+            'kingdom' => 'Reino',
+            'class' => 'Classe',
+            'order' => 'Ordem',
+            'family' => 'Família',
+            'genus' => 'Género',
+            'species' => 'Espécie',
+            'authority' => 'Autoridade',
         ],
         'links' => [
             'iucn_red_list' => 'Lista Vermelha da IUCN',
-            'col'           => 'Catálogo da Vida',
-        ]
-    ]
+            'col' => 'Catálogo da Vida',
+        ],
+    ],
 
 ];

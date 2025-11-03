@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class TerritorialReferenceContext extends Modules\Component\ImetModule
+final class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
     protected $table = 'context_territorial_reference_context';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_code = 'CTX 2.4';
@@ -44,7 +46,7 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
             ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
             ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => '']
+            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
@@ -53,22 +55,19 @@ class TerritorialReferenceContext extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.2 -> v2.3 ####
-        $record = static::addField($record, 'FunctionalHasNoTakeArea');
-        $record = static::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
-        $record = static::addField($record, 'FunctionalKm');
-        $record = static::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
-        $record = static::renameField($record, 'FunctionalArea', 'BenefitKm2');
-        $record = static::addField($record, 'BenefitKm');
-        $record = static::addField($record, 'BenefitPopulation');
-        $record = static::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
-        $record = static::addField($record, 'SpillOverKm2');
-        $record = static::addField($record, 'SpillOverKm');
+        $record = self::addField($record, 'FunctionalHasNoTakeArea');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaEstimation', 'FunctionalKm2');
+        $record = self::addField($record, 'FunctionalKm');
+        $record = self::renameField($record, 'ReferenceEcosystemAreaPopulation', 'FunctionalPopulation');
+        $record = self::renameField($record, 'FunctionalArea', 'BenefitKm2');
+        $record = self::addField($record, 'BenefitKm');
+        $record = self::addField($record, 'BenefitPopulation');
+        $record = self::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
+        $record = self::addField($record, 'SpillOverKm2');
 
-        return $record;
+        return self::addField($record, 'SpillOverKm');
     }
-
 }

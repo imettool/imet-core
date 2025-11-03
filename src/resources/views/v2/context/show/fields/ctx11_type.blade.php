@@ -1,5 +1,5 @@
 <?php
-/** @var String $value */
+/** @var string $value */
 
 ?>
 <label class="radio-inline">

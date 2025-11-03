@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $record = $records[0];
 
@@ -17,22 +17,22 @@ $record = $records[0];
 
         @if($field_index<3)
             <div style="display: flex; justify-content: space-between;">
-                @include('modular-forms::module.show.field', [
-                    'type' => $field['type'],
-                    'value' => $record[$field['name']]
-                ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[ha]</div>
-                @include('modular-forms::module.show.field', [
-                     'type' =>  $field['type'],
-                     'value' => $record[$field['name']]
-                 ])
+                <x-modular-forms::module.components.field.input-preview
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
+                ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[km2]</div>
             </div>
         @else
-            @include('modular-forms::module.show.field', [
-                'type' =>  $field['type'],
-                'value' => $record[$field['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$field['type']"
+                :value="$record[$field['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         @endif
     @endcomponent
 @endforeach

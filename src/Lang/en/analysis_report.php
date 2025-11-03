@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -69,7 +70,7 @@ return [
                 'radar' => '6.1.1.3 Radar visualization of the management context indicators',
                 'ranking' => '6.1.1.1 Ranking of management context indicators',
                 'average_contribution' => '6.1.1.2 Average contribution and variability of management context indicators',
-                'datatable' => '6.1.1.4 Data table of management context indicators'
+                'datatable' => '6.1.1.4 Data table of management context indicators',
             ],
             'context_value_and_importance' => [
                 'title' => '6.1.2 Value and Importance sub-indicators (all indicators rescaled to 0-100)',
@@ -78,7 +79,7 @@ return [
                 'average_contribution' => '6.1.2.2 Average contribution and variability of the Value and Importance sub-indicators',
                 'datatable' => '6.1.2.4 Data table for the Value and Importance sub-indicators',
                 'datatable_average' => 'Value and Importance sub-indicators',
-            ]
+            ],
         ],
         'threats' => [
             'threats' => [
@@ -86,8 +87,8 @@ return [
                 'radar' => '6.1.3.3 Radar visualization of threats sub-indicators for each protected area',
                 'ranking' => '6.1.3.1 Average contribution of each threat category to the overall level of threats',
                 'average_contribution' => '6.1.3.2 Average score and variability of threat categories sub-indicators',
-                'datatable' => '6.1.3.4 Ranking of threats categories (sub-indicators)'
-            ]
+                'datatable' => '6.1.3.4 Ranking of threats categories (sub-indicators)',
+            ],
         ],
         'planning' => [
             'main' => [
@@ -95,8 +96,8 @@ return [
                 'radar' => '6.2.3 Radar visualization of Planning indicators',
                 'ranking' => '6.2.1 Ranking of Planning indicators',
                 'average_contribution' => '6.2.2 Average score and variability of Planning indicators',
-                'datatable' => '6.2.4 Data table of Planning indicators'
-            ]
+                'datatable' => '6.2.4 Data table of Planning indicators',
+            ],
         ],
         'inputs' => [
             'main' => [
@@ -105,7 +106,7 @@ return [
                 'ranking' => '6.3.1 Ranking of Inputs indicators',
                 'average_contribution' => '6.3.2 Average contribution and variability of Inputs indicators',
                 'datatable' => '6.3.4 Data table of Inputs indicators',
-            ]
+            ],
         ],
         'process' => [
             'process_sub_indicators' => [
@@ -122,7 +123,7 @@ return [
                 'ranking' => 'Ranking of Internal management systems and processes',
                 'average_contribution' => 'Average score and variability of Internal management systems and processes indicators',
                 'datatable' => 'Data table of Internal management systems and processes',
-                'datatable_average' => 'Internal management systems and processes'
+                'datatable_average' => 'Internal management systems and processes',
             ],
             'process_management_protection_values' => [
                 'title' => 'PR B: Management / Protection of the values',
@@ -130,7 +131,7 @@ return [
                 'ranking' => 'Ranking of Management / Protection of the values',
                 'average_contribution' => 'Average score and variability of Management/Protection of the values indicators',
                 'datatable' => 'Data table of Management / Protection of the values',
-                'datatable_average' => 'Management / Protection of the values'
+                'datatable_average' => 'Management / Protection of the values',
             ],
             'process_stakeholders_relationships' => [
                 'title' => 'PR C: Stakeholder relations',
@@ -138,29 +139,29 @@ return [
                 'ranking' => 'Ranking of Stakeholder relations',
                 'average_contribution' => 'Average score and variability of Stakeholder relations indicators',
                 'datatable' => 'Data table of Stakeholder relations',
-                'datatable_average' => 'Stakeholder relations'
+                'datatable_average' => 'Stakeholder relations',
             ],
             'process_tourism_management' => [
                 'title' => 'PR D: Tourism management',
                 'ranking' => 'Ranking of Tourism management',
                 'average_contribution' => 'Average score and variability of Tourism management indicators',
                 'datatable' => 'Data table of Tourism management',
-                'datatable_average' => 'Tourism management'
+                'datatable_average' => 'Tourism management',
             ],
             'process_monitoring_and_research' => [
                 'title' => 'PR E: Monitoring and Research',
                 'ranking' => 'Ranking of Monitoring and Research',
                 'average_contribution' => 'Average score and variability of Monitoring and Research indicators',
                 'datatable' => 'Data table of Monitoring and Research',
-                'datatable_average' => 'Monitoring and Research'
+                'datatable_average' => 'Monitoring and Research',
             ],
             'process_effects_of_climate_change' => [
                 'title' => 'PR F: Management of the effects of climate change and ecosystem services',
                 'ranking' => 'Ranking of the indicators of Management of the effects of climate change and ecosystem services',
                 'average_contribution' => 'Average score and variability of the indicators of Management of the effects of climate change and ecosystem services',
                 'datatable' => 'Data table of Management of the effects of climate change and ecosystem services',
-                'datatable_average' => 'Management of the effects of climate change and ecosystem services'
-            ]
+                'datatable_average' => 'Management of the effects of climate change and ecosystem services',
+            ],
 
         ],
         'outputs' => [
@@ -170,7 +171,7 @@ return [
                 'ranking' => '6.5.1 Ranking of Outputs indicators',
                 'average_contribution' => '6.5.2 Average score and variability of Outputs indicators',
                 'datatable' => '6.5.4 Data table of Outputs indicators',
-            ]
+            ],
         ],
         'outcomes' => [
             'main' => [
@@ -179,7 +180,7 @@ return [
                 'ranking' => '6.6.1 Ranking of Outcomes indicators',
                 'average_contribution' => '6.6.2 Average score and variability of Outcomes indicators',
                 'datatable' => '6.6.4 Data table of Outcomes indicators',
-            ]
+            ],
         ],
     ],
     'general_info' => [
@@ -194,11 +195,11 @@ return [
         'ecoregions' => 'Ecoregions',
         'vision' => 'Protected areas with a vision',
         'mission' => 'Protected areas with a mission',
-        'objectives' => 'Protected areas with objectives'
+        'objectives' => 'Protected areas with objectives',
     ],
     'additional_options' => [
         'management_effectiveness_analysis' => '8.1 Management effectiveness analysis',
-        'summary_key_elements_affecting_management_elements' => '8.2 Summary of Key Elements Affecting Management'
+        'summary_key_elements_affecting_management_elements' => '8.2 Summary of Key Elements Affecting Management',
     ],
     'grouping' => [
         'title' => '5.1 Grouping',
@@ -209,7 +210,7 @@ return [
         'render_scatter' => 'Render scatter',
         'scatter_plot' => '5.3 Visualization of groups with a scatter plot',
         'radar' => '5.2 Visualization of groups with a radar',
-        'group' => 'Group'
+        'group' => 'Group',
     ],
     'management_context' => [
         'key_species' => 'Key species',
@@ -237,7 +238,7 @@ return [
         'comments_plants_species' => 'Comments on Key plants species',
         'comments_animal_species' => 'Comments on Key species',
         'label_threats' => 'Threats',
-        'comment_on_management_context' => 'Comments for Management context (key elements of management)'
+        'comment_on_management_context' => 'Comments for Management context (key elements of management)',
     ],
     'protected_area_coverage_and_connectivity' => [
         'title',
@@ -259,7 +260,7 @@ return [
             'persistent_moderate' => 'Persistent moderate decline in productivity [km2]',
             'stable_stressed' => 'Stable, but stressed; persistent strong inter-annual productivity variations [km2]',
             'stable_productivity' => 'Stable Productivity [km2]',
-            'persistent_increase' => 'Persistent increase in productivity [km2]'
+            'persistent_increase' => 'Persistent increase in productivity [km2]',
         ],
         'bar_indicators' => [
             'no_biomas' => 'No biomas [km2]',
@@ -267,16 +268,8 @@ return [
             'persistent_moderate' => 'Persistent moderate decline in productivity [km2]',
             'persistent_strong' => 'Stable, but stressed; persistent strong inter-annual productivity variations [km2]',
             'stable_productivity' => 'Stable Productivity [km2]',
-            'persistent_increase' => 'Persistent increase in productivity [km2]'
+            'persistent_increase' => 'Persistent increase in productivity [km2]',
         ],
-    ],
-    'total_carbon' => [
-        'title' => 'Total carbon',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Mean [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Sum [Mg]',
-        'std_dev' => 'Std. Dev.',
     ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
@@ -287,7 +280,7 @@ return [
             'process' => 'Average contribution of the Process indicators',
             'process_sub_indicators' => 'Average contribution of the six sub-elements of the Process indicators',
             'outputs' => 'Average contribution of the Outputs indicators',
-            'outcomes' => 'Average contribution of the Outcomes indicators'
+            'outcomes' => 'Average contribution of the Outcomes indicators',
         ],
         'legends' => [
             'context_sub_indicators' => 'Sub-indicators to Value and Importance',
@@ -297,88 +290,50 @@ return [
             'process_indicators' => 'Process indicators',
             'process_sub_indicators' => 'Sub-elements of the Process indicators',
             'outputs_indicators' => 'Outputs indicators',
-            'outcomes_indicators' => 'Outcomes indicators'
-        ]
-    ],
-    'terrestial_ecoregions' => [
-        'name' => 'Name',
-        'area' => 'ecoregion area [km2]',
-        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
-        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
-        'protected_in_ecoregion' => 'protected area in ecoregion [km2]'
-    ],
-    'marine_ecoregions' => [
-        'name' => 'Name',
-        'area' => 'ecoregion area [km2]',
-        'ecoregion_pa_sqkm' => 'protected ecoregion [km2]',
-        'ecoregion_protected_tot_sqkm' => 'total protected area [km2]',
-        'protected_in_ecoregion' => 'protected area in the ecoregion [km2]'
-    ],
-    'copernicus' => [
-        'label' => 'Land Cover Class',
-        'percent' => '% Covered',
-        'area' => 'Calculated Surface',
-        'color' => 'Color Map'
+            'outcomes_indicators' => 'Outcomes indicators',
+        ],
     ],
     'protected_area' => [
         'name' => 'Name',
         'gis_area' => 'Area [km2]',
-        'nature' => 'Type'
+        'nature' => 'Type',
     ],
     'map' => [
         'fields' => [
             'area_prot_terr_perc' => 'Protected Land',
-            'protconn' => 'Protected Connected Land'
+            'protconn' => 'Protected Connected Land',
         ],
-        'dopa_indicators' => [
-            'terrestial_area' => [
-                'title_table' => 'Terrestrial Area',
-                'area_terr_perc' => 'Coverage [%]',
-                'area_prot_terr_km2' => 'Protected Land Area [km2]',
-                'area_terr_km2' => 'Total Land Area [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Aichi 11 threshold'
-
-            ],
-            'marine_indicators' => [
-                'title_table' => 'Marine Area',
-                'area_mar_perc' => 'Coverage [%]',
-                'area_prot_mar_km2' => 'Protected Marine Area [km2]',
-                'area_mar_km2' => 'Total Marine Area [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Aichi 11 threshold'
-            ]
-        ],
-
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Ranking according to IMET Indicator',
         'radar_visualization' => 'Radar visualization of IMET synthetic indicators',
         'scatter_visualization' => 'Scatter plot visualization of IMET synthetic indicator',
         'average_contribution' => 'Average score and variability of IMET synthetic indicators',
-        'synthetic_indicators' => 'Data table of IMET synthetic indicators'
+        'synthetic_indicators' => 'Data table of IMET synthetic indicators',
     ],
     'scale' => [
         'negative_positive' => ' - scale (min: -100, max: 100)',
-        'zero_negative' => ' - scale (min: -100, max: 0)'
+        'zero_negative' => ' - scale (min: -100, max: 0)',
     ],
     'legends' => [
         'PRA' => [
             'PR A',
         ],
         'PRB' => [
-            'PR B'
+            'PR B',
         ],
         'PRC' => [
-            'PR C'
+            'PR C',
         ],
         'PRD' => [
-            'PR D'
+            'PR D',
         ],
         'PRE' => [
-            'PR E'
+            'PR E',
         ],
         'PRF' => [
-            'PR F'
-        ]
+            'PR F',
+        ],
     ],
     'guidance' => [
         'info' => [
@@ -388,7 +343,7 @@ return [
             'scatter_plot' => 'This scatter plot utilises horizontal and vertical axes as well as the size of the square to display the values of IMET indicators. The visualisation displays only protected areas that were selected at the beginning of this section.',
             'datatable' => 'The table provides an overview of IMET scores for each indicator for the set of selected protected areas. You can sort each column either from lowest to highest values, highest to lowest values, or alphabetically. Sorting option is available for all data tables.',
             'group_radar' => 'The analysis visualises management effectiveness in each of the groups using radar visualisation and a data table.',
-            'group_scatter' => 'The visualisation displays a three-dimensional diagram using the horizontal and vertical axes as well as the size to display the values of three variables simultaneously for each group. It also displays the data table.'
+            'group_scatter' => 'The visualisation displays a three-dimensional diagram using the horizontal and vertical axes as well as the size to display the values of three variables simultaneously for each group. It also displays the data table.',
         ],
         'threats' => [
             'datatable' => 'Bar charts provide score of protected areas for a given threat category.',
@@ -422,7 +377,7 @@ return [
             'info' => '<b>Additional guidance</b>: Section 6 presents all the indicators belonging to the six elements of the management cycle. This analysis can be used to respond to specific questions (such as ‘Which threats are the most common?’ ‘How are climate change effects integrated in protected areas management?), or to develop specific action plans to improve specific aspects (such as law enforcement, tourism management, etc.) in selected protected areas. In total, section 6 contains fourteen analyses, all organised according to the same logical structure as analyses in section 4 ‘Overall management of effectiveness scores’. Such an organisation of the analysis  facilitates the use of scaling up tool.<br/><br/> Section 6, like section 4, allows you to analyse all or only some (but at least two) protected areas selected for the scaling up. For this reason, the analyses begin with an option to select the protected areas that are displayed in the selection table. Protected areas can be selected individually by clicking on the related box to the left of the protected area name or globally by clicking on the ‘Select All’ button.<br/><br/> Once you have selected the protected areas by clicking on the ‘Apply’ button, the analysis is activated.'],
         'context' => [
             'main' => [
-                'intro' => 'This sub-section allows you to analyse the Management context and its three indicators: C1 Value and Importance, C2 External supports and Constraints and C3 Threats. Three different types of analysis can be executed (1) overall (see 6.1.1), (2) Management context (see 6.1.2), (3) Threats (see 6.1.3).'
+                'intro' => 'This sub-section allows you to analyse the Management context and its three indicators: C1 Value and Importance, C2 External supports and Constraints and C3 Threats. Three different types of analysis can be executed (1) overall (see 6.1.1), (2) Management context (see 6.1.2), (3) Threats (see 6.1.3).',
             ],
             'overall_scores' => [
                 'intro' => 'This sub-section presents Management context indicators in one of the four available types of visualisations (1) Ranking, (2) Bar-chart of scores and variability of Management Context indicators, (3) Radar, (4) Data table. Select protected areas to be displayed in the radar by clicking on their names. Data table will be rendered automatically. Manual selection allows comparisons to be made between protected areas (see grouping). <br/><br/>You can sort each column of the Data table either from lowest to highest, highest to lowest, or alphabetically.'],
@@ -430,12 +385,12 @@ return [
                 'intro' => 'This sub-section presents Management context indicators in one of the four available types of visualisations (1) Ranking, (2) Bar-chart of average scores and variability within Management context sub-categories, (3) Radar, (4) Data table. Select protected areas to be displayed in the radar by clicking on their names. Data table will be rendered automatically. Manual selection allows comparisons to be made between protected areas (see grouping). <br/><br/>You can sort each column of the Data table either from lowest to highest, highest to lowest, or alphabetically.'],
             'threats' => [
                 'intro' => 'This sub-section provides an in-depth analysis of threats present in the analysed protected areas.',
-                'info' => '<b>Additional guidance</b>: It presents (1) Radar of threats’ sub-indicators for each protected area (to identify the most relevant threats for each protected area), (2) Average contribution of threat sub-categories to the overall threat score (to identify the most pertinent threats in the group of protected areas), (3) Average score and variability of threat categories sub-indicators (to identify how diverse is the impact of each threat within the group of protected areas), (4) Ranking per threat categories sub-indicators for all of the twelve threat categories (to identify the most affected protected areas). Note that the ‘Radar of threats’ shows a visualisation that is the opposite of all other radars. The most important threats values are those closer to the centre of the radar.']
+                'info' => '<b>Additional guidance</b>: It presents (1) Radar of threats’ sub-indicators for each protected area (to identify the most relevant threats for each protected area), (2) Average contribution of threat sub-categories to the overall threat score (to identify the most pertinent threats in the group of protected areas), (3) Average score and variability of threat categories sub-indicators (to identify how diverse is the impact of each threat within the group of protected areas), (4) Ranking per threat categories sub-indicators for all of the twelve threat categories (to identify the most affected protected areas). Note that the ‘Radar of threats’ shows a visualisation that is the opposite of all other radars. The most important threats values are those closer to the centre of the radar.'],
         ],
         'planning' => [
             'main' => [
                 'intro' => 'The sub-section allows to analyse Planning and its six indicators.',
-                'info' => '<b>Additional guidance</b>: This sub-section presents planning indicators in one of the four available types of visualisations (1) Ranking, (2) Bar-chart of average scores and variability of Planning indicators, (3) Radar, (4) Data table. The analysis ‘Radar of indicators’ requires the selection of protected areas for the radar and the corresponding data table. The manual selection allows comparisons to be made between protected areas (see grouping).<br/><br/> You can sort each column of the Data table either from lowest to highest, highest to lowest, or alphabetically.']
+                'info' => '<b>Additional guidance</b>: This sub-section presents planning indicators in one of the four available types of visualisations (1) Ranking, (2) Bar-chart of average scores and variability of Planning indicators, (3) Radar, (4) Data table. The analysis ‘Radar of indicators’ requires the selection of protected areas for the radar and the corresponding data table. The manual selection allows comparisons to be made between protected areas (see grouping).<br/><br/> You can sort each column of the Data table either from lowest to highest, highest to lowest, or alphabetically.'],
         ],
         'inputs' => [
             'main' => [
@@ -466,36 +421,6 @@ return [
         'relative_performance' => [
             'intro' => 'This section enables comparison of the scores of the 6 management cycle elements of a protected area to the average value of all protected areas.',
             'info' => '<b>Additional guidance</b>: The section presents two different types of analyses comparing the situation of one protected area and the average situation of other protected areas: (1) Radar view of the IMET synthetic indicator averages for all protected areas and the selected area, (2) Data table of the IMET synthetic indicator averages of all protected areas and the selected area. Note that the section does not allow to compare a protected area with other protected areas selected for the scaling up analysis.'],
-        'digital_information' => [
-            'main' => [
-                'intro' => 'Section 9 contains seven sub-sections to strengthen the analyses. To do so, additional elements based on information from digital observatories (Dopa Explorer. <a href="http://dopa.jrc.ec.europa.eu/1" target="_blank">http://dopa.jrc.ec.europa.eu/</a>) are provided. Information from these digital observatories (see sources) is constantly being updated and may change over time. The provided information for protected areas from previous years might not be correct',
-                'info' => ''],
-            'total_carbon' => [
-                'intro' => 'This subsection presents how each protected area contributes to carbon storage expressed in Mg/ha (1 ton/ha = 1.000 Kg/ha) and hence how it offsets the impacts of fossil fuel emissions for climate mitigation. ',
-                'info' => '<b>Additional guidance</b>: Forests represent one of the largest terrestrial organic carbon reservoirs, and significantly contribute to the regulation of global carbon cycle. Changes in land use and land cover can decrease aboveground carbon (AGC) stocks and related carbon emissions, which are one of the largest sources of human-caused carbon emissions to the atmosphere. Protected areas may contribute to biomass and carbon retention and thus reduce net emissions of greenhouse gasses responsible for climate change.<br/><br/><br/> <b>Source(s)</b>: <a href="http://globbiomass.org/products/global-mapping/" target="_blank">http://globbiomass.org/products/global-mapping/</a> and <a href="http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map" target="_blank">http://www.fao.org/global-soil-partnership/pillars-action/4-information-and-data-new/global-soil-organic-carbon-gsoc-map</a>'],
-            'terestial_ecoregions' => [
-                'intro' => 'This sub-section shows the terrestrial ecoregions to which each protected area belongs. The number, type, and extent of different ecoregions within a protected area is an important indicator of the area’s ecological diversity. ',
-                'info' => '<b>Additional guidance</b>: Ecoregions cover relatively large areas of land or water, and contain characteristic, geographically distinct assemblages of natural communities and species. Information on ecoregion facilitates understanding how the protected area contributes to an ecologically representative protected area network at national, regional and global scales. This is particularly important when the area protects a substantial proportion of an ecoregion, or is the only protected area, or one of a few which provides protection for an ecoregion. This information influences protected area management, planning, monitoring and reporting.<br/><br/><br/> <b>Source(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'marine_ecoregions' => [
-                'intro' => 'This sub-section shows the marine ecoregions to which each protected area belongs. The number, type, and extent of different ecoregions within a protected area is an important indicator of the area’s ecological diversity.',
-                'info' => '<b>Additional guidance</b>: Ecoregions cover relatively large areas of land or water, and contain characteristic, geographically distinct assemblages of natural communities and species. Information on ecoregion information helps understand how the protected area contributes to an ecologically representative protected area network at national, regional and global scales. This is particularly important when the area protects a substantial proportion of an ecoregion, or is the only protected area, or one of a few which provides protection for an ecoregion. This information influences its management, planning, monitoring and reporting.<br/><br/><br/> <b>Source(s)</b>: <a href="https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world" target="_blank">https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</a>'],
-            'copernicus' => [
-                'intro' => 'This sub-section shows the extent of different land cover types and anthropogenic changes in each of the analysed protected areas. ',
-                'info' => '<b>Additional guidance</b>: As human pressures often increase, it is important to monitor the consequences of the associated changes of the environment, in particular inside and around protected areas to ensure that natural ecosystems are preserved. By comparing maps of land cover change in the country, ecoregion and protected area level, land use changes can be measured and predicted for the future.<br/><br/> <b>Source(s)</b>: <a href="https://lcviewer.vito.be/2015" target="_blank">https://lcviewer.vito.be/2015</a>'],
-            'forest_cover' => [
-                'intro' => 'This sub- section presents the data related to forest cover, forest loss (in red) and forest gain (in blue) expressed in km2 and percentage. ',
-                'info' => '<b>Additional guidance</b>: Forests are one of the most important terrestrial habitats and a carbon sink that needs to be conserved to fulfil biodiversity conservation and climate change mitigation targets. By informing about the forest cover trends, and their spatial distribution, it is possible to highlight countries, ecoregions or specific protected areas with worrying forest loss trends, as well as others where forest cover is well maintained or even increases through time either naturally or through forestation.<br/><br/><br/> <b>Source(s)</b>: Forest cover 2000 and change for the period 2001–2019 (country, ecoregion, and protected area levels) <br/><br/>Hansen et al. (2013) <ul><li>Available from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest</a></li><li>	Further details on the version of this dataset used in DOPA Explorer are available from: <a href="http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html" target="_blank">http://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.7.html</a></li>'],
-            'protected_area_coverage_and_connectivity' => [
-                'intro' => 'This sub-section shows the protected area coverage and connectivity expressed in km² and percentage per country.',
-                'info' => '<b>Additional guidance</b>: Protected area coverage and connectivity (see box below) coverage is defined as the percentage of a country covered by protected and connected lands. Protected area connectivity considers both intra-protected areas and inter-protected areas connectivity, i.e. it accounts for both the amount of protected land that is available within individual protected areas and that reachable by moving between different protected areas.',
-                'table' => '<b>Box Connectivity</b> <br/><br/>The maintenance and restoration of ecosystem integrity require landscape-scale conservation. This can be achieved through systems of core protected areas that are functionally linked and buffered in ways that maintain ecosystem processes and allow species to survive and move, thus ensuring that populations are viable and that ecosystems and people are able to adapt to land transformation and change (Source IUCN)',
-                'extra_info' => '<b>Source(s)</b>: The method described above uses the following input datasets:<br/><br/><ul>
-                                    <li>Protected Areas, WDPA of January 2021 (UNEP-WCMC & IUCN, 2021), www.protectedplanet.net</li>
-                                    <li>Terrestrial Ecoregions of the World, TEOW (2001). Terrestrial ecoregions of the world (Olson et al., 2001). https://www.worldwildlife.org/publications/terrestrial-ecoregions-of-the-world</li>
-                                    <li>Country boundaries: Global Administrative Unit Layers (GAUL), revision 2015 (2017-02-02). <a href="http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691" target="_blank">http://www.fao.org/geonetwork/srv/en/metadata.show?id=12691</a></li></ul>'],
-            'land_degradation' => [
-                'intro' => 'This sub-section shows changes that have occurred over the past years in the health and productive capacity of the land inside the protected area (time-span can change; at present Land degradation changes are assessed over 15-year period (1999-2013)). ',
-                'info' => '<b>Additional guidance</b>: Land degradation severely limits the sustainability of ecosystem services. It can also indicate degradation of agricultural production around a protected area. The evolution of land degradation is presented as a graphic ring with six categories all measured in Km² (1) No biomass, (2) Persistent severe decline in productivity, (3) Persistent moderate decline in productivity, (4) Stable but stressed; persistent strong inter-annual productivity variations, (5) Stable Productivity, (6) Persistent increase in productivity.<br/><br/><br/> <b>Source(s)</b>: https://wad.jrc.ec.europa.eu/landproductivity']],
         'additional_options' => [
             'main' => [
                 'intro' => 'Section 8 contains two sub-sections that help to synthesise aspects of management (1) Analysis of Management Effectiveness, (2) Synthesis of Key Elements Affecting Elements of Management.',
@@ -505,7 +430,7 @@ return [
                 'info' => '<b>Additional guidance</b>: The PAME assessment is based on the idea that protected area management follows a process grouped in six distinct stages (representing management effectiveness elements): (1) it begins with reviewing context and establishing a vision for site management (within the context of existing status and pressures), (2) progresses through planning, (3) allocation of resources (inputs), (4) management actions (process), which lead to (5) production of goods and services (outputs), and (6) generate impacts or outcomes. '],
             'specific_actions_mention' => [
                 'intro' => 'All the analyses available in earlier sections, can be used to generate a summary or a comment on the following topics: 1) governance and management, 2) key conservation elements, 3) climate change and ecosystem services, 4) threats.',
-                'info' => '<b>Additional guidance</b>: With regards to all of the protected area elements identified during the assessment (cf. 8.2 ‘Management effectiveness analysis’), please provide – if relevant – additional considerations (synergies, partnerships, initiatives, etc.)']
-        ]
-    ]
+                'info' => '<b>Additional guidance</b>: With regards to all of the protected area elements identified during the assessment (cf. 8.2 ‘Management effectiveness analysis’), please provide – if relevant – additional considerations (synergies, partnerships, initiatives, etc.)'],
+        ],
+    ],
 ];

@@ -1,12 +1,12 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+/** @var Imet $item */
+/** @var string $stakeholder */
+/** @var Array $categories */
 
 use ImetCore\Models\Imet\oecm\Imet;
-
-/** @var Imet $item */
-/** @var String $stakeholder */
-/** @var Array $categories */
-/** @var Array $definitions */
-
 $categories = $categories !== null ? json_decode($categories) : [];
 
 ?>
@@ -79,29 +79,31 @@ $categories = $categories !== null ? json_decode($categories) : [];
                                     @if($field['name'] === 'Comments')
                                         <div class="field-preview" style="max-width: none; height: 120px;"></div>
                                     @elseif($field['name'] === 'Access')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Access',
-                                            'value' => []
-                                         ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Access"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Threats')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Threats',
-                                            'value' => []
-                                         ])
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Threats"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Guidelines')
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => 'checkbox-ImetOECM_Guidelines',
-                                            'value' => []
-                                         ])
-                                    @else
-                                        @include('modular-forms::module.show.field', [
-                                            'type' => $field['type'],
-                                            'value' => null
-                                       ])
-                                    @endif
-
-                                    @if($field['name'] === 'Element')
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="checkbox-ImetOECM_Guidelines"
+                                            :value="[]"
+                                        ></x-modular-forms::module.components.field.input-preview>
+                                    @elseif($field['name'] === 'Element')
+                                        <x-modular-forms::module.components.field.input-preview
+                                            type="text"
+                                            value=""
+                                        ></x-modular-forms::module.components.field.input-preview>
                                         <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
+                                    @else
+                                        <x-modular-forms::module.components.field.input-preview
+                                            :type="$field['type']"
+                                            :value="null"
+                                        ></x-modular-forms::module.components.field.input-preview>
                                     @endif
 
                                 </div>

@@ -8,16 +8,9 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-import { createApp, ref, reactive, watch, onMounted } from "vue";
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import dopa_indicators_table from './../../../templates/dopa/indicators_table.vue';
-import dopa_chart_bar from './../../../templates/dopa/chart_bar.vue';
-import dopa_radar from './../../../templates/dopa/chart_radar.vue';
+import { createApp, ref, reactive, watch } from "vue";
 import editor from '@modular-forms/js/inputs/text-editor.vue';
 import report_editor from './../../../inputs/editor.vue';
-import BiopamaWDPA from './../../../helpers/biopamaWDPA';
-import Map from './../../../helpers/map';
 import imet_radar from './../../../templates/imet_radar.vue';
 
 export default class Analysis {
@@ -33,8 +26,6 @@ export default class Analysis {
                 labels: Object,
                 version: [String, Number],
                 api_data: Object,
-                connection: Boolean,
-                wdpa_id: [String, Number],
                 status: String,
                 dopa_indicators: Object,
                 url: String
@@ -57,12 +48,6 @@ export default class Analysis {
             status.value = 'changed';
         }, {
             deep: true
-        });
-
-        onMounted(() => {
-            if (input_data.connection) {
-                loadMap();
-            }
         });
 
         function saveReport() {
@@ -102,22 +87,6 @@ export default class Analysis {
             radar_values[label] = scores[value].avg_indicator || null;
         });
 
-        function loadMap() {
-
-            const report_map = new maplibregl.Map({
-                container: 'map',
-                style: Map.openstreetmap,
-                center: [30, 0],
-                zoom: 4,
-                minZoom: 2,
-                maxZoom: 12,
-                attributionControl: false
-            });
-
-            report_map.on('load', function () {
-                BiopamaWDPA.vectorTileLayer(report_map, input_data.wdpa_id);
-            });
-        }
         return {
             status,
             report,
@@ -126,19 +95,15 @@ export default class Analysis {
             saveReport,
             printReport,
             dopa_indicators: input_data.dopa_indicators,
-            api_data: input_data.api_data,
-            connection: input_data.connection
+            api_data: input_data.api_data
         }
     }
 
     createApp(options, input_data) {
 
         return createApp(options, input_data)
-            .component('dopa_indicators_table', dopa_indicators_table)
             .component('editor', editor)
             .component('report-editor', report_editor)
-            .component('dopa_radar', dopa_radar)
-            .component('dopa_chart_bar', dopa_chart_bar)
             .component('imet_radar', imet_radar);
     }
 }

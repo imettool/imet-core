@@ -2,7 +2,6 @@
 
 use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Models\Imet\Imet;
-use ModularForms\Helpers\API\ProtectedPlanet\ProtectedPlanet;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -98,7 +97,7 @@ $form_class = Imet::class;
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id !== null)
                             (<a target="_blank" class="text-primary-600"
-                                href="{{ ProtectedPlanet::WEBSITE_URL . $item->wdpa_id }}">
+                                href="{{ PROTECTEDPLANET_WEBSITE_URL . $item->wdpa_id }}">
                                 {{ $item->wdpa_id }}
                             </a>)
                         @endif

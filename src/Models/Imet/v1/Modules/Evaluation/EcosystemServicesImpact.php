@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class EcosystemServicesImpact extends Modules\Component\ImetModule_Eval
+final class EcosystemServicesImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_ecosystem_services_impact';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'E/I6';
@@ -33,7 +35,7 @@ class EcosystemServicesImpact extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Impact',
-            'values' => trans('imet-core::v1_evaluation.EcosystemServicesImpact.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.EcosystemServicesImpact.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.EcosystemServicesImpact.module_info_EvaluationQuestion');
@@ -46,16 +48,14 @@ class EcosystemServicesImpact extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_EcosystemServicesImpact',
             'fields' => [
-                'Impact', 'EvaluationScore', 'Comments'
-            ]
+                'Impact', 'EvaluationScore', 'Comments',
+            ],
         ];
     }
 }

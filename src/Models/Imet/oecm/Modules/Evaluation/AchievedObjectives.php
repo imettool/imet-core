@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,16 +15,18 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
 
-class AchievedObjectives extends Modules\Component\ImetModule_Eval
+final class AchievedObjectives extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_achived_objectives';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Objective';
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
         $this->module_type = 'TABLE';
         $this->module_code = 'O/C1';
         $this->module_title = trans('imet-core::oecm_evaluation.AchievedObjectives.title');
@@ -42,26 +45,23 @@ class AchievedObjectives extends Modules\Component\ImetModule_Eval
 
     /**
      * Prefill from P6
-     *
-     * @param $form_id
-     * @return array
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $p6_values = $form_id!==null
+        $p6_values = $form_id !== null
             ? collect(Objectives::getModuleRecords($form_id)['records'])
-                ->filter(function($item){
-                    return $item['group_key']==='group0' // All objectives of group0 ("Adequacy of management plan objectives for the key elements")
+                ->filter(function (array $item): bool {
+                    return $item['group_key'] === 'group0' // All objectives of group0 ("Adequacy of management plan objectives for the key elements")
                         || $item['Existence'];           //  + only objectives with "Existence" from group1 (derived form Context: C1, C2.2, C3.2 & C4 )
                 })
                 ->pluck('Objective')
                 ->toArray()
-            : [] ;
+            : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $p6_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $p6_values,
         ];
     }
-
 }

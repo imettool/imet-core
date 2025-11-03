@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -15,21 +16,24 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
-class ImportanceSpecies extends Modules\Component\ImetModule_Eval
+final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c13';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Aspect';
+
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
         [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
         [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.2';
@@ -59,52 +63,48 @@ class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     /**
      * Prefill from CTX
      */
-    protected static function getPredefined($form_id = null): ?array
+    #[\Override]
+    public static function getPredefined(?int $form_id = null): array
     {
-        $predefined_values = $form_id!==null
+        $predefined_values = $form_id !== null
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray(),
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray()
+                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray(),
             ]
             : [];
 
         return [
-            'field' => static::$DEPENDENCY_ON,
-            'values' => $predefined_values
+            'field' => self::$DEPENDENCY_ON,
+            'values' => $predefined_values,
         ];
     }
 
     /**
      * Override
-     * @param $record
-     * @param null $foreign_key
-     * @return bool
      */
-    public function isEmptyRecord($record, $foreign_key=null): bool
+    #[\Override]
+    public function isEmptyRecord($record, $foreign_key = null): bool
     {
-        $isEmpty = true;
-
-        if($record['EvaluationScore']!==null
-            || $record['SignificativeSpecies']!==null
-            || $record['IncludeInStatistics']!==null
-            || $record['Comments']!==null
-        ){
-            $isEmpty = false;
+        if ($record['EvaluationScore'] !== null
+            || $record['SignificativeSpecies'] !== null
+            || $record['IncludeInStatistics'] !== null
+            || $record['Comments'] !== null) {
+            return false;
         }
 
-        return $isEmpty;
+        return true;
     }
 
-
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
         if ($value && Species::isTaxonomy($value)) {
             $taxonomy = Species::parseTaxonomy($value);
-            return $taxonomy['genus'] . ' ' . $taxonomy['species'];
+
+            return $taxonomy['genus'].' '.$taxonomy['species'];
         }
+
         return $value;
     }
-
-
 }

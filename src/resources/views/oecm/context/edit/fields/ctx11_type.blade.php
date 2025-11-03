@@ -1,28 +1,22 @@
 <?php
-/** @var String $type */
-/** @var String $v_value */
-/** @var String $id */
-/** @var String $class */
-/** @var String $rules */
-/** @var String $other */
-/** @var Mixed $definitions */
+/** @var string $v_id */
+/** @var string $v_value */
+/** @var string $class  */
+/** @var ?string $other [optional] */
+/** @var ?string $rules [optional] */
+/** @var string $type */
+/** @var string $module_key */
 
+use ImetCore\Helpers\SelectionList;
 
-
+$list = SelectionList::getCustomList('Imet_PaType');
 ?>
 
-<label class="radio-inline">
-    <input name="{{ $id }}" {!! $vue_attributes !!} type="radio" value="terrestrial" />
-    {{ trans('imet-core::oecm_lists.PaType.terrestrial') }}
-</label>
+@foreach($list as $v => $l)
+    <label class="radio-inline">
+        <input name="{{ $id }}" {!! $vue_attributes !!} type="radio" value="{{ $v }}"/>
+        {{ $l }}
+    </label>
+@endforeach
 
 
-<label class="radio-inline">
-    <input name="{{ $id }}" {!! $vue_attributes !!} type="radio" value="marine_and_coastal" />
-    {{ trans('imet-core::oecm_lists.PaType.marine_and_coastal') }}
-</label>
-
-<label class="radio-inline">
-    <input name="{{ $id }}" {!! $vue_attributes !!} type="radio" value="mixed" />
-    {{ trans('imet-core::oecm_lists.PaType.mixed') }}
-</label>

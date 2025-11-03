@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,28 +14,29 @@ namespace ImetCore\Models\Imet\oecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\oecm\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Traits\Payload;
-use Exception;
-use Illuminate\Http\Request;
 
 /**
- * @property $titles
+ * @property string[] $titles
  */
-class ThreatsIntegration extends Modules\Component\ImetModule_Eval
+final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_threats_integration';
+
     protected bool $fixed_rows = true;
+
     public $titles = [];
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Threat'],
-        [Modules\Evaluation\InformationAvailability::class, 'Threat']
+        [Modules\Evaluation\InformationAvailability::class, 'Threat'],
     ];
 
     protected static array $extra_raw_fields = ['Ranking' => '__score'];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'C3.2';
@@ -48,7 +50,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Threat',
-            'values' => trans('imet-core::oecm_lists.Threats')
+            'values' => trans('imet-core::oecm_lists.Threats'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.ThreatsIntegration.module_info_EvaluationQuestion');
@@ -58,7 +60,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
 
@@ -68,29 +70,23 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
             ->pluck('__score', 'Value')
             ->toArray();
 
-        foreach ($records as $index => $record){
+        foreach ($records as $index => $record) {
             $records[$index]['__score'] = $threats_ranking[$record['Threat']];
         }
 
-        $records = collect($records)
+        return collect($records)
             ->sortBy('__score')
             ->values()
-            ->toArray();
-
-        return $records;
+            ->all();
     }
 
     /**
      * Provide the list of prioritized key elements
-     * @param $form_id
-     * @return array
      */
-    public static function getPrioritizedElements($form_id): array
+    public static function getPrioritizedElements(?int $form_id): array
     {
-        return collect(static::getModuleRecords($form_id)['records'])
-            ->filter(function ($item) {
-                return $item['IncludeInStatistics'];
-            })
+        return collect(self::getModuleRecords($form_id)['records'])
+            ->filter(fn (array $item) => $item['IncludeInStatistics'])
             ->pluck('Threat')
             ->toArray();
     }
@@ -98,7 +94,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
-        $existing_values = static::getModule($form_id)
+        $existing_values = self::getModule($form_id)
             ->where('IncludeInStatistics', true)
             ->pluck($dependency_on)
             ->toArray();
@@ -109,7 +105,7 @@ class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
         // Make diff to find out what to drop
         $to_be_dropped = array_diff($existing_values, $updated_values);
+
         return array_values($to_be_dropped);
     }
-
 }

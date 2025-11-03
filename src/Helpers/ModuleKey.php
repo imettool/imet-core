@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,9 +14,8 @@ namespace ImetCore\Helpers;
 
 use Illuminate\Support\Str;
 
-
-class ModuleKey{
-
+class ModuleKey
+{
     public const separator = '__';
 
     /**
@@ -23,20 +23,22 @@ class ModuleKey{
      */
     public static function KeyToClassName($module_key): ?string
     {
-        $items = explode(self::separator, $module_key);
+        $items = explode(self::separator, (string) $module_key);
 
         $module_class = 'ImetCore\\Models';
         foreach ($items as $index => $item) {
-            if($index===1){
-                $module_class .= '\\' . $item; // Version
+            if ($index === 1) {
+                $module_class .= '\\'.$item; // Version
                 $module_class .= '\\Modules';
-            } else{
-                $module_class .= '\\' . ucfirst(Str::camel($item));
+            } else {
+                $module_class .= '\\'.ucfirst(Str::camel($item));
             }
         }
+
         if (class_exists($module_class)) {
             return $module_class;
         }
+
         return null;
     }
 
@@ -45,14 +47,15 @@ class ModuleKey{
      */
     public static function KeyToView($module_key, $view_mode = null): ?string
     {
-        $view = Str::replaceLast(ModuleKey::separator, '.' . $view_mode . '.modules.', $module_key);
-        $view = str_replace(ModuleKey::separator, '.', $view);
-        $view = Str::replaceFirst('imet.', 'imet-core::', $view);
-        if(view()->exists($view)){
-            return $view;
+        if (Str::startsWith($module_key, 'imet')) {
+            $view = Str::replaceLast(ModuleKey::separator, '.'.$view_mode.'.modules.', $module_key);
+            $view = str_replace(ModuleKey::separator, '.', $view);
+            $view = Str::replaceFirst('imet.', 'imet-core::', $view);
+            if ($view !== null && view()->exists($view)) {
+                return $view;
+            }
         }
 
         return null;
     }
-
 }

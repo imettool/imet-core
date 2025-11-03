@@ -1,8 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
-
+/** @var array $definitions */
+/** @var array $records */
 
 $record  = $records[0];
 
@@ -51,32 +50,33 @@ $totalBudget = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Mo
             {{--  fields  --}}
             @foreach($definitions['fields'] as $field)
                 <td>
-                    @include('modular-forms::module.show.field', [
-                        'type' => $field['type'],
-                        'value' => $record[$field['name']]
-                   ])
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$field['type']"
+                        :value="$record[$field['name']]"
+                    ></x-modular-forms::module.components.field.input-preview>
                 </td>
             @endforeach
             <td>
-                @include('modular-forms::module.show.field', [
-                                   'type' => 'numeric',
-                                   'value' => $sumRow>0 ? $sumRow : ''
-                               ])</td>
+                <x-modular-forms::module.components.field.input-preview
+                    type="numeric"
+                    :value="$sumRow>0 ? $sumRow : ''"
+                ></x-modular-forms::module.components.field.input-preview>
+            </td>
             <td>
-                @include('modular-forms::module.show.field', [
-                                   'type' => 'numeric',
-                                   'value' => $percentRow>0 ? $percentRow : ''
-                               ])
+                <x-modular-forms::module.components.field.input-preview
+                    type="numeric"
+                    :value="$percentRow>0 ? $percentRow : ''"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
         </tr>
         @endforeach
         <tr class="module-table-item">
             <td></td>
             <td>
-                @include('modular-forms::module.show.field', [
-                   'type' => 'numeric',
-                   'value' => 999
-               ])
+                <x-modular-forms::module.components.field.input-preview
+                    type="numeric"
+                    :value="999"
+                ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td colspan="4">
             </td>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,35 +15,34 @@ return [
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
-            'Element' =>        'Element/Indicator',
-            'Status' =>         'Baseline',
-            'Objective' =>      'Objective - Optimal or favourable status',
-            'Comments' =>       'Comments'
-        ]
+            'Element' => 'Element/Indicator',
+            'Status' => 'Baseline',
+            'Objective' => 'Objective - Optimal or favourable status',
+            'Comments' => 'Comments',
+        ],
     ],
 
     'Objectives1' => [
-        'module_info' => 'Establish and describe objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for the governance, partnerships and the designation of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area',
     ],
     'Objectives2' => [
-        'module_info' => 'Establish and describe objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>boundaries, configuration index, extension of patrols and law enforcement and territorial context</b> of the protected area</b><br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area',
     ],
     'Objectives3' => [
-        'module_info' => 'Establish and describe objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area'
+        'module_info' => 'Establish and describe objectives for <b>human and financial resources/support from partnerships in managing</b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area',
     ],
     'Objectives4' => [
-        'module_info' => ' Establish and describe objectives or GL performance thresholds for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2'
+        'module_info' => ' Establish and describe objectives or GL performance thresholds for key factors: <b> i) animal species ii) plant species; iii) habitats and iv) land-cover change </b> of the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2',
     ],
     'Objectives5' => [
-        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value'
+        'module_info' => 'Establish and describe objectives for <b>threats</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the threats as condition to improve to prevent loss of the value',
     ],
     'Objectives6' => [
-        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value'
+        'module_info' => 'Establish and describe objectives for <b>climate change effects</b> facing the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.1 - Generic indicator 4.1.1 or 4.1.2 considering the effects of climate change as a condition to improve to prevent loss of the value',
     ],
     'Objectives7' => [
-        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values'
+        'module_info' => 'Establish and describe objectives for <b> the ecosystem services and the dependence on these services of communities/societies</b> in the protected area<br /> The objectives entered below will be used for improving management, and more specifically for the planning, resource (input) mobilisation, process phases, and for monitoring management activities of the protected area.<br />The GL performance thresholds for these conservation elements correspond to Component 4 - Criterion 4.2 - Generic indicator 4.2.1 for the ecosystem services for provisioning, regulation and supporting values and Criterion 4.3 - Generic indicator 4.3.1 for the ecosystem services related to cultural values',
     ],
-
 
     'GeneralInfo' => [
         'title' => 'Basic data',
@@ -92,8 +92,8 @@ return [
             other locally relevant values” (CBD, 2018)',
             'icca' => 'A natural and/or modified ecosystems, containing significant biodiversity values, ecological benefits
             and cultural values, voluntarily conserved by indigenous peoples and local communities, through customary laws
-            or other effective means (CBD -Recognising and Supporting ICCAs)'
-        ]
+            or other effective means (CBD -Recognising and Supporting ICCAs)',
+        ],
     ],
 
     'Governance' => [
@@ -110,11 +110,10 @@ return [
         ],
         'governance' => 'Governance',
         'partnership' => 'Partnerships',
-        'module_info' =>
-            'This section describes the existing governance structure and stakeholder partnerships within the protected
+        'module_info' => 'This section describes the existing governance structure and stakeholder partnerships within the protected
              area. It outlines the key institutions involved, kind of decision-making processes, stakeholder roles and
              the level of coordination between actors. It also highlights the current partnerships supporting conservation
-             efforts and their role in management implementation.'
+             efforts and their role in management implementation.',
     ],
 
     'SpecialStatus' => [
@@ -128,17 +127,16 @@ return [
             'upload' => 'upload',
         ],
         'groups' => [
-            'conventions'  => 'Designations (inclusions) in the international conventions list (World Heritage, RAMSAR, etc.)',
-            'networks'     => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
+            'conventions' => 'Designations (inclusions) in the international conventions list (World Heritage, RAMSAR, etc.)',
+            'networks' => 'Membership of an officially recognized international network (MAB, RAPAC etc.)',
             'conservation' => 'Designation for the status of conservation importance by international bodies (IBA, AZE, etc.)',
-            'marine_pa'    => 'Designation of marine protected areas',
+            'marine_pa' => 'Designation of marine protected areas',
         ],
-        'module_info' =>
-            'This section outlines the official designations given to the protected area, such as World Heritage Sites,
+        'module_info' => 'This section outlines the official designations given to the protected area, such as World Heritage Sites,
             Man and Biosphere Reserves (MAB), Ramsar Sites, Important Bird Areas (IBA), Specially Protected Areas of
             Mediterranean Importance (SPAMI) and Locally Managed Marine Areas (LMMA). These designations reflect the
             ecological importance of the area and influence its management framework, conservation priorities and
-            international obligations.'
+            international obligations.',
     ],
 
     'Networks' => [
@@ -152,10 +150,9 @@ return [
             'group1' => 'Landscape network (terrestrial and marine protected areas) - Network (marine network)',
             'group2' => 'Other networks',
         ],
-        'module_info' =>
-            'This section describes the protected area\'s membership of various management networks at local, transboundary 
-            and landscape levels. It identifies links with other protected areas within these networks and highlights 
-            collaborative frameworks for conservation and management relevant to the protected area'
+        'module_info' => 'This section describes the protected area\'s membership of various management networks at local, transboundary
+            and landscape levels. It identifies links with other protected areas within these networks and highlights
+            collaborative frameworks for conservation and management relevant to the protected area',
     ],
 
     'Missions' => [
@@ -173,8 +170,7 @@ return [
             'InternationalManagementPlan' => 'File (Management plan)',
             'Observation' => 'Observation',
         ],
-        'module_info' =>
-            'This section presents the strategic framework for the protected area, including its vision, mission and
+        'module_info' => 'This section presents the strategic framework for the protected area, including its vision, mission and
             management objectives.:
             <ul>
             <li><b>Vision of the protected area</b>: The vision is basically a plan for how the PA should be in the future,
@@ -187,7 +183,7 @@ return [
             vision and mission into specific goals that guide management efforts over the next 10 to 20 years. These
             objectives are based on the key areas of conservation, governance, and sustainability, making sure that
             the PA does its job in terms of ecology and the economy.</li>
-            </ul>'
+            </ul>',
     ],
 
     'Contexts' => [
@@ -204,10 +200,9 @@ return [
             'Socio-economic context',
             'Political context (country)',
             'Legal context',
-            'Institutional context'
+            'Institutional context',
         ],
-        'module_info' =>
-            'This section provides an overview of the key contextual factors affecting the protected area. It includes
+        'module_info' => 'This section provides an overview of the key contextual factors affecting the protected area. It includes
             <ul>
             <li><b>Historical context</b>: Key events and milestones that have shaped the conservation and management
             of the area.</li>
@@ -220,7 +215,7 @@ return [
             <li><b>Institutional context</b>: The roles and responsibilities of key institutions involved in the management
             and governance of the area.</li>
             </ul>
-            These elements define the broader framework within which the protected area operates.'
+            These elements define the broader framework within which the protected area operates.',
     ],
 
     'GeographicalLocation' => [
@@ -233,10 +228,9 @@ return [
             'SourceCoords' => 'Source',
             'AdministrativeLocation' => 'Administrative location of the protected area (province, region, etc.)',
         ],
-        'module_info' =>
-            'This section provides information on the geographical location of the protected area. It includes its
+        'module_info' => 'This section provides information on the geographical location of the protected area. It includes its
             coordinates, administrative location of the protected areas. The description highlights the position of the
-            protected areas within a wider territorial context.'
+            protected areas within a wider territorial context.',
     ],
 
     'Areas' => [
@@ -255,10 +249,9 @@ return [
             'Index' => 'Configuration index [Shape index<br />&radic;(3.14)/(6.28)*perimeter/&radic;(area) =<br /> good 1 - 1.5; average 1.5 - 2; low > 2]',
             'Observations' => 'Notes',
         ],
-        'module_info' =>
-            'This section provides key data on the size, boundary length, terrestrial and marine coverage and spatial
+        'module_info' => 'This section provides key data on the size, boundary length, terrestrial and marine coverage and spatial
             configuration of the property. It also situates the property within national, ecoregional, transboundary and
-            landscape conservation networks, highlighting its role in wider conservation efforts.'
+            landscape conservation networks, highlighting its role in wider conservation efforts.',
     ],
 
     'Sectors' => [
@@ -273,8 +266,7 @@ return [
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
-        'module_info' =>
-            '<b>Average Patrol Day-Km² in African National Parks - Standard Practice</b>:
+        'module_info' => '<b>Average Patrol Day-Km² in African National Parks - Standard Practice</b>:
             For effective management, <b>some studies and park management guidelines suggest an average of 1-4 patrol
             days per square kilometre per year</b>. This means that for every square kilometre of protected area, rangers
             should ideally spend between 1 and 4 days patrolling each year.
@@ -287,8 +279,8 @@ return [
             </ul>
             <b>Note on Kruger National Park, South Africa</b>: Due to the high threat of rhino poaching, parts of Kruger
             have patrol intensities of 10 patrol days per square kilometre per year or more.',
-        'area_percentage'               => '% of the area',
-        'average_time'                  => 'Average patrol * d * km² of the sector'
+        'area_percentage' => '% of the area',
+        'average_time' => 'Average patrol * d * km² of the sector',
     ],
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context (Landscape) of the Protected Area',
@@ -312,8 +304,7 @@ return [
             'SpillOverEvalDistance200_3000' => '',
         ],
         'info' => [
-            'spillover_eval' =>
-                'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to
+            'spillover_eval' => 'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to
                 the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation,
                 although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
                 <li>Strong spill-over positive effect when the fishery is mismanaged</li>
@@ -336,7 +327,7 @@ return [
                 '-2' => 'Strong negative difference',
                 '-1' => 'Least negative difference',
                 '0' => 'No difference',
-            ]
+            ],
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
@@ -367,7 +358,7 @@ return [
             'difference' => 'Difference',
             'Source' => 'Source',
         ],
-        'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area'
+        'module_info' => 'The statistical system allows only fourteen lines to identify the functions of the staff of the protected area',
     ],
 
     'ManagementStaffPartners' => [
@@ -377,7 +368,7 @@ return [
             'Coordinators' => 'Coordinators (number)',
             'Technicians' => 'Technical and administrative staff (number)',
             'Auxiliaries' => 'Auxiliary staff (number)',
-        ]
+        ],
     ],
 
     'ManagementStaffCommunities' => [
@@ -390,7 +381,7 @@ return [
             'StaffNUmberRole2' => 'Number',
             'Role3' => 'Role',
             'StaffNUmberRole3' => 'Number',
-        ]
+        ],
     ],
 
     'FinancialResources' => [
@@ -402,11 +393,11 @@ return [
             'OperationalWorkPlanCosts' => 'Total budget estimated on Working plan (budgeted annually)',
             'TotalBudget' => 'Total annual budget actually available',
         ],
-        'amount'                        => 'Total',
-        'functioning_costs'             => 'Total budget ($ or €/km2/year)',
-        'estimation_financial_plan'     => '% of resources required by Financial plan (annual budget)',
-        'estimation_operational_plan'   => '% of resources required by the Working plan (annual budget)',
-        'module_info' => 'Estimated total costs based on Financial plan'
+        'amount' => 'Total',
+        'functioning_costs' => 'Total budget ($ or €/km2/year)',
+        'estimation_financial_plan' => '% of resources required by Financial plan (annual budget)',
+        'estimation_operational_plan' => '% of resources required by the Working plan (annual budget)',
+        'module_info' => 'Estimated total costs based on Financial plan',
     ],
 
     'FinancialAvailableResources' => [
@@ -420,13 +411,13 @@ return [
             'total' => 'total',
             'percentage' => '% of planned budget',
         ],
-        "predefined_values" => [
-            "Total annual budget available",
-            "Total annual budget available for operating",
-            "Total annual budget available for investments"
+        'predefined_values' => [
+            'Total annual budget available',
+            'Total annual budget available for operating',
+            'Total annual budget available for investments',
         ],
         'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>',
-        'sum_error' => 'The total should correspond to the total budget declared in the module <b>CTX 3.2.1</b>'
+        'sum_error' => 'The total should correspond to the total budget declared in the module <b>CTX 3.2.1</b>',
     ],
 
     'FinancialResourcesBudgetLines' => [
@@ -439,7 +430,7 @@ return [
             'percentage' => '% of available budget',
         ],
         'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>',
-        'sum_error' => 'The total should correspond to the total budget declared in the module <b>CTX 3.2.1</b>'
+        'sum_error' => 'The total should correspond to the total budget declared in the module <b>CTX 3.2.1</b>',
     ],
 
     'FinancialResourcesPartners' => [
@@ -453,7 +444,7 @@ return [
             'Observations' => 'Notes',
             'Currency' => 'Currency',
         ],
-        'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>'
+        'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>',
     ],
 
     'Equipments' => [
@@ -461,7 +452,7 @@ return [
         'fields' => [
             'Resource' => 'Category',
             'AdequacyLevel' => 'Adequacy',
-            'Comments' => 'Source / Note'
+            'Comments' => 'Source / Note',
         ],
         'groups' => [
             'group0' => 'Administrative buildings',
@@ -476,22 +467,22 @@ return [
             'group9' => 'Roads and tracks',
             'group10' => 'Waterways',
             'group11' => 'Airstrips',
-            'group12' => 'Links and connections of the protected area with the outer world'
+            'group12' => 'Links and connections of the protected area with the outer world',
         ],
         'predefined_values' => [
-            'group0' =>  ['Offices','Patrol posts','Barrier points','Scientific buildings','Garage and workshop','Room for dive bottles and other dive gear', 'Boat sheds', 'Car-Boat parking', 'Miscellaneous services (magazine, radio, etc.)','Health care centre'],
-            'group1' =>  ['For officers and deputy officers', 'For ranger staff', 'For support staff', 'For scientific staff'],
-            'group2' =>  ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
-            'group3' =>  ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
-            'group4' =>  ['Control radar', 'Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
-            'group5' =>  ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
-            'group6' =>  ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Inverter'],
-            'group7' =>  ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water supply'],
-            'group8' =>  ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
-            'group9' =>  ['Roads/tracks inside the protected area', 'Paths inside the protected area', 'Road along the border'],
+            'group0' => ['Offices', 'Patrol posts', 'Barrier points', 'Scientific buildings', 'Garage and workshop', 'Room for dive bottles and other dive gear', 'Boat sheds', 'Car-Boat parking', 'Miscellaneous services (magazine, radio, etc.)', 'Health care centre'],
+            'group1' => ['For officers and deputy officers', 'For ranger staff', 'For support staff', 'For scientific staff'],
+            'group2' => ['Hotels (guest capacity)', 'Eco-lodges (guest capacity)', 'Encampments (guest capacity)', 'Reception facilities for tourists', 'Viewpoints or Observation points', 'Available tourist routes (km)'],
+            'group3' => ['Cars', 'Motorbike/Quads', 'Bicycles', 'Boats', 'Outboard motors', 'Pirogues', 'Aeroplane, microlight', 'Heavy engines'],
+            'group4' => ['Control radar', 'Weapons', 'Cartridges', 'Uniforms', 'Rations (per diem)', 'GPS, compasses', 'Camping and bush equipment'],
+            'group5' => ['VHF/HF radios', 'V-SAT', 'Landline telephones', 'GSM telephones', 'Satellite telephones', 'Internet connection'],
+            'group6' => ['Desktop computers', 'Printers', 'Photocopiers', 'Laptop computers', 'Inverter'],
+            'group7' => ['Power generators', 'Solar electric facility', 'Hydropower electric facility', 'Wind electric facility', 'Water supply'],
+            'group8' => ['Vehicles/boats', 'Radios', 'Buildings', 'Electrical network', 'Hydraulic network', 'Heavy engines'],
+            'group9' => ['Roads/tracks inside the protected area', 'Paths inside the protected area', 'Road along the border'],
             'group10' => ['Waterways inside the protected area'],
             'group11' => ['Airstrips inside and outside the protected area'],
-            'group12' => ['Major land-based communication routes', 'Inland and maritime waterways', 'National and international air connections']
+            'group12' => ['Major land-based communication routes', 'Inland and maritime waterways', 'National and international air connections'],
         ],
         'ratingLegend' => [
             'AdequacyLevel' => [
@@ -499,8 +490,8 @@ return [
                 '1' => 'Somewhat inadequate (31-60% of the needs)',
                 '2' => 'Adequate (61-90% of the needs)',
                 '3' => 'Fully adequate (91-100% of the needs)',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'AnimalSpecies' => [
@@ -522,9 +513,8 @@ return [
         ],
         'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'VegetalSpecies' => [
@@ -544,9 +534,8 @@ return [
             'Comments' => 'Source / Note',
         ],
         'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'Habitats' => [
@@ -560,12 +549,11 @@ return [
             'Trend' => 'Trend',
             'Reliability' => 'Reliability of information',
             'Sectors' => 'Sectors',
-            'Comments' => 'Comments / Source'
+            'Comments' => 'Comments / Source',
         ],
         'module_info' => 'Note: Favourable conservation status:<br />From Natura 2000, the conservation status of a natural habitat is considered ‘favourable’ when:<ul><li><li>its natural range and areas it covers within that range are stable or increasing, and</li><li>the specific structure and functions which are necessary for its long-term maintenance exist and are likely to continue to exist for the foreseeable future</li></ul>Rating: Select and evaluate the most important ecosystem and habitat-related parameters of terrestrial and marine habitats of the protected area.<br /> <b>Note</b>: Habitat evaluation is still emerging as a discipline, since it is highly complex. The classification provides for the following division of territory: Biome, Ecoregion, Ecosystem, Habitat. Habitat characteristics/values can be assessed as: <ul> <li>i) under threat of extinction (within their natural range),</li> <li>ii) having a reduced natural range,</li> <li>iii) in decline,</li> <li>iv) an outstanding example of specific characteristics, etc.</li> </ul> Assessment of habitats can also be performed from the perspective of: <ul> <li>i) reproduction,</li> <li>ii) nutrition,</li> <li>iii) species protection, etc.</li> </ul>',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C1.3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'MenacesPressions' => [
@@ -577,7 +565,7 @@ return [
             'Duration' => 'Duration',
             'Trend' => 'Trend',
             'Probability' => 'Probability for the threat in future',
-            'Comments' =>       'Comments'
+            'Comments' => 'Comments',
         ],
         'groups' => [
             'group0' => 'Commercial and residential',
@@ -605,7 +593,7 @@ return [
             'group22' => 'Excessive energy use',
             'group23' => 'Geological phenomena',
             'group24' => 'Climate change effects',
-            'group25' => 'Other pressures and threats'
+            'group25' => 'Other pressures and threats',
         ],
         'predefined_values' => [
             'group0' => [
@@ -614,33 +602,33 @@ return [
                 'Tourist and recreational areas',
                 'Enclave areas',
                 'Shipping lanes, ports, marine constructions',
-                'Inland activities'
+                'Inland activities',
             ],
             'group1' => [
                 'Shifting cultivation',
                 'Smallholder farming',
                 'Large agro-industrial enterprises',
                 'Production fruits/ vegetable garden',
-                'Extraction of fertilizer for agriculture'
+                'Extraction of fertilizer for agriculture',
             ],
             'group2' => [
                 'Small plantations',
-                'Agro-industrial plantations'
+                'Agro-industrial plantations',
             ],
             'group3' => [
                 'Nomadic grazing',
                 'Livestock farming and grazing on small farms',
-                'Agro-industrial livestock farming and grazing'
+                'Agro-industrial livestock farming and grazing',
             ],
             'group4' => [
                 'Subsistence or artisanal aquaculture',
                 'Over nutrient',
-                'Industrial aquaculture'
+                'Industrial aquaculture',
             ],
             'group6' => [
                 'Drilling (gas and oil)',
                 'Mining or quarrying operations',
-                'Renewable abiotic energy use'
+                'Renewable abiotic energy use',
             ],
             'group7' => [
                 'Roads',
@@ -649,26 +637,26 @@ return [
                 'Commercial boating',
                 'Private boating',
                 'Air corridors',
-                'Railways'
+                'Railways',
             ],
             'group8' => [
                 'Hunting of land animals',
                 'Harvesting of live animals',
-                'Collecting small animals as insects or their products as honey'
+                'Collecting small animals as insects or their products as honey',
             ],
             'group9' => [
                 'Plant gathering',
                 'Plant harvesting',
                 'Harvesting food vegetal as tubers, fruits, etc.',
                 'Harvesting plants for medicines',
-                'Harvesting Stems - fibres (palms, kenaf, kapok, coco, etc.)'
+                'Harvesting Stems - fibres (palms, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Small-scale lumber operations',
                 'Large-scale fuelwood operations',
                 'Small-scale fuelwood operations',
                 'Large-scale lumber operations',
-                'Battens/poles for construction'
+                'Battens/poles for construction',
             ],
             'group11' => [
                 'Subsistence or small-scale fishing',
@@ -681,7 +669,7 @@ return [
                 'Endangered species exploitation',
                 'Trawlers/purse-seiners',
                 'Harvesting ornamental and aquarium resources (seeds, shells and fishes’ collection',
-                'Harvesting alga'
+                'Harvesting alga',
             ],
             'group12' => [
                 'Recreational activities',
@@ -693,13 +681,13 @@ return [
                 'Recreational fishing spearfishing',
                 'Bathing and trampling',
                 'Scuba-diving',
-                'Wars, civil unrest and military exercises'
+                'Wars, civil unrest and military exercises',
             ],
             'group13' => [
                 'Frequency and intensity of fires',
                 'Human induced changes in hydraulic conditions',
                 'Changes in abiotic conditions',
-                'Changes in biotic conditions'
+                'Changes in biotic conditions',
             ],
             'group14' => [
                 'Surface water abstraction (domestic usage))',
@@ -713,10 +701,10 @@ return [
                 'Small dams',
                 'Large dams',
                 'Dams (size unknown)',
-                'Dams for energy'
+                'Dams for energy',
             ],
             'group' => [
-                'Harvesting sand from the beaches'
+                'Harvesting sand from the beaches',
             ],
             'group16' => [
                 'Invasive introduced species or diseases',
@@ -727,45 +715,45 @@ return [
                 'Disease of unknown cause',
                 'Biocenotic evolution',
                 'Interspecific faunal relations',
-                'Multiple ecosystem modifications'
+                'Multiple ecosystem modifications',
             ],
             'group17' => [
                 'Waste water and sewers',
                 'Leaks',
-                'Plastics'
+                'Plastics',
             ],
             'group18' => [
                 'Oil slick',
                 'Ship discharges',
-                'Mining leak'
+                'Mining leak',
             ],
             'group19' => [
                 'Nutrient load',
                 'Soil erosion and sedimentation',
                 'Herbicides and pesticides',
-                'Watershed-based pollution'
+                'Watershed-based pollution',
             ],
             'group20' => [
                 'Municipal waste',
                 'Litter from cars / Flotsam & jetsam from recreational boats',
                 'Construction debris',
-                'Waste that entangles wildlife'
+                'Waste that entangles wildlife',
             ],
             'group21' => [
                 'Acid rain',
                 'Pollution cloud',
-                'Ozone'
+                'Ozone',
             ],
             'group22' => [
                 'Light pollution',
                 'Heat pollution',
-                'Noise pollution'
+                'Noise pollution',
             ],
             'group23' => [
                 'Volcanoes',
                 'Earthquakes and tsunamis',
                 'Avalanches and landslides',
-                'Abiotic natural processes'
+                'Abiotic natural processes',
             ],
             'group24' => [
                 'Damage and changes to habitat',
@@ -773,11 +761,11 @@ return [
                 'Extreme temperatures',
                 'Storms and flooding',
                 'Increased rainfall and seasonal changes',
-                'Warming, acidification, bleaching, deoxygenation'
+                'Warming, acidification, bleaching, deoxygenation',
             ],
             'group25' => [
-                'Human-Wildlife Conflict'
-            ]
+                'Human-Wildlife Conflict',
+            ],
         ],
         'categories' => [
             'title1' => 'Commercial and residential',
@@ -789,9 +777,9 @@ return [
             'title7' => 'Changes in the natural system',
             'title8' => 'Invasive / challenging species',
             'title9' => 'Pollution',
-            'title10' =>'Geological phenomena',
-            'title11' =>'Climate change and effects',
-            'title12' =>'Other pressures and threats'
+            'title10' => 'Geological phenomena',
+            'title11' => 'Climate change and effects',
+            'title12' => 'Other pressures and threats',
         ],
         'ratingLegend' => [
             'Impact' => [
@@ -827,9 +815,8 @@ return [
             ],
         ],
         'module_info' => 'The threats calculator measures the impact of threats on a specific protected area. Using your best professional judgement, you evaluate the threat impact exploiting five categories of score: (1) Impact/ Severity; (2) Scale/ Extent; (3) Duration/ Irreversibility; (4) Trend; (5) Probability for the threat in the future',
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C3</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'ClimateChange' => [
@@ -855,11 +842,10 @@ return [
                 '1' => 'Moderately affected by climate change',
                 '2' => 'Little affected by climate change',
                 '3' => 'Not affected by climate change',
-            ]
+            ],
         ],
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C1.4</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
     'EcosystemServices' => [
@@ -884,9 +870,9 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply - illegal', 'Water supply - legal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - illegal', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.) - legal', 'Human food - animal (wild / farmed meat, insects) - illegal', 'Human food - animal (wild / farmed meat, insects) - legal', 'Medicines and blue biotechnology (fish oil) - illegal', 'Medicines and blue biotechnology (fish oil) - legal', 'Fish / livestock feed (wild, farmed, bait) - illegal', 'Fish / livestock feed (wild, farmed, bait) - legal'],
-            'group1' => ['High value timber - illegal', 'High value timber - legal', 'Timber for local construction - illegal', 'Timber for local construction - legal','Stems - fibres (palms, kenaf, etc.) - illegal', 'Stems - fibres (palms, kenaf, etc.) - legal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - illegal', 'Other fibres (leaves, fruits...) (kapok, coco, etc.) - legal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - illegal', 'Ornamental and aquaria resources (seeds, shells and fishes collection) - legal', 'Sand (building) - illegal', 'Sand (building) - legal', 'Algal/shells - illegal', 'Algal/shells - legal', 'Cultivation land (agriculture, livestock, forests) - illegal', 'Cultivation land (agriculture, livestock, forests) - legal'],
-            'group2' => ['Fuelwood and biofuels - illegal', 'Fuelwood and biofuels - legal', 'Water for energy - illegal', 'Water for energy - legal', 'Fertiliser - illegal', 'Fertiliser - legal'],
+            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)'],
+            'group1' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, fruits...) (kapok, coco, etc.)', 'Ornamental and aquaria resources (seeds, shells and fishes collection)', 'Sand (building)', 'Algal/shells', 'Cultivation land (agriculture, livestock, forests)'],
+            'group2' => ['Fuelwood and biofuels', 'Water for energy', 'Fertiliser'],
             'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)', 'Prevention of coastal erosion'],
             'group4' => ['Flood control', 'Drought control', 'Storm protection', 'Water erosion control', 'Wind erosion control', 'Prevention of coastal erosion'],
             'group5' => ['Aesthetic (ecosystem integrity) benefits', 'Ecotourism and nature watching', 'Walking, hiking and general recreation', 'Boating, swimming and diving', 'Snorkeling, boating and diving', 'Hunting or fishing if permitted', 'Specified traditional fishing'],
@@ -905,7 +891,7 @@ return [
         'ratingLegend' => [
             'Importance' => [
                 'Local' => 'Importance limited to the local or regional communities (e.g. tuber, fruits, firewood, etc.)',
-                'Larger' => 'Importance extended to the national and global societies (watershed, tourism, etc.)'
+                'Larger' => 'Importance extended to the national and global societies (watershed, tourism, etc.)',
             ],
             'ImportanceRegional' => [
                 '0' => 'very low',
@@ -918,12 +904,11 @@ return [
                 '-1' => 'slightly decreasing',
                 '0' => 'no change',
                 '1' => 'slightly increasing',
-                '2' => 'increasing'
-            ]
+                '2' => 'increasing',
+            ],
         ],
-        'warning_on_save' =>
-            'WARNING!! <br /> Any modification might cause data loss in the following
-            evaluation modules (if already encoded): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>'
+        'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
+            evaluation modules (if already encoded): <br /> <i>C1.5</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
 
 ];

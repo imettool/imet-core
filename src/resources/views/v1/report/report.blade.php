@@ -1,9 +1,8 @@
 <?php
 
-use ImetCore\Controllers\Imet\ApiController;
+use ImetCore\Services\Scores\AssessmentsScores;
 use ImetCore\Models\Imet\v1\Imet;
 use ImetCore\Services\Scores\Functions\_Scores;
-use ImetCore\Services\Scores\ImetScores;
 use Illuminate\Support\Facades\App;
 
 /** @var string $action */
@@ -12,14 +11,11 @@ use Illuminate\Support\Facades\App;
 /** @var array $labels */
 /** @var array $key_elements */
 /** @var array $report */
-/** @var array $wdpa_extent */
-/** @var array $dopa_radar */
-/** @var array $dopa_indicators */
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
 /** @var bool $connection */
-/** @var bool $show_api */
+/** @var bool $show_general_info */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
 
@@ -41,23 +37,20 @@ if ($item->language != App::getLocale()) {
     {{--  Phase  --}}
     @include('imet-core::components.phase', ['phase' => 'report'])
 
-    <div id="imet_report">
+    <div id="imet_report_map" class="imet_report">
 
-        @if ($show_api)
+        @if ($show_general_info)
             <div class="module-container">
                 <div class="module-header">
                     <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
                 </div>
                 <div class="module-body">
-                    <div id="map" v-if=connection></div>
-                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
+                    @if($connection)
+                        <div id="map"></div>
+                    @else
+                        <div class="connection_not_available">@lang('imet-core::common.connection_not_available')</div>
+                    @endif
                     <div style="display: flex;">
-                        @if ($connection)
-                            <div id="radar">
-                                <dopa_radar data='@json($dopa_radar)'></dopa_radar>
-                                &copy;Dopa Services
-                            </div>
-                        @endif
                         <div>
                             <div>
                                 <div class="highlight">@lang('imet-core::v2_report.country'):
@@ -113,6 +106,10 @@ if ($item->language != App::getLocale()) {
             'non_wdpa' => $non_wdpa,
         ])
 
+    </div>
+
+    <div class="imet_report">
+
         <div class="module-container">
             <div class="module-header">
                 <div class="module-title">@lang('imet-core::v2_report..evaluation_elements')</div>
@@ -122,7 +119,6 @@ if ($item->language != App::getLocale()) {
                     @include('imet-core::components.scores', [
                         'item' => $item,
                         'step' => null,
-                        'radar_show' => false,
                         'version' => \ImetCore\Models\Imet\Imet::IMET_V1,
                     ])
                     <div class="w-4/12">
@@ -141,17 +137,21 @@ if ($item->language != App::getLocale()) {
                         <th>@lang('imet-core::common.indexes.imet')</th>
                     </tr>
                     <tr>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['context']) !!}">{{ $scores[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['planning']) !!}">{{ $scores[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['inputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['process']) !!}">{{ $scores[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['outcomes']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td class="{!! ApiController::score_class($scores[_Scores::RADAR_SCORES]['imet_index']) !!}">{{ $scores[_Scores::RADAR_SCORES]['imet_index'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['context']) !!}">{{ $scores[_Scores::RADAR_SCORES]['context'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['planning']) !!}">{{ $scores[_Scores::RADAR_SCORES]['planning'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['inputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['inputs'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['process']) !!}">{{ $scores[_Scores::RADAR_SCORES]['process'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['outputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outputs'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['outcomes']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outcomes'] }}</td>
+                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['imet_index']) !!}">{{ $scores[_Scores::RADAR_SCORES]['imet_index'] }}</td>
                     </tr>
                 </table>
             </div>
         </div>
+
+    </div>
+
+    <div id="imet_report" class="imet_report">
 
         <div class="module-container">
             <div class="module-header">
@@ -252,39 +252,6 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">Annexes (&copy;Dopa Services)</div>
-            </div>
-            <div class="module-body">
-                <div>
-                    <div v-if=connection>
-
-                        <b>@lang('imet-core::v2_report.forest_cover')</b>
-                        <dopa_indicators_table :title=dopa_indicators.forest_cover.title_table
-                            :indicators=dopa_indicators.forest_cover.indicators :api_data="api_data">
-                        </dopa_indicators_table>
-                        <dopa_chart_bar :title=dopa_indicators.forest_cover.title_chart
-                            :indicators=dopa_indicators.forest_cover.bar_indicators :api_data=api_data></dopa_chart_bar>
-
-                        <hr />
-
-                        <b>@lang('imet-core::v2_report.total_carbon')</b>
-                        <dopa_indicators_table :title=dopa_indicators.total_carbon.title_table
-                            :indicators=dopa_indicators.total_carbon.indicators :api_data=api_data></dopa_indicators_table>
-
-
-                        <b>@lang('imet-core::v2_report.agricultural_pressure')</b>
-                        <dopa_indicators_table :title=dopa_indicators.agricultural_pressure.title_table
-                            :indicators=dopa_indicators.agricultural_pressure.indicators :api_data=api_data>
-                        </dopa_indicators_table>
-
-                    </div>
-                    <div v-else class="dopa_not_available">@lang('imet-core::common.dopa_not_available')</div>
-                </div>
-            </div>
-        </div>
-
         @if ($action === 'edit')
             <div class="scrollButtons" v-cloak>
                 {{-- Save --}}
@@ -325,102 +292,22 @@ if ($item->language != App::getLocale()) {
             padding-left: 15px !important;
         }
     </style>
+
+    <script type="module">
+        const appMap = (new window.ImetCore.Apps.AnalysisMap({
+            wdpa_id: '{{ $item->wdpa_id }}'
+        }));
+
+        appMap.mount('#imet_report_map');
+    </script>
+
     <script type="module">
         const app = (new window.ImetCore.Apps.Analysis({
             report: @json($report),
             scores: @json($scores),
             labels: @json($labels),
             version: "{{ \ImetCore\Models\Imet\Imet::IMET_V1 }}",
-            loading: false,
-            error: false,
             status: 'idle',
-            connection: {{ $connection ? 'true' : 'false' }},
-            report_map: null,
-            api_data: @json($dopa_indicators),
-            dopa_indicators: {
-                forest_cover: {
-                    title_table: '@lang('imet-core::v2_report.forest_cover')',
-                    title_chart: '@lang('imet-core::v2_report.forest_cover_percent') (%)',
-                    indicators: [{
-                            field: 'gfc_treecover_km2',
-                            label: '@lang('imet-core::v2_report.forest_cover') [km2]',
-                            color: '#5b5b5b'
-                        },
-                        {
-                            field: 'gfc_treecover_perc',
-                            label: '@lang('imet-core::v2_report.forest_cover') [%]',
-                            color: '#5b5b5b'
-                        },
-                        {
-                            field: 'gfc_loss_km2',
-                            label: '@lang('imet-core::v2_report.forest_loss') [km2]',
-                            color: '#D9534F'
-                        },
-                        {
-                            field: 'gfc_loss_perc',
-                            label: '@lang('imet-core::v2_report.forest_loss') [%]',
-                            color: '#D9534F'
-                        },
-                        {
-                            field: 'gfc_gain_km2',
-                            label: '@lang('imet-core::v2_report.forest_gain') [km2]',
-                            color: '#337AB7'
-                        },
-                        {
-                            field: 'gfc_gain_perc',
-                            label: '@lang('imet-core::v2_report.forest_gain') [%]',
-                            color: '#337AB7'
-                        },
-                    ],
-                    bar_indicators: [{
-                            field: 'gfc_loss_perc',
-                            label: '@lang('imet-core::v2_report.forest_loss') [%]',
-                            color: '#D9534F'
-                        },
-                        {
-                            field: 'gfc_gain_perc',
-                            label: '@lang('imet-core::v2_report.forest_gain') [%]',
-                            color: '#337AB7'
-                        },
-                    ]
-                },
-                total_carbon: {
-                    title_table: 'Total carbon',
-                    indicators: [{
-                            field: 'carbon_min_c_mg',
-                            label: '@lang('imet-core::v2_report.min') [Mg]'
-                        },
-                        {
-                            field: 'carbon_mean_c_mg',
-                            label: '@lang('imet-core::v2_report.mean') [Mg]'
-                        },
-                        {
-                            field: 'carbon_max_c_mg',
-                            label: '@lang('imet-core::v2_report.max') [Mg]'
-                        },
-                        {
-                            field: 'carbon_stdev_c_mg',
-                            label: '@lang('imet-core::v2_report.std_dev') [Mg]'
-                        },
-                        {
-                            field: 'carbon_tot_c_mg',
-                            label: '@lang('imet-core::v2_report.sum') [Pg]'
-                        },
-                    ]
-                },
-                agricultural_pressure: {
-                    title_table: 'Agricultural pressure',
-                    indicators: [{
-                            field: 'agri_ind_pa',
-                            label: '@lang('imet-core::v2_report.protected_area') [%]'
-                        },
-                        {
-                            field: 'agri_ind_bu',
-                            label: '@lang('imet-core::v2_report.unprotected_buffer') [%]'
-                        }
-                    ]
-                }
-            },
             url: '{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
         }));
 

@@ -1,14 +1,14 @@
 <?php
+/** @var Collection $collection */
+/** @var array $definitions */
+/** @var array $records */
+/** @var array $stakeholders */
+/** @var array $key_elements_importance */
+/** @var string $current_stakeholder */
+/** @var string $summary_title */
+
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
-
-/** @var Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
-/** @var Array $stakeholders */
-/** @var Array $key_elements_importance */
-/** @var String $current_stakeholder */
-/** @var String $summary_title */
 
 $form_id = $collection[0]['FormID'];
 
@@ -17,9 +17,7 @@ $num_cols = count($definitions['fields']);
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
     ->groupBy('Stakeholder')
-    ->map(function ($group) {
-        return $group->groupBy('group_key');
-    })
+    ->map(fn($group) => $group->groupBy('group_key'))
     ->toArray();
 
 $stakeholders_categories = Stakeholders::getStakeholders(
@@ -114,15 +112,15 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                         @foreach($definitions['fields'] as $f_index=>$field)
                                             <td>
                                                 @if($field['name'] === 'Element')
-                                                    @include('modular-forms::module.show.field', [
-                                                       'type' => 'text-area',
-                                                       'value' => $record[$field['name']]
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input-preview
+                                                        type="text-area"
+                                                        :value="$record[$field['name']]"
+                                                    ></x-modular-forms::module.components.field.input-preview>
                                                 @else
-                                                    @include('modular-forms::module.show.field', [
-                                                       'type' => $field['type'],
-                                                       'value' => $record[$field['name']]
-                                                    ])
+                                                    <x-modular-forms::module.components.field.input-preview
+                                                        :type="$field['type']"
+                                                        :value="$record[$field['name']]"
+                                                    ></x-modular-forms::module.components.field.input-preview>
                                                 @endif
                                             </td>
                                         @endforeach

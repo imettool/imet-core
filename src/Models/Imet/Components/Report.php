@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,11 +12,10 @@
 
 namespace ImetCore\Models\Imet\Components;
 
-use ImetCore\Models\Imet\Components\BaseModel;
-
 abstract class Report extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
+
     public const UPDATED_AT = 'UpdateDate';
 
     protected $guarded = [];
@@ -25,7 +25,7 @@ abstract class Report extends BaseModel
         'habitats_comment',
         'climate_change_comment',
         'ecosystem_services_comment',
-        'threats_comment' ,
+        'threats_comment',
         'analysis',
         'strengths_swot',
         'weaknesses_swot',
@@ -39,44 +39,37 @@ abstract class Report extends BaseModel
 
     /**
      * Retrieve report
-     *
-     * @param $form_id
-     * @return array
      */
     public static function getByForm($form_id): array
     {
-        $report = static::where('FormID', $form_id)->first();
+        $report = static::query()->where('FormID', $form_id)->first();
 
-        if($report===null){
-            $report = array_fill_keys(static::$report_fields, "");
-        } else {
-            $report = array_map(function($item) {
-                if($item === null){
-                    return "";
-                }
-                return $item;
-            },$report->toArray());
+        if ($report === null) {
+            return array_fill_keys(static::$report_fields, '');
         }
 
-        return $report;
+        return array_map(function ($item) {
+            if ($item === null) {
+                return '';
+            }
+
+            return $item;
+        }, $report->toArray());
     }
 
     /**
      * Update report
-     *
-     * @param $form_id
-     * @param $data
-     * @return void
      */
-    public static function updateByForm($form_id, $data)
+    public static function updateByForm($form_id, array $data): void
     {
-        $report = static::where('FormID', $form_id)->first();
-        if($report==null){
-            $report = new static();
+        $report = static::query()->where('FormID', $form_id)->first();
+        if ($report == null) {
+            $report = new (static::class);
         }
+
         $data['FormID'] = $form_id;
         $report->fill($data);
-        if($report->isDirty()){
+        if ($report->isDirty()) {
             $report->save();
         }
     }
@@ -84,12 +77,11 @@ abstract class Report extends BaseModel
     /**
      * Export report (for JSON export)
      *
-     * @param $form_id
      * @return mixed
      */
     public static function export($form_id)
     {
-        return static::where('FormID', $form_id)
+        return static::query()->where('FormID', $form_id)
             ->get()
             ->makeHidden(['id', 'FormID'])
             ->toArray()[0]
@@ -98,17 +90,12 @@ abstract class Report extends BaseModel
 
     /**
      * Import report (from JSON export)
-     *
-     * @param $form_id
-     * @param $data
-     * @return void
      */
-    public static function import($form_id, $data)
+    public static function import($form_id, array $data): void
     {
-        $report = new static();
+        $report = new (static::class);
         $data['FormID'] = $form_id;
         $report->fill($data);
         $report->save();
     }
-
 }

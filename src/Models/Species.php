@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,37 +12,57 @@
 
 namespace ImetCore\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\Database;
-use ModularForms\Helpers\Type\Chars;
-use ModularForms\Models\Utils\Animal;
+use ImetCore\Models\Imet\Components\BaseModel;
 
-class Species extends Animal
+/**
+ * @property string $phylum
+ * @property string $class
+ * @property string $order
+ * @property string $family
+ * @property string $genus
+ * @property string $species
+ * @property string $binomial
+ */
+class Species extends BaseModel
 {
-    protected string $schema = Database::COMMON_SCHEMA;
+    protected static ?string $schema = Database::COMMON_SCHEMA;
+
     protected $table = 'species';
+
     protected $primaryKey = 'id';
 
+    public $timestamps = false;
+
     /**
-     * Override: get the table name with schema
+     * Get the country's name attribute according to the current locale
      */
-    public function getTable(): string
+    protected function binomial(): Attribute
     {
-        return Database::getTable($this->schema, $this->table);
+        return Attribute::make(
+            get: fn () => array_key_exists('genus', $this->attributes) && array_key_exists('species', $this->attributes)
+                ? $this->attributes['genus'].' '.$this->attributes['species']
+                : null
+        );
     }
 
-    public static function getScientificName($taxonomy): ?string {
+    public static function getScientificName($taxonomy): ?string
+    {
         $sciName = null;
         if ($taxonomy !== null) {
             $taxonomy_array = explode('|', $taxonomy);
-            $sciName = $taxonomy_array[4] . ' ' . $taxonomy_array[5];
+            $sciName = $taxonomy_array[4].' '.$taxonomy_array[5];
         }
+
         return $sciName;
     }
 
-    public static function getPlainNameByTaxonomy($taxonomy): ?string {
-        return $taxonomy != null && static::isTaxonomy($taxonomy)
-            ? static::getScientificName($taxonomy)
+    public static function getPlainNameByTaxonomy($taxonomy): ?string
+    {
+        return $taxonomy != null && self::isTaxonomy($taxonomy)
+            ? self::getScientificName($taxonomy)
             : $taxonomy;
     }
 
@@ -51,23 +72,23 @@ class Species extends Animal
     public static function searchSpecies(string $search_key): Collection
     {
         // Query the database for species matching the search key
-        $species = static::query()
-            ->whereLike('phylum',  $search_key . '%')
-            ->orWhereLike('class', $search_key . '%')
-            ->orWhereLike('order', $search_key . '%')
-            ->orWhereLike('family', $search_key . '%')
-            ->orWhereLike('genus', $search_key . '%')
-            ->orWhereLike('species', $search_key . '%')
-            ->orWhereLike('vernacular_names_eng', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_spa', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_por', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_fra', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_rus', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_deu', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_ita', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_jpn', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_zho', '%' . $search_key . '%')
-            ->orWhereLike('vernacular_names_kor', '%' . $search_key . '%')
+        $species = self::query()
+            ->whereLike('phylum', $search_key.'%')
+            ->orWhereLike('class', $search_key.'%')
+            ->orWhereLike('order', $search_key.'%')
+            ->orWhereLike('family', $search_key.'%')
+            ->orWhereLike('genus', $search_key.'%')
+            ->orWhereLike('species', $search_key.'%')
+            ->orWhereLike('vernacular_names_eng', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_spa', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_por', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_fra', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_rus', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_deu', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_ita', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_jpn', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_zho', '%'.$search_key.'%')
+            ->orWhereLike('vernacular_names_kor', '%'.$search_key.'%')
             ->orderBy('phylum')
             ->orderBy('class')
             ->orderBy('order')
@@ -78,7 +99,7 @@ class Species extends Animal
             ->get();
 
         // Sort by Levenshtein distance
-        $species =  static::sortByLevenshteinDistance($species, $search_key);
+        $species = self::sortByLevenshteinDistance($species, $search_key);
 
         return $species;
     }
@@ -89,28 +110,70 @@ class Species extends Animal
     private static function sortByLevenshteinDistance(Collection $collection, string $search_key): Collection
     {
         return $collection
-            ->map(function ($item) use($search_key) {
+            ->map(function ($item) use ($search_key): \Illuminate\Database\Eloquent\Model {
                 $item['__levenshtein'] = max(
-                    $item['phylum']!==null ? levenshtein($item['phylum'], $search_key) : 0,
-                    $item['class']!==null ? levenshtein($item['class'], $search_key) : 0,
-                    $item['order']!==null ? levenshtein($item['order'], $search_key) : 0,
-                    $item['family']!==null ? levenshtein($item['family'], $search_key) : 0,
-                    $item['genus']!==null ? levenshtein($item['genus'], $search_key) : 0,
-                    $item['species']!==null ? levenshtein($item['species'], $search_key) : 0,
-                    $item['vernacular_names_eng']!== null ? levenshtein($item['vernacular_names_eng'], $search_key) : 0,
-                    $item['vernacular_names_spa']!== null ? levenshtein($item['vernacular_names_spa'], $search_key) : 0,
-                    $item['vernacular_names_por']!== null ? levenshtein($item['vernacular_names_por'], $search_key) : 0,
-                    $item['vernacular_names_fra']!== null ? levenshtein($item['vernacular_names_fra'], $search_key) : 0,
-                    $item['vernacular_names_rus']!== null ? levenshtein($item['vernacular_names_rus'], $search_key) : 0,
-                    $item['vernacular_names_deu']!== null ? levenshtein($item['vernacular_names_deu'], $search_key) : 0,
-                    $item['vernacular_names_ita']!== null ? levenshtein($item['vernacular_names_ita'], $search_key) : 0,
-                    $item['vernacular_names_jpn']!== null ? levenshtein($item['vernacular_names_jpn'], $search_key) : 0,
-                    $item['vernacular_names_zho']!== null ? levenshtein($item['vernacular_names_zho'], $search_key) : 0,
-                    $item['vernacular_names_kor']!== null ? levenshtein($item['vernacular_names_kor'], $search_key) : 0,
+                    $item['phylum'] !== null ? levenshtein($item['phylum'], $search_key) : 0,
+                    $item['class'] !== null ? levenshtein($item['class'], $search_key) : 0,
+                    $item['order'] !== null ? levenshtein($item['order'], $search_key) : 0,
+                    $item['family'] !== null ? levenshtein($item['family'], $search_key) : 0,
+                    $item['genus'] !== null ? levenshtein($item['genus'], $search_key) : 0,
+                    $item['species'] !== null ? levenshtein($item['species'], $search_key) : 0,
+                    $item['vernacular_names_eng'] !== null ? levenshtein($item['vernacular_names_eng'], $search_key) : 0,
+                    $item['vernacular_names_spa'] !== null ? levenshtein($item['vernacular_names_spa'], $search_key) : 0,
+                    $item['vernacular_names_por'] !== null ? levenshtein($item['vernacular_names_por'], $search_key) : 0,
+                    $item['vernacular_names_fra'] !== null ? levenshtein($item['vernacular_names_fra'], $search_key) : 0,
+                    $item['vernacular_names_rus'] !== null ? levenshtein($item['vernacular_names_rus'], $search_key) : 0,
+                    $item['vernacular_names_deu'] !== null ? levenshtein($item['vernacular_names_deu'], $search_key) : 0,
+                    $item['vernacular_names_ita'] !== null ? levenshtein($item['vernacular_names_ita'], $search_key) : 0,
+                    $item['vernacular_names_jpn'] !== null ? levenshtein($item['vernacular_names_jpn'], $search_key) : 0,
+                    $item['vernacular_names_zho'] !== null ? levenshtein($item['vernacular_names_zho'], $search_key) : 0,
+                    $item['vernacular_names_kor'] !== null ? levenshtein($item['vernacular_names_kor'], $search_key) : 0,
                 );
+
                 return $item;
             })
             ->sortBy('__levenshtein');
     }
 
+    /**
+     * Retrieve species by taxonomy
+     */
+    public static function getByTaxonomy(?string $taxonomy = null, string $separator = '|'): Species
+    {
+        return self::isTaxonomy($taxonomy)
+            ? (self::query()->where(self::parseTaxonomy($taxonomy, $separator))
+                ->first() ?? new self)
+            : new self;
+    }
+
+    /**
+     * Check if the given string contains taxonomy (parts divided by |)
+     */
+    public static function isTaxonomy(?string $taxonomy = null): bool
+    {
+        return $taxonomy !== null && substr_count($taxonomy, '|') === 5;
+    }
+
+    /**
+     * Parse a taxonomy string (all ranking from phylum to species in a single string)
+     *
+     * @phpstan-return array<string, string>
+     */
+    public static function parseTaxonomy(string $taxonomy, string $separator = '|'): array
+    {
+        if (self::isTaxonomy($taxonomy)) {
+            $taxonomy_array = explode($separator, $taxonomy);
+
+            return [
+                'phylum' => $taxonomy_array[0],
+                'class' => $taxonomy_array[1],
+                'order' => $taxonomy_array[2],
+                'family' => $taxonomy_array[3],
+                'genus' => $taxonomy_array[4],
+                'species' => $taxonomy_array[5],
+            ];
+        }
+
+        return [];
+    }
 }

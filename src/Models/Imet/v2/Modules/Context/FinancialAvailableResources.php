@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,15 +15,21 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Models\Module;
 
-class FinancialAvailableResources extends Modules\Component\ImetModule
+/**
+ * @property string $Currency
+ */
+final class FinancialAvailableResources extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_available_resources';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.2.2';
@@ -39,7 +46,7 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
 
         $this->predefined_values = [
             'field' => 'BudgetType',
-            'values' => trans('imet-core::v2_context.FinancialAvailableResources.predefined_values')
+            'values' => trans('imet-core::v2_context.FinancialAvailableResources.predefined_values'),
         ];
 
         $this->module_common_fields = [
@@ -52,12 +59,14 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
     /**
      * Override: force Currency from CTX 3.2.1
      */
-    public static function getModule($form_id = null): Collection|\Illuminate\Support\Collection
+    #[\Override]
+    public static function getModule(?int $form_id = null): Collection
     {
         return parent::getModule($form_id)
             ->map(
-                function ($item) use ($form_id) {
-                    $item->Currency = $item->Currency ?? FinancialResources::getCurrency($form_id);
+                function (self $item) use ($form_id): Module {
+                    $item->Currency ??= FinancialResources::getCurrency($form_id);
+
                     return $item;
                 }
             );
@@ -66,17 +75,17 @@ class FinancialAvailableResources extends Modules\Component\ImetModule
     /**
      * Copy currency from CTX 3.2.1
      */
-    public static function copyCurrencyFromCTX213($data): array
+    public static function copyCurrencyFromCTX213(array $data): array
     {
-        if(!empty($data['FinancialResources'])){
+        if (filled($data['FinancialResources'])) {
             $currency = $data['FinancialResources'][0]['Currency'];
-            if($currency!==null){
-                foreach ($data[static::getShortClassName()] as $i=>$record){
-                    $data[static::getShortClassName()][$i]['Currency'] = $currency;
+            if ($currency !== null) {
+                foreach ($data[self::getShortClassName()] as $i => $record) {
+                    $data[self::getShortClassName()][$i]['Currency'] = $currency;
                 }
             }
         }
+
         return $data;
     }
-
 }

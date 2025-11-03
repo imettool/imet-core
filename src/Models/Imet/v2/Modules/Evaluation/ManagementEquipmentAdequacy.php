@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,14 +15,16 @@ namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
+final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_equipment_adequacy';
+
     protected bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'I5';
@@ -36,7 +39,7 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         $this->predefined_values = [
             'field' => 'Equipment',                                                         // Comes from context->Equipments
             'values' => array_keys(trans('imet-core::v2_context.Equipments.groups')),
-            'labels' => array_values(trans('imet-core::v2_context.Equipments.groups'))
+            'labels' => array_values(trans('imet-core::v2_context.Equipments.groups')),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.ManagementEquipmentAdequacy.module_info_EvaluationQuestion');
@@ -46,15 +49,15 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
-    protected static function arrange_records($predefined_values, $records, $empty_record): array
+    protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
 
         $new_records = [];
-        $adequacy = static::calculateEquipementAdequacy($form_id);
-        foreach($predefined_values['values'] as $i => $predefined_value){
-            if($adequacy[$i]!=null){
+        $adequacy = self::calculateEquipementAdequacy($form_id);
+        foreach ($predefined_values['values'] as $i => $predefined_value) {
+            if ($adequacy[$i] != null) {
                 $records[$i]['__adequacy'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }
@@ -63,38 +66,43 @@ class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eval
         return $new_records;
     }
 
-    private static function calculateEquipementAdequacy($form_id)
+    /**
+     * @return list<(float | null)>
+     */
+    private static function calculateEquipementAdequacy(?int $form_id): array
     {
         $adequacy = array_keys(trans('imet-core::v2_context.Equipments.groups'));
         $adequacy = array_fill_keys($adequacy, [
             'sum' => 0,
-            'count' => 0
+            'count' => 0,
         ]);
         $collection = Modules\Context\Equipments::getModule($form_id);
-        foreach ($collection as $item){
-            if($item['AdequacyLevel']!==null){
+        foreach ($collection as $item) {
+            if ($item['AdequacyLevel'] !== null) {
                 $adequacy[$item['group_key']]['sum'] += $item['AdequacyLevel'];
                 $adequacy[$item['group_key']]['count']++;
             }
         }
 
         $result = [];
-        foreach($adequacy as $value){
-            $result[] = $value['count']>0 ? round($value['sum']/ $value['count'],2) : null;
+        foreach ($adequacy as $value) {
+            $result[] = $value['count'] > 0 ? round($value['sum'] / $value['count'], 2) : null;
         }
 
         return $result;
     }
 
+    #[\Override]
     protected function customValue(array $record, array $field): string|array|null
     {
         if ($field['name'] === 'Equipment') {
             return $record['__predefined_label'];
         }
+
         if ($field['name'] === 'EvaluationScore') {
             return $record['__adequacy'];
         }
+
         return $record[$field['name']];
     }
-
 }

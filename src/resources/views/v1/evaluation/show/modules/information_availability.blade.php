@@ -1,11 +1,11 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 
 $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records);
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', compact(['collection', 'records', 'definitions']))->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 // Inject Average calculation to "EvaluationScore" column
 $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group0', 4, 2, '', \ModularForms\Helpers\Module::calculateAverage('EvaluationScore', 'group0', $new_records));

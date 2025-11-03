@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ImportanceHabitats extends Modules\Component\ImetModule_Eval
+final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c14';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'C1.4';
@@ -42,35 +44,28 @@ class ImportanceHabitats extends Modules\Component\ImetModule_Eval
         $this->module_info_Rating = trans('imet-core::v1_evaluation.ImportanceHabitats.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v1_evaluation.ImportanceHabitats.ratingLegend');
 
-
         parent::__construct($attributes);
 
     }
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_ImportanceC14',
             'fields' => [
-                'Aspect',  'EvaluationScore', 'EvaluationScore2', 'Comments', 'GroupAspect'
-            ]
+                'Aspect',  'EvaluationScore', 'EvaluationScore2', 'Comments', 'GroupAspect',
+            ],
         ];
     }
 
     /**
      * Review data from SQLITE
-     *
-     * @param $record
-     * @param $sqlite_connection
-     * @return array
      */
-    protected static function conversionDataReview($record, $sqlite_connection): array
+    protected static function conversionDataReview(array $record, $sqlite_connection): array
     {
-        return static::convertGroupLabelToKey($record, 'GroupAspect');
+        return self::convertGroupLabelToKey($record, 'GroupAspect');
     }
 }

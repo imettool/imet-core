@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,10 +12,8 @@
 
 namespace ImetCore\Policies;
 
-use ImetCore\Models\User\Role;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
-
+use ImetCore\Models\User\Role;
 
 class ImetPolicy
 {
@@ -23,14 +22,15 @@ class ImetPolicy
     /**
      * Perform pre-authorization checks
      */
-    public function before($user, string $ability)
+    public function before($user, string $ability): ?bool
     {
         // authorize any route to ADMINISTRATOR
         if (Role::isAdmin($user)) {
             return true;
         }
-    }
 
+        return null;
+    }
 
     /**
      * Determine whether the user can INDEX
@@ -48,9 +48,9 @@ class ImetPolicy
     {
         if (is_null($form)) {
             return Role::hasAnyRole($user);
-        } else {
-            return Role::isWdpaAllowed($form->wdpa_id, $user);
         }
+
+        return Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -60,10 +60,10 @@ class ImetPolicy
     {
         if (is_null($form)) {
             return Role::isRole(Role::ROLE_ENCODER);
-        } else {
-            return Role::isRole(Role::ROLE_ENCODER)
-                && Role::isWdpaAllowed($form->wdpa_id, $user);
         }
+
+        return Role::isRole(Role::ROLE_ENCODER)
+            && Role::isWdpaAllowed($form->wdpa_id, $user);
     }
 
     /**
@@ -98,10 +98,8 @@ class ImetPolicy
      */
     public function export_button($user, $form = null): bool
     {
-        $user = $user ?? Auth::user();
-        return Role::isRole(Role::ROLE_ENCODER, $user) ||
-            Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-            Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user);
+        // if user can VIEW can also export
+        return $this->view($user, $form);
     }
 
     /**
@@ -109,12 +107,8 @@ class ImetPolicy
      */
     public function export($user, $form = null): bool
     {
-        $user = $user ?? Auth::user();
-        return Role::isWdpaAllowed($form->wdpa_id, $user) && (
-                Role::isRole(Role::ROLE_ENCODER, $user) ||
-                Role::isRole(Role::ROLE_NATIONAL_AUTHORITY, $user) ||
-                Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY, $user)
-            );
+        // if user can VIEW can also export
+        return $this->view($user, $form);
     }
 
     /**
@@ -127,44 +121,10 @@ class ImetPolicy
     }
 
     /**
-     * Determine whether the user can view api_assessment
+     * Determine whether the user can view wdpa_scaling_up
      */
-    public function api_assessment($user, $form = null): bool
+    public function wdpa_scaling_up($user, $form = null): bool
     {
-        return $this->role_national_or_observatory() &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
+        return true;
     }
-
-    /**
-     * Determine whether the user can view api_scaling_up
-     */
-    public function api_scaling_up($user, $form = null): bool
-    {
-        return $this->role_national_or_observatory() && Role::isWdpaAllowed($form->wdpa_id, $user);
-    }
-
-    /**
-     * Determine whether the user is a national authority or an observatory
-     */
-    public function scaling_up(): bool{
-        return $this->role_national_or_observatory();
-    }
-
-    /**
-     * @return bool
-     */
-    public function role_national_or_observatory(): bool
-    {
-        return (Role::isRole(Role::ROLE_NATIONAL_AUTHORITY) || Role::isRole(Role::ROLE_REGIONAL_OBSERVATORY));
-    }
-
-    /**
-     * Determine whether the user can view api_details
-     */
-    public function api_details($user, $form = null, $model = null): bool
-    {
-        return Role::hasRequiredAccessLevel($model) &&
-            Role::isWdpaAllowed($form->wdpa_id, $user);
-    }
-
 }

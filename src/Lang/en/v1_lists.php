@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -12,14 +13,14 @@
 return [
 
     'languages' => [
-        'fr'        => 'French',
-        'en'        => 'English'
+        'fr' => 'French',
+        'en' => 'English',
     ],
 
     'PaType' => [
         'Terrestrial',
         'Marine',
-        'Mixed'
+        'Mixed',
     ],
 
     'EcoType' => [
@@ -34,7 +35,7 @@ return [
         'Wet area',
         'Mangroves',
         'Coast',
-        'Sea/Ocean'
+        'Sea/Ocean',
     ],
 
     'InstitutionType' => [
@@ -46,7 +47,7 @@ return [
         'Private',
         'Project / Program',
         'Public (State)',
-        'Other'
+        'Other',
     ],
 
     'PartnershipsType' => [
@@ -58,7 +59,7 @@ return [
         'expertise',
         'service provision',
         'concession (e.g. tourism)',
-        'collaboration'
+        'collaboration',
     ],
 
     'Designation' => [
@@ -77,23 +78,22 @@ return [
         'Ramsar Wetlands',
         'Species Grid',
         'UNESCO MAB',
-        'World Heritage Sites'
+        'World Heritage Sites',
     ],
 
     'GovernanceType' => [
         'governance by government',
         'governance by various rightsholders and stakeholders together',
         'governance by private individuals and organisations',
-        'governance by indigenous peoples and/or local communities'
+        'governance by indigenous peoples and/or local communities',
     ],
 
     'SpeciesReliability' => [
-        'High', 'Medium', 'Poor'
+        'High', 'Medium', 'Poor',
     ],
 
     'MarineHabitatsPresence' => [
-        'Present', 'Absent', 'Dominant'
-    ]
-
+        'Present', 'Absent', 'Dominant',
+    ],
 
 ];

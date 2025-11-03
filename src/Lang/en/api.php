@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -22,6 +23,6 @@ return [
         'no_records_found' => 'No records found!',
         'no_protected_areas_found' => 'No records for the requested protected areas found!',
         'more_than_one_protected_areas_found' => 'More than one record with the same wdpa id found. Please add the year parameter to filter the requested record!',
-        'page_not_found' => 'Api page not found'
-    ]
+        'page_not_found' => 'Api page not found',
+    ],
 ];

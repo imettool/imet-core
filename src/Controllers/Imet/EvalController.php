@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,19 +12,20 @@
 
 namespace ImetCore\Controllers\Imet;
 
-use ImetCore\Controllers\__Controller;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use ImetCore\Controllers\__Controller;
 
-class EvalController extends __Controller
+abstract class EvalController extends __Controller
 {
     /**
      * Override edit route
      *
      * @throws AuthorizationException
      */
+    #[\Override]
     public function edit($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
@@ -31,10 +33,10 @@ class EvalController extends __Controller
 
         $step = $step == null ? 'context' : $step;
 
-        return view(static::$form_view_prefix . '.edit', [
+        return view(static::$form_view_prefix.'.edit', [
             'controller' => static::class,
             'item' => $imet,
-            'step' => $step
+            'step' => $step,
         ]);
     }
 
@@ -43,6 +45,7 @@ class EvalController extends __Controller
      *
      * @throws AuthorizationException
      */
+    #[\Override]
     public function show($item, $step = null): Application|View|Factory
     {
         $imet = (static::$form_class)::find($item);
@@ -50,10 +53,10 @@ class EvalController extends __Controller
 
         $step = $step == null ? 'context' : $step;
 
-        return view(static::$form_view_prefix . '.show', [
+        return view(static::$form_view_prefix.'.show', [
             'controller' => static::class,
             'item' => $imet,
-            'step' => $step
+            'step' => $step,
         ]);
     }
 }

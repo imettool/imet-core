@@ -1,8 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\View;
 
 $vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
 
-$view_groupTable = View::make('modular-forms::module.edit.type.group_table', compact(['collection', 'vueData', 'definitions']))->render();
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 
 // Inject marine icon on criteria
 $view_groupTable = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $view_groupTable, "is_marine(item['Value'])");
@@ -37,9 +36,9 @@ $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupT
     @foreach(MenacesPressions::$groupsByCategory as $i => $category)
         <div class="histogram-row">
             <div class="histogram-row__checkbox">
-                <checkbox-boolean :value="1"
+                <checkbox-boolean value="1"
                                   :func="toggleCategoryVisibility"
-                                  :id="{{$i}}"></checkbox-boolean>
+                                  id="{{$i}}"></checkbox-boolean>
             </div>
             <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
             <div
@@ -66,12 +65,12 @@ $view_groupTable = str_replace($searchFor, $textToAdd . $searchFor, $view_groupT
     <script type="module">
         const initialVisibility = {
             @foreach(MenacesPressions::$groupsByCategory as $i => $category)
-            '{{ $i }}': true,
+                '{{ $i }}': true,
             @endforeach
         };
         const categories = {
             @foreach(MenacesPressions::$groupsByCategory as $i => $category)
-            '{{ $i }}': '{{implode(',', $category)}}'.split(','),
+                '{{ $i }}': '{{implode(',', $category)}}'.split(','),
             @endforeach
         }
         const categoriesVisibility = {initialVisibility, categories};

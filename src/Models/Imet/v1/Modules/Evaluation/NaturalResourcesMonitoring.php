@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Evaluation;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
+final class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_natural_resources_monitoring';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'PR16';
@@ -33,7 +35,7 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 
         $this->predefined_values = [
             'field' => 'Aspect',
-            'values' => trans('imet-core::v1_evaluation.NaturalResourcesMonitoring.predefined_values')
+            'values' => trans('imet-core::v1_evaluation.NaturalResourcesMonitoring.predefined_values'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v1_evaluation.NaturalResourcesMonitoring.module_info_EvaluationQuestion');
@@ -45,16 +47,14 @@ class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'Eval_NaturalResourcesMonitoring',
             'fields' => [
-                'Aspect',  'EvaluationScore', 'Comments'
-            ]
+                'Aspect',  'EvaluationScore', 'Comments',
+            ],
         ];
     }
 }

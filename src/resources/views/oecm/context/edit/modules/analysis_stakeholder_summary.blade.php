@@ -1,4 +1,7 @@
 <?php
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 /** @var int $form_id */
 
 use ImetCore\Controllers\Imet\oecm\Controller;

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,13 +15,14 @@ namespace ImetCore\Models\Imet\v1\Modules\Context;
 use ImetCore\Models\Imet\v1\Modules;
 use ImetCore\Models\User\Role;
 
-class ManagementStaff extends Modules\Component\ImetModule
+final class ManagementStaff extends Modules\Component\ImetModule
 {
     protected $table = 'context_management_staff';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'TABLE';
         $this->module_code = 'CTX 3.1.1';
@@ -45,41 +47,37 @@ class ManagementStaff extends Modules\Component\ImetModule
 
     /**
      * Set parameter required to convert OLD SQLite IMETs
-     *
-     * @return array
      */
     protected static function conversionParameters(): array
     {
         return [
             'table' => 'ManagementStaff',
             'fields' => [
-                'Function',  'ExpectedPermanent', 'ActualPermanent', 'Observations', 'Source'
-            ]
+                'Function',  'ExpectedPermanent', 'ActualPermanent', 'Observations', 'Source',
+            ],
         ];
     }
 
     public static function upgradeModule($record, $imet_version = null): array
     {
         // Fix wrong value found in few assessments
-        if($record['Function'] === 'Responsable ErE') {
+        if ($record['Function'] === 'Responsable ErE') {
             $record['Function'] = 'Responsable EE';
         }
+
         return $record;
     }
 
-    /**
-     * @param $records
-     * @return array
-     */
     public static function diffs($records): array
     {
         $diffs = [];
         foreach ($records as $index => $item) {
             $diffs[$index] = null;
             if ($item['ExpectedPermanent'] !== null && $item['ActualPermanent']) {
-                $diffs[$index] += (int)($item['ActualPermanent']) - (int)($item['ExpectedPermanent']);
+                $diffs[$index] += (int) ($item['ActualPermanent']) - (int) ($item['ExpectedPermanent']);
             }
         }
+
         return $diffs;
     }
 }

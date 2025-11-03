@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,15 +12,16 @@
 
 namespace ImetCore\Models\Imet\oecm\Modules\Context;
 
-use ImetCore\Models\ProtectedArea;
+use Illuminate\Http\Request;
 use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules;
+use ImetCore\Models\ProtectedArea;
 use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class Create extends Modules\Component\ImetModule
+final class Create extends Modules\Component\ImetModule
 {
     protected $table = 'forms';
+
     protected $primaryKey = 'FormID';
 
     public static array $rules = [
@@ -28,7 +30,8 @@ class Create extends Modules\Component\ImetModule
         'language' => 'required',
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::oecm_context.Create.title');
@@ -42,6 +45,7 @@ class Create extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function updateModule(Request $request): array
     {
         $records = Payload::decode($request->input('records_json'));
@@ -51,11 +55,10 @@ class Create extends Modules\Component\ImetModule
         $records[0]['wdpa_id'] = $pa->wdpa_id;
         $records[0]['name'] = $pa->name;
 
-        $records[0]['version'] = Imet::version;
+        $records[0]['version'] = Imet::$version;
 
         $request->merge(['records_json' => Payload::encode($records)]);
 
         return parent::updateModule($request);
     }
-
 }

@@ -1,0 +1,17 @@
+# Development/Envirnoment
+composer
+.env
+/public/build/
+/public/hot
+/public/storage
+/public/basket
+/storage/
+/bootstrap/cache/*
+database/database.sqlite
+.phpstorm.meta.php
+_ide_helper.php
+package/
+
+# Modules & Libraries
+/vendor/
+/node_modules/

@@ -1,7 +1,7 @@
 <?php
-/** @var Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $vueData */
+/** @var array $definitions */
 
 $groups = $definitions['groups'];
 

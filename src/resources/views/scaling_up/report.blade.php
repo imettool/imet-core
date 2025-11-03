@@ -1,7 +1,7 @@
 @extends('modular-forms::layouts.forms')
 
 @section('content')
-    <div id="imet_report">
+    <div id="imet_report" class="imet_report">
         <app :scaling_up_id="{{ $scaling_up_id }}">
             <template v-slot:default>
 

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -11,28 +12,28 @@
 
 namespace ImetCore\Models\Imet\Components;
 
-use ImetCore\Exceptions\MissingDependencyConfigurationException;
 use Illuminate\Support\Str;
+use ImetCore\Exceptions\MissingDependencyConfigurationException;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use Throwable;
 
-trait Dependencies{
+trait Dependencies
+{
+    protected static $DEPENDENCY_ON;
 
-    protected static $DEPENDENCY_ON = null;
-    protected static $DEPENDENCIES = null;
+    protected static $DEPENDENCIES;
 
     /**
      * Check for "warning_on_save" in labels end push to vue_data
-     *
-     * @param $vue_data
-     * @return array
      */
-    public static function warningOnSave($vue_data): array
+    public static function warningOnSave(array $vue_data): array
     {
         $this_class = static::class;
         $array_this_class = explode('\\', $this_class);
         $this_class_name = end($array_this_class);
         $labels = null;
 
-        if(Str::contains($this_class, 'v2')) {
+        if (Str::contains($this_class, 'v2')) {
             $label_prefix = 'imet-core::v2_';
         } elseif (Str::contains($this_class, 'v1')) {
             $label_prefix = 'imet-core::v1_';
@@ -40,15 +41,16 @@ trait Dependencies{
             $label_prefix = 'imet-core::oecm_';
         }
 
-        if(Str::contains($this_class, 'Modules\Context')){
+        if (Str::contains($this_class, 'Modules\Context')) {
             $label_prefix .= 'context.';
-            $labels = trans($label_prefix . $this_class_name);
-        } else if(Str::contains($this_class, 'Modules\Evaluation')){
+            $labels = trans($label_prefix.$this_class_name);
+        } elseif (Str::contains($this_class, 'Modules\Evaluation')) {
             $label_prefix .= 'evaluation.';
-            $labels = trans($label_prefix . $this_class_name);
+            $labels = trans($label_prefix.$this_class_name);
         }
-        if(is_array($labels) && array_key_exists('warning_on_save', $labels)){
-            $vue_data['warning_on_save'] =  trans($label_prefix . $this_class_name . '.warning_on_save');
+
+        if (is_array($labels) && array_key_exists('warning_on_save', $labels)) {
+            $vue_data['warning_on_save'] = trans($label_prefix.$this_class_name.'.warning_on_save');
         }
 
         return $vue_data;
@@ -56,16 +58,12 @@ trait Dependencies{
 
     /**
      * Compare updated records with existing (in DB) and drop from dependant modules
-     *
-     * @param $records
-     * @param $form_id
-     * @return void
      */
     protected static function updateDependencies($records, $form_id): void
     {
-        if(static::$DEPENDENCIES !== null){
+        if (static::$DEPENDENCIES !== null) {
 
-            foreach (static::$DEPENDENCIES as $dependency){
+            foreach (static::$DEPENDENCIES as $dependency) {
 
                 $dependency_class = $dependency[0];
                 $dependency_on = $dependency[1];
@@ -89,6 +87,7 @@ trait Dependencies{
 
         // Make diff to find out what to drop
         $to_be_dropped = array_diff($existing_values, $updated_values);
+
         return array_values($to_be_dropped);
     }
 
@@ -96,48 +95,41 @@ trait Dependencies{
      * Drop orphans records (where reference field values had been removed form parent) adn propagate to eventual related dependencies
      *
      * @throws MissingDependencyConfigurationException
+     * @throws Throwable
      */
-    public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, string $dependency_on = null): void
+    public static function dropOrphansDependencyRecords(int $form_id, array $to_be_dropped, ?string $dependency_on = null): void
     {
-        if($dependency_on==null && static::$DEPENDENCY_ON === null){
-            throw new MissingDependencyConfigurationException(static::class);
-        } else {
-
-            $dependency_on = $dependency_on ?? static::$DEPENDENCY_ON;
-
-            // Drop records (where reference field values had been removed form parent)
-            $records_to_be_dropped = static::getModule($form_id)
-                ->filter(function ($record) use($to_be_dropped, $dependency_on){
-                    return in_array($record[$dependency_on], $to_be_dropped);
-                })
-                ->toArray();
-
-            foreach ($records_to_be_dropped as $record) {
-                static::destroy($record[(new static())->primaryKey]);
-            }
-
-            // Propagate to eventual related dependencies
-            static::propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped);
+        throw_if($dependency_on == null && static::$DEPENDENCY_ON === null, MissingDependencyConfigurationException::class, static::class);
+        $dependency_on ??= static::$DEPENDENCY_ON;
+        // Drop records (where reference field values had been removed form parent)
+        $records_to_be_dropped = static::getModule($form_id)
+            ->filter(fn (ImetModule $record): bool => in_array($record[$dependency_on], $to_be_dropped))
+            ->toArray();
+        foreach ($records_to_be_dropped as $record) {
+            static::destroy($record[(new static)->primaryKey]);
         }
 
+        // Propagate to eventual related dependencies
+        static::propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped);
     }
 
     /**
      * Propagate to eventual related dependencies
      */
-    private static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped): void
+    protected static function propagateDropOrphansDependencyRecords($form_id, $records_to_be_dropped): void
     {
-        if(static::$DEPENDENCIES !== null){
-            foreach (static::$DEPENDENCIES as $dependency){
+        if (static::$DEPENDENCIES !== null) {
+            foreach (static::$DEPENDENCIES as $dependency) {
 
                 $dependency_class = $dependency[0];
                 $dependency_on = $dependency[1];
                 $dependency_to = $dependency[2] ?? null;
 
                 $to_be_dropped_from_dependency = [];
-                foreach ($records_to_be_dropped as $record){
+                foreach ($records_to_be_dropped as $record) {
                     $to_be_dropped_from_dependency[] = $record[$dependency_on];
                 }
+
                 $to_be_dropped_from_dependency = array_unique($to_be_dropped_from_dependency);
                 $dependency_class::dropOrphansDependencyRecords($form_id, $to_be_dropped_from_dependency, $dependency_to);
             }
@@ -150,13 +142,8 @@ trait Dependencies{
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return static::getModule($form_id)
-            ->filter(function ($item) use ($dependency_field){
-                return !empty($item[$dependency_field]);
-            })
+            ->filter(fn (Modules\ImetModule $item): bool => filled($item[$dependency_field]))
             ->pluck($dependency_field)
             ->toArray();
     }
-
-
-
 }

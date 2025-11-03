@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 ?>
 
@@ -11,4 +11,8 @@
     'vueData' => $vueData,
 ])
 
-@include('modular-forms::module.edit.script', compact(['collection', 'vueData', 'definitions']))
+<x-modular-forms::module.components.script
+    :vue-data="$vueData"
+    :definitions="$definitions"
+    :mode="$mode"
+></x-modular-forms::module.components.script>

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -14,10 +15,8 @@ namespace ImetCore\Models\Imet\v2\Modules\Context;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Input\SelectionList;
-use ModularForms\Models\Traits\Payload;
-use Illuminate\Http\Request;
 
-class EcosystemServices extends Modules\Component\ImetModule
+final class EcosystemServices extends Modules\Component\ImetModule
 {
     protected $table = 'context_ecosystem_services';
 
@@ -35,10 +34,11 @@ class EcosystemServices extends Modules\Component\ImetModule
         ['group0', 'group1', 'group2'],
         ['group3', 'group4'],
         ['group5', 'group6', 'group7', 'group8'],
-        ['group9']
+        ['group9'],
     ];
 
-    public function __construct(array $attributes = []) {
+    public function __construct(array $attributes = [])
+    {
 
         $this->module_type = 'GROUP_TABLE';
         $this->module_code = 'CTX 7.1';
@@ -64,7 +64,7 @@ class EcosystemServices extends Modules\Component\ImetModule
                 'group7' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group7'),
                 'group8' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group8'),
                 'group9' => trans('imet-core::v2_context.EcosystemServices.predefined_values.group9'),
-            ]
+            ],
         ];
 
         $this->module_groups = [
@@ -80,71 +80,78 @@ class EcosystemServices extends Modules\Component\ImetModule
             'group9' => trans('imet-core::v2_context.EcosystemServices.groups.group9'),
         ];
 
-
         $this->module_info = trans('imet-core::v2_context.EcosystemServices.module_info');
         $this->ratingLegend = trans('imet-core::v2_context.EcosystemServices.ratingLegend');
         parent::__construct($attributes);
 
     }
 
-    public static function getVueData($form_id, $records, $definitions): array
+    #[\Override]
+    public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
-        $vue_data['groupsByCategory'] = static::$groupsByCategory;
+        $vue_data['groupsByCategory'] = self::$groupsByCategory;
+
         return $vue_data;
     }
 
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
-        $record = static::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Element', 'other');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
 
-        return $record;
+        return self::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
     }
 
-    public static function getStats($form_id)
+    /**
+     * @return float[]|null[]
+     */
+    public static function getStats(?int $form_id): array
     {
-        $records = static::getModuleRecords($form_id)['records'];
+        $records = self::getModuleRecords($form_id)['records'];
         $category_stats = [];
 
-        foreach (static::$groupsByCategory as $category_index=>$groups){
+        foreach (self::$groupsByCategory as $category_index => $groups) {
             $category_sum = 0;
             $category_count = 0;
-            foreach ($records as $record){
-                if(in_array($record['group_key'], $groups)){
-                    $row_stats = static::row_stats($record);
-                    if($row_stats!==null){
+            foreach ($records as $record) {
+                if (in_array($record['group_key'], $groups)) {
+                    $row_stats = self::row_stats($record);
+                    if ($row_stats !== null) {
                         $category_sum += floatval($row_stats);
                         $category_count++;
                     }
                 }
             }
-            $category_stats[$category_index] = $category_sum>0 ? (($category_sum/$category_count)*100/3.0) : null;
+
+            $category_stats[$category_index] = $category_sum > 0 ? (($category_sum / $category_count) * 100 / 3.0) : null;
         }
+
         return $category_stats;
     }
 
-    private static function row_stats($record){
-        $stat = null;
-        if($record['Importance']!==null && $record['ImportanceRegional']!==null && $record['ImportanceGlobal']!==null){
-            $stat = floatval($record['Importance'])
-                + (floatval($record['ImportanceRegional'])/3)
-                + ((2-floatval($record['ImportanceGlobal']))/4);
+    private static function row_stats(array $record): ?float
+    {
+        if ($record['Importance'] !== null && $record['ImportanceRegional'] !== null && $record['ImportanceGlobal'] !== null) {
+            return floatval($record['Importance'])
+                + (floatval($record['ImportanceRegional']) / 3)
+                + ((2 - floatval($record['ImportanceGlobal'])) / 4);
         }
-        return $stat;
+
+        return null;
     }
 
-    public function customValue(array $record, array $field): string|array|null
+    #[\Override]
+    protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if($field['type'] === 'toggle-ImetV2_EcosystemServicesImportance') {
+        if ($field['type'] === 'toggle-ImetV2_EcosystemServicesImportance') {
             $list = SelectionList::getList('ImetV2_EcosystemServicesImportance');
+
             return $list[$value] ?? null;
         }
 
         return $value;
     }
-
 }

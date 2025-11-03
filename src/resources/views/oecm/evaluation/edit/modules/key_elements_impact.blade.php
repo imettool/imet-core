@@ -1,7 +1,7 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $vueData */
+/** @var array $vueData */
+/** @var array $definitions */
 
 
 ?>
@@ -35,10 +35,10 @@
                             'vue_record_index' => 'index',
                             'group_key' => $group_key
                         ])
-                        @include('modular-forms::module.edit.field.vue', [
-                            'type' => 'hidden',
-                            'v_value' => 'item.'.$definitions['primary_key']
-                        ])
+                        <x-modular-forms::module.components.field.input
+                            type="hidden"
+                            :value="'item.'.$definitions['primary_key']"
+                        ></x-modular-forms::module.components.field.input>
                     </div>
 
                     <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b></div>

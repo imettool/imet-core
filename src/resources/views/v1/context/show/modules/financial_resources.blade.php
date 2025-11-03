@@ -1,17 +1,12 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var Mixed $definitions */
-/** @var Mixed $records */
+/** @var array $definitions */
+/** @var array $records */
 $record = $records[0];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 \ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
-$fn = function ($value) {
-    if(!is_infinite($value) && $value > 0){
-        return true;
-    }
-    return false;
-};
+$fn = (fn($value): bool => !is_infinite($value) && $value > 0);
 
 $value_financial_plans_costs_value_1 = $record['ManagementFinancialPlanCosts'];
 $value_financial_plans_costs_value_2 = $area;
@@ -64,10 +59,10 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
        ])
 
     {{-- input field --}}
-    @include('modular-forms::module.show.field', [
-        'type' =>'',
-        'value' => $record[$definitions['fields'][0]['name']]
-    ])
+    <x-modular-forms::module.components.field.input-preview
+        type=""
+        :value="$record[$definitions['fields'][0]['name']]"
+    ></x-modular-forms::module.components.field.input-preview>
 
 @endcomponent
 
@@ -79,10 +74,10 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
        ])
 
     {{-- input field --}}
-    @include('modular-forms::module.show.field', [
-           'type' =>$definitions['fields'][1]['type'],
-           'value' => $record[$definitions['fields'][1]['name']]
-    ])
+    <x-modular-forms::module.components.field.input-preview
+        :type="$definitions['fields'][1]['type']"
+        :value="$record[$definitions['fields'][1]['name']]"
+    ></x-modular-forms::module.components.field.input-preview>
 @endcomponent
 
 <table id="{{ 'table_'.$definitions['module_key'] }}" class="table module-table">
@@ -99,10 +94,10 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
                     for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
         </td>
         <td>
-            @include('modular-forms::module.show.field', [
-                'type' => $definitions['fields'][2]['type'],
-                'value' => $record[$definitions['fields'][2]['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$definitions['fields'][2]['type']"
+                :value="$record[$definitions['fields'][2]['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_financial_plans_costs_result}}"
                    class="field-edit field-numeric text-right"/></td>
@@ -115,10 +110,10 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
                     for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
         </td>
         <td>
-            @include('modular-forms::module.show.field', [
-               'type' =>$definitions['fields'][3]['type'],
-                    'value' => $record[$definitions['fields'][3]['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$definitions['fields'][3]['type']"
+                :value="$record[$definitions['fields'][3]['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_operation_work_plan_costs_result}}"
                    class="field-edit field-numeric text-right"/></td>
@@ -132,10 +127,10 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
                     for="{{  $definitions['fields'][4]['name'] }}">{!! ucfirst($definitions['fields'][4]['label']) !!}</label>
         </td>
         <td>
-            @include('modular-forms::module.show.field', [
-                    'type' =>$definitions['fields'][4]['type'],
-                    'value' => $record[$definitions['fields'][4]['name']]
-            ])
+            <x-modular-forms::module.components.field.input-preview
+                :type="$definitions['fields'][4]['type']"
+                :value="$record[$definitions['fields'][4]['name']]"
+            ></x-modular-forms::module.components.field.input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_total_budget_result}}"
                    class="field-edit field-numeric text-right"/></td>
