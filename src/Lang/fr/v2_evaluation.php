@@ -28,6 +28,7 @@ return [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Evaluation: Intégration',
             'SignificativeClassification' => 'Importante désignation internationale',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [

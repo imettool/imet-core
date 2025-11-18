@@ -28,6 +28,7 @@ return [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Integracao',
             'SignificativeClassification' => 'Designação internacional altamente significante',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'Comments' => 'Comentários/Explicaçõe',
         ],
         'ratingLegend' => [

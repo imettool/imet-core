@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'eval_importance_c12'), function (Blueprint $table): void {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_importance_c12'), function (Blueprint $table) {
             $table->boolean('IncludeInStatistics')->nullable()->after('SignificativeClassification');
         });
     }
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('eval_importance_c12', function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA,'eval_importance_c12'), function (Blueprint $table) {
             $table->dropColumn('IncludeInStatistics');
         });
     }
