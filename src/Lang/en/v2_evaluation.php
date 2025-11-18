@@ -28,6 +28,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeClassification' => 'Highly significant international designation',
+            'IncludeInStatistics' => 'To prioritize in management',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
