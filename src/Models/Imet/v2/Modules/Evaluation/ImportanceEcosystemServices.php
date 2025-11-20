@@ -90,20 +90,34 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
             $records[$index]['_Importance'] = $record['Importance'];
             $records[$index]['_ImportanceRegional'] = $record['ImportanceRegional'];
             $records[$index]['_ImportanceGlobal'] = $record['ImportanceGlobal'];
+            $records[$index]['_categories'] = $record['_categories'];
         }
 
         return $records;
     }
 
+    /**
+     * @param array $groups
+     * @param $needle
+     * @return int|null
+     */
+    private static function find_category_id(array $groups, $needle): ?int
+    {
+        return array_find_key($groups, fn($sub) => is_array($sub) && in_array($needle, $sub, true));
+    }
+
     private static function getEcosystemServices(?int $form_id): Collection
     {
+        $categories = Modules\Context\EcosystemServices::$groupsByCategory;
         return Modules\Context\EcosystemServices::getModule($form_id)
             ->filter(fn ($item): bool => $item['Importance'] !== null)
-            ->map(function (Modules\Context\EcosystemServices $item): Modules\Context\EcosystemServices {
+            ->map(function (Modules\Context\EcosystemServices $item) use ($categories): Modules\Context\EcosystemServices {
+
+                $id = self::find_category_id($categories, $item['group_key']) + 1;
+                $item["_categories"] = $id.'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.$id);
                 $item['_rank'] = (floatval($item['Importance'])
                         + ($item['ImportanceRegional'] / 3)
                         + ((2 - $item['ImportanceGlobal']) / 4)) / 3 * 100;
-
                 return $item;
             })
             ->sortByDesc('_rank');
