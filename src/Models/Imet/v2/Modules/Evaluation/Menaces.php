@@ -89,15 +89,29 @@ final class Menaces extends Modules\Component\ImetModule_Eval
             $records[$index]['_Duration'] = $record['Duration'];
             $records[$index]['_Trend'] = $record['Trend'];
             $records[$index]['_Probability'] = $record['Probability'];
+            $records[$index]['_categories'] = $record['_categories'];
         }
 
         return $records;
     }
 
+    /**
+     * @param array $groups
+     * @param $needle
+     * @return int|null
+     */
+    private static function find_category_id(array $groups, $needle): ?int
+    {
+        return array_find_key($groups, fn($sub) => is_array($sub) && in_array($needle, $sub, true));
+    }
+
     private static function getMenacesPressions(?int $form_id)
     {
+        $categories = Modules\Context\MenacesPressions::$groupsByCategory;
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
-            ->map(function (Modules\Context\MenacesPressions $item): Modules\Context\MenacesPressions {
+            ->map(function (Modules\Context\MenacesPressions $item) use ($categories): Modules\Context\MenacesPressions {
+                $id = self::find_category_id($categories, $item['group_key']) + 1;
+                $item["_categories"] = $id.'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.$id);
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
                     [$item['Impact'], $item['Extension'], $item['Duration'], $item['Trend'], $item['Probability']],
                     true
