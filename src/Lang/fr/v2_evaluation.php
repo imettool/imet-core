@@ -194,6 +194,7 @@ return [
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Influence/pouvoir des parties prenantes',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'EvaluationScore2' => 'Niveau des contraintes/conflits ou soutiens/conformités',
             'Comments' => 'Commentaires/Explication',
         ],

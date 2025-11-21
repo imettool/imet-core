@@ -194,6 +194,7 @@ return [
         'fields' => [
             'Aspect' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Influência/poder das partes interessadas',
+            'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'EvaluationScore2' => 'Nível do constrangimento/conflito ou apoio/conformidade',
             'Comments' => 'Comentários/Explicação',
         ],
