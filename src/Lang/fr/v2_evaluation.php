@@ -549,6 +549,8 @@ return [
             'group3' => 'Menaces qui pèsent sur l’aire protégée',
             'group4' => 'Effets du changement climatique sur les éléments clés de l’aire protégée',
             'group5' => 'Services écosystémiques fournis par l’aire protégée',
+            'group6' => 'Désignations fournies par l\'aire protégée',
+            'group7' => 'Contraintes/conflits externes ou soutiens/conformités fournis par l\'aire protégée'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [

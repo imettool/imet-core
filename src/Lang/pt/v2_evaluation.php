@@ -549,6 +549,8 @@ return [
             'group3' => 'Ameaças à área protegida',
             'group4' => 'Efeitos das alterações climáticas sobre os elementos chave da área protegida',
             'group5' => 'Serviços Ecossistémicos providenciados pela área protegida',
+            'group6' => 'Designações fornecidas pela área protegida',
+            'group7' => 'Constrangimentos/conflitos externos ou apoios/conformidades fornecidos pela área protegida'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [

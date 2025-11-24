@@ -549,6 +549,8 @@ return [
             'group3' => 'Threats to the protected area',
             'group4' => 'Effects of climate change on key elements of the protected area',
             'group5' => 'Ecosystem services provided by the protected area',
+            'group6' => 'Designations provided by the protected area',
+            'group7' => 'External constraints/conflicts or supports/compliances provided by the protected area',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
