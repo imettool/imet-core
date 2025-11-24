@@ -905,7 +905,7 @@ return [
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
             'group2' => 'Habitats the most important and related dimensions of the protected area',
             'group4' => 'Management to mitigate threats to the protected area',
-            'group5' => 'Ecosystem services',
+            'group5' => 'External constraints/conflicts or supports/compliances',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [

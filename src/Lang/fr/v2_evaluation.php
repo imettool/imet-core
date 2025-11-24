@@ -904,9 +904,9 @@ return [
             'group0' => 'Espèces animales (phares, en voie de disparition, endémiques,....)',
             'group1' => 'Espèces de plantes (phares, en voie de disparition, endémiques,....)',
             'group2' => 'Habitats les plus importants et les dimensions connexes de l’aire protégée',
-            'group3' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
-            'group4' => 'Services Ecosystémiques',
-            'group5' => 'Autre',
+            'group4' => 'Gestion visant à atténuer les menaces qui pèsent sur l’aire protégée',
+            'group5' => 'Contraintes/conflits externes ou soutiens/conformités fournis',
+
         ],
         'ratingLegend' => [
             'EvaluationScore' => [

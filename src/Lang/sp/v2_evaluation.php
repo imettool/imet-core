@@ -904,9 +904,8 @@ return [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group2' => 'Los hábitats más importantes y las dimensiones relacionadas del área protegida',
-            'group3' => 'Gestión para mitigar las amenazas al área protegida',
-            'group4' => 'Servicios/funciones ecosistémicas',
-            'group5' => 'Otros',
+            'group4' => 'Gestión para mitigar las amenazas al área protegida',
+            'group5' => 'Limitaciones/conflictos externos o apoyos/cumplimientos proporcionadoss',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
