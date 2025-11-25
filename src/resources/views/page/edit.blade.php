@@ -53,6 +53,15 @@ $show_scrollbar = true;
         'steps' => $steps
     ])
 
+    {{-- Steps info --}}
+    @if($phase==='evaluation')
+        @if(\Illuminate\Support\Facades\Lang::has('imet-core::v2_evaluation.steps.'.$step))
+            <div class="module-container">
+                @include('modular-forms::module.components.bars.info',['definitions' => [ 'module_key' => null, 'module_info' => __('imet-core::v2_evaluation.steps.'.$step)]])
+            </div>
+        @endif
+    @endif
+
     {{-- Global errors --}}
     @include('modular-forms::page.components.errors', [
         'url' => action([$controller, 'edit'], ['item' => $item->getKey()]),

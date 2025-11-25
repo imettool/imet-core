@@ -50,6 +50,15 @@ $show_scrollbar = true;
         'steps' => array_keys($item::modules())
     ])
 
+    {{-- Steps info --}}
+    @if($phase==='evaluation')
+        @if(\Illuminate\Support\Facades\Lang::has('imet-core::v2_evaluation.steps.'.$step))
+            <div class="module-container">
+                @include('modular-forms::module.components.bars.info',['definitions' => [ 'module_key' => null, 'module_info' => __('imet-core::v2_evaluation.steps.'.$step)]])
+            </div>
+        @endif
+    @endif
+
     {{-- Cross Analysis --}}
     @if($step==='cross_analysis' and $version==Models\Imet\Imet::IMET_V2)
         @include('imet-core::'.$version.'.cross_analysis.index', [
