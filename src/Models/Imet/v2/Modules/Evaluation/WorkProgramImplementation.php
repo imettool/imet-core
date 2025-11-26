@@ -24,11 +24,12 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = 'ACCORDION';
         $this->module_code = 'O/P1';
         $this->module_title = trans('imet-core::v2_evaluation.WorkProgramImplementation.title');
         $this->module_fields = [
-            ['name' => 'Category',            'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.Category')],
+            ['name' => 'MainCategory',     'type' => 'text-area', 'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.MainCategory')],
+            ['name' => 'Category',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.Category')],
             ['name' => 'Activity',          'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.Activity')],
             ['name' => 'TargetedActivity',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.TargetedActivity')],
             ['name' => 'EvaluationScore',   'type' => 'rating-0to3',   'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.EvaluationScore')],
