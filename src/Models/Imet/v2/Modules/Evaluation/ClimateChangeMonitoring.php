@@ -34,6 +34,8 @@ final class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Program')],
             ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
+            ['name' => 'EvaluationScoreAdequacy',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScoreAdequacy')],
+            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Comments')],
         ];
 

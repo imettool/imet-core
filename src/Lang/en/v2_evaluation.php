@@ -1345,6 +1345,8 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of research and long-term monitoring',
+            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -1383,6 +1385,8 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating: Adequacy of adaptation measures',
+            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [

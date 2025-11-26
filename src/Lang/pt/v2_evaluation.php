@@ -1345,6 +1345,8 @@ return [
         'fields' => [
             'Program' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Adequação da investigação e monitorização a longo prazo',
+            'EvaluationScoreAdequacy' => 'Adequação das acções de gestão',
+            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
@@ -1383,6 +1385,8 @@ return [
         'fields' => [
             'Program' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Classificação: Adequação das medidas de adaptação',
+            'EvaluationScoreAdequacy' => 'Adequação das acções de gestão',
+            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
