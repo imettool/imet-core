@@ -78,6 +78,15 @@ final class Objectives extends Modules\Component\ImetModule_Eval
         return self::$cache_predefined_values;
     }
 
+    /**
+     * Override
+     */
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // ####  v2.12 -> v2.13 ####
+        return self::dropField($record, 'IncludeInPlanning');
+    }
+
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
