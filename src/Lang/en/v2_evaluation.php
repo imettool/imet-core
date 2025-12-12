@@ -1684,11 +1684,13 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'What are the conditions and trends for the key conservation elements of the protected area?',
-            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, habitats, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all',
+            'What is the current impact of each threat on the key conservation elements of the protected area, and how is this impact changing over time?',
+            'This question must be answered by assessing: <br/>
+            1. The current severity (Impact) of the threat, and <br/>
+            2. The direction of change (Trend of Impact) based on recent observations, data, and management actions.',
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)',
+            'Evaluate: A. Impact of the Threat (Current Situation): <br/> Rate the current severity of the threat based on its effect on the key conservation element. <br/> Negative values = the threat is significant. <br/> Positive values = the threat is weak or absent.',
         ],
     ],
 
