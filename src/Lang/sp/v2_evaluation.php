@@ -1636,8 +1636,8 @@ return [
         'title' => 'Condiciones y tendencias de los elementos clave de la conservación del área protegida',
         'fields' => [
             'Element' => 'Elemento clave de conservación',
-            'Condition' => 'Condición del elemento clave',
-            'Trend' => 'Tendencia del elemento clave',
+            'Condition' => 'Impacto de la amenaza (situación actual) :',
+            'Trend' => 'Tendencia del impacto (evolución de la amenaza)',
             'Reliability' => 'Fiabilidad de la información',
             'Comments' => 'Comentarios/explicación',
         ],
@@ -1651,38 +1651,37 @@ return [
         ],
         'ratingLegend' => [
             'Condition' => [
-                'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
-                '-3' => 'Muy malo',
-                '-2' => 'Malo',
-                '-1' => 'Ligeramente malo',
-                '0' => 'Neutral',
-                '+1' => 'Ligeramente bueno',
-                '+2' => 'Bueno',
-                '+3' => 'Muy bueno',
+                '-3' => 'Impacto muy elevado (crítico, generalizado, gran influencia sobre los resultados de la conservación)',
+                '-2' => 'Impacto elevado',
+                '-1' => 'Impacto moderado',
+                '+1' => 'Impacto muy débil (esporádico, localizado)',
+                '+2' => 'Impacto insignificante',
+                '+3' => 'Ningún impacto observable',
             ],
             'Trend' => [
-                'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
-                '-3' => 'Disminuyendo fuertemente',
-                '-2' => 'Disminuyendo',
-                '-1' => 'Ligeramente decreciente',
-                '0' => 'No hay cambios',
-                '+1' => 'Aumentando ligeramente',
-                '+2' => 'Aumentando',
-                '+3' => 'Aumentando fuertemente',
+                '-3' => 'Impacto en aumento rápido (deterioro rápido)',
+                '-2' => 'Impacto en aumento',
+                '-1' => 'Impacto ligeramente en aumento / casi estable (lado negativo)',
+                '+1' => 'Impacto ligeramente en disminución / casi estable (lado positivo)',
+                '+2' => 'Impacto en disminución',
+                '+3' => 'Impacto en disminución rápida (mejora rápida)',
             ],
             'Reliability' => [
-                'High' => 'Certeza casi completa sobre los valores de la condición y las tendencias',
-                'Medium' => 'Alguna posibilidad de error sobre los valores de la condición y las tendencias',
-                'Poor' => 'Gran incertidumbre sobre los valores de la condición y las tendencias',
+                'Elevado' => 'Certeza casi total sobre los valores del estado y de las tendencias',
+                'Médio' => 'Posibilidad de error en los valores del estado y de las tendencias',
+                'Fraco' => 'Gran incertidumbre sobre los valores del estado y de las tendencias',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            '¿Cuáles son las condiciones y tendencias de los elementos clave de conservación del área protegida?',
-            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos',
+            '¿Cuál es el impacto actual de cada amenaza sobre los elementos clave de conservación del área protegida, y cómo evoluciona ese impacto a lo largo del tiempo?',
+            'Esta cuestión debe responderse evaluando: <br/>
+           1. La gravedad actual (Impacto) de la amenaza, y <br/>
+           2. La dirección del cambio (Tendencia del impacto) basándose en observaciones recientes, datos y acciones de gestión.',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)',
-        ],
+            'A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, en los elementos del Proceso PR7 \- Gestión de los valores y de los elementos clave del área protegida mediante acciones específicas, PR17 \- adaptación a los cambios climáticos y PR18 \- Gestión de los servicios ecosistémicos) <br/>
+            B. Tendencia del impacto (Evolución de la amenaza): Evaluar cómo evoluciona la gravedad de la amenaza, basándose en los datos recientes y en las acciones de gestión. Valores negativos = la amenaza se está agravando. Valores positivos = la amenaza está disminuyendo.'
+        ]
     ],
 
     'LifeQualityImpact' => [

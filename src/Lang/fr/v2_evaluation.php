@@ -1634,8 +1634,8 @@ return [
         'title' => 'Conditions et tendances des éléments clés de la conservation de l’aire protégée',
         'fields' => [
             'Element' => 'Critère — Concept mesuré — Variable',
-            'Condition' => 'Condition de l’élément clé',
-            'Trend' => 'Tendance de l’élément clé',
+            'Condition' => 'Impact de la menace (situation actuelle) :',
+            'Trend' => 'Tendance de l’impact (évolution de la menace)',
             'Reliability' => 'Fiabilité de l’information',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -1649,24 +1649,20 @@ return [
         ],
         'ratingLegend' => [
             'Condition' => [
-                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '-3' => 'Très mauvaise',
-                '-2' => 'Mauvaise',
-                '-1' => 'Légèrement mauvaise',
-                '0' => 'Neutre',
-                '+1' => 'Légèrement bonne',
-                '+2' => 'Bonne',
-                '+3' => 'Très bonne',
+                '-3' => 'Impact très élevé (critique, répandu, influence majeure sur les résultats de la conservation)',
+                '-2' => 'Impact élevé',
+                '-1' => 'Impact modéré',
+                '+1' => 'Impact très faible (sporadique, localisé)',
+                '+2' => 'Impact négligeable',
+                '+3' => 'Aucun impact observable',
             ],
             'Trend' => [
-                'N/A' => 'cet élément n’est pas lié à la gestion de l’aire protégée',
-                '-3' => 'En forte baisse',
-                '-2' => 'En baisse',
-                '-1' => 'Légèrement en baisse',
-                '0' => 'Aucun changement',
-                '+1' => 'Légèrement en hausse',
-                '+2' => 'Légèrement en hausse',
-                '+3' => 'En forte progression',
+                '-3' => 'Impact en augmentation rapide (détérioration rapide)',
+                '-2' => 'Impact en augmentation',
+                '-1' => 'Impact légèrement en augmentation / presque stable (côté négatif)',
+                '+1' => 'Impact légèrement en diminution / presque stable (côté positif)',
+                '+2' => 'Impact en diminution',
+                '+3' => 'Impact en diminution rapide (amélioration rapide)',
             ],
             'Reliability' => [
                 'Élevé ' => 'Certitude presque totale quant aux valeurs de l’état et des tendances',
@@ -1675,12 +1671,15 @@ return [
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            'Quelles sont les conditions et les tendances pour les éléments clés de la conservation de l’aire protégée ?',
-            'Les principaux objectifs de gestion de l’aire protégée sont la conservation/restauration des valeurs naturelles et les avantages que les humains tirent de l’environnement naturel et du maintien du fonctionnement des écosystèmes (services écosystémiques). Les gestionnaires devraient assurer la conservation/restauration des valeurs clés (espèces animales et végétales, habitats, etc.) et le maintien des services écosystémiques d’approvisionnement, de régulation, de culture et de soutien, en garantissant les valeurs et avantages des aires protégées pour tous',
+            'Quel est l’impact actuel de chaque menace sur les éléments clés de conservation de l’aire protégée, et comment cet impact évolue\-t\-il dans le temps ?',
+            'Cette question doit être répondue en évaluant : <br/>
+            1. La gravité actuelle (Impact) de la menace, et <br/>
+            2. La direction du changement (Tendance de l’impact) sur la base des observations récentes, des données et des actions de gestion.',
         ],
         'module_info_Rating' => [
-            'Évaluer: A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (sur la base des éléments du Contexte: C 1, divers éléments clés et C3, menaces, Processus: PR7 — Gestion des valeurs et des éléments clés de l’aire protégée, PR 17 Adaptation au changement climatique et PR18 — Gestion des services écosystémiques',
-        ],
+            'A) les conditions et B) les tendances des éléments clés de conservation de l’aire protégée (basé sur le Contexte 1 et 3, les éléments du Processus PR7 \- Gestion des valeurs et des éléments clés de l’aire protégée par des actions spécifiques, PR17 \- adaptation au changement climatique et PR18 \- Gestion des services écosystémiques) <br/>
+             B. Tendance de l’impact (Évolution de la menace) : Évaluer comment la gravité de la menace évolue, en se basant sur les données récentes et les actions de gestion. Valeurs négatives = la menace s’aggrave. Valeurs positives = la menace diminue.'
+        ]
     ],
 
     'LifeQualityImpact' => [

@@ -1636,8 +1636,8 @@ return [
         'title' => 'Condições e tendências para os elementos-chave da conservação da área protegida',
         'fields' => [
             'Element' => 'Elementos chave da conservação',
-            'Condition' => 'Condição do elemento chave',
-            'Trend' => 'Tendência do elemento chave',
+            'Condition'=> 'Impacto da Ameaça (Situação Actual):',
+            'Trend'=> 'Tendência do Impacto (Evolução da Ameaça)',
             'Reliability' => 'fiabilidade da informação',
             'Comments' => 'Comentários/Explicação',
         ],
@@ -1649,39 +1649,39 @@ return [
             'group4' => 'Adaptação às alterações climáticas',
             'group5' => 'Condições e tendências de conservação dos serviços ecossistémicos da área protegida',
         ],
-        'ratingLegend' => [
-            'Condition' => [
-                'N/A' => 'este elemento não está relacionado com a gestão da área protegida',
-                '-3' => 'Muito mau',
-                '-2' => 'Mau',
-                '-1' => 'Ligeiramente mau',
-                '0' => 'Neutro',
-                '+1' => 'Ligeiramente bom',
-                '+2' => 'Bom',
-                '+3' => 'Muito Bom',
-            ],
-            'Trend' => [
-                'N/A' => 'este elemento não está relacionado com a gestão da área protegida',
-                '-3' => 'fortemente decrescente',
-                '-2' => 'Diminuindo',
-                '-1' => 'Ligeiramente decrescente',
-                '0' => 'Sem alterações',
-                '+1' => 'Ligeiramente crescente',
-                '+2' => 'Aumentando',
-                '+3' => 'fortemente crescente',
-            ],
-            'Reliability' => [
-                'High' => 'Quase uma completa certeza sobre os valores das condições e tendências',
-                'Medium' => 'Alguma possibilidade de erro sobre os valores das condições e tendências',
-                'Poor' => 'Alta incerteza acerca dos valores das condições e tendênciass',
-            ],
-        ],
-        'module_info_EvaluationQuestion' => [
-            'Quais são as condições e tendências para os elementos-chave da conservação da área protegida?',
-            'Os principais objectivos de gestão da área protegida são a conservação/restauro dos valores naturais e os benefícios que os seres humanos obtêm do ambiente natural e do bom funcionamento dos ecossistemas (serviços ecossistémicos). Os gestores devem assegurar a conservação/restauro de valores-chave (espécies animais e vegetais, habitats, etc.) e a preservação do abastecimento, regulação, cultura e apoio dos serviços ecossistémicos, assegurando os valores e benefícios das áreas protegidas para todos',
-        ],
-        'module_info_Rating' => [
-            'Avaliar: A) as condições e B) as tendências dos elementos-chave de conservação da área protegida (com base nos Contextos 1 e 3, Elementos do processo PR7 - Gerindo os valores e elementos-chave da área'],
+       'ratingLegend' => [
+           'Condition' => [
+               '-3' => 'Impacto muito elevado (crítico, generalizado, influência maior sobre os resultados da conservação)',
+               '-2' => 'Impacto elevado',
+               '-1' => 'Impacto moderado',
+               '+1' => 'Impacto muito fraco (esporádico, localizado)',
+               '+2' => 'Impacto negligível',
+               '+3' => 'Nenhum impacto observável',
+           ],
+           'Trend' => [
+               '-3' => 'Impacto em aumento rápido (deterioração rápida)',
+               '-2' => 'Impacto em aumento',
+               '-1' => 'Impacto ligeiramente em aumento / quase estável (lado negativo)',
+               '+1' => 'Impacto ligeiramente em diminuição / quase estável (lado positivo)',
+               '+2' => 'Impacto em diminuição',
+               '+3' => 'Impacto em diminuição rápida (melhoria rápida)',
+           ],
+           'Reliability' => [
+               'Elevado' => 'Certeza quase total sobre os valores do estado e das tendências',
+               'Médio' => 'Possibilidade de erro nos valores do estado e das tendências',
+               'Fraco' => 'Grande incerteza sobre os valores do estado e das tendências',
+           ],
+       ],
+       'module_info_EvaluationQuestion' => [
+           'Qual é o impacto atual de cada ameaça sobre os elementos-chave de conservação da área protegida, e como esse impacto evolui ao longo do tempo?',
+           'Esta questão deve ser respondida avaliando: <br/>
+           1. A gravidade atual (Impacto) da ameaça, e <br/>
+           2. A direção da alteração (Tendência do impacto) com base em observações recentes, dados e ações de gestão.',
+       ],
+       'module_info_Rating' => [
+           'A) as condições e B) as tendências dos elementos-chave de conservação da área protegida (baseado no Contexto 1 e 3, nos elementos do Processo PR7 \- Gestão dos valores e dos elementos-chave da área protegida por ações específicas, PR17 \- adaptação às alterações climáticas e PR18 \- Gestão dos serviços ecossistémicos) <br/>
+            B. Tendência do impacto (Evolução da ameaça): Avaliar como a gravidade da ameaça evolui, com base nos dados recentes e nas ações de gestão. Valores negativos = a ameaça está a agravar-se. Valores positivos = a ameaça está a diminuir.'
+       ]
     ],
 
     'LifeQualityImpact' => [

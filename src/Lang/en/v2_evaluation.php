@@ -1635,8 +1635,8 @@ return [
         'title' => 'Conditions and trends for the key conservation elements of the protected area',
         'fields' => [
             'Element' => 'Key conservation element',
-            'Condition' => 'Condition of the key element',
-            'Trend' => 'Trend of the key element',
+            'Condition'=> 'Impact of the Threat (Current Situation):',
+            'Trend'=> 'Trend of the Impact (Evolution of the Threat)',
             'Reliability' => 'Reliability of information',
             'Comments' => 'Comments/Explanation',
         ],
@@ -1646,42 +1646,41 @@ return [
             'group2' => 'Conservation conditions and trends for habitats and related dimensions of land cover-use–take',
             'group3' => 'Situation and trends for threats to the protected area',
             'group4' => 'Adaptation to climate change',
-            'group5' => 'Conservation conditions and trends for ecosystem services of the protected area ',
+            'group5' => 'Conservation conditions and trends for ecosystem services of the protected area '
         ],
         'ratingLegend' => [
             'Condition' => [
-                'N/A' => 'this element is not related to the management of the protected area',
-                '-3' => 'Very bad',
-                '-2' => 'Bad',
-                '-1' => 'Slightly bad',
-                '0' => 'Neutral',
-                '+1' => 'Slightly good',
-                '+2' => 'Good',
-                '+3' => 'Very good',
+                '-3' => 'Very high impact (critical, widespread, major influence on conservation outcomes)',
+                '-2' => 'High impact',
+                '-1' => 'Moderate impact',
+                '+1' => 'Very low impact (sporadic, localised)',
+                '+2' => 'Negligible impact',
+                '+3' => 'No observable impact',
             ],
             'Trend' => [
-                'N/A' => 'this element is not related to the management of the protected area',
-                '-3' => 'Strongly decreasing',
-                '-2' => 'Decreasing',
-                '-1' => 'Slightly decreasing',
-                '0' => 'No change',
-                '+1' => 'Slightly increasing',
-                '+2' => 'Increasing',
-                '+3' => 'Strongly increasing',
+                '-3' => 'Impact rapidly increasing (worsening fast)',
+                '-2' => 'Impact increasing',
+                '-1' => 'Impact slightly increasing / nearly stable (negative side)',
+                '+1' => 'Impact slightly decreasing / nearly stable (positive side)',
+                '+2' => 'Impact decreasing',
+                '+3' => 'Impact rapidly decreasing (improving fast)',
             ],
             'Reliability' => [
                 'High' => 'almost complete certainty about the values of condition and trends',
                 'Medium' => 'some possibility of mistake about the values of condition and trends',
                 'Poor' => 'high uncertainty about the values of condition and trends',
-            ],
+            ]
         ],
         'module_info_EvaluationQuestion' => [
-            'What are the conditions and trends for the key conservation elements of the protected area?',
-            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, habitats, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all',
+            'What is the current impact of each threat on the key conservation elements of the protected area, and how is this impact changing over time?',
+            'This question must be answered by assessing: <br/>
+            1. The current severity (Impact) of the threat, and <br/>
+            2. The direction of change (Trend of Impact) based on recent observations, data, and management actions.',
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)',
-        ],
+            'A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services) <br/>
+             B. Trend of the Impact (Evolution of the Threat): Rate how the severity of the threat is changing, based on recent data and management actions. Negative values = the threat is getting worse. Positive values = the threat is being reduced.'
+        ]
     ],
 
     'LifeQualityImpact' => [
