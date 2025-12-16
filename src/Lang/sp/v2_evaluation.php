@@ -196,6 +196,7 @@ return [
             'EvaluationScore' => 'Influencia/poder de los actores en general',
             'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'EvaluationScore2' => 'Nivel de la restricción/conflicto o del apoyo/cumplimiento',
+            'Score' => 'Evaluación',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [

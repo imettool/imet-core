@@ -196,6 +196,7 @@ return [
             'EvaluationScore' => 'Influência/poder das partes interessadas',
             'IncludeInStatistics' => 'Deveria ser uma prioridade na gestão?',
             'EvaluationScore2' => 'Nível do constrangimento/conflito ou apoio/conformidade',
+            'Score' => 'Avaliação',
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [

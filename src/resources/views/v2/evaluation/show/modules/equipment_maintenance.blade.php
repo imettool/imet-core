@@ -9,4 +9,4 @@ foreach ($records as $i => $record){
 
 @endphp
 
-@include('modular-forms::module.show.type.table', compact(['definitions', 'Frecords']))
+@include('modular-forms::module.show.type.table', compact(['definitions', 'records']))

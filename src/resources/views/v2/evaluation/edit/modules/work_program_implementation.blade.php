@@ -41,7 +41,7 @@ $table_id = \Illuminate\Support\Str::contains($definitions['module_type'], 'GROU
             <thead>
             <tr>
                 @foreach($definitions['fields'] as $field)
-                    @if(!isset($field['parent']))
+                    @if(!in_array($field['name'], [$definitions['group_key_field'], $definitions['virtual_field']]))
                         <th class="text-center">
                             @if($field['type']!=='hidden')
                                 {{ ucfirst($field['label'] ?? '') }}
@@ -52,12 +52,14 @@ $table_id = \Illuminate\Support\Str::contains($definitions['module_type'], 'GROU
                 <th></th>
             </tr>
             </thead>
+
+            {{-- inputs --}}
             <tbody class="{{ $group_key }}">
             <template v-for="(item, index) in records">
-                <tr class="module-table-item"
-                    v-if="recordIsInGroup(item, record['MainCategory']) || recordIsInGroup(item, record['GroupKey'])">
+                <tr class="module-table-item" v-if="recordIsInGroup(item, record['{{ $definitions['group_key_field'] }}']) || recordIsInGroup(item, record['{{ $definitions['virtual_field'] }}'])">
+                    {{--  fields  --}}
                     @foreach($definitions['fields'] as $field)
-                        @if(!isset($field['parent']))
+                        @if(!in_array($field['name'], [$definitions['group_key_field'], $definitions['virtual_field']]))
                             <td>
                                 @include('modular-forms::module.edit.field.module-to-vue', [
                                     'definitions' => $definitions,
@@ -108,8 +110,7 @@ $table_id = \Illuminate\Support\Str::contains($definitions['module_type'], 'GROU
         (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation(@json($vueData)))
             .mount('#module_{{ $definitions['module_key'] }}');
 
-        // fix accordion height when opened by removing it
-        document.addEventListener('accordion:opened', function (event) {
+        document.addEventListener('accordion:opened', function(event) {
             const body = event.target.querySelector('.accordion-item-body');
             if (body) {
                 body.removeAttribute('style');

@@ -196,6 +196,7 @@ return [
             'EvaluationScore' => 'Influence/pouvoir des parties prenantes',
             'IncludeInStatistics' => 'Should it be a priority in management?',
             'EvaluationScore2' => 'Niveau des contraintes/conflits ou soutiens/conformités',
+            'Score' => 'Évaluation',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [

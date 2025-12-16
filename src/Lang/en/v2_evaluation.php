@@ -196,6 +196,7 @@ return [
             'EvaluationScore' => 'Influence/power of the stakeholders',
             'IncludeInStatistics' => 'Should it be a priority in management?',
             'EvaluationScore2' => 'Level of the constraint/conflict or support/compliance',
+            'Score' => 'Evaluation',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
