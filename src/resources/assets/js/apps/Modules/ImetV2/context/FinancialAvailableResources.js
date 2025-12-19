@@ -50,7 +50,6 @@ export default class FinancialAvailableResources extends ModuleImet {
                     sum += item;
                 }
             });
-            sum = sum/2;
             return sum;
         });
 
