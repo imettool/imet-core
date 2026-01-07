@@ -89,7 +89,6 @@ export function useList(component_data) {
     }
 
     function filterByAttribute(items, filter_value, filter_on) {
-        let _this = this;
         filter_value = filter_value === "" || filter_value === 'null' ? null : filter_value;
         if (filter_value !== null) {
             items = items.filter((item) => {

@@ -111,7 +111,6 @@ export default class Report {
         app.component('bar_category_stack', barCategoryStack);
         app.component('imet_bar_error',    imetBarError);
         app.component('scaling_radar', scalingRadar);
-        app.component('treemap', treemap);
         app.component('scatter',    scatter);
         app.component('radar_threats', radarThreats);
         app.component('color_picker', colorPicker);

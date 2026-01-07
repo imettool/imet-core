@@ -23,7 +23,7 @@
 
 <script setup>
 
-import {ref, onMounted, computed} from 'vue';
+import {ref, computed} from 'vue';
 import {useList} from './composables/list'
 
 const props = defineProps({

@@ -7,12 +7,13 @@ use ImetCore\Models\Imet\Imet as ImetAlias;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Services\Scores\ImetScores;
 
-class PreviewScalingUp
+final class PreviewScalingUp
 {
     use Common;
 
     /**
      * @throws AuthorizationException
+     * @throws \Throwable
      */
     public static function preview(int $id): array
     {

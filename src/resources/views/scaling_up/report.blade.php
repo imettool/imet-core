@@ -22,11 +22,10 @@
                 @include('imet-core::scaling_up.components.wdpa_names')
 
                 @foreach ($templates as $key => $template)
-                    @include('imet-core::scaling_up.components.' . $template['name'], [
+                    @include('imet-core::scaling_up.section.' . $template['name'], [
                         'name' => $template['name'],
                         'code' => $template['code'],
                         'title' => $template['title'],
-                        'snapshot_id' => $template['snapshot_id'],
                         'exclude_elements' => $template['exclude_elements'],
                         'pas' => $custom_names,
                     ])
