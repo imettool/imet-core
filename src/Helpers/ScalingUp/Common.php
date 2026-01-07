@@ -102,7 +102,7 @@ final class Common
         self::$protected_areas_ids = [];
     }
 
-    public static function values_correction(string $indicator, $value): float
+    public static function values_correction(string $indicator, $value): float|string
     {
         if ($indicator === 'C3') {
             if ($value < 0 && ! is_string($value)) {
