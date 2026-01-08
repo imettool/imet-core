@@ -185,7 +185,7 @@ final class AverageContribution
         ];
 
         if (str_contains($origType, '_')) {
-            return trans('imet-core::analysis_report.assessment.' . $processLegends[$origType]);
+            return trans('imet-core::analysis_report.guidance.process.' . $processLegends[$origType].'.intro');
         }
 
         return trans('imet-core::common.steps_eval.' . $origType);
