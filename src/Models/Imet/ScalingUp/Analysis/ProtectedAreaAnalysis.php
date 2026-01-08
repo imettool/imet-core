@@ -31,6 +31,8 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
 
     public static string $code = '0';
 
+    public static string $info_label = 'imet-core::analysis_report.guidance.list_of_pas';
+
     /**
      * Get the protected area country
      *

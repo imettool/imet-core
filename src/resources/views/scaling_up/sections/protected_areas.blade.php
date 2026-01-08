@@ -1,5 +1,5 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :info_label="'imet-core::analysis_report.guidance.list_of_pas'">
+                   :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <div id="{{$name}}-image">
             <container_actions :data="container.props" :name="'{{$name}}-image'"

@@ -31,15 +31,15 @@ final class ReportScalingUp
     private static function templates(): array
     {
         return [
-            ['name' => ProtectedAreaAnalysis::$template, 'title' => trans(ProtectedAreaAnalysis::$title), 'exclude_elements' => ProtectedAreaAnalysis::$exclude_elements, 'code' => ProtectedAreaAnalysis::$code],
-            ['name' => MapViewAnalysis::$template, 'title' => trans(MapViewAnalysis::$title), 'exclude_elements' => MapViewAnalysis::$exclude_elements, 'code' => MapViewAnalysis::$code],
-            ['name' => GeneralInfoAnalysis::$template, 'title' => trans(GeneralInfoAnalysis::$title), 'exclude_elements' => GeneralInfoAnalysis::$exclude_elements, 'code' => GeneralInfoAnalysis::$code],
-            ['name' => ManagementContextAnalysis::$template, 'title' => trans(ManagementContextAnalysis::$title), 'exclude_elements' => ManagementContextAnalysis::$exclude_elements, 'code' => ManagementContextAnalysis::$code],
-            ['name' => OverallManagementEffectivenessAnalysis::$template, 'title' => trans(OverallManagementEffectivenessAnalysis::$title), 'exclude_elements' => OverallManagementEffectivenessAnalysis::$exclude_elements, 'code' => OverallManagementEffectivenessAnalysis::$code],
-            ['name' => GroupingAnalysis::$template, 'title' => trans(GroupingAnalysis::$title), 'exclude_elements' => GroupingAnalysis::$exclude_elements, 'code' => GroupingAnalysis::$code],
-            ['name' => ManagementCycleAnalysis::$template, 'title' => trans(ManagementCycleAnalysis::$title), 'exclude_elements' => ManagementCycleAnalysis::$exclude_elements, 'code' => ManagementCycleAnalysis::$code],
-            ['name' => ComparisonProtectedAreaAnalysis::$template, 'title' => trans(ComparisonProtectedAreaAnalysis::$title), 'exclude_elements' => ComparisonProtectedAreaAnalysis::$exclude_elements, 'code' => ComparisonProtectedAreaAnalysis::$code],
-            ['name' => DigitalInformationAnalysis::$template, 'title' => trans(DigitalInformationAnalysis::$title), 'exclude_elements' => DigitalInformationAnalysis::$exclude_elements, 'code' => DigitalInformationAnalysis::$code],
+            ['name' => ProtectedAreaAnalysis::$template, 'title' => trans(ProtectedAreaAnalysis::$title), 'exclude_elements' => ProtectedAreaAnalysis::$exclude_elements, 'code' => ProtectedAreaAnalysis::$code, 'info_label' => ProtectedAreaAnalysis::$info_label],
+            ['name' => MapViewAnalysis::$template, 'title' => trans(MapViewAnalysis::$title), 'exclude_elements' => MapViewAnalysis::$exclude_elements, 'code' => MapViewAnalysis::$code, 'info_label' => MapViewAnalysis::$info_label],
+            ['name' => GeneralInfoAnalysis::$template, 'title' => trans(GeneralInfoAnalysis::$title), 'exclude_elements' => GeneralInfoAnalysis::$exclude_elements, 'code' => GeneralInfoAnalysis::$code, 'info_label' => GeneralInfoAnalysis::$info_label],
+            ['name' => ManagementContextAnalysis::$template, 'title' => trans(ManagementContextAnalysis::$title), 'exclude_elements' => ManagementContextAnalysis::$exclude_elements, 'code' => ManagementContextAnalysis::$code, 'info_label' => ManagementContextAnalysis::$info_label],
+            ['name' => OverallManagementEffectivenessAnalysis::$template, 'title' => trans(OverallManagementEffectivenessAnalysis::$title), 'exclude_elements' => OverallManagementEffectivenessAnalysis::$exclude_elements, 'code' => OverallManagementEffectivenessAnalysis::$code, 'info_label' => OverallManagementEffectivenessAnalysis::$info_label],
+            ['name' => GroupingAnalysis::$template, 'title' => trans(GroupingAnalysis::$title), 'exclude_elements' => GroupingAnalysis::$exclude_elements, 'code' => GroupingAnalysis::$code, 'info_label' => GroupingAnalysis::$info_label],
+            ['name' => ManagementCycleAnalysis::$template, 'title' => trans(ManagementCycleAnalysis::$title), 'exclude_elements' => ManagementCycleAnalysis::$exclude_elements, 'code' => ManagementCycleAnalysis::$code, 'info_label' => ManagementCycleAnalysis::$info_label],
+            ['name' => ComparisonProtectedAreaAnalysis::$template, 'title' => trans(ComparisonProtectedAreaAnalysis::$title), 'exclude_elements' => ComparisonProtectedAreaAnalysis::$exclude_elements, 'code' => ComparisonProtectedAreaAnalysis::$code, 'info_label' => ComparisonProtectedAreaAnalysis::$info_label],
+            ['name' => DigitalInformationAnalysis::$template, 'title' => trans(DigitalInformationAnalysis::$title), 'exclude_elements' => DigitalInformationAnalysis::$exclude_elements, 'code' => DigitalInformationAnalysis::$code, 'info_label' => DigitalInformationAnalysis::$info_label],
         ];
     }
 

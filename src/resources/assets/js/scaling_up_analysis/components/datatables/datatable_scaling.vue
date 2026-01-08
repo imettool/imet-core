@@ -16,20 +16,26 @@
             </div>
         </div>
         <table id="global_scores">
-            <th v-for="(column, idx) in columns" @click="sort(column.field)"
-                :style="idx === 0 ? 'width:15%;' : 'width:11%;'" :key="column.field">
-                {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} {{ (column.extra_label) }} <i
-                    :class="sort_icon(column.field)" />
-            </th>
-            <tr v-for="(value, index) in items" :key="index">
-                <template v-if="items[index]['name'] !== 'Average'">
-                    <td v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
-                        :class="idx === 0 ? '' : score_class(value[column.field])" :key="column.field"></td>
-                </template>
-                <template v-else>
-                    <td v-for="column in columns" v-html="get_value(value[column.field])" :key="column.field"></td>
-                </template>
-            </tr>
+            <thead>
+                <tr>
+                    <th v-for="(column, idx) in columns" @click="sort(column.field)"
+                        :style="idx === 0 ? 'width:15%;' : 'width:11%;'" :key="column.field">
+                        {{ column.label.charAt(0).toUpperCase() + column.label.slice(1) }} {{ (column.extra_label) }} <i
+                            :class="sort_icon(column.field)" />
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(value, index) in items" :key="index">
+                    <template v-if="items[index]['name'] !== 'Average'">
+                        <td v-for="(column, idx) in columns" v-html="get_value(value[column.field])"
+                            :class="idx === 0 ? '' : score_class(value[column.field])" :key="column.field"></td>
+                    </template>
+                    <template v-else>
+                        <td v-for="column in columns" v-html="get_value(value[column.field])" :key="column.field"></td>
+                    </template>
+                </tr>
+            </tbody>
         </table>
         <div class="flex flex-row items-center text-sm">
             <div class="text-right mr-4">
@@ -44,7 +50,7 @@
 </template>
 
 <script setup>
-import { inject, onMounted, ref, computed, reactive } from 'vue';
+import { inject, watch, ref, computed } from 'vue';
 import { useList } from './composables/list'
 
 const props = defineProps({
@@ -72,7 +78,6 @@ const props = defineProps({
 
 const stores = inject('stores');
 const list = ref([]);
-const { Locale } = window;
 const average = ref([]);
 const {
     filterList,
@@ -84,24 +89,18 @@ const {
     sort
 } = useList({ sortBy: props.default_order, sortDir: props.default_order_dir });
 
-onMounted(() => {
-
-    list.value = props.values;
-
-    // list.value.sort((a, b) => {
-    //     return a.name.localeCompare(b.name)
-    // })
-});
+watch(() => props.values, (newValues) => {
+    list.value = newValues;
+}, { immediate: true });
 
 const items = computed(() => {
     let items = [];
     if (list.value.length) {
+        items = [...list.value];
 
-        items = list.value;
-
-        items = filterList(items);     // from filter mixin
+        items = filterList(items);
         if (props.refresh_average) {
-            items = calculateAverage(items); //recalculate average
+            items = calculateAverage(items);
         }
         items = sortList(items);
     }

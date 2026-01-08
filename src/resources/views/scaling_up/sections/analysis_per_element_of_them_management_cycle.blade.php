@@ -3,7 +3,7 @@
     :id="'{{ $name }}'"
     :title="'{{ $title }}'"
     :code="'{{ $code }}'"
-    :info_label="'imet-core::analysis_report.guidance.analysis_per_element'">
+    :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <div class="max-w-12xl m-auto">
 

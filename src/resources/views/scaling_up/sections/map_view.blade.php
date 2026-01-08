@@ -1,5 +1,5 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :info_label="'imet-core::analysis_report.guidance.map'">
+                   :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <div id="map-view">
             <container_actions

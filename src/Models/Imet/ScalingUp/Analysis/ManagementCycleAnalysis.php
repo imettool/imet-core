@@ -24,6 +24,7 @@ final class ManagementCycleAnalysis extends BaseAnalysis
     public static string $title = 'imet-core::analysis_report.sections.sixth';
     public static string $code = '6';
     public static string $exclude_elements = '';
+    public static string $info_label = 'imet-core::analysis_report.guidance.analysis_per_element';
 
     private static function getManagementCycleProvider(?int $scalingId = null): ManagementCycleDataProvider
     {

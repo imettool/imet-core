@@ -20,6 +20,7 @@ final class ComparisonProtectedAreaAnalysis extends BaseAnalysis
     public static string $title = 'imet-core::analysis_report.sections.seventh';
     public static string $code = '7';
     public static string $exclude_elements = 'smallMenus';
+    public static string $info_label = 'imet-core::analysis_report.guidance.relative_performance';
 
     /**
      * @param int|null $scalingId

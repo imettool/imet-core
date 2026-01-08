@@ -22,7 +22,6 @@ import containerAnalysisManagementCycle from './components/containers/container_
 import containerSection from './components/containers/container_section.vue';
 import containerUpperLowerRadars from './components/containers/container_upper_lower_radars.vue';
 import containerActions from './components/containers/container_actions.vue';
-import datatableCustom from './components/datatables/datatable_custom.vue';
 import datatableInteractWithRadar from './components/datatables/datatable_interact_with_radar.vue';
 import datatableInteractWithScatter from './components/datatables/datatable_interact_with_scatter.vue';
 import datatableScaling from './components/datatables/datatable_scaling.vue';
@@ -31,7 +30,6 @@ import barCategoryStack from './components/bar_charts/bar_category_stack.vue';
 import imetBarError from './components/bar_charts/imet_bar_error.vue';
 import scalingRadar from './components/various_charts/scaling_radar.vue';
 
-import treemap from './components/various_charts/treemap.vue';
 import scatter from './components/various_charts/scatter.vue';
 import radarThreats from './components/various_charts/radar_threats.vue';
 import colorPicker from './tools/color_picker.vue';
@@ -103,7 +101,6 @@ export default class Report {
         app.component('container_section',    containerSection);
         app.component('container_upper_lower_radars', containerUpperLowerRadars);
         app.component('container_actions', containerActions);
-        app.component('datatable_custom', datatableCustom);
         app.component('datatable_interact_with_radar', datatableInteractWithRadar);
         app.component('datatable_interact_with_scatter', datatableInteractWithScatter);
         app.component('datatable_scaling', datatableScaling);

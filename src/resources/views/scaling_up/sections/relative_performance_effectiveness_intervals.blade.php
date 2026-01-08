@@ -1,5 +1,5 @@
 <container_section :id="'{{ $name }}'" :title="'{{ $title }}'" :class="'upper_downa'"
-    :code="'{{ $code }}'" :info_label="'imet-core::analysis_report.guidance.relative_performance'">
+    :code="'{{ $code }}'" :info_label="'{{ $info_label }}">
     <template v-slot:default="container">
         <checkboxes_list :items="{{ json_encode($custom_names) }}">
             <template v-slot:default="pas">

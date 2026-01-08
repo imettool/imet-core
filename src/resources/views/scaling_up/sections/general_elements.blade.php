@@ -2,7 +2,7 @@
     :title="'{{$title}}'"
     :id="'{{$name}}'"
     :code="'{{$code}}'"
-    :info_label="'imet-core::analysis_report.guidance.general_elements'">
+    :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <div id="{{$name}}-image">
             <container

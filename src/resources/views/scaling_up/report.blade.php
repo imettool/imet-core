@@ -26,6 +26,7 @@
                         'name' => $template['name'],
                         'code' => $template['code'],
                         'title' => $template['title'],
+                        'info_label' => $template['info_label'],
                         'exclude_elements' => $template['exclude_elements'],
                         'pas' => $custom_names,
                     ])

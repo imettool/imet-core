@@ -22,8 +22,8 @@ export const commonProps = {
         default: 'POST'
     },
     parameters: {
-        type: Array,
-        default: []
+        type: [Array, String],
+        default: () => []
     },
     func: {
         type: String,

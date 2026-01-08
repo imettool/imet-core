@@ -18,5 +18,6 @@ final class DigitalInformationAnalysis extends BaseAnalysis
     public static string $title = 'imet-core::analysis_report.sections.eighth';
     public static string $code = '8';
     public static string $exclude_elements = '';
+    public static string $info_label = 'imet-core::analysis_report.guidance.additional_options.main';
 }
 

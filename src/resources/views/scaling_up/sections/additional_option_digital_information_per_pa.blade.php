@@ -1,5 +1,5 @@
 <container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
-                   :info_label="'imet-core::analysis_report.guidance.additional_options.main'">
+                   :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <container_view
             :loaded_at_once="true"

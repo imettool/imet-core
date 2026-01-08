@@ -10,8 +10,8 @@
 
 <template>
     <div class="smallMenu" style="min-height: 80px;">
-        <div class="standalone js-smallMenu" id="smallMenu" v-if="listNames.length > 1">
-            <div :class="{ active: isSelected(idx) }" v-for="(item, idx) in listNames" v-html="item"
+        <div class="standalone js-smallMenu" id="smallMenu" v-if="list_names.length > 1">
+            <div :class="{ active: isSelected(idx) }" v-for="(item, idx) in list_names" v-html="item"
                 @click="scrollToSection(idx)" :key="idx">
             </div>
         </div>
@@ -40,17 +40,17 @@ const props = defineProps({
     },
 });
 
-const listNames = ref([]);
+const list_names = ref([]);
 const selection = ref(null);
 
-const excludedItems = props.exclude.split(',');
+const excluded_items = props.exclude.split(',');
 
 const listItems = () => {
     const objectEntries = Object.entries(props.items);
     if (objectEntries.length > 0) {
         objectEntries.forEach((item) => {
-            if (!excludedItems.includes(item[0])) {
-                listNames.value.unshift(item[0]);
+            if (!excluded_items.includes(item[0])) {
+                list_names.value.unshift(item[0]);
             }
         });
     }

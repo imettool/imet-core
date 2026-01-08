@@ -11,11 +11,17 @@
 const getLabel = (key) => window.ModularForms.Helpers.Locale.getLabel(key);
 const getScalingLabel = (key) => window.ScalingUp?.labels(key) ?? '';
 
-const createColumn = (label, field, extraLabel = '') => ({ label, field, extra_label: extraLabel });
+const createColumn = (label, field, extraLabel = '') => ({label, field, extra_label: extraLabel});
 
 const indicators = [
     'context', 'outcomes', 'outputs', 'process', 'inputs', 'planning'
-].map(key => getLabel(`imet-core::common.steps_eval.${key}`));
+].map((key) => {
+    if (key === 'context') {
+        return 'context'
+    }
+
+    return getLabel(`imet-core::common.steps_eval.${key}`)
+});
 
 export default {
     indicators,
@@ -57,9 +63,9 @@ export default {
                 ranking_labels: false,
                 columns: [
                     createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
-                    createColumn(`C1: ${getScalingLabel('C1') ?? ''}`,"C1"),
-                    createColumn(`C2: ${getScalingLabel('C2') ?? ''}`,"C2", ` ${getLabel('imet-core::analysis_report.scale.negative_positive')}`),
-                    createColumn(`C3: ${getScalingLabel('C3')}`,"C3",` ${getLabel('imet-core::analysis_report.scale.zero_negative')}`),
+                    createColumn(`C1: ${getScalingLabel('C1') ?? ''}`, "C1"),
+                    createColumn(`C2: ${getScalingLabel('C2') ?? ''}`, "C2", ` ${getLabel('imet-core::analysis_report.scale.negative_positive')}`),
+                    createColumn(`C3: ${getScalingLabel('C3')}`, "C3", ` ${getLabel('imet-core::analysis_report.scale.zero_negative')}`),
                     createColumn(`${getLabel('imet-core::common.steps_eval.context')}`, "context", ` `),
                 ]
             },
@@ -76,12 +82,12 @@ export default {
                 ranking_labels: false,
                 columns: [
                     createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
-                    createColumn( `C1.1: ${getScalingLabel('C11') ?? ''}`, "C11"),
-                    createColumn(`C1.2: ${getScalingLabel('C12')}`,"C12"),
-                    createColumn(`C1.3: ${getScalingLabel('C13')}`,"C13"),
-                    createColumn(`C1.4: ${getScalingLabel('C14')}`,"C14"),
-                    createColumn(`C1.5: ${getScalingLabel('C15')}`,"C15"),
-                    createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable_average')}`,"avg")
+                    createColumn(`C1.1: ${getScalingLabel('C11') ?? ''}`, "C11"),
+                    createColumn(`C1.2: ${getScalingLabel('C12')}`, "C12"),
+                    createColumn(`C1.3: ${getScalingLabel('C13')}`, "C13"),
+                    createColumn(`C1.4: ${getScalingLabel('C14')}`, "C14"),
+                    createColumn(`C1.5: ${getScalingLabel('C15')}`, "C15"),
+                    createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable_average')}`, "avg")
                 ]
             },
         ],

@@ -10,10 +10,10 @@
 
 <template>
     <div class="smallMenu" style="min-height: 80px;">
-      <div class="standalone js-smallMenu" id="smallMenu" v-if="listNames.length > 1">
+      <div class="standalone js-smallMenu" id="smallMenu" v-if="list_names.length > 1">
         <div
           :class="isSelected(idx)"
-          v-for="(item, idx) in listNames"
+          v-for="(item, idx) in list_names"
           v-html="item[1]"
           @click="scrollToSection(item[0])"
           :key="idx"
@@ -45,12 +45,12 @@
     },
   });
 
-  const listNames = ref([]);
-  const excludedItems = ref([]);
+  const list_names = ref([]);
+  const excluded_items = ref([]);
   const selection = ref(null);
 
   const excludeItems = () => {
-    excludedItems.value = props.exclude.split(',');
+    excluded_items.value = props.exclude.split(',');
   };
 
   const listItems = () => {
@@ -58,15 +58,15 @@
     const objectEntries = Object.entries(props.items);
     if (objectEntries.length > 0) {
       objectEntries.forEach((item) => {
-        if (!excludedItems.value.includes(item[0])) {
+        if (!excluded_items.value.includes(item[0])) {
           if (item[1].length) {
             item[1].forEach((v) => {
               const { menu, name } = v;
-              const menuItem = ['header', item[0], name];
-              listNames.value.push([menuItem.join('-'), menu.header]);
+              const menu_item = ['header', item[0], name];
+              list_names.value.push([menu_item.join('-'), menu.header]);
             });
           } else {
-            listNames.value.unshift(item[1]);
+            list_names.value.unshift(item[1]);
           }
         }
       });

@@ -34,12 +34,11 @@
 <script setup>
 import { onMounted, watch, inject, ref } from "vue";
 import { useAjax } from "../../composables/ajax";
+import { useErrorStates } from "../../composables/useErrorStates";
 import { commonProps } from "./common/props";
 
-const show_loader = ref(false);
-const timeout = ref(false);
-const error_returned = ref(false);
-const error_wrong = ref(false);
+// Use shared error states composable
+const { show_loader, timeout, error_returned, error_wrong, setLoading, handleError } = useErrorStates();
 const data = ref([]);
 const props = defineProps({
     ...commonProps,
@@ -77,56 +76,55 @@ const component_data = {
     stores,
     trigger_incoming_data: props.trigger_incoming_data,
     success,
-    error
+    error: handleError
 };
 
 let { init, on_event_load } = useAjax(component_data);
 
 watch(() => props.loaded_at_once, async (newVal) => {
     if (newVal) {
-        show_loader.value = true;
+        setLoading(true);
         try {
             await init();
         } catch (error) {
             console.error(error);
-            show_loader.value = false;
         } finally {
-
+            setLoading(false);
         }
     }
 }, { deep: true });
 
 watch(() => props.trigger_incoming_data, async (newVal) => {
     if (newVal) {
-        show_loader.value = true;
+        setLoading(true);
         try {
             await on_event_load(newVal);
         } catch (error) {
             console.error(error);
-            show_loader.value = false;
-        } finally {
-
+        }
+        finally {
+            setLoading(false);
         }
     }
 }, { deep: true });
 
 onMounted(async () => {
     if (props.loaded_at_once === true) {
-        show_loader.value = true;
+        setLoading(true);
         try {
             await init();
         } catch (error) {
             console.error(error);
-            show_loader.value = false;
-        } finally {
-
+        }
+        finally {
+            setLoading(false);
         }
     }
 });
 
 
 function success(response, loader = false) {
-    show_loader.value = loader;
+    setLoading(loader);
     if (response.status === false) {
         timeout.value = true;
         return;
@@ -135,23 +133,12 @@ function success(response, loader = false) {
         data.value = response.data;
 
         if (props.on_load_even !== null) {
-            emitter.on('component_loaded');
+            emitter.emit('component_loaded');
         }
     } else {
         error_returned.value = true;
     }
 }
 
-function error(response) {
-    show_loader.value = false;
-    if (!response.response)
-        error_wrong.value = true;
-    else if (response.status === false) {
-        timeout.value = true;
-    } else if (response.code === 'ECONNABORTED')
-        timeout.value = true;
-    else if (response.response.status === 500)
-        error_wrong.value = true;
-}
 
 </script>

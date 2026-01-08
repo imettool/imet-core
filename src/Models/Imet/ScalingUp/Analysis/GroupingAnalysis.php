@@ -23,6 +23,7 @@ final class GroupingAnalysis extends BaseAnalysis
     public static string $title = 'imet-core::analysis_report.sections.fifth';
     public static string $code = '5';
     public static string $exclude_elements = 'js-grouping-action-buttons,start-zone,js-render-buttons';
+    public static string $info_label = 'imet-core::analysis_report.guidance.grouping';
 
     private static function getAssessmentProvider(): AssessmentDataProvider
     {
