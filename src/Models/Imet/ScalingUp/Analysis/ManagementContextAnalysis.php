@@ -22,7 +22,6 @@ final class ManagementContextAnalysis extends BaseAnalysis
     public static string $template = 'key_elements_of_conservation';
     public static string $title = 'imet-core::analysis_report.sections.third';
     public static string $code = '3';
-    public static string $snapshot_id = 'key_elements_of_conservation';
 
     private static function getManagementContextProvider(?int $scalingId = null): ManagementContextDataProvider
     {

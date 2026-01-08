@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common as ModelCommon;
 use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ScalingUp\Analysis\DigitalInformationAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\GroupingAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ComparisonProtectedAreaAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementContextAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\GeneralInfoAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\MapViewAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\OverallManagementEffectivenessAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
@@ -30,14 +32,14 @@ final class ReportScalingUp
     {
         return [
             ['name' => ProtectedAreaAnalysis::$template, 'title' => trans(ProtectedAreaAnalysis::$title), 'exclude_elements' => ProtectedAreaAnalysis::$exclude_elements, 'code' => ProtectedAreaAnalysis::$code],
-            ['name' => 'map_view', 'title' => trans('imet-core::analysis_report.sections.first'), 'exclude_elements' => '', 'code' => '1'],
+            ['name' => MapViewAnalysis::$template, 'title' => trans(MapViewAnalysis::$title), 'exclude_elements' => MapViewAnalysis::$exclude_elements, 'code' => MapViewAnalysis::$code],
             ['name' => GeneralInfoAnalysis::$template, 'title' => trans(GeneralInfoAnalysis::$title), 'exclude_elements' => GeneralInfoAnalysis::$exclude_elements, 'code' => GeneralInfoAnalysis::$code],
             ['name' => ManagementContextAnalysis::$template, 'title' => trans(ManagementContextAnalysis::$title), 'exclude_elements' => ManagementContextAnalysis::$exclude_elements, 'code' => ManagementContextAnalysis::$code],
             ['name' => OverallManagementEffectivenessAnalysis::$template, 'title' => trans(OverallManagementEffectivenessAnalysis::$title), 'exclude_elements' => OverallManagementEffectivenessAnalysis::$exclude_elements, 'code' => OverallManagementEffectivenessAnalysis::$code],
             ['name' => GroupingAnalysis::$template, 'title' => trans(GroupingAnalysis::$title), 'exclude_elements' => GroupingAnalysis::$exclude_elements, 'code' => GroupingAnalysis::$code],
             ['name' => ManagementCycleAnalysis::$template, 'title' => trans(ManagementCycleAnalysis::$title), 'exclude_elements' => ManagementCycleAnalysis::$exclude_elements, 'code' => ManagementCycleAnalysis::$code],
             ['name' => ComparisonProtectedAreaAnalysis::$template, 'title' => trans(ComparisonProtectedAreaAnalysis::$title), 'exclude_elements' => ComparisonProtectedAreaAnalysis::$exclude_elements, 'code' => ComparisonProtectedAreaAnalysis::$code],
-            ['name' => 'additional_option_digital_information_per_pa', 'title' => trans('imet-core::analysis_report.sections.eighth'), 'exclude_elements' => '', 'code' => '8'],
+            ['name' => DigitalInformationAnalysis::$template, 'title' => trans(DigitalInformationAnalysis::$title), 'exclude_elements' => DigitalInformationAnalysis::$exclude_elements, 'code' => DigitalInformationAnalysis::$code],
         ];
     }
 

@@ -31,7 +31,6 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
 
     public static string $code = '0';
 
-    public static string $snapshot_id = 'protected_areas';
     /**
      * Get the protected area country
      *

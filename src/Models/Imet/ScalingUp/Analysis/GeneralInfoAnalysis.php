@@ -23,7 +23,6 @@ final class GeneralInfoAnalysis extends BaseAnalysis
     public static string $title = 'imet-core::analysis_report.sections.second';
     public static string $code = '2';
     public static string $exclude_elements = '';
-    public static string $snapshot_id = 'general_elements';
 
     private static function getGeneralInfoProvider(?int $scalingId = null): GeneralInfoDataProvider
     {
