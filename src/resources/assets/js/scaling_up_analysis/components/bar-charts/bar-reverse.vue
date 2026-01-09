@@ -20,7 +20,7 @@
     ></imet_bar_chart>
 </template>
 <script setup>
-import {useBar} from './composable/bar.js';
+import {useBar} from './composables/bar.js';
 import imet_bar_chart from '../../../templates/imet_bar_chart.vue';
 import {commonProps, common} from "./common/commonProps";
 import {computed} from "vue";

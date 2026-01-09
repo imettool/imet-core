@@ -1,4 +1,4 @@
-<container_analysis_management_cycle
+<container-analysis-management-cycle
     id="sub_elem_1"
     :items="{{ json_encode($custom_names) }}"
     :title="container.props.config.element_diagrams.context[0].menu.header"
@@ -32,5 +32,5 @@
             </template>
         </container>
     </template>
-</container_analysis_management_cycle>
+</container-analysis-management-cycle>
 

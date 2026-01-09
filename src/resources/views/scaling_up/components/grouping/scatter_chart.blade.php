@@ -11,10 +11,10 @@
 </div>
 
 <div v-if="container.props.stores.BaseStore.is_visible(data_elements.props.scatter)">
-    <datatable_interact_with_scatter
+    <datatable-interact-with-scatter
         :default_order="'name'"
         :values="data_elements.props.scatter"
         :columns="container.props.config.group_analysis_on_demand.scatter_columns">
-    </datatable_interact_with_scatter>
+    </datatable-interact-with-scatter>
 </div>
 

@@ -19,7 +19,7 @@
 </template>
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import basket_store from "../stores/basket.store.js";
+import basket_store from "../../stores/basket.store.js";
 
 const props = defineProps({
     scaling_up_id: {

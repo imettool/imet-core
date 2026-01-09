@@ -31,12 +31,12 @@
              @dragover.prevent
              @dragenter.prevent>
             <div v-for='(item, index) in default_list' class='default-zone-element' :key="index">
-                <draggable_item :is_removable=false :item="item" :item_class="'default-zone-element'"></draggable_item>
+                <draggable-item :is_removable=false :item="item" :item_class="'default-zone-element'"></draggable-item>
             </div>
         </div>
         <div class="flex flex-row justify-center dropzone-areas" id="dropzone-areas">
             <div class="ml-1" v-for="(i, index) in data.list_of_components" :key="index">
-                <drop_drag_area @drag-element="start_drag" @remove-element="remove_from_list" @drop-element="on_drop" :drop_id="i.id" :key="i.id" :color="i.color">
+                <drop-drag-area @drag-element="start_drag" @remove-element="remove_from_list" @drop-element="on_drop" :drop_id="i.id" :key="i.id" :color="i.color">
                     <template v-slot>
 
                         <div class="text-center mb-4 py-1 px-2 font-bold" style="background: rgba(255,255,255,0.7);">
@@ -53,11 +53,11 @@
                         </div>
 
                         <div v-for='(item, index) in list_items(i.id)' :key="index">
-                            <draggable_item :item="item"></draggable_item>
+                            <draggable-item :item="item"></draggable-item>
                         </div>
 
                     </template>
-                </drop_drag_area>
+                </drop-drag-area>
             </div>
         </div>
         <div class="flex flex-row gap-1 justify-center mb-5" id="js-render-buttons">
@@ -133,8 +133,6 @@
 }
 </style>
 <script setup>
-import drop_drag_area from "./drag_and_drop/drop_drag_area.vue";
-import draggable_item from "./drag_and_drop/draggable_item.vue";
 import {onMounted, reactive, computed, inject, ref} from 'vue';
 
 const stores = inject('stores');

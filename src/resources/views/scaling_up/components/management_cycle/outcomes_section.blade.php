@@ -1,4 +1,4 @@
-<container_analysis_management_cycle
+<container-analysis-management-cycle
     id="sub_elem_6"
     :info_label="'imet-core::analysis_report.guidance.outcomes.main'"
     :title="container.props.config.element_diagrams.outcomes[0].menu.header"
@@ -13,5 +13,5 @@
             'sub_class' => 'sub-title-second',
         ])
     </template>
-</container_analysis_management_cycle>
+</container-analysis-management-cycle>
 

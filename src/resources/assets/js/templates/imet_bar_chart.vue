@@ -16,8 +16,8 @@
 import * as echarts from "~/echarts";
 import { inject, ref, computed, onMounted, watch } from "vue";
 import { useResize } from "../scaling_up_analysis/composables/resize";
-import { useBar } from "../scaling_up_analysis/components/bar_charts/composable/bar";
-import { common, commonProps } from "../scaling_up_analysis/components/bar_charts/common/commonProps";
+import { useBar } from "../scaling_up_analysis/components/bar-charts/composables/bar";
+import { common, commonProps } from "../scaling_up_analysis/components/bar-charts/common/commonProps";
 
 const chartContainer = ref(null);
 const emitter = inject('emitter');

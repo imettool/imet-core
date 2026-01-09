@@ -1,4 +1,4 @@
-<container_analysis_management_cycle
+<container-analysis-management-cycle
     id="{{$id}}"
     :title="container.props.config.element_diagrams.{{$type}}[0].menu.title"
     :url="url"
@@ -13,5 +13,5 @@
             'dontShowTitle' => true
         ])
     </template>
-</container_analysis_management_cycle>
+</container-analysis-management-cycle>
 
