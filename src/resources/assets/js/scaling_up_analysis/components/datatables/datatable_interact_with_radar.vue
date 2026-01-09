@@ -10,7 +10,8 @@
 
 <template>
     <div v-if="data.length">
-        <datatable_scaling :columns="columns" :default_order="default_order" :refresh_average="refresh_average" :values="data" :key="data.length">
+        <datatable_scaling :columns="columns" :default_order="default_order" :refresh_average="refresh_average"
+                           :values="data" :key="data.length">
         </datatable_scaling>
     </div>
 </template>
@@ -55,7 +56,7 @@ const props = defineProps({
     },
 });
 
-const { parse_data } = useList({sortBy: props.default_order});
+const {parse_data} = useList({sortBy: props.default_order});
 
 onMounted(() => {
     emitter.on(`radar_data_${props.event_key}`, (params) => {

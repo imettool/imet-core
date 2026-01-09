@@ -17,7 +17,6 @@
 
 <script setup>
 import {ref, onMounted, inject} from 'vue';
-import {useList} from './composables/list'
 
 const emitter = inject('emitter');
 const data = ref([]);
@@ -54,8 +53,6 @@ const props = defineProps({
         default: "asc"
     },
 });
-
-// const { parse_data } = useList({sortBy: props.default_order});
 
 onMounted(() => {
     emitter.on(`scatter_data_${props.event_key}`, (params) => {

@@ -8,15 +8,23 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
+const getLabel = (key) => window.ModularForms.Helpers.Locale.getLabel(key);
+const getScalingLabel = (key) => window.ScalingUp?.labels(key) ?? '';
+
+const createColumn = (label, field, extraLabel = '') => ({label, field, extra_label: extraLabel});
+
+const indicators = [
+    'context', 'outcomes', 'outputs', 'process', 'inputs', 'planning'
+].map((key) => {
+    if (key === 'context') {
+        return 'context'
+    }
+
+    return getLabel(`imet-core::common.steps_eval.${key}`)
+});
+
 export default {
-    indicators: [
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-        window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning')
-    ],
+    indicators,
     color: [
         '#00B050',
         '#92D050',
@@ -45,80 +53,41 @@ export default {
                 key: 'overall_scores',
                 name: 'main',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.header'),
-                    title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.title'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.main.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.context.main.header'),
+                    title: getLabel('imet-core::analysis_report.element_diagrams.context.main.title'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.context.main.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.context.main.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.context.main.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.context.main.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `C1: ${window.ScalingUp?.labels('C1') ?? ''}`,
-                        "field": "C1"
-                    },
-                    {
-                        "label": `C2: ${window?.ScalingUp?.labels('C2') ?? ''}`,
-                        "field": "C2",
-                        "extra_label": ` ${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
-                    },
-                    {
-                        "label": `C3: ${window?.ScalingUp?.labels('C3')}`,
-                        "field": "C3",
-                        "extra_label": ` ${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.scale.zero_negative')}`
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context')}`,
-                        "field": "context",
-                        "extra_label": ``
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`C1: ${getScalingLabel('C1') ?? ''}`, "C1"),
+                    createColumn(`C2: ${getScalingLabel('C2') ?? ''}`, "C2", ` ${getLabel('imet-core::analysis_report.scale.negative_positive')}`),
+                    createColumn(`C3: ${getScalingLabel('C3')}`, "C3", ` ${getLabel('imet-core::analysis_report.scale.zero_negative')}`),
+                    createColumn(`${getLabel('imet-core::common.steps_eval.context')}`, "context", ` `),
                 ]
             },
             {
                 key: 'context_value_and_importance',
                 name: 'context_value_and_importance',
                 menu: {
-                    title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.title'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable'),
+                    title: getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.title'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `C1.1: ${window.ScalingUp?.labels('C11') ?? ''}`,
-                        "field": "C11"
-                    },
-                    {
-                        "label": `C1.2: ${window.ScalingUp?.labels('C12')}`,
-                        "field": "C12",
-                    },
-                    {
-                        "label": `C1.3: ${window.ScalingUp?.labels('C13')}`,
-                        "field": "C13"
-                    },
-                    {
-                        "label": `C1.4: ${window.ScalingUp?.labels('C14')}`,
-                        "field": "C14"
-                    },
-                    {
-                        "label": `C1.5: ${window.ScalingUp?.labels('C15')}`,
-                        "field": "C15"
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable_average')}`,
-                        "field": "avg"
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`C1.1: ${getScalingLabel('C11') ?? ''}`, "C11"),
+                    createColumn(`C1.2: ${getScalingLabel('C12')}`, "C12"),
+                    createColumn(`C1.3: ${getScalingLabel('C13')}`, "C13"),
+                    createColumn(`C1.4: ${getScalingLabel('C14')}`, "C14"),
+                    createColumn(`C1.5: ${getScalingLabel('C15')}`, "C15"),
+                    createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.context.context_value_and_importance.datatable_average')}`, "avg")
                 ]
             },
         ],
@@ -127,58 +96,33 @@ export default {
                 name: 'threats',
                 ranking_labels: false,
                 menu: {
-                    title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.title'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.threats.threats.datatable'),
+                    title: getLabel('imet-core::analysis_report.element_diagrams.threats.threats.title'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.threats.threats.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.threats.threats.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.threats.threats.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.threats.threats.datatable'),
                 }
             },
         planning: [
             {
                 name: 'main',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.header'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.planning.main.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.planning.main.header'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.planning.main.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.planning.main.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.planning.main.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.planning.main.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `P1: ${window.ScalingUp?.labels('P1')}`,
-                        "field": "P1"
-                    },
-                    {
-                        "label": `P2: ${window.ScalingUp?.labels('P2')}`,
-                        "field": "P2",
-                    },
-                    {
-                        "label": `P3: ${window.ScalingUp?.labels('P3')}`,
-                        "field": "P3"
-                    },
-                    {
-                        "label": `P4: ${window.ScalingUp?.labels('P4')}`,
-                        "field": "P4"
-                    },
-                    {
-                        "label": `P.5: ${window.ScalingUp?.labels('P5')}`,
-                        "field": "P5"
-                    },
-                    {
-                        "label": `P6: ${window.ScalingUp?.labels('P6')}`,
-                        "field": "P6"
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning')}`,
-                        "field": "planning",
-                        "extra_label": ``
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`P1: ${getScalingLabel('P1')}`, "P1"),
+                    createColumn(`P2: ${getScalingLabel('P2')}`, "P2"),
+                    createColumn(`P3: ${getScalingLabel('P3')}`, "P3"),
+                    createColumn(`P4: ${getScalingLabel('P4')}`, "P4"),
+                    createColumn(`P.5: ${getScalingLabel('P5')}`, "P5"),
+                    createColumn(`P6: ${getScalingLabel('P6')}`, "P6"),
+                    createColumn(getLabel('imet-core::common.steps_eval.planning'), "planning", "")
                 ]
 
             }
@@ -187,43 +131,21 @@ export default {
             {
                 name: 'main',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.header'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.inputs.main.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.inputs.main.header'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.inputs.main.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.inputs.main.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.inputs.main.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.inputs.main.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `I1: ${window.ScalingUp?.labels('I1')}`,
-                        "field": "I1"
-                    },
-                    {
-                        "label": `I2: ${window.ScalingUp?.labels('I2')}`,
-                        "field": "I2",
-                    },
-                    {
-                        "label": `I3: ${window.ScalingUp?.labels('I3')}`,
-                        "field": "I3"
-                    },
-                    {
-                        "label": `I4: ${window.ScalingUp?.labels('I4')}`,
-                        "field": "I4"
-                    },
-                    {
-                        "label": `I5: ${window.ScalingUp?.labels('I5')}`,
-                        "field": "I5"
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs')}`,
-                        "field": "inputs",
-                        "extra_label": ``
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`I1: ${getScalingLabel('I1')}`, "I1"),
+                    createColumn(`I2: ${getScalingLabel('I2')}`, "I2"),
+                    createColumn(`I3: ${getScalingLabel('I3')}`, "I3"),
+                    createColumn(`I4: ${getScalingLabel('I4')}`, "I4"),
+                    createColumn(`I5: ${getScalingLabel('I5')}`, "I5"),
+                    createColumn(`${getLabel('imet-core::common.steps_eval.inputs')}`, "inputs", ``)
                 ]
 
             }
@@ -232,241 +154,127 @@ export default {
             {
                 name: 'process_sub_indicators',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.header'),
-                    title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.title'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.header'),
+                    title: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.title'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_sub_indicators.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `PR A: ${window.ScalingUp?.labels('PRA')}`,
-                        "field": "PRA"
-                    },
-                    {
-                        "label": `PR B: ${window.ScalingUp?.labels('PRB')}`,
-                        "field": "PRB",
-                    },
-                    {
-                        "label": `PR C: ${window.ScalingUp?.labels('RC')}`,
-                        "field": "PRC"
-                    },
-                    {
-                        "label": `PR D: ${window.ScalingUp?.labels('PRD')}`,
-                        "field": "PRD"
-                    },
-                    {
-                        "label": `PR E: ${window.ScalingUp?.labels('PRE')}`,
-                        "field": "PRE"
-                    },
-                    {
-                        "label": `PR F: ${window.ScalingUp?.labels('PRF')}`,
-                        "field": "PRF"
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process')}`,
-                        "field": "process"
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`PR A: ${getScalingLabel('PRA')}`, "PRA"),
+                    createColumn(`PR B: ${getScalingLabel('PRB')}`, "PRB"),
+                    createColumn(`PR C: ${getScalingLabel('PRC')}`, "PRC"),
+                    createColumn(`PR D: ${getScalingLabel('PRD')}`, "PRD"),
+                    createColumn(`PR E: ${getScalingLabel('PRE')}`, "PRE"),
+                    createColumn(`PR F: ${getScalingLabel('PRF')}`, "PRF"),
+                    createColumn(`${getLabel('imet-core::common.steps_eval.process')}`, "process")
                 ]
             }],
         process_PRA: [{
             name: 'process_internal_management',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.title'),
-                radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.radar'),
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.title'),
+                radar: getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.radar'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR1: ${window.ScalingUp?.labels('PR1')}`,
-                    "field": "PR1"
-                },
-                {
-                    "label": `PR2: ${window.ScalingUp?.labels('PR2')}`,
-                    "field": "PR2",
-                },
-                {
-                    "label": `PR3: ${window.ScalingUp?.labels('PR3')}`,
-                    "field": "PR3"
-                },
-                {
-                    "label": `PR4: ${window.ScalingUp?.labels('PR4')}`,
-                    "field": "PR4"
-                },
-                {
-                    "label": `PR5: ${window.ScalingUp?.labels('PR5')}`,
-                    "field": "PR5",
-                },
-                {
-                    "label": `PR6: ${window.ScalingUp?.labels('PR6')}`,
-                    "field": "PR6"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR1: ${getScalingLabel('PR1')}`, "PR1"),
+                createColumn(`PR2: ${getScalingLabel('PR2')}`, "PR2"),
+                createColumn(`PR3: ${getScalingLabel('PR3')}`, "PR3"),
+                createColumn(`PR4: ${getScalingLabel('PR4')}`, "PR4"),
+                createColumn(`PR5: ${getScalingLabel('PR5')}`, "PR5"),
+                createColumn(`PR6: ${getScalingLabel('PR6')}`, "PR6"),
+                createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.process.process_internal_management_systems_processes.datatable_average')}`, "avg")
             ]
 
         }],
         process_PRB: [{
             name: 'process_management_protection_values',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.title'),
-                radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.radar'),
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.datatable'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.title'),
+                radar: getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.radar'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR7: ${window.ScalingUp?.labels('PR7')}`,
-                    "field": "PR7"
-                },
-                {
-                    "label": `PR8: ${window.ScalingUp?.labels('PR8')}`,
-                    "field": "PR8",
-                },
-                {
-                    "label": `PR9: ${window.ScalingUp?.labels('PR9')}`,
-                    "field": "PR9"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR7: ${getScalingLabel('PR7')}`, "PR7"),
+                createColumn(`PR8: ${getScalingLabel('PR8')}`, "PR8"),
+                createColumn(`PR9: ${getScalingLabel('PR9')}`, "PR9"),
+                createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.process.process_management_protection_values.datatable_average')}`, "avg")
             ]
 
         }],
         process_PRC: [{
             name: 'process_stakeholders_relationships',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.title'),
-                radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.radar'),
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.datatable'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.title'),
+                radar: getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.radar'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR10: ${window.ScalingUp?.labels('PR10')}`,
-                    "field": "PR10"
-                },
-                {
-                    "label": `PR11: ${window.ScalingUp?.labels('PR11')}`,
-                    "field": "PR11",
-                },
-                {
-                    "label": `PR12: ${window.ScalingUp?.labels('PR12')}`,
-                    "field": "PR12"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR10: ${getScalingLabel('PR10')}`, "PR10"),
+                createColumn(`PR11: ${getScalingLabel('PR11')}`, "PR11"),
+                createColumn(`PR12: ${getScalingLabel('PR12')}`, "PR12"),
+                createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.process.process_stakeholders_relationships.datatable_average')}`, "avg")
             ]
         }],
         process_PRD: [{
             name: 'process_tourism_management',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.title'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.title'),
                 radar: ``,
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.datatable'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR13: ${window.ScalingUp?.labels('PR13')}`,
-                    "field": "PR13"
-                },
-                {
-                    "label": `PR14: ${window.ScalingUp?.labels('PR14')}`,
-                    "field": "PR14"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR13: ${getScalingLabel('PR13')}`, "PR13"),
+                createColumn(`PR14: ${getScalingLabel('PR14')}`, "PR14"),
+                createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.process.process_tourism_management.datatable_average')}`, "avg")
             ]
         }],
         process_PRE: [{
             name: 'process_monitoring_and_research',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.title'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.title'),
                 radar: '',
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.datatable'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR15: ${window.ScalingUp?.labels('PR15')}`,
-                    "field": "PR15"
-                },
-                {
-                    "label": `PR16: ${window.ScalingUp?.labels('PR16')}`,
-                    "field": "PR16"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR15: ${getScalingLabel('PR15')}`, "PR15"),
+                createColumn(`PR16: ${getScalingLabel('PR16')}`, "PR16"),
+                createColumn(`${getLabel('imet-core::analysis_report.element_diagrams.process.process_monitoring_and_research.datatable_average')}`, "avg")
             ]
         }],
         process_PRF: [{
             name: 'process_effects_of_climate_change',
             menu: {
-                title: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.title'),
+                title: getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.title'),
                 radar: '',
-                ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.ranking'),
-                average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.average_contribution'),
-                datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable'),
+                ranking: getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.ranking'),
+                average_contribution: getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.average_contribution'),
+                datatable: getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable'),
             },
             columns: [
-                {
-                    "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                    "field": "name"
-                },
-                {
-                    "label": `PR17: ${window.ScalingUp?.labels('PR17')}`,
-                    "field": "PR17"
-                },
-                {
-                    "label": `PR18: ${window.ScalingUp?.labels('PR18')}`,
-                    "field": "PR18"
-                },
-                {
-                    "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable_average')}`,
-                    "field": "avg"
-                }
+                createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                createColumn(`PR17: ${getScalingLabel('PR17')}`, "PR17"),
+                createColumn(`PR18: ${getScalingLabel('PR18')}`, "PR18"),
+                createColumn(getLabel('imet-core::analysis_report.element_diagrams.process.process_effects_of_climate_change.datatable_average'), "avg")
             ]
         }
         ],
@@ -474,39 +282,20 @@ export default {
             {
                 name: 'main',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.header'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outputs.main.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.outputs.main.header'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.outputs.main.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.outputs.main.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.outputs.main.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.outputs.main.datatable'),
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `O/P1: ${window.ScalingUp?.labels('OP1')}`,
-                        "field": "OP1"
-                    },
-                    {
-                        "label": `O/P2: ${window.ScalingUp?.labels('OP2')}`,
-                        "field": "OP2",
-                    },
-                    {
-                        "label": `O/P3: ${window.ScalingUp?.labels('OP3')}`,
-                        "field": "OP3"
-                    },
-                    {
-                        "label": `O/P4: ${window.ScalingUp?.labels('OP4')}`,
-                        "field": "OP4"
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs')}`,
-                        "field": "outputs",
-                        "extra_label": ``
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`O/P1: ${getScalingLabel('OP1')}`, "OP1"),
+                    createColumn(`O/P2: ${getScalingLabel('OP2')}`, "OP2"),
+                    createColumn(`O/P3: ${getScalingLabel('OP3')}`, "OP3"),
+                    createColumn(`O/P4: ${getScalingLabel('OP4')}`, "OP4"),
+                    createColumn(`${getLabel('imet-core::common.steps_eval.outputs')}`, "outputs", ``)
                 ]
 
             }
@@ -515,144 +304,43 @@ export default {
             {
                 name: 'main',
                 menu: {
-                    header: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.header'),
-                    radar: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.radar'),
-                    ranking: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.ranking'),
-                    average_contribution: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.average_contribution'),
-                    datatable: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.datatable'),
+                    header: getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.header'),
+                    radar: getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.radar'),
+                    ranking: getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.ranking'),
+                    average_contribution: getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.average_contribution'),
+                    datatable: getLabel('imet-core::analysis_report.element_diagrams.outcomes.main.datatable'),
 
                 },
                 ranking_labels: false,
                 columns: [
-                    {
-                        "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                        "field": "name"
-                    },
-                    {
-                        "label": `O/C1: ${window.ScalingUp?.labels('OC1')}`,
-                        "field": "OC1"
-                    },
-                    {
-                        "label": `O/C2: ${window.ScalingUp?.labels('OC2')}`,
-                        "field": "OC2",
-                        "extra_label": ` ${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
-                    },
-                    {
-                        "label": `O/C3: ${window.ScalingUp?.labels('OC3')}`,
-                        "field": "OC3",
-                        "extra_label": ` ${window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.scale.negative_positive')}`
-                    },
-                    {
-                        "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes')}`,
-                        "field": "outcomes",
-                        "extra_label": ``
-                    }
+                    createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+                    createColumn(`O/C1: ${getScalingLabel('OC1')}`, "OC1"),
+                    createColumn(`O/C2: ${getScalingLabel('OC2')}`, "OC2", ` ${getLabel('imet-core::analysis_report.scale.negative_positive')}`),
+                    createColumn(`O/C3: ${getScalingLabel('OC3')}`, "OC3", ` ${getLabel('imet-core::analysis_report.scale.negative_positive')}`),
+                    createColumn(`${getLabel('imet-core::common.steps_eval.outcomes')}`, "outcomes", ``)
                 ]
 
             }
         ],
     },
     performance_diagram: {
-        indicators: [
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning')
-
-        ],
-        color: [
-            '#ffff00',
-            '#bfbfbf',
-            '#ffc000',
-            '#0099CC',
-            '#92D050',
-            '#00B050'
-        ],
-
+        indicators,
+        color: ['#ffff00', '#bfbfbf', '#ffc000', '#0099CC', '#92D050', '#00B050'],
         columns: [
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                "field": "name"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-                "field": "context"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning'),
-                "field": "planning",
-
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-                "field": "inputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-                "field": "process"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-                "field": "outputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-                "field": "outcomes"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.indexes.imet'),
-                "field": "imet_index"
-            }
+            createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), 'name'),
+            ...indicators.map(label => createColumn(label, label.toLowerCase())),
+            createColumn(getLabel('imet-core::common.indexes.imet'), 'imet_index')
         ]
     },
     evaluation_of_protected_area_management_cycle: {
         columns: [
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                "field": "name"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-                "field": "context"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning'),
-                "field": "planning",
-
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-                "field": "inputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-                "field": "process"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-                "field": "outputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-                "field": "outcomes"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.indexes.imet'),
-                "field": "imet_index"
-            }
+            createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), 'name'),
+            ...indicators.map(label => createColumn(label, label.toLowerCase())),
+            createColumn(getLabel('imet-core::common.indexes.imet'), 'imet_index')
         ]
     },
     relative_performance_effectiveness_bar_average: {
-        indicators: [
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning'),
-            window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-        ],
+        indicators,
         color: [
             '#00B050',
             '#92D050',
@@ -665,68 +353,28 @@ export default {
     },
     group_analysis_on_demand: {
         scatter_columns: [
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                "field": "name"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-                "field": "context"
-            },
-            {
-                "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context')}, ${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning')}, ${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs')}`,
-                "field": "planning",
-
-            },
-            {
-                "label": `${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs')}, ${window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes')}`,
-                "field": "inputs"
-            },
+            createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+            createColumn(getLabel('imet-core::common.steps_eval.process'), "context"),
+            createColumn(`${getLabel('imet-core::common.steps_eval.context')}, ${getLabel('imet-core::common.steps_eval.planning')}, ${getLabel('imet-core::common.steps_eval.inputs')}`, "planning"),
+            createColumn(`${getLabel('imet-core::common.steps_eval.outputs')}, ${getLabel('imet-core::common.steps_eval.outcomes')}`, "inputs"),
         ],
         columns: [
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.Create.fields.wdpa_id'),
-                "field": "name"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.context'),
-                "field": "context"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.planning'),
-                "field": "planning",
-
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.inputs'),
-                "field": "inputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.process'),
-                "field": "process"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outputs'),
-                "field": "outputs"
-            },
-            {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.steps_eval.outcomes'),
-                "field": "outcomes"
-            }
+            createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
+            ...indicators.map(label => createColumn(label, label.toLowerCase())),
         ]
     },
     protected_area: {
         columns: [
             {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.protected_area.name'),
+                "label": getLabel('imet-core::analysis_report.protected_area.name'),
                 "field": "name"
             },
             {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.protected_area.gis_area'),
+                "label": getLabel('imet-core::analysis_report.protected_area.gis_area'),
                 "field": "gis_area"
             },
             {
-                "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.protected_area.nature'),
+                "label": getLabel('imet-core::analysis_report.protected_area.nature'),
                 "field": "nature",
                 type: 'bg-color'
             }
@@ -738,12 +386,12 @@ export default {
                 label: '%',
                 children: [
                     {
-                        label: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.map.fields.area_prot_terr_perc'),
+                        label: getLabel('imet-core::analysis_report.map.fields.area_prot_terr_perc'),
                         field: 'area_prot_terr_perc',
                         color: '#91cc75'
                     },
                     {
-                        label: window.ModularForms.Helpers.Locale.getLabel('imet-core::analysis_report.map.fields.protconn'),
+                        label: getLabel('imet-core::analysis_report.map.fields.protconn'),
                         field: 'protconn',
                         color: '#3ba272'
                     }

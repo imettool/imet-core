@@ -62,7 +62,6 @@ function store_to_cookie_by_id_and_value(cookieName, data_values = null) {
         } else {
             window.ModularForms.Helpers.Cookie.create(cookieName, JSON.stringify(data_values));
         }
-        //selected.value = [];
         emitter.emit('update_cloud_tags');
     }
 
