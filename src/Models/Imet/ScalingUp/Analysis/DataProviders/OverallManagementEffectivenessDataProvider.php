@@ -49,8 +49,7 @@ final class OverallManagementEffectivenessDataProvider
      */
     private function getAssessments(array $formIds): array
     {
-        $syntheticIndicatorsTable = Common::get_assessments($formIds, $this->scalingId);
-        return ['data' => $syntheticIndicatorsTable['data']];
+        return $syntheticIndicatorsTable = Common::get_assessments($formIds, $this->scalingId);
     }
 
     /**
@@ -59,7 +58,7 @@ final class OverallManagementEffectivenessDataProvider
     private function getRanking(array $formIds, array $assessments): array
     {
         $indexRanking = Ranking::get_overall_ranking($formIds, $assessments);
-        return $indexRanking['data']['values'];
+        return $indexRanking['values'];
     }
 
     /**
@@ -84,7 +83,7 @@ final class OverallManagementEffectivenessDataProvider
             $assessments,
             true
         );
-        return $radars['data']['diagrams'];
+        return $radars['diagrams'];
     }
 
     /**
@@ -102,7 +101,7 @@ final class OverallManagementEffectivenessDataProvider
             true
         );
 
-        return $scatterPlots['data']['scatter'];
+        return $scatterPlots['scatter'];
     }
 
     /**
@@ -126,7 +125,7 @@ final class OverallManagementEffectivenessDataProvider
      */
     private function getAssessmentsAverage(array $assessments): array
     {
-        return $assessments['data']['assessments_average'];
+        return $assessments['assessments_average'];
     }
 }
 

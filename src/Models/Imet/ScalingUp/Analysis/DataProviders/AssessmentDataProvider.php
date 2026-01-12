@@ -12,7 +12,7 @@ final class AssessmentDataProvider
     public function getAssessments(array $formIds): array
     {
         $assessments = Common::get_assessments($formIds, $this->scalingId);
-        unset($assessments['data']['assessments']);
+        unset($assessments['assessments']);
         return $assessments;
     }
 }

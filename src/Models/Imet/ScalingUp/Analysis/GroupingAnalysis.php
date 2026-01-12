@@ -42,7 +42,7 @@ final class GroupingAnalysis extends BaseAnalysis
 
     public static function getAssessments(array $form_ids): array
     {
-        return self::getAssessmentProvider()->getAssessments($form_ids);
+        return self::successResponse(self::getAssessmentProvider()->getAssessments($form_ids));
     }
 
     public static function getProtectedAreaWithCountries(array $form_ids): array
@@ -60,7 +60,7 @@ final class GroupingAnalysis extends BaseAnalysis
 
     public static function getScatterGroupingAnalysis(array $parameters, array $assessments = [], bool  $not_grouped = false): array
     {
-        return self::getGroupingProvider()->getScatterData($parameters, $assessments, $not_grouped);
+        return self::successResponse(self::getGroupingProvider()->getScatterData($parameters, $assessments, $not_grouped));
     }
 }
 

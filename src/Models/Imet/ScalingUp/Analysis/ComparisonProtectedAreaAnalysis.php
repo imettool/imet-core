@@ -42,12 +42,12 @@ final class ComparisonProtectedAreaAnalysis extends BaseAnalysis
      */
     public static function getUpperLowerProtectedAreasDiagramCompare(array $form_ids, bool  $width = true, array $assessments = [], bool  $overall = true): array
     {
-        return self::getComparisonProtectedAreaProvider()->getUpperLowerProtectedAreasDiagramCompare(
+        return self::successResponse(self::getComparisonProtectedAreaProvider()->getUpperLowerProtectedAreasDiagramCompare(
             $form_ids,
             $width,
             $assessments,
             $overall
-        );
+        ));
     }
 }
 

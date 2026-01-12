@@ -446,14 +446,13 @@ final class Ranking
      */
     public static function get_overall_ranking(array $form_ids, array $assessment = []): array
     {
-        $assessments = $assessment ?: Common::get_assessments($form_ids);
-        $items = $assessments['data'];
+        $items = $assessment ?: Common::get_assessments($form_ids);
 
         self::sortAssessmentsByIndex($items['assessments']);
 
         $ranking = self::buildOverallRankingData($items['assessments'], $form_ids);
 
-        return ['status' => 'success', 'data' => ['values' => $ranking, 'form_ids' => $form_ids]];
+        return  ['values' => $ranking, 'form_ids' => $form_ids];
     }
 
     /**

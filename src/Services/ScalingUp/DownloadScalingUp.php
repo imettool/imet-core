@@ -24,9 +24,6 @@ class DownloadScalingUp
             static::checkAuthorization(explode(',', (string) $item->wdpas));
 
             foreach ($scaling_ups as $record) {
-
-                dd($record);
-
                 $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$record->item;
             }
 
