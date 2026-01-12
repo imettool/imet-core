@@ -187,6 +187,9 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.LifeQualityImpact = LifeQualityIm
 import SupportsAndConstraints from "./js/apps/Modules/ImetV2/evaluation/SupportsAndConstraints";
 window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints = SupportsAndConstraints;
 
+import WorkProgramImplementation from "./js/apps/Modules/ImetV2/evaluation/WorkProgramImplementation";
+window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkProgramImplementation;
+
 // ##### OECM - context #####
 
 import Governance from "./js/apps/Modules/Oecm/context/Governance";

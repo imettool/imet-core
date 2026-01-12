@@ -1470,6 +1470,7 @@ return [
     'WorkProgramImplementation' => [
         'title' => 'Mise en œuvre des activités du plan de travail/du plan d’action',
         'fields' => [
+            'MainCategory' => 'Catégorie principale',
             'Category' => 'Catégories d’activités',
             'Activity' => 'Activités',
             'TargetedActivity' => 'Activités prévues',

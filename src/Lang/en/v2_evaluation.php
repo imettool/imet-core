@@ -1469,6 +1469,7 @@ return [
     'WorkProgramImplementation' => [
         'title' => 'Activities implementation of the work/action plan',
         'fields' => [
+            'MainCategory' => 'Main Category',
             'Category' => 'Categories of activities',
             'Activity' => 'Activity',
             'TargetedActivity' => 'Targeted activity',

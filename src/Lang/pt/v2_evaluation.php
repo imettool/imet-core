@@ -1469,6 +1469,7 @@ return [
     'WorkProgramImplementation' => [
         'title' => 'Implementação das actividades do plano de trabalho/acção',
         'fields' => [
+            'MainCategory' => 'Categoria principal',
             'Category' => 'Categorias de actividades',
             'Activity' => 'Actividade',
             'TargetedActivity' => 'Actividade Planificada',
