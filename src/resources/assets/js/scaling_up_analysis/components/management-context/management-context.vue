@@ -17,7 +17,7 @@
                 <span class="fas fa-fw" :class="{'fa-caret-up': !data.show_species,'fa-caret-down':data.show_species}"></span>
                 {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.key_species') }}
             </h5>
-            <container_actions
+            <container-actions
                 :data="data.species"
                 :name="'species'"
                 :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_plants_species')"
@@ -57,7 +57,7 @@
                         </elements>
                     </div>
                 </template>
-            </container_actions>
+            </container-actions>
 
         </div>
 
@@ -70,7 +70,7 @@
                 }}
             </h5>
 
-            <container_actions :data="data.habitats" :name="'habitats'"
+            <container-actions :data="data.habitats" :name="'habitats'"
                                :event_image="'save_entire_block_as_image'"
                                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_terrestrial')"
                                :exclude_elements="''">
@@ -90,7 +90,7 @@
                         </elements>
                     </div>
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
         <div>
             <div @click="toggle_species('climate')"><h5><span class="fas fa-fw"
@@ -98,7 +98,7 @@
                 {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.climate_change') }}
             </h5>
             </div>
-            <container_actions :data="data.climate_change" :name="'climate_change'"
+            <container-actions :data="data.climate_change" :name="'climate_change'"
                                :event_image="'save_entire_block_as_image'"
                                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_climate')"
                                :exclude_elements="''">
@@ -118,14 +118,14 @@
                         </elements>
                     </div>
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
         <div>
             <div @click="toggle_species('ecosystem')"><h5><span class="fas fa-fw"
                                                                 :class="{'fa-caret-up': !data.show_ecosystem,'fa-caret-down':data.show_ecosystem}"></span>
                 {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services') }}
             </h5></div>
-            <container_actions :data="data.ecosystem_services" :name="'ecosystem_services'"
+            <container-actions :data="data.ecosystem_services" :name="'ecosystem_services'"
                                :event_image="'save_entire_block_as_image'"
                                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_ecosystem')"
                                :exclude_elements="''">
@@ -145,7 +145,7 @@
                         </elements>
                     </div>
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
 
         <div>
@@ -153,7 +153,7 @@
                                                               :class="{'fa-caret-up': !data.show_threats,'fa-caret-down':data.show_threats}"></span>
                 {{ stores.BaseStore.localization('imet-core::analysis_report.management_context.label_threats') }} </h5>
             </div>
-            <container_actions :data="data.threats" :name="'threats'"
+            <container-actions :data="data.threats" :name="'threats'"
                                :event_image="'save_entire_block_as_image'"
                                :comment_title="stores.BaseStore.localization('imet-core::analysis_report.management_context.comments_threats')"
                                :exclude_elements="''">
@@ -173,15 +173,15 @@
                         </elements>
                     </div>
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
     </div>
 </template>
 
 <script setup>
 
-import elements from "./management_context/elements.vue"
-import imet_bar_chart from "../../templates/imet_bar_chart.vue"
+import elements from "./elements.vue"
+import imet_bar_chart from "../../../templates/imet_bar_chart.vue"
 
 import {ref, onMounted, inject, reactive} from 'vue';
 

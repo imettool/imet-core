@@ -9,7 +9,7 @@
   -->
 
 <template>
-    <div ref="chart_container" class="imet_bar_error" :style="'width:100%; height: ' + height + ';'"></div>
+    <div ref="chart_container" class="imet-bar-error" :style="'width:100%; height: ' + height + ';'"></div>
 </template>
 
 <script setup>

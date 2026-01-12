@@ -9,11 +9,11 @@
  */
 
 import {createApp, ref, provide} from "vue";
-import actionButtonCookie from "./components/action-button-cookie.vue";
-import LabelCloud from "./components/label-cloud.vue";
+import actionButtonCookie from "./components/actions/action-button-cookie.vue";
+import LabelCloud from "./components/ui/label-cloud.vue";
 import imetEncodersResponsibles from "../templates/imet_encoders_responsibles.vue";
 import imetRadar from "../templates/imet_radar.vue";
-import actionButton from "./components/action-button.vue";
+import actionButton from "./components/actions/action-button.vue";
 import mitt from "~/mitt";
 
 export default class ScalingList {

@@ -18,8 +18,8 @@ use ModularForms\Helpers\Input\Input;
                                 <div class="text-right flex-1">{!! Input::label('name', $pa->name, 'exclude-element') !!}</div>
                                 <div class="text-left flex-1">{!! Input::text($pa->FormID, $custom_names[$pa->FormID]) !!}</div>
                                 <div class="text-left flex-1">
-                                    <color_picker :text_box_name="'{{ $pa->FormID }}'"
-                                        :default_color="'{{ $custom_colors[$pa->FormID] }}'"></color_picker>
+                                    <color-picker :text_box_name="'{{ $pa->FormID }}'"
+                                        :default_color="'{{ $custom_colors[$pa->FormID] }}'"></color-picker>
                                 </div>
                             </div>
                         @endforeach

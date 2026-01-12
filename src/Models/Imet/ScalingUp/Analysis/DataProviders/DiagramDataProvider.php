@@ -35,9 +35,9 @@ final class DiagramDataProvider
         $locale = App::getLocale();
         $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->scalingId);
 
-        $average = $data['data']['diagrams']['Average'];
-        $upperLimit = $data['data']['diagrams']['upper limit'];
-        $lowerLimit = $data['data']['diagrams']['lower limit'];
+        $average = $data['diagrams']['Average'];
+        $upperLimit = $data['diagrams']['upper limit'];
+        $lowerLimit = $data['diagrams']['lower limit'];
 
         App::setLocale($locale);
 

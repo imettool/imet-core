@@ -14,9 +14,9 @@
     <p>
       <editor></editor>
     </p>
-    <html_to_image :element="name"
+    <html-to-image :element="name"
                    :exclude_elements="exclude_elements"
-                   :type_image="type_image" :event_id="event_id"></html_to_image>
+                   :type_image="type_image" :event_id="event_id"></html-to-image>
   </div>
 </template>
 

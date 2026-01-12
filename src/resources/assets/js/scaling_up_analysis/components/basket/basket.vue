@@ -20,8 +20,8 @@
                 <div v-if="preview_images.length > 0" v-for="(image, idx) in preview_images" :key="image.id">
                     <div class="flex justify-start gap-2">
                         <i @click="remove_item(image.id)" class="fa fa-times fa-2x text-red-800"></i>
-                        <preview_item :url="image.url" :width="'100%'">
-                        </preview_item>
+                        <preview-item :url="image.url" :width="'100%'">
+                        </preview-item>
                     </div>
 
                 </div>
@@ -41,8 +41,6 @@
 
 <script setup>
 import { ref, onMounted, inject } from 'vue';
-import preview_item from "./basket/preview_item.vue";
-
 
 const stores = inject('stores');
 const emitter = inject('emitter');

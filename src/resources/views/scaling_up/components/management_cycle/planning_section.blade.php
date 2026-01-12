@@ -1,4 +1,4 @@
-<container_analysis_management_cycle
+<container-analysis-management-cycle
     id="sub_elem_2"
     :loaded_at_once="container.props.show_view"
     :info_label="'imet-core::analysis_report.guidance.planning.main'"
@@ -13,5 +13,5 @@
             'dontShowTitle' => false,
         ])
     </template>
-</container_analysis_management_cycle>
+</container-analysis-management-cycle>
 

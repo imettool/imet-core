@@ -9,7 +9,7 @@
  */
 
 import {createApp, ref, provide} from "vue";
-import previewTemplate from "./components/preview_template.vue";
+import previewTemplate from "./components/layouts/preview-template.vue";
 import application from './components/app.vue';
 
 import mitt from "~/mitt";
