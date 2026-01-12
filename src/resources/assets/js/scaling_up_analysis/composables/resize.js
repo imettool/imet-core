@@ -8,10 +8,9 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { onBeforeUnmount } from 'vue';
 
 export function useResize(component_data) {
-    const chart = component_data.chart || ref(null);
     const emitter = component_data.emitter;
 
     function handleResize(echartObject) {

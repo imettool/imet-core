@@ -16,7 +16,6 @@
     </div>
 </template>
 <script setup>
-import {inject} from 'vue';
 
 
 const emit = defineEmits(['drop-element']);

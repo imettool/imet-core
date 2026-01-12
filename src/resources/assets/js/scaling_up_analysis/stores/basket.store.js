@@ -25,10 +25,6 @@ export default class BasketStore {
         return await storage.save(values);
     }
 
-    // delete_item(id){
-    //     return storage.delete_item_child(id);
-    // }
-
     delete(id){
         return storage.delete(id);
     }

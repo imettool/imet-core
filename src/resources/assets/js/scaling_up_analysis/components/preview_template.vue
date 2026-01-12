@@ -29,7 +29,7 @@ const props = defineProps({
 });
 
 const items = ref([]);
-const pixelsPage = ref(0);
+const pixels_page = ref(0);
 const images = ref([]);
 
 onMounted(async () => {
@@ -49,16 +49,16 @@ function imageLoaded(id) {
 function isHeightEnough() {
     items.value.forEach((item, id) => {
         const img = document.getElementById(`${id}`);
-        pixelsPage.value += img.height;
+        pixels_page.value += img.height;
 
-        if (pixelsPage.value > 1200 && pixelsPage.value < 1500) {
+        if (pixels_page.value > 1200 && pixels_page.value < 1500) {
             const div = document.getElementById('image-content' + (id));
             div.className = "content";
-            pixelsPage.value = 0;
-        } else if (pixelsPage.value > 1500) {
+            pixels_page.value = 0;
+        } else if (pixels_page.value > 1500) {
             const div = document.getElementById('image-content' + (id - 1));
             div.className = "content";
-            pixelsPage.value = 0;
+            pixels_page.value = 0;
         }
     })
 }

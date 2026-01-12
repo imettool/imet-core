@@ -34,11 +34,11 @@
                             <template v-slot>
 
                                 <div v-if="data.show_species && data.show_group0" class="mb-3">
-                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.species_statistics_group0))"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species_chart')"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.species_statistics_group0)'></imet_bar_chart>
+                                    <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.species_statistics_group0))"
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.animal_species_chart')"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_species')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.species_statistics_group0)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>
@@ -48,10 +48,10 @@
                             <template v-slot>
                                 <div v-if="data.show_species && data.show_group1" class="mb-3">
                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.species_statistics_group1))"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.plant_species_chart')"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_plants')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.species_statistics_group1)'></imet_bar_chart>
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.plant_species_chart')"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_plants')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.species_statistics_group1)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>
@@ -81,10 +81,10 @@
                             <template v-slot>
                                 <div v-if="data.show_habitats" class="mb-3">
                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.habitats_statistics))"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.habitats_chart')"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_habitats')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.habitats_statistics)'></imet_bar_chart>
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.habitats_chart')"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_habitats')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.habitats_statistics)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>
@@ -109,10 +109,10 @@
                             <template v-slot>
                                 <div v-if="data.show_climate" class="mb-3">
                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.climate_change_statistics))"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.values_sensitive_chart')"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_climate')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.climate_change_statistics)'></imet_bar_chart>
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.values_sensitive_chart')"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_climate')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.climate_change_statistics)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>
@@ -136,10 +136,10 @@
                             <template v-slot>
                                 <div class="mb-3">
                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.ecosystem_services_statistics))"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services_chart')"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_ecosystem_services')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.ecosystem_services_statistics)'></imet_bar_chart>
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.ecosystem_services_chart')"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_ecosystem_services')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.ecosystem_services_statistics)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>
@@ -163,11 +163,11 @@
                                   :show_element="data.show_threats">
                             <template v-slot>
                                 <div class="mb-3">
-                                     <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.threats_statistics))"
-                                         :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_threats')"
-                                         :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.threats_charts')"
-                                         :rotate="0" :zoom="true"
-                                         :values='Object.values(data.threats_statistics)'></imet_bar_chart>
+                                    <imet_bar_chart :fields="remove_parenthesis_words(Object.keys(data.threats_statistics))"
+                                                    :title="stores.BaseStore.localization('imet-core::analysis_report.management_context.occurrences_threats')"
+                                                    :title_data="stores.BaseStore.localization('imet-core::analysis_report.management_context.threats_charts')"
+                                                    :rotate="0" :zoom="true"
+                                                    :values='Object.values(data.threats_statistics)'></imet_bar_chart>
                                 </div>
                             </template>
                         </elements>

@@ -10,20 +10,24 @@
 
 <template>
     <table id="global_scores">
-        <tr>
-            <th v-for="column in columns" @click="sort(column.field)" :key="column.field">
-                {{ column.label }} <i :class="sort_icon(column.field)"/>
-            </th>
-        </tr>
-        <tr v-for="(value, index) in items" :key="index">
-            <td v-for="column in columns" v-html="value[column.field]" :key="column.field"></td>
-        </tr>
+        <thead>
+            <tr>
+                <th v-for="column in columns" @click="sort(column.field)" :key="column.field">
+                    {{ column.label }} <i :class="sort_icon(column.field)"/>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(value, index) in items" :key="index">
+                <td v-for="column in columns" v-html="value[column.field]" :key="column.field"></td>
+            </tr>
+        </tbody>
     </table>
 </template>
 
 <script setup>
 
-import {ref, onMounted, computed} from 'vue';
+import {ref, computed, watch} from 'vue';
 import {useList} from './composables/list'
 
 const props = defineProps({
@@ -39,11 +43,14 @@ const props = defineProps({
 
 const list = ref([]);
 
-const {filterList, sortList, sort_icon} = useList({});
+const {filterList, sortList, sort_icon, sort} = useList({});
+
+watch(() => props.values, (newValues) => {
+    list.value = newValues;
+}, { immediate: true });
 
 const items = computed(() => {
-
-    let items = list.value;
+    let items = [...list.value];
     items = filterList(items);
     items = sortList(items);
 
