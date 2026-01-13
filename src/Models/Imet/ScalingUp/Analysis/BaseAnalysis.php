@@ -50,19 +50,5 @@ abstract class BaseAnalysis
     }
 
     abstract public static function data(array $params = []): array;
-
-    /**
-     * Create a success response
-     */
-    protected static function successResponse(array $data, ?float $execution_time = null): array
-    {
-        $response = ['status' => 'success', 'data' => $data];
-
-        if ($execution_time !== null) {
-            $response['execution_time'] = $execution_time;
-        }
-
-        return $response;
-    }
 }
 
