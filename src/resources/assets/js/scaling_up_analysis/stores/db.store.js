@@ -25,7 +25,7 @@ class DBStorage {
         })
             .then((response) => response.json())
             .then(function(data){
-                return data;
+                return data.records;
             })
             .catch(function (error) {
                 console.log(error)

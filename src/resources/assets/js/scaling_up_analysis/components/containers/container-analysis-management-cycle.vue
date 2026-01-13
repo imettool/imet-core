@@ -129,12 +129,12 @@ function success(response, loader = false) {
     setLoading(loader);
     error_returned.value = false;
 
-    if (response.status === false) {
+    if (response.status !== 200) {
         timeout.value = true;
         return;
     }
     if (typeof response === 'object') {
-        data.values = response.data;
+        data.values = response.records;
     } else {
         error_returned.value = true;
     }

@@ -49,6 +49,8 @@ abstract class BaseAnalysis
         return static::$scaling_id;
     }
 
+    abstract public static function data(array $params = []): array;
+
     /**
      * Create a success response
      */

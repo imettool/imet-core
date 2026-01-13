@@ -16,7 +16,7 @@ use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class OverallManagementEffectivenessDataProvider
+final class OverallManagementEffectivenessDataProvider implements DataProviderInterface
 {
     private DiagramDataProvider $diagramProvider;
     private GroupingDataProvider $groupingProvider;

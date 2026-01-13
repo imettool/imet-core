@@ -30,16 +30,11 @@ final class GeneralInfoAnalysis extends BaseAnalysis
         return new GeneralInfoDataProvider($scalingId ?? self::$scaling_id);
     }
 
-    /**
-     * @param array $form_ids
-     * @return array
-     */
-    public static function getGeneralInfo(array $form_ids): array
+    public static function data(array $params = []): array
     {
-        $provider = self::getGeneralInfoProvider();
-        $generalElements = $provider->getGeneralInfo($form_ids);
-
-        return self::successResponse(['general_info' => $generalElements]);
+        $generalElements = self::getGeneralInfoProvider()->getGeneralInfo($params['form_ids']);
+        return ['general_info' => $generalElements];
     }
+
 }
 

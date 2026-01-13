@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\AverageContribution;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class ThreatsDataProvider
+final class ThreatsDataProvider implements DataProviderInterface
 {
     private const string DEFAULT_COLOR = '#C23531';
     private const array DEFAULT_OPTIONS = ['height' => '850px'];

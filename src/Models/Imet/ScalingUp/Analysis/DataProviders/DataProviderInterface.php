@@ -12,18 +12,8 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-use ImetCore\Helpers\ScalingUp\Common;
-
-final class AssessmentDataProvider implements DataProviderInterface
+interface DataProviderInterface
 {
-    public function __construct(
-        private int $scalingId
-    ) {}
 
-    public function getAssessments(array $formIds): array
-    {
-        $assessments = Common::get_assessments($formIds, $this->scalingId);
-        unset($assessments['assessments']);
-        return $assessments;
-    }
 }
+
