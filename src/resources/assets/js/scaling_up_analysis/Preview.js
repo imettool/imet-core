@@ -46,7 +46,7 @@ export default class Preview {
 
         app.component('app',    application);
         // Register components
-        app.component('preview_template', previewTemplate);
+        app.component('preview-template', previewTemplate);
 
         return app;
     }
