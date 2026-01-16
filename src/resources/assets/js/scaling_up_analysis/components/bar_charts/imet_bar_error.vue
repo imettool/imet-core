@@ -18,10 +18,7 @@ import * as echarts from "~/echarts";
 import { useResize } from "../../composables/resize";
 import { common } from "./common/commonProps";
 
-const stores = inject('stores');
 const emitter = inject('emitter');
-
-const Locale = window.Locale;
 
 const gather_colors = ref([]);
 const chart_container = ref(null);

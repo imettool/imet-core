@@ -22,19 +22,18 @@ export function useList(component_data) {
             : items;
     }
 
-    function sort(sortByParam, sortDirParam = null){
+    function sort(sort_by_param, sort_dir_param = null){
 
-        if(sortByParam === sortBy.value && sortDirParam === null) {
+        if(sort_by_param === sortBy.value && sort_dir_param === null) {
             sortDir.value = sortDir.value==='asc' ? 'desc' : 'asc';
-        } else if(sortDir.value !== sortDirParam){
-            sortDir.value = sortDirParam;
+        } else if(sortDir.value !== sort_dir_param){
+            sortDir.value = sort_dir_param;
         }
-        sortBy.value = sortByParam;
+        sortBy.value = sort_by_param;
     }
 
     function sorter(data) {
-
-        return data.sort(function (a, b) {
+        return [...data].sort(function (a, b) {
             let dir = sortDir.value === 'asc' ? 1 : -1;
             let text_a = getAttribute(a, sortBy.value);
             let text_b = getAttribute(b, sortBy.value);
@@ -59,13 +58,13 @@ export function useList(component_data) {
         });
     }
 
-    function sort_icon(selectedItem = '') {
+    function sort_icon(selected_item = '') {
 
-        if (sortBy.value === selectedItem && sortDir.value === 'asc') {
+        if (sortBy.value === selected_item && sortDir.value === 'asc') {
             return 'fa fa-arrow-up';
         }
 
-        if (sortBy.value === selectedItem && ['desc', null].includes(sortDir.value)) {
+        if (sortBy.value === selected_item && ['desc', null].includes(sortDir.value)) {
             return 'fa fa-arrow-down';
         }
 
@@ -89,7 +88,6 @@ export function useList(component_data) {
     }
 
     function filterByAttribute(items, filter_value, filter_on) {
-        let _this = this;
         filter_value = filter_value === "" || filter_value === 'null' ? null : filter_value;
         if (filter_value !== null) {
             items = items.filter((item) => {
@@ -126,17 +124,17 @@ export function useList(component_data) {
 
     function calculateAverage (items) {
 
-        const notAverageItems = items.filter((item) => item['name'] !== 'Average')
+        const not_average_items = items.filter((item) => item['name'] !== 'Average')
         const averageItem = items.find((item) => item['name'] === 'Average');
         const averageItems = [];
-        if (averageItem && notAverageItems.length > 0) {
+        if (averageItem && not_average_items.length > 0) {
             const averageObj = Object.keys(averageItem).reduce((obj, key) => {
                 obj[key] = 0;
                 averageItems[key] = 0;
                 return obj;
             }, {});
 
-            notAverageItems.map((o, x) => {
+            not_average_items.map((o, x) => {
                 const keys = Object.keys(o);
                 keys.forEach((v, k) => {
                     if (v !== 'name') {
@@ -161,14 +159,14 @@ export function useList(component_data) {
 
                 }
             })
-            notAverageItems.push(averageObj);
+            not_average_items.push(averageObj);
         }
 
-        if (items.length === 1 && notAverageItems.length === 0) {
+        if (items.length === 1 && not_average_items.length === 0) {
             return items;
         }
 
-        return notAverageItems;
+        return not_average_items;
     }
 
     function get_value (value) {
@@ -189,24 +187,24 @@ export function useList(component_data) {
     }
 
     function score_class (value, additional_classes = '') {
-        let addClass = '';
+        let add_class = '';
 
         if ([null, "-"].includes(value)) {
-            addClass = 'score_no';
+            add_class = 'score_no';
         } else if (value <= -51) {
-            addClass = 'score_danger_alert';
+            add_class = 'score_danger_alert';
         } else if (value < -33 && value > -51) {
-            addClass = 'score_danger_warning';
+            add_class = 'score_danger_warning';
         } else if (value <= 0) {
-            addClass = 'score_danger';
+            add_class = 'score_danger';
         } else if (value > 0 && value < 34) {
-            addClass = 'score_alert';
+            add_class = 'score_alert';
         } else if (value < 51) {
-            addClass = 'score_warning';
+            add_class = 'score_warning';
         } else {
-            addClass = 'score_success';
+            add_class = 'score_success';
         }
-        return `${addClass} ${additional_classes}`;
+        return `${add_class} ${additional_classes}`;
     }
 
     function customization(values, columns) {

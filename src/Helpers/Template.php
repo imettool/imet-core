@@ -19,35 +19,20 @@ use ModularForms\Helpers\Template as BaseTemplate;
 class Template
 {
     /**
-     * Return country flag + name from ISO
+     * Return country flag from ISO (with optional name)
      *
      * @throws Exception
      */
-    public static function flag_and_name(string $iso): string
+    public static function flag(string $iso, bool $with_name = false): string
     {
         if ($iso !== '') {
             $country = Country::getByISO($iso);
             $iso = $country->iso2;
             $label = '&nbsp;'.$country->name;
 
-            return BaseTemplate::flag($iso, $country->name).$label;
-        }
-
-        return '';
-    }
-
-    /**
-     * Return country flag from ISO
-     *
-     * @throws Exception
-     */
-    public static function flag(string $iso): string
-    {
-        if ($iso !== '') {
-            $country = Country::getByISO($iso);
-            $iso = $country->iso2;
-
-            return BaseTemplate::flag($iso);
+            return $with_name
+                ? BaseTemplate::flag($iso, $country->name).$label
+                : BaseTemplate::flag($iso);
         }
 
         return '';

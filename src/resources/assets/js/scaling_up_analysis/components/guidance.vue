@@ -9,7 +9,7 @@
   -->
 
 <template>
-    <div v-if="hasGuidance" class="module-bar info-bar mt-2 mb-2 guidance" style="grid-column: span 2;"
+    <div v-if="has_guidance" class="module-bar info-bar mt-2 mb-2 guidance" style="grid-column: span 2;"
         id="guidance">
         <div class="icon blue"><span class="fas fa-fw fa-info-circle" style="font-size: 1.4em;"></span></div>
         <div class="message">
@@ -34,7 +34,7 @@ import { ref, inject, onMounted } from "vue";
 
 const stores = inject('stores');
 const show_more = ref(false);
-const hasGuidance = ref(false);
+const has_guidance = ref(false);
 const props = defineProps({
     label: {
         type: String,
@@ -43,7 +43,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-    hasGuidance.value = has_guidance();
+    has_guidance.value = has_guidance();
 });
 
 function has_guidance() {

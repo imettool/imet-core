@@ -96,7 +96,7 @@ final class ImetAssessment
             ->where('Country', $country)
             ->orderBy('Year', 'DESC')
             ->get()
-            ->map(function (array $item) use ($with_scores): \stdClass {
+            ->map(function (ImetV1|ImetV2 $item) use ($with_scores): ImetV1|ImetV2 {
                 if ($with_scores) {
                     $item['scores'] = ImetScores::get_radar($item, true);
                 }

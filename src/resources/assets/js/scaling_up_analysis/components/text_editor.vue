@@ -11,7 +11,7 @@
 <template>
     <div>
         <div class="text-editor-edit">
-            <div class="field-edit" ref="textEditorComponent"></div>
+            <div class="field-edit" ref="text_editor_component"></div>
         </div>
         <div class="text-editor-print" v-html=editorData></div>
     </div>
@@ -65,7 +65,7 @@ const emitter = inject('emitter');
 
 
 const editorData = ref('');
-const textEditorComponent = ref(null);
+const text_editor_component = ref(null);
 
 let quill = null;
 const options = {
@@ -87,7 +87,7 @@ watch(() => props.value, (newValue) => {
 });
 
 onMounted(() => {
-    quill = new Quill(textEditorComponent.value, options);
+    quill = new Quill(text_editor_component.value, options);
     quill.on('text-change', () => {
         editorData.value = quill.container.querySelector('.ql-editor').innerHTML;
     });

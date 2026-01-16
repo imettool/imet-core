@@ -100,7 +100,7 @@ abstract class _Scores
         return $scores;
     }
 
-    public static function get_scores(int $imet_id, bool $refresh_cache = true): array
+    public static function get_scores(int $imet_id, bool $refresh_cache = false): array
     {
         // Retrieve scores from cache
         $cache_key = Cache::buildKey(static::CACHE_PREFIX, ['id' => $imet_id]);

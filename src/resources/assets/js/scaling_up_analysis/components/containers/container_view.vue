@@ -19,27 +19,15 @@
             </div>
         </div>
         <div v-show="data.show_view">
-            <div v-if="data.show_loader">
-                <i class="fa fa-spinner fa-spin fa-2x text-primary-800"></i>
-                <span class="sr-only">Loading...</span>
-            </div>
-            <div v-else>
-                <div v-if="error_returned" class="connection_not_available"
-                    v-html="stores.BaseStore.localization('entities.connection_not_available')"></div>
-                <div v-else-if="timeout" class="connection_not_available"
-                    v-html="stores.BaseStore.localization('entities.connection_not_available')"></div>
-                <div v-else-if="error_wrong" class="connection_not_available"
-                    v-html="stores.BaseStore.localization('imet-core::analysis_report.error_wrong')"></div>
-                <div v-else class="container-menu">
-                    <guidance :label="info_label" />
-                    <slot :props="data"></slot>
-                </div>
+            <div class="container-menu">
+                <guidance :label="info_label"/>
+                <slot :props="data"></slot>
             </div>
         </div>
     </div>
 </template>
 <script setup>
-import { onMounted, inject, reactive } from 'vue';
+import {onMounted, inject, reactive, ref} from 'vue';
 
 const stores = inject('stores');
 const emitter = inject('emitter');
@@ -48,6 +36,7 @@ const data = reactive({
     loaded_once: false,
     show_loader: false
 });
+
 const props = defineProps({
     element: {
         type: String,
@@ -84,8 +73,8 @@ const props = defineProps({
 });
 
 onMounted(() => {
-    emitter.on( props.event_name, () => {
-                data.show_view = true;
+    emitter.on(props.event_name, () => {
+        data.show_view = true;
     });
 });
 
