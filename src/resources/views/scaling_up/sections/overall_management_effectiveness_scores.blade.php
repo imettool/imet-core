@@ -1,7 +1,7 @@
-<container_section :id="'{{ $name }}'" :title="'{{ $title }}'" :code="'{{ $code }}'"
+<container-section :id="'{{ $name }}'" :title="'{{ $title }}'" :code="'{{ $code }}'"
                    :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
-        <checkboxes_list :items="{{ json_encode($custom_names) }}">
+        <checkboxes-list :items="{{ json_encode($custom_names) }}">
             <template v-slot:default="pas">
                 <container :loaded_at_once="pas.props.show_view"
                            :url="url"
@@ -34,7 +34,7 @@
                     </template>
                 </container>
             </template>
-        </checkboxes_list>
+        </checkboxes-list>
 
     </template>
-</container_section>
+</container-section>

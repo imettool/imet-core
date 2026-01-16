@@ -54,24 +54,24 @@ final class Radar
             $i = 0;
             foreach ($values as $v => $value) {
                 if ($v !== 'avg') {
-                    if ($type === 'process' && stripos((string) $v, '_') === true) {
-                        $name = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
+                    if ($type === 'process' && stripos((string)$v, '_') === true) {
+                        $name = Common::get_all_indicator_labels_cached()[$v] . ' ' . trans('imet-core::analysis_report.legends.' . $v);
                     } else {
                         $name = Common::get_all_indicator_labels_cached()[$v];
                     }
 
                     $indicators[$i] = $name;
 
-                    if (in_array($v, $radar_negative_indicators) && ! in_array($i, $radar_indicators_for_negative)) {
+                    if (in_array($v, $radar_negative_indicators) && !in_array($i, $radar_indicators_for_negative)) {
                         $radar_indicators_for_negative[] = $i;
-                    } elseif (in_array($v, $radar_zero_negative_indicators) && ! in_array($i, $radar_indicators_zero_negative)) {
+                    } elseif (in_array($v, $radar_zero_negative_indicators) && !in_array($i, $radar_indicators_zero_negative)) {
                         $radar_indicators_zero_negative[] = $i;
                     }
 
                     $rounded_value = Common::round_number($value);
                     $tables[$type][$idx][$v] = $valuesIndicators[$v][] = $rounded_value;
 
-                    if ((string) $value === '-') {
+                    if ((string)$value === '-') {
                         $value = 0;
                     } else {
                         $indicators_count_to_calculate_average[$v] = array_key_exists($v, $indicators_count_to_calculate_average) ? $indicators_count_to_calculate_average[$v] + 1 : 1;
@@ -107,9 +107,9 @@ final class Radar
             'radar_indicators_zero_negative' => $radar_indicators_zero_negative,
             'wdpas' => $wdpas,
             'values' => array_merge($radar_protected_areas['values'], [
-                'upper limit' => $upperLimit,
-                'lower limit' => $lowerLimit,
-            ]
+                    'upper limit' => $upperLimit,
+                    'lower limit' => $lowerLimit,
+                ]
             ),
             'indicators' => $analysis_diagrams_protected_areas['indicators'],
         ];
@@ -168,7 +168,7 @@ final class Radar
 
         foreach (array_keys($indicators) as $indicatorType) {
             foreach ($form_ids as $key => $form_id) {
-                $assess = $assessments['data']['assessments'][$key];
+                $assess = $assessments['assessments'][$key];
                 $name = $assess['name'];
                 $value = $assess[$indicatorType];
 
@@ -191,15 +191,12 @@ final class Radar
         krsort($analysis_diagrams);
 
         return [
-            'status' => 'success',
-            'data' => [
-                'form_ids' => $form_ids_ordering,
-                'diagrams' => array_merge($analysis_diagrams, [
-                    'Average' => $average,
-                    'upper limit' => $limits['upper'],
-                    'lower limit' => $limits['lower']
-                ]),
-            ],
+            'form_ids' => $form_ids_ordering,
+            'diagrams' => array_merge($analysis_diagrams, [
+                'Average' => $average,
+                'upper limit' => $limits['upper'],
+                'lower limit' => $limits['lower']
+            ]),
         ];
     }
 
@@ -282,7 +279,6 @@ final class Radar
     }
 
 
-
     /**
      * @param array $form_ids
      * @param int $scaling_id
@@ -335,7 +331,7 @@ final class Radar
     private static function aggregateThreatCategories(array $categoryStats, array &$total_categories, object $pa): void
     {
         foreach ($categoryStats as $key => $value) {
-            $processedValue = ($value === '') ? '-' : Common::round_number(-1 * (float) $value);
+            $processedValue = ($value === '') ? '-' : Common::round_number(-1 * (float)$value);
 
             $record = [
                 'id' => $pa->wdpa_id,

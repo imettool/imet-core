@@ -31,22 +31,13 @@ final class ComparisonProtectedAreaAnalysis extends BaseAnalysis
         return new ComparisonProtectedAreaDataProvider($scalingId ?? self::$scaling_id);
     }
 
-    /**
-     * Get upper and lower protected areas diagram comparison
-     *
-     * @param array $form_ids
-     * @param bool $width
-     * @param array $assessments
-     * @param bool $overall
-     * @return array
-     */
-    public static function getUpperLowerProtectedAreasDiagramCompare(array $form_ids, bool  $width = true, array $assessments = [], bool  $overall = true): array
+    public static function data(?array $params = []): array
     {
         return self::getComparisonProtectedAreaProvider()->getUpperLowerProtectedAreasDiagramCompare(
-            $form_ids,
-            $width,
-            $assessments,
-            $overall
+            $params['form_ids'],
+            $params['width'],
+            $params['assessments'],
+            $params['overall']
         );
     }
 }

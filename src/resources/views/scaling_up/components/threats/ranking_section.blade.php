@@ -4,13 +4,13 @@
 ])
 
 <div :id="'{{$name}}-ranking-threat'">
-    <container_actions :data="values.props"
+    <container-actions :data="values.props"
                        :name="'{{$name}}-ranking-threat'"
                        :event_image="'save_entire_block_as_image'"
                        :exclude_elements="'{{$exclude_elements}}'">
         <template v-slot:default="v">
             <div v-if="v.props.ranking">
-                <bar_category_stack
+                <bar-category-stack
                     :title="container.props.config.element_diagrams.threats.menu.ranking"
                     :show_y_axis="true"
                     :label_position="'bottom'"
@@ -29,9 +29,9 @@
                     :values="values.props.ranking.values"
                     :percent_values="values.props.ranking.percent_value"
                     :raw_values="values.props.ranking.raw_values_protected_area">
-                </bar_category_stack>
+                </bar-category-stack>
             </div>
         </template>
-    </container_actions>
+    </container-actions>
 </div>
 

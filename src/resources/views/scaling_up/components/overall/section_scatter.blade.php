@@ -5,7 +5,7 @@
     ])
 
     <div :id="'{{ $name }}-scatter-' + index">
-        <container_actions :data="value"
+        <container-actions :data="value"
                            :name="'{{ $name }}-scatter-' + index"
                            :event_image="'save_entire_block_as_image'"
                            :exclude_elements="'{{ $exclude_elements }}'">
@@ -25,7 +25,7 @@
                     * {{ trans('imet-core::analysis_report.size_of_square') }}
                 </div>
             </template>
-        </container_actions>
+        </container-actions>
     </div>
 </div>
 

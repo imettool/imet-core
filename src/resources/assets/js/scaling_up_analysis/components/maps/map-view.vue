@@ -22,8 +22,8 @@
 import { inject, ref, onMounted } from 'vue';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import BiopamaWDPA from '../../helpers/biopamaWDPA';
-import Map from '../../helpers/map';
+import BiopamaWDPA from '../../../helpers/biopamaWDPA';
+import Map from '../../../helpers/map';
 
 const stores = inject('stores');
 

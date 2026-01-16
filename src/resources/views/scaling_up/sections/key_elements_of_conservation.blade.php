@@ -1,4 +1,4 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
+<container-section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
                    :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
 
@@ -11,14 +11,14 @@
         >
             <template v-slot:default="data">
                 <div v-for="(value, index) in data.props">
-                    <management_context
+                    <management-context
                             :values="value"
-                    ></management_context>
+                    ></management-context>
                 </div>
 
             </template>
         </container>
 
     </template>
-</container_section>
+</container-section>
 

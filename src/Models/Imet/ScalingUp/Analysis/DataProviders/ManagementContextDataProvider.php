@@ -17,11 +17,11 @@ use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 
-final class ManagementContextDataProvider
+final class ManagementContextDataProvider implements DataProviderInterface
 {
-    private const ECOSYSTEM_SERVICES_LIMIT = 10;
-    private const THREATS_LIMIT = 5;
-    private const MIN_OCCURRENCES = 2; // Minimum occurrences to include in results
+    private const int ECOSYSTEM_SERVICES_LIMIT = 10;
+    private const int THREATS_LIMIT = 5;
+    private const int MIN_OCCURRENCES = 2; // Minimum occurrences to include in results
 
     public function __construct(
         private ?int $scalingId = null

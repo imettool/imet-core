@@ -250,7 +250,7 @@ final class Common
 
         $assessments_without_average = array_values(array_filter($assessments, fn (array $value): bool => $value['name'] !== trans('imet-core::analysis_report.average')));
 
-        return ['status' => 'success', 'data' => ['assessments' => $assessments_without_average, 'assessments_average' => $assessments]];
+        return ['assessments' => $assessments_without_average, 'assessments_average' => $assessments];
     }
 
     public static function get_pa_name(int $id, int $scaling_id = 0): Imet|ScalingUpWdpa|null

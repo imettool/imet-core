@@ -22,5 +22,9 @@ final class MapViewAnalysis extends BaseAnalysis
     public static string $exclude_elements = '';
     public static string $info_label = 'imet-core::analysis_report.guidance.map';
 
+    public static function data(array $params = []): array{
+        return [];
+    }
+
 }
 

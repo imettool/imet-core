@@ -70,7 +70,7 @@ final class Group
         $assessments = $assessments !== [] ? $assessments : Common::get_assessments($form_ids, $scaling_id);
 
         foreach (array_keys($indicator) as $indi) {
-            foreach ($assessments['data']['assessments'] as $assessment) {
+            foreach ($assessments['assessments'] as $assessment) {
                 foreach ($parameters as $form) {
 
                     if ($form['id'] === $assessment['form_id']) {

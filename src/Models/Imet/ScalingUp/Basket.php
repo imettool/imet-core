@@ -42,7 +42,7 @@ final class Basket extends BaseModel
         return self::query()->where('scaling_up_id', $id)->orderBy('id', 'asc')->get();
     }
 
-    public static function save_item(array $item): null|false|string
+    public static function save_item(array $item): null|array
     {
         $image = str_replace('data:image/png;base64,', '', $item['image_src']);
         $image = str_replace(' ', '+', $image);
@@ -57,7 +57,7 @@ final class Basket extends BaseModel
             $record->comment = $item['comment'];
             $record->save();
 
-            return json_encode($record);
+            return $record->toArray();
         }
 
         return null;

@@ -29,15 +29,9 @@ final class OverallManagementEffectivenessAnalysis extends BaseAnalysis
         return new OverallManagementEffectivenessDataProvider($scalingId ?? self::$scaling_id);
     }
 
-    /**
-     * Get all management effectiveness scores for the protected areas by form ids
-     */
-    public static function getOverallManagementEffectivenessScores(array $form_ids): array
+    public static function data(array $params = []): array
     {
-        $provider = self::getOverallManagementEffectivenessProvider();
-        $result = $provider->getOverallManagementEffectivenessScores($form_ids);
-
-        return self::successResponse($result);
+        return self::getOverallManagementEffectivenessProvider()->getOverallManagementEffectivenessScores($params['form_ids']);
     }
 
 }

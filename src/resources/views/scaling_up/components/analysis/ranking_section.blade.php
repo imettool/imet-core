@@ -10,11 +10,11 @@
 ])
 
 <div :id="{{$categoryStackId}}">
-    <container_actions :data="section_data"
+    <container-actions :data="section_data"
                        :name="{{$categoryStackId}}"
                        :event_image="'save_entire_block_as_image'">
         <template v-slot:default="data_elements">
-            <bar_category_stack
+            <bar-category-stack
                 :axis_dimensions_y="{max:100}"
                 :title="tableValue['menu']['ranking']"
                 :show_y_axis="true"
@@ -25,7 +25,7 @@
                 :values="data_elements.props[tableValue['name']].ranking.values"
                 :percent_values="data_elements.props[tableValue['name']].ranking.percent_value"
                 :raw_values="data_elements.props[tableValue['name']].ranking.raw_values_protected_area">
-            </bar_category_stack>
+            </bar-category-stack>
 
             <div style="font-size: 12px">
                 {{ trans("imet-core::analysis_report.ranking_info_indicators") }}
@@ -34,6 +34,6 @@
                 * {{ trans("imet-core::analysis_report.ranking_rescaled_indicators") }}
             </div>
         </template>
-    </container_actions>
+    </container-actions>
 </div>
 

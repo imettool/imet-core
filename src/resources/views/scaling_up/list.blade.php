@@ -40,20 +40,20 @@ $form_class = Imet::class;
 @section('functional-selection-buttons')
 
     <div id="cloud">
-        <label_cloud
+        <label-cloud
             :cookie-name="'analysis'"
             url="{{ route('imet-core::scaling_up_report', ['items' => "__items__"]) }}"
             :label-scaling-up="'Scaling up analysis'"
             :label-remove-all="'@lang('imet-core::analysis_report.remove_all')'"
             :source-of-data="'cookie'"
-        ></label_cloud>
+        ></label-cloud>
     </div>
-    <action_button_cookie
+    <action-button-cookie
         :class-name="'btn-nav mr-2'"
         :cookie-name="'analysis'"
         :event="'update_cloud_tags'"
         :label="'@lang('imet-core::analysis_report.add_choices')'"
-    ></action_button_cookie>
+    ></action-button-cookie>
     <button class="btn-nav" @click="add_all()">@lang('imet-core::analysis_report.add_all')</button>
 
 @endsection
@@ -132,17 +132,17 @@ $form_class = Imet::class;
             </td>
 
             <td class="align-baseline">
-                <imet_encoders_responsibles
+                <imet-encoders-responsibles
                     :items='@json($item->encoders_responsibles)'
-                ></imet_encoders_responsibles>
+                ></imet-encoders-responsibles>
             </td>
             <td>
                 @if(!empty(array_filter($item->assessment_radar, fn ($item) => !is_null($item))))
-                    <imet_radar
+                    <imet-radar
                         style="margin: 0 auto;"
                         :width=150 :height=150
                         :values='@json($item->assessment_radar)'
-                    ></imet_radar>
+                    ></imet-radar>
                 @endif
             </td>
         </tr>

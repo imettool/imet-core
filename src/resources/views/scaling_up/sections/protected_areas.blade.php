@@ -1,8 +1,8 @@
-<container_section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
+<container-section :id="'{{$name}}'" :title="'{{$title}}'" :code="'{{$code}}'"
                    :info_label="'{{ $info_label }}'">
     <template v-slot:default="container">
         <div id="{{$name}}-image">
-            <container_actions :data="container.props" :name="'{{$name}}-image'"
+            <container-actions :data="container.props" :name="'{{$name}}-image'"
                                :show_comments="false"
                                :event_image="'save_entire_block_as_image'"
                                :exclude_elements="'{{$exclude_elements}}'">
@@ -39,7 +39,7 @@
                         </tbody>
                     </table>
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
     </template>
-</container_section>
+</container-section>

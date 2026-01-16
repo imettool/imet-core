@@ -5,12 +5,12 @@
     ])
 
     <div :id="'{{ $name }}-ranking-' + index">
-        <container_actions :data="value"
+        <container-actions :data="value"
                            :name="'{{ $name }}-ranking-' + index"
                            :event_image="'save_entire_block_as_image'"
                            :exclude_elements="'{{ $exclude_elements }}'">
             <template v-slot:default="data_elements">
-                <bar_category_stack
+                <bar-category-stack
                     :title="'4.1 @lang('imet-core::analysis_report.overall.imet_indicator_ranking')'"
                     :axis_dimensions_y="{ max: 100 }"
                     :x_axis_data="data_elements.props.xAxis"
@@ -19,9 +19,9 @@
                     :percent_values="data_elements.props.percent_values"
                     :raw_values="data_elements.props.raw_values"
                     :values="data_elements.props.values">
-                </bar_category_stack>
+                </bar-category-stack>
             </template>
-        </container_actions>
+        </container-actions>
     </div>
 </div>
 

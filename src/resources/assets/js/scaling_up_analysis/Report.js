@@ -9,36 +9,41 @@
  */
 
 import {createApp, ref, provide} from "vue";
-import generalInfo from './components/general_info.vue';
-import managementContext from './components/management_context.vue';
+import generalInfo from './components/sections/general-info.vue';
+import managementContext from './components/management-context/management-context.vue';
 import imetBarChart from '../templates/imet_bar_chart.vue';
-import grouping from './components/grouping.vue';
-import textEditor from './components/text_editor.vue';
-import mapView from './components/map_view.vue';
-import previewTemplate from './components/preview_template.vue';
+import grouping from './components/forms/grouping.vue';
+import textEditor from './components/editors/text-editor.vue';
+import mapView from './components/maps/map-view.vue';
+import previewTemplate from './components/layouts/preview-template.vue';
+import previewItem from './components/basket/preview-item.vue';
 import container from './components/containers/container.vue';
-import containerView from './components/containers/container_view.vue';
-import containerAnalysisManagementCycle from './components/containers/container_analysis_management_cycle.vue';
-import containerSection from './components/containers/container_section.vue';
-import containerUpperLowerRadars from './components/containers/container_upper_lower_radars.vue';
-import containerActions from './components/containers/container_actions.vue';
-import datatableInteractWithRadar from './components/datatables/datatable_interact_with_radar.vue';
-import datatableInteractWithScatter from './components/datatables/datatable_interact_with_scatter.vue';
-import datatableScaling from './components/datatables/datatable_scaling.vue';
-import barReverse from './components/bar_charts/bar_reverse.vue';
-import barCategoryStack from './components/bar_charts/bar_category_stack.vue';
-import imetBarError from './components/bar_charts/imet_bar_error.vue';
-import scalingRadar from './components/various_charts/scaling_radar.vue';
+import containerView from './components/containers/container-view.vue';
+import containerAnalysisManagementCycle from './components/containers/container-analysis-management-cycle.vue';
+import containerSection from './components/containers/container-section.vue';
+import containerUpperLowerRadars from './components/containers/container-upper-lower-radars.vue';
+import containerActions from './components/containers/container-actions.vue';
+import datatableInteractWithRadar from './components/datatables/datatable-interact-with-radar.vue';
+import datatableInteractWithScatter from './components/datatables/datatable-interact-with-scatter.vue';
+import datatableScaling from './components/datatables/datatable-scaling.vue';
+import barReverse from './components/bar-charts/bar-reverse.vue';
+import barCategoryStack from './components/bar-charts/bar-category-stack.vue';
+import imetBarError from './components/bar-charts/imet-bar-error.vue';
+import scalingRadar from './components/various-charts/scaling-radar.vue';
 
-import scatter from './components/various_charts/scatter.vue';
-import radarThreats from './components/various_charts/radar_threats.vue';
-import colorPicker from './tools/color_picker.vue';
-import basket from './components/basket.vue';
-import guidance from './components/guidance.vue';
-import smallMenu from './components/menus/small_menu.vue';
+import scatter from './components/various-charts/scatter.vue';
+import radarThreats from './components/various-charts/radar-threats.vue';
+import colorPicker from './tools/color-picker.vue';
+import basket from './components/basket/basket.vue';
+import guidance from './components/sections/guidance.vue';
+import smallMenu from './components/menus/small-menu.vue';
 import tooltip from '@modular-forms/js/templates/tooltip.vue';
-import checkboxesList from './components/checkboxes_list.vue';
+import checkboxesList from './components/forms/checkboxes-list.vue';
+import HtmlToImage from './tools/html-to-image.vue'
+import DropDragArea from './components/drag-and-drop/drop-drag-area.vue'
+import DraggableItem from './components/drag-and-drop/draggable-item.vue'
 import application from './components/app.vue';
+
 
 import mitt from "~/mitt";
 
@@ -89,35 +94,39 @@ export default class Report {
 
         app.component('app',    application);
         // Register components
-        app.component('general_info', generalInfo);
-        app.component('management_context', managementContext);
+        app.component('general-info', generalInfo);
+        app.component('management-context', managementContext);
         app.component('grouping', grouping);
-        app.component('map_view',    mapView);
-        app.component('preview_template',    previewTemplate);
+        app.component('map-view',    mapView);
+        app.component('preview-template',    previewTemplate);
         app.component('container', container);
 
-        app.component('container_view', containerView);
-        app.component('container_analysis_management_cycle', containerAnalysisManagementCycle);
-        app.component('container_section',    containerSection);
-        app.component('container_upper_lower_radars', containerUpperLowerRadars);
-        app.component('container_actions', containerActions);
-        app.component('datatable_interact_with_radar', datatableInteractWithRadar);
-        app.component('datatable_interact_with_scatter', datatableInteractWithScatter);
-        app.component('datatable_scaling', datatableScaling);
-        app.component('bar_reverse', barReverse);
-        app.component('bar_category_stack', barCategoryStack);
-        app.component('imet_bar_error',    imetBarError);
-        app.component('scaling_radar', scalingRadar);
+        app.component('container-view', containerView);
+        app.component('container-analysis-management-cycle', containerAnalysisManagementCycle);
+        app.component('container-section',    containerSection);
+        app.component('container-upper-lower-radars', containerUpperLowerRadars);
+        app.component('container-actions', containerActions);
+        app.component('datatable-interact-with-radar', datatableInteractWithRadar);
+        app.component('datatable-interact-with-scatter', datatableInteractWithScatter);
+        app.component('datatable-scaling', datatableScaling);
+        app.component('bar-reverse', barReverse);
+        app.component('bar-category-stack', barCategoryStack);
+        app.component('imet-bar-error',    imetBarError);
+        app.component('scaling-radar', scalingRadar);
         app.component('scatter',    scatter);
-        app.component('radar_threats', radarThreats);
-        app.component('color_picker', colorPicker);
+        app.component('radar-threats', radarThreats);
+        app.component('color-picker', colorPicker);
         app.component('basket', basket);
         app.component('guidance',    guidance);
-        app.component('small_menu',    smallMenu);
-        app.component('checkboxes_list', checkboxesList);
+        app.component('small-menu',    smallMenu);
+        app.component('checkboxes-list', checkboxesList);
         app.component('tooltip', tooltip);
         app.component('imet_bar_chart', imetBarChart);
-        app.component('text_editor', textEditor);
+        app.component('text-editor', textEditor);
+        app.component('preview-item', previewItem);
+        app.component('html-to-image', HtmlToImage);
+        app.component('drop-drag-area', DropDragArea);
+        app.component('draggable-item', DraggableItem);
 
         return app;
     }

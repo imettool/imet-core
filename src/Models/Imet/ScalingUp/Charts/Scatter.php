@@ -41,7 +41,7 @@ final class Scatter
         $averages = self::calculateAveragesWithMetadata($indicators, $groups, $not_grouped);
         $scatterData = self::buildScatterPlotData($averages);
 
-        return ['status' => 'success', 'data' => ['scatter' => $scatterData]];
+        return ['scatter' => $scatterData];
     }
 
     private static function initializeIndicators(): array

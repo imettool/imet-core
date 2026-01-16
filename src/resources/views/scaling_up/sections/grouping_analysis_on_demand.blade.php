@@ -1,4 +1,4 @@
-<container_section
+<container-section
     :id="'{{$name}}'"
     :title="'{{$title}}'"
     :code="'{{$code}}'"
@@ -10,4 +10,4 @@
         @include('imet-core::scaling_up.components.grouping.grouping_interface')
 
     </template>
-</container_section>
+</container-section>

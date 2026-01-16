@@ -71,9 +71,9 @@ if (!function_exists('get_quoted_responsible')) {
             <th style="vertical-align: top;">
                 IMET #{{ $primary_form->getKey() }}
                 <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
-                    <imet_encoders_responsibles
+                    <imet-encoders-responsibles
                         :items='{{ get_quoted_responsible($primary_form->getKey(), $primary_form->version) }}'
-                    ></imet_encoders_responsibles>
+                    ></imet-encoders-responsibles>
                 </div>
             </th>
             <th>
@@ -84,9 +84,9 @@ if (!function_exists('get_quoted_responsible')) {
                     <div>IMET #{{ $duplicated_form_id }}</div>
 
                     <div style="font-weight: normal; font-style: italic; font-size: 0.8em;">
-                        <imet_encoders_responsibles
+                        <imet-encoders-responsibles
                             :items='{{ get_quoted_responsible($duplicated_form_id, $primary_form->version) }}'
-                        ></imet_encoders_responsibles>
+                        ></imet-encoders-responsibles>
                     </div>
 
                     {{-- Set as destination form --}}
