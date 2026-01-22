@@ -32,7 +32,7 @@
 
   .histogram-row__title {
     width: 35%;
-    min-width: 300px;
+    /*min-width: 300px;*/
     padding-left: 5px;
     padding-right: 5px;
   }
