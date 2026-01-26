@@ -49,8 +49,9 @@
     </div>
 </template>
 <script setup>
-import { ref, inject, reactive, onMounted } from "vue";
+import { inject, reactive, onMounted, onUnmounted } from "vue";
 import { useAjax } from "../../composables/ajax";
+import { useErrorStates } from "../../composables/useErrorStates";
 import { commonProps } from "./common/props";
 
 const props = defineProps({
@@ -79,20 +80,18 @@ const props = defineProps({
 
 const stores = inject('stores');
 const emitter = inject('emitter');
-const show_loader = ref(false);
-const timeout = ref(false);
-const error_returned = ref(false);
-const error_wrong = ref(false);
+
+// Use shared error states composable
+const { show_loader, timeout, error_returned, error_wrong, setLoading, handleError } = useErrorStates();
 
 const data = reactive({
     values: {},
     show_view: false,
     loaded_once: false,
     parameters: [],
-    randomKeyEvent: null
+    randomKeyEvent: Math.random().toString(36).substring(7)
 });
 
-data.randomKeyEvent = Math.random().toString(36).substring(7)
 const component_data = {
     func: props.func,
     url: props.url,
@@ -101,36 +100,41 @@ const component_data = {
     loaded_at_once: props.loaded_at_once,
     parameters: props.parameters,
     stores,
-    success
+    success,
+    error: handleError
 };
 
 let { on_event_load } = useAjax(component_data);
 
+const filterEventName = `apply_filter_${data.randomKeyEvent}`;
+
 onMounted(async () => {
-    await init()
+    await init();
+});
+
+onUnmounted(() => {
+    // Clean up event listener to prevent memory leaks
+    emitter.off(filterEventName);
 });
 
 async function init() {
-    emitter.on(`apply_filter_${data.randomKeyEvent}`, async (parameters) => {
-        show_loader.value = true;
-        const params = [...parameters.split(','), props.type];
-        data.parameters = params;
+    emitter.on(filterEventName, async (parameters) => {
+        setLoading(true);
+        data.parameters = [...parameters.split(','), props.type];
         await on_event_load(data.parameters);
-    })
+    });
 }
 
 function success(response, loader = false) {
-    show_loader.value = loader;
+    setLoading(loader);
     error_returned.value = false;
+
     if (response.status === false) {
         timeout.value = true;
         return;
     }
     if (typeof response === 'object') {
         data.values = response.data;
-        // if (on_load_even.value !== null) {
-        //     emitter.emit('component_loaded');
-        // }
     } else {
         error_returned.value = true;
     }

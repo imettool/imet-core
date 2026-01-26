@@ -9,7 +9,7 @@
   -->
 
 <template>
-    <div :style="'margin-top: -' + margin + 'px'">
+    <div :style="`margin-top: -${margin}px`">
         <div v-for="(radar, index) in values" :id="'radar' + index" :key="index">
             <container_actions :data="radar" :name="'radar' + index" :event_image="'save_entire_block_as_image'">
                 <template v-slot:default="data_elements">
@@ -30,7 +30,7 @@
     </div>
 </template>
 <script setup>
-import { ref, onMounted, inject } from 'vue';
+import { computed, inject } from 'vue';
 
 const props = defineProps({
 
@@ -74,9 +74,35 @@ const props = defineProps({
         default: false
     }
 });
-const values = ref([]);
-const data = ref({});
-const margin = ref('0px');
+
+// Computed property for values - more efficient than onMounted
+const values = computed(() => {
+    const baseData = {
+        'Average': props.radar['Average'],
+        'lower limit': { ...props.radar['lower limit'] },
+        'upper limit': { ...props.radar['upper limit'] }
+    };
+
+    const entries = Object.entries(props.radar);
+    const result = [];
+
+    entries.forEach(([key, value]) => {
+        if (!['Average', 'lower limit', 'upper limit'].includes(key)) {
+            const item = { ...baseData };
+            item[key] = value;
+            result.unshift(item);
+        }
+    });
+
+    return result;
+});
+
+// Computed property for margin
+const margin = computed(() => {
+    const entries = Object.entries(props.radar);
+    return entries.length > 0 ? 22 * entries.length : 0;
+});
+
 const columns = [
     {
         "label": window.ModularForms.Helpers.Locale.getLabel('imet-core::common.protected_area.protected_area'),
@@ -108,27 +134,5 @@ const columns = [
     }
 ];
 
-onMounted(() => {
-    const data = {
-        'Average': props.radar['Average'],
-        'lower limit': { ...props.radar['lower limit'] },
-        'upper limit': { ...props.radar['upper limit'] }
-    };
-
-    const entries = Object.entries(props.radar);
-    if (entries.length > 0) {
-        props.margin = 22 * entries.length;
-    }
-
-    entries.forEach(([key, value]) => {
-        if (!['Average', 'lower limit', 'upper limit'].includes(key)) {
-            const item = { ...data };
-            item[key] = value;
-            values.value.unshift(
-                item
-            );
-        }
-    });
-});
 
 </script>
