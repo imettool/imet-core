@@ -3,6 +3,7 @@ BEGIN;
 -- Add missing country
 INSERT into imet.imet_countries VALUES ('SS', 'SSD', 728, 'South Sudan', 'South Sudan', 'South Sudan');
 
+DELETE FROM imet.imet_pas WHERE country = 'SSD';
 INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_id) VALUES ('SSD', '903', 'Southern', 'II', '22800', 'SSD_903');
 INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_id) VALUES ('SSD', '904', 'Nimule', 'II', '200', 'SSD_904');
 INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_id) VALUES ('SSD', '1368', 'Ez Zeraf', 'VI', '8000', 'SSD_1368');
