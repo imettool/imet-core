@@ -1,4 +1,4 @@
-BEGIN', '
+BEGIN;
 
 -- Revert previous (erroneous) sql files (47 & 48) ensuring records for Paraguay and South Sudan are not inserted twice
 DELETE FROM imet.imet_pas WHERE country = 'PRY';
@@ -165,4 +165,4 @@ INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_i
 INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_id) VALUES ('SSD', '18759', 'Lake No', 'IV', '1000');
 INSERT INTO imet.imet_pas (country, wdpa_id, name, iucn_category, area, global_id) VALUES ('SSD', '18763', 'Lake Abiad', 'IV', '5000');
 
-COMMIT', '
+COMMIT;
