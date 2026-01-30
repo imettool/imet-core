@@ -131,7 +131,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                 </div>
             </td>
             <td class="align-baseline">
-                <imet_encoders_responsibles :items='@json($item->encoders_responsibles)'></imet_encoders_responsibles>
+                <imet-encoders-responsibles :items='@json($item->encoders_responsibles)'></imet-encoders-responsibles>
             </td>
             <td>
                 <imet_radar

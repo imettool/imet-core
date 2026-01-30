@@ -17,7 +17,7 @@ use ImetCore\Models\Country;
 use ImetCore\Models\Imet\v2\Modules;
 use ModularForms\Helpers\Locale;
 
-final class GeneralInfoDataProvider
+final class GeneralInfoDataProvider implements DataProviderInterface
 {
     public function __construct(
         private ?int $scalingId = null

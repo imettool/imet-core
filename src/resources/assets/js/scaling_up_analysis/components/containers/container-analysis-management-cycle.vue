@@ -22,7 +22,7 @@
 
         <div class="mb-2 " v-show="data.show_view">
             <guidance :label="props.info_label" />
-            <checkboxes_list :items="items" :event="`apply_filter_${data.randomKeyEvent}`" class="p-2" />
+            <checkboxes-list :items="items" :event="`apply_filter_${data.randomKeyEvent}`" class="p-2" />
             <div v-if="show_loader">
                 <i class="fa fa-spinner fa-spin text-primary-800"></i>
                 <span class="sr-only">Loading...</span>
@@ -36,7 +36,7 @@
                     v-html="stores.BaseStore.localization('imet-core::analysis_report.error_wrong')"></div>
                 <div v-else-if="Object.entries(data.values).length > 0" class="container-menu mt-3">
 
-                    <!--        <small_menu v-if="show_menu" :items="data.values.diagrams"></small_menu>-->
+                    <!--        <small-menu v-if="show_menu" :items="data.values.diagrams"></small-menu>-->
                     <slot :props="data"></slot>
                 </div>
                 <div class="text-right mt-3">
@@ -129,12 +129,12 @@ function success(response, loader = false) {
     setLoading(loader);
     error_returned.value = false;
 
-    if (response.status === false) {
+    if (response.status !== 200) {
         timeout.value = true;
         return;
     }
     if (typeof response === 'object') {
-        data.values = response.data;
+        data.values = response.records;
     } else {
         error_returned.value = true;
     }

@@ -11,20 +11,20 @@
 <template>
     <div :style="`margin-top: -${margin}px`">
         <div v-for="(radar, index) in values" :id="'radar' + index" :key="index">
-            <container_actions :data="radar" :name="'radar' + index" :event_image="'save_entire_block_as_image'">
+            <container-actions :data="radar" :name="'radar' + index" :event_image="'save_entire_block_as_image'">
                 <template v-slot:default="data_elements">
                     <div class="w-full" :id="'upper_lower_' + index">
-                        <scaling_radar class="col-sm" :width="width" :height="height" :single="single"
+                        <scaling-radar class="col-sm" :width="width" :height="height" :single="single"
                             :unselect_legends_on_load="unselect_legends_on_load" :show_legends="show_legends"
                             :values='data_elements.props' :indicators='indicators' :event_key="'up_' + index"
-                            :refresh_average=false :key="'asd_' + index"></scaling_radar>
+                            :refresh_average=false :key="'asd_' + index"></scaling-radar>
                     </div>
-                    <datatable_interact_with_radar :values_with_indicators_keys="true" :refresh_average=false
+                    <datatable-interact-with-radar :values_with_indicators_keys="true" :refresh_average=false
                         :values="data_elements.props" :columns="columns" :event_key="'up_' + index">
-                    </datatable_interact_with_radar>
+                    </datatable-interact-with-radar>
 
                 </template>
-            </container_actions>
+            </container-actions>
         </div>
 
     </div>

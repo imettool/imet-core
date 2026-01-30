@@ -29,7 +29,7 @@ export default {
       default: '100px'
     }
   },
-  name: "preview_item",
+  name: "preview-item",
 }
 </script>
 

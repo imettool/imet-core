@@ -4,13 +4,13 @@
 ])
 
 <div :id="'{{$name}}-radar-threat'">
-    <container_actions :data="values.props"
+    <container-actions :data="values.props"
                        :name="'{{$name}}-radar-threat'"
                        :event_image="'save_entire_block_as_image'"
                        :exclude_elements="'{{$exclude_elements}}'">
         <template v-slot:default="v">
             <div v-if="v.props.radar">
-                <radar_threats
+                <radar-threats
                     class="sm"
                     :title="container.props.config.element_diagrams.threats.menu.radar"
                     :height="750"
@@ -19,9 +19,9 @@
                     :show_legends="true"
                     :indicators="values.props.radar.indicators"
                     :values="values.props.radar.values">
-                </radar_threats>
+                </radar-threats>
             </div>
         </template>
-    </container_actions>
+    </container-actions>
 </div>
 

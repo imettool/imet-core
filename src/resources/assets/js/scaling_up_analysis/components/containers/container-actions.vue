@@ -15,9 +15,9 @@
         </div>
         <div class="mb-2 mt-2">
             <div v-if="show_comments" class="mt-3 text-black-50 font-bold generic-comments">{{ title }} :</div>
-            <text_editor v-if="show_comments" :save_data="get_data" :event_id="event_data"></text_editor>
-            <html_to_image :element="name" :exclude_elements="exclude_elements" :event_id="uniqueEventId">
-            </html_to_image>
+            <text-editor v-if="show_comments" :save_data="get_data" :event_id="event_data"></text-editor>
+            <html-to-image :element="name" :exclude_elements="exclude_elements" :event_id="uniqueEventId">
+            </html-to-image>
             <div class="text-right">
                 <button type="button" class="btn-nav my-3 exclude-element" @click="save">
                     <span v-if="loading">
@@ -34,7 +34,6 @@
 </template>
 
 <script setup>
-import html_to_image from "../../tools/html_to_image.vue";
 import { onMounted, watch, inject, ref, reactive } from "vue";
 
 const stores = inject('stores');

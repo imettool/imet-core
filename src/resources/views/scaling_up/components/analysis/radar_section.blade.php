@@ -17,11 +17,11 @@
 
     {{-- Radar Chart --}}
     <div :id="{{$scalingRadarId}}">
-        <container_actions :data="section_data"
+        <container-actions :data="section_data"
                            :name="{{$scalingRadarId}}"
                            :event_image="'save_entire_block_as_image'">
             <template v-slot:default="data_elements">
-                <scaling_radar
+                <scaling-radar
                     class="sm"
                     :height="750"
                     :title="tableValue['menu']['radar']"
@@ -33,28 +33,28 @@
                     :event_key="'analysis_'+tableValue['name']"
                     :indicators="data_elements.props[tableValue['name']].radar.indicators"
                     :values="data_elements.props[tableValue['name']].radar.values">
-                </scaling_radar>
+                </scaling-radar>
                 <div style="font-size: 12px">
                     {{ trans("imet-core::analysis_report.average_protected_areas") }}
                 </div>
             </template>
-        </container_actions>
+        </container-actions>
     </div>
 
     {{-- Radar Datatable --}}
     <div :id="{{$radarDatatableId}}">
-        <container_actions :data="section_data"
+        <container-actions :data="section_data"
                            :name="{{$radarDatatableId}}"
                            :event_image="'save_entire_block_as_image'">
             <template v-slot:default="data_elements">
-                <datatable_interact_with_radar
+                <datatable-interact-with-radar
                     class="col-sm"
                     :event_key="'analysis_'+tableValue['name']"
                     :values="data_elements.props[tableValue['name']].radar.values"
                     :columns="container.props.stores.BaseStore.find_config_by_name(container.props.config.element_diagrams[section], tableValue['name']).columns.slice(0,-1)">
-                </datatable_interact_with_radar>
+                </datatable-interact-with-radar>
             </template>
-        </container_actions>
+        </container-actions>
     </div>
 </div>
 

@@ -10,15 +10,15 @@
 ])
 
 <div :id="{{$tableScalingId}}">
-    <container_actions :data="section_data"
+    <container-actions :data="section_data"
                        :name="{{$tableScalingId}}"
                        :event_image="'save_entire_block_as_image'">
         <template v-slot:default="data_elements">
-            <datatable_scaling
+            <datatable-scaling
                 :columns="tableValue.columns"
                 :values="data_elements.props[tableValue['name']].table">
-            </datatable_scaling>
+            </datatable-scaling>
         </template>
-    </container_actions>
+    </container-actions>
 </div>
 

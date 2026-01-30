@@ -22,8 +22,8 @@
 import { inject, ref, onMounted } from 'vue';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import BiopamaWDPA from '../../helpers/biopamaWDPA';
-import Map from '../../helpers/map';
+import BiopamaWDPA from '../../../helpers/biopamaWDPA';
+import Map from '../../../helpers/map';
 
 const stores = inject('stores');
 
@@ -59,7 +59,10 @@ const retrieveWdpaIDs = async () => {
         })
     })
         .then(response => response.json())
-        .then(data => Object.values(data).map(item => item.wdpa_id))
+        .then(data => Object.values(data.records).map(item => {
+            console.log(item);
+            return item.wdpa_id
+        }))
         .catch(error => {
             console.log(error)
             return null;

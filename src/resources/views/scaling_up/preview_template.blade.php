@@ -7,7 +7,7 @@
     </div>
     <div id="preview-elements">
         <div class="container">
-            <preview_template :scaling_up_id="{{ $scaling_up_id }}"></preview_template>
+            <preview-template :scaling_up_id="{{ $scaling_up_id }}"></preview-template>
         </div>
 
         <div id="imet_report" cclass="imet_report scrollButtons">

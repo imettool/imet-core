@@ -42,22 +42,15 @@ final class ManagementCycleAnalysis extends BaseAnalysis
     public static function analysisPerElementOfTheManagementCycle(array $form_ids): array
     {
         $type = array_pop($form_ids);
-        $provider = self::getManagementCycleProvider();
-        $data = $provider->getAnalysisPerElement($form_ids, $type);
-
-        return self::successResponse($data);
+        return self::getManagementCycleProvider()->getAnalysisPerElement($form_ids, $type);
     }
 
     /**
-     * @param array $form_ids
+     * @param array $params
      * @return array
      */
-    public static function getThreatsCategoriesPerProtectedArea(array $form_ids): array
-    {
-        $provider = self::getThreadsProvider();
-        $data = $provider->getThreatsCategoriesAnalysis($form_ids);
-
-        return self::successResponse($data);
+    public static function data(array $params = []): array{
+        return self::getThreadsProvider()->getThreatsCategoriesAnalysis($params['form_ids']);
     }
 }
 

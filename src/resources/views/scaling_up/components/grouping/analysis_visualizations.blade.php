@@ -6,7 +6,7 @@
     :on_load="false"
     :trigger_incoming_data="params.trigger_incoming_data">
     <template v-slot:default="values">
-        <container_actions
+        <container-actions
             :data="values.props"
             :name="'render_image'"
             :event_image="'save_entire_block_as_image'"
@@ -18,7 +18,7 @@
                 @include('imet-core::scaling_up.components.grouping.scatter_chart')
 
             </template>
-        </container_actions>
+        </container-actions>
     </template>
 </container>
 

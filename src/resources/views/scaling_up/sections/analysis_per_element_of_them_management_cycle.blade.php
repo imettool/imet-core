@@ -1,4 +1,4 @@
-<container_section
+<container-section
     :event_name="'{{ $name }}'"
     :id="'{{ $name }}'"
     :title="'{{ $title }}'"
@@ -21,6 +21,6 @@
 
         </div>
     </template>
-</container_section>
+</container-section>
 
 

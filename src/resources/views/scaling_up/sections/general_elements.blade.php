@@ -1,4 +1,4 @@
-<container_section
+<container-section
     :title="'{{$title}}'"
     :id="'{{$name}}'"
     :code="'{{$code}}'"
@@ -13,19 +13,19 @@
                 <template v-slot:default="data">
                     <div :id="'{{$name}}'">
 
-                        <container_actions
+                        <container-actions
                             :data="data.props"
                             :name="'{{$name}}-image'"
                             :event_image="'save_entire_block_as_image'"
                             :exclude_elements="'{{$exclude_elements}}'">
                             <template v-slot:default="values">
                                 <div v-if="Object.keys(values.props).length">
-                                    <general_info
+                                    <general-info
                                         :values="values.props"
-                                    ></general_info>
+                                    ></general-info>
                                 </div>
                             </template>
-                        </container_actions>
+                        </container-actions>
 
                     </div>
                 </template>
@@ -34,4 +34,4 @@
         </div>
 
     </template>
-</container_section>
+</container-section>
