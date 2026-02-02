@@ -49,18 +49,6 @@ abstract class BaseAnalysis
         return static::$scaling_id;
     }
 
-    /**
-     * Create a success response
-     */
-    protected static function successResponse(array $data, ?float $execution_time = null): array
-    {
-        $response = ['status' => 'success', 'data' => $data];
-
-        if ($execution_time !== null) {
-            $response['execution_time'] = $execution_time;
-        }
-
-        return $response;
-    }
+    abstract public static function data(array $params = []): array;
 }
 

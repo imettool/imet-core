@@ -75,7 +75,7 @@ final class ScalingUpAnalysis extends Model
      */
     public static function get_protected_area(array $form_ids, bool $show_original_names = false): array
     {
-        return ProtectedAreaAnalysis::getProtectedArea($form_ids, $show_original_names);
+        return ProtectedAreaAnalysis::data(['form_ids' => $form_ids, 'show_original_names' => $show_original_names]);
     }
 
     /**
@@ -84,7 +84,7 @@ final class ScalingUpAnalysis extends Model
     public static function general_info(array $form_ids): array
     {
         GeneralInfoAnalysis::setScalingId(self::$scaling_id);
-        return GeneralInfoAnalysis::getGeneralInfo($form_ids);
+        return GeneralInfoAnalysis::data(['form_ids' => $form_ids]);
     }
 
     /**
@@ -93,7 +93,7 @@ final class ScalingUpAnalysis extends Model
     public static function get_management_context(array $form_ids): array
     {
         ManagementContextAnalysis::setScalingId(self::$scaling_id);
-        return ManagementContextAnalysis::getManagementContext($form_ids);
+        return ManagementContextAnalysis::data(['form_ids' => $form_ids]);
     }
 
     /**
@@ -102,7 +102,7 @@ final class ScalingUpAnalysis extends Model
     public static function get_threats_categories_per_protected_area(array $form_ids): array
     {
         ManagementCycleAnalysis::setScalingId(self::$scaling_id);
-        return ManagementCycleAnalysis::getThreatsCategoriesPerProtectedArea($form_ids);
+        return ManagementCycleAnalysis::data(['form_ids' => $form_ids]);
     }
 
     /**
@@ -111,7 +111,7 @@ final class ScalingUpAnalysis extends Model
     public static function get_overall_management_effectiveness_scores(array $form_ids): array
     {
         OverallManagementEffectivenessAnalysis::setScalingId(self::$scaling_id);
-        return OverallManagementEffectivenessAnalysis::getOverallManagementEffectivenessScores($form_ids);
+        return OverallManagementEffectivenessAnalysis::data(['form_ids' => $form_ids]);
     }
 
     public static function analysis_per_element_of_the_management_cycle(array $form_ids): array
@@ -123,13 +123,13 @@ final class ScalingUpAnalysis extends Model
     public static function get_upper_lower_protected_areas_diagram_compare(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true): array
     {
         ComparisonProtectedAreaAnalysis::setScalingId(self::$scaling_id);
-        return ComparisonProtectedAreaAnalysis::getUpperLowerProtectedAreasDiagramCompare($form_ids, $width, $assessments, $overall);
+        return ComparisonProtectedAreaAnalysis::data(['form_ids' => $form_ids,'width' => $width, 'assessments' => $assessments, 'overall' => $overall]);
     }
 
     public static function get_grouping_analysis(array $parameters, array $assessments = []): array
     {
         GroupingAnalysis::setScalingId(self::$scaling_id);
-        return GroupingAnalysis::getGroupingAnalysis($parameters, $assessments);
+        return GroupingAnalysis::data(['parameters' => $parameters, 'assessments' => $assessments]);
     }
 
     /**

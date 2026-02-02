@@ -125,12 +125,12 @@ onMounted(async () => {
 
 function success(response, loader = false) {
     setLoading(loader);
-    if (response.status === false) {
+    if (response.status !== 200) {
         timeout.value = true;
         return;
     }
     if (typeof response === 'object') {
-        data.value = response.data;
+        data.value = response.records;
 
         if (props.on_load_even !== null) {
             emitter.emit('component_loaded');

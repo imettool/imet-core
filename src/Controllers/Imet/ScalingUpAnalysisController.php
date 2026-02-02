@@ -14,6 +14,7 @@ namespace ImetCore\Controllers\Imet;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\__Controller;
@@ -59,7 +60,7 @@ class ScalingUpAnalysisController extends __Controller
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
-        return view(static::$form_view_prefix.'scaling_up.list', [
+        return view(static::$form_view_prefix . 'scaling_up.list', [
             'controller' => static::class,
             'list' => $filtered_list,
             'request' => $request,
@@ -72,25 +73,35 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @throws AuthorizationException
      */
-    public function analysis(Request $request): array
+    public function analysis(Request $request): JsonResponse
     {
         $locale = App::getLocale();
 
-        $action = $request->input('func');
-        $parameters = $request->input('parameter');
-        ModelScalingUpAnalysis::$scaling_id = $request->input('scaling_id');
-        foreach ($parameters as $value) {
-            if (is_array($value)) {
-                $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value['id']));
-            } elseif ((int) $value > 0) {
-                $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value));
+        try {
+            $action = $request->input('func');
+            $parameters = $request->input('parameter');
+            ModelScalingUpAnalysis::$scaling_id = $request->input('scaling_id');
+
+            foreach ($parameters as $value) {
+                if (is_array($value)) {
+                    $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value['id']));
+                } elseif ((int)$value > 0) {
+                    $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value));
+                }
             }
+
+            $response = ModelScalingUpAnalysis::$action($parameters);
+            App::setLocale($locale);
+            return self::sendAPIResponse($response);
+        } catch (\Exception $e) {
+            App::setLocale($locale);
+            report($e);
+
+            return new JsonResponse([
+                'request_params' => $request?->all(),
+                'records' => trans('imet-core::analysis_report.error_wrong'),
+            ], 500);
         }
-
-        $response = ModelScalingUpAnalysis::$action($parameters);
-        App::setLocale($locale);
-
-        return $response;
     }
 
     /**
@@ -100,7 +111,7 @@ class ScalingUpAnalysisController extends __Controller
     {
         $result = ReportScalingUp::report($request, $items);
 
-        return view(static::$form_view_prefix.'scaling_up.report', $result);
+        return view(static::$form_view_prefix . 'scaling_up.report', $result);
     }
 
     /**
@@ -115,6 +126,6 @@ class ScalingUpAnalysisController extends __Controller
     {
         $result = PreviewScalingUp::preview($id);
 
-        return view(static::$form_view_prefix.'scaling_up.preview_template', $result);
+        return view(static::$form_view_prefix . 'scaling_up.preview_template', $result);
     }
 }

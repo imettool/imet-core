@@ -48,19 +48,15 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
         }
         uasort($items, fn (array $a, array $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
 
-        return self::successResponse($items);
+        return $items;
     }
 
-    /**
-     * Get protected area custom names with all the information
-     */
-    public static function getProtectedArea(array $form_ids, bool $show_original_names = false): array
-    {
+    public static function data(array $params = []): array{
         $protected_area = [];
         $categories = [];
 
-        foreach ($form_ids as $form_id) {
-            $protected_area[$form_id] = Common::protected_areas_duplicate_fixes($form_id, $show_original_names);
+        foreach ($params['form_ids'] as $form_id) {
+            $protected_area[$form_id] = Common::protected_areas_duplicate_fixes($form_id, $params['show_original_names'] ?? false);
             $general_info = Modules\Context\GeneralInfo::getModuleRecords($form_id);
             if ($general_info['records'][0]) {
                 $categories[$form_id] = Common::get_category_of_protected_area($general_info['records'][0]);
@@ -75,12 +71,9 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
      */
     public static function getWdpasByFormId(array $form_ids): array
     {
-        $protected_area = [];
-        foreach ($form_ids as $k => $form_id) {
-            $protected_area[$k] = ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id);
-        }
-
-        return $protected_area;
+        return array_map(function ($form_id) {
+            return ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id);
+        }, $form_ids);
     }
 }
 

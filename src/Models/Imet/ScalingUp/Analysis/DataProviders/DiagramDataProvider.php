@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 use Illuminate\Support\Facades\App;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
-final class DiagramDataProvider
+final class DiagramDataProvider implements DataProviderInterface
 {
     public function __construct(
         private int $scalingId
@@ -114,20 +114,6 @@ final class DiagramDataProvider
         unset($data['diagrams']['lower limit']);
 
         return $data;
-    }
-
-    /**
-     * Get upper and lower protected areas diagram data with execution time
-     */
-    public function getUpperLowerProtectedAreasDiagramCompare(
-        array $formIds,
-        bool  $width = true,
-        array $assessments = [],
-        bool  $overall = true
-    ): array
-    {
-
-        return Radar::get_radar_indicators($formIds, $width, $assessments, $overall, $this->scalingId);
     }
 }
 

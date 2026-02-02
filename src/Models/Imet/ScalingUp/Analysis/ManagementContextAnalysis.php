@@ -29,15 +29,10 @@ final class ManagementContextAnalysis extends BaseAnalysis
         return new ManagementContextDataProvider($scalingId ?? self::$scaling_id);
     }
 
-    /**
-     * Get management context for protected areas by form ids
-     */
-    public static function getManagementContext(array $form_ids): array
+    public static function data(array $params = []): array
     {
-        $provider = self::getManagementContextProvider();
-        $keyElements = $provider->getManagementContext($form_ids);
-
-        return self::successResponse(['key_elements' => $keyElements]);
+        $keyElements = self::getManagementContextProvider()->getManagementContext($params['form_ids']);
+        return ['key_elements' => $keyElements];
     }
 }
 

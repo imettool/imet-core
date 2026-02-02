@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\DataTable;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class ManagementCycleDataProvider
+final class ManagementCycleDataProvider implements DataProviderInterface
 {
     private const array OPTIONS = [
         'context' => ['height' => '500px'],
@@ -93,7 +93,7 @@ final class ManagementCycleDataProvider
     {
         $tableIndicators = $this->getTableIndicatorsForType($type);
         $origType = $this->extractOriginalType($type);
-        
+
         $data = [];
 
         foreach ($tableIndicators as $indicatorKey => $indicators) {
@@ -208,7 +208,7 @@ final class ManagementCycleDataProvider
         }
 
         $indicators = self::TABLE_INDICATORS[$type];
-        
+
         // Convert indicator keys to empty arrays
         return array_map(function($group) {
             return array_fill_keys($group, []);
@@ -226,38 +226,6 @@ final class ManagementCycleDataProvider
         }
 
         return $type;
-    }
-
-    /**
-     * Get all available management cycle types
-     */
-    public function getAvailableTypes(): array
-    {
-        return array_keys(self::TABLE_INDICATORS);
-    }
-
-    /**
-     * Get configuration for a specific type
-     */
-    public function getTypeConfiguration(string $type): array
-    {
-        $originalType = $this->extractOriginalType($type);
-        
-        return [
-            'type' => $type,
-            'original_type' => $originalType,
-            'color' => self::COLORS[$originalType] ?? '#000000',
-            'options' => self::OPTIONS[$originalType] ?? ['height' => '500px'],
-            'indicators' => self::TABLE_INDICATORS[$type] ?? [],
-        ];
-    }
-
-    /**
-     * Check if a type exists in the configuration
-     */
-    public function typeExists(string $type): bool
-    {
-        return isset(self::TABLE_INDICATORS[$type]);
     }
 }
 

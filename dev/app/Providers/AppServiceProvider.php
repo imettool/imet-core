@@ -10,20 +10,26 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
+namespace App\Providers;
 
-use ImetCore\Helpers\ScalingUp\Common;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider;
 
-final class AssessmentDataProvider implements DataProviderInterface
+class AppServiceProvider extends ServiceProvider
 {
-    public function __construct(
-        private int $scalingId
-    ) {}
+    /**
+     * Register any application services.
+     */
+    public function register(): void {}
 
-    public function getAssessments(array $formIds): array
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
     {
-        $assessments = Common::get_assessments($formIds, $this->scalingId);
-        unset($assessments['assessments']);
-        return $assessments;
+        if (env('ENFORCE_SSL', false)) {
+            URL::forceScheme('https');
+        }
+
     }
 }

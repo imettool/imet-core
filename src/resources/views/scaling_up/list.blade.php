@@ -138,11 +138,11 @@ $form_class = Imet::class;
             </td>
             <td>
                 @if(!empty(array_filter($item->assessment_radar, fn ($item) => !is_null($item))))
-                    <imet_radar
+                    <imet-radar
                         style="margin: 0 auto;"
                         :width=150 :height=150
                         :values='@json($item->assessment_radar)'
-                    ></imet_radar>
+                    ></imet-radar>
                 @endif
             </td>
         </tr>

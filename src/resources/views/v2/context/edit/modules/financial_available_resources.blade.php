@@ -44,12 +44,15 @@ $table_id = 'table_'.$definitions['module_key'];
             </td>
         @endforeach
         <td>
+            {{-- budget line total --}}
             <input type="numeric" disabled="disabled"
                    class="field-edit field-numeric text-right"
                    v-bind:value="totals[index]"
                    v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
-            />        </td>
+            />
+        </td>
         <td>
+            {{-- percentage of planned budget --}}
             <input type="text" disabled="disabled" style="width: 80px;"
                    class="field-edit field-numeric text-center"
                    v-bind:value="percentages[index]"
@@ -67,14 +70,18 @@ $table_id = 'table_'.$definitions['module_key'];
             </span>
         </td>
     <tr>
+
+
     <tr>
         <td colspan="5">
+            {{-- not valid total budget (error message)  --}}
             <div v-if="!totalIsValid" class="text-contextual-danger text-right" style="font-size: 0.9em;">
                 <i class="fa fa-exclamation-triangle"></i>
                 {!!  ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.sum_error')) !!}
             </div>
         </td>
         <td>
+            {{-- total budget --}}
             <div :class="!totalIsValid ? 'has-error' : 'form-group'">
                 <input type="text" disabled="disabled"
                        class="field-edit field-numeric text-center"

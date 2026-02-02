@@ -105,10 +105,10 @@ export default class ScalingList {
 
         // Register components
         app.component('action_button', actionButton);
-        app.component('action_button_cookie', actionButtonCookie,);
-        app.component('label_cloud', LabelCloud);
-        app.component('imet_encoders_responsibles', imetEncodersResponsibles);
-        app.component('imet_radar', imetRadar);
+        app.component('action-button-cookie', actionButtonCookie,);
+        app.component('label-cloud', LabelCloud);
+        app.component('imet-encoders-responsibles', imetEncodersResponsibles);
+        app.component('imet-radar', imetRadar);
 
         return app;
     }
