@@ -15,6 +15,8 @@ return [
     'management' => 'Gestão do IMET (v2 - Consolidado)',
     'v2' => 'v2 - Consolidado',
 
+    'synthetic_indicator' => 'Indicador sintético',
+
     'steps' => [
         'general_info' => 'Informações gerais sobre a área protegida',
         'areas' => 'Áreas, limites e índice de forma, nível de controlo',
