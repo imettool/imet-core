@@ -16,6 +16,7 @@
     "require": {
         "php": ">=8.4",
         "ext-json": "*",
+        "ext-zip": "*",
         "andreamarelli/modular-forms": "^3.4.9"
     },
     "require-dev": {
