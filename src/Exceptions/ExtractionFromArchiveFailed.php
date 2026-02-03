@@ -10,13 +10,19 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-return [
+namespace ImetCore\Exceptions;
 
-    // Models class references: allow overriding default models
-    'user' => \ImetCore\Models\User\User::class,
+use Exception;
+use Throwable;
 
-    // Routes' prefixes
-    'web_routes_prefix' => null,
-    'api_routes_prefix' => null,
-
-];
+class ExtractionFromArchiveFailed extends Exception
+{
+    public function __construct(?string $custom_message = '', $code = 0, ?Throwable $previous = null)
+    {
+        $message = "Unable to extract archive";
+        if (!empty($custom_message)) {
+            $message .= ": " . $custom_message;
+        }
+        parent::__construct($message, $code, $previous);
+    }
+}
