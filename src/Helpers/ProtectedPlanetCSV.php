@@ -45,33 +45,12 @@ class ProtectedPlanetCSV
 
         $generator = new CSVReader($csvFilePath);
         foreach ($generator->rows(self::CHUNK_SIZE) as $idx => $chunk) {
-            // Prepare the chunk for upsert
             /** @var array<int, array<string, mixed>> $chunk */
             $data = collect($chunk)
-                ->map(function($item) use ($legacyGlobalIds): array {
-                    if(array_key_exists($item['WDPAID'], $legacyGlobalIds)) {
-                        $global_id = $legacyGlobalIds[$item['WDPAID']];
-                    } else {
-                        $global_id = $item['ISO3'] !== null && $item['WDPAID'] !== null
-                            ? $item['ISO3'].'_'.$item['WDPAID']
-                            : null;
-                    }
-                    return [
-                        'global_id' => $global_id,
-                        'country' => $item['ISO3'] ?? null,
-                        'wdpa_id' => $item['WDPAID'] ?? null,
-                        'name' => $item['NAME'] ?? null,
-                        'iucn_category' => $item['IUCN_CAT'] ?? null,
-                        'creation_date' => $item['STATUS_YR'] ?? null,
-                        'perimeter' => $item['REP_AREA'] ?? null,
-                        'area' => $item['GIS_AREA'] ?? null,
-                        'shape_index' => $item['GIS_M_AREA'] ?? null,
-                    ];
-                })
+                ->map(fn($item) => self::parseProtectedArea($item, $legacyGlobalIds))
+                ->filter()
                 ->all();
-
             $progress_status = self::calculateProgressStatus($generator->num_rows, $idx);
-
             // Execute upsert
             try {
                 ProtectedArea::query()
@@ -85,6 +64,40 @@ class ProtectedPlanetCSV
                 $afterChunkExecution($progress_status);
             }
         }
+    }
+
+    /**
+     * Parse a single protected area from a CSV item and prepare it for upsert
+     */
+    private static function parseProtectedArea(array $csv_item, array $legacyGlobalIds): array|null
+    {
+        $wdpa_id_key = array_key_exists('WDPAID', $csv_item)
+            ? 'WDPAID' : 'SITE_ID';
+
+        if($csv_item['ISO3'] === 'ABNJ') { // Skip "Areas Beyond National Jurisdiction"
+            return null;
+        }
+
+        // Determine the global_id, using legacy IDs if available
+        if(array_key_exists($csv_item[$wdpa_id_key], $legacyGlobalIds)) {
+            $global_id = $legacyGlobalIds[$csv_item[$wdpa_id_key]];
+        } else {
+            $global_id = $csv_item['ISO3'] !== null && $csv_item[$wdpa_id_key] !== null
+                ? $csv_item['ISO3'].'_'.$csv_item[$wdpa_id_key]
+                : null;
+        }
+
+        return [
+            'global_id' => $global_id,
+            'country' => $csv_item['ISO3'] ?? null,
+            'wdpa_id' => $csv_item[$wdpa_id_key] ?? null,
+            'name' => $csv_item['NAME'] ?? null,
+            'iucn_category' => $csv_item['IUCN_CAT'] ?? null,
+            'creation_date' => $csv_item['STATUS_YR'] ?? null,
+            'perimeter' => $csv_item['REP_AREA'] ?? null,
+            'area' => $csv_item['GIS_AREA'] ?? null,
+            'shape_index' => $csv_item['GIS_M_AREA'] ?? null,
+        ];
     }
 
     /**
