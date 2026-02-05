@@ -1,10 +1,30 @@
 # IMET Core documentation
 
+> [!WARNING]
+> The documentation is under development.
+
+
 ## Overall system and codebases architecture
-*TBD*
+:construction: under development
+
 
 ## Technology stack
-*TBD*
+The IMET core codebase is built using web technologies: the choice derives from the need to create a versatile tool that 
+can be easily deployed across different platforms. By utilizing web technologies, the application can be accessed through 
+a standard web application, but it can also be integrated into desktop applications using frameworks like Electron or similar.
+
+The **backend** is written in PHP and developed using _Laravel_, a popular PHP framework known for its elegant syntax and 
+its robust and scalable architecture, and leveraging its features for routing, database management, and security. Dependency 
+management is handled using _Composer_, which allows an easy integration of third-party libraries and packages, ensuring 
+a high level of modularity of the codebase.
+The database interaction is managed using _Eloquent_, Laravel's Object-Relational Mapping system, 
+which provides a simple and intuitive interface for working with databases. The application is actually designed to work with 
+SQLite and PostgreSQL, but it can be easily adapted to other relational databases with little efforts if needed.
+
+The **frontend** is built using a combination of _Blade_ templating engine (native to Laravel) and Vue.js, a modern JavaScript 
+framework which ensures a dynamic and responsive user interface. The frontend assets are managed using _Vite_, a build tool 
+that provides fast and efficient development and production builds. The styling is done using _Tailwind CSS_, a utility-first 
+CSS framework that allows for rapid UI development and a consistent design system.
 
 ## Folder structure
 The IMET core codebase is organized into several key folders, each serving a specific purpose in the development and deployment 
@@ -37,26 +57,35 @@ of the application. Below is an overview of the main folders and their contents:
     - `ServiceProvider.php`: main service provider for the application
 
 ## Database structure
-*TBD*
+:construction: under development
 
 ## Module descriptions
-### Intervention context
-*TBD*
-### Management effectiveness
-*TBD*
+### _Intervention context_ and _Management effectiveness_
+A significant part of the IMET core codebase is dedicated to the definition of the assessment modules, which are responsible 
+for managing the different sections of the IMET assessment form (_Intervention context_ and _Management effectiveness_). 
+Each module corresponds to a specific aspect of the protected area management effectiveness evaluation. These modules are 
+designed to be extremely flexible and modular, allowing for easy customization and extension to accommodate different 
+assessment needs. 
+
+> [!IMPORTANT]
+> _Intervention context_ and _Management effectiveness_ models are built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms)
+> package. It is highly recommended to refer to its documentation for a comprehensive understanding of the underlying 
+> architecture and functionalities.
+
+:construction: under development
+
 ### Analysis report
-*TBD*
+:construction: under development
 ### Scaling up
-*TBD*
+:construction: under development
 
 ## Development workflow
-*TBD*
+:construction: under development
 ### Development environment setup
-*TBD*
+:construction: under development
 ### Git branching strategy and contribution guidelines
-*TBD*
+:construction: under development
 ### Coding standards and conventions
-*TBD*
+:construction: under development
 ### Code quality and testing
-*TBD*
-
+:construction: under development

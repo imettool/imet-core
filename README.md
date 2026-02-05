@@ -28,10 +28,14 @@ and in buffer areas of Protected Areas. The IMET conserved areas tool:
 - Supports priority planning and allows monitoring progress and adapting management and governance strategies as necessary
 
 ## Getting started
-> [!WARNING]
-> The documentation is under development.
-
 A complete and comprehensive documentation of the codebase is available [here](docs/documentation.md).
+
+## Related codebases
+- [IMET Offline Tool](https://github.com/andreamarelli/imet): desktop application integrating the IMET core codebase 
+  for offline use. This is the most known implementation of the IMET tool, and it is widely used by conservation practitioners worldwide. 
+  It is built using NativePHP, a brand-new framework for building cross-platform desktop applications with PHP. For more
+  information, please refer to its [documentation](https://github.com/andreamarelli/imet).
+- [IMET online](https://github.com/andreamarelli/imet_global): web application integrating the IMET core codebase for online use.
 
 ## Copyright
 Copyright (C) 2026 European Union
