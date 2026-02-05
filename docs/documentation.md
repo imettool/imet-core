@@ -13,18 +13,23 @@ The IMET core codebase is built using web technologies: the choice derives from 
 can be easily deployed across different platforms. By utilizing web technologies, the application can be accessed through 
 a standard web application, but it can also be integrated into desktop applications using frameworks like Electron or similar.
 
-The **backend** is written in PHP and developed using _Laravel_, a popular PHP framework known for its elegant syntax and 
-its robust and scalable architecture, and leveraging its features for routing, database management, and security. Dependency 
-management is handled using _Composer_, which allows an easy integration of third-party libraries and packages, ensuring 
-a high level of modularity of the codebase.
-The database interaction is managed using _Eloquent_, Laravel's Object-Relational Mapping system, 
-which provides a simple and intuitive interface for working with databases. The application is actually designed to work with 
-SQLite and PostgreSQL, but it can be easily adapted to other relational databases with little efforts if needed.
+The **backend** is written in PHP and developed using [_Laravel_](https://laravel.com/), a popular PHP framework known 
+for its elegant syntax and its robust and scalable architecture, and leveraging its features for routing, database management,
+and security. Dependency management is handled using [_Composer_](https://getcomposer.org/), which allows an easy integration 
+of third-party libraries and packages, ensuring a high level of modularity of the codebase. The database interaction is 
+managed using _Eloquent_, Laravel's Object-Relational Mapping system, which provides a simple and intuitive interface for 
+working with databases. The application is actually designed to work with SQLite and PostgreSQL, but it can be easily 
+adapted to other relational databases with little efforts if needed.
 
-The **frontend** is built using a combination of _Blade_ templating engine (native to Laravel) and Vue.js, a modern JavaScript 
-framework which ensures a dynamic and responsive user interface. The frontend assets are managed using _Vite_, a build tool 
-that provides fast and efficient development and production builds. The styling is done using _Tailwind CSS_, a utility-first 
-CSS framework that allows for rapid UI development and a consistent design system.
+The **frontend** is built using a combination of _Blade_ templating engine (native to Laravel) and [Vue.js](https://vuejs.org/), 
+a modern JavaScript framework which ensures a dynamic and responsive user interface. Package management is handled using [_npm_](https://www.npmjs.com/)
+(Node Package Manager), meanwhile the build process is managed using [_Vite_](https://vitejs.dev/), a modern frontend build 
+tool which provides fast and efficient development experience. The styling is done using [_Tailwind CSS_](https://tailwindcss.com/), 
+an utility-first CSS framework that allows for rapid UI development and a consistent design system.
+
+A _docker_-based environment is also available for development purposes, allowing developers to easily set up a consistent 
+and isolated environment for working on the codebase. This is particularly useful for ensuring that all developers are working with
+the same versions of dependencies and configurations, and it simplifies the process of onboarding new contributors to the project.
 
 ## Folder structure
 The IMET core codebase is organized into several key folders, each serving a specific purpose in the development and deployment 
