@@ -30,6 +30,8 @@ final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.Program')],
             ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.EvaluationScore')],
+            ['name' => 'EvaluationScoreAdequacy',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.EvaluationScoreAdequacy')],
+            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.Comments')],
         ];
 

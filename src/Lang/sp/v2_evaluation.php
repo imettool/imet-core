@@ -28,6 +28,7 @@ return [
             'Aspect' => 'Criterios - Concepto medido - Variable',
             'EvaluationScore' => 'Integración',
             'SignificativeClassification' => 'Designación internacional de gran importancia',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'Comments' => 'Comentarios/explicaciones',
         ],
         'ratingLegend' => [
@@ -193,7 +194,9 @@ return [
         'fields' => [
             'Aspect' => 'Criterio - Concepto medido - Variable',
             'EvaluationScore' => 'Influencia/poder de los actores en general',
+            'IncludeInStatistics' => '¿Debería ser una prioridad en la gestión?',
             'EvaluationScore2' => 'Nivel de la restricción/conflicto o del apoyo/cumplimiento',
+            'Score' => 'Evaluación',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -547,6 +550,8 @@ return [
             'group3' => 'Amenazas al área protegida',
             'group4' => 'Efectos del cambio climático en elementos clave del área protegida',
             'group5' => 'Servicios y funciones ecosistémicas que presta el área protegida',
+            'group6' => 'Designaciones otorgadas por el área protegida',
+            'group7' => 'Limitaciones/conflictos externos o apoyos/cumplimientos proporcionados por el área protegida'
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -900,9 +905,8 @@ return [
             'group0' => 'Especies animales (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group1' => 'Especies de plantas (emblemáticas o bandera, en peligro de extinción, endémicas, …)',
             'group2' => 'Los hábitats más importantes y las dimensiones relacionadas del área protegida',
-            'group3' => 'Gestión para mitigar las amenazas al área protegida',
-            'group4' => 'Servicios/funciones ecosistémicas',
-            'group5' => 'Otros',
+            'group4' => 'Gestión para mitigar las amenazas al área protegida',
+            'group5' => 'Limitaciones/conflictos externos o apoyos/cumplimientos proporcionadoss',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1342,6 +1346,8 @@ return [
         'fields' => [
             'Program' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la investigación y el monitoreo a largo plazo',
+            'EvaluationScoreAdequacy' => 'Adecuación de las medidas de gestión',
+            'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
         'predefined_values' => [
@@ -1380,6 +1386,8 @@ return [
         'fields' => [
             'Program' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la gestión de la adaptación',
+            'EvaluationScoreAdequacy' => 'Adecuación de las medidas de gestión',
+            'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
         'predefined_values' => [
@@ -1461,6 +1469,7 @@ return [
     'WorkProgramImplementation' => [
         'title' => 'Implementación de las actividades del plan de trabajo/acción',
         'fields' => [
+            'MainCategory' => 'Categoria principal',
             'Category' => 'Categoría de actividades',
             'Activity' => 'Actividad',
             'TargetedActivity' => 'Actividades planificadas',
@@ -1636,8 +1645,8 @@ return [
         'title' => 'Condiciones y tendencias de los elementos clave de la conservación del área protegida',
         'fields' => [
             'Element' => 'Elemento clave de conservación',
-            'Condition' => 'Condición del elemento clave',
-            'Trend' => 'Tendencia del elemento clave',
+            'Condition' => 'Impacto de la amenaza (situación actual) :',
+            'Trend' => 'Tendencia del impacto (evolución de la amenaza)',
             'Reliability' => 'Fiabilidad de la información',
             'Comments' => 'Comentarios/explicación',
         ],
@@ -1651,38 +1660,37 @@ return [
         ],
         'ratingLegend' => [
             'Condition' => [
-                'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
-                '-3' => 'Muy malo',
-                '-2' => 'Malo',
-                '-1' => 'Ligeramente malo',
-                '0' => 'Neutral',
-                '+1' => 'Ligeramente bueno',
-                '+2' => 'Bueno',
-                '+3' => 'Muy bueno',
+                '-3' => 'Impacto muy elevado (crítico, generalizado, gran influencia sobre los resultados de la conservación)',
+                '-2' => 'Impacto elevado',
+                '-1' => 'Impacto moderado',
+                '+1' => 'Impacto muy débil (esporádico, localizado)',
+                '+2' => 'Impacto insignificante',
+                '+3' => 'Ningún impacto observable',
             ],
             'Trend' => [
-                'N/A' => 'Este elemento no está relacionado con la gestión del área protegida',
-                '-3' => 'Disminuyendo fuertemente',
-                '-2' => 'Disminuyendo',
-                '-1' => 'Ligeramente decreciente',
-                '0' => 'No hay cambios',
-                '+1' => 'Aumentando ligeramente',
-                '+2' => 'Aumentando',
-                '+3' => 'Aumentando fuertemente',
+                '-3' => 'Impacto en aumento rápido (deterioro rápido)',
+                '-2' => 'Impacto en aumento',
+                '-1' => 'Impacto ligeramente en aumento / casi estable (lado negativo)',
+                '+1' => 'Impacto ligeramente en disminución / casi estable (lado positivo)',
+                '+2' => 'Impacto en disminución',
+                '+3' => 'Impacto en disminución rápida (mejora rápida)',
             ],
             'Reliability' => [
-                'High' => 'Certeza casi completa sobre los valores de la condición y las tendencias',
-                'Medium' => 'Alguna posibilidad de error sobre los valores de la condición y las tendencias',
-                'Poor' => 'Gran incertidumbre sobre los valores de la condición y las tendencias',
+                'Elevado' => 'Certeza casi total sobre los valores del estado y de las tendencias',
+                'Médio' => 'Posibilidad de error en los valores del estado y de las tendencias',
+                'Fraco' => 'Gran incertidumbre sobre los valores del estado y de las tendencias',
             ],
         ],
         'module_info_EvaluationQuestion' => [
-            '¿Cuáles son las condiciones y tendencias de los elementos clave de conservación del área protegida?',
-            'Las principales metas/objetivos de gestión del área protegida son la conservación/restauración de los valores naturales y los beneficios que los seres humanos obtienen del medio ambiente natural y de los ecosistemas que funcionan correctamente (servicios y funciones ecosistémicas). Los administradores deberían asegurar la conservación/restauración de valores clave (especies animales y vegetales, hábitats, etc.) y la preservación de los servicios de aprovisionamiento, de regulación, culturales y de apoyo del ecosistema, asegurando los valores y beneficios de las áreas protegidas para todos',
+            '¿Cuál es el impacto actual de cada amenaza sobre los elementos clave de conservación del área protegida, y cómo evoluciona ese impacto a lo largo del tiempo?',
+            'Esta cuestión debe responderse evaluando: <br/>
+           1. La gravedad actual (Impacto) de la amenaza, y <br/>
+           2. La dirección del cambio (Tendencia del impacto) basándose en observaciones recientes, datos y acciones de gestión.',
         ],
         'module_info_Rating' => [
-            'Evaluar: A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, los elementos del proceso PR7 - Gestión de los valores y elementos clave del área protegida con acciones específicas, PR 17 adaptación al cambio climático y PR18 - Gestión de las funciones/servicios de los ecosistemas)',
-        ],
+            'A) las condiciones y B) las tendencias de los elementos clave de conservación del área protegida (basado en el Contexto 1 y 3, en los elementos del Proceso PR7 \- Gestión de los valores y de los elementos clave del área protegida mediante acciones específicas, PR17 \- adaptación a los cambios climáticos y PR18 \- Gestión de los servicios ecosistémicos) <br/>
+            B. Tendencia del impacto (Evolución de la amenaza): Evaluar cómo evoluciona la gravedad de la amenaza, basándose en los datos recientes y en las acciones de gestión. Valores negativos = la amenaza se está agravando. Valores positivos = la amenaza está disminuyendo.'
+        ]
     ],
 
     'LifeQualityImpact' => [
@@ -1736,4 +1744,12 @@ return [
             'Evaluar los efectos para los interesados locales derivados de las actividades operacionales del área protegida',
         ],
     ],
+    'steps' => [
+        'context'   => 'This domain of the management cycle summarises evidence from the Context of Intervention (CTX) to establish operational priorities. Each conservation element – such as key species, habitats, climate-change vulnerabilities and legal ecosystem services – should be evaluated based on its current level of integration into management or its potential to become the focus of new objectives (CX). Information is either imported directly from the CTX (e.g. key species, habitats, and threat scores), imported and ranked to facilitate evaluation (e.g. threats and ecosystem services), or specifically assessed where external factors are involved (C2: external supports/constraints). Elements marked ‘Prioritise in management’ are transferred to subsequent domains (Planning, Inputs, Process, Outputs and Outcomes) for detailed evaluation. The resulting CX-numbered objectives serve as a reliable reference for planning, budgeting, implementation and monitoring.',
+        'planning'  => 'This domain evaluates the adequacy of the protected area’s planning framework for its management, and its effective incorporation of the priorities and conservation elements identified in the Management Context. It evaluates the extent to which legal, institutional and operational planning tools are results-oriented and provide clear guidance on how to achieve management objectives. The analysis focuses on the coherence and adequacy of existing instruments, such as the legal framework, spatial design, and management and work plans, and their capacity to integrate priority values, threats, and external factors.',
+        'inputs'    => 'The Inputs domain evaluates the resources that empower protected areas to convert plans into effective action. This includes assessing the availability, adequacy and reliability of the information, human resources, financial resources, equipment and operational means required for management. The analysis verifies whether the site has access to the necessary data, whether staffing levels and competencies are sufficient, whether budgeting and financing are predictable and whether the infrastructure and logistics support day-to-day operations. The evaluation identifies any gaps that could hinder implementation, as well as any strengths that could facilitate efficient and timely management responses. Examining the Inputs domain enables managers to identify foundational resource needs and ensure that the conditions for effective management are in place before assessing processes and results.',
+        'process'   => 'The Process domain examines the core management functions that translate intentions into concrete action. It is the operational engine of the management cycle. Based on the priorities identified in the context, the objectives defined during planning and the resources assessed under inputs, the site’s management teams carry out the day-to-day activities that generate outputs and, over time, influence outcomes. <br/><br/>In IMET, this domain is analysed through six sub-elements: internal management systems; protection and law enforcement; stakeholder relations; tourism management; monitoring and research; and the management of climate change and ecosystem services. Together, these sub-elements provide a detailed view of how consistently and effectively the management system functions in practice. The Process assessment highlights organisational strengths and identifies operational bottlenecks. It also clarifies where improvements in coordination, procedures or implementation are needed to ensure that planned interventions produce the expected results.',
+        'outputs'   => 'The Outputs domain captures the tangible results arising from the implementation of planned activities over an annual or multi-annual period. Outputs represent what the management team delivers through its actions, such as completed restoration work, conducted patrols, held community engagements, maintained infrastructures, or collected monitoring data. They reflect the degree to which the annual or multiannual management objectives have been achieved, and these objectives are in turn aligned with the longer-term conservation vision of the protected area. <br/><br/>Analysing outputs verifies not only the volume of work accomplished, but also its relevance and coherence with the priorities defined in the management plans. This helps to determine whether the processes and resources mobilised are producing the expected short- and medium-term results effectively. By assessing outputs, managers can understand implementation performance, adjust operational strategies and strengthen the link between planned intentions and long-term conservation outcomes.',
+        'outcomes'  => 'The Outcomes domain evaluates the medium- and long-term effects and impacts of management on the protected area and its surrounding communities. Three dimensions are examined: the extent to which the protected area is progressing towards its long-term conservation objectives; the state and trend of priority conservation elements; and the positive or negative impact of management on the well-being of local populations living around the site. <br/><br/>Unlike Outputs, which reflect short-term delivery, Outcomes capture real changes in ecosystems, species, natural resources and human livelihoods resulting from sustained management action. IMET evaluates whether conservation targets are moving in the right direction, whether key ecological values are stabilising or recovering, and whether the presence and management of the protected area is having a positive or negative effect on communities\' quality of life. This domain therefore provides essential evidence for adaptive management, linking implementation performance to the broader ecological and social impacts that define long-term success.'
+    ]
 ];

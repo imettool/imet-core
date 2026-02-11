@@ -45,6 +45,8 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
             'group3' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group3'),
             'group4' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group4'),
             'group5' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group5'),
+            'group6' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group6'),
+            'group7' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group7'),
         ];
 
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.InformationAvailability.module_info_EvaluationQuestion');
@@ -77,7 +79,11 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
                     'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
-                ]
+                    'group6' => Modules\Evaluation\ImportanceClassification::getModule($form_id)
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                    'group7' => Modules\Evaluation\SupportsAndConstraints::getModule($form_id)
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
+                    ]
                 : [],
         ];
     }

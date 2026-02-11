@@ -39,7 +39,12 @@
                 <imet_score_row :label="labels[index]" :code=index :value="api_data['scores'][step_key][index]"
                     :histogram_type="histogram_type(step_key, idx)" :color=step_props.color></imet_score_row>
             </div>
-
+            <!-- synthetic indicator for outcomes -->
+            <div class="mt-4 border-t border-gray-400 pt-2 mt-2" v-if="step_key === 'outcomes' && version !== 'oecm'">
+                <imet_score_row :label="labels['synthetic_indicator']" :class_values="'text-right font-bold'"
+                                :value="api_data['scores']['outcomes']['synthetic_indicator']" histogram_type="0_to_100_full_width"
+                                :color=step_props.color></imet_score_row>
+            </div>
             <!-- custom additional scores -->
             <div class="mt-4" v-if="step_key === 'context' && version !== 'oecm'">
                 <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']" :key="ctx_key">
