@@ -3,7 +3,7 @@
     "name": "imet-core",
     "dependencies": {
         "dropzone-vue3": "1.0.2",
-        "echarts": "^5.5.1",
+        "echarts": "^6.0.0",
         "html-to-image": "1.11.13",
         "maplibre-gl": "^5.18.0",
         "modular-forms": "file:./vendor/andreamarelli/modular-forms",
