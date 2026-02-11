@@ -12,6 +12,8 @@
 
 use Illuminate\Support\Facades\Route;
 use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Controllers\Imet\v2\ScoresController as ScoresControllerV2;
+use ImetCore\Controllers\Imet\oecm\ScoresController as ScoresControllerOecm;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,7 @@ use ImetCore\Controllers\Imet\Controller;
 Route::group(['prefix' => 'api'], function (): void {
     Route::group(['prefix' => 'imet'], function (): void {
         Route::match(['get', 'post'], '/', [Controller::class, 'pame']);
+        Route::get('scores/{item}', ScoresControllerV2::class)->name('imet_core::api::scores');
+        Route::get('scores_oecm/{item}', ScoresControllerOecm::class)->name('imet_core::api::scores_oecm');
     });
 });

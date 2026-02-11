@@ -12,7 +12,6 @@
 
 namespace ImetCore\Services\Scores;
 
-use Illuminate\Http\JsonResponse;
 use ImetCore\Models\Imet\v1\Imet as ImetV1;
 use ImetCore\Models\Imet\v2\Imet as ImetV2;
 use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
@@ -22,22 +21,14 @@ use ImetCore\Services\Scores\Functions\_Scores;
 
 class AssessmentsScores
 {
-    public static function scores(ImetV1|ImetV2|int $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
+    public static function scores(ImetV1|ImetV2|int $item, bool $refresh_cache = false): array
     {
-        $stats = ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
-
-        return $responseTypeJson
-            ? new JsonResponse($stats)
-            : $stats;
+        return ImetAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
     }
 
-    public static function scores_oecm(ImetOecm|int $item, bool $responseTypeJson = true, bool $refresh_cache = false): JsonResponse|array
+    public static function scores_oecm(ImetOecm|int $item, bool $refresh_cache = false): array
     {
-        $stats = OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
-
-        return $responseTypeJson
-            ? new JsonResponse($stats)
-            : $stats;
+        return OecmAssessment::getAssessment($item, _Scores::ALL_SCORES, false, $refresh_cache);
     }
 
     public static function score_class(?int $value): string
