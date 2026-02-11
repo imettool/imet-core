@@ -19,7 +19,7 @@ use ImetCore\Models\Imet\v2\Modules\Evaluation\LifeQualityImpact;
 
 trait Outcomes
 {
-    public static function synthetic_indicator_score(int $imet_id): ?float
+    public static function synthetic_indicator_score_oc(int $imet_id): ?float
     {
         $oc1_score = static::score_table(
             $imet_id,

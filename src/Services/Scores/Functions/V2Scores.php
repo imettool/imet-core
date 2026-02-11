@@ -166,7 +166,7 @@ class V2Scores extends _Scores
         $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], fn (?float $x): bool => $x !== null));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
         //aggregate synthetic indicator
-        $scores['synthetic_indicator'] = static::synthetic_indicator_score($imet_id);
+        $scores['synthetic_indicator'] = static::synthetic_indicator_score_oc($imet_id);
 
         return $scores;
     }
