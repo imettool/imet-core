@@ -1,6 +1,6 @@
 imet-core
 
-version: 3.1.6
+version: 3.2.0
 
 Copyright (C) 2025 European Union
 
@@ -8,7 +8,7 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__andreamarelli/modular-forms 3.4.3__
+__andreamarelli/modular-forms 3.5.3__
   * git@github.com:andreamarelli/modular-forms
   * License: EUPL-1.2
   * Copyright: 
@@ -20,26 +20,26 @@ __dropzone-vue3 1.0.2__
   * Copyright: 
     * Copyright (c) 2017 Ruoyun Wu 
 
-__echarts 5.6.0__
+__echarts 6.0.0__
   * https://echarts.apache.org
   * License: Apache-2.0
   * Copyright: 
     * Copyright 2017-2025 The Apache Software Foundation 
 
-__html-to-image 1.11.1__
+__html-to-image 1.11.13__
   * https://github.com/bubkoo/html-to-image#readme
   * License: MIT
   * Copyright: 
-    * Copyright (c) 2017 W.Y. 
+    * Copyright (c) 2017-2025 W.Y. 
 
-__maplibre-gl 5.9.0__
+__maplibre-gl 5.18.0__
   * https://maplibre.org/
   * License: BSD-3-Clause
   * Copyright: 
     * Copyright 2010-2016 Mike Bostock 
 
-__pinia 2.3.1__
-  * https://github.com/vuejs/pinia#readme
+__pinia 3.0.4__
+  * https://pinia.vuejs.org
   * License: MIT
   * Copyright: 
     * Copyright (c) 2019-present Eduardo San Martin Morote 
