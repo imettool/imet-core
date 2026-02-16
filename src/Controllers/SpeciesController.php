@@ -53,4 +53,23 @@ class SpeciesController extends Controller
             'orders' => $ordersByClass,
         ]);
     }
+
+    public static function info(Request $request)
+    {
+        $species = null;
+
+        if ($request->filled('taxonomy')) {
+
+//            HTTP::sanitize($request, [
+//                'taxonomy' => 'alpha',
+//            ]);
+
+            // Perform search query
+            $species = Species::getByTaxonomy($request->input('taxonomy'));
+
+        }
+
+        return static::sendAPIResponse($species, null, 200);
+    }
+
 }

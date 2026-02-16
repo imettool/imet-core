@@ -72,9 +72,10 @@
 
 <script setup>
 
-    import {ref, provide} from "vue";
+    import {ref, provide, computed, onBeforeMount} from "vue";
     import selectorDialog from "@modular-forms/js/inputs/components/selector-dialog.vue";
     const Locale = window.ModularForms.Helpers.Locale;
+
 
     const props = defineProps({
         id: {
@@ -83,7 +84,11 @@
         },
         searchUrl: {
             type: String,
-            default: null
+            required: true
+        },
+        infoUrl: {
+            type: String,
+            required: true
         },
         withInsert: {
             type: Boolean,
@@ -107,33 +112,103 @@
     const filterByOrder = ref(null);
     const orders = ref([]);
     const classes = ref([]);
+    const cached_species = ref({});
+
+    onBeforeMount(() => {
+        getSpeciesInfo(inputValue.value);
+    });
+
+    const computedLabel = computed(() => {
+        console.log(cached_species.value);
+        if(inputValue.value in cached_species.value){
+            let speciesInfo = cached_species.value[inputValue.value];
+            let label = '<b>' + speciesInfo['genus'] + ' ' + speciesInfo['species'] + '</b>';
+            let vernacular_names = getVernacularNames(speciesInfo);
+            if(vernacular_names.length>0){
+                label += '<br /><i>' + vernacular_names.join(', ') + '</i>';
+            }
+            return label;
+        }
+        return '';
+    });
+
+    function getScientificName(item){
+        return item.genus + ' ' + item.species;
+    }
+
+    function getFullTaxonomy(item){
+        return item.phylum
+            + '|' + item.class
+            + '|' + item.order
+            + '|' + item.family
+            + '|' + item.genus
+            + '|' + item.species;
+    }
+
+    function getVernacularNames(item){
+        let locale = Locale.getLocale();
+        let mapped_languages = ['eng'];
+        if(locale === 'sp'){
+            mapped_languages = ['spa', 'eng'];
+        } else if(locale === 'pt'){
+            mapped_languages = ['por', 'eng'];
+        } else if(locale === 'fr'){
+            mapped_languages = ['fra', 'eng'];
+        }
+        let names = [];
+        mapped_languages.forEach(function(language){
+            if (typeof item['vernacular_names_' + language] !== undefined
+                && item['vernacular_names_' + language] !== null
+                && item['vernacular_names_' + language] !== ''
+                && item['vernacular_names_' + language].toLowerCase() !== 'null'
+            ) {
+                names.push(item['vernacular_names_' + language]);
+            }
+        });
+        return names;
+    }
 
     function setLabel(item){
+        let taxonomy = '';
         if(typeof item === "object"){
-            // return scientific name
-            return item.genus + ' ' + item.species;
+            taxonomy = getFullTaxonomy(item);
+        } else if(item.split("|").length>3){
+            taxonomy = item;
         }
-        else if(item.split("|").length>3){
-            let taxonomy = item.split("|");
-            return taxonomy[taxonomy.length - 2] + ' ' + taxonomy[taxonomy.length - 1]
+
+        if(!(taxonomy in cached_species.value)){
+            getSpeciesInfo(taxonomy);
         }
-        return item;
+
+        return computedLabel.value;
+    }
+
+    function getSpeciesInfo(taxonomy){
+        if(!(taxonomy in cached_species.value)){
+            fetch(props.infoUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": window.Laravel.csrfToken
+                },
+                body: JSON.stringify({ 'taxonomy': taxonomy})
+            })
+                .then((response) => response.json())
+                .then(function(data){
+                    cached_species.value[taxonomy] = data.records;
+                })
+        }
     }
 
     function setValue(item){
         if (typeof item == "object") {
-            // return full taxonomy
-            return item.phylum
-                + '|' + item.class
-                + '|' + item.order
-                + '|' + item.family
-                + '|' + item.species
+            return getFullTaxonomy(item)
         }
         return item;
     }
 
     function getName(item) {
-       return '<div class="highlight font-bold">' + item.species + '</div>' + getCommonNames(item);
+       return '<div class="highlight font-bold">' + getScientificName(item) + '</div>' + getCommonNames(item);
     }
 
     function getTaxonomy(item) {
@@ -149,17 +224,9 @@
         if (hasCommonNames(item)) {
             common_names += '<div class="common_names"><b><i>' + Locale.getLabel('imet-core::common.species.common_names') + ':</i></b>';
             common_names = '<ul class="list-inside ml-2">';
-            props.languages.forEach(function(language){
-                if (typeof item['vernacular_names_' + language] !== undefined
-                    && item['vernacular_names_' + language] !== null
-                    && item['vernacular_names_' + language] !== ''
-                    && item['vernacular_names_' + language].toLowerCase() !== 'null'
-                ) {
-                    let name = item['vernacular_names_' + language].replace(/,/g, ', ');
-                    name = name.charAt(0).toUpperCase() + name.slice(1);
-                    common_names += '<li>' + name + '</li>'
-                }
-            });
+            getVernacularNames(item).forEach(function(name){
+                common_names += '<li>' + name + '</li>'
+            })
             common_names += '</ul>';
             common_names += '</div>';
         }
@@ -167,7 +234,7 @@
     }
 
     function getLinks(item){
-        let species = item.species.replace(' ', '%20');
+        let species = getScientificName(item).replace(' ', '%20');
         let links = '<ul class="list-inside ml-3">';
         // IUCN Red List
         links += '<li><a href="https://www.iucnredlist.org/search?query='  + species + '&searchType=species" target="_blank" rel="noopener noreferrer">' +

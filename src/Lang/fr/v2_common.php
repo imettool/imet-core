@@ -15,6 +15,8 @@ return [
     'management' => 'gestion des formulaires IMET (v2 - Consolidé)',
     'v2' => 'v2 - Consolidé',
 
+    'synthetic_indicator' => 'Indicateur synthétique',
+
     'steps' => [
         'general_info' => 'Informations générales sur l\'aire protégée',
         'areas' => 'Superficies, limites et indice de forme, niveau de contrôle',

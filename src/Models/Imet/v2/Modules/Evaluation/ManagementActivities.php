@@ -73,8 +73,8 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
                     'group4' => Modules\Evaluation\Menaces::getModule($form_id)
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
-                    'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                    'group5' => Modules\Evaluation\SupportsAndConstraints::getModule($form_id)
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
                 ]
                 : [],
         ];

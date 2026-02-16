@@ -21,16 +21,21 @@ if($item->version===Imet::IMET_V1){
 
 <nav class="steps">
 
+    <!-- Intervention Context -->
     <a href="{{ route($ROUTE_PREFIX.'context_' . $route_action, [$item->getKey()]) }}"
        class="step @if('context'==$phase) selected @endif"
     >@uclang('imet-core::common.context_long')</a>
 
+    <!-- Management Evaluation -->
     <a href="{{ route($ROUTE_PREFIX.'evaluation_' . $route_action, [$item->getKey()]) }}"
        class="step @if('evaluation'==$phase) selected @endif"
     >@uclang('imet-core::common.evaluation_long')</a>
 
-    <a href="{{ route($ROUTE_PREFIX.'report_' . $route_action, [$item->getKey()]) }}"
-       class="step @if('report'==$phase) selected @endif"
-    >@uclang('imet-core::common.report_long')</a>
+    <!-- Analysis Report -->
+    @if($item->version===\ImetCore\Models\Imet\Imet::IMET_V2 || $item->version===\ImetCore\Models\Imet\Imet::IMET_OECM)
+        <a href="{{ route($ROUTE_PREFIX.'report_' . $route_action, [$item->getKey()]) }}"
+           class="step @if('report'==$phase) selected @endif"
+        >@uclang('imet-core::common.report_long')</a>
+    @endif
 
 </nav>

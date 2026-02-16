@@ -28,6 +28,7 @@ return [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Integration',
             'SignificativeClassification' => 'Highly significant international designation',
+            'IncludeInStatistics' => 'To prioritize in management?',
             'Comments' => 'Comments/Explanation',
         ],
         'ratingLegend' => [
@@ -193,7 +194,9 @@ return [
         'fields' => [
             'Aspect' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Influence/power of the stakeholders',
+            'IncludeInStatistics' => 'Should it be a priority in management?',
             'EvaluationScore2' => 'Level of the constraint/conflict or support/compliance',
+            'Score' => 'Evaluation',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
@@ -547,6 +550,8 @@ return [
             'group3' => 'Threats to the protected area',
             'group4' => 'Effects of climate change on key elements of the protected area',
             'group5' => 'Ecosystem services provided by the protected area',
+            'group6' => 'Designations provided by the protected area',
+            'group7' => 'External constraints/conflicts or supports/compliances provided by the protected area',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -901,7 +906,7 @@ return [
             'group1' => 'Plant species (flagship, endangered, endemic, …)',
             'group2' => 'Habitats the most important and related dimensions of the protected area',
             'group4' => 'Management to mitigate threats to the protected area',
-            'group5' => 'Ecosystem services',
+            'group5' => 'External constraints/conflicts or supports/compliances',
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
@@ -1341,6 +1346,8 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of research and long-term monitoring',
+            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -1379,6 +1386,8 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating: Adequacy of adaptation measures',
+            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -1460,6 +1469,7 @@ return [
     'WorkProgramImplementation' => [
         'title' => 'Activities implementation of the work/action plan',
         'fields' => [
+            'MainCategory' => 'Main Category',
             'Category' => 'Categories of activities',
             'Activity' => 'Activity',
             'TargetedActivity' => 'Targeted activity',
@@ -1635,8 +1645,8 @@ return [
         'title' => 'Conditions and trends for the key conservation elements of the protected area',
         'fields' => [
             'Element' => 'Key conservation element',
-            'Condition' => 'Condition of the key element',
-            'Trend' => 'Trend of the key element',
+            'Condition'=> 'Impact of the Threat (Current Situation):',
+            'Trend'=> 'Trend of the Impact (Evolution of the Threat)',
             'Reliability' => 'Reliability of information',
             'Comments' => 'Comments/Explanation',
         ],
@@ -1646,42 +1656,41 @@ return [
             'group2' => 'Conservation conditions and trends for habitats and related dimensions of land cover-use–take',
             'group3' => 'Situation and trends for threats to the protected area',
             'group4' => 'Adaptation to climate change',
-            'group5' => 'Conservation conditions and trends for ecosystem services of the protected area ',
+            'group5' => 'Conservation conditions and trends for ecosystem services of the protected area '
         ],
         'ratingLegend' => [
             'Condition' => [
-                'N/A' => 'this element is not related to the management of the protected area',
-                '-3' => 'Very bad',
-                '-2' => 'Bad',
-                '-1' => 'Slightly bad',
-                '0' => 'Neutral',
-                '+1' => 'Slightly good',
-                '+2' => 'Good',
-                '+3' => 'Very good',
+                '-3' => 'Very high impact (critical, widespread, major influence on conservation outcomes)',
+                '-2' => 'High impact',
+                '-1' => 'Moderate impact',
+                '+1' => 'Very low impact (sporadic, localised)',
+                '+2' => 'Negligible impact',
+                '+3' => 'No observable impact',
             ],
             'Trend' => [
-                'N/A' => 'this element is not related to the management of the protected area',
-                '-3' => 'Strongly decreasing',
-                '-2' => 'Decreasing',
-                '-1' => 'Slightly decreasing',
-                '0' => 'No change',
-                '+1' => 'Slightly increasing',
-                '+2' => 'Increasing',
-                '+3' => 'Strongly increasing',
+                '-3' => 'Impact rapidly increasing (worsening fast)',
+                '-2' => 'Impact increasing',
+                '-1' => 'Impact slightly increasing / nearly stable (negative side)',
+                '+1' => 'Impact slightly decreasing / nearly stable (positive side)',
+                '+2' => 'Impact decreasing',
+                '+3' => 'Impact rapidly decreasing (improving fast)',
             ],
             'Reliability' => [
                 'High' => 'almost complete certainty about the values of condition and trends',
                 'Medium' => 'some possibility of mistake about the values of condition and trends',
                 'Poor' => 'high uncertainty about the values of condition and trends',
-            ],
+            ]
         ],
         'module_info_EvaluationQuestion' => [
-            'What are the conditions and trends for the key conservation elements of the protected area?',
-            'The main management goals / objectives of the protected area are the conservation/restoration of natural values and the benefits that humans get from the natural environment and from properly functioning ecosystems (ecosystem services). Managers should ensure the conservation/restoration of key values (animal and plant species, habitats, etc.) and the preservation of provisioning, regulating, cultural and supporting ecosystem services, ensuring the values and benefits of protected areas for all',
+            'What is the current impact of each threat on the key conservation elements of the protected area, and how is this impact changing over time?',
+            'This question must be answered by assessing: <br/>
+            1. The current severity (Impact) of the threat, and <br/>
+            2. The direction of change (Trend of Impact) based on recent observations, data, and management actions.',
         ],
         'module_info_Rating' => [
-            'Evaluate: A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services)',
-        ],
+            'A) the conditions and B) the trends of the key conservation elements of the protected area (based on the Context 1 and 3, Process elements PR7 – Managing the values and key elements of the protected area with specific actions, PR 17 adaptation to climate change and PR18 – Management of the ecosystem services) <br/>
+             B. Trend of the Impact (Evolution of the Threat): Rate how the severity of the threat is changing, based on recent data and management actions. Negative values = the threat is getting worse. Positive values = the threat is being reduced.'
+        ]
     ],
 
     'LifeQualityImpact' => [
@@ -1735,5 +1744,12 @@ return [
             'Evaluate the effects of the protected area operational activities on local stakeholders.',
         ],
     ],
-
+    'steps' => [
+        'context'   => 'This domain of the management cycle summarises evidence from the Context of Intervention (CTX) to establish operational priorities. Each conservation element – such as key species, habitats, climate-change vulnerabilities and legal ecosystem services – should be evaluated based on its current level of integration into management or its potential to become the focus of new objectives (CX). Information is either imported directly from the CTX (e.g. key species, habitats, and threat scores), imported and ranked to facilitate evaluation (e.g. threats and ecosystem services), or specifically assessed where external factors are involved (C2: external supports/constraints). Elements marked ‘Prioritise in management’ are transferred to subsequent domains (Planning, Inputs, Process, Outputs and Outcomes) for detailed evaluation. The resulting CX-numbered objectives serve as a reliable reference for planning, budgeting, implementation and monitoring.',
+        'planning'  => 'This domain evaluates the adequacy of the protected area’s planning framework for its management, and its effective incorporation of the priorities and conservation elements identified in the Management Context. It evaluates the extent to which legal, institutional and operational planning tools are results-oriented and provide clear guidance on how to achieve management objectives. The analysis focuses on the coherence and adequacy of existing instruments, such as the legal framework, spatial design, and management and work plans, and their capacity to integrate priority values, threats, and external factors.',
+        'inputs'    => 'The Inputs domain evaluates the resources that empower protected areas to convert plans into effective action. This includes assessing the availability, adequacy and reliability of the information, human resources, financial resources, equipment and operational means required for management. The analysis verifies whether the site has access to the necessary data, whether staffing levels and competencies are sufficient, whether budgeting and financing are predictable and whether the infrastructure and logistics support day-to-day operations. The evaluation identifies any gaps that could hinder implementation, as well as any strengths that could facilitate efficient and timely management responses. Examining the Inputs domain enables managers to identify foundational resource needs and ensure that the conditions for effective management are in place before assessing processes and results.',
+        'process'   => 'The Process domain examines the core management functions that translate intentions into concrete action. It is the operational engine of the management cycle. Based on the priorities identified in the context, the objectives defined during planning and the resources assessed under inputs, the site’s management teams carry out the day-to-day activities that generate outputs and, over time, influence outcomes. <br/><br/>In IMET, this domain is analysed through six sub-elements: internal management systems; protection and law enforcement; stakeholder relations; tourism management; monitoring and research; and the management of climate change and ecosystem services. Together, these sub-elements provide a detailed view of how consistently and effectively the management system functions in practice. The Process assessment highlights organisational strengths and identifies operational bottlenecks. It also clarifies where improvements in coordination, procedures or implementation are needed to ensure that planned interventions produce the expected results.',
+        'outputs'   => 'The Outputs domain captures the tangible results arising from the implementation of planned activities over an annual or multi-annual period. Outputs represent what the management team delivers through its actions, such as completed restoration work, conducted patrols, held community engagements, maintained infrastructures, or collected monitoring data. They reflect the degree to which the annual or multiannual management objectives have been achieved, and these objectives are in turn aligned with the longer-term conservation vision of the protected area. <br/><br/>Analysing outputs verifies not only the volume of work accomplished, but also its relevance and coherence with the priorities defined in the management plans. This helps to determine whether the processes and resources mobilised are producing the expected short- and medium-term results effectively. By assessing outputs, managers can understand implementation performance, adjust operational strategies and strengthen the link between planned intentions and long-term conservation outcomes.',
+        'outcomes'  => 'The Outcomes domain evaluates the medium- and long-term effects and impacts of management on the protected area and its surrounding communities. Three dimensions are examined: the extent to which the protected area is progressing towards its long-term conservation objectives; the state and trend of priority conservation elements; and the positive or negative impact of management on the well-being of local populations living around the site. <br/><br/>Unlike Outputs, which reflect short-term delivery, Outcomes capture real changes in ecosystems, species, natural resources and human livelihoods resulting from sustained management action. IMET evaluates whether conservation targets are moving in the right direction, whether key ecological values are stabilising or recovering, and whether the presence and management of the protected area is having a positive or negative effect on communities\' quality of life. This domain therefore provides essential evidence for adaptive management, linking implementation performance to the broader ecological and social impacts that define long-term success.'
+    ]
 ];

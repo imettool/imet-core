@@ -162,6 +162,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function (): void {
 
             Route::group(['prefix' => 'species'], function (): void {
                 Route::post('search', [SpeciesController::class, 'search'])->name(Imet\Controller::ROUTE_PREFIX.'selector.species.search');
+                Route::post('info', [SpeciesController::class, 'info'])->name(Imet\Controller::ROUTE_PREFIX.'selector.species.info');
             });
 
             Route::group(['prefix' => 'pas'], function (): void {

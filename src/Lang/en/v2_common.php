@@ -18,6 +18,8 @@ return [
     'terrestrial' => 'terrestrial',
     'marine' => 'marine and coastal',
 
+    'synthetic_indicator' => 'Synthetic Indicator',
+
     'steps' => [
         'general_info' => 'General Information about the protected area',
         'areas' => 'Areas, boundaries and shape index, level of control',

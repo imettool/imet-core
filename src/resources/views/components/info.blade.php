@@ -83,7 +83,7 @@
                     @endforeach
                     @foreach($ratingLegend as $rating=>$label)
                         <div class="flex flex-row gap-2">
-                            <div class="rating field-edit @if(\Illuminate\Support\Str::contains($rating, 'N')) ratingNa @else ratingNum @endif">{{ $rating }}</div>
+                            <div class="rating field-edit @if(\Illuminate\Support\Str::contains($rating, 'N')) ratingNa @else ratingNum @endif !w-fit !px-1.5">{{ $rating }}</div>
                             <div class="font-normal">{{ $label }}</div>
                         </div>
                     @endforeach

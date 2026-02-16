@@ -10,6 +10,19 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
+// This script generates a NOTICE file based on the dependencies of the project.
+// It requires the dependencies to be installed first, as it relies on the 'vendor' and 'node_modules' directories (in
+// the root folder of the project - not in dev/) to parse the dependencies and their licenses.
+
+if(!is_dir(__DIR__.'/vendor/')){
+    print("\033[31mPlease run 'composer install' before running this script.\033[0m \n\n");
+    exit();
+}
+if(!is_dir(__DIR__.'/node_modules/')){
+    print("\033[31mPlease run 'npm install' before running this script.\033[0m \n\n");
+    exit();
+}
+
 include_once __DIR__.'/vendor/autoload.php';
 
 use ImetCore\Helpers\DependencyParser;

@@ -1,7 +1,7 @@
 {
     "name": "andreamarelli/imet-core",
     "description": "Imet core package",
-    "version": "3.1.4",
+    "version": "3.2.0",
     "authors": [
         {
             "name": "Andrea Marelli",
@@ -16,7 +16,8 @@
     "require": {
         "php": ">=8.4",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "^3.4.9"
+        "ext-zip": "*",
+        "andreamarelli/modular-forms": "^3.5.3"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"

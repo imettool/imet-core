@@ -12,6 +12,7 @@
 
 return [
 
+    // Models class references: allow overriding default models
     'user' => \ImetCore\Models\User\User::class,
 
     // Routes' prefixes

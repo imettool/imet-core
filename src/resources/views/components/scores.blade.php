@@ -11,10 +11,10 @@ use ImetCore\Services\Scores\AssessmentsScores;
 $step ??= null;
 
 if ($version === Imet\Imet::IMET_OECM) {
-    $scores = AssessmentsScores::scores_oecm($item->getKey())->getData();
+    $scores = AssessmentsScores::scores_oecm($item->getKey());
     $labels = Assessment\OecmAssessment::get_scores_labels($item->version, $item->language);
 } else {
-    $scores = AssessmentsScores::scores($item->getKey())->getData();
+    $scores = AssessmentsScores::scores($item->getKey());
     $labels = Assessment\ImetAssessment::get_scores_labels($item->version, $item->language);
 }
 
