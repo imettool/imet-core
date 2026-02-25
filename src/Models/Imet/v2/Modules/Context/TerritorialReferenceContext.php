@@ -36,21 +36,9 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitKm',  'type' => 'numeric',   'label' => ''],
             ['name' => 'BenefitPopulation',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitPopulation')],
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
-            ['name' => 'SpillOverKm2',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverKm',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
-            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
-        $this->ratingLegend = trans('imet-core::v2_context.TerritorialReferenceContext.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -67,7 +55,21 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::addField($record, 'BenefitPopulation');
         $record = self::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
         $record = self::addField($record, 'SpillOverKm2');
+        $record = self::addField($record, 'SpillOverKm');
 
-        return self::addField($record, 'SpillOverKm');
+        // ####  v2.3 -> v3.0 ####
+        $record = self::removeField($record, 'SpillOverKm2');
+        $record = self::removeField($record, 'SpillOverKm');
+        $record = self::removeField($record, 'SpillOverEvalPredatory0_500');
+        $record = self::removeField($record, 'SpillOverEvalPredatory500_1000');
+        $record = self::removeField($record, 'SpillOverEvalPredatory200_3000');
+        $record = self::removeField($record, 'SpillOverEvalComposition0_500');
+        $record = self::removeField($record, 'SpillOverEvalComposition500_1000');
+        $record = self::removeField($record, 'SpillOverEvalComposition200_3000');
+        $record = self::removeField($record, 'SpillOverEvalDistance0_500');
+        $record = self::removeField($record, 'SpillOverEvalDistance500_1000');
+        $record = self::removeField($record, 'SpillOverEvalDistance200_3000');
+
+        return $record;
     }
 }

@@ -292,47 +292,10 @@ return [
             'BenefitArea' => 'Estimate the inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
             'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
-            'SpillOverArea' => 'Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
-            'SpillOverEvalPredatory0_500' => '',
-            'SpillOverEvalPredatory500_1000' => '',
-            'SpillOverEvalPredatory200_3000' => '',
-            'SpillOverEvalComposition0_500' => '',
-            'SpillOverEvalComposition500_1000' => '',
-            'SpillOverEvalComposition200_3000' => '',
-            'SpillOverEvalDistance0_500' => '',
-            'SpillOverEvalDistance500_1000' => '',
-            'SpillOverEvalDistance200_3000' => '',
-        ],
-        'info' => [
-            'spillover_eval' => 'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to
-                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation,
-                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
-                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
-                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
-                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
-                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
-                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul>',
-            'spill_over_variation' => 'SPILL-OVER variation inside vs outside MPA',
-            'variation' => 'Variation inside vs outside MPA',
-            '0_500' => '0 to 500m',
-            '500_1000' => '500 to 1000m',
-            '2000_3000' => '2000 to 3000m',
-            'predatory' => 'Predatory fish',
-            'composition' => 'Fish community composition',
-            'distance' => 'Spill-over effect distance',
-        ],
-        'ratingLegend' => [
-            'SpillOverEvalPredatory0_500' => [
-                '-2' => 'Strong negative difference',
-                '-1' => 'Least negative difference',
-                '0' => 'No difference',
-            ],
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
-            'SpillOverArea' => 'Area of SPILL-OVER effects',
         ],
         'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
           can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem

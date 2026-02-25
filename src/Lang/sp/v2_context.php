@@ -297,50 +297,10 @@ return [
             'BenefitArea' => 'Estimación de la superficie habitada alrededor del área protegida que se beneficia de los servicios del ecosistema o funciones ambientales que genera el área protegida: a) en km² y b) como ancho de la franja exterior',
             'BenefitPopulation' => 'Estimación del tamaño de la población local que vive dentro del área de influencia socioeconómica',
             'BenefitSocioEconomicAspects' => 'Liste y describa los factores socioeconómicos y administrativos (por ejemplo, las funciones tradicionales o modernas sobre los recursos naturales establecidas por las autoridades tradicionales y modernas) que influyen en el ordenamiento de las áreas protegidas.',
-            'SpillOverArea' => 'Estimar los efectos del DERRAME en el área marina protegida, es decir, el tamaño del área crucial para mantener el aprovisionamiento de servicios del ecosistema (pesca) que proporciona el área protegida: a) en km² y b) como ancho de la franja exterior.',
-            'SpillOverEvalPredatory0_500' => '',
-            'SpillOverEvalPredatory500_1000' => '',
-            'SpillOverEvalPredatory200_3000' => '',
-            'SpillOverEvalComposition0_500' => '',
-            'SpillOverEvalComposition500_1000' => '',
-            'SpillOverEvalComposition200_3000' => '',
-            'SpillOverEvalDistance0_500' => '',
-            'SpillOverEvalDistance500_1000' => '',
-            'SpillOverEvalDistance200_3000' => '',
-        ],
-        'info' => [
-            'spillover_eval' => 'El movimiento neto de individuos desde las reservas marinas (también conocidas como áreas marinas protegidas
-                sin capturas) hacia los caladeros restantes se conoce como spill-over. El desbordamiento puede contribuir a
-                aliviar la pobreza, aunque su efecto está modulado por el número de pescadores y la intensidad de la pesca.
-                En general:
-                <ul>
-                    <li>Fuerte efecto positivo cuando la pesquería está mal gestionada</li>
-                    <li>Efecto positivo ligero cuando la pesquería está bien gestionada, pero efecto positivo para las especies con mayor movimiento y crecimiento más lento</li>
-                    <li>Evaluar el efecto de desbordamiento de una reserva es capaz de proporcionar un beneficio neto para una pesquería (de Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                    <li>peces depredadores (los peces grandes y depredadores son más comunes dentro y justo fuera de las reservas que más lejos)</li>
-                    <li>composición exterior e interior (la composición de la comunidad fuera de las reservas se asemeja más a la interior con el tiempo)</li>
-                    <li>distancia de detección del efecto de desbordamiento (la distancia desde la frontera y el tiempo tras el establecimiento de la reserva son las variables con mayor efecto sobre la abundancia de peces; caché de peces: A) 500 m y más cerca; B) 500 a 1000 m; C) 2000 a 3000 m</li>
-                </ul>',
-            'spill_over_variation' => 'SPILL-OVER Variación dentro y fuera de la AMP',
-            'variation' => 'Variación dentro y fuera de la AMP',
-            '0_500' => '0 a 500m',
-            '500_1000' => '500 a 1000m',
-            '2000_3000' => '2000 a 3000m',
-            'predatory' => 'Peces depredadores',
-            'composition' => 'Composición de la comunidad de peces',
-            'distance' => 'Distancia de efecto indirecto',
-        ],
-        'ratingLegend' => [
-            'SpillOverEvalPredatory0_500' => [
-                '-2' => 'Fuerte diferencia negativa',
-                '-1' => 'Diferencia negativa mínima',
-                '0' => 'No hay diferencia',
-            ],
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Área funcional del ecosistema',
             'BenefitsOfEcosystemServicesArea' => 'Área que se beneficia de los servicios y/o funciones del ecosistema del área protegida',
-            'SpillOverArea' => 'Área de efectos de derrame',
         ],
         'module_info' => '<b>Paisaje</b>: La gobernanza y la gestión vinculadas de un área protegida y sus territorios circundantes
             pueden contribuir a la conservación de la biodiversidad y la resiliencia climática, el mantenimiento de los
