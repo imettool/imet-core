@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_territorial_reference_context'), function (Blueprint $table): void {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_territorial_reference_context'), function (Blueprint $table): void {
             $table->dropColumn('SpillOverKm2');
             $table->dropColumn('SpillOverKm');
             $table->dropColumn('SpillOverEvalPredatory0_500');
@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'context_territorial_reference_context'), function (Blueprint $table): void {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_territorial_reference_context'), function (Blueprint $table): void {
             $table->decimal('SpillOverKm2')->nullable();
             $table->decimal('SpillOverKm')->nullable();
             $table->decimal('SpillOverEvalPredatory0_500')->nullable();
