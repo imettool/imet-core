@@ -14,6 +14,7 @@ namespace ImetCore\View;
 
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
 use ModularForms\View\Module\Components\Field\InputPreview;
@@ -45,6 +46,13 @@ class CustomInputPreview extends InputPreview
                 }
 
                 return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
+            }
+
+            // Radio button
+            if (Str::contains($this->type, 'radio')) {
+                $list_type = \Illuminate\Support\Str::replace('imet-core::radio-', '', $this->type);
+                $list = SelectionList::getCustomList($list_type);
+                return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
             }
         }
 
