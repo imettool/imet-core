@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Make sure you have completed the CTX 2.5 section if you intend to analyze the element',
+    'spillover_and_connectivity_waring_message' => 'Make sure you have completed the CTX 2.4 (Connectivity) and CTX 2.5 section if you intend to analyze the element',
+
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -955,7 +958,7 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)'],
+            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)','Spillover benefits in neighboring fishing grounds'],
             'group1' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, fruits...) (kapok, coco, etc.)', 'Ornamental and aquaria resources (seeds, shells and fishes collection)', 'Sand (building)', 'Algal/shells', 'Cultivation land (agriculture, livestock, forests)'],
             'group2' => ['Fuelwood and biofuels', 'Water for energy', 'Fertiliser'],
             'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)', 'Prevention of coastal erosion'],
@@ -964,7 +967,7 @@ return [
             'group6' => ['Science - Research', 'Educational', 'Cultural heritage'],
             'group7' => ['Symbolic or historic', 'Sacred or religious'],
             'group8' => ['ex situ conservation'],
-            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Formation of seascape', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)'],
+            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Formation of seascape', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)', 'Spillover benefits in biomass recovery, reproduction, connectivity', 'Connectivity (ecological linkages and functional continuity)'],
         ],
         'categories' => [
             'title1' => 'Provisioning',
