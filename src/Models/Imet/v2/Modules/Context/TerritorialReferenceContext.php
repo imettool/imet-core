@@ -36,6 +36,10 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitKm',  'type' => 'numeric',   'label' => ''],
             ['name' => 'BenefitPopulation',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitPopulation')],
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
+            ['name' => 'DocumentedConnectivity',    'type' => 'imet-core::radio-ImetV2_DocumentedConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.DocumentedConnectivity')],
+            ['name' => 'EvidenceOfConnectivity',    'type' => 'imet-core::radio-ImetV2_EvidenceOfConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidenceOfConnectivity')],
+            ['name' => 'EvidencesListConnectivity',    'type' => 'checkbox-ImetV2_EvidencesListConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidencesListConnectivity')],
+            ['name' => 'ConnectivityIntegrationInManagementPlan',    'type' => 'imet-core::radio-ImetV2_ConnectivityIntegrationInManagementPlan', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.ConnectivityIntegrationInManagementPlan')],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
@@ -69,6 +73,10 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::removeField($record, 'SpillOverEvalDistance0_500');
         $record = self::removeField($record, 'SpillOverEvalDistance500_1000');
         $record = self::removeField($record, 'SpillOverEvalDistance200_3000');
+        $record = self::addField($record, 'DocumentedConnectivity');
+        $record = self::addField($record, 'EvidenceOfConnectivity');
+        $record = self::addField($record, 'EvidencesListConnectivity');
+        $record = self::addField($record, 'ConnectivityIntegrationInManagementPlan');
 
         return $record;
     }

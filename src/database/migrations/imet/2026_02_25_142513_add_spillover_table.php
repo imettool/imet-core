@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string('UpdateDate', 30)->nullable();
             $table->string('SupportingEvidence', 50)->nullable();
             $table->string('SupportingKeyObservations', 50)->nullable();
-            $table->string('SupportingOtherObservation', 50)->nullable();
+            $table->text('SupportingOtherObservation')->nullable();
             $table->string('SupportingPerceivedSpeciesChange', 50)->nullable();
             $table->string('SupportingPerceivedSizeChange', 50)->nullable();
             $table->text('SupportingComments')->nullable();
 
             $table->string('ProvisioningEvidence', 50)->nullable();
             $table->string('ProvisioningKeyObservations', 50)->nullable();
-            $table->string('ProvisioningOtherObservation', 50)->nullable();
+            $table->text('ProvisioningOtherObservation')->nullable();
             $table->string('ProvisioningPerceivedCatchChange', 50)->nullable();
             $table->string('ProvisioningPerceivedSpillover', 50)->nullable();
             $table->text('ProvisioningComments')->nullable();

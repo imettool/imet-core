@@ -292,10 +292,15 @@ return [
             'BenefitArea' => 'Estimate the inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
             'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
+            'DocumentedConnectivity' => 'Q1. Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
+            'EvidenceOfConnectivity' => 'Q2. Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
+            'EvidencesListConnectivity' => 'Indications and evidence may include:',
+            'ConnectivityIntegrationInManagementPlan' => 'Q3. Is connectivity integrated into management planning?',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
+            'Connectivity' => 'Connectivity',
         ],
         'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
           can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
@@ -308,6 +313,37 @@ return [
           essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
           grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
+        'connectivity_info' =>
+            '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
+            surrounding habitats or ecosystems that enable key ecological processes such as species movement, gene flow,
+            migration, larval dispersal, and climate adaptation. Connectivity sustains the long-term viability of the site’s
+            major natural values and underpins processes such as biomass recovery and spillover.</p>
+            <p>Connectivity can be:</p>
+            <ul>
+                <li>Structural: the physical continuity of habitats, corridors, stepping stones and currents.</li>
+                <li>Functional (the actual movement of species, gene flow and dispersal patterns);</li>
+                <li>Ecological (maintenance of trophic links and ecosystem processes across boundaries).</li>
+            </ul>
+            <p>In marine systems, connectivity may include:</p>
+            <ul>
+                <li>Adult migration routes</li>
+                <li>Current systems and larval dispersal networks</li>
+                <li>Habitat continuity (reefs, seagrass and mangroves).</li>
+            </ul>
+            <p>In terrestrial systems:</p>
+            <ul>
+                <li>Corridors</li>
+                <li>Buffer zones</li>
+                <li>Ecological networks</li>
+                <li>Transboundary linkages</li>
+            </ul>
+            <p>Connectivity supports:</p>
+            <ul>
+                <li>Ecological resilience</li>
+                <li>Spillover dynamics</li>
+                <li>The long-term viability of key conservation elements</li>
+                <li>Climate adaptation</li>
+            </ul>'
     ],
 
     'Spillover' => [

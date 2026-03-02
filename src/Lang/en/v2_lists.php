@@ -191,6 +191,33 @@ return [
         'High', 'Medium', 'Poor',
     ],
 
+    'DocumentedConnectivity' => [
+        'no_connectivity' => 'No connectivity / highly isolated',
+        'limited_connectivity' => 'Limited connectivity (fragmented or weak structural links)',
+        'moderate_connectivity' => 'Moderate connectivity (partial ecological continuity)',
+        'strong_connectivity' => 'Strong connectivity (integrated ecological network)',
+    ],
+    'EvidenceOfConnectivity' => [
+        'no_information' => 'No information',
+        'only_anecdotal' => 'Anecdotal information',
+        'some_indications' => 'Some indications',
+        'strong_evidence' => 'Strong evidence (tagging, telemetry, genetic studies, larval dispersal models)',
+    ],
+    'EvidencesListConnectivity' => [
+        'habitat_mapping' => 'Habitat mapping',
+        'corridor_analysis' => 'Corridor analysis',
+        'marine_current_models' => 'Marine current models',
+        'landscape_fragmentation_index' => 'Landscape fragmentation index',
+        'transboundary_agreements' => 'Transboundary agreements',
+        'scientific_publications' => 'Scientific publications'
+    ],
+    'ConnectivityIntegrationInManagementPlan' => [
+        'not_considered' => 'Not considered',
+        'mentioned_not_operationalised' => 'Mentioned but not operationalised',
+        'partially_integrated' => 'Partially integrated (corridor protection, buffer zoning)',
+        'fully_integrated' => 'Fully integrated at landscape/seascape scale (network-level management approach)',
+    ],
+
     'SupportingEvidence' => [
         'no_information' => 'No information / not assessed',
         'only_anecdotal' => 'No, only anecdotal information',

@@ -11,9 +11,7 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 @foreach($definitions['fields'] as $i => $field)
 
-
     @if($field['name']==='FunctionalKm2')
-
 
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.FunctionalEcosystemArea')</h3>
 
@@ -44,7 +42,6 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
         </div>
 
     @elseif($field['name']==='BenefitKm2')
-
 
         <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.BenefitsOfEcosystemServicesArea')</h3>
 
@@ -86,6 +83,36 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             ])
         </div>
 
+    @elseif($field['name'] === 'DocumentedConnectivity'
+        || $field['name'] === 'EvidenceOfConnectivity'
+        || $field['name'] === 'EvidencesListConnectivity'
+        || $field['name'] === 'ConnectivityIntegrationInManagementPlan')
+
+        @if($field['name'] === 'DocumentedConnectivity')
+            <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.Connectivity')</h3>
+            <div class="Connectivity">
+                @lang('imet-core::v2_context.TerritorialReferenceContext.connectivity_info')
+            </div>
+        @endif
+
+        <div class="module-row !mb-4">
+
+            {{-- label  --}}
+            <div class="module-row__label !w-2/5">
+                <label for="{{ $field['name'] }}"
+                @if($field['name'] === 'EvidencesListConnectivity') class="!font-normal" @endif
+                >{!! ucfirst( $field['label']) !!}</label>
+            </div>
+
+            {{-- input field --}}
+            @include('modular-forms::module.edit.field.module-to-vue', [
+                'definitions' => $definitions,
+                'field' => $field,
+                'vue_record_index' => 0
+            ])
+        </div>
+
+
     @elseif($field['name']!=='FunctionalKm'
             and $field['name']!=='BenefitKm')
 
@@ -115,12 +142,22 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 ></x-modular-forms::module.components.script>
 
 @push('scripts')
-    <style>
-        .BenefitSocioEconomicAspects{
-            padding: 10px 10px 40px 10px;
+    <style lang="postcss">
+        #module_imet__v2__context__territorial_reference_context{
+            .BenefitSocioEconomicAspects{
+                padding: 10px 10px 40px 10px;
+            }
+            .BenefitSocioEconomicAspects span span{
+                max-width: 100%;
+            }
+            .Connectivity {
+                ul {
+                    margin-left: 20px;
+                    margin-bottom: 10px;
+                }
+
+            }
         }
-        .BenefitSocioEconomicAspects span span{
-            max-width: 100%;
-        }
+
     </style>
 @endpush
