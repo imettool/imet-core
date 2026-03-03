@@ -294,51 +294,11 @@ return [
             'EcologicalAspects' => 'Estimativa da presença de factores ambientais, por exemplo, área de distribuição de gamas domésticas de espécies emblemáticas (em km2) (Km2)',
             'BenefitArea' => 'Área não habitada em redor da área protegida que beneficia dos serviços ecossistémicos prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
             'BenefitPopulation' => 'Estimativa da dimensão da população local que vive dentro da zona socioeconómica de influência',
-            'BenefitSocioEconomicAspects' => 'Listar e descrever os factores socioeconómicos e administrativos (por exemplo, papéis tradicionais ou modernos sobre os recursos naturais estabelecidos pelas autoridades tradicionais e modernas) que influenciam a gestão da área protegida',
-            'SpillOverArea' => 'Estimar os efeitos de derrame na área marinha protegida, ou seja, a dimensão da área crucial para manter o fornecimento de serviços ecossistémicos (pesca) prestados pela área protegida: a) em km² e b) como largura da faixa exterior',
-            'SpillOverEvalPredatory0_500' => '',
-            'SpillOverEvalPredatory500_1000' => '',
-            'SpillOverEvalPredatory200_3000' => '',
-            'SpillOverEvalComposition0_500' => '',
-            'SpillOverEvalComposition500_1000' => '',
-            'SpillOverEvalComposition200_3000' => '',
-            'SpillOverEvalDistance0_500' => '',
-            'SpillOverEvalDistance500_1000' => '',
-            'SpillOverEvalDistance200_3000' => '',
-        ],
-        'info' => [
-            'spillover_eval' => 'O movimento das redes de indivíduos das reservas marinhas (também conhecidas como áreas protegidas marinhas
-                sem capturas) para os restantes pesqueiros é conhecido como derrame. Os derrames podem contribuir para a
-                redução da pobreza, embora o seu efeito seja modulado pelo número de pescadores e pela intensidade da pesca.
-                Em geral:
-                <ul>
-                    <li>Forte efeito transbordamento (spill-over) positivo quando a pesca é mal gerida</li>
-                    <li>Efeito positivo de transbordamento (spill-over) quando a pesca é bem gerida, mas efeito positivo para espécies com maior movimento e crescimento mais lento</li>
-                    <li>Avaliar o efeito de transbordamento (spill-over) de uma reserva é capaz de proporcionar um benefício líquido para uma pesca (de Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                    <li>peixes predadores (peixes grandes e predadores são mais comuns dentro e logo fora das reservas do que em sítios mais afastados)</li>
-                    <li>composição fora e dentro (a composição da comunidade fora das reservas torna-se mais parecida com a composição dentro das reservas com o tempo)</li>
-                    <li>distância de detecção do efeito de spill-over (a distância da fronteira e o tempo após o estabelecimento da reserva são as variáveis com maior efeito sobre a abundância de peixe; caching de peixe: A) 500 m e mais próximo; B) 500 a 1000 m; C) 2000 a 3000 m</li>
-                </ul>',
-            'spill_over_variation' => 'Transbordamento (spill-over) variação dentro vs. MPA fora',
-            'variation' => 'Variação dentro vs. MPA fora',
-            '0_500' => '0 a 500m',
-            '500_1000' => '500 a 1000m',
-            '2000_3000' => '2000 a 3000m',
-            'predatory' => 'Peixes predadores',
-            'composition' => 'Composição da comunidade de peixes',
-            'distance' => 'Distância de efeito de derrame',
-        ],
-        'ratingLegend' => [
-            'SpillOverEvalPredatory0_500' => [
-                '-2' => 'Diferença negativa forte',
-                '-1' => 'Menos diferença negativa',
-                '0' => 'Sem diferença',
-            ],
+            'BenefitSocioEconomicAspects' => 'Listar e descrever os factores socioeconómicos e administrativos (por exemplo, papéis tradicionais ou modernos sobre os recursos naturais estabelecidos pelas autoridades tradicionais e modernas) que influenciam a gestão da área protegida'
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Área Funcional de ecossistema',
             'BenefitsOfEcosystemServicesArea' => 'Area que beneficia dos servicos ecossistémicos da área protegida',
-            'SpillOverArea' => 'Area dos efeitos de derrame',
         ],
         'module_info' => '<b>Paisagem</b>: A governação e gestão ligadas de uma área protegida e dos seus territórios circundantes
             podem contribuir para a conservação da biodiversidade e resiliência climática, manutenção dos recursos naturais

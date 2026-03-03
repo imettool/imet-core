@@ -21,19 +21,15 @@ class CustomInput extends Input
     #[\Override]
     public function render(): View
     {
-
-        // ### imet-core custom inputs ###
+        // Skip non IMET custom inputs
         if (! Str::startsWith($this->type, 'imet-core::')) {
-
             return parent::render();
-
         }
 
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa_multiple')) {
             return view('imet-core::components.inputs.selector-wdpa_multiple');
         }
-
         if (Str::contains($this->type, 'selector-wdpa')) {
             return view('imet-core::components.inputs.selector-wdpa');
         }
@@ -41,6 +37,11 @@ class CustomInput extends Input
         // Species selector
         if (Str::contains($this->type, 'selector-species')) {
             return view('imet-core::components.inputs.selector-species');
+        }
+
+        // Radio button
+        if (Str::contains($this->type, 'radio')) {
+            return view('imet-core::components.inputs.radio');
         }
 
         return parent::render();

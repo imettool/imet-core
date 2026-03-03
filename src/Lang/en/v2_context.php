@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Make sure you have completed the CTX 2.5 section if you intend to analyze the element',
+    'spillover_and_connectivity_waring_message' => 'Make sure you have completed the CTX 2.4 (Connectivity) and CTX 2.5 section if you intend to analyze the element',
+
     'Objectives' => [
         'title' => 'Setting objectives',
         'fields' => [
@@ -292,47 +295,15 @@ return [
             'BenefitArea' => 'Estimate the inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
             'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
-            'SpillOverArea' => 'Estimate the SPILL-OVER effects in the marine protected area, i.e., the size of the area crucial to maintain the ecosystem services provisioning (fishing) delivered by the protected area: a) in km² and b) in metres as width of the outer strip',
-            'SpillOverEvalPredatory0_500' => '',
-            'SpillOverEvalPredatory500_1000' => '',
-            'SpillOverEvalPredatory200_3000' => '',
-            'SpillOverEvalComposition0_500' => '',
-            'SpillOverEvalComposition500_1000' => '',
-            'SpillOverEvalComposition200_3000' => '',
-            'SpillOverEvalDistance0_500' => '',
-            'SpillOverEvalDistance500_1000' => '',
-            'SpillOverEvalDistance200_3000' => '',
-        ],
-        'info' => [
-            'spillover_eval' => 'The net movement of individuals from marine reserves (also known as no-take marine protected areas) to
-                the remaining fishing grounds is known as spill-over. Spill-over can contribute to poverty alleviation,
-                although its effect is modulated by the number of fishermen and fishing intensity. Generally:<ul>
-                <li>Strong spill-over positive effect when the fishery is mismanaged</li>
-                <li>Light spill-over positive effect when the fishery is well managed but positive effect for species with greater movement and slower growth.</li>
-                <li>Evaluate the spill-over effect from a reserve is able to provide a net benefit for a fishery (from Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                <li>predatory fish (large, predatory fish are more common inside and just outside reserves than farther away)</li>
-                <li>composition outside and inside (the community composition outside the reserves becomes more like that inside over time)</li>
-                <li>distance of detection of spill-over effect (distance from the border and the time after reserve establishment is the variables with the strongest effect on fish abundance; fish caching: A) 500 m and closer; B) 500 to 1000 m; C) 2000 to 3000 m</li></ul>',
-            'spill_over_variation' => 'SPILL-OVER variation inside vs outside MPA',
-            'variation' => 'Variation inside vs outside MPA',
-            '0_500' => '0 to 500m',
-            '500_1000' => '500 to 1000m',
-            '2000_3000' => '2000 to 3000m',
-            'predatory' => 'Predatory fish',
-            'composition' => 'Fish community composition',
-            'distance' => 'Spill-over effect distance',
-        ],
-        'ratingLegend' => [
-            'SpillOverEvalPredatory0_500' => [
-                '-2' => 'Strong negative difference',
-                '-1' => 'Least negative difference',
-                '0' => 'No difference',
-            ],
+            'DocumentedConnectivity' => 'Q1. Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
+            'EvidenceOfConnectivity' => 'Q2. Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
+            'EvidencesListConnectivity' => 'Indications and evidence may include:',
+            'ConnectivityIntegrationInManagementPlan' => 'Q3. Is connectivity integrated into management planning?',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
-            'SpillOverArea' => 'Area of SPILL-OVER effects',
+            'Connectivity' => 'Connectivity',
         ],
         'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
           can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
@@ -345,6 +316,123 @@ return [
           essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
           grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
+        'connectivity_info' =>
+            '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
+            surrounding habitats or ecosystems that enable key ecological processes such as species movement, gene flow,
+            migration, larval dispersal, and climate adaptation. Connectivity sustains the long-term viability of the site’s
+            major natural values and underpins processes such as biomass recovery and spillover.</p>
+            <p>Connectivity can be:</p>
+            <ul>
+                <li>Structural: the physical continuity of habitats, corridors, stepping stones and currents.</li>
+                <li>Functional (the actual movement of species, gene flow and dispersal patterns);</li>
+                <li>Ecological (maintenance of trophic links and ecosystem processes across boundaries).</li>
+            </ul>
+            <p>In marine systems, connectivity may include:</p>
+            <ul>
+                <li>Adult migration routes</li>
+                <li>Current systems and larval dispersal networks</li>
+                <li>Habitat continuity (reefs, seagrass and mangroves).</li>
+            </ul>
+            <p>In terrestrial systems:</p>
+            <ul>
+                <li>Corridors</li>
+                <li>Buffer zones</li>
+                <li>Ecological networks</li>
+                <li>Transboundary linkages</li>
+            </ul>
+            <p>Connectivity supports:</p>
+            <ul>
+                <li>Ecological resilience</li>
+                <li>Spillover dynamics</li>
+                <li>The long-term viability of key conservation elements</li>
+                <li>Climate adaptation</li>
+            </ul>'
+    ],
+
+    'Spillover' => [
+        'title' => 'Spillover',
+        'fields' => [
+            'SupportingEvidence' => 'Q1. Assessment of Ecological Spillover evidence',
+            'SupportingKeyObservations' => 'Q2. Evidence and Key Observations',
+            'SupportingOtherObservation' => 'Specify',
+            'SupportingPerceivedSpeciesChange' => 'Q3. Perceived change in species monitoring/caught',
+            'SupportingPerceivedSizeChange' => 'Q4. Perceived change in size of main target species',
+            'SupportingComments' => 'Notes',
+            'ProvisioningEvidence' => 'Q1. Assessment of Provisioning Spillover evidence',
+            'ProvisioningKeyObservations' => 'Q2. Evidence and key observations',
+            'ProvisioningOtherObservation' => 'Specify',
+            'ProvisioningPerceivedCatchChange' => 'Q3. Perceived change in catch near the MPA',
+            'ProvisioningPerceivedSpillover' => 'Q4. Do fishers perceive a spillover effect from the MPA?',
+            'ProvisioningComments' => 'Notes',
+
+        ],
+        'sub_titles' => [
+            'SupportingEvidence' => 'Is there scientific or monitoring evidence of ecological spillover from the MPA (e.g. biomass gradients, tagging, larval export, habitat improvement near boundaries)?',
+            'SupportingKeyObservations' => 'Please describe the main observations or information that support your assessment in Q1',
+            'SupportingPerceivedSpeciesChange' => 'In those same fishing grounds outside the MPA, how do MPA staff/fishers perceive the variety and composition of species in their monitoring/catch compared to before the MPA?',
+            'SupportingPerceivedSizeChange' => 'How do MPAS staff/fishers perceive the average size of the main species they target in areas outside but close to the MPA, compared to before the MPA?',
+            'ProvisioningEvidence' => 'Is there scientific, monitoring, or documented evidence that the PA generates provisioning spillover benefits in neighboring fishing grounds (e.g. improved catches, larger fish, changes in species composition, increased Catch Per Unit Effort -CPUE)?',
+            'ProvisioningKeyObservations' => 'Briefly describe the key observations supporting your choice (e.g. monitoring results, community feedback, research findings, ranger or fisheries officer observations)',
+            'ProvisioningPerceivedCatchChange' => 'Compared with the period before the MPA was established, how do MPA staff/fishers who operate outside but close to the MPA perceive the change in their total catch per trip?',
+            'ProvisioningPerceivedSpillover' => 'Do fishers believe that the presence of the MPA has contributed to better catches in the areas where they fish (for example, because fish move out from inside the MPA or aggregate near its boundary)?',
+        ],
+        'other_labels' => [
+            'SupportingTitle' => 'Supporting (ES – Support)',
+            'SupportingSubTitle' => 'Used when ecological processes (e.g. reproduction, biomass recovery, larval export) are known or suspected, but socio-economic effects are not demonstrated. Spillover will then be analysed mainly in the ecological context and outcomes',
+            'ProvisioningTitle' => 'Provisioning ecosystem service (ES – Provisioning)',
+            'ProvisioningSubTitle' => 'Used when fishers or communities report improved catches, larger fish or changes in species composition without documented ecological mechanisms. The analysis will focus on livelihoods and socio-economic outcomes.',
+        ],
+        'module_info' =>
+            '<p>Spillover refers to the ecological and socio-economic benefits generated by a protected area, particularly
+            a marine protected area (MPA), that extend beyond its boundaries or are received from neighbouring protected
+            areas within a connected landscape or seascape.</p>
+            <b class="blue">Description</b>
+            <p><b>Ecological spillover</b> occurs when species within a MPA increase in abundance, size or reproductive output,
+            and then disperse outside the MPA through adult movement, juvenile migration or larval export. These processes can
+            operate in two directions: an MPA may actively deliver spillover benefits to surrounding areas, or it may receive
+            ecological inputs from neighbouring MPAs, particularly where there is ecological connectivity, to deliver spillover
+            benefits.</p>
+            <p><b>Socio-economic spillover</b> arises when these ecological processes lead to improved catches, greater species
+            diversity or larger fish in neighbouring fishing grounds. This supports local livelihoods.</p>
+            <p>In the context of IMET analysis, spillover can be understood as an ecosystem service provided by the marine
+            protected area. It functions as a supporting service because protection measures within the MPA enhance key
+            ecological processes, such as reproduction, biomass recovery and ecological connectivity with surrounding areas.
+            At the same time, spillover constitutes a provisioning service as these locally generated or externally reinforced
+            ecological processes produce tangible benefits for fishers and coastal communities, such as increased catches,
+            improved species composition and larger average fish size</p>
+            <b class="blue">How to assess spillover in IMET</b>
+            <ol style="list-style-type:decimal">
+                <li>
+                    <b>First, document the evidence</b>
+                    <p>Before classifying spillover, IMET users should complete both analytical sections.</p>
+                    <ul>
+                        <li>Supporting ecosystem services (ecological spillover): assess evidence related to ecological processes,
+                        such as reproduction, biomass recovery, adult movement, juvenile migration or larval export.</li>
+                        <li>Provisioning ecosystem services (socio-economic spillover): assess evidence related to the benefits for
+                        fishers and communities, such as changes in catches, species composition, fish size or CPUE.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base your classification on the evidence, not your assumptions</b>
+                    <p>After completing both sections, select the most appropriate classification:</p>
+                    <ul>
+                        <li>Supporting only: ecological processes are evident, but socio-economic benefits are not demonstrated.</li>
+                        <li>Provisioning only: benefits to livelihoods are reported, but the ecological mechanisms are not documented.</li>
+                        <li>Supporting and provisioning: both ecological processes and socio-economic benefits are supported by evidence.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Link spillover to management effectiveness</b>
+                    <p>The selected classification informs IMET analysis across:</p>
+                    <ul>
+                        <li>C1.5 – Ecosystem services (importance and prioritisation);</li>
+                        <li>I1 - Basic information</li>
+                        <li>PR7 - Management of key values and threats (management actions).</li>
+                        <li>O/C2 - ecological outcomes and/or O/C3: Effects on local quality of life.</li>
+                    </ul>
+                </li>
+            </ol>',
+
     ],
 
     'ManagementStaff' => [
@@ -870,7 +958,7 @@ return [
             'group9' => 'Supporting services',
         ],
         'predefined_values' => [
-            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)'],
+            'group0' => ['Water supply', 'Human food - vegetal (tubers, fruits, honey, mushrooms, seaweed, etc.)', 'Human food - animal (wild / farmed meat, insects)', 'Medicines and blue biotechnology (fish oil)', 'Fish / livestock feed (wild, farmed, bait)','Spillover benefits in neighboring fishing grounds'],
             'group1' => ['High value timber', 'Timber for local construction', 'Stems - fibres (palms, kenaf, etc.)', 'Other fibres (leaves, fruits...) (kapok, coco, etc.)', 'Ornamental and aquaria resources (seeds, shells and fishes collection)', 'Sand (building)', 'Algal/shells', 'Cultivation land (agriculture, livestock, forests)'],
             'group2' => ['Fuelwood and biofuels', 'Water for energy', 'Fertiliser'],
             'group3' => ['Gas regulation (C sequestration)', 'Waste burial / removal / neutralisation', 'Waste regulation (nutrient uptake)', 'Prevention of coastal erosion'],
@@ -879,7 +967,7 @@ return [
             'group6' => ['Science - Research', 'Educational', 'Cultural heritage'],
             'group7' => ['Symbolic or historic', 'Sacred or religious'],
             'group8' => ['ex situ conservation'],
-            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Formation of seascape', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)'],
+            'group9' => ['Net primary production (vegetation)', 'Nutrient cycling (litter decomposition and mineralisation)', 'Important habitats (bird nesting sites - sea spawning grounds - nursery habitats)', 'Formation of seascape', 'Habitat former species (eg. corals)', 'Pollination (plants)', 'Water cycling', 'Seascape: habitat heterogeneity/complexity (supporting diversity)', 'Spillover benefits in biomass recovery, reproduction, connectivity', 'Connectivity (ecological linkages and functional continuity)'],
         ],
         'categories' => [
             'title1' => 'Provisioning',

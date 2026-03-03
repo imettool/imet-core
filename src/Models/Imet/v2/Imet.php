@@ -52,6 +52,7 @@ class Imet extends BaseImetForm
             Modules\Context\Areas::class,
             Modules\Context\Sectors::class,
             Modules\Context\TerritorialReferenceContext::class,
+            Modules\Context\Spillover::class,
             Modules\Context\Objectives2::class,
         ],
         'resources' => [

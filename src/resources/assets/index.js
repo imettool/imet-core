@@ -140,6 +140,9 @@ window.ImetCore.Apps.Modules.ImetV2.context.Areas = Areas;
 import Sectors from "./js/apps/Modules/ImetV2/context/Sectors";
 window.ImetCore.Apps.Modules.ImetV2.context.Sectors = Sectors;
 
+import Spillover from "./js/apps/Modules/ImetV2/context/Spillover.js";
+window.ImetCore.Apps.Modules.ImetV2.context.Spillover = Spillover;
+
 import ManagementStaff from "./js/apps/Modules/ImetV2/context/ManagementStaff";
 window.ImetCore.Apps.Modules.ImetV2.context.ManagementStaff = ManagementStaff;
 

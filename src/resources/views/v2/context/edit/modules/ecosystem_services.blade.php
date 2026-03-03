@@ -5,13 +5,12 @@
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-
-$fistGroupPerCategory = array_map(fn(array $category) => $category[0], $vueData['groupsByCategory']);
-
 $view = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
 $dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
 
-foreach ($fistGroupPerCategory as $i => $group){
+// Add title and progress bar for each category
+$firstGroupPerEachCategory = array_map(fn(array $category) => $category[0], $vueData['groupsByCategory']);
+foreach ($firstGroupPerEachCategory as $i => $group){
     $title = '<div class="module-row">
                 <div style="width: 60%;">
                     <h3>'.($i+1).'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.($i+1)).'</h3>
@@ -27,6 +26,26 @@ foreach ($fistGroupPerCategory as $i => $group){
             </div>';
     $dom->filter('h5.group_title_'.$definitions['module_key'].'_'.$group)->eq(0)->before($title);
 }
+
+// Add info message for spillover - Provisioning
+$info = '<div class="module-bar info-bar !mb-5">' .
+            '<i class="fa fa-exclamation-triangle" style="font-size: 1.4em; margin-right: 10px;"></i>' .
+            trans('imet-core::v2_context.spillover_waring_message') . ': ' .
+            ' "<b>'. last(trans('imet-core::v2_context.EcosystemServices.predefined_values.group0')) . '</b>" ' .
+        '</div>';
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group0')->eq(0)->after($info);
+
+// Add info message for spillover - Supporting
+$info = '<div class="module-bar info-bar !mb-5">' .
+    '<i class="fa fa-exclamation-triangle" style="font-size: 1.4em; margin-right: 10px;"></i>' .
+    '<span>' .
+        trans('imet-core::v2_context.spillover_and_connectivity_waring_message') . ': ' .
+        ' "<b>'. trans('imet-core::v2_context.EcosystemServices.predefined_values.group9')[count(trans('imet-core::v2_context.EcosystemServices.predefined_values.group9'))-2] . '</b>"  and ' .
+        ' "<b>'. last(trans('imet-core::v2_context.EcosystemServices.predefined_values.group9')) . '</b>"' .
+    '</span>' .
+    '</div>';
+$dom->filter('h5.group_title_'.$definitions['module_key'].'_group9')->eq(0)->after($info);
+
 ?>
 
 {!! $dom->saveHTML() !!}
