@@ -21,13 +21,4 @@
 
 ?>
 
-
-<x-modular-forms::module.components.body
-    :controller="$controller"
-    :collection="$collection"
-    :vueData="$vueData"
-    :definitions="$definitions"
-    :records="$records"
-    :formId="$formId"
-    :mode="$mode"
-></x-modular-forms::module.components.body>
+@include('modular-forms::module.edit.type.simple', compact(['collection', 'vueData', 'definitions']))
