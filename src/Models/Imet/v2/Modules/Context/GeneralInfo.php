@@ -27,11 +27,6 @@ final class GeneralInfo extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    public static array $rules = [
-        'Type' => 'required',
-        'Country' => 'required',
-    ];
-
     public function __construct(array $attributes = [])
     {
 
