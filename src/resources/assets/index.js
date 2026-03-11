@@ -131,6 +131,9 @@ window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservationTende
 
 // ##### ImetV2 - context #####
 
+import Governance from "./js/apps/Modules/ImetV2/context/Governance";
+window.ImetCore.Apps.Modules.ImetV2.context.Governance = Governance;
+
 import GeographicalLocation from "./js/apps/Modules/ImetV2/context/GeographicalLocation";
 window.ImetCore.Apps.Modules.ImetV2.context.GeographicalLocation = GeographicalLocation;
 
@@ -195,8 +198,8 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkP
 
 // ##### OECM - context #####
 
-import Governance from "./js/apps/Modules/Oecm/context/Governance";
-window.ImetCore.Apps.Modules.Oecm.context.Governance = Governance;
+import GovernanceOecm from "./js/apps/Modules/Oecm/context/Governance";
+window.ImetCore.Apps.Modules.Oecm.context.Governance = GovernanceOecm;
 
 import { default as AreasOecm } from "./js/apps/Modules/Oecm/context/Areas";
 window.ImetCore.Apps.Modules.Oecm.context.Areas = AreasOecm;
