@@ -630,7 +630,6 @@ return [
         'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Type of habitat',
-            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Description of the status or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Favourable conservation status',
