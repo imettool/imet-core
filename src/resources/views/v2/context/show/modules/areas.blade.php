@@ -5,13 +5,12 @@
 
 $record  = $records[0];
 
-$calc = null;
-$area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID'], in_hectares: true) : null;
+$area = array_key_exists('FormID', $record)
+    ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID'])
+    : null;
+$boundaryLength = $record['BoundaryLength'];
 
-if(floatval($area)>0 && floatval($record['BoundaryLength'])>0){
-    $calc = sqrt(3.14)/(2*3.14)*floatval($record['BoundaryLength'])/sqrt($area);
-    $calc = round($calc, 2);
-}
+$shapeIndex = $module::getShapeIndex($area, $boundaryLength);
 
 ?>
 
@@ -70,7 +69,7 @@ if(floatval($area)>0 && floatval($record['BoundaryLength'])>0){
         @elseif($f_index===10)
             <x-modular-forms::module.components.field.input-preview
                 type="disabled"
-                :value="$calc"
+                :value="$shapeIndex"
             ></x-modular-forms::module.components.field.input-preview>
         @endif
 

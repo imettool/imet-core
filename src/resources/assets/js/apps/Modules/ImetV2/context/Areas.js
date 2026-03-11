@@ -10,13 +10,17 @@
 
 import ModuleImet from "../../../Module.js";
 
-import { ref, nextTick } from "vue";
+import { ref, nextTick, watch } from "vue";
 
 export default class Areas extends ModuleImet {
 
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
+
+        watch(setup_obj.records, () => {
+            calculateShapeIndex();
+        }, { deep: true });
 
         const AdministrativeArea_km2 = ref(input_data.records[0]['AdministrativeArea']/100);
         const WDPAArea_km2 = ref(input_data.records[0]['WDPAArea']/100);
@@ -50,12 +54,12 @@ export default class Areas extends ModuleImet {
             let area = getArea();
             let boundary_length = parseFloat(setup_obj.records[0]['BoundaryLength']);
 
+            let shapeIndex = null;
             if(isValidNumber(area) && isValidNumber(boundary_length)){
-                let calc =  Math.sqrt(3.14)/(2*3.14)*boundary_length/Math.sqrt(area);
-                setup_obj.records[0]['Index'] = calc.toFixed(2).toString();
-            } else {
-                setup_obj.records[0]['Index'] = null;
+                shapeIndex =  Math.sqrt(3.14)/(2*3.14)*boundary_length/Math.sqrt(area);
+                shapeIndex = shapeIndex.toFixed(2).toString();
             }
+            setup_obj.records[0]['Index'] = shapeIndex;
         }
 
         function getArea(){

@@ -102,7 +102,7 @@ final class Areas extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getArea(?int $form_id, $in_hectares = false): int|float|null
+    public static function getArea(?int $form_id, $in_km2 = true): int|float|null
     {
         $records = self::getModuleRecords($form_id)['records'];
         if(count($records) === 0) {
@@ -112,11 +112,20 @@ final class Areas extends Modules\Component\ImetModule
         $record = $records[0];
         foreach (['GISArea', 'WDPAArea', 'AdministrativeArea'] as $area_field) {
             if(array_key_exists($area_field, $record) && $record[$area_field] !== null && $record[$area_field] > 0){
-                return $in_hectares ?
-                    $record[$area_field] :
-                    $record[$area_field] / 100;  // ha->km2
+                return $in_km2
+                    ? $record[$area_field] / 100  // ha->km2
+                    : $record[$area_field];
             }
         }
+
+        return null;
+    }
+
+    public static function getShapeIndex($area, $boundary_length): float|null
+    {
+        return floatval($area)>0 && floatval($boundary_length)>0
+            ? round(sqrt(3.14)/(2*3.14)*floatval($boundary_length)/sqrt($area), 2)
+            : null;
     }
 
     /**
