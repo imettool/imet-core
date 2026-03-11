@@ -102,27 +102,21 @@ final class Areas extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
-    public static function getArea(?int $form_id): int|float|null
+    public static function getArea(?int $form_id, $in_hectares = false): int|float|null
     {
-        $areas = self::getModuleRecords($form_id)['records'];
-        $area = 0;
-        if (count($areas) > 0) {
-            $area = null;
-            $area = array_key_exists(
-                'AdministrativeArea',
-                $areas[0]
-            ) && $areas[0]['AdministrativeArea'] !== null && $areas[0]['AdministrativeArea'] > 0 ? $areas[0]['AdministrativeArea'] : $area;
-            $area = array_key_exists(
-                'WDPAArea',
-                $areas[0]
-            ) && $areas[0]['WDPAArea'] !== null && $areas[0]['WDPAArea'] > 0 ? $areas[0]['WDPAArea'] : $area;
-            $area = array_key_exists(
-                'GISArea',
-                $areas[0]
-            ) && $areas[0]['GISArea'] !== null && $areas[0]['GISArea'] > 0 ? $areas[0]['GISArea'] : $area;
+        $records = self::getModuleRecords($form_id)['records'];
+        if(count($records) === 0) {
+            return null;
         }
 
-        return $area === 0 ? null : $area / 100; // ha->km2
+        $record = $records[0];
+        foreach (['GISArea', 'WDPAArea', 'AdministrativeArea'] as $area_field) {
+            if(array_key_exists($area_field, $record) && $record[$area_field] !== null && $record[$area_field] > 0){
+                return $in_hectares ?
+                    $record[$area_field] :
+                    $record[$area_field] / 100;  // ha->km2
+            }
+        }
     }
 
     /**

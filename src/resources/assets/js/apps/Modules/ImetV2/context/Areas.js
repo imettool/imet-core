@@ -52,13 +52,7 @@ export default class Areas extends ModuleImet {
 
             if(isValidNumber(area) && isValidNumber(boundary_length)){
                 let calc =  Math.sqrt(3.14)/(2*3.14)*boundary_length/Math.sqrt(area);
-                // if(calc>=1){
                 setup_obj.records[0]['Index'] = calc.toFixed(2).toString();
-                // } else {
-                //     setup_obj.records[0]['Index'] = null;
-                //     // todo: warn error (Please check area and boundary_length: seems not to be consistent)
-                //     // todo: legend x shape index value
-                // }
             } else {
                 setup_obj.records[0]['Index'] = null;
             }

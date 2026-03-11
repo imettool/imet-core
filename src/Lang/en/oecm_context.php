@@ -45,7 +45,7 @@ return [
             'status_year' => 'year of the enactment',
             'country' => 'country',
         ],
-
+        'module_info' => 'All fields are required except for the surface area.',
         'allowed_international' => 'Allowed values for international-level designations',
         'allowed_regional' => 'Allowed values for regional-level designations',
         'allowed_national' => 'No fixed values for protected areas designated at a national level',
