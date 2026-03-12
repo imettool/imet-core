@@ -4,13 +4,13 @@
 /** @var array $definitions */
 
 use ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $groups = $definitions['groups'];
+$vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
 
 $marine_groups = MenacesPressions::get_marine_groups();
 $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
@@ -52,12 +52,16 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
                             &nbsp;&nbsp;{{ $group_label }}
                         </h5>
 
-                        @include('modular-forms::module.edit.type.table', [
-                            'collection' => $collection,
-                            'definitions' => $definitions,
-                            'vueData' => $vueData,
-                            'group_key' => $group_key
-                        ])
+                        @php
+                            $view = View::make('modular-forms::module.edit.type.table', [
+                                'collection' => $collection,
+                                'definitions' => $definitions,
+                                'vueData' => $vueData,
+                                'group_key' => $group_key
+                            ])->render();
+                            $view = $module::injectIconToPredefinedCriteriaWithVue($module::MARINE, $view, "is_marine(item['Value'])");
+                        @endphp
+                        {!! $view !!}
 
                     @endif
                 @endforeach

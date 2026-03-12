@@ -3,6 +3,7 @@
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -10,6 +11,7 @@ $groups = $definitions['groups'];
 
 $marine_groups = MenacesPressions::get_marine_groups();
 $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
+$marine_predefined = MenacesPressions::get_marine_predefined();
 
 $categoryStats = array_key_exists('FormID', $records[0])
     ? MenacesPressions::getStats($records[0]['FormID'])['categoryStats']
@@ -46,13 +48,28 @@ $categoryStats = array_key_exists('FormID', $records[0])
                     @foreach($groups as $group_key => $group_label)
                         @if(in_array($group_key, $category))
 
-                            <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                            <h5>
+                                @if(in_array($group_key, $marine_groups))
+                                    {!! Template::module_scope($module::MARINE) !!}
+                                @elseif(in_array($group_key, $terrestrial_groups))
+                                    {!! Template::module_scope($module::TERRESTRIAL) !!}
+                                @else
+                                    {!! Template::module_scope($module::MARINE) !!}
+                                    {!! Template::module_scope($module::TERRESTRIAL) !!}
+                                @endif
+                                &nbsp;&nbsp;{{ $group_label }}
+                            </h5>
 
-                            @include('modular-forms::module.show.type.table', [
-                                'definitions' => $definitions,
-                                'records' => $records,
-                                'group_key' => $group_key
-                            ])
+                            @php
+                                $view = View::make('modular-forms::module.show.type.table', [
+                                    'definitions' => $definitions,
+                                    'records' => $records,
+                                    'group_key' => $group_key
+                                ])->render();
+                                $view = $module::injectIconToPredefinedCriteria($module::MARINE, $view, $marine_predefined);
+                            @endphp
+                            {!! $view !!}
+
                             <br />
                             <br />
 
