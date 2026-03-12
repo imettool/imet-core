@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Sólo si se ha analizado la sección CTX 2.5',
+    'connectivity_waring_message' => 'Sólo si se ha analizado la sección CTX 2.4',
+
     'Objectives' => [
         'title' => 'Estableciendo objetivos',
         'fields' => [

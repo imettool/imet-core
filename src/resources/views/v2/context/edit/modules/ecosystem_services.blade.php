@@ -4,8 +4,26 @@
 /** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
+use Wa72\HtmlPageDom\Helpers;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $groups = $definitions['groups'];
+$vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
+$vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
+
+function injectSpilloverMessages(string $view, string $label, string $vue_if): string
+{
+    $message =
+        '<div class="text-xs mt-1 text-blue-600" v-if='.$vue_if.'>
+            <i class="fa fa-exclamation-triangle" style="font-size: 1.2em; margin-right: 10px;"></i>
+            <span>'. $label .'</span>
+        </div>';
+    $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
+    $td = $dom->filter('tr.module-table-item td')->eq(0);
+    $td->setInnerHtml($td->getInnerHtml() . $message);
+    return $dom->saveHTML();
+}
 
 ?>
 
@@ -34,12 +52,17 @@ $groups = $definitions['groups'];
 
                     <h5>{{ $group_label }}</h5>
 
-                    @include('modular-forms::module.edit.type.table', [
-                        'collection' => $collection,
-                        'definitions' => $definitions,
-                        'vueData' => $vueData,
-                        'group_key' => $group_key
-                    ])
+                    @php
+                        $view = View::make('modular-forms::module.edit.type.table', [
+                            'collection' => $collection,
+                            'definitions' => $definitions,
+                            'vueData' => $vueData,
+                            'group_key' => $group_key
+                        ])->render();
+                        $view = injectSpilloverMessages($view, trans('imet-core::v2_context.spillover_waring_message'), 'is_spillover(records[index].Element)');
+                        $view = injectSpilloverMessages($view, trans('imet-core::v2_context.connectivity_waring_message'), 'is_connectivity(records[index].Element)');
+                        @endphp
+                    {!! $view !!}
 
                 @endif
             @endforeach

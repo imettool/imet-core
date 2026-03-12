@@ -12,8 +12,8 @@
 
 return [
 
-    'spillover_waring_message' => 'Make sure you have completed the CTX 2.5 section if you intend to analyze the element',
-    'spillover_and_connectivity_waring_message' => 'Make sure you have completed the CTX 2.4 (Connectivity) and CTX 2.5 section if you intend to analyze the element',
+    'spillover_waring_message' => 'Only if the CTX 2.5 section has been analyzed',
+    'connectivity_waring_message' => 'Only if the CTX 2.4 section has been analyzed',
 
     'Objectives' => [
         'title' => 'Setting objectives',
