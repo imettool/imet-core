@@ -234,26 +234,22 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new self)->module_groups;
-
-        return [
-            $groups['group1'],
-            $groups['group2'],
-            $groups['group3'],
-            $groups['group8'],
-            $groups['group9'],
-            $groups['group10'],
-        ];
+        return collect((new self)->module_groups)
+            ->filter(function ($group, $key) {
+                return in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']);
+            })
+            ->keys()
+            ->toArray();
     }
 
     public static function get_marine_groups(): array
     {
-        $groups = (new self)->module_groups;
-
-        return [
-            $groups['group4'],
-            $groups['group11'],
-        ];
+        return collect((new self)->module_groups)
+            ->filter(function ($group, $key) {
+                return in_array($key, ['group4', 'group11']);
+            })
+            ->keys()
+            ->toArray();
     }
 
     public static function injectGroupTitle($view, string $module_key, string $beforeGroup, string $title): string

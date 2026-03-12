@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2025 European Union
+ * Copyright (C) 2026 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
  * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
  * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
@@ -9,7 +9,6 @@
  */
 
 import ModuleImet from "../../../Module.js";
-import checkbox_boolean from "../../../../inputs/checkbox-boolean.vue";
 
 import { ref, computed } from "vue";
 
@@ -24,37 +23,15 @@ export default class MenacesPressions extends ModuleImet {
             groupsByCategory: {
                 type: Object,
                 default: () => input_data.groupsByCategory
-            },
-            categoriesVisibility: {
-                type: Object,
-                default: () => input_data.categoriesVisibility || {}
             }
         };
 
-        super(input_data, custom_props)
-            .component('checkbox-boolean', checkbox_boolean);
+        super(input_data, custom_props);
     }
 
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
-
-        const categoryVisibility = ref(input_data.categoriesVisibility.initialVisibility);
-
-        function isSubCategoryVisibly(categoryIndex) {
-            if (categoryVisibility.value[categoryIndex] === undefined) {
-                return false;
-            }
-            return categoryVisibility.value[categoryIndex];
-        }
-
-        function toggleCategoryVisibility(categoryIndex) {
-            if (categoryVisibility.value[categoryIndex] === undefined) {
-                categoryVisibility.value[categoryIndex] = true;
-            } else {
-                categoryVisibility.value[categoryIndex] = !categoryVisibility.value[categoryIndex];
-            }
-        }
 
         /**
          * Calculate stats for each record
@@ -143,9 +120,7 @@ export default class MenacesPressions extends ModuleImet {
             recordStats,
             groupStats,
             categoryStats,
-            is_marine,
-            isSubCategoryVisibly,
-            toggleCategoryVisibility
+            is_marine
         };
 
     }
