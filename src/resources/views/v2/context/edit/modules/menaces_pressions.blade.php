@@ -26,12 +26,12 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
             <x-modular-forms::accordion.item>
                 <x-slot:title>
                     @php
-                        $group_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                        $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
                         $score_value = "categoryStats['".$cat_idx."'] || '-'";
                         $percentage_value = "categoryStats['" . $cat_idx . "']";
                     @endphp
                     <x-imet-core::score-bar
-                        :label="$group_label"
+                        :label="$category_label"
                         :score="$score_value"
                         :percentage="$percentage_value"
                     ></x-imet-core::score-bar>

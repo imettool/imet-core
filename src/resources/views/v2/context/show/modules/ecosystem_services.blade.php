@@ -1,32 +1,66 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var Collection $collection */
 /** @var array $records */
 /** @var array $definitions */
 
-use Wa72\HtmlPageDom\HtmlPageCrawler;
+use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
+use Illuminate\Database\Eloquent\Collection;
 
-$stats = array_key_exists('FormID', $records[0]) ? \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::getStats($records[0]['FormID']) : null;
-$fistGroupPerCategory = array_map(fn(array $category) => $category[0], \ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices::$groupsByCategory);
+$groups = $definitions['groups'];
 
-$view = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
-$dom = HtmlPageCrawler::create('<div>'.$view.'</div>');
+$categoryStats = array_key_exists('FormID', $records[0])
+    ? EcosystemServices::getStats($records[0]['FormID'])
+    : null;
 
-foreach ($fistGroupPerCategory as $i => $group){
-    $title = ' <div class="module-row">
-                    <div style="width: 60%;">
-                        <h3>'.($i+1).'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.($i+1)).'</h3>
-                    </div>
-                    <div  class="module-row__input">
-                        <div class="row progress_bar" style="margin-top: 25px">
-                            <imet_score_bar
-                                value='.round($stats[$i], 1).'
-                                color="#87c89b"
-                            ></imet_score_bar>
-                        </div>
-                    </div>
-               </div>';
-    $dom->filter('h5.group_title_'.$definitions['module_key'].'_'.$group)->eq(0)->before($title);
-}
 ?>
 
-{!! $dom->saveHTML() !!}
+<!-- Categories with histograms -->
+<div class="accordion">
+
+    @foreach($module::$groupsByCategory as $cat_idx => $category)
+
+        <!-- Category title with histogram -->
+        <div class="accordion-item show">
+
+            <div class="accordion-item-header">
+                <div class="accordion-item-header-title">
+                    @php
+                        $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                        $score_value = round($categoryStats[$cat_idx], 2);
+                        $percentage_value = $score_value;
+                    @endphp
+                    <x-imet-core::score-bar
+                        :label="$category_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
+                    ></x-imet-core::score-bar>
+                </div>
+            </div>
+
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+
+                    @foreach($groups as $group_key => $group_label)
+                        @if(in_array($group_key, $category))
+
+                            <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+
+                            @include('modular-forms::module.show.type.table', [
+                                'definitions' => $definitions,
+                                'records' => $records,
+                                'group_key' => $group_key
+                            ])
+                            <br />
+                            <br />
+
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
+
+        </div>
+
+    @endforeach
+
+</div>

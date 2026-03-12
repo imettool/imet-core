@@ -1,14 +1,10 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
-use Illuminate\Support\Facades\View;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
-use Wa72\HtmlPageDom\Helpers;
-
+use Illuminate\Database\Eloquent\Collection;
 
 $groups = $definitions['groups'];
 
@@ -16,7 +12,7 @@ $marine_groups = MenacesPressions::get_marine_groups();
 $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
 
 $categoryStats = array_key_exists('FormID', $records[0])
-    ? MenacesPressions::getStats($records[0]['FormID']) ['categoryStats']
+    ? MenacesPressions::getStats($records[0]['FormID'])['categoryStats']
     : null;
 
 ?>
@@ -32,12 +28,12 @@ $categoryStats = array_key_exists('FormID', $records[0])
             <div class="accordion-item-header">
                 <div class="accordion-item-header-title">
                     @php
-                        $group_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                        $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
                         $score_value = $categoryStats[$cat_idx];
                         $percentage_value = $score_value;
                     @endphp
                     <x-imet-core::score-bar
-                        :label="$group_label"
+                        :label="$category_label"
                         :score="$score_value"
                         :percentage="$percentage_value"
                     ></x-imet-core::score-bar>
