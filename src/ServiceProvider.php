@@ -12,6 +12,7 @@
 
 namespace ImetCore;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
@@ -54,6 +55,9 @@ class ServiceProvider extends BaseServiceProvider
         $this->publishes([
             static::BASE_PATH.'resources/views/vendor/modular-forms' => resource_path('views/vendor/modular-forms'), // Override ModularForms views
         ], 'imet-core');
+
+        // View components
+        Blade::componentNamespace('ImetCore\View', 'imet-core');
 
         // Routes
         Route::group($this->routeConfiguration('web'), function (): void {
