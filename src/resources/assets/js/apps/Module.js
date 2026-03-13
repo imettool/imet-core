@@ -76,6 +76,7 @@ export default class ModuleImet extends Module {
 
         function isHabitat(value) {
             return !Locale.getLabel('imet-core::v2_lists.Habitats.' + value).includes('::v2_lists')
+                && Locale.getLabel('imet-core::v2_lists.Habitats.' + value).length > 1;
         }
 
         function getHabitatLabel(value) {
