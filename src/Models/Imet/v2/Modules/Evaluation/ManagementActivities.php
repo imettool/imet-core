@@ -66,15 +66,30 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
             'values' => $form_id !== null
                 ? [
                     'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
-                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
-                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group1')->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group1')
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group4' => Modules\Evaluation\Menaces::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group5' => Modules\Evaluation\SupportsAndConstraints::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray()
                 ]
                 : [],
         ];

@@ -61,8 +61,12 @@ final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): array
     {
         $predefined_values = $form_id !== null
-            ? Modules\Context\Habitats::getModule($form_id)->pluck('EcosystemType')->toArray()
+            ? Modules\Context\Habitats::getModule($form_id)
+                ->pluck('EcosystemType')
+                ->filter()
+                ->toArray()
             : [];
+
 
         return [
             'field' => self::$DEPENDENCY_ON,

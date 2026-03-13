@@ -68,6 +68,7 @@ final class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
         if ($form_id !== null) {
             $ctx_records = Modules\Context\ClimateChange::getModule($form_id)
                 ->filter(fn ($item): bool => $item['Value'] !== null)
+                ->filter()
                 ->sortByDesc('Trend');
 
             // Filter first 10
