@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         (new UserSeeder)->run();
 
         // Seed protected areas
-        (new ProtectedAreaSeeder)->run();
+        (new ProtectedAreaSeeder)->runWithSample();
 
         // Seed species
         (new SpeciesSeeder)->runWithSample();
