@@ -8,6 +8,7 @@ composer
 /storage/
 /bootstrap/cache/*
 database/database.sqlite
+database/*.csv
 .phpstorm.meta.php
 _ide_helper.php
 package/
