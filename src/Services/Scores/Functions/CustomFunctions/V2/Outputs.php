@@ -50,26 +50,22 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-        //        dd($values->toArray());
 
         $formula = function (AreaDominationMPA $item): int|float {
+            $num = (int) $item['Patrol'] +
+                (int) $item['RapidIntervention'] +
+                (($item['DetectionRemoteSensing']==='true' || $item['DetectionRemoteSensing']===true) ? 1 : 0) +
+                (($item['SpecialMeansRapidIntervention']==='true' || $item['SpecialMeansRapidIntervention']===true) ? 1 : 0);
             $denom = (
                 ($item['Patrol'] === null ? 0 : 3) +
                 ($item['RapidIntervention'] === null ? 0 : 3) +
                 ($item['DetectionRemoteSensing'] === null ? 0 : 1) +
                 ($item['SpecialMeansRapidIntervention'] === null ? 0 : 1)
-            ) * 100;
-
+            );
             if ($denom === 0) {
                 return 0;
             }
-
-            return (
-                (int) $item['Patrol'] +
-                (int) $item['RapidIntervention'] +
-                (int) boolval($item['DetectionRemoteSensing']) +
-                (int) boolval($item['SpecialMeansRapidIntervention'])
-            ) / $denom;
+            return $num / $denom * 100;
         };
 
         $sanctuary_score = $values
