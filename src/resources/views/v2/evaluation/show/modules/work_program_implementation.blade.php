@@ -1,83 +1,101 @@
 <?php
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var array $records */
 /** @var array $definitions */
-/** @var array<string, mixed> $vueData */
-
-/** @var ?string $group_key (optional - only for GROUP_ACCORDION) */
 
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Str;
 
-$group_key ??= '';
 
 ?>
-<x-modular-forms::accordion.container>
-    @foreach($definitions['groups'] as $key=>$group)
-        <x-modular-forms::accordion.item :is-collapsible="false" class="show">
-            <x-slot:title>
-                <span>
-                    {{ $key }}. {{ $group['MainCategory'] }}
-                </span>
-            </x-slot:title>
-            <div>
-                @foreach($definitions['fields'] as $field)
-                    @if($field['name'] === $definitions['virtual_field'])
-                        @foreach($records as $index=>$record)
-                            @if($record['MainCategory'] === $group['MainCategory'])
-                                <strong>{{ ucfirst($field['label'] ?? '') }} </strong>
-                                <x-modular-forms::module.components.field.input-preview
-                                    :type="$field['type']"
-                                    :value="$record[$field['name']]"
-                                ></x-modular-forms::module.components.field.input-preview>
-                                @break
-                            @endif
-                        @endforeach
-                    @endif
-                @endforeach
-            </div>
-            <br/>
-            <table class="table module-table">
-                <thead>
-                <tr>
-                    @foreach($definitions['fields'] as $field)
-                        @if(!in_array($field['name'], [$definitions['group_key_field'], $definitions['virtual_field']]))
-                            <th class="text-center">
-                                @if($field['type']!=='hidden')
-                                    {{ ucfirst($field['label'] ?? '') }}
-                                @endif
-                            </th>
-                        @endif
-                    @endforeach
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody class="{{ $group_key }}">
-                @foreach($records as $index=>$record)
-                    @if($record['MainCategory'] !== $group['MainCategory'])
-                        @continue
-                    @endif
-                    <tr class="module-table-item">
-                        @foreach($definitions['fields'] as $field)
-                            @if(!in_array($field['name'], [$definitions['group_key_field'], $definitions['virtual_field']]))
-                                <td>
-                                    <x-modular-forms::module.components.field.input-preview
-                                        :type="$field['type']"
-                                        :value="$record[$field['name']]"
-                                    ></x-modular-forms::module.components.field.input-preview>
 
-                                    {{--            @include('modular-forms::module.edit.type.simple', [--}}
-                                    {{--                'definitions' => $definitions,--}}
-                                    {{--                'records' => $records,--}}
-                                    {{--                'index' => $index--}}
-                                    {{--            ])--}}
-                                </td>
-                            @endif
+
+
+<x-modular-forms::accordion.container>
+
+    @php
+        $group_index = 1;
+    @endphp
+    @foreach($definitions['groups'] as $group_key => $group_label)
+
+        @if($group_label!==null)
+
+            <x-modular-forms::accordion.item class="show">
+
+                <!-- Accordion header -->
+                <x-slot:title>
+                    <span>
+                        {{ $group_index }} - {{ $group_label }}
+                    </span>
+                </x-slot:title>
+
+                <!-- Group field -->
+                @php
+                    $i = array_search($definitions['group_key_field'], array_column($definitions['fields'], 'name'));
+                    $group_key_field = $definitions['fields'][$i] ?? null;
+                @endphp
+                <div class="mb-4">
+                    <strong class="mr-4">{{ ucfirst($group_key_field['label']) ?? '' }} </strong>
+                    <x-modular-forms::module.components.field.input-preview
+                        :type="$group_key_field['type']"
+                        :value="$group_label"
+                    ></x-modular-forms::module.components.field.input-preview>
+                </div>
+
+
+                <table class="table module-table">
+
+                    {{-- labels  --}}
+                    <thead>
+                        <tr>
+                            @foreach($definitions['fields'] as $field)
+                                @if($field['name'] !== $definitions['fields'][0]['name']) {{-- skip group key field --}}
+                                <th class="text-center">
+                                    @if($field['type']!=='hidden')
+                                        {{ ucfirst($field['label'] ?? '') }}
+                                    @endif
+                                </th>
+                                @endif
+                            @endforeach
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    {{-- values --}}
+                    <tbody class="{{ $group_key }}">
+                        @php
+                            $group_records = array_filter($records, function ($item) use($definitions, $group_label) {
+                                return $item[$definitions['group_key_field']] === $group_label;
+                            })
+                        @endphp
+
+                        @foreach($group_records as $record)
+                            <tr class="module-table-item">
+                                @foreach($definitions['fields'] as $field)
+                                    @if($field['name'] !== $definitions['fields'][0]['name']) {{-- skip group key field --}}
+                                        <td>
+                                            <x-modular-forms::module.components.field.input-preview
+                                                :type="$field['type']"
+                                                :value="$record[$field['name']]"
+                                            ></x-modular-forms::module.components.field.input-preview>
+                                        </td>
+                                    @endif
+                                @endforeach
+                            </tr>
+
                         @endforeach
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </x-modular-forms::accordion.item>
+                    </tbody>
+
+                </table>
+
+            </x-modular-forms::accordion.item>
+
+        @endif
+
+        @php
+            $group_index++;
+        @endphp
+
     @endforeach
 
 
