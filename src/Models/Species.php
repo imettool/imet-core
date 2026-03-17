@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
+use ModularForms\Helpers\Locale;
 
 /**
  * @property string $phylum
@@ -176,4 +177,50 @@ class Species extends BaseModel
 
         return [];
     }
+
+    /**
+     * Get the vernacular names according to the current locale
+     *
+     * @return array<string, string>
+     */
+    public function getVernacularNames(): array
+    {
+        $locale = Locale::lower();
+        $mapped_languages = ['eng'];
+        if($locale === 'sp'){
+            $mapped_languages = ['spa', 'eng'];
+        } else if($locale === 'pt'){
+            $mapped_languages = ['por', 'eng'];
+        } else if($locale === 'fr'){
+            $mapped_languages = ['fra', 'eng'];
+        }
+
+        $vernacular_names = [];
+        foreach ($mapped_languages as $lang) {
+            $vernacular_name = $this->{'vernacular_names_'.$lang} ?? null;
+            if ($vernacular_name) {
+                $vernacular_names[] = $vernacular_name;
+            }
+        }
+
+        return $vernacular_names;
+    }
+
+    public static function getPreview(?string $taxonomy): string
+    {
+        if($taxonomy!==null && Species::isTaxonomy($taxonomy)){
+            $species = Species::getByTaxonomy($taxonomy);
+            $scientific_name = $species->genus . ' ' . $species->species;
+            $vernacular_names = implode(', ', $species->getVernacularNames());
+            $label = '<div class="font-bold">'.$scientific_name.'</div>';
+            if($vernacular_names){
+                $label .= '<div class="italic">'.$vernacular_names.'</div>';
+            }
+            return $label;
+        }
+
+        return '';
+    }
+
+
 }

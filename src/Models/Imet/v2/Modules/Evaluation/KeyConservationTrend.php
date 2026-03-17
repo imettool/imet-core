@@ -12,7 +12,9 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
 final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
@@ -99,6 +101,22 @@ final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
                 ]
                 : [],
         ];
+    }
+
+    /**
+     * Override: for group0 (animal species) add a virtual field with the scientific name and vernacular names to be
+     * used as label in the UI
+     */
+    public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
+    {
+        $records = parent::getModuleRecords($form_id, $collection);
+
+        foreach ($records['records'] as $idx => $record) {
+            if($record[self::$group_key_field] === 'group0') {
+                $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Element']);
+            }
+        }
+        return $records;
     }
 
     /**
