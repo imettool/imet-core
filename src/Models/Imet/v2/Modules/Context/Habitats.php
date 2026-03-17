@@ -36,7 +36,6 @@ final class Habitats extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.Habitats.title');
         $this->module_fields = [
             ['name' => 'EcosystemType',             'type' => 'suggestion-ImetV2_Habitats',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemType')],
-            ['name' => 'TerrestrialOrMarine',       'type' => 'dropdown-ImetV2_TerrestrialOrMarine',   'label' => trans('imet-core::v2_context.Habitats.fields.TerrestrialOrMarine')],
             ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Value')],
             ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.Area')],
             ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.DesiredConservationStatus')],
@@ -72,8 +71,10 @@ final class Habitats extends Modules\Component\ImetModule
         $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert – Temperate', 'desert');
         $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert – Cold', 'desert');
         $record = self::replacePredefinedValue($record, 'EcosystemType', 'Desert - Hot', 'desert');
+        $record = self::replacePredefinedValue($record, 'EcosystemType', 'Plantations', 'artificial');
 
-        return self::replacePredefinedValue($record, 'EcosystemType', 'Plantations', 'artificial');
+        // ####  v2.13.7 -> v3.*  ####
+        return self::dropField($record, 'TerrestrialOrMarine');
     }
 
     /**

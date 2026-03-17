@@ -75,6 +75,8 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
             'values' => $form_id !== null
                 ? self::getEcosystemServices($form_id)
                     ->map(fn (Modules\Context\EcosystemServices $item): mixed => $item['Element'])
+                    ->filter()
+                    ->values()
                 : [],
         ];
     }

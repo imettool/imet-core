@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Uniquement si la section CTX 2.5 a été analysée',
+    'connectivity_waring_message' => 'Uniquement si la section CTX 2.4 a été analysée',
+
     'Objectives' => [
         'title' => 'Détermination des objectifs',
         'fields' => [
@@ -528,7 +531,6 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
-            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',
@@ -862,7 +864,7 @@ return [
             'title3' => 'Culturel',
             'title4' => 'Support / Soutien',
         ],
-        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de: A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La détermination de la nature légale ou illégale de l’approvisionnement dépend de la désignation de l’aire protégée et des dispositions légales et règlementaires en vigueur dans l’aire évaluée</li> </ul>',
+        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de: A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La distinction entre services écosystémiques légaux et illégaux a été supprimée. Les utilisations illégales des ressources écosystémiques sont désormais systématiquement prises en compte dans le module sur les menaces.</li> </ul>',
         'ratingLegend' => [
             'Importance' => [
                 'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',

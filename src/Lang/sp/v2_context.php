@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Sólo si se ha analizado la sección CTX 2.5',
+    'connectivity_waring_message' => 'Sólo si se ha analizado la sección CTX 2.4',
+
     'Objectives' => [
         'title' => 'Estableciendo objetivos',
         'fields' => [
@@ -512,7 +515,6 @@ return [
         'title' => 'Hábitats seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
         'fields' => [
             'EcosystemType' => 'Tipo de hábitat',
-            'TerrestrialOrMarine' => '¿Terrestres o marinos?',
             'Value' => 'Descripción del estado o valor',
             'Area' => 'Superficie (ha)',
             'DesiredConservationStatus' => 'Estado de conservación favorable',
@@ -845,7 +847,7 @@ return [
             'title3' => 'Cultural',
             'title4' => 'Apoyo',
         ],
-        'module_info' => '<b>Servicios/funciones ecosistémicas - importancia, dependencia de las comunidades/sociedades y tendencia de los servicios/funciones ecosistémicas proporcionados por el área protegida</b> <ul> <li>Los productos de la siguiente sección apoyarán las decisiones de gestión para asegurar que se preserven los servicios/funciones  ecosistémicas prestados por el área protegida para el bienestar humano. El análisis asegurará la incorporación de los valores pertinentes en el sistema de gestión del área protegida</li> <li>Clasificación: Evaluación sobre la base de: A) la importancia de determinados servicios/funciones ecosistémicas, B) la dependencia de la población local del servicio/funciones ecosistémicas y C) la tendencia de la cantidad o calidad de los servicios/funciones ecosistémicas prestados por el área protegida, utilizando las escalas siguientes</li> <li>•	No se necesita una medición precisa del valor para asignar una calificación.</li> <li>La especificación de la naturaleza del aprovisionamiento como legal o ilegal depende de la designación del área protegida y de las costumbres legales existentes para la zona evaluada.</li> </ul>',
+        'module_info' => '<b>Servicios/funciones ecosistémicas - importancia, dependencia de las comunidades/sociedades y tendencia de los servicios/funciones ecosistémicas proporcionados por el área protegida</b> <ul> <li>Los productos de la siguiente sección apoyarán las decisiones de gestión para asegurar que se preserven los servicios/funciones  ecosistémicas prestados por el área protegida para el bienestar humano. El análisis asegurará la incorporación de los valores pertinentes en el sistema de gestión del área protegida</li> <li>Clasificación: Evaluación sobre la base de: A) la importancia de determinados servicios/funciones ecosistémicas, B) la dependencia de la población local del servicio/funciones ecosistémicas y C) la tendencia de la cantidad o calidad de los servicios/funciones ecosistémicas prestados por el área protegida, utilizando las escalas siguientes</li> <li>•	No se necesita una medición precisa del valor para asignar una calificación.</li> <li>Se ha eliminado la distinción entre servicios ecosistémicos legales e ilegales. Los usos ilegales de los recursos ecosistémicos ahora se registran sistemáticamente en el módulo de amenazas.</li> </ul>',
         'ratingLegend' => [
             'Importance' => [
                 'Local' => 'Importancia limitada a las comunidades locales o regionales (por ejemplo, tubérculos, frutas, leña, etc.)',

@@ -7,6 +7,13 @@ $vue_record_index = '0';
 
 $index_id = "'" . $definitions['module_key'] . "_'+" . $vue_record_index . "+'_Index'";
 
+// Recalculate shapeIndex: in older versions it was miscalculated and stored in the database.
+if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists('FormID', $vueData['records'][$vue_record_index])){
+    $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['records'][$vue_record_index]['FormID']);
+    $boundaryLength = $vueData['records'][$vue_record_index]['BoundaryLength'];
+    $vueData['records'][$vue_record_index]['Index'] = $module::getShapeIndex($area, $boundaryLength);
+}
+
 ?>
 
 @foreach($definitions['fields'] as $field_index => $field)
@@ -49,7 +56,7 @@ $index_id = "'" . $definitions['module_key'] . "_'+" . $vue_record_index . "+'_I
                 'vue_record_index' => $vue_record_index,
                 'vue_directives' => '@input="calculateShapeIndex()"'
             ])
-            <span class="ml-2">[km2]</span>
+            <span class="ml-2">[km]</span>
 
         @elseif($field_index===4 || $field_index===5)
 

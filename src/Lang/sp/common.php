@@ -150,7 +150,7 @@ return [
             'status_year' => 'año de promulgación del estatuto',
             'country' => 'país',
         ],
-
+        'module_info' => 'Todos los campos son obligatorios excepto la superficie del área protegida.',
         'allowed_international' => 'Allowed values for international-level designations',
         'allowed_regional' => 'Allowed values for regional-level designations',
         'allowed_national' => 'No fixed values for protected areas designated at a national level',

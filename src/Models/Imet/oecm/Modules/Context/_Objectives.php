@@ -16,9 +16,9 @@ use ImetCore\Models\Imet\oecm\Modules;
 
 abstract class _Objectives extends Modules\Component\ImetModule
 {
-    public static array $rules = [
-        'ShortOrLongTerm' => 'required',
-    ];
+//    public static array $rules = [
+//        'ShortOrLongTerm' => 'required',
+//    ];
 
     public function __construct(array $attributes = [])
     {

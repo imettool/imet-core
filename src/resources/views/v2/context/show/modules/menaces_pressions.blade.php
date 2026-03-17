@@ -1,79 +1,86 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
-use Illuminate\Support\Facades\View;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
-use Wa72\HtmlPageDom\Helpers;
+use Illuminate\Database\Eloquent\Collection;
 
-$page = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
+$groups = $definitions['groups'];
 
+$marine_groups = MenacesPressions::get_marine_groups();
+$terrestrial_groups = MenacesPressions::get_terrestrial_groups();
+$marine_predefined = MenacesPressions::get_marine_predefined();
 
-// Inject marine icon on criteria
-$page = ImetModule::injectIconToPredefinedCriteria(ImetModule::MARINE, $page, MenacesPressions::get_marine_predefined());
-
-// Inject marine/terrestrial icon on title
-$page = ImetModule::injectIconToGroups($page, MenacesPressions::get_marine_groups(), MenacesPressions::get_terrestrial_groups());
-
-
-$dom = HtmlPageCrawler::create(Helpers::trimNewlines($page));
-
-    // Inject titles
-    $groupsByCategory = MenacesPressions::$groupsByCategory;
-    foreach($groupsByCategory as $i => $category){
-        $title = ' <h3>'.($i+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($i+1)).'</h3>';
-        $dom->filter('h5.group_title_'.$definitions['module_key'].'_'.$category[0])->eq(0)->before($title);
-    }
-
-    // inject column with row stats
-    $stats = array_key_exists('FormID', $records[0]) ? MenacesPressions::getStats($records[0]['FormID']) : null;
-    foreach(MenacesPressions::$groupsByCategory as $category){
-        foreach ($category as $group){
-            $dom->filter('table#group_table_imet__v2__context__menaces_pressions_'.$group.' > tbody > tr')
-                ->each(function ($tr, $index) use($group, $stats): void {
-                    $tr->filter('td')
-                        ->eq(6)
-                        ->append('<div class="field-preview">'.$stats['rowStats'][$group][$index].'</div>');
-                });
-        }
-    }
+$categoryStats = array_key_exists('FormID', $records[0])
+    ? MenacesPressions::getStats($records[0]['FormID'])['categoryStats']
+    : null;
 
 ?>
 
-<div id="threat_histograms">
-    @foreach(MenacesPressions::$groupsByCategory as $i => $category)
-        @php
-            /** @var $stats */
-            /** @var $i */
-            $group_stat = (float) $stats['categoryStats'][$i];
-        @endphp
+<!-- Categories with histograms -->
+<div class="accordion">
 
-        <div class="histogram-row">
-            <div class="histogram-row__code text-center"><b>{{ ($i+1) }}</b></div>
-            <div class="histogram-row__title text-left">@lang('imet-core::v2_context.MenacesPressions.categories.title'.($i+1))</div>
-            <div class="histogram-row__value text-right" style="margin-right: 20px;">
-                {{ $group_stat>0 ? $group_stat : '-' }}
-            </div>
-            @if($group_stat>0)
-                <div class="histogram-row__progress-bar">
-                    <imet_score_bar
-                        :value={{ $group_stat }}
-                        color="#87c89b"
-                        :min=-100
-                        :max=0
-                    ></imet_score_bar>
+    @foreach($module::$groupsByCategory as $cat_idx => $category)
+
+        <!-- Category title with histogram -->
+        <div class="accordion-item show">
+
+            <div class="accordion-item-header">
+                <div class="accordion-item-header-title">
+                    @php
+                        $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                        $score_value = $categoryStats[$cat_idx];
+                        $percentage_value = $score_value;
+                    @endphp
+                    <x-imet-core::score-bar
+                        :label="$category_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
+                    ></x-imet-core::score-bar>
                 </div>
-            @endif
+            </div>
+
+            <div class="accordion-item-body">
+                <div class="accordion-item-body-content">
+
+                    @foreach($groups as $group_key => $group_label)
+                        @if(in_array($group_key, $category))
+
+                            <h5>
+                                @if(in_array($group_key, $marine_groups))
+                                    {!! Template::module_scope($module::MARINE) !!}
+                                @elseif(in_array($group_key, $terrestrial_groups))
+                                    {!! Template::module_scope($module::TERRESTRIAL) !!}
+                                @else
+                                    {!! Template::module_scope($module::MARINE) !!}
+                                    {!! Template::module_scope($module::TERRESTRIAL) !!}
+                                @endif
+                                &nbsp;&nbsp;{{ $group_label }}
+                            </h5>
+
+                            @php
+                                $view = View::make('modular-forms::module.show.type.table', [
+                                    'definitions' => $definitions,
+                                    'records' => $records,
+                                    'group_key' => $group_key
+                                ])->render();
+                                $view = $module::injectIconToPredefinedCriteria($module::MARINE, $view, $marine_predefined);
+                            @endphp
+                            {!! $view !!}
+
+                            <br />
+                            <br />
+
+                        @endif
+                    @endforeach
+
+                </div>
+            </div>
+
         </div>
 
     @endforeach
 
 </div>
-<br />
-<br />
-
-
-{!! $dom->saveHTML() !!}

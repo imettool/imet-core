@@ -119,7 +119,6 @@
     });
 
     const computedLabel = computed(() => {
-        console.log(cached_species.value);
         if(inputValue.value in cached_species.value){
             let speciesInfo = cached_species.value[inputValue.value];
             let label = '<b>' + speciesInfo['genus'] + ' ' + speciesInfo['species'] + '</b>';

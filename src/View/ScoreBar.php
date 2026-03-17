@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -9,21 +10,29 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Controllers\Imet\v2;
+namespace ImetCore\View;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use ImetCore\Services\Scores\AssessmentsScores;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-final class ScoresController extends Controller
+class ScoreBar extends Component
 {
-    public function __invoke(Request $request, int $item): JsonResponse
-    {
-        $refresh_cache = $request->query('refresh_cache', 'false') === 'true';
+    public bool $isNegative = false;
 
-        return new JsonResponse(
-            AssessmentsScores::scores($item, $refresh_cache)
-        );
+    public function __construct(
+        public string $label,
+        public string $score,
+        public string $percentage,
+        public bool $withJs = true,
+        public string $color = '#87c89b',
+        public int $limitMin = 0,
+        public int $limitMax = 100,
+    ){
+        $this->isNegative = $limitMin < 0;
+    }
+
+    public function render(): View
+    {
+        return view('imet-core::components.score-bar');
     }
 }

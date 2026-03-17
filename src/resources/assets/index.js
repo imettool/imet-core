@@ -131,6 +131,9 @@ window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservationTende
 
 // ##### ImetV2 - context #####
 
+import Governance from "./js/apps/Modules/ImetV2/context/Governance";
+window.ImetCore.Apps.Modules.ImetV2.context.Governance = Governance;
+
 import GeographicalLocation from "./js/apps/Modules/ImetV2/context/GeographicalLocation";
 window.ImetCore.Apps.Modules.ImetV2.context.GeographicalLocation = GeographicalLocation;
 
@@ -195,8 +198,8 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkP
 
 // ##### OECM - context #####
 
-import Governance from "./js/apps/Modules/Oecm/context/Governance";
-window.ImetCore.Apps.Modules.Oecm.context.Governance = Governance;
+import GovernanceOecm from "./js/apps/Modules/Oecm/context/Governance";
+window.ImetCore.Apps.Modules.Oecm.context.Governance = GovernanceOecm;
 
 import { default as AreasOecm } from "./js/apps/Modules/Oecm/context/Areas";
 window.ImetCore.Apps.Modules.Oecm.context.Areas = AreasOecm;
@@ -226,26 +229,3 @@ window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact = KeyElementsImpa
 
 import LifeQualityImpactOecm from "./js/apps/Modules/Oecm/evaluation/LifeQualityImpact";
 window.ImetCore.Apps.Modules.Oecm.evaluation.LifeQualityImpact = LifeQualityImpactOecm;
-
-// TODO: Below are OLD imports: need to be reviewed/removed
-
-// // Templates
-// Vue.component("dopa_chart_bar",                 require("./js/templates/dopa/chart_bar.vue").default);
-// Vue.component("dopa_indicators_table",          require("./js/templates/dopa/indicators_table.vue").default);
-// Vue.component("dopa_radar",                     require("./js/templates/dopa/chart_radar.vue").default);
-// window.ImetCore.Dopa = {
-//     "chart_bar": require("./js/templates/dopa/chart_bar.vue").default,
-//     "chart_doughnut": require("./js/templates/dopa/chart_doughnut.vue").default
-// };
-// Vue.component("imet_encoders_responsibles",     require("./js/templates/imet_encoders_responsibles.vue").default);
-// Vue.component("imet_score_bar",              require("./js/templates/imet_score_bar.vue").default);
-// Vue.component("imet_radar",                     require("./js/templates/imet_radar.vue").default);
-// Vue.component("imet_bar_chart",                 require("./js/templates/imet_bar_chart.vue").default);
-
-// // Report
-// Vue.component("table_input",                    require("./js/report/table_input.vue").default);
-// Vue.component("roadmap",                    require("./js/report/roadmap.vue").default);
-// Vue.component("objectives",                    require("./js/report/objectives.vue").default);
-//
-// // Components for IMET scaling up
-// require("./js/scaling_up_analysis/components.js");

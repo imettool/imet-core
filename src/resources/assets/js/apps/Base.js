@@ -12,6 +12,7 @@ import Base from "@modular-forms/js/apps/Base.js";
 
 import imetScoreBar from "../templates/imet_score_bar.vue";
 import imetRadar from "../templates/imet_radar.vue";
+import progressBar from "../templates/progress_bar.vue";
 import multipleFilesUpload from "../inputs/multiple-files-upload.vue";
 import scopeIcon from "../templates/scope_icon.vue";
 
@@ -24,6 +25,7 @@ export default class BaseImet extends Base {
             // Register components
             .component('imet_score_bar', imetScoreBar)
             .component('imet_radar', imetRadar)
+            .component('progressBar', progressBar)
             .component('multiple-files-upload', multipleFilesUpload)
             .component('scope-icon', scopeIcon);
 

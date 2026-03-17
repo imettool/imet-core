@@ -17,6 +17,14 @@ export default class EcosystemServices extends ModuleImet {
     constructor(input_data = {}) {
 
         const custom_props = {
+            spillover_predefined: {
+                type: Array,
+                default: () => input_data.spillover_predefined
+            },
+            connectivity_predefined: {
+                type: Array,
+                default: () => input_data.connectivity_predefined
+            },
             groupsByCategory: {
                 type: Object,
                 default: () => input_data.groupsByCategory
@@ -83,12 +91,22 @@ export default class EcosystemServices extends ModuleImet {
             return categoryStats.value[index];
         }
 
+        function is_spillover(value){
+            return props.spillover_predefined.includes(value);
+        }
+
+        function is_connectivity(value){
+            return props.connectivity_predefined.includes(value);
+        }
+
 
         return {
             ...setup_obj,
             recordStats,
             categoryStats,
-            categoryStat
+            categoryStat,
+            is_spillover,
+            is_connectivity
         };
 
     }

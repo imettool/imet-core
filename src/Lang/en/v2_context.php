@@ -12,8 +12,8 @@
 
 return [
 
-    'spillover_waring_message' => 'Make sure you have completed the CTX 2.5 section if you intend to analyze the element',
-    'spillover_and_connectivity_waring_message' => 'Make sure you have completed the CTX 2.4 (Connectivity) and CTX 2.5 section if you intend to analyze the element',
+    'spillover_waring_message' => 'Only if the CTX 2.5 section has been analyzed',
+    'connectivity_waring_message' => 'Only if the CTX 2.4 section has been analyzed',
 
     'Objectives' => [
         'title' => 'Setting objectives',
@@ -630,7 +630,6 @@ return [
         'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Type of habitat',
-            'TerrestrialOrMarine' => 'Terrestrial or marine?',
             'Value' => 'Description of the status or value',
             'Area' => 'Surface area (ha)',
             'DesiredConservationStatus' => 'Favourable conservation status',
@@ -975,7 +974,7 @@ return [
             'title3' => 'Cultural',
             'title4' => 'Supporting',
         ],
-        'module_info' => '<b>Ecosystem services – importance, dependence of communities/societies and trend of the ecosystem services provided by the protected area</b> <ul> <li>The outputs from the following section will support management decisions to ensure that ecosystem services delivered by the protected area for the human well-being are preserved. The analysis will ensure incorporation of the relevant values into the management system of the protected area</li> <li>Rating: Evaluate each assessment on the basis of: A) Importance of particular ecosystem services, B) the dependence of local population/society on the ecosystem service and C) trend in the quantity or quality of ecosystem services delivered by the protected area, using the scales below</li> <li>You do not need a precise measurement of the value to assign a rating</li> <li>Specifying the nature of provisioning as legal or illegal depends on the designation of the protected area and legal customs existing for the assessed area</li> </ul>',
+        'module_info' => '<b>Ecosystem services – importance, dependence of communities/societies and trend of the ecosystem services provided by the protected area</b> <ul> <li>The outputs from the following section will support management decisions to ensure that ecosystem services delivered by the protected area for the human well-being are preserved. The analysis will ensure incorporation of the relevant values into the management system of the protected area</li> <li>Rating: Evaluate each assessment on the basis of: A) Importance of particular ecosystem services, B) the dependence of local population/society on the ecosystem service and C) trend in the quantity or quality of ecosystem services delivered by the protected area, using the scales below</li> <li>You do not need a precise measurement of the value to assign a rating</li> <li>The distinction between legal and illegal ecosystem services has been removed. Illegal uses of ecosystem resources are now systematically captured in the threats module.</li> </ul>',
         'ratingLegend' => [
             'Importance' => [
                 'Local' => 'Importance limited to the local or regional communities (e.g. tuber, fruits, firewood, etc.)',

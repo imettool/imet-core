@@ -7,7 +7,9 @@ composer
 /public/basket
 /storage/
 /bootstrap/cache/*
-database/database.sqlite
+database/*.sqlite
+database/*.csv
+database/*.zip
 .phpstorm.meta.php
 _ide_helper.php
 package/

@@ -50,6 +50,8 @@ final class CreateNonWdpa extends Modules\Component\ImetModule
             ['name' => 'status_year',    'type' => 'year',                                      'label' => trans('imet-core::common.CreateNonWdpa.fields.status_year')],
         ];
 
+        $this->module_info = trans('imet-core::common.CreateNonWdpa.module_info');
+
         parent::__construct($attributes);
     }
 }

@@ -68,8 +68,14 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     {
         $predefined_values = $form_id !== null
             ? [
-                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)->pluck('species')->toArray(),
-                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)->pluck('Species')->toArray(),
+                'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
+                    ->filter()
+                    ->pluck('species')
+                    ->toArray(),
+                'group1' => Modules\Context\VegetalSpecies::getModule($form_id)
+                    ->filter()
+                    ->pluck('Species')
+                    ->toArray(),
             ]
             : [];
 

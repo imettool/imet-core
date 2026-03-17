@@ -37,8 +37,9 @@ export default class CreateNonWDPA extends ModuleImet {
                 empty.includes('UpdateDate') &&
                 empty.includes('UpdateBy')){
                 if(empty.length === 4 ||
-                    (empty.length === 5 &&  empty.includes('rep_m_area')) ||
-                    (empty.length === 5 &&  empty.includes('rep_area'))
+                    (empty.length === 5 && empty.includes('rep_m_area')) ||
+                    (empty.length === 5 && empty.includes('rep_area')) ||
+                    (empty.length === 6 && empty.includes('rep_m_area') && empty.includes('rep_area'))
                 ){
                    setup_obj.status.value = 'changed';
                 } else {
