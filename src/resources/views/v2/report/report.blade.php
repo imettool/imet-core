@@ -39,7 +39,7 @@ if ($item->language != App::getLocale()) {
     <div id="imet_report_map" class="imet_report">
 
         {{--  General Info  --}}
-        @include('imet-core::v2.report.modules.general_info', [
+        @include('imet-core::v2.report.modules.general_elements', [
             'show_general_info' => $show_general_info,
             'general_info' => $general_info,
             'area' => $area,
@@ -80,6 +80,9 @@ if ($item->language != App::getLocale()) {
         @include('imet-core::v2.report.modules.operating_recommendations', [
             'action' => $action,
         ])
+
+        {{-- Planning options --}}
+        @include('imet-core::v2.report.modules.planning_options')
 
         {{-- Key Questions --}}
         @include('imet-core::v2.report.modules.key_questions', [
