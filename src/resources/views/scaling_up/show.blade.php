@@ -7,7 +7,6 @@
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
-/** @var bool  $connection */
 ?>
 
 @include('imet-core::v2.report.report', [
@@ -18,6 +17,5 @@
     'report' => $report,
     'general_info' => $general_info,
     'vision' => $vision,
-    'area' => $area,
-    'connection' => $connection
+    'area' => $area
 ])

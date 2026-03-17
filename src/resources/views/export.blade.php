@@ -33,13 +33,16 @@ use \ImetCore\Models\Imet\Imet;
 
     <div id="export_list">
         <div class="flex">
-            <form target="_blank" ref="filterForm" method="POST"
+
+            {{-- Export button --}}
+            <form ref="filterForm" method="POST"
                   action="{{ route($route_prefix . 'export_batch') }}">
-                <button type="submit" class="btn-nav rounded-sm mr-2 mt-2" :disabled="exportDisabled">Export
-                </button>
+                <button type="submit" class="btn-nav rounded-sm mr-2 mt-2" :disabled="exportDisabled">Export</button>
                 {{ csrf_field() }}
                 <input type='hidden' name="selection" v-model="checkboxes">
             </form>
+
+            {{-- Total count --}}
             <span class="float-right mt-3">
                 <b>@{{ totalCount }}</b> {{ totalCount==1 ? "<?php echo trans_choice('modular-forms::common.record_found', 1); ?>" :  "<?php echo trans_choice('modular-forms::common.record_found', 2); ?>" }}.
             </span>
@@ -48,8 +51,9 @@ use \ImetCore\Models\Imet\Imet;
         <table class="striped">
             <thead>
             <tr>
-                <th class="text-center width60px"><input type='checkbox' class="ml-1" @click="checkAll"
-                                                         v-model="isCheckAll"></th>
+                <th class="text-center width60px">
+                    <input type='checkbox' class="ml-1" @click="checkAll"v-model="isCheckAll">
+                </th>
                 <th class="text-center width90px">@lang('imet-core::common.year')</th>
                 <th class="text-center fit-width">@choice('imet-core::common.protected_area.protected_area',1)</th>
                 <th class="text-center fit-width">@lang('imet-core::common.country')</th>
@@ -59,16 +63,18 @@ use \ImetCore\Models\Imet\Imet;
             </thead>
             <tbody>
             <tr v-for="item of items">
-                <td class="align-baseline text-center"><input type="checkbox" @change="exportToggle"
-                                                              v-model="checkboxes"
-                                                              v-bind:value="item.FormID"></td>
-                <td class="align-baseline text-center"><strong>@{{ item.Year }}</strong></td>
+                <td class="align-baseline text-center">
+                    <input type="checkbox" @change="exportToggle" v-model="checkboxes" v-bind:value="item.FormID">
+                </td>
+                <td class="align-baseline text-center">
+                    <strong>@{{ item.Year }}</strong>
+                </td>
                 <td class="align-baseline">
                     <div class="imet_name">
                         <div class="imet_pa_name">
                             <strong style="font-size: 1.1em;">@{{ item.name }}</strong>
                             (<a target="_blank"
-                                :href="'{{ PROTECTEDPLANET_WEBSITE_URL }}'+ item.wdpa_id">@{{
+                                :href="'{{ PROTECTEDPLANET_WEBSITE_URL }}/'+ item.wdpa_id">@{{
                                 item.wdpa_id }}</a>)
                             <br/>
                         </div>
