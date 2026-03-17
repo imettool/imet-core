@@ -97,7 +97,7 @@ $form_class = Imet::class;
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id !== null)
                             (<a target="_blank" class="text-primary-600"
-                                href="{{ PROTECTEDPLANET_WEBSITE_URL . $item->wdpa_id }}">
+                                href="{{ PROTECTEDPLANET_WEBSITE_URL . '/'. $item->wdpa_id }}">
                                 {{ $item->wdpa_id }}
                             </a>)
                         @endif

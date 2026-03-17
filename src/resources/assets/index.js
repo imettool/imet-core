@@ -47,9 +47,6 @@ window.ImetCore.Apps.Preview = Preview;
 import Analysis from "./js/apps/Modules/ImetV1/Analysis.js";
 window.ImetCore.Apps.Analysis = Analysis;
 
-import AnalysisMap from "./js/apps/Modules/ImetV1/AnalysisMap.js";
-window.ImetCore.Apps.AnalysisMap = AnalysisMap;
-
 import OECMAnalysis from "./js/apps/Modules/Oecm/OECMAnalysis.js";
 window.ImetCore.Apps.OECMAnalysis = OECMAnalysis;
 

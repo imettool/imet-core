@@ -39,8 +39,6 @@ final class ReportController extends BaseReportController
 
         $show_general_info = false;
 
-        $connection = ImetEnv::isConnectionAvailable();
-
         if (! ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
             $show_general_info = true;
         } else {
@@ -79,7 +77,6 @@ final class ReportController extends BaseReportController
             'scores' => ImetScores::get_all($item),
             'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V2),
             'report' => \ImetCore\Models\Imet\v2\Report::getByForm($form_id),
-            'connection' => $connection,
             'show_general_info' => $show_general_info,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,
