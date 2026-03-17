@@ -1,9 +1,7 @@
 <?php
 
-use ImetCore\Services\Scores\AssessmentsScores;
 use ImetCore\Controllers\Imet\v2\Controller;
 use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
@@ -40,60 +38,12 @@ if ($item->language != App::getLocale()) {
 
     <div id="imet_report_map" class="imet_report">
 
-        @if ($show_general_info)
-            <div class="module-container">
-                <div class="module-header">
-                    <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
-                </div>
-                <div class="module-body">
-                    <div class="grid grid-flow-col grid-rows-4 gap-4">
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.country'):
-                            </div>{{ $general_info['Country'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.name'):
-                            </div>{{ $general_info['CompleteName'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.category'):
-                            </div>{{ $general_info['NationalCategory'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.gazetting'):
-                            </div>{{ $general_info['CreationYear'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.agency'):
-                            </div>{{ $general_info['Institution'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.biome'):
-                            </div>{{ $general_info['Biome'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.main_values_protected'):
-                            </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.vision'):
-                            </div>{{ $vision['LocalVision'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.mission'):
-                            </div>{{ $vision['LocalMission'] ?? '-' }}
-                        </div>
-                        <div>
-                            <div class="strong">@lang('imet-core::v2_report.objectives'):
-                            </div>{{ $vision['LocalObjective'] ?? '-' }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
+        {{--  General Info  --}}
+        @include('imet-core::v2.report.modules.general_info', [
+            'show_general_info' => $show_general_info,
+            'general_info' => $general_info,
+            'area' => $area,
+        ])
 
         @include('imet-core::v2.report.components.non_wdpa', [
             'show_non_wdpa' => $show_non_wdpa,
@@ -104,142 +54,37 @@ if ($item->language != App::getLocale()) {
 
     <div class="imet_report">
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.evaluation_elements')</div>
-            </div>
-            <div class="module-body">
-                @include('imet-core::components.scores', [
-                    'item' => $item,
-                    'version' => $item::$version,
-                ])
-            </div>
-            <div class="module-body">
-                <table id="global_scores">
-                    <tr>
-                        <th>@lang('imet-core::common.steps_eval.context')</th>
-                        <th>@lang('imet-core::common.steps_eval.planning')</th>
-                        <th>@lang('imet-core::common.steps_eval.inputs')</th>
-                        <th>@lang('imet-core::common.steps_eval.process')</th>
-                        <th>@lang('imet-core::common.steps_eval.outputs')</th>
-                        <th>@lang('imet-core::common.steps_eval.outcomes')</th>
-                        <th>@lang('imet-core::common.indexes.imet')</th>
-                    </tr>
-                    <tr>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['context']) !!}">{{ $scores[_Scores::RADAR_SCORES]['context'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['planning']) !!}">{{ $scores[_Scores::RADAR_SCORES]['planning'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['inputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['inputs'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['process']) !!}">{{ $scores[_Scores::RADAR_SCORES]['process'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['outputs']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outputs'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['outcomes']) !!}">{{ $scores[_Scores::RADAR_SCORES]['outcomes'] }}</td>
-                        <td class="{!! AssessmentsScores::score_class($scores[_Scores::RADAR_SCORES]['imet_index']) !!}">{{ $scores[_Scores::RADAR_SCORES]['imet_index'] }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        {{-- Evaluation --}}
+        @include('imet-core::v2.report.modules.evaluation', [
+            'item' => $item,
+            'scores' => $scores,
+        ])
 
     </div>
 
     <div id="imet_report" class="imet_report">
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.management_context')</div>
-            </div>
-            <div class="module-body">
-                <h5>@lang('imet-core::v2_report.key_species')</h5>
-                <ul>
-                    @foreach ($key_elements['species'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <report-editor v-model="report.key_species_comment" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.terrestial_marine_habitats')</h5>
-                <ul>
-                    @foreach ($key_elements['habitats'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <report-editor v-model="report.habitats_comment" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.climate_change')</h5>
-                <ul>
-                    @foreach ($key_elements['climate_change'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <report-editor v-model="report.climate_change_comment" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.ecosystem_services')</h5>
-                <ul>
-                    @foreach ($key_elements['ecosystem_services'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <report-editor v-model="report.ecosystem_services_comment" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.threats')</h5>
-                <ul>
-                    @foreach ($key_elements['threats'] as $elem)
-                        <li>{{ $elem }}</li>
-                    @endforeach
-                </ul>
-                <report-editor v-model="report.threats_comment" :action="'{{ $action }}'"></report-editor>
-                @include('imet-core::v2.report.components.table_evaluation', [
-                    'scores' => $scores,
-                    'labels' => $labels,
-                ])
-            </div>
-        </div>
+        {{-- Management Context --}}
+        @include('imet-core::v2.report.modules.management_context', [
+            'key_elements' => $key_elements,
+            'scores' => $scores,
+            'labels' => $labels
+        ])
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.management_effectiveness')</div>
-            </div>
-            <div class="module-body">
-                <report-editor v-model="report.analysis" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.characteristics_elements')</h5>
-                <div class="swot">
-                    <div>
-                        <b>@lang('imet-core::v2_report.strengths')</b>
-                        <report-editor v-model="report.strengths_swot" :action="'{{ $action }}'"></report-editor>
-                    </div>
-                    <div>
-                        <b>@lang('imet-core::v2_report.weaknesses')</b>
-                        <report-editor v-model="report.weaknesses_swot" :action="'{{ $action }}'"></report-editor>
-                    </div>
-                    <div>
-                        <b>@lang('imet-core::v2_report.opportunities')</b>
-                        <report-editor v-model="report.opportunities_swot"
-                            :action="'{{ $action }}'"></report-editor>
-                    </div>
-                    <div>
-                        <b>@lang('imet-core::v2_report.threats')</b>
-                        <report-editor v-model="report.threats_swot" :action="'{{ $action }}'"></report-editor>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {{-- Management Effectiveness Analysis --}}
+        @include('imet-core::v2.report.modules.management_effectiveness_analysis', [
+            'action' => $action,
+        ])
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.operation_recommendations')</div>
-            </div>
-            <div class="module-body">
-                <report-editor v-model="report.recommendations" :action="'{{ $action }}'"></report-editor>
-            </div>
-        </div>
+        {{-- Operating recommendations --}}
+        @include('imet-core::v2.report.modules.operating_recommendations', [
+            'action' => $action,
+        ])
 
-        <div class="module-container">
-            <div class="module-header">
-                <div class="module-title">@lang('imet-core::v2_report.key_questions')</div>
-            </div>
-            <div class="module-body">
-                <h5>@lang('imet-core::v2_report.management_priorities')</h5>
-                <report-editor v-model="report.priorities" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.operating_budget')</h5>
-                <report-editor v-model="report.minimum_budget" :action="'{{ $action }}'"></report-editor>
-                <h5>@lang('imet-core::v2_report.additional_funding')</h5>
-                <report-editor v-model="report.additional_funding" :action="'{{ $action }}'"></report-editor>
-            </div>
-        </div>
+        {{-- Key Questions --}}
+        @include('imet-core::v2.report.modules.key_questions', [
+            'action' => $action,
+        ])
 
         @if ($action === 'edit')
             <div class="scrollButtons" v-cloak>
@@ -269,8 +114,6 @@ if ($item->language != App::getLocale()) {
                     {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
         @endif
-
-
 
     </div>
 
