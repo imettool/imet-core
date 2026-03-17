@@ -14,10 +14,15 @@ namespace ImetCore\View;
 
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use ModularForms\Helpers\Input\SelectionList;
 use ModularForms\View\Module\Components\Field\Input;
+use Throwable;
 
 class CustomInput extends Input
 {
+    /**
+     * @throws Throwable
+     */
     #[\Override]
     public function render(): View
     {
@@ -27,11 +32,13 @@ class CustomInput extends Input
         }
 
         // Wdpa selector
-        if (Str::contains($this->type, 'selector-wdpa_multiple')) {
-            return view('imet-core::components.inputs.selector-wdpa_multiple');
-        }
         if (Str::contains($this->type, 'selector-wdpa')) {
-            return view('imet-core::components.inputs.selector-wdpa');
+            $countries = SelectionList::CacheListInSession('ImetV2_PaCountry');
+            if(Str::contains($this->type, '_multiple')) {
+                return view('imet-core::components.inputs.selector-wdpa_multiple', ['countries' => $countries]);
+            } else {
+                return view('imet-core::components.inputs.selector-wdpa', ['countries' => $countries]);
+            }
         }
 
         // Species selector
