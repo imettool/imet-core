@@ -5,6 +5,7 @@
 
 use ImetCore\Controllers\Imet\v2\ReportController;
 use ImetCore\Models\Imet\v2\Imet_Report;
+use ImetCore\Models\Imet\v2\Modules\Report\InitialPlanningOptions;
 use ImetCore\Models\Imet\v2\Modules\Report\KeyConservationElements;
 use ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions;
 use ImetCore\Models\Imet\v2\Modules\Report\ManagementContext;
@@ -90,7 +91,12 @@ $scores = ImetScores::get_all($item);
         :formId="$item->getKey()"
         :mode="ModuleViewModes::EDIT"
     ></x-modular-forms::module.container>
-    <!-- TODO: table C -->
+    <x-modular-forms::module.container
+        :controller="ReportController::class"
+        :module="InitialPlanningOptions::class"
+        :formId="$item->getKey()"
+        :mode="ModuleViewModes::EDIT"
+    ></x-modular-forms::module.container>
 
     {{-- Key Questions --}}
     <div class="imet_report">

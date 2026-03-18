@@ -22,24 +22,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'report_threats_affecting_kces'), function (Blueprint $table): void {
+        Schema::create(Database::getTable(Database::IMET_SCHEMA, 'report_initial_planning_options'), function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('FormID')->nullable();
             $table->integer('UpdateBy')->nullable();
             $table->string('UpdateDate', 30)->nullable();
 
-            $table->string('num_threat')->nullable();
-            $table->string('threat')->nullable();
-            $table->integer('kce1')->nullable();
-            $table->integer('kce2')->nullable();
-            $table->integer('kce3')->nullable();
-            $table->integer('kce4')->nullable();
-            $table->integer('kce5')->nullable();
-            $table->integer('kce6')->nullable();
-            $table->integer('kce7')->nullable();
-            $table->integer('kce8')->nullable();
-            $table->integer('kce9')->nullable();
-            $table->integer('kce10')->nullable();
+            $table->string('conservation_goal')->nullable();
+            $table->string('kea')->nullable();
+            $table->string('main_threat')->nullable();
+            $table->string('improvement')->nullable();
+            $table->string('activities')->nullable();
+            $table->string('indicators')->nullable();
 
 
             $table->foreign(['FormID'], 'FormID_fk')
@@ -56,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'report_threats_affecting_kces'));
+        Schema::dropIfExists(Database::getTable(Database::IMET_SCHEMA, 'report_initial_planning_options'));
     }
 };

@@ -162,7 +162,12 @@ return [
     'InitialPlanningOptions' => [
         'title' => 'Initial planning options (IMET → CAP transition table)',
         'fields' => [
-
+            'conservation_goal' => 'Conservation Goal (long-term)',
+            'kea' => 'KEA (attributes to maintain)',
+            'main_threat' => 'Main Threats to address',
+            'improvement' => 'Required improvements',
+            'activities' => 'Activities (priority year #)',
+            'indicators' => 'Monitoring indicators',
         ],
         'module_info' =>
             'Table C translates the IMET diagnosis into practical conservation actions. Starting from the long-term conservation

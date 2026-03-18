@@ -26,6 +26,7 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
         $this->module_code = 'RP 4B';
 
         $this->module_fields = [
+            ['name' => 'num_threat',    'type' => 'disabled'],
             ['name' => 'threat',    'type' => 'text-area',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.threat')],
             ['name' => 'kce1',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce1')],
             ['name' => 'kce2',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce2')],
@@ -43,7 +44,10 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
         $this->fieldsDefinitions = trans('imet-core::v2_report.ThreatsAffectingKCEs.definitions');
         $this->ratingLegend = trans('imet-core::v2_report.ThreatsAffectingKCEs.ratingLegend');
 
-
+        $this->predefined_values = [
+            'field' => 'num_threat',
+            'values' => ['1', '2', '3', '4', '5', '6', '7', '8'],
+        ];
         $this->max_rows = 8;
 
         parent::__construct($attributes);

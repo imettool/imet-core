@@ -21,13 +21,21 @@ final class InitialPlanningOptions extends ImetModule_Report
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'SIMPLE';
+        $this->module_type = 'TABLE';
         $this->module_title = trans('imet-core::v2_report.InitialPlanningOptions.title');
         $this->module_code = 'RP 4C';
 
         $this->module_fields = [
-            ['name' => 'xxxx',            'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.xxxx')],
+            ['name' => 'conservation_goal', 'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.conservation_goal')],
+            ['name' => 'kea',               'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.kea')],
+            ['name' => 'main_threat',       'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.main_threat')],
+            ['name' => 'improvement',    'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.improvement')],
+            ['name' => 'activities',    'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.activities')],
+            ['name' => 'indicators',    'type' => 'text-area',     'label' => trans('imet-core::v2_report.InitialPlanningOptions.fields.indicators')],
         ];
+
+        $this->module_info = trans('imet-core::v2_report.InitialPlanningOptions.module_info');
+        $this->fieldsDefinitions = trans('imet-core::v2_report.InitialPlanningOptions.definitions');
 
         parent::__construct($attributes);
     }
