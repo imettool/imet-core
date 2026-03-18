@@ -101,7 +101,8 @@ return [
     'KeyConservationElements' => [
         'title' => 'Table A. Key Conservation Elements (KCEs), attributes and services',
         'fields' => [
-            'kce' => 'Key Conservation Elements (KCEs)',
+            'num_kce' => 'No.',
+            'kces' => 'Key Conservation Elements (KCEs)',
             'targets_and_es' => 'Secondary Targets & Primary Ecosystem Services',
             'kea' => 'Key Ecological Attributes (KEA)',
             'threats' => 'Threats',
@@ -112,7 +113,7 @@ return [
             elements of the Protected Area, the services they provide, their essential characteristics, and the threats to
             act upon them. Each column plays a specific role in structuring early planning decisions.',
         'definitions' => [
-            'kce' => '<span class="font-bold italic">Key Conservation Elements (KCEs)</span>: Priority ecological elements (ecosystems, habitats, umbrella species) that must be conserved. They determine the main direction of conservation actions in the protected area',
+            'kces' => '<span class="font-bold italic">Key Conservation Elements (KCEs)</span>: Priority ecological elements (ecosystems, habitats, umbrella species) that must be conserved. They determine the main direction of conservation actions in the protected area',
             'targets_es' => '<span class="font-bold italic">Secondary Targets & Primary Ecosystem Services</span>: The values and services linked to the KCE through the umbrella-species approach mean that protecting the KCE also protects the associated species, habitats and ecosystem services',
             'kea' => '<span class="font-bold italic">Key Ecological Attributes (KEA)</span>: Essential characteristics (area, composition, structure, population size) that define the integrity of the KCE. KEAs guide what must be maintained, monitored, and improved.',
             'threats' => '<span class="font-bold italic">Threats</span>: Pressures that directly affect the KCE and its KEA (e.g. poaching, deforestation, mining). Only include threats that have a real, measurable impact.',
@@ -121,9 +122,20 @@ return [
 
     // Planning Options: Table B
     'ThreatsAffectingKCEs' => [
-        'title' => 'Threats affecting key conservation elements',
+        'title' => 'Table B. Threats affecting key conservation elements',
         'fields' => [
-
+            'threat' => 'Threats',
+            'kce1' => 'KCE 1',
+            'kce2' => 'KCE 2',
+            'kce3' => 'KCE 3',
+            'kce4' => 'KCE 4',
+            'kce5' => 'KCE 5',
+            'kce6' => 'KCE 6',
+            'kce7' => 'KCE 7',
+            'kce8' => 'KCE 8',
+            'kce9' => 'KCE 9',
+            'kce10' => 'KCE 10',
+            'impact' => 'Threat impact rating'
         ],
         'module_info' =>
             'Table B shows how each threat affects each KCE and highlights where management should focus efforts first.
@@ -134,11 +146,20 @@ return [
         'definitions' => [
             'threats' => '<span class="font-bold italic">Threats</span>: Pressures or human activities that negatively affect the Key Conservation Elements (KCEs).',
             'kce' => '<span class="font-bold italic">KCE 1–10</span>: Columns used to indicate whether each threat affects the corresponding KCE and at what intensity. ',
+        ],
+        'ratingLegend' => [
+            'impact' => [
+                '0' => 'No threat or threat too low to be considered',
+                '1' => 'Low threat',
+                '2' => 'Medium threat',
+                '3' => 'High threat',
+                '4' => 'Very high threat',
+            ]
         ]
     ],
 
     // Planning Options: Table C
-    'InitailPLannigOptions' => [
+    'InitialPlanningOptions' => [
         'title' => 'Initial planning options (IMET → CAP transition table)',
         'fields' => [
 

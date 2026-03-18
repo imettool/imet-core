@@ -10,6 +10,7 @@ use ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions;
 use ImetCore\Models\Imet\v2\Modules\Report\ManagementContext;
 use ImetCore\Models\Imet\v2\Modules\Report\ManagementEffectivenessAnalysis;
 use ImetCore\Models\Imet\v2\Modules\Report\OperatingRecommendations;
+use ImetCore\Models\Imet\v2\Modules\Report\ThreatsAffectingKCEs;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Enums\ModuleViewModes;
@@ -83,7 +84,12 @@ $scores = ImetScores::get_all($item);
         :formId="$item->getKey()"
         :mode="ModuleViewModes::EDIT"
     ></x-modular-forms::module.container>
-    <!-- TODO: table B -->
+    <x-modular-forms::module.container
+        :controller="ReportController::class"
+        :module="ThreatsAffectingKCEs::class"
+        :formId="$item->getKey()"
+        :mode="ModuleViewModes::EDIT"
+    ></x-modular-forms::module.container>
     <!-- TODO: table C -->
 
     {{-- Key Questions --}}

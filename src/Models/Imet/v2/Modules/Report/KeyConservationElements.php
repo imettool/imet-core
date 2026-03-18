@@ -26,7 +26,8 @@ final class KeyConservationElements extends ImetModule_Report
         $this->module_code = 'RP 4A';
 
         $this->module_fields = [
-            ['name' => 'kce',               'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.kce')],
+            ['name' => 'num_kce',           'type' => 'disabled',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.num_kce')],
+            ['name' => 'kces',               'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.kces')],
             ['name' => 'targets_and_es',    'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.targets_and_es')],
             ['name' => 'kea',               'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.kea')],
             ['name' => 'threats',           'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.threats')],
@@ -35,6 +36,12 @@ final class KeyConservationElements extends ImetModule_Report
 
         $this->module_info = trans('imet-core::v2_report.KeyConservationElements.module_info');
         $this->fieldsDefinitions = trans('imet-core::v2_report.KeyConservationElements.definitions');
+
+        $this->predefined_values = [
+            'field' => 'num_kce',
+            'values' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+        ];
+        $this->max_rows = 10;
 
         parent::__construct($attributes);
     }

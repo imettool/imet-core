@@ -22,6 +22,8 @@ class Imet_Report extends Imet
             Modules\Report\ManagementEffectivenessAnalysis::class,
             Modules\Report\OperatingRecommendations::class,
             Modules\Report\KeyConservationElements::class,
+            Modules\Report\ThreatsAffectingKCEs::class,
+            Modules\Report\InitialPlanningOptions::class,
             Modules\Report\KeyQuestions::class
         ]
     ];

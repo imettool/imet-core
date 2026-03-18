@@ -63,6 +63,21 @@
 @endif
 
 
+{{-- Fields definitions (defined in Analysis Report) --}}
+@if(array_key_exists('fieldsDefinitions', $definitions) && $definitions['fieldsDefinitions']!==null)
+    <div class="module-bar info-black-bar">
+        <div class="w-3"></div>
+        <div>
+            <div>@lang('imet-core::v2_report.definitions')</div>
+            <ul class="message ml-6">
+                @foreach($definitions['fieldsDefinitions'] as $field_name => $field_definition)
+                    <li class="font-normal">{!! $field_definition !!}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
+
 @if($definitions['ratingLegend']!==null)
     <div class="module-bar info-black-bar">
         <div class="icon blue">
@@ -93,17 +108,3 @@
     </div>
 @endif
 
-{{-- Fields definitions (defined in Analysis Report) --}}
-@if(array_key_exists('fieldsDefinitions', $definitions) && $definitions['fieldsDefinitions']!==null)
-    <div class="module-bar info-black-bar">
-        <div class="w-3"></div>
-        <div>
-            <div>@lang('imet-core::v2_report.definitions')</div>
-            <ul class="message ml-6">
-                @foreach($definitions['fieldsDefinitions'] as $field_name => $field_definition)
-                    <li class="font-normal">{!! $field_definition !!}</li>
-              @endforeach
-            </ul>
-        </div>
-    </div>
-@endif
