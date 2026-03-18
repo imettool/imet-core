@@ -12,15 +12,14 @@
 
 namespace ImetCore\Controllers\Imet\v2;
 
-use ImetCore\Controllers\__Controller;
+use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Imet\v2\Imet_Report;
 
-final class ReportController extends __Controller
+final class ReportController extends Controller
 {
     protected static ?string $form_class = Imet_Report::class;
 
     protected static ?string $form_view_prefix = 'imet-core::v2.report';
-
 
 }
