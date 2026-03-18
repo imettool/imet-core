@@ -5,22 +5,17 @@
 
 use ImetCore\Controllers\Imet\v2\ReportController;
 use ImetCore\Models\Imet\v2\Imet_Report;
+use ImetCore\Models\Imet\v2\Modules\Report\KeyConservationElements;
+use ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions;
+use ImetCore\Models\Imet\v2\Modules\Report\ManagementContext;
+use ImetCore\Models\Imet\v2\Modules\Report\ManagementEffectivenessAnalysis;
+use ImetCore\Models\Imet\v2\Modules\Report\OperatingRecommendations;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Scores\ImetScores;
+use ModularForms\Enums\ModuleViewModes;
 
 $show_general_info = !ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id);
 $scores = ImetScores::get_all($item);
-
-///** @var \ImetCore\Models\Imet\v2\Imet $item */
-///** @var array $assessment */
-///** @var array $key_elements */
-///** @var array $report */
-///** @var array $general_info */
-///** @var array $vision */
-///** @var array $area */
-///** @var bool  $show_general_info */
-///** @var bool $show_non_wdpa */
-///** @var Array $non_wdpa */
 ?>
 
 
@@ -36,14 +31,14 @@ $scores = ImetScores::get_all($item);
 
     {{-- General Info --}}
     @if($show_general_info)
-        @include('imet-core::v2.report.modules.general_elements', ['item' => $item])
+        @include('imet-core::v2.report.components.general_elements', ['item' => $item])
     @else
         @include('imet-core::v2.report.components.non_wdpa', ['item' => $item])
     @endif
 
     {{-- Evaluation --}}
     <div class="imet_report">
-        @include('imet-core::v2.report.modules.evaluation', [
+        @include('imet-core::v2.report.components.evaluation', [
             'item' => $item,
             'scores' => $scores,
         ])
@@ -53,9 +48,9 @@ $scores = ImetScores::get_all($item);
     <div class="imet_report">
         <x-modular-forms::module.container
             :controller="ReportController::class"
-            :module="\ImetCore\Models\Imet\v2\Modules\Report\ManagementContext::class"
+            :module="ManagementContext::class"
             :formId="$item->getKey()"
-            :mode="\ModularForms\Enums\ModuleViewModes::EDIT"
+            :mode="ModuleViewModes::EDIT"
         ></x-modular-forms::module.container>
     </div>
 
@@ -63,9 +58,9 @@ $scores = ImetScores::get_all($item);
     <div class="imet_report">
         <x-modular-forms::module.container
             :controller="ReportController::class"
-            :module="\ImetCore\Models\Imet\v2\Modules\Report\ManagementEffectivenessAnalysis::class"
+            :module="ManagementEffectivenessAnalysis::class"
             :formId="$item->getKey()"
-            :mode="\ModularForms\Enums\ModuleViewModes::EDIT"
+            :mode="ModuleViewModes::EDIT"
         ></x-modular-forms::module.container>
     </div>
 
@@ -73,9 +68,9 @@ $scores = ImetScores::get_all($item);
     <div class="imet_report">
         <x-modular-forms::module.container
             :controller="ReportController::class"
-            :module="\ImetCore\Models\Imet\v2\Modules\Report\OperatingRecommendations::class"
+            :module="OperatingRecommendations::class"
             :formId="$item->getKey()"
-            :mode="\ModularForms\Enums\ModuleViewModes::EDIT"
+            :mode="ModuleViewModes::EDIT"
         ></x-modular-forms::module.container>
     </div>
 
@@ -84,9 +79,9 @@ $scores = ImetScores::get_all($item);
     <div class="mb-4">@lang('imet-core::v2_report.planning_options_info.general_info')</div>
     <x-modular-forms::module.container
         :controller="ReportController::class"
-        :module="\ImetCore\Models\Imet\v2\Modules\Report\KeyConservationElements::class"
+        :module="KeyConservationElements::class"
         :formId="$item->getKey()"
-        :mode="\ModularForms\Enums\ModuleViewModes::EDIT"
+        :mode="ModuleViewModes::EDIT"
     ></x-modular-forms::module.container>
     <!-- TODO: table B -->
     <!-- TODO: table C -->
@@ -95,9 +90,9 @@ $scores = ImetScores::get_all($item);
     <div class="imet_report">
         <x-modular-forms::module.container
             :controller="ReportController::class"
-            :module="\ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions::class"
+            :module="KeyQuestions::class"
             :formId="$item->getKey()"
-            :mode="\ModularForms\Enums\ModuleViewModes::EDIT"
+            :mode="ModuleViewModes::EDIT"
         ></x-modular-forms::module.container>
     </div>
 

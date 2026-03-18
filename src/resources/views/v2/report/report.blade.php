@@ -39,7 +39,7 @@ if ($item->language != App::getLocale()) {
     <div id="imet_report_map" class="imet_report">
 
         {{--  General Info  --}}
-        @include('imet-core::v2.report.modules.general_elements', [
+        @include('imet-core::v2.report.components.general_elements', [
             'show_general_info' => $show_general_info,
             'general_info' => $general_info,
             'area' => $area,
@@ -55,7 +55,7 @@ if ($item->language != App::getLocale()) {
     <div class="imet_report">
 
         {{-- Evaluation --}}
-        @include('imet-core::v2.report.modules.evaluation', [
+        @include('imet-core::v2.report.components.evaluation', [
             'item' => $item,
             'scores' => $scores,
         ])
@@ -93,8 +93,8 @@ if ($item->language != App::getLocale()) {
             <div class="scrollButtons" v-cloak>
                 <div class="standalone" v-show=status==='changed'>
                     <form id="imet_report_form" method="post"
-                        action="{{ route(Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
-                        style="display: inline-block;">
+                          action="{{ route(Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span @click="saveReport">{!! Template::icon('save') !!}

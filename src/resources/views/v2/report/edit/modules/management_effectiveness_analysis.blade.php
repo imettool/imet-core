@@ -19,7 +19,7 @@ use ImetCore\Models\Species;
     </div>
 </div>
 
-<h4>@lang('imet-core::v2_report.ManagementEffectivenessAnalysis.characteristics_elements')</h4>
+<h5>@lang('imet-core::v2_report.ManagementEffectivenessAnalysis.characteristics_elements')</h5>
 <div class="swot">
     @foreach($definitions['fields'] as $field)
 

@@ -4,8 +4,10 @@
 /** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
+use ImetCore\Services\Scores\ImetScores;
 
 $form_id = $vueData['form_id'];
 $key_elements = [
@@ -34,12 +36,11 @@ $key_elements = [
 
 ?>
 
-
 @foreach($definitions['fields'] as $field)
 
-    <h4>{{ ucfirst($field['label']) }}</h4>
+    <h5>{{ ucfirst($field['label']) }}</h5>
     <div class="module-row">
-        <ul class="ml-6 w-md">
+        <ul class="ml-6 w-md text-sm">
             @foreach ($key_elements[$field['name']] as $elem)
                 <li>{!! Species::isTaxonomy($elem) ? Species::getPreview($elem, true) : $elem !!}</li>
             @endforeach
@@ -55,6 +56,10 @@ $key_elements = [
 
 @endforeach
 
+@include('imet-core::v2.report.components.table_evaluation', [
+   'scores' => ImetScores::get_all($form_id),
+   'labels' => ImetScores::indicators_labels(Imet::IMET_V2),
+])
 
 
 <x-modular-forms::module.components.script

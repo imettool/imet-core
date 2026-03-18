@@ -94,7 +94,7 @@
 @endif
 
 {{-- Fields definitions (defined in Analysis Report) --}}
-@if($definitions['fieldsDefinitions']!==null)
+@if(array_key_exists('fieldsDefinitions', $definitions) && $definitions['fieldsDefinitions']!==null)
     <div class="module-bar info-black-bar">
         <div class="w-3"></div>
         <div>
