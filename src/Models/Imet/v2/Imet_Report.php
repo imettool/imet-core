@@ -10,20 +10,15 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Models\Imet\oecm\Modules\Component;
+namespace ImetCore\Models\Imet\v2;
 
-use ImetCore\Helpers\Database;
-use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
-use ImetCore\Models\Imet\Components\Upgrade;
-use ImetCore\Models\Imet\oecm\Imet;
-
-class ImetModule extends BaseImetModule
+class Imet_Report extends Imet
 {
-    use Upgrade;
-
-    public const ?string MODULE_SCOPE = null;
-
-    protected static ?string $schema = Database::OECM_SCHEMA;
-
-    protected static ?string $form_class = Imet::class;
+    public static ?array $modules = [
+        'report' => [
+            Modules\Report\ManagementContext::class,
+            Modules\Report\ManagementEffectivenessAnalysis::class,
+            Modules\Report\KeyConservationElements::class,
+        ]
+    ];
 }

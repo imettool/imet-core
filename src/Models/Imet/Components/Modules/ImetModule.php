@@ -40,7 +40,7 @@ class ImetModule extends Module
 
     public const MARINE = 'marine';
 
-    public const MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
+    public const ?string MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 

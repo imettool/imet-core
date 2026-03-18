@@ -126,9 +126,12 @@ Route::middleware([SetLocale::class, 'web'])->group(function (): void {
                 Route::get('raw_export/{item}/{slug}', [v2\EvalController::class, 'raw_export']);
             });
             Route::group(['prefix' => 'report'], function (): void {
-                Route::get('{item}/edit', [v2\ReportController::class, 'report'])->name(v2\Controller::ROUTE_PREFIX.'report_edit');
-                Route::get('{item}/show', [v2\ReportController::class, 'report_show'])->name(v2\Controller::ROUTE_PREFIX.'report_show');
+                Route::get('{item}/edit', [v2\ReportController::class, 'edit'])->name(v2\Controller::ROUTE_PREFIX.'report_edit');
+                Route::get('{item}/show', [v2\ReportController::class, 'show'])->name(v2\Controller::ROUTE_PREFIX.'report_show');
                 Route::patch('{item}', [v2\ReportController::class, 'report_update'])->name(v2\Controller::ROUTE_PREFIX.'report_update');
+                Route::get('{item}/print', [v2\ReportController::class, 'print']);
+                Route::patch('{item}', [v2\ReportController::class, 'update']);
+                Route::get('raw_export/{item}/{slug}', [v2\ReportController::class, 'raw_export']);
             });
 
         });
