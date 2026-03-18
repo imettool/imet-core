@@ -23,6 +23,8 @@ final class ManagementEffectivenessAnalysis extends ImetModule_Report
     {
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::v2_report.ManagementEffectivenessAnalysis.title');
+        $this->module_code = 'RP 2';
+
         $this->module_fields = [
             ['name' => 'analysis',          'type' => 'text-editor'],
             ['name' => 'strengths',         'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementEffectivenessAnalysis.fields.strengths')],

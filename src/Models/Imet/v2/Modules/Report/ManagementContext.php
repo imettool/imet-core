@@ -23,6 +23,8 @@ final class ManagementContext extends ImetModule_Report
     {
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::v2_report.ManagementContext.title');
+        $this->module_code = 'RP 1';
+
         $this->module_fields = [
             ['name' => 'key_species',           'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementContext.fields.key_species')],
             ['name' => 'habitats',              'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementContext.fields.habitats')],

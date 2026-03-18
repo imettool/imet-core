@@ -23,6 +23,8 @@ final class OperatingRecommendations extends ImetModule_Report
     {
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::v2_report.OperatingRecommendations.title');
+        $this->module_code = 'RP 3';
+
         $this->module_fields = [
             ['name' => 'recommendations',   'type' => 'text-editor']
         ];

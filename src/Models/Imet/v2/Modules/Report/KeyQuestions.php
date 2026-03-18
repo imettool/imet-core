@@ -23,6 +23,8 @@ final class KeyQuestions extends ImetModule_Report
     {
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::v2_report.KeyQuestions.title');
+        $this->module_code = 'RP 5';
+
         $this->module_fields = [
             ['name' => 'priorities',            'type' => 'text-editor',     'label' => trans('imet-core::v2_report.KeyQuestions.fields.priorities')],
             ['name' => 'minimum_budget',        'type' => 'text-editor',     'label' => trans('imet-core::v2_report.KeyQuestions.fields.minimum_budget')],

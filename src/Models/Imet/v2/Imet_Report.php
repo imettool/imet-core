@@ -12,13 +12,17 @@
 
 namespace ImetCore\Models\Imet\v2;
 
+use ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions;
+
 class Imet_Report extends Imet
 {
     public static ?array $modules = [
         'report' => [
             Modules\Report\ManagementContext::class,
             Modules\Report\ManagementEffectivenessAnalysis::class,
+            Modules\Report\OperatingRecommendations::class,
             Modules\Report\KeyConservationElements::class,
+            Modules\Report\KeyQuestions::class
         ]
     ];
 }

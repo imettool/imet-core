@@ -23,6 +23,8 @@ final class KeyConservationElements extends ImetModule_Report
     {
         $this->module_type = 'TABLE';
         $this->module_title = trans('imet-core::v2_report.KeyConservationElements.title');
+        $this->module_code = 'RP 4A';
+
         $this->module_fields = [
             ['name' => 'kce',               'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.kce')],
             ['name' => 'targets_and_es',    'type' => 'text-area',   'label' => trans('imet-core::v2_report.KeyConservationElements.fields.targets_and_es')],
