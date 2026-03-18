@@ -51,44 +51,75 @@ nav.steps a.step.cross-analysis-warnings {
       display: none;
     }
   }
+    .report_table {
+        td, th {
+            padding: 5px;
+            text-align: center;
+            border: 1px solid white;
+            background-color: white;
+        }
+        th, .bordered{
+            border: 1px solid #ccc;
+        }
+        td.avg_sub_index {
+            font-weight: bold;
+            color: black;
+        }
 
-  table td, table th {
-    padding: 5px;
-    text-align: center;
-    border: 1px solid white;
-    background-color: white;
-  }
+        &#global_scores th,
+        &#global_scores td {
+            font-weight: bold;
+        }
 
-  table th,
-  .bordered {
-    border: 1px solid #ccc;
-  }
-
-  table td.avg_index {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: black;
-  }
-
-  table td.avg_sub_index {
-    font-weight: bold;
-    color: black;
-  }
-
-  table#global_scores th,
-  table#global_scores td {
-    font-weight: bold;
-  }
-
-  table#detailed_scores {
-    font-size: 0.9em;
-    table-layout: fixed;
-    width: 100%;
-
-    td {
-      word-break: break-word;
+        &#detailed_scores {
+            font-size: 0.9em;
+            table-layout: fixed;
+            width: 100%;
+            td {
+                word-break: break-word;
+            }
+        }
     }
-  }
+
+
+
+  /*table td, table th {*/
+  /*  padding: 5px;*/
+  /*  text-align: center;*/
+  /*  border: 1px solid white;*/
+  /*  background-color: white;*/
+  /*}*/
+
+  /*table th,*/
+  /*.bordered {*/
+  /*  border: 1px solid #ccc;*/
+  /*}*/
+
+  /*table td.avg_index {*/
+  /*  text-transform: uppercase;*/
+  /*  font-weight: bold;*/
+  /*  color: black;*/
+  /*}*/
+
+  /*table td.avg_sub_index {*/
+  /*  font-weight: bold;*/
+  /*  color: black;*/
+  /*}*/
+
+  /*table#global_scores th,*/
+  /*table#global_scores td {*/
+  /*  font-weight: bold;*/
+  /*}*/
+
+  /*table#detailed_scores {*/
+  /*  font-size: 0.9em;*/
+  /*  table-layout: fixed;*/
+  /*  width: 100%;*/
+
+  /*  td {*/
+  /*    word-break: break-word;*/
+  /*  }*/
+  /*}*/
 
   .score_no {
     color: black;

@@ -19,7 +19,7 @@ use ImetCore\Services\Scores\AssessmentsScores;
         ])
     </div>
     <div class="module-body">
-        <table id="global_scores">
+        <table id="global_scores" class="report_table">
             <tr>
                 <th>@lang('imet-core::common.steps_eval.context')</th>
                 <th>@lang('imet-core::common.steps_eval.planning')</th>

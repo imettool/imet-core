@@ -5,7 +5,7 @@ use ImetCore\Services\Scores\AssessmentsScores;
 
 ?>
 
-<table id="detailed_scores">
+<table id="detailed_scores" class="report_table">
 
     <!-- context -->
     <tr>

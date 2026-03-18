@@ -21,7 +21,29 @@
             @endforeach
         </ul>
 
-        Hello
+        <table class="table module-table !my-6">
+
+            <tr>
+                <th></th>
+                <th class="text-center">@lang('imet-core::v2_report.planning_options_info.table_a_fields.kce')</th>
+                <th class="text-center">@lang('imet-core::v2_report.planning_options_info.table_a_fields.targets_es')</th>
+                <th class="text-center">@lang('imet-core::v2_report.planning_options_info.table_a_fields.kea')</th>
+                <th class="text-center">@lang('imet-core::v2_report.planning_options_info.table_a_fields.threats')</th>
+                <th class="text-center">@lang('imet-core::v2_report.planning_options_info.table_a_fields.note')</th>
+            </tr>
+
+            @for($i=1; $i<=10; $i++)
+                <tr class="module-table-item">
+                    <td class="text-sm">{{ $i }}</td>
+                    <td><input type="text" class="field-edit" /></td>
+                    <td><input type="text" class="field-edit" /></td>
+                    <td><input type="text" class="field-edit" /></td>
+                    <td><input type="text" class="field-edit" /></td>
+                    <td><input type="text" class="field-edit" /></td>
+                </tr>
+            @endfor
+
+        </table>
 
         {{-- TABLE B --}}
         <h6 class="font-bold">@lang(('imet-core::v2_report.planning_options_info.table_b_title'))</h6>

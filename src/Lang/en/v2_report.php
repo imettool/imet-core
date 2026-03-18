@@ -80,6 +80,13 @@ return [
             'threats' => '<span class="font-bold italic">Threats</span>: Pressures or human activities that negatively affect the Key Conservation Elements (KCEs).',
             'kce' => '<span class="font-bold italic">KCE 1–10</span>: Columns used to indicate whether each threat affects the corresponding KCE and at what intensity. ',
         ],
+        'table_a_fields' => [
+            'kce' => 'Key Conservation Elements (KCEs)',
+            'targets_es' => 'Secondary Targets & Primary Ecosystem Services',
+            'kea' => 'Key Ecological Attributes (KEA)',
+            'threats' => 'Threats',
+            'note' => 'Notes / Justification'
+        ],
 
         'table_c_title' => 'Initial planning options (IMET → CAP transition table)',
         'table_c_info' =>
