@@ -14,11 +14,14 @@ namespace ImetCore\Models\Imet\v2\Modules\Component;
 
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\Components\Upgrade;
 use ImetCore\Models\Imet\v2\Imet_Report;
 use ImetCore\Models\User\Role;
 
 class ImetModule_Report extends ImetModule
 {
+    use Upgrade;
+
     protected static ?string $schema = Database::IMET_SCHEMA;
 
     protected static ?string $form_class = Imet_Report::class;

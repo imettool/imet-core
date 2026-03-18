@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->text('priorities')->nullable();
             $table->text('minimum_budget')->nullable();
-            $table->text('Method…')->nullable();
+            $table->text('additional_funding')->nullable();
 
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
