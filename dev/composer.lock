@@ -1235,10 +1235,10 @@
             "dist": {
                 "type": "path",
                 "url": "./package/imet-core",
-                "reference": "6839efe7a1c74b6c95793217273f5e1bbb59fbf2"
+                "reference": "8973e9d93b189a3c5cf60cfbc4a7cd814cf2532b"
             },
             "require": {
-                "andreamarelli/modular-forms": "^3.5.9",
+                "andreamarelli/modular-forms": "^3.5.12",
                 "ext-json": "*",
                 "ext-zip": "*",
                 "php": ">=8.4"
@@ -1299,16 +1299,16 @@
         },
         {
             "name": "andreamarelli/modular-forms",
-            "version": "3.5.12",
+            "version": "3.6.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:andreamarelli/modular-forms.git",
-                "reference": "d22e77d732ac9dbf57eafcdb234abc297a4f6757"
+                "reference": "963606759bfeefe6d00135dd97172165b8a1bcd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/d22e77d732ac9dbf57eafcdb234abc297a4f6757",
-                "reference": "d22e77d732ac9dbf57eafcdb234abc297a4f6757",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/963606759bfeefe6d00135dd97172165b8a1bcd3",
+                "reference": "963606759bfeefe6d00135dd97172165b8a1bcd3",
                 "shasum": ""
             },
             "require": {
@@ -1373,10 +1373,10 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.5.12",
+                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.6.1",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2026-03-19T09:44:30+00:00"
+            "time": "2026-03-19T14:41:02+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -3906,16 +3906,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.8.1",
+            "version": "2.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "84b1ca48347efdbe775426f108622a42735a6579"
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/84b1ca48347efdbe775426f108622a42735a6579",
-                "reference": "84b1ca48347efdbe775426f108622a42735a6579",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/59fb075d2101740c337c7216e3f32b36c204218b",
+                "reference": "59fb075d2101740c337c7216e3f32b36c204218b",
                 "shasum": ""
             },
             "require": {
@@ -4009,7 +4009,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-03-05T21:37:03+00:00"
+            "time": "2026-03-19T13:16:38+00:00"
         },
         {
             "name": "league/config",
