@@ -10,20 +10,35 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Models\Imet\oecm\Modules\Component;
+namespace ImetCore\Models\Imet\v2\Modules\Component;
 
 use ImetCore\Helpers\Database;
-use ImetCore\Models\Imet\Components\Modules\ImetModule as BaseImetModule;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\Components\Upgrade;
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\v2\Imet_Report;
+use ImetCore\Models\User\Role;
 
-class ImetModule extends BaseImetModule
+class ImetModule_Report extends ImetModule
 {
     use Upgrade;
 
+    protected static ?string $schema = Database::IMET_SCHEMA;
+
+    protected static ?string $form_class = Imet_Report::class;
+
     public const ?string MODULE_SCOPE = null;
 
-    protected static ?string $schema = Database::OECM_SCHEMA;
 
-    protected static ?string $form_class = Imet::class;
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    public ?array $fieldsDefinitions;
+
+    public static function getDefinitions(?int $form_id = null): array
+    {
+        $definitions = parent::getDefinitions($form_id);
+        $model = new (static::class);
+        $definitions['fieldsDefinitions'] = $model->fieldsDefinitions ?? null;
+
+        return $definitions;
+    }
 }

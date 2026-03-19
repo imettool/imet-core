@@ -23,7 +23,7 @@ final class AreaDominationMPA extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
-    public const MODULE_SCOPE = self::MARINE;
+    public const ?string MODULE_SCOPE = self::MARINE;
 
     public function __construct(array $attributes = [])
     {

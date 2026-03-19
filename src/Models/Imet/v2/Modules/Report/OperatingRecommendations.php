@@ -1,5 +1,6 @@
 <?php
 
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -10,14 +11,25 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Models\Imet\v2;
+namespace ImetCore\Models\Imet\v2\Modules\Report;
 
-use ImetCore\Helpers\Database;
-use ImetCore\Models\Imet\Components\Report as BaseReport;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule_Report;
 
-class Report extends BaseReport
+final class OperatingRecommendations extends ImetModule_Report
 {
-    protected static ?string $schema = Database::IMET_SCHEMA;
+    protected $table = 'report_operating_recommendations';
 
-    protected $table = 'report';
+    public function __construct(array $attributes = [])
+    {
+        $this->module_type = 'SIMPLE';
+        $this->module_title = trans('imet-core::v2_report.OperatingRecommendations.title');
+        $this->module_code = 'RP 3';
+
+        $this->module_fields = [
+            ['name' => 'recommendations',   'type' => 'text-editor']
+        ];
+
+        parent::__construct($attributes);
+    }
+
 }

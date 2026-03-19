@@ -206,15 +206,16 @@ class Species extends BaseModel
         return $vernacular_names;
     }
 
-    public static function getPreview(?string $taxonomy): string
+    public static function getPreview(?string $taxonomy, bool $inline = false): string
     {
         if($taxonomy!==null && Species::isTaxonomy($taxonomy)){
+            $inline = $inline ? 'inline mr-1 ' : '';
             $species = Species::getByTaxonomy($taxonomy);
             $scientific_name = $species->genus . ' ' . $species->species;
             $vernacular_names = implode(', ', $species->getVernacularNames());
-            $label = '<div class="font-bold">'.$scientific_name.'</div>';
+            $label = '<div class="'.$inline.'font-bold">'.$scientific_name.'</div>';
             if($vernacular_names){
-                $label .= '<div class="italic">'.$vernacular_names.'</div>';
+                $label .= '<div class="'.$inline.'italic">'.$vernacular_names.'</div>';
             }
             return $label;
         }
