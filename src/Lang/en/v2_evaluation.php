@@ -1496,36 +1496,6 @@ return [
         ],
     ],
 
-    'AchievedResults' => [
-        'title' => 'Outputs achievement of the work/action plan',
-        'fields' => [
-            'Category' => 'Categories of activities',
-            'Activity' => 'Activity',
-            'TargetedOutput' => 'Targeted output',
-            'EvaluationScore' => 'Level of achievement',
-            'Comments' => 'Comments/Explanation',
-        ],
-        'module_info' => 'The statistical system allows only five lines to identify the functions of the staff of the protected area',
-        'ratingLegend' => [
-            'EvaluationScore' => [
-                '0' => 'No or very low achievement of the targeted output of the previous year (between 0 and 25%)',
-                '1' => 'Low level of achievement of the targeted output of the previous year (between 26 and 50%)',
-                '2' => 'Moderate level of achievement of the targeted output of the previous year (between 51 and 75%)',
-                '3' => 'High level of achievement of the targeted output of the previous year (between 76 and 100% )',
-            ],
-        ],
-        'module_info_EvaluationQuestion' => [
-            'To what extent has the protected area achieved the main outputs of the work plan?',
-            'The prevalent approach for protected area planning includes the establishment of annual or multi-year work/action plan OUTPUTS that contributes to the achievement of long-term conservation goals / objectives or OUTCOMES. In the planning process the longer-term goals / objectives are translated into short-term conservation targets for specific biodiversity features, such as species, habitats and threats or ecosystem services possible to achieve with the work/action plan. However, since the use of many low-level conservation targets is an obstacle to achieving high-level conservation performance, the outputs must be strongly linked to the outcomes to ensure high-level conservation performance. Putting performance measurement systems in place is an important way of keeping track of the progress of your management and conservation activities',
-        ],
-        'module_info_Rating' => [
-            'Evaluate the level of achievement of the main outputs of the work/action plan (in comments, indicate the reference year if you apply for a multi-year work/action plan)',
-            '<b>Category of activities</b> = e.g. law enforcement, social facilities development, environmental education, tourism management, etc.',
-            '<b>Activity</b> = action belonging to one of the main categories of activities that is executed to achieve particular purpose',
-            'Without a work/action plan you can refer to the categories and the activities of the Process element: Management and protection of the key elements; Stakeholder relations; Tourism; Monitoring and research; Climate change and Ecosystem services',
-        ],
-    ],
-
     'AreaDomination' => [
         'title' => 'Area domination',
         'fields' => [

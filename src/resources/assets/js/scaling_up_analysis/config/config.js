@@ -292,7 +292,6 @@ export default {
                 columns: [
                     createColumn(getLabel('imet-core::common.Create.fields.wdpa_id'), "name"),
                     createColumn(`O/P1: ${getScalingLabel('OP1')}`, "OP1"),
-                    createColumn(`O/P2: ${getScalingLabel('OP2')}`, "OP2"),
                     createColumn(`O/P3: ${getScalingLabel('OP3')}`, "OP3"),
                     createColumn(`O/P4: ${getScalingLabel('OP4')}`, "OP4"),
                     createColumn(`${getLabel('imet-core::common.steps_eval.outputs')}`, "outputs", ``)

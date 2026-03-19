@@ -1497,35 +1497,6 @@ return [
         ],
     ],
 
-    'AchievedResults' => [
-        'title' => 'Atteints des résultats/extrants du plan de travail/d’action',
-        'fields' => [
-            'Category' => 'Catégories d’activités',
-            'Activity' => 'Activités',
-            'TargetedOutput' => 'Résultats attendus',
-            'EvaluationScore' => 'Evaluation: Niveau d’atteinte des résultats',
-            'Comments' => 'Commentaires/Explication',
-        ],
-        'ratingLegend' => [
-            'EvaluationScore' => [
-                '0' => 'Aucune ou très faible atteinte des résultats visés pour l’année(s) analysé(s) (entre 0 et 25 %)',
-                '1' => 'Faible niveau d’atteinte des résultats visés pour l’année(s) analysé(s) (entre 26 et 50 %)',
-                '2' => 'Niveau moyen d’atteinte des résultats visés pour l’année(s) analysé(s) (entre 51 et 75 %)',
-                '3' => 'Haut niveau d’atteinte des résultats visés pour l’année(s) analysé(s) (entre 76 et 100 %)',
-            ],
-        ],
-        'module_info_EvaluationQuestion' => [
-            'Dans quelle mesure l’aire protégée a-t-elle atteint les principaux résultats du plan de travail/d’action ?',
-            'L’approche prédominante pour la planification des aires protégées comprend l’établissement d’un plan de travail/d’action annuel ou pluriannuel qui contribue à l’atteinte des objectifs de conservation à long terme. Dans le processus de planification, les objectifs à long terme sont traduits en cibles de conservation à court terme que le plan de travail/d’action permet d’atteindre pour des aspects spécifiques de la biodiversité, tels que les espèces, les habitats et les menaces ou les services écosystémiques. Toutefois, étant donné que l’utilisation de nombreux objectifs de conservation de faible niveau constitue un obstacle à l’atteinte d’une performance élevée en matière de conservation, les résultats doivent être étroitement liés aux effets/impacts pour assurer un rendement élevé en matière de conservation. La mise en place de systèmes d’évaluation du rendement est un moyen important de suivre l’évolution des activités de gestion et de conservation',
-        ],
-        'module_info_Rating' => [
-            'Évaluer le niveau d’atteinte des principaux résultats/extrants du plan de travail/ d’action (dans les commentaires, indiquer l’année de référence si vous appliquez un plan de travail/d’action pluriannuel)',
-            '<b>Catégorie d’activités</b>: p. ex. application de la loi, appui aux activités de développement dans la zone tampon, éducation environnementale, gestion du tourisme, etc.',
-            '<b>Activité</b>: action appartenant à l’une des principales catégories d’activités qui est exécutée dans un but particulier',
-            'En l’absence d’un plan de travail ou d’action, vous pouvez vous référer aux catégories et aux activités retenues dans l’élément « Processus », notamment pour ce qui est des indicateurs suivants: Gestion et protection des valeurs ; Relations avec les parties prenantes ; Tourisme ; Surveillance et recherche ; Changement climatique et services écosystémiques',
-        ],
-    ],
-
     'AreaDomination' => [
         'title' => 'Domination de l’aire protégée',
         'fields' => [

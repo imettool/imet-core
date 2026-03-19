@@ -127,7 +127,7 @@ const score_properties = {
             'color': '#00B0F0'
         },
         'outputs': {
-            'indexes': ['OP1', 'OP2', 'OP3', 'OP4'],
+            'indexes': ['OP1', 'OP3', 'OP4'],
             'color': '#92D050'
         },
         'outcomes': {

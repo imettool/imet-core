@@ -311,7 +311,6 @@ final class Common
             ],
             'outputs' => [
                 'OP1' => 'O/P1: '.$labels['OP1'],
-                'OP2' => 'O/P2: '.$labels['OP2'],
                 'OP3' => 'O/P3: '.$labels['OP3'],
                 'OP4' => 'O/P4: '.$labels['OP4'],
             ],

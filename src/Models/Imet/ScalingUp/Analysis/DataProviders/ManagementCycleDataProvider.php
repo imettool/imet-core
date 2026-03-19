@@ -75,7 +75,7 @@ final class ManagementCycleDataProvider implements DataProviderInterface
             'process_effects_of_climate_change' => ['PR17', 'PR18'],
         ],
         'outputs' => [
-            'main' => ['OP1', 'OP2', 'OP3', 'OP4'],
+            'main' => ['OP1', 'OP3', 'OP4'],
         ],
         'outcomes' => [
             'main' => ['OC1', 'OC2', 'OC3'],

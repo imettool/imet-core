@@ -166,7 +166,6 @@ use ImetCore\Services\Scores\AssessmentsScores;
             <div class="badge {!! AssessmentsScores::score_class($scores['outputs']['avg_indicator']) !!}">{{ $scores['outputs']['avg_indicator'] }}</div>
         </th>
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outputs']['OP1'], 'assessment_label' => $labels['OP1']])
-        @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outputs']['OP1'], 'assessment_label' => $labels['OP2']])
         @include('imet-core::v2.report.components.row_evaluation', ['assessment_value' => $scores['outputs']['OP3'], 'assessment_label' => $labels['OP3']])
         <td colspan="5"></td>
     </tr>

@@ -137,7 +137,6 @@ class V2Scores extends _Scores
     {
         $scores = [
             'OP1' => static::score_table($imet_id, Evaluation\WorkProgramImplementation::class, 'EvaluationScore'),
-            'OP2' => static::score_table($imet_id, Evaluation\AchievedResults::class, 'EvaluationScore'),
             'OP3' => static::score_op3($imet_id),
             'OP4' => static::score_op4($imet_id),
         ];
