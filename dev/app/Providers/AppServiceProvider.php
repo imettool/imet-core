@@ -13,6 +13,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         if (env('ENFORCE_SSL', false)) {
             URL::forceScheme('https');
         }
+
+        Validator::extend('custom_text', fn ($attribute, $value): int|false => preg_match('/^[0-9\pL\s\'+\-_\/()]+$/u', (string) $value));
 
     }
 }

@@ -46,7 +46,7 @@ abstract class Controller extends __Controller
     protected const bool PAGINATE = false;
 
     public const array sanitization_rules = [
-        'search' => 'alpha_num|nullable',
+        'search' => 'custom_text|nullable',
         'year' => 'digits:4|integer|nullable',
         'country' => 'min:3|max:3|alpha|nullable',
     ];
