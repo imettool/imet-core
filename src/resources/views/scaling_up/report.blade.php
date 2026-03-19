@@ -11,8 +11,6 @@
                     <strong>{{ trans('imet-core::analysis_report.title') }} ({{ $protected_areas_names }})</strong>
                 </div>
 
-                @include('imet-core::scaling_up.components.navigation_menu', ['templates' => $templates])
-
                 <div id="names"></div>
 
                 <div class="module-container">
@@ -36,6 +34,11 @@
         </app>
     </div>
 @endsection
+
+@section('side-buttons')
+    @include('imet-core::scaling_up.components.navigation_menu', ['templates' => $templates])
+@endsection
+
 
 @push('scripts')
     <script>
@@ -69,11 +72,11 @@
                 font-size: 1.0rem;
             }
 
-            .scrollButtons {
+            .sideButtons {
                 bottom: 120px;
             }
 
-            .scrollButtons div:hover {
+            .sideButtons div:hover {
                 background-color: #14532D;
                 color: white;
             }

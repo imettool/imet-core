@@ -244,37 +244,58 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
 
+    </div>
+
+@endsection
+
+
+@section('side-buttons')
+
+    @component('modular-forms::module.side-buttons', [
+        'withPrint' => $action==='edit',
+    ])
+
         @if ($action === 'edit')
-            <div class="scrollButtons" v-cloak>
-                {{-- Save --}}
-                <div class="standalone" v-show=status==='changed'>
+
+            {{-- Save --}}
+            <div class="sideButtons collapsible" v-show=status==='changed'>
+                <div>
                     <form id="imet_report_form" method="post"
-                        action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
-                        style="display: inline-block;">
+                          action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          style="display: inline-block;">
                         @method('PATCH')
                         @csrf
-                        <span @click="saveReport">{!! \ModularForms\Helpers\Template::icon('save') !!}
+                        <span @click="saveReport">{!! Template::icon('save') !!}
                             {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
-                <div class="standalone" v-show=status==='loading'>
+            </div>
+
+            {{-- Loading --}}
+            <div class="sideButtons collapsible" v-show=status==='loading'>
+                <div>
                     <i class="fa fa-spinner fa-spin text-primary-800"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
-                <div v-show=status==='saved' class="standalone highlight">
+            </div>
+
+            {{-- Saved --}}
+            <div class="sideButtons collapsible" v-show=status==='saved'">
+                <div class="highlight">
                     {{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!
                 </div>
-                <div v-show=status==='error' class="standalone error">
+            </div>
+
+            {{-- Error --}}
+            <div class="sideButtons collapsible" v-show=status==='error'>
+                <div class="error">
                     {{ ucfirst(trans('modular-forms::common.saved_error')) }}!
                 </div>
-
-                {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! \ModularForms\Helpers\Template::icon('print') !!}
-                    {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
+
         @endif
 
-    </div>
+    @endcomponent
 
 @endsection
 
