@@ -71,7 +71,7 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
             ->toArray();
 
         foreach ($records as $index => $record) {
-            $records[$index]['__score'] = $threats_ranking[$record['Threat']];
+            $records[$index]['__score'] = $threats_ranking[$record['Threat']] ?? null;
         }
 
         return collect($records)
