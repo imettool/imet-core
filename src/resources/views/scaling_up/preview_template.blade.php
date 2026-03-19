@@ -14,7 +14,7 @@
             <div class="standalone" @click="downloadFiles">
                 {!! \ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
             <div class="standalone" @click="printReport">
-                {!! \ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::analysis_report.print')) }}</div>
+                {!! \ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::common.print')) }}</div>
         </div>
     </div>
 @endsection

@@ -112,9 +112,14 @@ $show_scrollbar = true;
 
     @endif
 
-    {{--  Scroll buttons  --}}
-    @if($show_scrollbar)
-        @include('modular-forms::module.scroll', ['item' => $item, 'step' => $step])
-    @endif
+@endsection
+
+@section('side-buttons')
+
+    {{--  Side buttons (scroll, print, etc..  --}}
+    @include('imet-core::components.side-buttons', [
+       'item' => $item,
+       'step' => $step
+   ])
 
 @endsection

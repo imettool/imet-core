@@ -31,7 +31,6 @@ return [
     'average_protected_areas' => '* Without selected PAs, the scores are the average of all PAs.  With selected PAs, the average scores relate to the selected PAs.',
     'source' => 'Source',
     'download_files' => 'Download',
-    'print' => 'print',
     'custom_names' => 'Names of protected areas',
     'apply' => 'Apply',
     'no_value' => 'No value',

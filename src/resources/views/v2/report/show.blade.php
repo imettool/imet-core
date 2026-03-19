@@ -108,18 +108,15 @@ $scores = ImetScores::get_all($item);
         ></x-modular-forms::module.container>
     </div>
 
-    {{--  Scroll buttons  --}}
-    @include('modular-forms::module.scroll', [
+@endsection
+
+@section('side-buttons')
+
+    {{--  Side buttons (scroll, print, etc..  --}}
+    @include('imet-core::components.side-buttons', [
         'item' => $item,
         'step' => 'report',
-        'bottomInPx' => 65
+        'printable' => true
     ])
-
-    {{-- Print button --}}
-    <div class="scrollButtons collapsible !bottom-[20px]">
-        <div class="flex items-center gap-2 !rounded-tr-none !rounded-br-none !py-2" onclick="window.print()">
-            {!! \ModularForms\Helpers\Template::icon('print') !!}<span class="hiddenByDefault inline">Stampa</span>
-        </div>
-    </div>
 
 @endsection

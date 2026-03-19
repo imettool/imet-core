@@ -30,7 +30,6 @@ return [
     'ranking_info_indicators' => '* Les scores dans le pop-up sont la Valeur à l\'indicateur synthétique',
     'source' => 'Source',
     'download_files' => 'téléchargements de fichiers',
-    'print' => 'imprimer',
     'custom_names' => 'Noms des aires protégées',
     'apply' => 'Appliquer',
     'no_value' => 'Aucune valeur',
