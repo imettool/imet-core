@@ -1,10 +1,12 @@
 <?php
-use ModularForms\Helpers\Input\DropDown;
-use ModularForms\Helpers\Input\Input;
-
-/** @var \Illuminate\Http\Request $request */
+/** @var Request $request */
 /** @var array $countries */
 /** @var array $years */
+/** @var ?array $filters_validation_messages */
+
+use Illuminate\Http\Request;
+use ModularForms\Helpers\Input\DropDown;
+use ModularForms\Helpers\Input\Input;
 
 ?>
 
