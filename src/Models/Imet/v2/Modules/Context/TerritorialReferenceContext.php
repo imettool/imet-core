@@ -62,17 +62,17 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::addField($record, 'SpillOverKm');
 
         // ####  v2.3 -> v3.0 ####
-        $record = self::removeField($record, 'SpillOverKm2');
-        $record = self::removeField($record, 'SpillOverKm');
-        $record = self::removeField($record, 'SpillOverEvalPredatory0_500');
-        $record = self::removeField($record, 'SpillOverEvalPredatory500_1000');
-        $record = self::removeField($record, 'SpillOverEvalPredatory200_3000');
-        $record = self::removeField($record, 'SpillOverEvalComposition0_500');
-        $record = self::removeField($record, 'SpillOverEvalComposition500_1000');
-        $record = self::removeField($record, 'SpillOverEvalComposition200_3000');
-        $record = self::removeField($record, 'SpillOverEvalDistance0_500');
-        $record = self::removeField($record, 'SpillOverEvalDistance500_1000');
-        $record = self::removeField($record, 'SpillOverEvalDistance200_3000');
+        $record = self::dropField($record, 'SpillOverKm2');
+        $record = self::dropField($record, 'SpillOverKm');
+        $record = self::dropField($record, 'SpillOverEvalPredatory0_500');
+        $record = self::dropField($record, 'SpillOverEvalPredatory500_1000');
+        $record = self::dropField($record, 'SpillOverEvalPredatory200_3000');
+        $record = self::dropField($record, 'SpillOverEvalComposition0_500');
+        $record = self::dropField($record, 'SpillOverEvalComposition500_1000');
+        $record = self::dropField($record, 'SpillOverEvalComposition200_3000');
+        $record = self::dropField($record, 'SpillOverEvalDistance0_500');
+        $record = self::dropField($record, 'SpillOverEvalDistance500_1000');
+        $record = self::dropField($record, 'SpillOverEvalDistance200_3000');
         $record = self::addField($record, 'DocumentedConnectivity');
         $record = self::addField($record, 'EvidenceOfConnectivity');
         $record = self::addField($record, 'EvidencesListConnectivity');
