@@ -90,7 +90,7 @@ use ImetCore\Models\Imet\v2\Imet_Eval;
 @endforeach
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
+    :vue-data="$module->vueData"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

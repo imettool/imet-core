@@ -114,7 +114,7 @@ $table_id = 'table_'.$definitions['slug'];
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

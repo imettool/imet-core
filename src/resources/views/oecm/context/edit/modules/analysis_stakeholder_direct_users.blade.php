@@ -7,7 +7,7 @@
 use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 
-$stakeholders = Stakeholders::calculateWeights($vueData['form_id'], Stakeholders::ONLY_DIRECT);
+$stakeholders = Stakeholders::calculateWeights($module->vueData['form_id'], Stakeholders::ONLY_DIRECT);
 arsort($stakeholders);
 
 ?>

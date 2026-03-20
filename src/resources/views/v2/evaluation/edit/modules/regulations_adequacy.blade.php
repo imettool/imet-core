@@ -9,7 +9,7 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\RegulationsAdequacy;
 use Illuminate\Support\Facades\View;
 
-$vueData['marine_predefined'] = RegulationsAdequacy::get_marine_predefined();
+$module->vueData['marine_predefined'] = RegulationsAdequacy::get_marine_predefined();
 $view = View::make('modular-forms::module.edit.type.table', ['definitions' => $definitions])->render();
 
 // Inject marine icon on criteria
@@ -22,7 +22,7 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.RegulationsAdequacy(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.RegulationsAdequacy(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

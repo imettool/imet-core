@@ -5,9 +5,9 @@
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\oecm\Imet_Eval;
-$vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
+$module->vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
 
-$threats_in_sa2 = collect($vueData['records'])
+$threats_in_sa2 = collect($module->vueData['records'])
     ->filter(fn(array $item): bool => $item['__count_stakeholders_direct'] !== null
         || $item['__count_stakeholders_indirect'] !== null)
     ->pluck('__threat_key')
@@ -44,7 +44,7 @@ $threats_in_sa2 = collect($vueData['records'])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.evaluation.Threats(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.evaluation.Threats(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

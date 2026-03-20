@@ -63,7 +63,7 @@ use ImetCore\Models\Imet\oecm\Imet;
     </style>
 
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

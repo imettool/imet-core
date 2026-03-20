@@ -49,7 +49,7 @@ use ImetCore\Models\Species;
 
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
+    :vue-data="$module->vueData"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

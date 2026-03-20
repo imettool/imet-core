@@ -9,8 +9,8 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\AssistanceActivities;
 use Illuminate\Support\Facades\View;
 
-$vueData['marine_predefined'] = AssistanceActivities::get_marine_predefined();
-$vueData['terrestrial_predefined'] = AssistanceActivities::get_terrestrial_predefined();
+$module->vueData['marine_predefined'] = AssistanceActivities::get_marine_predefined();
+$module->vueData['terrestrial_predefined'] = AssistanceActivities::get_terrestrial_predefined();
 
 $view = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
@@ -25,7 +25,7 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.AssistanceActivities(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -15,11 +15,11 @@ use ImetCore\Models\Imet\v1\Imet;
     }
 
     if($pa!==null){
-        $vueData['records'][0]['CompleteName'] ??= $pa->name;
-        $vueData['records'][0]['WDPA'] ??= $pa->wdpa_id;
-        $vueData['records'][0]['IUCNCategory1'] ??= $pa->iucn_category;
-        $vueData['records'][0]['Country'] ??= $pa->country;
-        $vueData['records'][0]['CreationYear'] ??= $pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null;
+        $module->vueData['records'][0]['CompleteName'] ??= $pa->name;
+        $module->vueData['records'][0]['WDPA'] ??= $pa->wdpa_id;
+        $module->vueData['records'][0]['IUCNCategory1'] ??= $pa->iucn_category;
+        $module->vueData['records'][0]['Country'] ??= $pa->country;
+        $module->vueData['records'][0]['CreationYear'] ??= $pa->creation_date!==null ? substr($pa->creation_date, 0, 4) : null;
     }
 
 ?>

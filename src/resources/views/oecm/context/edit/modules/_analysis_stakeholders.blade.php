@@ -20,7 +20,7 @@ $user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDir
     : AnalysisStakeholderIndirectUsers::$USER_MODE;
 
 $stakeholders_categories = Stakeholders::getStakeholders(
-    $vueData['form_id'],
+    $module->vueData['form_id'],
     $user_mode,
     true
 );
@@ -185,7 +185,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

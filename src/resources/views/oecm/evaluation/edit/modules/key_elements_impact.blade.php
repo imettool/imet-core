@@ -95,7 +95,7 @@ use ImetCore\Models\Imet\oecm\Imet_Eval;
         }
     </style>
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 

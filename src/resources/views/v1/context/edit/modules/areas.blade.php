@@ -64,7 +64,7 @@ $vue_record_index = '0';
     </style>
 
     <script type="module">
-        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.Areas(@json($vueData)))
+        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.Areas(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

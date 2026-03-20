@@ -23,7 +23,7 @@ $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_grou
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservation(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV1.evaluation.DesignatedValuesConservation(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

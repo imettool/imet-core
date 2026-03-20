@@ -11,7 +11,7 @@ use ImetCore\Models\Imet\v2\Imet_Eval;
 @include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
+    :vue-data="$module->vueData"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

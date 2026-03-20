@@ -55,7 +55,7 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

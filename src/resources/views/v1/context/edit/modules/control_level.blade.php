@@ -7,7 +7,7 @@
 use ImetCore\Models\Imet\v1\Imet;
 $vue_record_index = '0';
 
-$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -119,7 +119,7 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_i
         }
     </style>
     <script type="module">
-        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel(@json($vueData)))
+        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

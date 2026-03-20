@@ -12,7 +12,7 @@ use ImetCore\Models\Imet\oecm\Imet;
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.CreateNonWDPA(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.CreateNonWDPA(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

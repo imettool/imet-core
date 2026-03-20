@@ -53,7 +53,7 @@ $vue_record_index = '0';
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

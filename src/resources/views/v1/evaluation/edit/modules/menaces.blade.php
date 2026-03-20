@@ -16,7 +16,7 @@ $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
 $dom->filter('thead tr th')->eq(0)->append('<th></th>');
 $dom->filter('tbody tr td')->eq(0)->append('<td><div class="field-preview w-16" v-html=stats[index]></div></td>');
 
-$vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['category_stats'])
+$module->vueData['stats'] = collect(MenacesPressions::getStats($module->vueData['form_id'])['category_stats'])
     ->map(fn($item): float => round($item, 2))->all();
 ?>
 
@@ -27,7 +27,7 @@ $vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['cat
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.evaluation.Menaces(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV1.evaluation.Menaces(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -8,7 +8,7 @@ use ImetCore\Models\Imet\v1\Imet;
 $group_key ??= '';
 $table_id = 'table_'.$definitions['slug'];
 
-$vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -101,7 +101,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

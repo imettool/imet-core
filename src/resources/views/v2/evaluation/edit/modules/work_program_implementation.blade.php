@@ -109,7 +109,7 @@ $table_id = 'group_table_' . $definitions['slug'] . '_' . $group_key;
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
 
         document.addEventListener('accordion:opened', function(event) {

@@ -10,7 +10,7 @@ use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
 
-$form_id = $vueData['form_id'];
+$form_id = $module->vueData['form_id'];
 $key_elements = [
     'key_species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
         ->filter(fn($item): mixed => $item['IncludeInStatistics'])
@@ -64,7 +64,7 @@ $key_elements = [
 
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
+    :vue-data="$module->vueData"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

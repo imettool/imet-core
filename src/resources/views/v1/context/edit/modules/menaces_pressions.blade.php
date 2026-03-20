@@ -29,7 +29,7 @@ $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTab
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.context.MenacesPressions(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV1.context.MenacesPressions(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

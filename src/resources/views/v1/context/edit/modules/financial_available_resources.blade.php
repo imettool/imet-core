@@ -87,7 +87,7 @@ $table_id = 'table_'.$definitions['slug'];
 
 @push('scripts')
     <script type="module">
-        window.imet__v1__context__financial_available_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialAvailableResources(@json($vueData)))
+        window.imet__v1__context__financial_available_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialAvailableResources(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

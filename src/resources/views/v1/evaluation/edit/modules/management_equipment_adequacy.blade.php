@@ -88,7 +88,7 @@ $adequacy_id = "'" . $definitions['slug'] . "_'+index+'___adequacy'";
 </table>
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
+    :vue-data="$module->vueData"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

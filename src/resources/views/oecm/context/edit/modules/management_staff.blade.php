@@ -27,7 +27,7 @@ $dom->filter('tbody tr td')->eq(5)->append('<td>' . $diff_col . '</td>');
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
