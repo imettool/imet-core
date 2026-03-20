@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
@@ -12,5 +11,5 @@ foreach ($records as $index=>$record){
 
 ?>
 
-@include('modular-forms::module.show.body', compact(['collection', 'definitions']))
+@include('modular-forms::module.show.type.accordion', ['definitions' => $definitions, 'records' => $records])
 

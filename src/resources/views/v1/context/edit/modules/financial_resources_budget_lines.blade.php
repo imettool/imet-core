@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
@@ -95,7 +94,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">

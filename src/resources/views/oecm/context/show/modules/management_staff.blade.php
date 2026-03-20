@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$original_table = View::make('modular-forms::module.show.type.table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$original_table = View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $diffs = [];
 foreach ($records as $record){

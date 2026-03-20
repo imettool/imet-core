@@ -10,4 +10,4 @@ foreach ($records as $i => $record){
 
 @endphp
 
-@include('imet-core::components.module.show.table_with_nothing_to_evaluate', compact(['collection', 'records', 'definitions']))
+@include('imet-core::components.module.show.table_with_nothing_to_evaluate', ['definitions' => $definitions, 'records' => $records])

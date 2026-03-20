@@ -1,12 +1,15 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\v2\Imet;
 
 $group_key ??= '';
 $table_id = 'table_'.$definitions['slug'];
 
-$vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($module->vueData['form_id']);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -98,11 +101,11 @@ $vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueD
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialResourcesBudgetLines(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialResourcesBudgetLines(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

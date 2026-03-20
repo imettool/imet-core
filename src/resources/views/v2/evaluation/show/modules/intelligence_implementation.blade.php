@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $records */
 /** @var array $definitions */
 
@@ -17,4 +16,4 @@ $page = ImetModule::injectIconToGroups($page, IntelligenceImplementation::get_ma
 
 {!! $page !!}
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

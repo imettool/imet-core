@@ -1,11 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\v2\Imet;
 
 $vue_record_index = '0';
 
-$vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -106,7 +109,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueD
 
 @push('scripts')
     <script type="module">
-        window.imet__v2__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialResources(@json($vueData)))
+        window.imet__v2__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialResources(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

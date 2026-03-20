@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 /** @var int $form_id */

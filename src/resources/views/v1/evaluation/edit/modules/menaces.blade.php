@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
@@ -8,7 +7,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view = View::make('modular-forms::module.edit.type.table', ['definitions' => $definitions])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
 $dom->filter('thead tr th')->eq(0)->append('<th></th>');
@@ -20,7 +19,7 @@ $vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['cat
 
 
 {!! $dom->saveHTML() !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 
 @push('scripts')

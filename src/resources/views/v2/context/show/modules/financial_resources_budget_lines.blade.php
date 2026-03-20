@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
@@ -86,4 +85,4 @@ $totalBudget = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\v2\Mo
 </table>
 
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

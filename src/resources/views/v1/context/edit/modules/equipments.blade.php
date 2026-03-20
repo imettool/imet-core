@@ -1,9 +1,8 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
 // Inject Average calculation
 for($i=0; $i<=12; $i++){
@@ -13,7 +12,7 @@ for($i=0; $i<=12; $i++){
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">

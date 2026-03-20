@@ -114,6 +114,6 @@ $UnderControlPatrolManDay = 0;
 
 </table>
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])
 
 <?php

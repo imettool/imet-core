@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
@@ -7,7 +6,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 // Get the original group table view
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 // Load the view into a DOM parser
 $dom = HtmlPageCrawler::create('<div>'.$view_groupTable.'</div>');

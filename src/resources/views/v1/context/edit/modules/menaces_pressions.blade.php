@@ -1,12 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
-$view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
 // Inject titles
 foreach(MenacesPressions::$groupsByCategory as $i => $category){
@@ -22,7 +21,7 @@ $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTab
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">

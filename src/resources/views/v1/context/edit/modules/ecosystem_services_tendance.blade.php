@@ -1,9 +1,8 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
 // Inject titles
 $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['slug'], 'group0', trans('imet-core::v1_context.EcosystemServicesTendance.categories.title1'));
@@ -13,7 +12,7 @@ $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTab
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
     :vue-data="$vueData"

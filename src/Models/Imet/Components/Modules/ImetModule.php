@@ -42,6 +42,9 @@ class ImetModule extends Module
 
     public const ?string MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
+    public const string SCRIPT_EDIT_BLADE_VIEW = 'imet-core::components.module.edit.script';
+    public const string SCRIPT_SHOW_BLADE_VIEW = 'imet-core::components.module.show.script';
+
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static ?string $schema = null;

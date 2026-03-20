@@ -1,12 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var Array $records */
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
-$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$view_groupTable = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 $stats = \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
 
 
@@ -56,4 +55,4 @@ foreach (MenacesPressions::$groupsByCategory as $category) {
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.show.type.commons', compact(['collection', 'definitions']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $records */
 /** @var array $definitions */
 
@@ -18,4 +17,4 @@ $view = ImetModule::injectIconToPredefinedCriteria(ImetModule::MARINE, $view, As
 
 {!! $view !!}
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

@@ -1,12 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 /** @var array $item */
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($view_table)
@@ -23,5 +22,5 @@ foreach($stats as $i => $stat){
 ?>
 
 {!! $dom->saveHTML() !!}
-@include('modular-forms::module.show.type.commons', compact(['collection', 'records', 'definitions']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])
 

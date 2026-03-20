@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 /** @var mixed $item */
@@ -19,4 +18,5 @@
     }
 
 ?>
-@include('modular-forms::module.show.body',  compact(['collection', 'definitions']))
+
+@include('modular-forms::module.show.type.simple', ['definitions' => $definitions, 'records' => $records])

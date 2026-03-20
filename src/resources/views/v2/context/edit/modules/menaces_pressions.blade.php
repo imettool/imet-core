@@ -1,6 +1,6 @@
 <?php
 /** @var Collection $collection */
-/** @var array $vueData */
+/** @var array $module->vueData */
 /** @var array $definitions */
 
 use ImetCore\Helpers\Template;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $groups = $definitions['groups'];
-$vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
+$module->vueData['marine_predefined'] = MenacesPressions::get_marine_predefined();
 
 $marine_groups = MenacesPressions::get_marine_groups();
 $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
@@ -54,9 +54,7 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
 
                         @php
                             $view = View::make('modular-forms::module.edit.type.table', [
-                                'collection' => $collection,
                                 'definitions' => $definitions,
-                                'vueData' => $vueData,
                                 'group_key' => $group_key
                             ])->render();
                             $view = $module::injectIconToPredefinedCriteriaWithVue($module::MARINE, $view, "is_marine(item['Value'])");
@@ -73,11 +71,11 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
 </x-modular-forms::accordion.container>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.MenacesPressions(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -12,7 +12,6 @@ arsort($stakeholders);
 ?>
 
 @include('imet-core::oecm.context.edit.modules._analysis_stakeholders', [
-    'collection' => $collection,
     'definitions' => $definitions,
     'vueData' => $vueData,
     'stakeholders' => $stakeholders

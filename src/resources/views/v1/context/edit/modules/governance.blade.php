@@ -1,12 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
 ?>
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
-@include('modular-forms::module.edit.type.accordion', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
+@include('modular-forms::module.edit.type.accordion', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
     :vue-data="$vueData"

@@ -1,19 +1,22 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\v2\Imet;
 
 use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
 
 /** @var Collection $collection */
 /** @var array $definitions */
-/** @var mixed $vueData */
+/** @var mixed $module->vueData */
 /** @var Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
 $vue_record_index = 0;
 
-$vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_years');
+$module->vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_years');
 
 ?>
 
@@ -86,7 +89,7 @@ $vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_year
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.Create(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.Create(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

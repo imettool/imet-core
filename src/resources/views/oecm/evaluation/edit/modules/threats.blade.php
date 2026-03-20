@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
@@ -38,7 +37,7 @@ $threats_in_sa2 = collect($vueData['records'])
     @endforeach
 </div>
 
-@include('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.table', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">

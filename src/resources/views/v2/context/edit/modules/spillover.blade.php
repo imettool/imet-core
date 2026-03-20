@@ -3,7 +3,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 /** @var Collection $collection */
-/** @var array $vueData */
+/** @var array $module->vueData */
 /** @var array $definitions */
 
 ?>
@@ -65,7 +65,7 @@ use Illuminate\Support\Str;
     </style>
 
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.Spillover(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.Spillover(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

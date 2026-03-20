@@ -1,6 +1,6 @@
 <?php
 /** @var Collection $collection */
-/** @var array $vueData */
+/** @var array $module->vueData */
 /** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
@@ -9,8 +9,8 @@ use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $groups = $definitions['groups'];
-$vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
-$vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
+$module->vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
+$module->vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
 
 function injectSpilloverMessages(string $view, string $label, string $vue_if): string
 {
@@ -54,9 +54,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
                     @php
                         $view = View::make('modular-forms::module.edit.type.table', [
-                            'collection' => $collection,
                             'definitions' => $definitions,
-                            'vueData' => $vueData,
                             'group_key' => $group_key
                         ])->render();
                         $view = injectSpilloverMessages($view, trans('imet-core::v2_context.spillover_waring_message'), 'is_spillover(records[index].Element)');
@@ -75,7 +73,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices(@json($vueData)))
+        (new window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

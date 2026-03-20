@@ -1,17 +1,22 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
+
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\v2\Modules\Context\Areas;
 
 $vue_record_index = '0';
 
 $index_id = "'" . $definitions['slug'] . "_'+" . $vue_record_index . "+'_Index'";
 
 // Recalculate shapeIndex: in older versions it was miscalculated and stored in the database.
-if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists('FormID', $vueData['records'][$vue_record_index])){
-    $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['records'][$vue_record_index]['FormID']);
-    $boundaryLength = $vueData['records'][$vue_record_index]['BoundaryLength'];
-    $vueData['records'][$vue_record_index]['Index'] = $module::getShapeIndex($area, $boundaryLength);
+if (array_key_exists($vue_record_index, $module->vueData['records']) && array_key_exists('FormID', $module->vueData['records'][$vue_record_index])) {
+    $area = Areas::getArea($module->vueData['records'][$vue_record_index]['FormID']);
+    $boundaryLength = $module->vueData['records'][$vue_record_index]['BoundaryLength'];
+    $module->vueData['records'][$vue_record_index]['Index'] = $module::getShapeIndex($area, $boundaryLength);
 }
 
 ?>
@@ -102,7 +107,7 @@ if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists(
     </style>
 
     <script type="module">
-        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($vueData)))
+        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

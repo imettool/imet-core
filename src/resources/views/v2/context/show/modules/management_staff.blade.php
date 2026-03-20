@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 
@@ -31,4 +30,4 @@ $table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void
 
 {!! $dom->saveHTML() !!}
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\View;
 $vueData['marine_predefined'] = AssistanceActivities::get_marine_predefined();
 $vueData['terrestrial_predefined'] = AssistanceActivities::get_terrestrial_predefined();
 
-$view = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
 // Inject marine icon on criteria
 $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::TERRESTRIAL, $view, "is_terrestrial(item['Activity'])");
@@ -19,7 +18,7 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 ?>
 
 {!! $view !!}
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">

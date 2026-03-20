@@ -1,5 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $vueData */
 /** @var array $definitions */
 
@@ -8,7 +7,7 @@ use Illuminate\Support\Facades\View;
 use ModularForms\View\Module\Components\Body;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$original_view = View::make('modular-forms::module.edit.type.group_table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$original_view = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
 $dom = HtmlPageCrawler::create('<div>' . $original_view . '</div>');
 $dom->filter('h5.group_title_' . $definitions['slug'] . '_group0')->before('<h3 style="margin-bottom: 20px;">' . trans('imet-core::oecm_context.Stakeholders.titles.title0') . '</h3>');
