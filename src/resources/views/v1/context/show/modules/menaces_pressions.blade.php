@@ -12,7 +12,7 @@ $stats = \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($re
 
 // Inject titles (with category stats)
 foreach (MenacesPressions::$groupsByCategory as $i => $category) {
-    $searchFor = '<h5 class="highlight group_title_' . $definitions['module_key'] . '_' . $category[0] . '">';
+    $searchFor = '<h5 class="highlight group_title_' . $definitions['slug'] . '_' . $category[0] . '">';
     $textToAdd = '
         <div class="module-row">
             <div style="width: 90%;">

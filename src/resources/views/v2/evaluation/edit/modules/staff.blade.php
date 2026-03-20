@@ -6,10 +6,10 @@
 
 $group_key = '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
-$theme_id = "'" . $definitions['module_key'] . "_'+index+'_Theme'";
-$staff_number_adequacy_id = "'" . $definitions['module_key'] . "_'+index+'_StaffNumberAdequacy'";
+$theme_id = "'" . $definitions['slug'] . "_'+index+'_Theme'";
+$staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumberAdequacy'";
 
 ?>
 

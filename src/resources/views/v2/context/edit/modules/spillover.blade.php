@@ -66,7 +66,7 @@ use Illuminate\Support\Str;
 
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.context.Spillover(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

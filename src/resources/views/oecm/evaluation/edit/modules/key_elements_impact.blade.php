@@ -7,9 +7,9 @@
 ?>
 
 @foreach($definitions['groups'] as $group_key => $group_label)
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
-    <div id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}">
+    <div id="{{ 'group_table_'.$definitions['slug'].'_'.$group_key }}">
 
         {{-- labels  --}}
         <div class="grid_module">
@@ -94,7 +94,7 @@
     </style>
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 
 @endpush

@@ -43,6 +43,6 @@ $threats_in_sa2 = collect($vueData['records'])
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.evaluation.Threats(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -27,6 +27,6 @@ $dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElements(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

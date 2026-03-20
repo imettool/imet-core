@@ -5,9 +5,9 @@
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 $group_key = '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
-$status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
+$status_id = "'" . $definitions['slug'] . "_'+index+'___status'";
 
 ?>
 

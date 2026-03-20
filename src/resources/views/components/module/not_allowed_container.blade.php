@@ -6,7 +6,7 @@
 $definitions = $module_class::getDefinitions();
 ?>
 
-<div class="module-container" id="module_{{ $definitions['module_key'] }}">
+<div class="module-container" id="module_{{ $definitions['slug'] }}">
 
     {{-- title --}}
     @include('modular-forms::module.title', compact(['definitions']))

@@ -6,9 +6,9 @@
 
 @foreach($definitions['groups'] as $group_key => $group_label)
 
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
-    <table id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}" class="table module-table">
+    <table id="{{ 'group_table_'.$definitions['slug'].'_'.$group_key }}" class="table module-table">
 
         {{-- labels  --}}
         <thead>
@@ -31,7 +31,7 @@
                         <td>
                             @if($i===0 && $group_key==='group6')
                                 @php
-                                    $activity_id = "'".$definitions['module_key']."_".$group_key."_'+index+'_".$field['name']."'";
+                                    $activity_id = "'".$definitions['slug']."_".$group_key."_'+index+'_".$field['name']."'";
                                     $activity_value = 'records[\''.$group_key.'\'][index].'.$field['name'];
                                 @endphp
                                 <x-modular-forms::module.components.field.input

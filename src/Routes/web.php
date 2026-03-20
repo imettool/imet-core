@@ -157,7 +157,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function (): void {
 
         Route::group(['prefix' => 'tools'], function (): void {
             Route::get('export_csv', [v2\Controller::class, 'exportListCSV'])->name(Imet\Controller::ROUTE_PREFIX.'csv_list');
-            Route::get('export_csv/{ids}/{module_key}', [v2\Controller::class, 'exportModuleToCsv'])->name(Imet\Controller::ROUTE_PREFIX.'csv');
+            Route::get('export_csv/{ids}/{slug}', [v2\Controller::class, 'exportModuleToCsv'])->name(Imet\Controller::ROUTE_PREFIX.'csv');
         });
 
         // ###### Selectors ######

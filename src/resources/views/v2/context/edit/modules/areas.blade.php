@@ -5,7 +5,7 @@
 
 $vue_record_index = '0';
 
-$index_id = "'" . $definitions['module_key'] . "_'+" . $vue_record_index . "+'_Index'";
+$index_id = "'" . $definitions['slug'] . "_'+" . $vue_record_index . "+'_Index'";
 
 // Recalculate shapeIndex: in older versions it was miscalculated and stored in the database.
 if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists('FormID', $vueData['records'][$vue_record_index])){
@@ -103,6 +103,6 @@ if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists(
 
     <script type="module">
         window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

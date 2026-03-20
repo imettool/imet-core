@@ -68,7 +68,7 @@ $vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.context.Governance(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

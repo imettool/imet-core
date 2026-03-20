@@ -4,7 +4,7 @@
 /** @var array $records */
 
 $group_key = null;
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 if (!function_exists('financial_resources_calc')) {
     function financial_resources_calc($value, $value2): ?float

@@ -6,12 +6,12 @@
 
 $group_key = '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 ?>
 @foreach($definitions['groups'] as $group_key => $group_label)
 
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
     <table id="{{ $table_id }}" class="table module-table">
 
         {{-- labels  --}}
@@ -113,6 +113,6 @@ $table_id = 'table_'.$definitions['module_key'];
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

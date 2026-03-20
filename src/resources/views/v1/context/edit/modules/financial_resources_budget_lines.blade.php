@@ -4,7 +4,7 @@
 /** @var array $definitions */
 
 $group_key ??= '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
 
@@ -49,13 +49,13 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
             <input type="numeric" disabled="disabled"
                    class="field-edit field-numeric text-right"
                    v-bind:value="costs[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_total'"
             />        </td>
         <td>
             <input type="text" disabled="disabled" style="width: 80px;"
                    class="field-edit text-center"
                    v-bind:value="percentages[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_percentage'"
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_percentage'"
             />
         </td>
         <td>
@@ -100,6 +100,6 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

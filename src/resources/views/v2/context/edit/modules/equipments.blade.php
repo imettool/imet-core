@@ -8,7 +8,7 @@ $groups = $definitions['groups'];
 ?>
 
 <!-- Collapsible groups with histograms -->
-<x-modular-forms::accordion.container :id="'accordion_'.$definitions['module_key']">
+<x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($groups as $group_key => $group_label)
         <x-modular-forms::accordion.item>
@@ -40,6 +40,6 @@ $groups = $definitions['groups'];
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.context.Equipments(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

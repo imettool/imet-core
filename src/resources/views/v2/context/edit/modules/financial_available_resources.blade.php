@@ -4,7 +4,7 @@
 /** @var array $definitions */
 
 $group_key ??= '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 ?>
 
@@ -48,7 +48,7 @@ $table_id = 'table_'.$definitions['module_key'];
             <input type="numeric" disabled="disabled"
                    class="field-edit field-numeric text-right"
                    v-bind:value="totals[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_total'"
             />
         </td>
         <td>
@@ -56,7 +56,7 @@ $table_id = 'table_'.$definitions['module_key'];
             <input type="text" disabled="disabled" style="width: 80px;"
                    class="field-edit field-numeric text-center"
                    v-bind:value="percentages[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_percentage'"
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_percentage'"
             />
         </td>
         <td>
@@ -101,6 +101,6 @@ $table_id = 'table_'.$definitions['module_key'];
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialAvailableResources(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

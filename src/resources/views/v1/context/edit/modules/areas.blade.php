@@ -62,7 +62,7 @@ $vue_record_index = '0';
 
     <script type="module">
         window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.Areas(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

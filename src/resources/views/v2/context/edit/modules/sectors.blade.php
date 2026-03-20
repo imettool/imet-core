@@ -9,7 +9,7 @@ use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $group_key ??= '';
 
-$table_id = 'table_' . $definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 
@@ -129,6 +129,6 @@ $table_id = 'table_' . $definitions['module_key'];
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.context.Sectors(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

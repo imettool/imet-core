@@ -11,7 +11,7 @@ $view_groupTable = View::make('modular-forms::module.edit.type.group_table', ['c
 // Inject titles
 foreach(MenacesPressions::$groupsByCategory as $i => $category){
     $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle(
-        $view_groupTable, $definitions['module_key'], $category[0],
+        $view_groupTable, $definitions['slug'], $category[0],
         ($i+1).'. '.trans('imet-core::v1_context.MenacesPressions.categories.title' . ($i+1)));
 }
 
@@ -27,6 +27,6 @@ $view_groupTable = str_replace($searchFor, $textToAdd.$searchFor, $view_groupTab
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV1.context.MenacesPressions(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

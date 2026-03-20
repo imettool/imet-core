@@ -26,6 +26,6 @@ $vueData['stats'] = collect(MenacesPressions::getStats($vueData['form_id'])['cat
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV1.evaluation.Menaces(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

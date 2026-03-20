@@ -7,7 +7,7 @@ $record = $records[0];
 
 $group_key ??= '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
 $totals = \ImetCore\Controllers\Imet\v1\ContextController::get_financial_available_resources_totals();

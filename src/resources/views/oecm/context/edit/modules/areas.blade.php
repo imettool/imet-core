@@ -60,6 +60,6 @@ $vue_record_index = '0';
 
     <script type="module">
         window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.Oecm.context.Areas(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

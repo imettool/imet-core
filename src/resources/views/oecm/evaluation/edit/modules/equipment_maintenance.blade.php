@@ -3,10 +3,10 @@
 /** @var array $vueData */
 /** @var array $definitions */
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
-$equipment_id = "'" . $definitions['module_key'] . "_'+index+'_Equipment'";
-$adequacy_level_id = "'" . $definitions['module_key'] . "_'+index+'_AdequacyLevel'";
+$equipment_id = "'" . $definitions['slug'] . "_'+index+'_Equipment'";
+$adequacy_level_id = "'" . $definitions['slug'] . "_'+index+'_AdequacyLevel'";
 
 ?>
 

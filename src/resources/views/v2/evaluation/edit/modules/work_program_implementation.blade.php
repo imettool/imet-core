@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 $group_key ??= '';
 
-$table_id = 'group_table_' . $definitions['module_key'] . '_' . $group_key;
+$table_id = 'group_table_' . $definitions['slug'] . '_' . $group_key;
 
 ?>
 
@@ -110,7 +110,7 @@ $table_id = 'group_table_' . $definitions['module_key'] . '_' . $group_key;
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
 
         document.addEventListener('accordion:opened', function(event) {
             const body = event.target.querySelector('.accordion-item-body');

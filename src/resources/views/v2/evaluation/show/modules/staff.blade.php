@@ -6,7 +6,7 @@
 use \ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 
 ?>

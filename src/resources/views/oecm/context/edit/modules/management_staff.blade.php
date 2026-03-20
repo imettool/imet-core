@@ -12,7 +12,7 @@ $view = View::make('modular-forms::module.edit.type.table', ['collection' => $co
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
                 class="field-edit text-right"
                 v-bind:value="diffs[index]"
-                v-bind:id="\'' . $definitions['module_key']  .'\' + index + \'_diff\'"
+                v-bind:id="\'' . $definitions['slug']  .'\' + index + \'_diff\'"
             />';
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
@@ -27,6 +27,6 @@ $dom->filter('tbody tr td')->eq(5)->append('<td>' . $diff_col . '</td>');
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

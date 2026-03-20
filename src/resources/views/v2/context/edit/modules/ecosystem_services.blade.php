@@ -28,7 +28,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 ?>
 
 <!-- Collapsible categories with histograms -->
-<x-modular-forms::accordion.container :id="'accordion_'.$definitions['module_key']">
+<x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($module::$groupsByCategory as $cat_idx => $category)
 
@@ -76,6 +76,6 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

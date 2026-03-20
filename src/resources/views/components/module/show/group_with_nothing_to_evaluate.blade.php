@@ -8,7 +8,7 @@
 @foreach($definitions['groups'] as $group_key => $group_label)
     <div class="{{ $group_key }}">
 
-        <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+        <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
         @include('imet-core::components.module.show.table_with_nothing_to_evaluate', [
            'definitions' => $definitions,

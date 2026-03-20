@@ -18,6 +18,6 @@ for($i=0; $i<=12; $i++){
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV1.context.Equipments(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

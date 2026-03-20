@@ -7,7 +7,7 @@ $record = $records[0];
 $total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
 $group_key ??= '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 $result = [];
 $percentage_results = [];

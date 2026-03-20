@@ -49,7 +49,7 @@ $categories = $categories !== null ? json_decode($categories) : [];
             @endif
 
             {{-- sub-titles --}}
-            <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+            <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
             {{-- Desctiptions --}}
             <div class="pb-4 px-6 text-sm">

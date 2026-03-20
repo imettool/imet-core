@@ -62,7 +62,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                         @foreach($definitions['groups'] as $group_key => $group_label)
 
                             @php
-                                $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                                $table_id = 'group_table_'.$definitions['slug'].'_'.$group_key;
                                 $element_list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
                                 $element_list = gettype($element_list) === 'string' ? [] : array_combine($element_list, $element_list);
                             @endphp
@@ -86,7 +86,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                 @endif
 
                                 {{-- sub-titles --}}
-                                <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                                <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
                                 {{-- Desctiptions --}}
                                 <div class="pb-4 px-6 text-sm">
@@ -123,7 +123,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                                         @if($field['name'] === 'Element')
                                                             <dropdown
                                                                 data-values='@json($element_list)'
-                                                                {!! DOM::vueAttributes("'".$definitions['module_key']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
+                                                                {!! DOM::vueAttributes("'".$definitions['slug']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
                                                             ></dropdown>
                                                         @else
                                                                 @include('modular-forms::module.edit.field.module-to-vue', [
@@ -185,6 +185,6 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -8,9 +8,9 @@ $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records)
 $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
 
 // Inject titles
-$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['module_key'], 'group0', trans('imet-core::v1_context.EcosystemServices.categories.title1'));
-$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['module_key'], 'group3', trans('imet-core::v1_context.EcosystemServices.categories.title2'));
-$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['module_key'], 'group6', trans('imet-core::v1_context.EcosystemServices.categories.title3'));
+$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['slug'], 'group0', trans('imet-core::v1_context.EcosystemServices.categories.title1'));
+$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['slug'], 'group3', trans('imet-core::v1_context.EcosystemServices.categories.title2'));
+$view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTable, $definitions['slug'], 'group6', trans('imet-core::v1_context.EcosystemServices.categories.title3'));
 
 // Inject average calculation
 $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group0', 4, 2, '', \ModularForms\Helpers\Module::calculateAverage('Importance', 'group0', $new_records));

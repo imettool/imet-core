@@ -30,7 +30,7 @@ $table = View::make('modular-forms::module.show.type.table', ['definitions' => $
 $dom = HtmlPageCrawler::create(
     Helpers::trimNewlines($table)
 );
-$table_dom = $dom->filter('table#table_' . $definitions['module_key']);
+$table_dom = $dom->filter('table#table_' . $definitions['slug']);
 
 $table_dom->filter('thead tr th')->eq(4)->after(
     '<th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.total')) . '</th>

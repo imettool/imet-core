@@ -4,7 +4,7 @@
 /** @var array $definitions */
 
 $group_key ??= '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_'.$definitions['slug'];
 
 ?>
 
@@ -50,7 +50,7 @@ $table_id = 'table_'.$definitions['module_key'];
                         <input type="text" disabled="disabled" style="width: 80px;"
                             class="field-edit text-right"
                             v-bind:value="diffs[index]"
-                            v-bind:id="'{{$definitions['module_key'] }}_'+index+'_diff'"
+                            v-bind:id="'{{$definitions['slug'] }}_'+index+'_diff'"
                         />
                 @endif
 
@@ -86,6 +86,6 @@ $table_id = 'table_'.$definitions['module_key'];
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV1.context.ManagementStaff(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

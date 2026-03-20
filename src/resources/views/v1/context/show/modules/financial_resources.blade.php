@@ -80,7 +80,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
     ></x-modular-forms::module.components.field.input-preview>
 @endcomponent
 
-<table id="{{ 'table_'.$definitions['module_key'] }}" class="table module-table">
+<table id="{{ 'table_'.$definitions['slug'] }}" class="table module-table">
     <tr>
         <td></td>
         <th class="text-center" style="width: 200px;">@lang('imet-core::v1_context.FinancialResources.amount')</th>

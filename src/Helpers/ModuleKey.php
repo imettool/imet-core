@@ -21,9 +21,9 @@ class ModuleKey
     /**
      * Return ClassName from module key
      */
-    public static function KeyToClassName($module_key): ?string
+    public static function KeyToClassName($slug): ?string
     {
-        $items = explode(self::separator, (string) $module_key);
+        $items = explode(self::separator, (string) $slug);
 
         $module_class = 'ImetCore\\Models';
         foreach ($items as $index => $item) {
@@ -45,10 +45,10 @@ class ModuleKey
     /**
      * Return view for the given module
      */
-    public static function KeyToView($module_key, $view_mode = null): ?string
+    public static function KeyToView($slug, $view_mode = null): ?string
     {
-        if (Str::startsWith($module_key, 'imet')) {
-            $view = Str::replaceLast(ModuleKey::separator, '.'.$view_mode.'.modules.', $module_key);
+        if (Str::startsWith($slug, 'imet')) {
+            $view = Str::replaceLast(ModuleKey::separator, '.'.$view_mode.'.modules.', $slug);
             $view = str_replace(ModuleKey::separator, '.', $view);
             $view = Str::replaceFirst('imet.', 'imet-core::', $view);
             if ($view !== null && view()->exists($view)) {

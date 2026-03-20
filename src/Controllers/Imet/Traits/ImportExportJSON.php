@@ -124,10 +124,10 @@ trait ImportExportJSON
     /**
      * export records for specific module to csv format
      */
-    public function exportModuleToCsv(string $ids, string $module_key): BinaryFileResponse|string|null
+    public function exportModuleToCsv(string $ids, string $slug): BinaryFileResponse|string|null
     {
         /** @var class-string<Imet\Components\Modules\ImetModule> $model */
-        $model = ModuleKey::KeyToClassName($module_key);
+        $model = ModuleKey::KeyToClassName($slug);
 
         $query = $model::query()
             ->where(function ($query) use ($ids): void {

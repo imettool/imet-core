@@ -5,10 +5,10 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
-$equipment_id = "'" . $module_key . "_'+index+'_Equipment'";
-$equipment_predefined_label_id = "'".$module_key."_'+index+'_Equipment-predefined_label'";
+$equipment_id = "'" . $slug . "_'+index+'_Equipment'";
+$equipment_predefined_label_id = "'".$slug."_'+index+'_Equipment-predefined_label'";
 
 ?>
 

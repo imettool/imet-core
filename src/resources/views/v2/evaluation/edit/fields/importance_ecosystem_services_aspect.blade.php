@@ -5,7 +5,7 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
 $vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($v_id, $v_value);
 

@@ -9,16 +9,16 @@ use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
 
-$table_id = 'table_' . $definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 @foreach($definitions['groups'] as $group_key => $group_label)
         <?php
-        $table_id = 'group_table_' . $definitions['module_key'] . '_' . $group_key;
+        $table_id = 'group_table_' . $definitions['slug'] . '_' . $group_key;
 
         $items = array_filter($records, fn(array $item): bool => $item[$definitions['group_key_field']] === $group_key);
         ?>
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
     <table id="{{ $table_id }}" class="table module-table">
 
         {{-- labels  --}}

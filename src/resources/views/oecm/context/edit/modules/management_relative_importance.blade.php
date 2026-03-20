@@ -62,6 +62,6 @@
 
     <script type="module">
         (new window.ImetCore.Apps.Modules.Oecm.context.ManagementRelativeImportance(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

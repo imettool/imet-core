@@ -5,9 +5,9 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
-$adequacy_id = "'" . $module_key . "_'+index+'___adequacy'";
+$adequacy_id = "'" . $slug . "_'+index+'___adequacy'";
 ?>
 
 <x-modular-forms::module.components.field.input

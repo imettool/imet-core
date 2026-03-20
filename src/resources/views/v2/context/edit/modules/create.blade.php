@@ -87,7 +87,7 @@ $vueData['previous_url'] = route($controller::ROUTE_PREFIX . 'retrieve_prev_year
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.Create(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

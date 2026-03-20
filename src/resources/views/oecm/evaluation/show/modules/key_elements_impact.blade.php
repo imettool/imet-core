@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Collection;
 @foreach($definitions['groups'] as $group_key => $group_label)
     <div class="{{ $group_key }}">
 
-        <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+        <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
-        <div id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}">
+        <div id="{{ 'group_table_'.$definitions['slug'].'_'.$group_key }}">
 
             {{-- labels  --}}
             <div class="grid_module">
@@ -26,7 +26,7 @@ use Illuminate\Database\Eloquent\Collection;
             </div>
 
             @php
-                $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                $table_id = 'group_table_'.$definitions['slug'].'_'.$group_key;
                 $group_records = array_filter($records, function($item) use ($group_key, $definitions){
                     return $item[$definitions['group_key_field']] === $group_key;
                 });

@@ -3,7 +3,7 @@
 /** @var array $definitions */
 /** @var array $records */
 
-$table_id = 'table_' . $definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 

@@ -21,6 +21,6 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 @push('scripts')
     <script type="module">
         (new window.ImetCore.Apps.Modules.ImetV2.evaluation.DesignAdequacy(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -64,7 +64,7 @@ final class CrossAnalysis extends Model
                         'value' => $filteredArray[$code],
                         'question' => $definitions['module_info_EvaluationQuestion'][0],
                         'step' => $step_key,
-                        'key' => 'module_'.$definitions['module_key']];
+                        'key' => 'module_'.$definitions['slug']];
                 }
             }
         }
