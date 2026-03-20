@@ -1,6 +1,5 @@
 <?php
 /** @var ReportController $controller */
-
 /** @var Imet_Report $item */
 
 use ImetCore\Controllers\Imet\v2\ReportController;

@@ -19,7 +19,7 @@ final class HabitatsMarine extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats_marine';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

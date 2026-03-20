@@ -16,10 +16,13 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Country;
 use ImetCore\Models\Currency;
 use ImetCore\Models\ProtectedArea;
+use ModularForms\Helpers\Input\SelectionList as ModularFormsSelectionList;
+use Override;
 
-class SelectionList
+class SelectionList extends ModularFormsSelectionList
 {
-    public static function getCustomList(string $type): array
+    #[Override]
+    public static function getList(string $type): array
     {
         $list = [];
         if (Str::startsWith($type, 'ImetV1')
@@ -32,18 +35,18 @@ class SelectionList
             preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
 
             if ($matches[2] == 'ProtectedArea') {
-                $list = ProtectedArea::selectionList();
+                return ProtectedArea::selectionList();
             } elseif ($matches[2] == 'Country') {
-                $list = Country::selectionList();
+                return Country::selectionList();
             } elseif ($matches[2] == 'PaCountry') {
-                $list = ProtectedArea::getCountries()
+                return ProtectedArea::getCountries()
                     ->sortBy(Country::labelKey())
                     ->pluck(Country::labelKey(), 'iso3')
                     ->toArray();
             } elseif ($matches[2] == 'Currency') {
-                $list = Currency::selectionList();
+                return Currency::selectionList();
             } elseif ($matches[2] == 'PaType') {
-                $list = [
+                return [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),
                     'marine_and_coastal' => trans('imet-core::oecm_lists.PaType.marine_and_coastal'),
                     'mixed' => trans('imet-core::oecm_lists.PaType.mixed'),
@@ -54,11 +57,11 @@ class SelectionList
             // $matches[1] = V1, V2, OECM
             // $matches[2] = list name
             elseif ($matches[1] != '') {
-                $list = trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
+                return trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
             }
 
         }
 
-        return $list;
+        return parent::getList($type);
     }
 }

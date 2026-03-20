@@ -19,7 +19,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_elements';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

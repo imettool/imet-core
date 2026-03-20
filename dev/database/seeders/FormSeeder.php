@@ -13,7 +13,7 @@ use ImetCore\Helpers\SelectionList as ImetSelectionList;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Helpers\SelectionList;
 use ModularForms\Models\Module;
 use Throwable;
 
@@ -237,7 +237,7 @@ class FormSeeder extends Seeder
         // CUSTOM
 
         if (Str::contains($type, 'ctx11_type')) {
-            return array_rand(ImetSelectionList::getCustomList('Imet_PaType'));
+            return array_rand(ImetSelectionList::getList('Imet_PaType'));
         }
 
         if (Str::contains($type, '_EcosystemServicesImportance')) {

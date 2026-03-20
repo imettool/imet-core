@@ -21,7 +21,7 @@ final class SpecialStatus extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
-    protected static array $exclude_raw_fields = ['upload'];
+    public static array $exclude_raw_fields = ['upload'];
 
     public function __construct(array $attributes = [])
     {

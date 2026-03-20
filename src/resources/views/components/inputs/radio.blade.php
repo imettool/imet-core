@@ -1,8 +1,9 @@
 <?php
+
 use ImetCore\Helpers\SelectionList;
 
 $list_type = \Illuminate\Support\Str::replace('imet-core::radio-', '', $type);
-$list = SelectionList::getCustomList($list_type);
+$list = SelectionList::getList($list_type);
 ?>
 
 <radio

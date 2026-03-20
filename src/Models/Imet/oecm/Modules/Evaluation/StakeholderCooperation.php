@@ -19,7 +19,7 @@ final class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_stakeholder_cooperation';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

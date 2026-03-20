@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\Components;
 
 use Exception;
 use ImetCore\Models\Currency;
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Helpers\SelectionList;
 
 trait Upgrade
 {

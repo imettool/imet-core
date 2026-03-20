@@ -19,7 +19,7 @@ final class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 {
     protected $table = 'context_climate_change_importance_elements';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

@@ -1235,10 +1235,10 @@
             "dist": {
                 "type": "path",
                 "url": "./package/imet-core",
-                "reference": "8973e9d93b189a3c5cf60cfbc4a7cd814cf2532b"
+                "reference": "7986c1805142b4aa9860572d98f38409f6a58c22"
             },
             "require": {
-                "andreamarelli/modular-forms": "^3.5.12",
+                "andreamarelli/modular-forms": "^4.0",
                 "ext-json": "*",
                 "ext-zip": "*",
                 "php": ">=8.4"
@@ -1299,32 +1299,32 @@
         },
         {
             "name": "andreamarelli/modular-forms",
-            "version": "3.6.1",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:andreamarelli/modular-forms.git",
-                "reference": "963606759bfeefe6d00135dd97172165b8a1bcd3"
+                "reference": "f0df6a7a62bf47958e1177ad82a5d581b3c12ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/963606759bfeefe6d00135dd97172165b8a1bcd3",
-                "reference": "963606759bfeefe6d00135dd97172165b8a1bcd3",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/f0df6a7a62bf47958e1177ad82a5d581b3c12ddf",
+                "reference": "f0df6a7a62bf47958e1177ad82a5d581b3c12ddf",
                 "shasum": ""
             },
             "require": {
-                "conedevelopment/i18n": "^1.1",
+                "conedevelopment/i18n": "^1.5",
                 "ext-json": "*",
                 "ext-pdo": "*",
                 "ext-zip": "*",
                 "php": ">=8.4",
-                "wa72/htmlpagedom": "^3.0"
+                "wa72/htmlpagedom": "^3.1"
             },
             "require-dev": {
-                "driftingly/rector-laravel": "^2.0",
-                "larastan/larastan": "^3.0",
-                "laravel/pint": "^1.25",
+                "driftingly/rector-laravel": "^2.2",
+                "larastan/larastan": "^3.9",
+                "laravel/pint": "^1.29",
                 "orchestra/testbench": "^10.0",
-                "rector/rector": "^2.1"
+                "rector/rector": "^2.3"
             },
             "type": "library",
             "extra": {
@@ -1373,10 +1373,10 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.6.1",
+                "source": "https://github.com/andreamarelli/modular-forms/tree/v4.0.2",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2026-03-19T14:41:02+00:00"
+            "time": "2026-03-20T13:47:04+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -2353,22 +2353,22 @@
         },
         {
             "name": "driftingly/rector-laravel",
-            "version": "2.1.12",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/driftingly/rector-laravel.git",
-                "reference": "2a2175eefabca6d15c247d55de17c75dc2f787a9"
+                "reference": "807840ceb09de6764cbfcce0719108d044a459a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/2a2175eefabca6d15c247d55de17c75dc2f787a9",
-                "reference": "2a2175eefabca6d15c247d55de17c75dc2f787a9",
+                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/807840ceb09de6764cbfcce0719108d044a459a9",
+                "reference": "807840ceb09de6764cbfcce0719108d044a459a9",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0",
                 "rector/rector": "^2.2.7",
-                "webmozart/assert": "^1.11"
+                "webmozart/assert": "^1.11 || ^2.0"
             },
             "type": "rector-extension",
             "autoload": {
@@ -2383,9 +2383,9 @@
             "description": "Rector upgrades rules for Laravel Framework",
             "support": {
                 "issues": "https://github.com/driftingly/rector-laravel/issues",
-                "source": "https://github.com/driftingly/rector-laravel/tree/2.1.12"
+                "source": "https://github.com/driftingly/rector-laravel/tree/2.2.0"
             },
-            "time": "2026-03-06T19:59:21+00:00"
+            "time": "2026-03-19T17:24:38+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -11474,23 +11474,23 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.12.1",
+            "version": "2.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "9be6926d8b485f55b9229203f962b51ed377ba68"
+                "reference": "ff31ad6efc62e66e518fbab1cde3453d389bcdc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/9be6926d8b485f55b9229203f962b51ed377ba68",
-                "reference": "9be6926d8b485f55b9229203f962b51ed377ba68",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/ff31ad6efc62e66e518fbab1cde3453d389bcdc8",
+                "reference": "ff31ad6efc62e66e518fbab1cde3453d389bcdc8",
                 "shasum": ""
             },
             "require": {
                 "ext-ctype": "*",
                 "ext-date": "*",
                 "ext-filter": "*",
-                "php": "^7.2 || ^8.0"
+                "php": "^8.2"
             },
             "suggest": {
                 "ext-intl": "",
@@ -11500,7 +11500,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.10-dev"
+                    "dev-feature/2-0": "2.0-dev"
                 }
             },
             "autoload": {
@@ -11516,6 +11516,10 @@
                 {
                     "name": "Bernhard Schussek",
                     "email": "bschussek@gmail.com"
+                },
+                {
+                    "name": "Woody Gilk",
+                    "email": "woody.gilk@gmail.com"
                 }
             ],
             "description": "Assertions to validate method input/output with nice error messages.",
@@ -11526,9 +11530,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.12.1"
+                "source": "https://github.com/webmozarts/assert/tree/2.1.6"
             },
-            "time": "2025-10-29T15:56:20+00:00"
+            "time": "2026-02-27T10:28:38+00:00"
         }
     ],
     "aliases": [],

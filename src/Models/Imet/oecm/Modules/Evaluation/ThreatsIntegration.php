@@ -22,7 +22,7 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_threats_integration';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

@@ -19,7 +19,7 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_management_activities';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

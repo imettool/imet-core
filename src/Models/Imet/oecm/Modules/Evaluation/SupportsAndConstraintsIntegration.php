@@ -22,7 +22,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
 {
     protected $table = 'eval_supports_constraints_integration';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

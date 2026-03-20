@@ -50,7 +50,7 @@ class ImetModule extends Module
 
     public static ?string $foreign_key = 'FormID';
 
-    protected bool $enable_raw_export = true;
+    public bool $enable_raw_export = true;
 
     /** @phpstan-var null|array<string, array<string|int, string>> $ratingLegend */
     public ?array $ratingLegend;

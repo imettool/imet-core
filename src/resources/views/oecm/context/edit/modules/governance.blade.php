@@ -3,7 +3,7 @@
 /** @var array $vueData */
 /** @var array $definitions */
 
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Helpers\SelectionList;
 
 $vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 

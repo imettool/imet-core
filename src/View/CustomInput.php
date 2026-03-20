@@ -14,7 +14,7 @@ namespace ImetCore\View;
 
 use Illuminate\Support\Str;
 use Illuminate\View\View;
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Helpers\SelectionList;
 use ModularForms\View\Module\Components\Field\Input;
 use Throwable;
 

@@ -19,7 +19,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_information_availability';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 

@@ -19,7 +19,7 @@ final class ImportanceClimateChange extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_importance_c15';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

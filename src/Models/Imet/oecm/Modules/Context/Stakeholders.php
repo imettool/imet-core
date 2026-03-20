@@ -20,7 +20,7 @@ final class Stakeholders extends Modules\Component\ImetModule
 {
     protected $table = 'context_stakeholders_natural_resources';
 
-    protected bool $fixed_rows = false;
+    public bool $fixed_rows = false;
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 

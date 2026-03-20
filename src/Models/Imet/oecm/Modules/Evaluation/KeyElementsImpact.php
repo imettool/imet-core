@@ -19,7 +19,7 @@ final class KeyElementsImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_key_elements_impact';
 
-    protected bool $fixed_rows = true;
+    public bool $fixed_rows = true;
 
     public $titles = [];
 
