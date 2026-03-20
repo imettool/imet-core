@@ -1,7 +1,11 @@
-@php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $records */
+<?php
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
+
+use ImetCore\Models\Imet\v2\Imet_Eval;
 
 $records = $records[0];
 $PlanExistence = boolval($records['PlanExistence']);

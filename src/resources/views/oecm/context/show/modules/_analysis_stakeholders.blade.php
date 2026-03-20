@@ -1,12 +1,16 @@
 <?php
-/** @var Collection $collection */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 /** @var array $stakeholders */
 /** @var array $key_elements_importance */
 /** @var string $current_stakeholder */
+
 /** @var string $summary_title */
 
+use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -22,7 +26,7 @@ $stakeholders_records = collect($records)
 
 $stakeholders_categories = Stakeholders::getStakeholders(
     $form_id,
-    ('ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE,
+    ('ImetCore\Models\Imet\oecm\Modules\Context\\' . $definitions['module_class'])::$USER_MODE,
     true
 );
 

@@ -1,6 +1,11 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\v1\Imet;
 
 $record = $records[0];
 $total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();

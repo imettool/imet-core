@@ -1,6 +1,11 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var Array $records */
+/** @var array $records */
+
+use ImetCore\Models\Imet\v1\Imet;
 
 use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;

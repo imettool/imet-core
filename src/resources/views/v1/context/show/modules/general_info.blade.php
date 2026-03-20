@@ -1,7 +1,12 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 /** @var mixed $item */
+
+use ImetCore\Models\Imet\v1\Imet;
 
     if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
         $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($item->wdpa_id);

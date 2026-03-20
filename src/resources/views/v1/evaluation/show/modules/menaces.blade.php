@@ -1,7 +1,11 @@
 <?php
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
-/** @var array $item */
+
+use ImetCore\Models\Imet\v1\Imet_Eval;
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 

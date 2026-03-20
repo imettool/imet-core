@@ -1,11 +1,16 @@
-@php
-    /** @var \Illuminate\Database\Eloquent\Collection $collection */
-    /** @var array $definitions */
-    /** @var array $records */
+<?php
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
+/** @var array $definitions */
+/** @var array $records */
 
-    foreach ($records as $i => $record){
-        $records[$i]['Equipment'] = $record['__predefined_label'];
-    }
-@endphp
+use ImetCore\Models\Imet\oecm\Imet_Eval;
+
+foreach ($records as $i => $record){
+    $records[$i]['Equipment'] = $record['__predefined_label'];
+}
+
+?>
 
 @include('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])

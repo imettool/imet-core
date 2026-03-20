@@ -1,6 +1,11 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\v2\Imet;
 
 $group_key = null;
 $table_id = 'table_'.$definitions['slug'];

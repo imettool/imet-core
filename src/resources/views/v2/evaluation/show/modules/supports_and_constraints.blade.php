@@ -1,9 +1,11 @@
 <?php
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
 
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
-
+use ImetCore\Models\Imet\v2\Imet_Eval;
 use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';

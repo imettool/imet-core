@@ -1,7 +1,11 @@
 <?php
-/** @var \Collection $collection */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\oecm\Imet;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;

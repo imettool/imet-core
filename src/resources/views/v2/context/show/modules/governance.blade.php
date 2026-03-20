@@ -1,6 +1,11 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\v2\Imet;
 ?>
 
 <h3>@lang('imet-core::v2_context.Governance.governance')</h3>
