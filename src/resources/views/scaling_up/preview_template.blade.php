@@ -15,7 +15,9 @@
 
 @section('side-buttons')
 
-    @component('modular-forms::module.side-buttons')
+    @component('modular-forms::module.side-buttons',[
+        'withZoom' => true
+    ])
 
         <div id="imet_report" class="imet_report sideButtons">
             <div @click="downloadFiles">

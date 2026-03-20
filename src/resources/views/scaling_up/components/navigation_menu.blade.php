@@ -1,5 +1,7 @@
 
-@component('modular-forms::module.side-buttons')
+@component('modular-forms::module.side-buttons', [
+    'withZoom' => true
+])
 
     <div class="sideButtons mr-3" style="width:200px;">
         <div class="content">

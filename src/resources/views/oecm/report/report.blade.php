@@ -201,6 +201,7 @@ if ($item!==null && $item->language != App::getLocale()) {
 
     @component('modular-forms::module.side-buttons', [
         'withPrint' => $action==='edit',
+        'withZoom' => true,
     ])
 
         @if ($action === 'edit')
