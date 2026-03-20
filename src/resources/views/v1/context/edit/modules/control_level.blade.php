@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\v1\Imet;
 $vue_record_index = '0';
 
 $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);

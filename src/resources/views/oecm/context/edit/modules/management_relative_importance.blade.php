@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\oecm\Imet;
 ?>
 
 <div id="relative_importance">

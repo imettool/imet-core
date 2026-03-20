@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var int $form_id */
+
+use ImetCore\Models\Imet\oecm\Imet;
 
 use ImetCore\Controllers\Imet\oecm\Controller;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;

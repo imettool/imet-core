@@ -1,9 +1,10 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
+use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
 

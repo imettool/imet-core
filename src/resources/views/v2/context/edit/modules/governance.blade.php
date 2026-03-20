@@ -1,11 +1,12 @@
 <?php
-/** @var Collection $collection */
-/** @var array $module->vueData */
-
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\SelectionList;
+use ImetCore\Models\Imet\v2\Imet;
 use ModularForms\Enums\ModuleViewModes;
 
 $module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');

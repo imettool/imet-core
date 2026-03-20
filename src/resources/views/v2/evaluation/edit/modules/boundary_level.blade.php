@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\v2\Imet_Eval;
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 use ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
 use Illuminate\Support\Facades\View;
@@ -15,7 +18,7 @@ $view = ImetModule::injectIconToPredefinedCriteriaWithVue(ImetModule::MARINE, $v
 
 @include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
-<br />
+<br/>
 
 {!! $view !!}
 

@@ -1,8 +1,12 @@
-@php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+<?php
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-@endphp
+
+use ImetCore\Models\Imet\v2\Imet_Eval;
+
+?>
 
 @foreach($definitions['groups'] as $group_key => $group_label)
 

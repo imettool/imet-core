@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\oecm\Imet_Eval;
 $table_id = 'table_'.$definitions['slug'];
 
 $equipment_id = "'" . $definitions['slug'] . "_'+index+'_Equipment'";

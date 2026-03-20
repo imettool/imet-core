@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\v1\Imet;
 ?>
 
 @include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])

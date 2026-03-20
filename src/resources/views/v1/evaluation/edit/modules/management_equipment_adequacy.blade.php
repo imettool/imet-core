@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
+
+use ImetCore\Models\Imet\v1\Imet_Eval;
 
 $group_key = '';
 $table_id = 'table_'.$definitions['slug'];

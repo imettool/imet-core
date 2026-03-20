@@ -1,10 +1,12 @@
 <?php
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
+/** @var array $definitions */
+
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
-
-/** @var Collection $collection */
-/** @var array $module->vueData */
-/** @var array $definitions */
+use ImetCore\Models\Imet\v2\Imet;
 
 ?>
 
@@ -21,52 +23,56 @@ use Illuminate\Support\Str;
 
     @if($field['name']==='SupportingOtherObservation')
         <div class="module-row !mb-4" v-if="show_other_obs_supporting">
-    @elseif($field['name']==='ProvisioningOtherObservation')
-        <div class="module-row !mb-4" v-if="show_other_obs_provisioning">
-    @else
-        <div class="module-row !mb-4">
-    @endif
+            @elseif($field['name']==='ProvisioningOtherObservation')
+                <div class="module-row !mb-4" v-if="show_other_obs_provisioning">
+                    @else
+                        <div class="module-row !mb-4">
+                            @endif
 
-        {{-- label  --}}
-        <div class="module-row__label !w-2/5">
-            <label for="{{ $field['name'] }}">{!! ucfirst( $field['label']) !!}</label>
-            @if(!Str::contains($field['name'], 'Comments') && !Str::contains($field['name'], 'OtherObservation'))
-                <div class="italic">@lang('imet-core::v2_context.Spillover.sub_titles.' . $field['name'])</div>
-            @endif
-        </div>
+                            {{-- label  --}}
+                            <div class="module-row__label !w-2/5">
+                                <label for="{{ $field['name'] }}">{!! ucfirst( $field['label']) !!}</label>
+                                @if(!Str::contains($field['name'], 'Comments') && !Str::contains($field['name'], 'OtherObservation'))
+                                    <div
+                                        class="italic">@lang('imet-core::v2_context.Spillover.sub_titles.' . $field['name'])</div>
+                                @endif
+                            </div>
 
-        {{-- input field --}}
-        @include('modular-forms::module.edit.field.module-to-vue', [
-            'definitions' => $definitions,
-            'field' => $field,
-            'vue_record_index' => 0
-        ])
+                            {{-- input field --}}
+                            @include('modular-forms::module.edit.field.module-to-vue', [
+                                'definitions' => $definitions,
+                                'field' => $field,
+                                'vue_record_index' => 0
+                            ])
 
-    </div>
-
-
-@endforeach
+                        </div>
 
 
-@push('scripts')
-    <style lang="postcss">
-        #module_imet__v2__context__spillover .info-bar .message{
-            color: oklch(21% 0.034 264.665);    /* tailwind text-gray-900; */
-            .blue {
-                color: oklch(48.8% 0.243 264.376);
-            }
-            ol{
-                margin-left: 20px;
-                ul{
-                    margin-left: 20px;
-                }
-            }
-        }
-    </style>
+                        @endforeach
 
-    <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.Spillover(@json($module->vueData)))
-            .mount('#module_{{ $definitions['slug'] }}');
-    </script>
-@endpush
+
+                        @push('scripts')
+                            <style lang="postcss">
+                                #module_imet__v2__context__spillover .info-bar .message {
+                                    color: oklch(21% 0.034 264.665); /* tailwind text-gray-900; */
+
+                                    .blue {
+                                        color: oklch(48.8% 0.243 264.376);
+                                    }
+
+                                    ol {
+                                        margin-left: 20px;
+
+                                        ul {
+                                            margin-left: 20px;
+                                        }
+                                    }
+                                }
+                            </style>
+
+                            <script type="module">
+                                (new window.ImetCore.Apps.Modules.ImetV2.context.Spillover(@json($module->vueData)))
+                                    .mount('#module_{{ $definitions['slug'] }}');
+                            </script>
+        @endpush
 

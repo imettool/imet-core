@@ -1,8 +1,10 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\v2\Imet_Eval;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;

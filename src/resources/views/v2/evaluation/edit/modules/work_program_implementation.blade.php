@@ -1,9 +1,10 @@
 <?php
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var array<string, mixed> $vueData */
 
-/** @var ?string $group_key (optional - only for GROUP_ACCORDION) */
-
+use ImetCore\Models\Imet\v2\Imet_Eval;
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Str;
 

@@ -2,7 +2,6 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Imet;

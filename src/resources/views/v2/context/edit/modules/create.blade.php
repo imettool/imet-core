@@ -5,14 +5,8 @@
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Imet;
-
 use ImetCore\Controllers\Imet\Controller;
 use Illuminate\Database\Eloquent\Collection;
-
-/** @var Collection $collection */
-/** @var array $definitions */
-/** @var mixed $module->vueData */
-/** @var Controller $controller */   // ATTENTION: not directly passed the parent blade, but anyway available
 
 $vue_record_index = 0;
 

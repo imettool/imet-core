@@ -1,7 +1,10 @@
 <?php
-/** @var array $vueData */
+/** @var Imet_Eval $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\oecm\Imet_Eval;
 $vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
 
 $threats_in_sa2 = collect($vueData['records'])

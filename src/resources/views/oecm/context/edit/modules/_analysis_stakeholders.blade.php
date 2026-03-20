@@ -1,9 +1,11 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var Imet $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $stakeholders */
 
+use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;

@@ -1,8 +1,11 @@
-<?php
-/** @var array $vueData */
-/** @var array $definitions */
+<<?php
+ /** @var Imet $module */
+ /** @var string $controller */
+ /** @var string $mode */
+ /** @var array $definitions */
 
-use ImetCore\Helpers\SelectionList;
+ use ImetCore\Models\Imet\oecm\Imet;
+ use ImetCore\Helpers\SelectionList;
 
 $vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 
