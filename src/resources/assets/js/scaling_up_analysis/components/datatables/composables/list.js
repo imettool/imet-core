@@ -192,9 +192,9 @@ export function useList(component_data) {
         if ([null, "-"].includes(value)) {
             add_class = 'score_no';
         } else if (value <= -51) {
-            add_class = 'score_danger_alert';
+            add_class = 'score_very_high_danger';
         } else if (value < -33 && value > -51) {
-            add_class = 'score_danger_warning';
+            add_class = 'score_high_danger';
         } else if (value <= 0) {
             add_class = 'score_danger';
         } else if (value > 0 && value < 34) {

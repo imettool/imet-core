@@ -129,71 +129,43 @@ nav.steps a.step.cross-analysis-warnings {
   }
 
   .score_success {
-    color: white;
-    background-color: #00A74B !important;
+    color: black;
+    background-color: #61AD5A !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }
 
   .score_warning {
     color: black;
-    background-color: yellow !important;
+    background-color: #FDFF51 !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }
 
   .score_alert {
     color: black;
-    background-color: orange !important;
+    background-color: #EEC43F !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }
 
   .score_danger {
     color: white;
-    background-color: darkred !important;
+    background-color: #A52B15 !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }
 
-  .score_danger_warning {
+  .score_high_danger {
     color: white;
-    background-color: indianred !important;
+    background-color: #7A1D0D !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }
 
-  .score_danger_alert {
+  .score_very_high_danger {
     color: white;
-    background-color: red !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .score_danger_failed {
-    color: white;
-    background-color: orangered !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .score_threat_danger {
-    color: white;
-    background-color: #FFBFD6 !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .score_threat_medium_danger {
-    color: white;
-    background-color: #FFA9A9 !important;
-    border: 1px solid #ccc;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .score_constraints_success {
-    color: white;
-    background-color: #FF8686 !important;
+    background-color: #571232 !important;
     border: 1px solid #ccc;
     -webkit-print-color-adjust: exact;
   }

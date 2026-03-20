@@ -18,7 +18,7 @@ if ($color_scores) {
     if ($threats) {
         $classes = AssessmentsScores::score_class_threats($assessment_value);
     } elseif ($constraints) {
-        $classes = AssessmentsScores::score_class_threats($assessment_value, 'score_constraints_success');
+        $classes = AssessmentsScores::score_class_contraints($assessment_value);
     } else {
         $classes = AssessmentsScores::score_class($assessment_value);
     }
