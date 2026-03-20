@@ -1,8 +1,8 @@
 <?php
 
-use \ImetCore\Controllers;
-use \ImetCore\Models;
-use \ModularForms\Enums\ModuleViewModes;
+use ImetCore\Controllers;
+use ImetCore\Models;
+use ModularForms\Enums\ModuleViewModes;
 
 /** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var integer $formID */

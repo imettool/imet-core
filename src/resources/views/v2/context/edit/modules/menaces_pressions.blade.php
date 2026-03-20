@@ -7,7 +7,6 @@
 use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 

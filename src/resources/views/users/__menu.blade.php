@@ -1,7 +1,7 @@
 <?php
 /** @var string $selected */
 
-use \ImetCore\Models\User\Role;
+use ImetCore\Models\User\Role;
 
 ?>
 

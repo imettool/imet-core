@@ -2,7 +2,6 @@
 
 use ImetCore\Controllers\Imet\Controller;
 use ImetCore\Models\Imet\Imet;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 /** @var Controller $controller */

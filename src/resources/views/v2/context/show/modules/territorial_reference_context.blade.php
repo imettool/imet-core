@@ -9,7 +9,7 @@ use ImetCore\Models\Imet\v2\Imet;
 
 $definitions['label_width'] = 7;
 
-use \ImetCore\Helpers\Template;
+use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 ?>

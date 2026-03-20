@@ -7,7 +7,7 @@
 
 use ImetCore\Models\Imet\v2\Imet_Eval;
 
-use \ModularForms\Enums\ModuleViewModes;
+use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
 $table_id = 'table_'.$definitions['slug'];

@@ -7,7 +7,7 @@
 
 use ImetCore\Models\Imet\v2\Imet;
 
-use \Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 

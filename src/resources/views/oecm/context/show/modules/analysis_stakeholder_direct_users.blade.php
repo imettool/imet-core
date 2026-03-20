@@ -6,8 +6,8 @@
 /** @var array $records */
 
 use ImetCore\Models\Imet\oecm\Imet;
-use \ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
-use \Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use Illuminate\Database\Eloquent\Collection;
 
 $form_id = $collection[0]['FormID'];
 

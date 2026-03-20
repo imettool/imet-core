@@ -5,8 +5,7 @@
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\oecm\Imet_Eval;
-use Illuminate\Database\Eloquent\Collection;
-use \Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $original_definitions = $definitions;

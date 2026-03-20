@@ -4,7 +4,6 @@
 /** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
 use Wa72\HtmlPageDom\Helpers;

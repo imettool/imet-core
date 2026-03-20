@@ -6,8 +6,8 @@
 /** @var array $records */
 
 use ImetCore\Models\Imet\v2\Imet;
-use \ImetCore\Helpers\Template;
-use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $table_id = 'table_' . $definitions['slug'];
 $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);

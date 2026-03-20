@@ -9,7 +9,6 @@ use ImetCore\Models\Imet\v2\Imet;
 
 use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
-use Illuminate\Database\Eloquent\Collection;
 
 $groups = $definitions['groups'];
 

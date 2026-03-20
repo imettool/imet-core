@@ -2,7 +2,7 @@
 /** @var ?string $num_cols  */
 /** @var ?string $mode [optional]  */
 
-use \ModularForms\Enums\ModuleViewModes;
+use ModularForms\Enums\ModuleViewModes;
 
 $num_cols ??= 3;
 $mode ??= ModuleViewModes::EDIT;

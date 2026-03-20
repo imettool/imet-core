@@ -6,7 +6,6 @@
 
 use ImetCore\Models\Imet\v2\Imet;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
 use ModularForms\View\Module\Components\Body;
 use Wa72\HtmlPageDom\HtmlPageCrawler;

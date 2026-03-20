@@ -6,7 +6,6 @@
 
 use ImetCore\Models\Imet\oecm\Imet;
 use ImetCore\Controllers\Imet\Controller;
-use Illuminate\Database\Eloquent\Collection;
 
 $vue_record_index = 0;
 

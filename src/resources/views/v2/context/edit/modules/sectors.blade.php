@@ -7,8 +7,8 @@
 use ImetCore\Models\Imet\v2\Imet;
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
-use \ImetCore\Helpers\Template;
-use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 $group_key ??= '';
 

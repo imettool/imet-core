@@ -5,7 +5,6 @@
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Imet_Eval;
-use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\Imet;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;

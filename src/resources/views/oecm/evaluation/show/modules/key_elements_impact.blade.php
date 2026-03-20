@@ -6,7 +6,6 @@
 /** @var array $records */
 
 use ImetCore\Models\Imet\oecm\Imet_Eval;
-use Illuminate\Database\Eloquent\Collection;
 
 ?>
 

@@ -4,7 +4,6 @@
 /** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use ImetCore\Models\Imet\v2\Imet;
 

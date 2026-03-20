@@ -1,10 +1,10 @@
 <?php
 
-use \ImetCore\Controllers;
-use \ImetCore\Models\Imet;
-use \ModularForms\Helpers\Template;
-use \Illuminate\Database\Eloquent\Collection;
-use \Illuminate\Http\Request;
+use ImetCore\Controllers;
+use ImetCore\Models\Imet;
+use ModularForms\Helpers\Template;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 /** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
 /** @var Collection $list */

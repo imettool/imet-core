@@ -1,8 +1,8 @@
 <?php
-use \ImetCore\Controllers;
-use \ImetCore\Models\Imet\Imet;
-use \Illuminate\Support\Facades\Route;
-use \Illuminate\Support\Str;
+use ImetCore\Controllers;
+use ImetCore\Models\Imet\Imet;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /** @var Imet $item */
 /** @var string $phase */

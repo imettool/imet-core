@@ -1,6 +1,6 @@
 <?php
 
-use \ImetCore\Controllers;
+use ImetCore\Controllers;
 
 /** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
 

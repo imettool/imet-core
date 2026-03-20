@@ -11,7 +11,6 @@ use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
 use ModularForms\Helpers\DOM;
 use ModularForms\Helpers\Template;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 $num_cols = count($definitions['fields']);
