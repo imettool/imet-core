@@ -27,7 +27,7 @@ $dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
 {!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

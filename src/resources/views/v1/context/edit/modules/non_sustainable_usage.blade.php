@@ -12,7 +12,7 @@ use ImetCore\Models\Imet\v1\Imet;
 @include('modular-forms::module.edit.type.table', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

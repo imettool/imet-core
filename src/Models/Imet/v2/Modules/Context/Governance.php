@@ -21,6 +21,8 @@ final class Governance extends Modules\Component\ImetModule
     protected $table = 'context_governance';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.governance';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.governance';
 
     public function __construct(array $attributes = [])
     {

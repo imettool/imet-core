@@ -5,7 +5,6 @@
 /** @var array $definitions */
 
 use ImetCore\Models\Imet\v2\Imet;
-
 use Illuminate\Support\Facades\View;
 use ModularForms\View\Module\Components\Body;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -18,11 +17,11 @@ $dom->filter('.module-row')->eq(5)->before('<h4>' . trans('imet-core::v2_context
 
 ?>
 
-{!! $original_view !!}
+{!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
-    :definitions="$definitions"
+    :module="$module"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>
 

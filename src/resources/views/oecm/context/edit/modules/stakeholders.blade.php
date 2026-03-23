@@ -22,7 +22,7 @@ $dom->filter('h5.group_title_' . $definitions['slug'] . '_group9')->before('<h3 
 {!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

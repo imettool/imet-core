@@ -20,6 +20,8 @@ final class GeographicalLocation extends Modules\Component\ImetModule
     protected $table = 'context_localization';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.geographical_location';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.geographical_location';
 
     public function __construct(array $attributes = [])
     {

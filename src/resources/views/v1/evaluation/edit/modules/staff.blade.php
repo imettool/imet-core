@@ -89,7 +89,7 @@ $status_id = "'" . $definitions['slug'] . "_'+index+'___status'";
 </table>
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

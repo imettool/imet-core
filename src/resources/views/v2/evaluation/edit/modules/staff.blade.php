@@ -91,7 +91,7 @@ $staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumber
 </table>
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

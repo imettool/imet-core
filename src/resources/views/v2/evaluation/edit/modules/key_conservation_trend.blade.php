@@ -10,7 +10,7 @@ use ImetCore\Models\Imet\v2\Imet_Eval;
 @include('imet-core::components.module.edit.group_with_nothing_to_evaluate', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

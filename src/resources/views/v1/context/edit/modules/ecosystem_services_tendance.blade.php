@@ -19,7 +19,7 @@ $view_groupTable = \ModularForms\Helpers\Module::injectGroupTitle($view_groupTab
 @include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-    :vue-data="$module->vueData"
+    :module="$module"
     :definitions="$definitions"
     :mode="$mode"
 ></x-modular-forms::module.components.script>
