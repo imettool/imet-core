@@ -28,6 +28,8 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.evaluation.show.modules.supports_and_constraints_integration';
+
     protected static $DEPENDENCY_ON = 'Stakeholder';
 
     protected static $DEPENDENCIES = [

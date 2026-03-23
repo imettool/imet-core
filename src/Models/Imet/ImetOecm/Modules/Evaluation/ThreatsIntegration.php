@@ -28,6 +28,8 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.evaluation.show.modules.threats_integration';
+
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Threat'],
         [Modules\Evaluation\InformationAvailability::class, 'Threat'],

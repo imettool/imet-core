@@ -24,6 +24,8 @@ final class Create extends Modules\Component\ImetModule
 
     protected $primaryKey = 'FormID';
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.context.edit.modules.create';
+
     public static array $rules = [
         'Year' => 'required',
         'wdpa_id' => 'required',

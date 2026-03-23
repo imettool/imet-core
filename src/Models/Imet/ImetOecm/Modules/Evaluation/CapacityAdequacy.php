@@ -23,6 +23,8 @@ final class CapacityAdequacy extends Modules\Component\ImetModule_Eval
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.evaluation.edit.modules.capacity_adequacy';
+
     protected static $DEPENDENCY_ON = 'Member';
 
     public function __construct(array $attributes = [])
