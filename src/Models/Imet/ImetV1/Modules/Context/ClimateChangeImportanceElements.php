@@ -23,6 +23,8 @@ final class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.climate_change_importance_elements';
+
     public function __construct(array $attributes = [])
     {
 
