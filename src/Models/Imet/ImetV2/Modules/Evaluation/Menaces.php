@@ -21,7 +21,7 @@ final class Menaces extends Modules\Component\ImetModule_Eval
 
     public bool $fixed_rows = true;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.menaces';
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.menaces';

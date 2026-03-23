@@ -19,7 +19,7 @@ final class VegetalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_vegetal_presence';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ImportanceSpecies::class, 'Species'],

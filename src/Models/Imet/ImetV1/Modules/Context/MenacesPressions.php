@@ -19,7 +19,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 {
     protected $table = 'context_menaces_pressions';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public static $groupsByCategory = [
         ['group0'],

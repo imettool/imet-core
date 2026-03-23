@@ -19,7 +19,7 @@ final class DesignatedValuesConservationTendency extends Modules\Component\ImetM
 {
     protected $table = 'eval_designated_values_conservation_tendency';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = [])
     {

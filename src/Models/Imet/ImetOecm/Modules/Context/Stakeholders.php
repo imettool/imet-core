@@ -22,7 +22,7 @@ final class Stakeholders extends Modules\Component\ImetModule
 
     public bool $fixed_rows = false;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
         [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],

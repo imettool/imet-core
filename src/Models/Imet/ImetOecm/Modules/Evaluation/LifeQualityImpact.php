@@ -19,7 +19,7 @@ final class LifeQualityImpact extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_life_quality_impact';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = [])
     {

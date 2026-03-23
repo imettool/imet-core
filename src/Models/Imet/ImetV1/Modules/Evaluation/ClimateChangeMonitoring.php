@@ -19,7 +19,7 @@ final class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_climate_change_monitoring';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = [])
     {

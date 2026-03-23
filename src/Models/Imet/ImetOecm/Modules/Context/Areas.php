@@ -22,7 +22,7 @@ final class Areas extends Modules\Component\ImetModule
 
     public int $label_width = 6;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {

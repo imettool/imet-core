@@ -21,7 +21,7 @@ final class Habitats extends Modules\Component\ImetModule
 {
     protected $table = 'context_habitats';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ThreatsBiodiversity::class, 'EcosystemType'],

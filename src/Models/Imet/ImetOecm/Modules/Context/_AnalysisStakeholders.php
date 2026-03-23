@@ -25,7 +25,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\KeyElements::class, 'Element'],
     ];
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public static $USER_MODE;
 

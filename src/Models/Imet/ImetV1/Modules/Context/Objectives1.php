@@ -18,7 +18,7 @@ final class Objectives1 extends _Objectives
 {
     protected $table = 'context_objectives1';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {

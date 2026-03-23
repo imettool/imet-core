@@ -19,7 +19,7 @@ final class ClimateChange extends Modules\Component\ImetModule
 {
     protected $table = 'context_climate_change_changements';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\ImportanceClimateChange::class, 'Value'],

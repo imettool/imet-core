@@ -18,7 +18,7 @@ final class AnalysisStakeholdersObjectives extends _Objectives
 {
     protected $table = 'context_stakeholders_analysis_objectives';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public function __construct(array $attributes = [])
     {

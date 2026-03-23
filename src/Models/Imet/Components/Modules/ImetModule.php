@@ -50,7 +50,7 @@ class ImetModule extends Module
     public const string INPUT_COMPONENT_VIEW = CustomInput::class;
     public const string INPUT_PREVIEW_COMPONENT_VIEW = CustomInputPreview::class;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static ?string $schema = null;
 

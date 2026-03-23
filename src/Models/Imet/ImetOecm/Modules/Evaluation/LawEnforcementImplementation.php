@@ -19,7 +19,7 @@ final class LawEnforcementImplementation extends Modules\Component\ImetModule_Ev
 {
     protected $table = 'eval_law_enforcement_implementation';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public function __construct(array $attributes = [])
     {

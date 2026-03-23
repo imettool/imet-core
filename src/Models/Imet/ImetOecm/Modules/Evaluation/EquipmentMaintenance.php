@@ -21,7 +21,7 @@ final class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
     public bool $fixed_rows = true;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static $DEPENDENCY_ON = 'Equipment';
 

@@ -18,7 +18,7 @@ final class ObjectivesClimateChange extends _Objectives
 {
     protected $table = 'eval_objectives_c15';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = [])
     {

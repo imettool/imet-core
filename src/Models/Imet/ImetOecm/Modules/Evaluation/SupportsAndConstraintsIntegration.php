@@ -26,7 +26,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
 
     public $titles = [];
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     protected static $DEPENDENCY_ON = 'Stakeholder';
 

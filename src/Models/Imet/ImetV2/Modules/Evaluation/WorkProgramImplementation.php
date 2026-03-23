@@ -20,7 +20,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {
     protected $table = 'eval_work_program_implementation';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.work_program_implementation';
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.work_program_implementation';

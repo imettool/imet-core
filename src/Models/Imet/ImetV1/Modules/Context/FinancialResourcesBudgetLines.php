@@ -19,7 +19,7 @@ final class FinancialResourcesBudgetLines extends Modules\Component\ImetModule
 {
     protected $table = 'context_financial_resources_budget_lines';
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public function __construct(array $attributes = [])
     {
