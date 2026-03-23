@@ -49,7 +49,7 @@ use ImetCore\Models\Species;
 
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>

@@ -140,9 +140,9 @@ use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
 @endforeach
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>
 
 @push('scripts')

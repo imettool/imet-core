@@ -28,7 +28,7 @@ $dom = HtmlPageCrawler::create('<div>' . $first_group . $second_group . '</div>'
 {!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>

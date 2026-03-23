@@ -13,7 +13,7 @@ use ImetCore\Models\Imet\ImetV1\Imet;
 @include('modular-forms::module.edit.type.accordion', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>

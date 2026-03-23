@@ -21,7 +21,7 @@ $view_groupTable = ImetModule::injectIconToGroups($view_groupTable, LawEnforceme
 @include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>

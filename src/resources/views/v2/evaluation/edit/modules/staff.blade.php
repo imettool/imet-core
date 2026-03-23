@@ -93,6 +93,6 @@ $staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumber
 
 <x-modular-forms::module.components.script
     :module="$module"
-    :definitions="$definitions"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

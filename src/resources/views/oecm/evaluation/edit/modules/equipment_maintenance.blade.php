@@ -88,6 +88,6 @@ $adequacy_level_id = "'" . $definitions['slug'] . "_'+index+'_AdequacyLevel'";
 
 <x-modular-forms::module.components.script
     :module="$module"
-    :definitions="$definitions"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

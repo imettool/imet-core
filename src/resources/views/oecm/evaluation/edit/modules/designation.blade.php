@@ -12,7 +12,7 @@ use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
 @include('imet-core::components.module.edit.table_with_nothing_to_evaluate', ['definitions' => $definitions])
 
 <x-modular-forms::module.components.script
-        :module="$module"
-        :definitions="$definitions"
-        :mode="$mode"
+    :module="$module"
+    :controller="$controller"
+    :mode="$mode"
 ></x-modular-forms::module.components.script>
