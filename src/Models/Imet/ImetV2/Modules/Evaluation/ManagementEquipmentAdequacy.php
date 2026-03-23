@@ -23,6 +23,9 @@ final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eva
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.management_equipment_adequacy';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.management_equipment_adequacy';
+
     public function __construct(array $attributes = [])
     {
 

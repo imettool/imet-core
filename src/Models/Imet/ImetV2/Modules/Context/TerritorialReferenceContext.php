@@ -21,6 +21,9 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.territorial_reference_context';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.territorial_reference_context';
+
     public function __construct(array $attributes = [])
     {
 

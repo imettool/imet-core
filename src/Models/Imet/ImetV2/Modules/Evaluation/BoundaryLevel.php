@@ -21,6 +21,9 @@ final class BoundaryLevel extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.boundary_level';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.boundary_level';
+
     public function __construct(array $attributes = [])
     {
 

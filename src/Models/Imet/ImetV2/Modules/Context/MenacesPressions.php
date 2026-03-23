@@ -22,6 +22,8 @@ final class MenacesPressions extends Modules\Component\ImetModule
     protected $table = 'context_menaces_pressions';
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.menaces_pressions';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.menaces_pressions';
 
     protected static $DEPENDENCIES = [
         [Modules\Evaluation\Menaces::class, 'Value'],

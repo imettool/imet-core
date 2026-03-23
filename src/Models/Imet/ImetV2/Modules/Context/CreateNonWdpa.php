@@ -19,6 +19,7 @@ final class CreateNonWdpa extends Modules\Component\ImetModule
     protected $table = 'forms';
 
     protected $primaryKey = 'FormID';
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.create_non_wdpa';
 
     public static array $rules = [
         'Year' => 'required',

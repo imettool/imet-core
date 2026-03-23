@@ -25,6 +25,9 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.information_availability';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.information_availability';
+
     protected static $DEPENDENCY_ON = 'Element';
 
     public function __construct(array $attributes = [])

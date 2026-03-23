@@ -23,6 +23,9 @@ final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.supports_and_constraints';
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.supports_and_constraints';
+
     public function __construct(array $attributes = [])
     {
 
