@@ -35,7 +35,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
         [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
     ];
 
-    protected static array $extra_raw_fields = ['Ranking' => '__score'];
+    public static array $extra_raw_fields = ['Ranking' => '__score'];
 
     public function __construct(array $attributes = [])
     {

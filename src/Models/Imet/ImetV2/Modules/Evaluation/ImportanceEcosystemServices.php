@@ -33,7 +33,7 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
         [Modules\Evaluation\EcosystemServices::class, 'Aspect'],
     ];
 
-    protected static array $extra_raw_fields = ['rank' => '_rank',
+    public static array $extra_raw_fields = ['rank' => '_rank',
         'Importance' => '_Importance',
         'ImportanceRegional' => '_ImportanceRegional',
         'ImportanceGlobal' => '_ImportanceGlobal'];

@@ -31,7 +31,7 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
     ];
 
-    protected static array $extra_raw_fields = ['rank' => '_rank',
+    public static array $extra_raw_fields = ['rank' => '_rank',
         'Impact' => '_Impact',
         'Extension' => '_Extension',
         'Duration' => '_Duration',
