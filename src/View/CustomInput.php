@@ -26,10 +26,6 @@ class CustomInput extends Input
     #[\Override]
     public function render(): View
     {
-        // Skip non IMET custom inputs
-        if (! Str::startsWith($this->type, 'imet-core::')) {
-            return parent::render();
-        }
 
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa')) {
