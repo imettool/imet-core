@@ -3,7 +3,6 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $records */
 
 use ImetCore\Models\Imet\ImetV2\Imet;
@@ -15,7 +14,7 @@ $area = \ImetCore\Models\Imet\ImetV2\Modules\Context\Areas::getArea($collection[
 $sumUnderControlArea = 0;
 $UnderControlPatrolKm = 0;
 $UnderControlPatrolManDay = 0;
-@endphp
+?>
 
 <table id="{{ $table_id }}" class="table module-table">
 

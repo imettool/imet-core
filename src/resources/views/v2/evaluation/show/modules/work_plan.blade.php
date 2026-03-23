@@ -3,14 +3,13 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $records */
 
 use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 $records = $records[0];
 $PlanExistence = boolval($records['PlanExistence']);
-@endphp
+?>
 
 @foreach($definitions['fields'] as $index=>$field)
 
