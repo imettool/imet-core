@@ -101,13 +101,13 @@ if (array_key_exists($vue_record_index, $module->vueData['records']) && array_ke
 
 @push('scripts')
     <style>
-        #module_imet__v2__context__areas .module-row__input div {
+        #module_{{ $definitions['slug'] }} .module-row__input div {
             display: inline-block;
         }
     </style>
 
     <script type="module">
-        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($module->vueData)))
+        window.Areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

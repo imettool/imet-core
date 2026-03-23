@@ -60,7 +60,7 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
         });
 
         function get_total_budget(){
-            return window.imet__v1__context__financial_available_resources.totals.reduce(
+            return window.FinancialAvailableResources.totals.reduce(
                 (accumulator, currentValue) => accumulator + currentValue
             );
         }

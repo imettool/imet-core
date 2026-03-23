@@ -59,13 +59,13 @@ $vue_record_index = '0';
 
 @push('scripts')
     <style>
-        #module_imet__v1__context__areas .module-row__input div {
+        #module_{{ $definitions['slug'] }} .module-row__input div {
             display: inline-block;
         }
     </style>
 
     <script type="module">
-        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.Areas(@json($module->vueData)))
+        window.Areas = (new window.ImetCore.Apps.Modules.ImetV1.context.Areas(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

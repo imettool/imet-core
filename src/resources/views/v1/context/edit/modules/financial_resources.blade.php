@@ -116,7 +116,7 @@ $module->vueData['area'] = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::g
 
 @push('scripts')
     <script type="module">
-        window.imet__v1__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources(@json($module->vueData)))
+        window.FinancialResources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

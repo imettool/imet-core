@@ -49,7 +49,7 @@ use ImetCore\Models\Imet\ImetV2\Imet;
 
 @push('scripts')
     <style lang="postcss">
-        #module_imet__v2__context__spillover .info-bar .message {
+        #module_{{ $definitions['slug'] }} .info-bar .message {
             color: oklch(21% 0.034 264.665); /* tailwind text-gray-900; */
 
             .blue {

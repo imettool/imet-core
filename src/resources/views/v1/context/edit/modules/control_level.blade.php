@@ -136,7 +136,7 @@ $area = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::getArea($module->vue
         }
     </style>
     <script type="module">
-        window.imet__v1__context__areas = (new window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel(@json($module->vueData)))
+        window.Areas = (new window.ImetCore.Apps.Modules.ImetV1.context.ControlLevel(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

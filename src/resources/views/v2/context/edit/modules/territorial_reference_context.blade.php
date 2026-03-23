@@ -147,7 +147,7 @@ use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
 
 @push('scripts')
     <style lang="postcss">
-        #module_imet__v2__context__territorial_reference_context {
+        #module_{{ $definitions['slug'] }} {
             .BenefitSocioEconomicAspects {
                 padding: 10px 10px 40px 10px;
             }
