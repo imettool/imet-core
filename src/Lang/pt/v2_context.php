@@ -828,7 +828,7 @@ return [
             'group9' => 'Serviços de apoio',
         ],
         'predefined_values' => [
-            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)'],
+            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)', 'Benefícios de repercussão nos pesqueiros vizinhos'],
             'group1' => ['Madeira de alto valor', 'Madeira para a construção local', 'Fibras de caule (palmeiras, kenaf, etc.)', 'Outras fibras (folhas, sumaúma, coco, etc.)', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes)', 'Areia (construção)', 'Algal/conchas', 'Terras de cultivo (agricultura, pecuária, florestas)'],
             'group2' => ['Lenha e biocombustíveis', 'Água para a energia', 'Fertilizante'],
             'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Prevenção da erosão costeira'],
@@ -837,7 +837,7 @@ return [
             'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],
             'group7' => ['Simbólico ou histórico', 'Sagrado ou religioso'],
             'group8' => ['conservacao ex situ'],
-            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'Formação da paisagem marítima', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)'],
+            'group9' => ['Produção primária líquida (vegetação)', 'Ciclagem de nutrientes (decomposição e mineralização do lixo)', 'Habitats importantes (nidificação de aves - desova junto ao mar - habitats viveiros)', 'Formação da paisagem marítima', 'Habitat de antigas espécies (por exemplo, corais)', 'Polinização (plantas)', 'ciclismo aquático', 'Paisagem marítima: heterogeneidade/complexidade de habitat (apoiando a diversidade)', 'Benefícios de repercussão na recuperação de biomassa, reprodução e conectividade', 'Conectividade (ligações ecológicas e continuidade funcional)'],
         ],
         'categories' => [
             'title1' => 'Aprovisionamento',

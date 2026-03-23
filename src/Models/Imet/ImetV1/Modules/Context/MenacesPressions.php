@@ -21,7 +21,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public static $groupsByCategory = [
+    public static array $groupsByCategory = [
         ['group0'],
         ['group1', 'group2', 'group3', 'group4', 'group5'],
         ['group6'],

@@ -33,7 +33,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
         [Modules\Evaluation\EcosystemServices::class, 'Element'],
     ];
 
-    public static $groupsByCategory = [
+    public static array $groupsByCategory = [
         ['group0', 'group1', 'group2'],
         ['group3', 'group4'],
         ['group5', 'group6', 'group7', 'group8'],

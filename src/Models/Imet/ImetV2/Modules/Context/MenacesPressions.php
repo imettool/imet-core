@@ -32,7 +32,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
         [Modules\Evaluation\ManagementActivities::class, 'Value'],
     ];
 
-    public static $groupsByCategory = [
+    public static array $groupsByCategory = [
         ['group0'],
         ['group1', 'group2', 'group3', 'group4', 'group5'],
         ['group6'],
