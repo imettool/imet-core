@@ -12,8 +12,8 @@
 
 use Illuminate\Support\Facades\Route;
 use ImetCore\Controllers\Imet\Controller;
-use ImetCore\Controllers\Imet\v2\ScoresController as ScoresControllerV2;
-use ImetCore\Controllers\Imet\oecm\ScoresController as ScoresControllerOecm;
+use ImetCore\Controllers\Imet\ImetV2\ScoresController as ScoresControllerV2;
+use ImetCore\Controllers\Imet\ImetOecm\ScoresController as ScoresControllerOecm;
 
 /*
 |--------------------------------------------------------------------------

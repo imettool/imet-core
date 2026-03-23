@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
@@ -46,8 +47,8 @@ $table_id = 'table_' . $definitions['slug'];
                     @foreach($definitions['fields'] as $f_index=>$field)
                         <td>
                             <x-modular-forms::module.components.field.input-preview
-                                :type="$field['type']"
-                                :value="$record[$field['name']]"
+                                    :type="$field['type']"
+                                    :value="$record[$field['name']]"
                             ></x-modular-forms::module.components.field.input-preview>
 
 

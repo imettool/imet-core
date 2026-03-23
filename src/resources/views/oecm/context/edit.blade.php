@@ -1,7 +1,7 @@
 <?php
 
-/** @var \ImetCore\Controllers\Imet\oecm\ContextController $controller */
-/** @var \ImetCore\Models\Imet\oecm\Imet $item */
+/** @var \ImetCore\Controllers\Imet\ImetOecm\ContextController $controller */
+/** @var \ImetCore\Models\Imet\ImetOecm\Imet $item */
 /** @var string $step */
 
 ?>

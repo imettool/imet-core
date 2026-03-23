@@ -4,17 +4,17 @@
 use ModularForms\Helpers\Template;
 
 if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
-    $controller_context = \ImetCore\Controllers\Imet\v1\ContextController::class;
-    $controller_eval = \ImetCore\Controllers\Imet\v1\EvalController::class;
-    $controller_report = \ImetCore\Controllers\Imet\v1\ReportController::class;
+    $controller_context = \ImetCore\Controllers\Imet\ImetV1\ContextController::class;
+    $controller_eval = \ImetCore\Controllers\Imet\ImetV1\EvalController::class;
+    $controller_report = \ImetCore\Controllers\Imet\ImetV1\ReportController::class;
 } elseif ($version === \ImetCore\Models\Imet\Imet::IMET_V2) {
-    $controller_context = \ImetCore\Controllers\Imet\v2\ContextController::class;
-    $controller_eval = \ImetCore\Controllers\Imet\v2\EvalController::class;
-    $controller_report = \ImetCore\Controllers\Imet\v2\ReportController::class;
+    $controller_context = \ImetCore\Controllers\Imet\ImetV2\ContextController::class;
+    $controller_eval = \ImetCore\Controllers\Imet\ImetV2\EvalController::class;
+    $controller_report = \ImetCore\Controllers\Imet\ImetV2\ReportController::class;
 } else {
-    $controller_context = \ImetCore\Controllers\Imet\oecm\ContextController::class;
-    $controller_eval = \ImetCore\Controllers\Imet\oecm\EvalController::class;
-    $controller_report = \ImetCore\Controllers\Imet\oecm\ReportController::class;
+    $controller_context = \ImetCore\Controllers\Imet\ImetOecm\ContextController::class;
+    $controller_eval = \ImetCore\Controllers\Imet\ImetOecm\EvalController::class;
+    $controller_report = \ImetCore\Controllers\Imet\ImetOecm\ReportController::class;
 }
 ?>
 
@@ -29,7 +29,8 @@ if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
         <div class="flex flex-col gap-y-1">
 
             {{-- Context --}}
-            <a class="btn-nav my-0.5 small yellow" href="{{ action([$controller_context, 'edit'], [$item->getKey()]) }}">
+            <a class="btn-nav my-0.5 small yellow"
+               href="{{ action([$controller_context, 'edit'], [$item->getKey()]) }}">
                 {!! Template::icon('list') . ' ' . ucfirst(trans('imet-core::common.context')) !!}
             </a>
 
@@ -40,11 +41,13 @@ if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
 
             {{-- Analysis Report --}}
             @if($version===\ImetCore\Models\Imet\Imet::IMET_V2)
-                <a class="btn-nav my-0.5 small yellow" href="{{ action([$controller_report, 'edit'], [$item->getKey()]) }}">
+                <a class="btn-nav my-0.5 small yellow"
+                   href="{{ action([$controller_report, 'edit'], [$item->getKey()]) }}">
                     {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
                 </a>
             @elseif($version===\ImetCore\Models\Imet\Imet::IMET_OECM)
-                <a class="btn-nav my-0.5 small yellow" href="{{ action([$controller_report, 'report'], [$item->getKey()]) }}">
+                <a class="btn-nav my-0.5 small yellow"
+                   href="{{ action([$controller_report, 'report'], [$item->getKey()]) }}">
                     {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
                 </a>
             @endif

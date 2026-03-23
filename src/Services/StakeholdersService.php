@@ -12,9 +12,9 @@
 
 namespace ImetCore\Services;
 
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 
 final class StakeholdersService
 {

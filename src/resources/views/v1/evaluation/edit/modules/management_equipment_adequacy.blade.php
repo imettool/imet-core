@@ -2,12 +2,13 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v1\Imet_Eval;
+use ImetCore\Models\Imet\ImetV1\Imet_Eval;
 
 $group_key = '';
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 $adequacy_id = "'" . $definitions['slug'] . "_'+index+'___adequacy'";
 ?>
@@ -41,9 +42,9 @@ $adequacy_id = "'" . $definitions['slug'] . "_'+index+'___adequacy'";
 
         <td>
             <x-modular-forms::module.components.field.input
-                type="disabled"
-                value="records[index].__adequacy"
-                :id="$adequacy_id"
+                    type="disabled"
+                    value="records[index].__adequacy"
+                    :id="$adequacy_id"
             ></x-modular-forms::module.components.field.input>
         </td>
 
@@ -66,19 +67,18 @@ $adequacy_id = "'" . $definitions['slug'] . "_'+index+'___adequacy'";
         </td>
 
 
-
         <td>
             {{-- group_key_field (for GROUP_TABLE)  --}}
             @if($definitions['module_type']==='GROUP_TABLE')
                 <x-modular-forms::module.components.field.input
-                    type="hidden"
-                    :value="'item.'.$definitions['group_key_field']"
+                        type="hidden"
+                        :value="'item.'.$definitions['group_key_field']"
                 ></x-modular-forms::module.components.field.input>
             @endif
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
         </td>
     <tr>
@@ -88,7 +88,7 @@ $adequacy_id = "'" . $definitions['slug'] . "_'+index+'___adequacy'";
 </table>
 
 <x-modular-forms::module.components.script
-    :module="$module"
-    :definitions="$definitions"
-    :mode="$mode"
+        :module="$module"
+        :definitions="$definitions"
+        :mode="$mode"
 ></x-modular-forms::module.components.script>

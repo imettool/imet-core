@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet_Eval;
+use ImetCore\Models\Imet\ImetV1\Imet_Eval;
 
 $table_id = 'table_' . $definitions['slug'];
 
@@ -29,29 +30,29 @@ $table_id = 'table_' . $definitions['slug'];
             {{--  fields  --}}
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][0]['type']"
-                    :value="$record[$definitions['fields'][0]['name']]"
+                        :type="$definitions['fields'][0]['type']"
+                        :value="$record[$definitions['fields'][0]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    type="disabled"
-                    :value="$record['__status']"
+                        type="disabled"
+                        :value="$record['__status']"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][1]['type']"
-                    :value="$record[$definitions['fields'][1]['name']]"
+                        :type="$definitions['fields'][1]['type']"
+                        :value="$record[$definitions['fields'][1]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][2]['type']"
-                    :value="$record[$definitions['fields'][2]['name']]"
+                        :type="$definitions['fields'][2]['type']"
+                        :value="$record[$definitions['fields'][2]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>

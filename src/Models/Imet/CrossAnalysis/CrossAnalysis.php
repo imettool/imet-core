@@ -44,7 +44,7 @@ final class CrossAnalysis extends Model
     /**
      * retrieve all indicators data
      */
-    public static function getIndicators(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $item): array
+    public static function getIndicators(\ImetCore\Models\Imet\ImetV1\Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $item): array
     {
         $filteredArray = [];
         $compareElements = [];

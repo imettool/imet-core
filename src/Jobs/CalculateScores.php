@@ -18,8 +18,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use ImetCore\Models\Imet\oecm\Imet as ImetOECM;
-use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Models\Imet\ImetOecm\Imet as ImetOECM;
+use ImetCore\Models\Imet\ImetV2\Imet as ImetV2;
 use ImetCore\Services\Scores\ImetScores;
 use ImetCore\Services\Scores\OecmScores;
 

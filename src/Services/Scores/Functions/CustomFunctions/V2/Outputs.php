@@ -12,8 +12,8 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDomination;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDominationMPA;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AreaDomination;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AreaDominationMPA;
 
 trait Outputs
 {

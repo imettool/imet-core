@@ -2,9 +2,11 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet_Eval;
+use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
+
 $module->vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
 
 $threats_in_sa2 = collect($module->vueData['records'])
@@ -27,7 +29,7 @@ $threats_in_sa2 = collect($module->vueData['records'])
             <div class="histogram-row__value text-right" style="margin-right: 20px;">
                 <b v-html="threat_stats['{{ $threat_key }}'] || '-'"></b>
             </div>
-            <div class="histogram-row__progress-bar"  v-if="threat_stats['{{ $threat_key }}']!==null">
+            <div class="histogram-row__progress-bar" v-if="threat_stats['{{ $threat_key }}']!==null">
                 <imet_score_bar
                         :value=threat_stats['{{ $threat_key }}']
                         color="#87c89b"

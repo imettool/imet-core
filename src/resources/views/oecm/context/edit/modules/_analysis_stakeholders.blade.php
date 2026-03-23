@@ -3,12 +3,13 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $stakeholders */
 
-use ImetCore\Models\Imet\oecm\Imet;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 use ModularForms\Helpers\DOM;
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Str;
@@ -113,55 +114,57 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     {{-- records --}}
                                     <tbody class="{{ $group_key }}">
 
-                                        <template v-for="(item, index) in records">
-                                            <tr class="module-table-item"
-                                                    v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
-                                                {{--  fields  --}}
-                                                @foreach($definitions['fields'] as $index => $field)
+                                    <template v-for="(item, index) in records">
+                                        <tr class="module-table-item"
+                                            v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
+                                            {{--  fields  --}}
+                                            @foreach($definitions['fields'] as $index => $field)
 
-                                                    <td>
+                                                <td>
 
-                                                        @if($field['name'] === 'Element')
-                                                            <dropdown
+                                                    @if($field['name'] === 'Element')
+                                                        <dropdown
                                                                 data-values='@json($element_list)'
                                                                 {!! DOM::vueAttributes("'".$definitions['slug']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
-                                                            ></dropdown>
-                                                        @else
-                                                                @include('modular-forms::module.edit.field.module-to-vue', [
-                                                                   'definitions' => $definitions,
-                                                                   'field' => $field,
-                                                                   'vue_record_index' => 'index',
-                                                                   'group_key' => $group_key
-                                                               ])
-                                                        @endif
-                                                    </td>
-                                                @endforeach
-                                                <td>
-                                                    {{-- record id  --}}
-                                                    <x-modular-forms::module.components.field.input
+                                                        ></dropdown>
+                                                    @else
+                                                        @include('modular-forms::module.edit.field.module-to-vue', [
+                                                           'definitions' => $definitions,
+                                                           'field' => $field,
+                                                           'vue_record_index' => 'index',
+                                                           'group_key' => $group_key
+                                                       ])
+                                                    @endif
+                                                </td>
+                                            @endforeach
+                                            <td>
+                                                {{-- record id  --}}
+                                                <x-modular-forms::module.components.field.input
                                                         type="hidden"
                                                         :value="'item.'.$definitions['primary_key']"
-                                                    ></x-modular-forms::module.components.field.input>
-                                                    <span v-if="typeof item.__predefined === 'undefined'">
-                                                         <button type="button" class="btn-nav small red" v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
+                                                ></x-modular-forms::module.components.field.input>
+                                                <span v-if="typeof item.__predefined === 'undefined'">
+                                                         <button type="button" class="btn-nav small red"
+                                                                 v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
                                                              {!! Template::icon('trash', 'white') !!}
                                                         </button>
                                                     </span>
-                                                </td>
-                                            </tr>
-                                        </template>
+                                            </td>
+                                        </tr>
+                                    </template>
 
                                     </tbody>
 
                                     {{-- add button --}}
                                     <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
-                                        <tr>
-                                            <td colspan="{{ count($definitions['fields']) + 1 }}">
-                                                <button type="button" class="btn-nav small " v-on:click="addItem('{{ $group_key }}', '{{ $stakeholder }}')">
-                                                    {!! Template::icon('plus-circle', 'white') !!} {!! Str::ucfirst((trans('modular-forms::common.add_item'))) !!}
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                            <button type="button" class="btn-nav small "
+                                                    v-on:click="addItem('{{ $group_key }}', '{{ $stakeholder }}')">
+                                                {!! Template::icon('plus-circle', 'white') !!} {!! Str::ucfirst((trans('modular-forms::common.add_item'))) !!}
+                                            </button>
+                                        </td>
+                                    </tr>
                                     </tfoot>
 
                                 </table>

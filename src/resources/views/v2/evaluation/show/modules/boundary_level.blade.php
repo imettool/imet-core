@@ -3,11 +3,12 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\BoundaryLevel;
 use Illuminate\Support\Facades\View;
 
 
@@ -19,5 +20,5 @@ $view = ImetModule::injectIconToPredefinedCriteria(ImetModule::MARINE, $view, Bo
 ?>
 
 @include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])
-<br />
+<br/>
 {!! $view !!}

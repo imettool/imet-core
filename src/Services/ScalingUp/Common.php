@@ -4,7 +4,7 @@ namespace ImetCore\Services\ScalingUp;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use Throwable;
 
 trait Common

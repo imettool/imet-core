@@ -2,11 +2,12 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
 use ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -18,7 +19,7 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
 
 ?>
 
-    <!-- Collapsible categories with histograms -->
+        <!-- Collapsible categories with histograms -->
 <x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($module::$groupsByCategory as $cat_idx => $category)
@@ -32,9 +33,9 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
                     $percentage_value = "categoryStats['" . $cat_idx . "']";
                 @endphp
                 <x-imet-core::score-bar
-                    :label="$category_label"
-                    :score="$score_value"
-                    :percentage="$percentage_value"
+                        :label="$category_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
                 ></x-imet-core::score-bar>
             </x-slot:title>
 

@@ -3,14 +3,15 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
-$record  = $records[0];
+$record = $records[0];
 
 $area = array_key_exists('FormID', $record)
-    ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID'])
+    ? \ImetCore\Models\Imet\ImetV2\Modules\Context\Areas::getArea($record['FormID'])
     : null;
 $boundaryLength = $record['BoundaryLength'];
 
@@ -26,19 +27,18 @@ $shapeIndex = $module::getShapeIndex($area, $boundaryLength);
             'label_width' => $definitions['label_width']
         ])
 
-
         @if($f_index<3)
 
             <div style="display: flex; justify-content: space-between;">
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$record[$field['name']]"
+                        :type="$field['type']"
+                        :value="$record[$field['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[ha]</div>
 
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$record[$field['name']]/100"
+                        :type="$field['type']"
+                        :value="$record[$field['name']]/100"
                 ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[km2]</div>
             </div>
@@ -47,8 +47,8 @@ $shapeIndex = $module::getShapeIndex($area, $boundaryLength);
 
             {{-- input field --}}
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$record[$field['name']]"
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
             [km]
 
@@ -56,8 +56,8 @@ $shapeIndex = $module::getShapeIndex($area, $boundaryLength);
 
             {{-- input field --}}
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$record[$field['name']]"
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
             [km2]
 
@@ -65,15 +65,15 @@ $shapeIndex = $module::getShapeIndex($area, $boundaryLength);
 
             {{-- input field --}}
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$record[$field['name']]"
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
             %
 
         @elseif($f_index===10)
             <x-modular-forms::module.components.field.input-preview
-                type="disabled"
-                :value="$shapeIndex"
+                    type="disabled"
+                    :value="$shapeIndex"
             ></x-modular-forms::module.components.field.input-preview>
         @endif
 

@@ -12,7 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 class V2Scores extends _Scores
 {

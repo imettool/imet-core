@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 ?>
 

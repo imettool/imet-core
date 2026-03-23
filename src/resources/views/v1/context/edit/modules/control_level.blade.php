@@ -2,12 +2,14 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
+
 $vue_record_index = '0';
 
-$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData['form_id']);
+$area = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -22,10 +24,16 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
     </tr>
     <tr>
         <th rowspan="4" style="width: 400px;">@lang('imet-core::v1_context.ControlLevel.under_control_area')</th>
-        <td class="text-center"><label for="{{  $definitions['fields'][0]['name'] }}">{!! ucfirst($definitions['fields'][0]['label']) !!}</label></td>
-        <td class="text-center"><label for="area_percentage">@lang('imet-core::v1_context.ControlLevel.area_percentage')</label></td>
-        <td class="text-center"><label for="{{  $definitions['fields'][1]['name'] }}">{!! ucfirst($definitions['fields'][1]['label']) !!}</label></td>
-        <td class="text-center"><label for="average_time">@lang('imet-core::v1_context.ControlLevel.average_time')</label></td>
+        <td class="text-center"><label
+                    for="{{  $definitions['fields'][0]['name'] }}">{!! ucfirst($definitions['fields'][0]['label']) !!}</label>
+        </td>
+        <td class="text-center"><label
+                    for="area_percentage">@lang('imet-core::v1_context.ControlLevel.area_percentage')</label></td>
+        <td class="text-center"><label
+                    for="{{  $definitions['fields'][1]['name'] }}">{!! ucfirst($definitions['fields'][1]['label']) !!}</label>
+        </td>
+        <td class="text-center"><label
+                    for="average_time">@lang('imet-core::v1_context.ControlLevel.average_time')</label></td>
     </tr>
     <tr>
         <td>
@@ -36,7 +44,8 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
            ])
         </td>
         <td>
-            <input type="text" disabled="disabled" v-bind:value="area_percentage" class="field-edit field-numeric text-right"/>
+            <input type="text" disabled="disabled" v-bind:value="area_percentage"
+                   class="field-edit field-numeric text-right"/>
         </td>
         <td rowspan="3">
             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -46,11 +55,14 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
             ])
         </td>
         <td>
-            <input type="text" disabled="disabled" v-bind:value="average_time" class="field-edit field-numeric text-right"/>
+            <input type="text" disabled="disabled" v-bind:value="average_time"
+                   class="field-edit field-numeric text-right"/>
         </td>
     </tr>
     <tr>
-        <td><label for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label></td>
+        <td>
+            <label for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
+        </td>
         <th>@lang('imet-core::v1_context.ControlLevel.area_percentage_conversion')</th>
         <th>@lang('imet-core::v1_context.ControlLevel.average_time_controlled')</th>
     </tr>
@@ -62,11 +74,15 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
                'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="area_percentage_conversion" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="average_time_controlled" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="area_percentage_conversion"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="average_time_controlled"
+                   class="field-edit field-numeric text-right"/></td>
     </tr>
     <tr class="border-b border-solid border-gray-300">
-        <td><label for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label></td>
+        <td>
+            <label for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
+        </td>
         <td>
             @include('modular-forms::module.edit.field.module-to-vue', [
                'definitions' => $definitions,
@@ -74,7 +90,8 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
                'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="ecologicalMonitoringPatrolKm_percentage" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="ecologicalMonitoringPatrolKm_percentage"
+                   class="field-edit field-numeric text-right"/></td>
         <td colspan="2"></td>
     </tr>
 </table>
@@ -112,7 +129,7 @@ $area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($module->vueData
 
 @push('scripts')
     <style>
-        #table_imet__context__control_level td{
+        #table_imet__context__control_level td {
             border: none;
             padding: 10px;
             text-align: center;

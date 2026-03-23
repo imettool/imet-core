@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\__Controller;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Services\ScalingUp\DownloadScalingUp;
 use ImetCore\Services\ScalingUp\PreviewScalingUp;
 use ImetCore\Services\ScalingUp\ReportScalingUp;

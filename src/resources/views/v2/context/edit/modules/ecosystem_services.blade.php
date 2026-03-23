@@ -2,10 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\EcosystemServices;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -28,7 +29,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
 ?>
 
-    <!-- Collapsible categories with histograms -->
+        <!-- Collapsible categories with histograms -->
 <x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($module::$groupsByCategory as $cat_idx => $category)
@@ -42,9 +43,9 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
                     $percentage_value = "categoryStats['" . $cat_idx . "']";
                 @endphp
                 <x-imet-core::score-bar
-                    :label="$category_label"
-                    :score="$score_value"
-                    :percentage="$percentage_value"
+                        :label="$category_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
                 ></x-imet-core::score-bar>
             </x-slot:title>
 

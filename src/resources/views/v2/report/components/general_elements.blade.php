@@ -2,9 +2,9 @@
 /** @var Imet_Report $item */
 
 use ImetCore\Models\Country;
-use ImetCore\Models\Imet\v2\Imet_Report;
-use ImetCore\Models\Imet\v2\Modules\Context\Areas;
-use ImetCore\Models\Imet\v2\Modules\Context\GeneralInfo;
+use ImetCore\Models\Imet\ImetV2\Imet_Report;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\GeneralInfo;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 
 $general_info = GeneralInfo::getModuleRecords($item->getKey())['records'][0] ?? null;

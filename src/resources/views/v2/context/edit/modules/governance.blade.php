@@ -2,10 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
 use ImetCore\Helpers\SelectionList;
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ModularForms\Enums\ModuleViewModes;
 
 $module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');

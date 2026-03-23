@@ -2,13 +2,14 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 $vue_record_index = '0';
 
-$module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($module->vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\ImetV2\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -67,7 +68,8 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
         <td></td>
     </tr>
@@ -83,8 +85,10 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
@@ -99,9 +103,12 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 

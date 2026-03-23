@@ -104,7 +104,7 @@ abstract class Imet extends Form
      *
      * @param  array<string>  $relations
      * @param  array<string>  $countries
-     * @return Collection<int, v1\Imet|v2\Imet>
+     * @return Collection<int, ImetV1\Imet|ImetV2\Imet>
      */
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
@@ -114,7 +114,7 @@ abstract class Imet extends Form
 
         // Create a Collection merging v1 and v2 IMETs
         $list = new Collection();
-        foreach ([v1\Imet::class, v2\Imet::class] as $imet_class) {
+        foreach ([ImetV1\Imet::class, ImetV2\Imet::class] as $imet_class) {
             $list = $list->merge(
                 $imet_class::query()
                     ->byRequestParams($request->all())
@@ -155,7 +155,7 @@ abstract class Imet extends Form
         $hasDuplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function (v1\Imet|v2\Imet $item) use ($hasDuplicates): v1\Imet|v2\Imet {
+            ->map(function (ImetV1\Imet|ImetV2\Imet $item) use ($hasDuplicates): ImetV1\Imet|ImetV2\Imet {
 
                 // Add encoders
                 $item['encoders_responsibles'] = [
@@ -246,14 +246,14 @@ abstract class Imet extends Form
     public static function getResponsibles($form_id, $version): array
     {
         $internal = $version === static::IMET_V1
-            ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
-            : v2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
+            ? ImetV1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
+            : ImetV2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
         $external = $version === static::IMET_V1
-            ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
-            : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
+            ? ImetV1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
+            : ImetV2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
         $encoders = $version === static::IMET_V1
-            ? v1\Encoder::getNames($form_id)
-            : v2\Encoder::getNames($form_id);
+            ? ImetV1\Encoder::getNames($form_id)
+            : ImetV2\Encoder::getNames($form_id);
 
         return [
             'encoders' => $encoders,
@@ -364,7 +364,7 @@ abstract class Imet extends Form
     {
         $records = static::upgradeModules($records, $imet_version);
         $modules_imported = [];
-        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var ImetV2\Modules\Component\ImetModule|ImetV2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
@@ -383,7 +383,7 @@ abstract class Imet extends Form
     public static function upgradeModules(array $data, $imet_version = null): array
     {
         $upgraded_data = [];
-        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var ImetV2\Modules\Component\ImetModule|ImetV2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $data)) {
                 $upgraded_data[$module_class::getShortClassName()]

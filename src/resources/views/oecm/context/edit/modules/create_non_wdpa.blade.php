@@ -2,9 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+
 ?>
 
 @include('modular-forms::module.edit.type.simple', ['definitions' => $definitions])

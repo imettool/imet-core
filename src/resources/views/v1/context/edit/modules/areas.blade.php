@@ -2,9 +2,10 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 
 $vue_record_index = '0';
 
@@ -35,9 +36,9 @@ $vue_record_index = '0';
             <span class="ml-2 mr-4">[ha]</span>
 
             <x-modular-forms::module.components.field.input
-                :type="$field['type']"
-                :value="$field['name'].'_km2'"
-                :other="$convert_to_ha"
+                    :type="$field['type']"
+                    :value="$field['name'].'_km2'"
+                    :other="$convert_to_ha"
             ></x-modular-forms::module.components.field.input>
             <span class="ml-2">[km2]</span>
 
@@ -58,7 +59,7 @@ $vue_record_index = '0';
 
 @push('scripts')
     <style>
-        #module_imet__v1__context__areas .module-row__input div{
+        #module_imet__v1__context__areas .module-row__input div {
             display: inline-block;
         }
     </style>

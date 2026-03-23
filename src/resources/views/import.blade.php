@@ -2,12 +2,12 @@
 
 use ImetCore\Controllers;
 
-/** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
+/** @var Controllers\Imet\Controller|Controllers\Imet\ImetOecm\Controller $controller */
 
-if($controller === Controllers\Imet\oecm\Controller::class){
-    $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
+if ($controller === Controllers\Imet\ImetOecm\Controller::class) {
+    $route_prefix = Controllers\Imet\ImetOecm\Controller::ROUTE_PREFIX;
 } else {
-    $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
+    $route_prefix = Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX;
 }
 
 ?>

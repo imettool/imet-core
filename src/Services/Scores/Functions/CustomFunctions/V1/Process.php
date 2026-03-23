@@ -13,9 +13,9 @@
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V1;
 
 use ImetCore\Models\Imet\Components\Modules\ImetModule;
-use ImetCore\Models\Imet\v1\Modules\Evaluation\ActorsRelations;
-use ImetCore\Models\Imet\v1\Modules\Evaluation\Control;
-use ImetCore\Models\Imet\v1\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\ImetV1\Modules\Evaluation\ActorsRelations;
+use ImetCore\Models\Imet\ImetV1\Modules\Evaluation\Control;
+use ImetCore\Models\Imet\ImetV1\Modules\Evaluation\StaffCompetence;
 
 trait Process
 {

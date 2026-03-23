@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\oecm\Imet_Eval;
+use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;

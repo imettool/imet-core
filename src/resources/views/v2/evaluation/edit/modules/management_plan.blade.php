@@ -2,9 +2,11 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
+
 $vue_record_index = '0';
 
 ?>

@@ -2,11 +2,12 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\DesignAdequacy;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\DesignAdequacy;
 use Illuminate\Support\Facades\View;
 
 $module->vueData['marine_predefined'] = DesignAdequacy::get_marine_predefined();

@@ -2,10 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\Imet\v2\Modules\Context\Areas;
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
 $vue_record_index = '0';
 
@@ -45,9 +46,9 @@ if (array_key_exists($vue_record_index, $module->vueData['records']) && array_ke
             <span class="ml-2 mr-4">[ha]</span>
 
             <x-modular-forms::module.components.field.input
-                :type="$field['type']"
-                :value="$field['name'].'_km2'"
-                :other="$convert_to_ha"
+                    :type="$field['type']"
+                    :value="$field['name'].'_km2'"
+                    :other="$convert_to_ha"
             ></x-modular-forms::module.components.field.input>
             <span class="ml-2">[km2]</span>
 
@@ -86,10 +87,10 @@ if (array_key_exists($vue_record_index, $module->vueData['records']) && array_ke
         @elseif($field_index===10)
 
             <x-modular-forms::module.components.field.input
-                type="numeric"
-                :value="'records['.$vue_record_index.'].'.$field['name']"
-                :id="$index_id"
-                other='style="max-width: 180px;" disabled="disabled"'
+                    type="numeric"
+                    :value="'records['.$vue_record_index.'].'.$field['name']"
+                    :id="$index_id"
+                    other='style="max-width: 180px;" disabled="disabled"'
             ></x-modular-forms::module.components.field.input>
 
         @endif

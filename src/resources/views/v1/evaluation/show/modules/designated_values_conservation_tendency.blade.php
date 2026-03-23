@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet_Eval;
+use ImetCore\Models\Imet\ImetV1\Imet_Eval;
 
 $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records);
 

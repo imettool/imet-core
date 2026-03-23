@@ -2,14 +2,15 @@
  /** @var Imet $module */
  /** @var string $controller */
  /** @var string $mode */
+
  /** @var array $definitions */
 
- use ImetCore\Models\Imet\oecm\Imet;
+ use ImetCore\Models\Imet\ImetOecm\Imet;
  use ImetCore\Helpers\SelectionList;
 
-$module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
+ $module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 
-?>
+ ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
 @foreach($definitions['fields'] as $field)
 

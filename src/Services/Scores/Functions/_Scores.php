@@ -13,7 +13,7 @@
 namespace ImetCore\Services\Scores\Functions;
 
 use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\Imet\oecm\Imet as ImetOEMC;
+use ImetCore\Models\Imet\ImetOecm\Imet as ImetOEMC;
 use ModularForms\Models\Cache;
 
 abstract class _Scores

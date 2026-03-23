@@ -2,15 +2,16 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 $groups = $definitions['groups'];
 
 ?>
 
-<!-- Collapsible groups with histograms -->
+        <!-- Collapsible groups with histograms -->
 <x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($groups as $group_key => $group_label)
@@ -21,9 +22,9 @@ $groups = $definitions['groups'];
                     $percentage_value = "averages_percentage['" . $group_key . "']";
                 @endphp
                 <x-imet-core::score-bar
-                    :label="$group_label"
-                    :score="$score_value"
-                    :percentage="$percentage_value"
+                        :label="$group_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
                 ></x-imet-core::score-bar>
             </x-slot:title>
 

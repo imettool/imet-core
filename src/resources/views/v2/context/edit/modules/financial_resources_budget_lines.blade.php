@@ -2,14 +2,15 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 $group_key ??= '';
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
-$module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($module->vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\ImetV2\Modules\Context\Areas::getArea($module->vueData['form_id']);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">
@@ -52,7 +53,7 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
                    class="field-edit field-numeric text-right"
                    v-bind:value="costs[index]"
                    v-bind:id="'{{$definitions['slug'] }}_'+index+'_total'"
-            />        </td>
+            /></td>
         <td>
             <input type="text" disabled="disabled" style="width: 80px;"
                    class="field-edit text-center"
@@ -63,11 +64,11 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
         <td>
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
-                <x-modular-forms::module.components.buttons.delete-item />
+                <x-modular-forms::module.components.buttons.delete-item/>
             </span>
         </td>
     <tr class="module-table-item">
@@ -93,7 +94,7 @@ $module->vueData['area'] = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getAr
     {{-- add button --}}
     <tr>
         <td colspan="{{ count($definitions['fields']) + 1 }}">
-            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
         </td>
     </tr>
     </tfoot>

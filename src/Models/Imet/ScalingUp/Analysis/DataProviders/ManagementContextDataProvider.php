@@ -13,8 +13,8 @@
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\v2\Imet;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 
 final class ManagementContextDataProvider implements DataProviderInterface

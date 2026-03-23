@@ -2,9 +2,10 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet_Eval;
+use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -19,7 +20,7 @@ $definitions['groups'] = array_slice($original_definitions['groups'], 1);
 $definitions['fields'][1]['type'] = 'hidden';
 $second_group = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
-$dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
+$dom = HtmlPageCrawler::create('<div>' . $first_group . $second_group . '</div>');
 ?>
 
 {!! $dom->saveHTML() !!}

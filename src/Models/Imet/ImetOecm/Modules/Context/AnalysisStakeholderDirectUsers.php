@@ -1,0 +1,127 @@
+<?php
+
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
+
+use Illuminate\Http\Request;
+
+/**
+ * @property string[] $titles
+ */
+final class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
+{
+    protected $table = 'context_analysis_stakeholders_direct_users';
+
+    public static $USER_MODE = Stakeholders::ONLY_DIRECT;
+
+    public function __construct(array $attributes = [])
+    {
+        $this->module_type = 'GROUP_TABLE';
+        $this->module_code = 'SA 2.1';
+        $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
+        $this->module_fields = [
+            ['name' => 'Element',       'type' => 'dropdown-ImetOECM_AnalysisStakeholders', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Element'), 'other' => 'rows="3"'],
+            ['name' => 'Description',    'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Description')],
+            ['name' => 'Illegal',    'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Illegal')],
+            ['name' => 'Dependence',    'type' => 'rating-0to3', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Dependence')],
+            ['name' => 'Access',        'type' => 'suggestion-ImetOECM_Access', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Access')],
+            ['name' => 'Rivalry',       'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Rivalry')],
+            ['name' => 'Quality',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quality')],
+            ['name' => 'Quantity',    'type' => 'rating-Minus2to2', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Quantity')],
+            ['name' => 'Threats',      'type' => 'dropdown_multiple-ImetOECM_Threats', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Threats')],
+            ['name' => 'Comments',      'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.fields.Comments')],
+            ['name' => 'Stakeholder',    'type' => 'hidden', 'label' => ''],
+        ];
+        $this->max_rows = 5;
+
+        $this->module_groups = trans('imet-core::oecm_context.AnalysisStakeholders.groups');
+
+        $this->module_info = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.module_info');
+        $this->ratingLegend = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.ratingLegend');
+
+        parent::__construct($attributes);
+    }
+
+    #[\Override]
+    public static function updateModule(Request $request): array
+    {
+        $return = parent::updateModule($request);
+        $return['key_elements_importance'] = self::calculateKeyElementsImportances($return['id'], $return['records']);
+
+        return $return;
+    }
+
+    /**
+     * Override
+     */
+    #[\Override]
+    public function isEmptyRecord($record, $foreign_key = null): bool
+    {
+        if ($record['Description'] !== null
+            || $record['Dependence'] !== null
+            || $record['Access'] !== null
+            || $record['Rivalry'] === true
+            || $record['Quality'] === true
+            || $record['Quantity'] === true
+            || $record['Threats'] === true
+            || $record['Comments'] !== null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function calculateKeyElementImportance($item): ?float
+    {
+        if ($item['Dependence'] !== null
+            || $item['Access'] !== null
+            || $item['Rivalry'] === true
+            || $item['Quality'] !== null
+            || $item['Quantity'] !== null
+            || $item['Threats'] !== null
+        ) {
+
+            if ($item['Access'] === 'open') {
+                $access = 2;
+            } elseif ($item['Access'] === 'no_access') {
+                $access = 1;
+            } else {
+                $access = 0;
+            }
+
+            $Threats = filled($item['Threats']) ? json_decode((string) $item['Threats']) : null;
+            $Threats = is_array($Threats) ? count($Threats) : null;
+
+            $max_score =
+                3 // Dependence
+                + 2 // Access
+                + 3 // Rivalry
+                + 2 // Quality
+                + 2 // Quantity
+                + 12; // Threats
+
+            $item['__importance'] = (
+                4 +
+                ($item['Dependence'] ?? 0) +
+                $access +
+                ($item['Rivalry'] ? 3 : 0) -
+                ($item['Quality'] ?? 0) -
+                ($item['Quantity'] ?? 0) +
+                ($Threats / 3)
+            ) * 100 / $max_score;
+
+            return $item['__importance'] * $item['__stakeholder_weight'];
+        }
+
+        return null;
+    }
+}

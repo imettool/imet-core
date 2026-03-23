@@ -2,9 +2,10 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
 use Illuminate\Support\Facades\View;
 use ModularForms\View\Module\Components\Body;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -22,7 +23,7 @@ $dom->filter('h5.group_title_' . $definitions['slug'] . '_group9')->before('<h3 
 {!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-    :module="$module"
-    :definitions="$definitions"
-    :mode="$mode"
+        :module="$module"
+        :definitions="$definitions"
+        :mode="$mode"
 ></x-modular-forms::module.components.script>

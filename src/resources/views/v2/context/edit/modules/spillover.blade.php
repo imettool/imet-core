@@ -2,10 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
 use Illuminate\Support\Str;
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 ?>
 
@@ -33,7 +34,7 @@ use ImetCore\Models\Imet\v2\Imet;
                                 <label for="{{ $field['name'] }}">{!! ucfirst( $field['label']) !!}</label>
                                 @if(!Str::contains($field['name'], 'Comments') && !Str::contains($field['name'], 'OtherObservation'))
                                     <div
-                                        class="italic">@lang('imet-core::v2_context.Spillover.sub_titles.' . $field['name'])</div>
+                                            class="italic">@lang('imet-core::v2_context.Spillover.sub_titles.' . $field['name'])</div>
                                 @endif
                             </div>
 

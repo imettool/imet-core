@@ -12,9 +12,9 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\EquipmentMaintenance;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\StaffCompetence;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\StakeholderCooperation;
 
 trait Process
 {

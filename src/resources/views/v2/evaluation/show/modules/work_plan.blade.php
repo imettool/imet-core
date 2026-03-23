@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 $records = $records[0];
 $PlanExistence = boolval($records['PlanExistence']);
@@ -26,8 +27,8 @@ $PlanExistence = boolval($records['PlanExistence']);
             {{-- input --}}
             <div class="module-row__input">
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$records[$field['name']]"
+                        :type="$field['type']"
+                        :value="$records[$field['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </div>
 

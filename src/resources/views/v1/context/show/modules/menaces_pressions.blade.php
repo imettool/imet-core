@@ -3,15 +3,16 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 
-use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\ImetV1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 
 $view_groupTable = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
-$stats = \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
+$stats = \ImetCore\Models\Imet\ImetV1\Modules\Context\MenacesPressions::getStats($records[0]['FormID']);
 
 
 // Inject titles (with category stats)
@@ -37,16 +38,16 @@ foreach (MenacesPressions::$groupsByCategory as $category) {
     foreach ($category as $group) {
         if (isset($stats['row_stats'][$group])) {
             foreach ($stats['row_stats'][$group] as $value) {
-                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", (string) $view_groupTable, $matched1);
+                preg_match("/(<td>" . $allSpaces . "<\/td\>)/m", (string)$view_groupTable, $matched1);
                 $textToAdd = '<td><input type="text" disabled="disabled" value="' . $value . '" class="field-disabled field-edit field-numeric text-center"/></td>';
                 if ($matched1 !== []) {
                     $matched1[0] = '/' . preg_quote($matched1[0], '/') . '/';
-                    $view_groupTable = preg_replace($matched1[0], $textToAdd, (string) $view_groupTable, 1);
+                    $view_groupTable = preg_replace($matched1[0], $textToAdd, (string)$view_groupTable, 1);
                 }
             }
         }
         if (isset($stats['group_stats'][$group])) {
-            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", (string) $view_groupTable, $matched);
+            preg_match("/(<\/tr\>" . $allSpaces . "\<\/thead\>" . $allSpaces . "\<tbody\sclass\=\"" . $group . "[\s\"])/m", (string)$view_groupTable, $matched);
             $textToAdd = '<th>
                           <input type="text" disabled="disabled" value="' . $stats['group_stats'][$group] . '"
                                 class="field-disabled field-edit field-numeric text-center"/>

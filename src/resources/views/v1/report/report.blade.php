@@ -1,7 +1,7 @@
 <?php
 
 use ImetCore\Services\Scores\AssessmentsScores;
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Services\Scores\Functions\_Scores;
 use Illuminate\Support\Facades\App;
 
@@ -211,7 +211,7 @@ if ($item->language != App::getLocale()) {
                     <div>
                         <b>@lang('imet-core::v2_report.opportunities')</b>
                         <report-editor v-model="report.opportunities_swot"
-                            :action="'{{ $action }}'"></report-editor>
+                                       :action="'{{ $action }}'"></report-editor>
                     </div>
                     <div>
                         <b>@lang('imet-core::v2_report.threats')</b>
@@ -262,7 +262,7 @@ if ($item->language != App::getLocale()) {
             <div class="sideButtons collapsible" v-show=status==='changed'>
                 <div>
                     <form id="imet_report_form" method="post"
-                          action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          action="{{ route(\ImetCore\Controllers\Imet\ImetV1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
                           style="display: inline-block;">
                         @method('PATCH')
                         @csrf
@@ -314,7 +314,7 @@ if ($item->language != App::getLocale()) {
             labels: @json($labels),
             version: "{{ \ImetCore\Models\Imet\Imet::IMET_V1 }}",
             status: 'idle',
-            url: '{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
+            url: '{{ route(\ImetCore\Controllers\Imet\ImetV1\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
         }));
 
         app.mount('#imet_report');

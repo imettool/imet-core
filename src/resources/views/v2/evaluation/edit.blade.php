@@ -1,7 +1,7 @@
 <?php
 
-/** @var \ImetCore\Controllers\Imet\v2\EvalController $controller */
-/** @var \ImetCore\Models\Imet\v2\Imet_Eval $item */
+/** @var \ImetCore\Controllers\Imet\ImetV2\EvalController $controller */
+/** @var \ImetCore\Models\Imet\ImetV2\Imet_Eval $item */
 /** @var string $step */
 
 ?>

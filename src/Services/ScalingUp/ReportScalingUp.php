@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class ReportScalingUp

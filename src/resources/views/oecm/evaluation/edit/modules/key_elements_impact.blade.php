@@ -2,9 +2,10 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet_Eval;
+use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
 
 ?>
 
@@ -38,8 +39,8 @@ use ImetCore\Models\Imet\oecm\Imet_Eval;
                             'group_key' => $group_key
                         ])
                         <x-modular-forms::module.components.field.input
-                            type="hidden"
-                            :value="'item.'.$definitions['primary_key']"
+                                type="hidden"
+                                :value="'item.'.$definitions['primary_key']"
                         ></x-modular-forms::module.components.field.input>
                     </div>
 
@@ -55,7 +56,8 @@ use ImetCore\Models\Imet\oecm\Imet_Eval;
                         </div>
                     @endfor
 
-                    <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
+                    <div class="text-center">
+                        <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
                     @for ($i = 6; $i <= 10; $i++)
                         <div>
                             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -72,8 +74,8 @@ use ImetCore\Models\Imet\oecm\Imet_Eval;
             </template>
         </div>
 
-        <br />
-        <br />
+        <br/>
+        <br/>
 
     </div>
 
@@ -81,16 +83,16 @@ use ImetCore\Models\Imet\oecm\Imet_Eval;
 
 @push('scripts')
     <style>
-        .grid_module{
+        .grid_module {
             display: grid;
             grid-template-columns: 170px 130px 122px 122px 120px 120px auto;
             column-gap: 10px;
             row-gap: 10px;
-            border-bottom: 1px solid #A3A3A3;   /* $gray-400; */
+            border-bottom: 1px solid #A3A3A3; /* $gray-400; */
             padding: 5px;
         }
 
-        .grid_module div{
+        .grid_module div {
             align-self: center;
         }
     </style>

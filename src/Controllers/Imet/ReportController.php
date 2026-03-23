@@ -64,7 +64,7 @@ abstract class ReportController extends Controller
     {
         $this->authorize('edit', (static::$form_class)::find($item));
 
-        \ImetCore\Models\Imet\v1\Report::updateByForm($item, $request->input('report'));
+        \ImetCore\Models\Imet\ImetV1\Report::updateByForm($item, $request->input('report'));
 
         return ['status' => 'success'];
     }

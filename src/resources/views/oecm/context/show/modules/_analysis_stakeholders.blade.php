@@ -10,8 +10,8 @@
 
 /** @var string $summary_title */
 
-use ImetCore\Models\Imet\oecm\Imet;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 
 $form_id = $collection[0]['FormID'];
 
@@ -116,13 +116,13 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                             <td>
                                                 @if($field['name'] === 'Element')
                                                     <x-modular-forms::module.components.field.input-preview
-                                                        type="text-area"
-                                                        :value="$record[$field['name']]"
+                                                            type="text-area"
+                                                            :value="$record[$field['name']]"
                                                     ></x-modular-forms::module.components.field.input-preview>
                                                 @else
                                                     <x-modular-forms::module.components.field.input-preview
-                                                        :type="$field['type']"
-                                                        :value="$record[$field['name']]"
+                                                            :type="$field['type']"
+                                                            :value="$record[$field['name']]"
                                                     ></x-modular-forms::module.components.field.input-preview>
                                                 @endif
                                             </td>

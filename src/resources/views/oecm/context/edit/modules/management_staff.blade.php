@@ -2,9 +2,10 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -13,7 +14,7 @@ $view = View::make('modular-forms::module.edit.type.table', ['definitions' => $d
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
                 class="field-edit text-right"
                 v-bind:value="diffs[index]"
-                v-bind:id="\'' . $definitions['slug']  .'\' + index + \'_diff\'"
+                v-bind:id="\'' . $definitions['slug'] . '\' + index + \'_diff\'"
             />';
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));

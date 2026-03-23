@@ -3,19 +3,20 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 
 ?>
 
-<table id="{{ $table_id }}"  class="table module-table">
+<table id="{{ $table_id }}" class="table module-table">
 
     {{-- labels  --}}
     <thead>
@@ -31,21 +32,21 @@ $table_id = 'table_'.$definitions['slug'];
         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4, 'mode' => ModuleViewModes::SHOW])
     @else
         <tbody class="{{ $group_key }}">
-            @foreach($records as $record)
-                <tr class="module-table-item">
-                    @foreach($definitions['fields'] as $f_index=>$field)
-                        <td>
-                            @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
+        @foreach($records as $record)
+            <tr class="module-table-item">
+                @foreach($definitions['fields'] as $f_index=>$field)
+                    <td>
+                        @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
 
-                                <x-modular-forms::module.components.field.input-preview
+                            <x-modular-forms::module.components.field.input-preview
                                     :type="$field['type']"
                                     :value="$record[$field['name']]"
-                                ></x-modular-forms::module.components.field.input-preview>
-                            @endif
-                        </td>
-                    @endforeach
-                </tr>
-            @endforeach
+                            ></x-modular-forms::module.components.field.input-preview>
+                        @endif
+                    </td>
+                @endforeach
+            </tr>
+        @endforeach
         </tbody>
     @endif
 

@@ -3,55 +3,56 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 
 $record = $records[0];
 
-$area = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($record['FormID']);
-\ImetCore\Controllers\Imet\v1\ContextController::set_records_total_budget($record['TotalBudget']);
+$area = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::getArea($record['FormID']);
+\ImetCore\Controllers\Imet\ImetV1\ContextController::set_records_total_budget($record['TotalBudget']);
 $fn = (fn($value): bool => !is_infinite($value) && $value > 0);
 
 $value_financial_plans_costs_value_1 = $record['ManagementFinancialPlanCosts'];
 $value_financial_plans_costs_value_2 = $area;
 $value_financial_plans_costs_result = "";
-if($fn($value_financial_plans_costs_value_2) && $fn($value_financial_plans_costs_value_1)){
+if ($fn($value_financial_plans_costs_value_2) && $fn($value_financial_plans_costs_value_1)) {
     $value_financial_plans_costs_result = round($value_financial_plans_costs_value_1 / $value_financial_plans_costs_value_2, 2);
 }
 
 $value_operation_work_plan_costs_value_1 = $record['OperationalWorkPlanCosts'];
 $value_operation_work_plan_costs_value_2 = $area;
 $value_operation_work_plan_costs_result = "";
-if($fn($value_operation_work_plan_costs_value_2) && $fn($value_operation_work_plan_costs_value_1)){
+if ($fn($value_operation_work_plan_costs_value_2) && $fn($value_operation_work_plan_costs_value_1)) {
     $value_operation_work_plan_costs_result = round($value_operation_work_plan_costs_value_1 / $value_operation_work_plan_costs_value_2, 2);
 }
 
 $value_total_budget_value_1 = $record['TotalBudget'];
 $value_total_budget_value_2 = $area;
 $value_total_budget_result = "";
-if($fn($value_total_budget_value_2) && $fn($value_total_budget_value_1)){
+if ($fn($value_total_budget_value_2) && $fn($value_total_budget_value_1)) {
     $value_total_budget_result = round($value_total_budget_value_1 / $value_total_budget_value_2, 2);
 }
 
 $value_estimation_financial_plan_2_value_1 = $record['OperationalWorkPlanCosts'];
 $value_estimation_financial_plan_2_value_2 = $record['ManagementFinancialPlanCosts'];
 $value_estimation_financial_plan_2_result = "";
-if($fn($value_estimation_financial_plan_2_value_1) && $fn($value_estimation_financial_plan_2_value_2)){
+if ($fn($value_estimation_financial_plan_2_value_1) && $fn($value_estimation_financial_plan_2_value_2)) {
     $value_estimation_financial_plan_2_result = round($value_estimation_financial_plan_2_value_1 / $value_estimation_financial_plan_2_value_2 * 100, 1);
 }
 
 $value_estimation_financial_plan_3_value_1 = $record['TotalBudget'];
 $value_estimation_financial_plan_3_value_2 = $record['ManagementFinancialPlanCosts'];
 $value_estimation_financial_plan_3_result = "";
-if($fn($value_estimation_financial_plan_3_value_1) && $fn($value_estimation_financial_plan_3_value_2)){
+if ($fn($value_estimation_financial_plan_3_value_1) && $fn($value_estimation_financial_plan_3_value_2)) {
     $value_estimation_financial_plan_3_result = round($value_estimation_financial_plan_3_value_1 / $value_estimation_financial_plan_3_value_2 * 100, 1);
 }
 
 $value_estimation_operational_plan_3_value_1 = $record['TotalBudget'];
 $value_estimation_operational_plan_3_value_2 = $record['OperationalWorkPlanCosts'];
 $value_estimation_operational_plan_3_result = "";
-if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_operational_plan_3_value_2)){
+if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_operational_plan_3_value_2)) {
     $value_estimation_operational_plan_3_result = round($value_estimation_operational_plan_3_value_1 / $value_estimation_operational_plan_3_value_2 * 100, 1);
 }
 ?>
@@ -96,7 +97,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
     <tr>
         <td>
             <label
-                    for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
+                for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
         </td>
         <td>
             <x-modular-forms::module.components.field.input-preview
@@ -112,7 +113,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
     <tr>
         <td>
             <label
-                    for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
+                for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
         </td>
         <td>
             <x-modular-forms::module.components.field.input-preview
@@ -129,7 +130,7 @@ if($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_op
     <tr>
         <td>
             <label
-                    for="{{  $definitions['fields'][4]['name'] }}">{!! ucfirst($definitions['fields'][4]['label']) !!}</label>
+                for="{{  $definitions['fields'][4]['name'] }}">{!! ucfirst($definitions['fields'][4]['label']) !!}</label>
         </td>
         <td>
             <x-modular-forms::module.components.field.input-preview

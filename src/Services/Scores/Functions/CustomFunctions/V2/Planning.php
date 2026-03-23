@@ -12,9 +12,9 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation\BoundaryLevel;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\ManagementPlan;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\WorkPlan;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ManagementPlan;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\WorkPlan;
 
 trait Planning
 {

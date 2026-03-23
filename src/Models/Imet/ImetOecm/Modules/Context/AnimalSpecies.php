@@ -1,0 +1,85 @@
+<?php
+
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
+
+use Illuminate\Support\Str;
+use ImetCore\Models\Imet\ImetOecm\Modules;
+use ImetCore\Models\Species;
+use ImetCore\Models\User\Role;
+
+final class AnimalSpecies extends Modules\Component\ImetModule
+{
+    protected $table = 'context_species_animal_presence';
+
+    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    protected static $DEPENDENCIES = [
+        [Modules\Evaluation\ThreatsBiodiversity::class, 'species'],
+        [Modules\Evaluation\KeyElementsImpact::class, 'species'],
+        [Modules\Evaluation\KeyElements::class, 'species'],
+    ];
+
+    public function __construct(array $attributes = [])
+    {
+
+        $this->module_type = 'TABLE';
+        $this->module_code = 'CTX 4.1';
+        $this->module_title = trans('imet-core::oecm_context.AnimalSpecies.title');
+        $this->module_fields = [
+            ['name' => 'species', 'type' => 'imet-core::selector-species-withInsert', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.SpeciesID')],
+            ['name' => 'CommonName',                'type' => 'text-area',          'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.CommonName')],
+            ['name' => 'ExploitedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ExploitedSpecies')],
+            ['name' => 'ProtectedSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.ProtectedSpecies')],
+            ['name' => 'DisappearingSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DisappearingSpecies')],
+            ['name' => 'InvasiveSpecies', 'type' => 'checkbox-boolean', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.InvasiveSpecies')],
+            ['name' => 'PopulationEstimation', 'type' => 'dropdown-ImetOECM_PopulationStatus', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.PopulationEstimation')],
+            ['name' => 'DescribeEstimation', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.DescribeEstimation')],
+            ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::oecm_context.AnimalSpecies.fields.Comments')],
+        ];
+
+        $this->module_info = trans('imet-core::oecm_context.AnimalSpecies.module_info');
+
+        parent::__construct($attributes);
+    }
+
+    /**
+     * Override: replace values with scientific names
+     */
+    protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
+    {
+        $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
+
+        // ### replace values with labels ###
+        foreach ($to_be_dropped as $index => $item) {
+            if (Str::contains('|', $item)) {
+                $to_be_dropped[$index] = Species::getScientificName($item);
+            }
+        }
+
+        return array_values($to_be_dropped);
+    }
+
+    /**
+     * Override: replace values with scientific names
+     */
+    public static function getReferenceList($form_id, $dependency_field): array
+    {
+        return self::getModule($form_id)
+            ->filter(fn ($item): bool => filled($item['species']))
+            ->pluck('species')
+            ->map(fn ($item): mixed => Str::contains($item, '|')
+                ? Species::getScientificName($item)
+                : $item)
+            ->toArray();
+    }
+}

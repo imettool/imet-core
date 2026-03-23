@@ -12,7 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementGovernance;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\ManagementGovernance;
 
 trait Outputs
 {

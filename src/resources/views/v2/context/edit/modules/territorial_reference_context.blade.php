@@ -2,13 +2,15 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
+
 $definitions['label_width'] = 7;
 
 use ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
 
 ?>
 
@@ -22,11 +24,11 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
             {{-- label  --}}
             <div class="module-row__label" style="width: {{ round(100/12*$definitions['label_width']) }}%;">
-                    <label for="FunctionalKm2">{!! ucfirst(trans('imet-core::v2_context.TerritorialReferenceContext.fields.FunctionalArea')) !!}</label>
+                <label for="FunctionalKm2">{!! ucfirst(trans('imet-core::v2_context.TerritorialReferenceContext.fields.FunctionalArea')) !!}</label>
             </div>
 
             {{-- input field --}}
-            <div  class="module-row__input" style="display: flex; align-items: center;">
+            <div class="module-row__input" style="display: flex; align-items: center;">
                 @include('modular-forms::module.edit.field.module-to-vue', [
                     'definitions' => $definitions,
                     'field' => $definitions['fields'][$i],
@@ -56,7 +58,7 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             </div>
 
             {{-- input field --}}
-            <div  class="module-row__input" style="display: flex; align-items: center;">
+            <div class="module-row__input" style="display: flex; align-items: center;">
                 @include('modular-forms::module.edit.field.module-to-vue', [
                     'definitions' => $definitions,
                     'field' => $definitions['fields'][$i],
@@ -103,7 +105,7 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             {{-- label  --}}
             <div class="module-row__label !w-2/5">
                 <label for="{{ $field['name'] }}"
-                @if($field['name'] === 'EvidencesListConnectivity') class="!font-normal" @endif
+                       @if($field['name'] === 'EvidencesListConnectivity') class="!font-normal" @endif
                 >{!! ucfirst( $field['label']) !!}</label>
             </div>
 
@@ -114,7 +116,6 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
                 'vue_record_index' => 0
             ])
         </div>
-
 
     @elseif($field['name']!=='FunctionalKm'
             and $field['name']!=='BenefitKm')
@@ -139,20 +140,22 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 @endforeach
 
 <x-modular-forms::module.components.script
-    :module="$module"
-    :definitions="$definitions"
-    :mode="$mode"
+        :module="$module"
+        :definitions="$definitions"
+        :mode="$mode"
 ></x-modular-forms::module.components.script>
 
 @push('scripts')
     <style lang="postcss">
-        #module_imet__v2__context__territorial_reference_context{
-            .BenefitSocioEconomicAspects{
+        #module_imet__v2__context__territorial_reference_context {
+            .BenefitSocioEconomicAspects {
                 padding: 10px 10px 40px 10px;
             }
-            .BenefitSocioEconomicAspects span span{
+
+            .BenefitSocioEconomicAspects span span {
                 max-width: 100%;
             }
+
             .Connectivity {
                 ul {
                     margin-left: 20px;

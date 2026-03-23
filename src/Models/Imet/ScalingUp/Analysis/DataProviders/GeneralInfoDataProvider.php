@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ModularForms\Helpers\Locale;
 
 final class GeneralInfoDataProvider implements DataProviderInterface

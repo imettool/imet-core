@@ -12,22 +12,22 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
-use ImetCore\Models\Imet\oecm\Imet;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\AchievedObjectives;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\AdministrativeManagement;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\AssistanceActivities;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\DesignAdequacy;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\EmpowermentGovernance;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\EnvironmentalEducation;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\HRmanagementPolitics;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\InformationAvailability;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\LawEnforcementImplementation;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\LifeQualityImpact;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementActivities;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\NaturalResourcesMonitoring;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\RegulationsAdequacy;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\VisitorsManagement;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkProgramImplementation;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\AchievedObjectives;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\AdministrativeManagement;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\AssistanceActivities;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\DesignAdequacy;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\EmpowermentGovernance;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\EnvironmentalEducation;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\HRmanagementPolitics;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\InformationAvailability;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\LifeQualityImpact;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\ManagementActivities;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\NaturalResourcesMonitoring;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\RegulationsAdequacy;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\VisitorsManagement;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\WorkProgramImplementation;
 
 class OECMScores extends _Scores
 {

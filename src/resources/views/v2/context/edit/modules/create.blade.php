@@ -2,9 +2,10 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Controllers\Imet\Controller;
 
 $vue_record_index = 0;

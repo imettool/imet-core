@@ -3,15 +3,16 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 
 $record = $records[0];
-$total_budget = \ImetCore\Controllers\Imet\v1\ContextController::get_records_total_budget();
+$total_budget = \ImetCore\Controllers\Imet\ImetV1\ContextController::get_records_total_budget();
 $group_key ??= '';
 
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 $result = [];
 $percentage_results = [];
@@ -24,9 +25,9 @@ foreach ($records as $index => $record) {
     $result[$index] = $result[$index] === 0 ? null : $result[$index];
 
     $total = floatval($result[$index]);
-    $percentage_results[$index] = $total > 0 ? round($total / $total_budget * 100, 1).' %' : "";
+    $percentage_results[$index] = $total > 0 ? round($total / $total_budget * 100, 1) . ' %' : "";
 }
-\ImetCore\Controllers\Imet\v1\ContextController::set_financial_available_resources_totals($result);
+\ImetCore\Controllers\Imet\ImetV1\ContextController::set_financial_available_resources_totals($result);
 ?>
 
 <table id="{{ $table_id }}" class="table module-table">

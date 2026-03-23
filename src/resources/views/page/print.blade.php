@@ -6,23 +6,23 @@ use ImetCore\Models\User\Role;
 use ModularForms\Enums\ModuleViewModes;
 use Illuminate\Support\Str;
 
-/** @var Imet\v2\ContextController|Imet\v1\ContextController|Imet\oecm\ContextController|Imet\v1\EvalController|Imet\v2\EvalController|Imet\oecm\EvalController $controller */
-/** @var Models\Imet\v2\Imet|Models\Imet\v1\Imet|Models\Imet\oecm\Imet|Models\Imet\v2\Imet_Eval|Models\Imet\v1\Imet_Eval|Models\Imet\oecm\Imet_Eval $item */
+/** @var Imet\ImetV2\ContextController|Imet\ImetV1\ContextController|Imet\ImetOecm\ContextController|Imet\ImetV1\EvalController|Imet\ImetV2\EvalController|Imet\ImetOecm\EvalController $controller */
+/** @var Models\Imet\ImetV2\Imet|Models\Imet\ImetV1\Imet|Models\Imet\ImetOecm\Imet|Models\Imet\ImetV2\Imet_Eval|Models\Imet\ImetV1\Imet_Eval|Models\Imet\ImetOecm\Imet_Eval $item */
 /** @var string $mode */
 
 
-if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
+if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
-    $context_modules = Models\Imet\v1\Imet::modules();
-    $evaluation_modules = Models\Imet\v1\Imet_Eval::modules();
-} elseif (Str::contains($controller, Models\Imet\Imet::IMET_V2)) {
+    $context_modules = Models\Imet\ImetV1\Imet::modules();
+    $evaluation_modules = Models\Imet\ImetV1\Imet_Eval::modules();
+} elseif (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V2)) {
     $version = Models\Imet\Imet::IMET_V2;
-    $context_modules = Models\Imet\v2\Imet::modules();
-    $evaluation_modules = Models\Imet\v2\Imet_Eval::modules();
-} elseif (Str::contains($controller, Models\Imet\Imet::IMET_OECM)) {
+    $context_modules = Models\Imet\ImetV2\Imet::modules();
+    $evaluation_modules = Models\Imet\ImetV2\Imet_Eval::modules();
+} elseif (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_OECM)) {
     $version = Models\Imet\Imet::IMET_OECM;
-    $context_modules = Models\Imet\oecm\Imet::modules();
-    $evaluation_modules = Models\Imet\oecm\Imet_Eval::modules();
+    $context_modules = Models\Imet\ImetOecm\Imet::modules();
+    $evaluation_modules = Models\Imet\ImetOecm\Imet_Eval::modules();
 }
 
 ?>
@@ -50,10 +50,10 @@ if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
         @foreach($modules_by_step as $module)
             @if(Role::hasRequiredAccessLevel($module))
                 <x-modular-forms::module.container
-                        :controller="$controller"
-                        :module="$module"
-                        :formId="$item->getKey()"
-                        :mode="ModuleViewModes::SHOW"
+                    :controller="$controller"
+                    :module="$module"
+                    :formId="$item->getKey()"
+                    :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             @else
                 @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
@@ -67,10 +67,10 @@ if (Str::contains($controller, Models\Imet\Imet::IMET_V1)) {
         @foreach($modules_by_step as $module)
             @if(Role::hasRequiredAccessLevel($module))
                 <x-modular-forms::module.container
-                        :controller="$controller"
-                        :module="$module"
-                        :formId="$item->getKey()"
-                        :mode="ModuleViewModes::SHOW"
+                    :controller="$controller"
+                    :module="$module"
+                    :formId="$item->getKey()"
+                    :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             @else
                 @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])

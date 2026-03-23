@@ -2,10 +2,11 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v1\Imet_Eval;
-use ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions;
+use ImetCore\Models\Imet\ImetV1\Imet_Eval;
+use ImetCore\Models\Imet\ImetV1\Modules\Context\MenacesPressions;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;

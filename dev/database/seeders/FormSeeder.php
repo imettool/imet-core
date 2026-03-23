@@ -51,10 +51,10 @@ class FormSeeder extends Seeder
      */
     public static function seedFormImetV1(ProtectedArea $protected_area, string $language): void
     {
-        $form_id = Imet\v1\Imet::query()->insertGetId([
+        $form_id = Imet\ImetV1\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
-            'version' => Imet\v1\Imet::$version,
+            'version' => Imet\ImetV1\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
@@ -63,8 +63,8 @@ class FormSeeder extends Seeder
         ]);
 
         $modules = array_merge(
-            Imet\v1\Imet::allModules(),
-            Imet\v1\Imet_Eval::allModules()
+            Imet\ImetV1\Imet::allModules(),
+            Imet\ImetV1\Imet_Eval::allModules()
         );
 
         static::seedFormModules($form_id, $modules);
@@ -77,10 +77,10 @@ class FormSeeder extends Seeder
      */
     public static function seedFormImetV2(ProtectedArea $protected_area, string $language): void
     {
-        $form_id = Imet\v2\Imet::query()->insertGetId([
+        $form_id = Imet\ImetV2\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
-            'version' => Imet\v2\Imet::$version,
+            'version' => Imet\ImetV2\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
@@ -89,8 +89,8 @@ class FormSeeder extends Seeder
         ]);
 
         $modules = array_merge(
-            Imet\v2\Imet::allModules(),
-            Imet\v2\Imet_Eval::allModules()
+            Imet\ImetV2\Imet::allModules(),
+            Imet\ImetV2\Imet_Eval::allModules()
         );
 
         static::seedFormModules($form_id, $modules);
@@ -103,10 +103,10 @@ class FormSeeder extends Seeder
      */
     public static function seedFormImetOecm(ProtectedArea $protected_area, string $language): void
     {
-        $form_id = Imet\oecm\Imet::query()->insertGetId([
+        $form_id = Imet\ImetOecm\Imet::query()->insertGetId([
             'Country' => $protected_area->country,
             'Year' => fake()->dateTimeBetween('-4 years')->format('Y'),
-            'version' => Imet\oecm\Imet::$version,
+            'version' => Imet\ImetOecm\Imet::$version,
             'language' => $language,
             'wdpa_id' => $protected_area->wdpa_id,
             'name' => $protected_area->name,
@@ -115,8 +115,8 @@ class FormSeeder extends Seeder
         ]);
 
         $modules = array_merge(
-            Imet\oecm\Imet::allModules(),
-            Imet\oecm\Imet_Eval::allModules()
+            Imet\ImetOecm\Imet::allModules(),
+            Imet\ImetOecm\Imet_Eval::allModules()
         );
 
         static::seedFormModules($form_id, $modules);
@@ -263,31 +263,31 @@ class FormSeeder extends Seeder
         }
 
         if ($name === 'Stakeholder' && $type === 'hidden' && Str::contains($module, 'AnalysisStakeholder')) {
-            $list = Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id);
+            $list = Imet\ImetOecm\Modules\Context\Stakeholders::getStakeholders($form_id);
 
             return collect($list)->random();
         }
 
         if (Str::contains($module, 'SupportsAndConstraintsIntegration') && $name === 'Stakeholder') {
             if ($group_key === 'group0') {
-                return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_DIRECT))
+                return collect(Imet\ImetOecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\ImetOecm\Modules\Context\Stakeholders::ONLY_DIRECT))
                     ->random();
             }
 
             if ($group_key === 'group1') {
-                return collect(Imet\oecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\oecm\Modules\Context\Stakeholders::ONLY_INDIRECT))
+                return collect(Imet\ImetOecm\Modules\Context\Stakeholders::getStakeholders($form_id, Imet\ImetOecm\Modules\Context\Stakeholders::ONLY_INDIRECT))
                     ->random();
             }
         } elseif (Str::contains($module, 'KeyElements') && $name === 'Aspect') {
             if ($group_key === 'group0') {
-                $key_elements = collect(Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id))
+                $key_elements = collect(Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id))
                     ->keyBy('element');
 
                 return $key_elements->keys()->random();
             }
 
             if ($group_key === 'group1') {
-                $biodiversity_key_elements = collect(Imet\oecm\Modules\Evaluation\ThreatsBiodiversity::calculateRanking($form_id))
+                $biodiversity_key_elements = collect(Imet\ImetOecm\Modules\Evaluation\ThreatsBiodiversity::calculateRanking($form_id))
                     ->sortBy('_score');
 
                 return $biodiversity_key_elements->pluck('Criteria')->random();

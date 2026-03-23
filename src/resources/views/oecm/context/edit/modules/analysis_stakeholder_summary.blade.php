@@ -2,13 +2,14 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
 
-use ImetCore\Controllers\Imet\oecm\Controller;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Controllers\Imet\ImetOecm\Controller;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 
 $stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);

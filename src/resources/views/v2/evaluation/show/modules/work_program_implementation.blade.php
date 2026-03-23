@@ -3,16 +3,16 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Str;
 
 
 ?>
-
 
 
 <x-modular-forms::accordion.container>
@@ -41,8 +41,8 @@ use Illuminate\Support\Str;
                 <div class="mb-4">
                     <strong class="mr-4">{{ ucfirst($group_key_field['label']) ?? '' }} </strong>
                     <x-modular-forms::module.components.field.input-preview
-                        :type="$group_key_field['type']"
-                        :value="$group_label"
+                            :type="$group_key_field['type']"
+                            :value="$group_label"
                     ></x-modular-forms::module.components.field.input-preview>
                 </div>
 
@@ -51,43 +51,45 @@ use Illuminate\Support\Str;
 
                     {{-- labels  --}}
                     <thead>
-                        <tr>
-                            @foreach($definitions['fields'] as $field)
-                                @if($field['name'] !== $definitions['fields'][0]['name']) {{-- skip group key field --}}
+                    <tr>
+                        @foreach($definitions['fields'] as $field)
+                            @if($field['name'] !== $definitions['fields'][0]['name'])
+                                {{-- skip group key field --}}
                                 <th class="text-center">
                                     @if($field['type']!=='hidden')
                                         {{ ucfirst($field['label'] ?? '') }}
                                     @endif
                                 </th>
-                                @endif
-                            @endforeach
-                            <th></th>
-                        </tr>
+                            @endif
+                        @endforeach
+                        <th></th>
+                    </tr>
                     </thead>
 
                     {{-- values --}}
                     <tbody class="{{ $group_key }}">
-                        @php
-                            $group_records = array_filter($records, function ($item) use($definitions, $group_label) {
-                                return $item[$definitions['group_key_field']] === $group_label;
-                            })
-                        @endphp
+                    @php
+                        $group_records = array_filter($records, function ($item) use($definitions, $group_label) {
+                            return $item[$definitions['group_key_field']] === $group_label;
+                        })
+                    @endphp
 
-                        @foreach($group_records as $record)
-                            <tr class="module-table-item">
-                                @foreach($definitions['fields'] as $field)
-                                    @if($field['name'] !== $definitions['fields'][0]['name']) {{-- skip group key field --}}
-                                        <td>
-                                            <x-modular-forms::module.components.field.input-preview
+                    @foreach($group_records as $record)
+                        <tr class="module-table-item">
+                            @foreach($definitions['fields'] as $field)
+                                @if($field['name'] !== $definitions['fields'][0]['name'])
+                                    {{-- skip group key field --}}
+                                    <td>
+                                        <x-modular-forms::module.components.field.input-preview
                                                 :type="$field['type']"
                                                 :value="$record[$field['name']]"
-                                            ></x-modular-forms::module.components.field.input-preview>
-                                        </td>
-                                    @endif
-                                @endforeach
-                            </tr>
+                                        ></x-modular-forms::module.components.field.input-preview>
+                                    </td>
+                                @endif
+                            @endforeach
+                        </tr>
 
-                        @endforeach
+                    @endforeach
                     </tbody>
 
                 </table>

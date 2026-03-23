@@ -2,11 +2,13 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
+
 $group_key ??= '';
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 
@@ -20,14 +22,13 @@ $table_id = 'table_'.$definitions['slug'];
                 <th class="text-center">
                     {{ ucfirst($field['label'] ?? '') }}
                     @if($field['name']==="ActualPermanent")
-                        </th>
-                        <th class="text-center">
-                            @uclang('imet-core::v1_context.ManagementStaff.fields.difference')
+                </th>
+                <th class="text-center">
+                    @uclang('imet-core::v1_context.ManagementStaff.fields.difference')
                     @endif
 
                 </th>
             @endif
-
 
         @endforeach
     </tr>
@@ -47,13 +48,13 @@ $table_id = 'table_'.$definitions['slug'];
                 ])
 
                 @if($field['name']==="ActualPermanent")
-                    </td>
-                    <td>
-                        <input type="text" disabled="disabled" style="width: 80px;"
-                            class="field-edit text-right"
-                            v-bind:value="diffs[index]"
-                            v-bind:id="'{{$definitions['slug'] }}_'+index+'_diff'"
-                        />
+            </td>
+            <td>
+                <input type="text" disabled="disabled" style="width: 80px;"
+                       class="field-edit text-right"
+                       v-bind:value="diffs[index]"
+                       v-bind:id="'{{$definitions['slug'] }}_'+index+'_diff'"
+                />
                 @endif
 
             </td>
@@ -61,11 +62,11 @@ $table_id = 'table_'.$definitions['slug'];
         <td>
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
-                <x-modular-forms::module.components.buttons.delete-item />
+                <x-modular-forms::module.components.buttons.delete-item/>
             </span>
         </td>
     <tr>
@@ -75,7 +76,7 @@ $table_id = 'table_'.$definitions['slug'];
     {{-- add button --}}
     <tr>
         <td colspan="{{ count($definitions['fields']) + 1 }}">
-            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
         </td>
     </tr>
     </tfoot>

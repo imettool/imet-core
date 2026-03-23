@@ -2,9 +2,11 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+
 ?>
 
 <div id="relative_importance">
@@ -41,21 +43,24 @@ use ImetCore\Models\Imet\oecm\Imet;
 
 @push('scripts')
     <style>
-        #relative_importance{
+        #relative_importance {
             display: flex;
             flex-direction: column;
             row-gap: 15px;
             align-items: center;
         }
-        #relative_importance > div{
+
+        #relative_importance > div {
             display: flex;
             column-gap: 20px;
         }
-        #relative_importance label{
+
+        #relative_importance label {
             font-weight: bold;
             margin-right: 5px;
         }
-        #relative_importance .row_title{
+
+        #relative_importance .row_title {
             width: 250px;
             text-align: right;
             display: inline-block;

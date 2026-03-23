@@ -2,12 +2,13 @@
 /** @var Imet $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 $group_key ??= '';
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 
@@ -65,11 +66,11 @@ $table_id = 'table_'.$definitions['slug'];
         <td>
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
-                <x-modular-forms::module.components.buttons.delete-item />
+                <x-modular-forms::module.components.buttons.delete-item/>
             </span>
         </td>
     <tr>

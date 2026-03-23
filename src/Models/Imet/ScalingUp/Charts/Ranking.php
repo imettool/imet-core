@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Charts;
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ImetV2\Modules;
 
 final class Ranking
 {

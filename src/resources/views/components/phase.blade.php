@@ -1,4 +1,5 @@
 <?php
+
 use ImetCore\Controllers;
 use ImetCore\Models\Imet\Imet;
 use Illuminate\Support\Facades\Route;
@@ -9,12 +10,12 @@ use Illuminate\Support\Str;
 
 $route_action = Str::endsWith(Route::currentRouteName(), 'show') ? 'show' : 'edit';
 
-if($item->version===Imet::IMET_V1){
-    $ROUTE_PREFIX = Controllers\Imet\v1\Controller::ROUTE_PREFIX;
-} elseif($item->version===Imet::IMET_V2){
-    $ROUTE_PREFIX = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
-} elseif($item->version===Imet::IMET_OECM){
-    $ROUTE_PREFIX = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
+if ($item->version === Imet::IMET_V1) {
+    $ROUTE_PREFIX = Controllers\Imet\ImetV1\Controller::ROUTE_PREFIX;
+} elseif ($item->version === Imet::IMET_V2) {
+    $ROUTE_PREFIX = Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX;
+} elseif ($item->version === Imet::IMET_OECM) {
+    $ROUTE_PREFIX = Controllers\Imet\ImetOecm\Controller::ROUTE_PREFIX;
 }
 
 ?>

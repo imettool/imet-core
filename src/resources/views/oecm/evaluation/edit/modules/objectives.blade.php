@@ -2,9 +2,10 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\oecm\Imet_Eval;
+use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -23,14 +24,14 @@ $definitions['fields'][1]['type'] = $original_definitions['fields'][1]['type'];
 $definitions['fixed_rows'] = true;
 $second_group = View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 
-$dom = HtmlPageCrawler::create('<div>'.$first_group.$second_group.'</div>');
+$dom = HtmlPageCrawler::create('<div>' . $first_group . $second_group . '</div>');
 
 ?>
 
 {!! $dom->saveHTML() !!}
 
 <x-modular-forms::module.components.script
-    :module="$module"
-    :definitions="$definitions"
-    :mode="$mode"
+        :module="$module"
+        :definitions="$definitions"
+        :mode="$mode"
 ></x-modular-forms::module.components.script>

@@ -3,9 +3,11 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
 @foreach($definitions['fields'] as  $idx => $field)
@@ -18,8 +20,8 @@ use ImetCore\Models\Imet\oecm\Imet;
                 'label_width' => 4
             ])
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
         @endcomponent
 
@@ -40,8 +42,8 @@ use ImetCore\Models\Imet\oecm\Imet;
                     'label_width' => 5
                 ])
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$records[0][$field['name']]"
+                        :type="$field['type']"
+                        :value="$records[0][$field['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             @endcomponent
 

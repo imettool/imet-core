@@ -1,8 +1,9 @@
 <?php
+
 use ImetCore\Models\Imet;
 
 /** @var string $step */
-/** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
+/** @var Imet\ImetV1\Imet|Imet\ImetV2\Imet|Imet\ImetOecm\Imet $item */
 
 ?>
 

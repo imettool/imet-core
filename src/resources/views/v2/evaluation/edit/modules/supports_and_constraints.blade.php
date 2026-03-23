@@ -2,13 +2,14 @@
 /** @var Imet_Eval $module */
 /** @var string $controller */
 /** @var string $mode */
+
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\v2\Imet_Eval;
+use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 $group_key = '';
 
-$table_id = 'table_'.$definitions['slug'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 @foreach($definitions['groups'] as $group_key => $group_label)
@@ -31,7 +32,7 @@ $table_id = 'table_'.$definitions['slug'];
         </thead>
 
         {{-- inputs --}}
-        <tbody class="{{ $group_key }}"  v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
+        <tbody class="{{ $group_key }}" v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
         <template v-for="(item, index) in records">
             <tr class="module-table-item" v-if="recordIsInGroup(item, '{{ $group_key }}')">
                 <td>
@@ -66,8 +67,8 @@ $table_id = 'table_'.$definitions['slug'];
                         'group_key' => $group_key,
                     ])
                 </td>
-                <td >
-                    <div class="mr-5" ><strong><span v-html="evaluation[index]"></span></strong></div>
+                <td>
+                    <div class="mr-5"><strong><span v-html="evaluation[index]"></span></strong></div>
                 </td>
 
                 <td>
@@ -82,14 +83,14 @@ $table_id = 'table_'.$definitions['slug'];
                     {{-- group_key_field (for GROUP_TABLE)  --}}
                     @if($definitions['module_type']==='GROUP_TABLE')
                         <x-modular-forms::module.components.field.input
-                            type="hidden"
-                            :value="'item.'.$definitions['group_key_field']"
+                                type="hidden"
+                                :value="'item.'.$definitions['group_key_field']"
                         ></x-modular-forms::module.components.field.input>
                     @endif
                     {{-- record id  --}}
                     <x-modular-forms::module.components.field.input
-                        type="hidden"
-                        :value="'item.'.$definitions['primary_key']"
+                            type="hidden"
+                            :value="'item.'.$definitions['primary_key']"
                     ></x-modular-forms::module.components.field.input>
                 </td>
             <tr>
@@ -100,7 +101,7 @@ $table_id = 'table_'.$definitions['slug'];
             {{-- add button--}}
             <tr>
                 <td colspan="{{ count($definitions['fields']) + 1 }}">
-                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
                 </td>
             </tr>
             </tfoot>
@@ -108,8 +109,8 @@ $table_id = 'table_'.$definitions['slug'];
         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 5])
 
     </table>
-    <br />
-    <br />
+    <br/>
+    <br/>
 @endforeach
 
 @push('scripts')

@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 
 ?>
 
@@ -35,8 +36,8 @@ use ImetCore\Models\Imet\v2\Imet;
             </div>
 
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
 
         </div>
@@ -48,14 +49,17 @@ use ImetCore\Models\Imet\v2\Imet;
 
 @push('scripts')
     <style lang="postcss">
-        #module_imet__v2__context__spillover .info-bar .message{
-            color: oklch(21% 0.034 264.665);    /* tailwind text-gray-900; */
+        #module_imet__v2__context__spillover .info-bar .message {
+            color: oklch(21% 0.034 264.665); /* tailwind text-gray-900; */
+
             .blue {
                 color: oklch(48.8% 0.243 264.376);
             }
-            ol{
+
+            ol {
                 margin-left: 20px;
-                ul{
+
+                ul {
                     margin-left: 20px;
                 }
             }

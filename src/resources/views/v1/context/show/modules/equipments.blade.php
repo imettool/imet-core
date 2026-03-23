@@ -3,9 +3,10 @@
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
+
 /** @var array $records */
 
-use ImetCore\Models\Imet\v1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet;
 
 $record = $records[0];
 $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
@@ -27,7 +28,7 @@ foreach ($averages as $group) {
     $number_of_items = count($group);
     $results[$i] = "";
     if ($sum >= 0 && $number_of_items > 0) {
-        $results[$i] = round($sum / count($group),2);
+        $results[$i] = round($sum / count($group), 2);
     }
     $i++;
 }
