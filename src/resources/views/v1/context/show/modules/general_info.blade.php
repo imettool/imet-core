@@ -10,7 +10,7 @@ use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 
-$imet = Imet::find($module->vueData['form_id']);
+$imet = Imet::query()->find($module->vueData['form_id']);
 
 if (ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)) {
     $pa = ProtectedAreaNonWdpa::query()->find($imet->wdpa_id);

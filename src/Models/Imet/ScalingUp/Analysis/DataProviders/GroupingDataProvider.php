@@ -16,7 +16,7 @@ use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\Charts\Group;
 use ImetCore\Models\Imet\ScalingUp\Charts\Scatter;
 
-final class GroupingDataProvider
+final readonly class GroupingDataProvider
 {
     public function __construct(
         private int $scalingId
@@ -30,7 +30,7 @@ final class GroupingDataProvider
             $this->scalingId
         );
 
-        return array_map(fn($data) => [
+        return array_map(fn($data): array => [
             ...$data,
             'legend_selected' => true
         ], $average);

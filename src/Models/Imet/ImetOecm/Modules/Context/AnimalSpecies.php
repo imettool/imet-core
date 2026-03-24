@@ -55,6 +55,7 @@ final class AnimalSpecies extends Modules\Component\ImetModule
     /**
      * Override: replace values with scientific names
      */
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         $to_be_dropped = parent::getRecordsToBeDropped($records, $form_id, $dependency_on);
@@ -72,6 +73,7 @@ final class AnimalSpecies extends Modules\Component\ImetModule
     /**
      * Override: replace values with scientific names
      */
+    #[\Override]
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return self::getModule($form_id)

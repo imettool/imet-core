@@ -22,6 +22,7 @@ final class NonSustainableUsage extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.non_sustainable_usage';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.non_sustainable_usage';
 
     public function __construct(array $attributes = [])

@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\DataTable;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class ManagementCycleDataProvider implements DataProviderInterface
+final readonly class ManagementCycleDataProvider implements DataProviderInterface
 {
     private const array OPTIONS = [
         'context' => ['height' => '500px'],
@@ -210,9 +210,7 @@ final class ManagementCycleDataProvider implements DataProviderInterface
         $indicators = self::TABLE_INDICATORS[$type];
 
         // Convert indicator keys to empty arrays
-        return array_map(function($group) {
-            return array_fill_keys($group, []);
-        }, $indicators);
+        return array_map(fn($group) => array_fill_keys($group, []), $indicators);
     }
 
     /**

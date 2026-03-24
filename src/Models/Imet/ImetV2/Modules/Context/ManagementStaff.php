@@ -22,6 +22,7 @@ final class ManagementStaff extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.management_staff';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.management_staff';
 
     public function __construct(array $attributes = [])

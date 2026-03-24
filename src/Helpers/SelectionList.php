@@ -34,19 +34,22 @@ class SelectionList extends ModularFormsSelectionList
             || Str::startsWith($type, 'ImetOecm_')
         ) {
             preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
-
             if ($matches[2] == 'ProtectedArea') {
                 return ProtectedArea::selectionList();
-            } elseif ($matches[2] == 'Country') {
+            }
+            if ($matches[2] == 'Country') {
                 return Country::selectionList();
-            } elseif ($matches[2] == 'PaCountry') {
+            }
+            if ($matches[2] == 'PaCountry') {
                 return ProtectedArea::getCountries()
                     ->sortBy(Country::labelKey())
                     ->pluck(Country::labelKey(), 'iso3')
                     ->toArray();
-            } elseif ($matches[2] == 'Currency') {
+            }
+            if ($matches[2] == 'Currency') {
                 return Currency::selectionList();
-            } elseif ($matches[2] == 'PaType') {
+            }
+            if ($matches[2] == 'PaType') {
                 return [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),
                     'marine_and_coastal' => trans('imet-core::oecm_lists.PaType.marine_and_coastal'),
@@ -57,7 +60,7 @@ class SelectionList extends ModularFormsSelectionList
             // Fallback to lang lists:
             // $matches[1] = V1, V2, OECM
             // $matches[2] = list name
-            elseif ($matches[1] != '') {
+            if ($matches[1] != '') {
                 return trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
             }
 

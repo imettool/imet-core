@@ -23,13 +23,11 @@ final readonly class ProtectedAreaDataProvider implements DataProviderInterface
     ) {}
 
     /**
-     * @param array $formIds
-     * @return array
      * @throws \Exception
      */
     public function getProtectedAreasWithCountries(array $formIds): array
     {
-        $items = array_map(function($formId) {
+        $items = array_map(function(int $formId): array {
             $pa = ScalingUpWdpa::getCustomNames($formId, $this->scalingId);
             return [
                 ...$pa->toArray(),

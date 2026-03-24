@@ -16,10 +16,12 @@ use ImetCore\Models\Imet\ScalingUp\Charts\AverageContribution;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class ThreatsDataProvider implements DataProviderInterface
+final readonly class ThreatsDataProvider implements DataProviderInterface
 {
     private const string DEFAULT_COLOR = '#C23531';
+
     private const array DEFAULT_OPTIONS = ['height' => '850px'];
+
     private const string DEFAULT_TRANSLATION_KEY = 'imet-core::v2_context.MenacesPressions.categories.title';
 
     public function __construct(
@@ -33,9 +35,9 @@ final class ThreatsDataProvider implements DataProviderInterface
      */
     public function getThreatsCategoriesAnalysis(array $formIds, ?string $color = null, ?array $options = null, ?string $translationKey = null): array
     {
-        $color = $color ?? self::DEFAULT_COLOR;
-        $options = $options ?? self::DEFAULT_OPTIONS;
-        $translationKey = $translationKey ?? self::DEFAULT_TRANSLATION_KEY;
+        $color ??= self::DEFAULT_COLOR;
+        $options ??= self::DEFAULT_OPTIONS;
+        $translationKey ??= self::DEFAULT_TRANSLATION_KEY;
 
         return [
             'values' => $this->getThreatsValues($formIds),

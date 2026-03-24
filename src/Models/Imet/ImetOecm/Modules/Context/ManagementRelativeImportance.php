@@ -22,6 +22,7 @@ final class ManagementRelativeImportance extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.context.edit.modules.management_relative_importance';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.context.show.modules.management_relative_importance';
 
     public function __construct(array $attributes = [])

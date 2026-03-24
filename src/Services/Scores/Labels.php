@@ -103,6 +103,7 @@ trait Labels
         foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item) {
             $custom_labels[$code] = $item;
         }
+
         $custom_labels['synthetic_indicator'] = trans('imet-core::'.$version.'_common.synthetic_indicator');
 
         App::setLocale($current_locale);

@@ -15,7 +15,7 @@ $key_elements = [
     'key_species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
         ->filter(fn($item): mixed => $item['IncludeInStatistics'])
         ->pluck('Aspect')
-        ->map(fn($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
+        ->map(fn($item) => \Illuminate\Support\Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
         ->toArray(),
     'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
         ->filter(fn($item): mixed => $item['IncludeInStatistics'])

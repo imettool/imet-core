@@ -44,6 +44,7 @@ class AssessmentsScores
         } else {
             $class = 'score_success';
         }
+
         return $class;
     }
 
@@ -70,7 +71,7 @@ class AssessmentsScores
             $class = 'score_very_high_danger';
         } elseif ($value < 0) {
             $class = 'score_high_danger';
-        } elseif ($value == 0) {
+        } elseif ($value === 0) {
             $class = 'score_danger';
         } elseif ($value <= 33.3) {
             $class = 'score_alert';
@@ -79,6 +80,7 @@ class AssessmentsScores
         } else {
             $class = 'score_success';
         }
+
         return $class;
     }
 

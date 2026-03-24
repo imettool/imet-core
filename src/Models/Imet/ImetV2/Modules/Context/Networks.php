@@ -65,6 +65,7 @@ final class Networks extends Modules\Component\ImetModule
         return $models;
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ### Update "ProtectedAreas" to comma-separated list of WDPA ids ###

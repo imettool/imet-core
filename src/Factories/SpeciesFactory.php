@@ -24,10 +24,15 @@ class SpeciesFactory extends Factory
     protected $model = Species::class;
 
     private const array SAMPLE_KINGDOMS = ['Animalia', 'Plantae'];
+
     private const array SAMPLE_PHYLA = ['Chordata', 'Arthropoda', 'Tracheophyta'];
+
     private const array SAMPLE_CLASSES = ['Actinopterygii', 'Amphibia', 'Arachnida', 'Aves', 'Cephalopoda', 'Chondrichthyes', 'Gastropoda', 'Insecta', 'Mammalia', 'Reptilia'];
+
     private const array SAMPLE_ORDERS = ['Artiodactyla', 'Carnivora', 'Cetacea', 'Chiroptera', 'Diptera', 'Lepidoptera', 'Perissodactyla', 'Primates', 'Rodentia', 'Squamata'];
+
     private const array SAMPLE_FAMILIES = ['Accipitridae', 'Bovidae', 'Canidae', 'Felidae', 'Hominidae', 'Muridae', 'Phasianidae', 'Salamandridae', 'Ursidae', 'Viperidae'];
+
     private const array SAMPLE_SCIENTIFIC_NAMES = [
         'Ailuropoda melanoleuca', 'Aix galericulata', 'Alces alces', 'Ambystoma mexicanum', 'Anas platyrhynchos',
         'Apis mellifera', 'Aptenodytes forsteri', 'Balaenoptera musculus', 'Bison bison', 'Bos taurus', 'Bubo bubo',
@@ -74,7 +79,7 @@ class SpeciesFactory extends Factory
 
     public function definition(): array
     {
-        $species = explode(' ', $this->faker->randomElement(self::SAMPLE_SCIENTIFIC_NAMES));
+        $species = explode(' ', (string) $this->faker->randomElement(self::SAMPLE_SCIENTIFIC_NAMES));
         return [
             'kingdom' => $this->faker->randomElement(self::SAMPLE_KINGDOMS),
             'phylum' => $this->faker->randomElement(self::SAMPLE_PHYLA),

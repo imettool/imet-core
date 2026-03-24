@@ -18,11 +18,6 @@ use ImetCore\Models\Imet\ImetV2\Modules;
 final class AverageContribution
 {
     /**
-     * @param array $form_ids
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param string $type
      * @return array[]
      */
     public static function average_contribution_calculations_threat(array $form_ids, string $colors = '', array $options = [], string $label = '', string $type = ''): array
@@ -33,7 +28,7 @@ final class AverageContribution
         foreach ($form_ids as $form_id) {
             $stats = Modules\Context\MenacesPressions::getStats($form_id);
 
-            if (empty($indicators)) {
+            if ($indicators === []) {
                 $indicators = self::extractThreatIndicators($stats['categoryStats']);
             }
 
@@ -56,24 +51,16 @@ final class AverageContribution
         return ['average_contribution' => $average_contribution];
     }
 
-    /**
-     * @param array $categoryStats
-     * @return array
-     */
     private static function extractThreatIndicators(array $categoryStats): array
     {
         $indicators = [];
-        foreach ($categoryStats as $index => $value) {
+        foreach (array_keys($categoryStats) as $index) {
             $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($index + 1), []);
         }
+
         return array_reverse($indicators);
     }
 
-    /**
-     * @param array $categoryStats
-     * @param array $data
-     * @return array
-     */
     private static function aggregateThreatData(array $categoryStats, array $data): array
     {
         foreach ($categoryStats as $key => $value) {
@@ -83,24 +70,17 @@ final class AverageContribution
 
             $data[$key][] = $processedValue;
         }
+
         return $data;
     }
 
-    /**
-     * @param array $data
-     * @return void
-     */
     private static function sortDataIfNumericKeys(array &$data): void
     {
-        if (array_filter(array_keys($data), 'is_string') === []) {
+        if (array_filter(array_keys($data), is_string(...)) === []) {
             krsort($data);
         }
     }
 
-    /**
-     * @param array $average_contribution
-     * @return void
-     */
     private static function sortAveragesByValue(array &$average_contribution): void
     {
         if (isset($average_contribution['data']['Average'])) {
@@ -109,19 +89,12 @@ final class AverageContribution
     }
 
     /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param string $origType
      * @return array[]
      */
     public static function average_contribution_calculations(array $form_ids, array $table_indicators, string $type = '', string $colors = '', array $options = [], string $label = '', string $origType = ''): array
     {
         $filtered = Common::filtered_indicators_and_round_values($form_ids, $type, $table_indicators);
-        $data = self::aggregateIndicatorData($filtered, $type);
+        $data = self::aggregateIndicatorData($filtered);
 
         self::sortDataIfNumericKeys($data);
 
@@ -135,12 +108,7 @@ final class AverageContribution
         return ['average_contribution' => $average_contribution];
     }
 
-    /**
-     * @param array $filtered
-     * @param string $type
-     * @return array
-     */
-    private static function aggregateIndicatorData(array $filtered, string $type): array
+    private static function aggregateIndicatorData(array $filtered): array
     {
         $data = [];
         $negativeIndicators = ['C2', 'OC2', 'OC3'];
@@ -158,18 +126,12 @@ final class AverageContribution
         return $data;
     }
 
-    /**
-     * @param string $indicator
-     * @param mixed $value
-     * @param array $negativeIndicators
-     * @param array $zeroNegativeIndicators
-     * @return mixed
-     */
     private static function applyValueCorrection(string $indicator, mixed  $value, array  $negativeIndicators, array  $zeroNegativeIndicators): mixed
     {
         if (in_array($indicator, $negativeIndicators) || in_array($indicator, $zeroNegativeIndicators)) {
             return Common::values_correction($indicator, (float)$value);
         }
+
         return $value;
     }
 
@@ -192,14 +154,6 @@ final class AverageContribution
     }
 
 
-    /**
-     * @param array $average_contribution
-     * @param array $data
-     * @param string $colors
-     * @param string $label
-     * @param string $type
-     * @return array
-     */
     private static function calculate_data_average_contribution(array $average_contribution, array $data, string $colors, string $label, string $type): array
     {
         $i = 0;
@@ -227,19 +181,6 @@ final class AverageContribution
         return $average_contribution;
     }
 
-    /**
-     * @param float|string|int $average_value
-     * @param float|string $percentile_10
-     * @param float|string $percentile_90
-     * @param int|string $v
-     * @param string $colors
-     * @param array $average_contribution
-     * @param int $i
-     * @param int|string $index
-     * @param string $label
-     * @param string $type
-     * @return array
-     */
     private static function getAverage_contribution(float|string|int $average_value, float|string $percentile_10, float|string $percentile_90, int|string $v, string $colors, array $average_contribution, int $i, int|string $index, string $label, string $type): array
     {
         $average_contribution['data']['Average'][$i] = [

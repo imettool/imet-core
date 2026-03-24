@@ -45,9 +45,11 @@ class ImetModule extends Module
     public const ?string MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
     public const string SCRIPT_EDIT_BLADE_VIEW = 'imet-core::components.module.edit.script';
+
     public const string SCRIPT_SHOW_BLADE_VIEW = 'imet-core::components.module.show.script';
 
     public const string INPUT_COMPONENT_VIEW = CustomInput::class;
+
     public const string INPUT_PREVIEW_COMPONENT_VIEW = CustomInputPreview::class;
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
@@ -61,7 +63,7 @@ class ImetModule extends Module
     public bool $enable_raw_export = true;
 
     /** @phpstan-var null|array<string, array<string|int, string>> $ratingLegend */
-    public ?array $ratingLegend;
+    public ?array $ratingLegend = null;
 
     public $module_subTitle;
 
@@ -119,6 +121,7 @@ class ImetModule extends Module
     /**
      * Override: Get predefined_values according to form language
      */
+    #[\Override]
     public static function getPredefined(?int $form_id = null): ?array
     {
         static::forceLanguage($form_id);

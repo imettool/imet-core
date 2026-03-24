@@ -26,6 +26,7 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.management_activities';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.management_activities';
 
     protected static $DEPENDENCY_ON = 'Activity';
@@ -103,6 +104,7 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
      * Override: for group0 (animal species) add a virtual field with the scientific name and vernacular names to be
      * used as label in the UI
      */
+    #[\Override]
     public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
     {
         $records = parent::getModuleRecords($form_id, $collection);
@@ -112,9 +114,11 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
                 $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Activity']);
             }
         }
+
         return $records;
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####

@@ -31,8 +31,9 @@ class ImetModule_Report extends ImetModule
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
-    public ?array $fieldsDefinitions;
+    public ?array $fieldsDefinitions = null;
 
+    #[\Override]
     public static function getDefinitions(?int $form_id = null): array
     {
         $definitions = parent::getDefinitions($form_id);

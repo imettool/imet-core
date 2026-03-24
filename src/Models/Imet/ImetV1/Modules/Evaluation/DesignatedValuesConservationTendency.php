@@ -20,6 +20,7 @@ final class DesignatedValuesConservationTendency extends Modules\Component\ImetM
     protected $table = 'eval_designated_values_conservation_tendency';
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.evaluation.edit.modules.designated_values_conservation_tendency';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.evaluation.show.modules.designated_values_conservation_tendency';
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;

@@ -20,8 +20,11 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ManagementContextDataP
 final class ManagementContextAnalysis extends BaseAnalysis
 {
     public static string $template = 'key_elements_of_conservation';
+
     public static string $title = 'imet-core::analysis_report.sections.third';
+
     public static string $code = '3';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.key_elements';
 
     private static function getManagementContextProvider(?int $scalingId = null): ManagementContextDataProvider

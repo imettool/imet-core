@@ -17,10 +17,12 @@ use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 
-final class ManagementContextDataProvider implements DataProviderInterface
+final readonly class ManagementContextDataProvider implements DataProviderInterface
 {
     private const int ECOSYSTEM_SERVICES_LIMIT = 10;
+
     private const int THREATS_LIMIT = 5;
+
     private const int MIN_OCCURRENCES = 2; // Minimum occurrences to include in results
 
     public function __construct(
@@ -158,7 +160,7 @@ final class ManagementContextDataProvider implements DataProviderInterface
         string $name
     ): void {
         foreach (array_keys($elementCounts) as $key) {
-            if (empty($retrieveKeyElements[$key])) {
+            if (blank($retrieveKeyElements[$key])) {
                 continue;
             }
 

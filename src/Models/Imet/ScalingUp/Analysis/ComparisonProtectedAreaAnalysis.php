@@ -17,15 +17,15 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ComparisonProtectedAre
 final class ComparisonProtectedAreaAnalysis extends BaseAnalysis
 {
     public static string $template = 'relative_performance_effectiveness_intervals';
+
     public static string $title = 'imet-core::analysis_report.sections.seventh';
+
     public static string $code = '7';
+
     public static string $exclude_elements = 'smallMenus';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.relative_performance';
 
-    /**
-     * @param int|null $scalingId
-     * @return ComparisonProtectedAreaDataProvider
-     */
     private static function getComparisonProtectedAreaProvider(?int $scalingId = null): ComparisonProtectedAreaDataProvider
     {
         return new ComparisonProtectedAreaDataProvider($scalingId ?? self::$scaling_id);

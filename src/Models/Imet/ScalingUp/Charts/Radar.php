@@ -17,13 +17,6 @@ use ImetCore\Models\Imet\ImetV2\Modules;
 
 final class Radar
 {
-    /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_radar_analysis_indicators_data(array $form_ids, array $table_indicators, string $type = '', int $scaling_id = 0): array
     {
         $valuesIndicators = [];
@@ -62,9 +55,9 @@ final class Radar
 
                     $indicators[$i] = $name;
 
-                    if (in_array($v, $radar_negative_indicators) && !in_array($i, $radar_indicators_for_negative)) {
+                    if (in_array($v, $radar_negative_indicators) && !in_array($i, $radar_indicators_for_negative, true)) {
                         $radar_indicators_for_negative[] = $i;
-                    } elseif (in_array($v, $radar_zero_negative_indicators) && !in_array($i, $radar_indicators_zero_negative)) {
+                    } elseif (in_array($v, $radar_zero_negative_indicators) && !in_array($i, $radar_indicators_zero_negative, true)) {
                         $radar_indicators_zero_negative[] = $i;
                     }
 
@@ -115,16 +108,6 @@ final class Radar
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param array $table_indicators
-     * @param string $type
-     * @param string $colors
-     * @param array $options
-     * @param string $label
-     * @param int|null $scaling_id
-     * @return array
-     */
     public static function get_radar_analysis_indicators(array $form_ids, array $table_indicators, string $type = '', string $colors = '', array $options = [], string $label = '', ?int $scaling_id = 0): array
     {
         $response = self::get_radar_analysis_indicators_data($form_ids, $table_indicators, $type, $scaling_id);
@@ -147,14 +130,6 @@ final class Radar
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param bool $width
-     * @param array $assessments
-     * @param bool $overall
-     * @param int|null $scaling_id
-     * @return array
-     */
     public static function get_radar_indicators(array $form_ids, bool $width = true, array $assessments = [], bool $overall = true, ?int $scaling_id = 0): array
     {
         $assessments = $assessments ?: Common::get_assessments($form_ids, $scaling_id);
@@ -216,12 +191,6 @@ final class Radar
         ];
     }
 
-    /**
-     * @param array $diagram
-     * @param array $assess
-     * @param bool $width
-     * @return void
-     */
     private static function setProtectedAreaMetadata(array &$diagram, array $assess, bool $width): void
     {
         $diagram['wdpa_id'] = $assess['wdpa_id'];
@@ -232,12 +201,6 @@ final class Radar
         }
     }
 
-    /**
-     * @param array $indicators
-     * @param int $totalProtectedAreas
-     * @param bool $overall
-     * @return array
-     */
     private static function calculateAverages(array $indicators, int $totalProtectedAreas, bool $overall): array
     {
         $average = ['color' => 'red', 'legend_selected' => true, 'width' => 4];
@@ -259,10 +222,6 @@ final class Radar
         return $average;
     }
 
-    /**
-     * @param array $indicators
-     * @return array
-     */
     private static function calculateLimits(array $indicators): array
     {
         $upperLimit = ['lineStyle' => 'dashed', 'width' => 4, 'color' => 'green'];
@@ -279,11 +238,6 @@ final class Radar
     }
 
 
-    /**
-     * @param array $form_ids
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_threats_radar_indicators(array $form_ids, int $scaling_id = 0): array
     {
         $indicators = [];
@@ -294,7 +248,7 @@ final class Radar
             $pa = Common::get_pa_name($form_id, $scaling_id);
             $stats = Modules\Context\MenacesPressions::getStats($form_id);
 
-            if (empty($indicators)) {
+            if ($indicators === []) {
                 $indicators = self::extractThreatIndicators($stats['categoryStats']);
             }
 
@@ -309,25 +263,16 @@ final class Radar
         ];
     }
 
-    /**
-     * @param array $categoryStats
-     * @return array
-     */
     private static function extractThreatIndicators(array $categoryStats): array
     {
         $indicators = [];
-        foreach ($categoryStats as $index => $value) {
+        foreach (array_keys($categoryStats) as $index) {
             $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($index + 1), []);
         }
+
         return array_reverse($indicators);
     }
 
-    /**
-     * @param array $categoryStats
-     * @param array $total_categories
-     * @param object $pa
-     * @return void
-     */
     private static function aggregateThreatCategories(array $categoryStats, array &$total_categories, object $pa): void
     {
         foreach ($categoryStats as $key => $value) {
@@ -347,10 +292,6 @@ final class Radar
         }
     }
 
-    /**
-     * @param array $total_categories
-     * @return array
-     */
     private static function buildRadarValuesFromCategories(array &$total_categories): array
     {
         $radar_values = [];

@@ -65,6 +65,7 @@ trait Outputs
             if ($denom === 0) {
                 return 0;
             }
+
             return $num / $denom * 100;
         };
 

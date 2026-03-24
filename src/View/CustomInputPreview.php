@@ -32,6 +32,7 @@ class CustomInputPreview extends InputPreview
                 $list = array_map(fn (string $v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
                 $list = implode(', ', $list);
             }
+
             return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
         }
 
@@ -41,6 +42,7 @@ class CustomInputPreview extends InputPreview
             if (filled($this->value)) {
                 $name = Species::getPlainNameByTaxonomy($this->value);
             }
+
             return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
         }
 

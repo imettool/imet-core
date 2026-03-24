@@ -22,7 +22,9 @@ final class MenacesPressions extends Modules\Component\ImetModule
     protected $table = 'context_menaces_pressions';
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.menaces_pressions';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.menaces_pressions';
 
     protected static $DEPENDENCIES = [
@@ -138,6 +140,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
         return $vue_data;
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####
@@ -237,20 +240,16 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public static function get_terrestrial_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(function ($group, $key) {
-                return in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']);
-            })
+            ->filter(fn($group, $key) => in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']))
             ->keys()
-            ->toArray();
+            ->all();
     }
 
     public static function get_marine_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(function ($group, $key) {
-                return in_array($key, ['group4', 'group11']);
-            })
+            ->filter(fn($group, $key) => in_array($key, ['group4', 'group11']))
             ->keys()
-            ->toArray();
+            ->all();
     }
 }

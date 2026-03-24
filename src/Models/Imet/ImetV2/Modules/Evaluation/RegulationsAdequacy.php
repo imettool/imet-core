@@ -22,6 +22,7 @@ final class RegulationsAdequacy extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.regulations_adequacy';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.regulations_adequacy';
 
     public function __construct(array $attributes = [])

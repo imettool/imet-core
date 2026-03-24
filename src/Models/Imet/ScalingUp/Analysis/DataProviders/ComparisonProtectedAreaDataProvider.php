@@ -20,13 +20,6 @@ final readonly class ComparisonProtectedAreaDataProvider implements DataProvider
         private int $scalingId
     ){}
 
-    /**
-     * @param array $formIds
-     * @param bool $width
-     * @param array $assessments
-     * @param bool $overall
-     * @return array
-     */
     public function getUpperLowerProtectedAreasDiagramCompare(
         array $formIds,
         bool  $width = true,

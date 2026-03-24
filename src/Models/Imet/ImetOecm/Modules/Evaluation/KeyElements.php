@@ -26,6 +26,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.evaluation.edit.modules.key_elements';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.evaluation.show.modules.key_elements';
 
     protected static $DEPENDENCY_ON = 'Aspect';
@@ -81,6 +82,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
     /**
      * Preload data from CTX 5.1
      */
+    #[\Override]
     protected static function arrange_records($predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
@@ -143,6 +145,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
             ->toArray();
     }
 
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records

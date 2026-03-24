@@ -22,6 +22,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.general_info';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.general_info';
 
     public function __construct(array $attributes = [])

@@ -22,6 +22,7 @@ final class Governance extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.governance';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.governance';
 
     public function __construct(array $attributes = [])
@@ -46,6 +47,7 @@ final class Governance extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // Rename fields to match the new DB column names

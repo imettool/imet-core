@@ -93,9 +93,9 @@ class ScalingUpAnalysisController extends __Controller
             $response = ModelScalingUpAnalysis::$action($parameters);
             App::setLocale($locale);
             return self::sendAPIResponse($response);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             App::setLocale($locale);
-            report($e);
+            report($exception);
 
             return new JsonResponse([
                 'request_params' => $request?->all(),

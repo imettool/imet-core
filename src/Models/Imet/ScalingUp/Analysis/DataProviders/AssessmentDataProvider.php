@@ -14,7 +14,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Helpers\ScalingUp\Common;
 
-final class AssessmentDataProvider implements DataProviderInterface
+final readonly class AssessmentDataProvider implements DataProviderInterface
 {
     public function __construct(
         private int $scalingId

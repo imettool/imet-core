@@ -17,7 +17,7 @@ use ImetCore\Models\Country;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ModularForms\Helpers\Locale;
 
-final class GeneralInfoDataProvider implements DataProviderInterface
+final readonly class GeneralInfoDataProvider implements DataProviderInterface
 {
     public function __construct(
         private ?int $scalingId = null
@@ -67,11 +67,11 @@ final class GeneralInfoDataProvider implements DataProviderInterface
 
         $generalElements['total_surface_protected_areas'] += $this->getProtectedAreaSurface($formId);
 
-        if (!empty($generalInfoData)) {
+        if ($generalInfoData !== null && $generalInfoData !== []) {
             $this->processGeneralInfo($generalInfoData, $generalElements);
         }
 
-        if (!empty($visionData)) {
+        if ($visionData !== null && $visionData !== []) {
             $this->processVisionData($visionData, $generalInfoData, $generalElements);
         }
     }
@@ -135,7 +135,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
     {
         $country = Country::getByISO($isoCode);
 
-        if (!$country) {
+        if (!$country instanceof \ImetCore\Models\Country) {
             return null;
         }
 
@@ -150,7 +150,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addNetwork(array $generalInfo, array &$generalElements): void
     {
-        if (!empty($generalInfo['CompleteName'])) {
+        if (filled($generalInfo['CompleteName'])) {
             $generalElements['network'][] = $generalInfo['CompleteName'];
         }
     }
@@ -160,7 +160,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addEcoregions(array $generalInfo, array &$generalElements): void
     {
-        if (!empty($generalInfo['Ecoregions'])) {
+        if (filled($generalInfo['Ecoregions'])) {
             $generalElements['eco_regions'][] = $generalInfo['Ecoregions'];
         }
     }
@@ -170,21 +170,21 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function processVisionData(array $visionData, ?array $generalInfoData, array &$generalElements): void
     {
-        if (!$generalInfoData || empty($generalInfoData['CompleteName'])) {
+        if (!$generalInfoData || blank($generalInfoData['CompleteName'])) {
             return;
         }
 
         $completeName = $generalInfoData['CompleteName'];
 
-        if (!empty($visionData['LocalMission'])) {
+        if (filled($visionData['LocalMission'])) {
             $generalElements['local_mission'][] = $completeName;
         }
 
-        if (!empty($visionData['LocalObjective'])) {
+        if (filled($visionData['LocalObjective'])) {
             $generalElements['local_objective'][] = $completeName;
         }
 
-        if (!empty($visionData['LocalVision'])) {
+        if (filled($visionData['LocalVision'])) {
             $generalElements['local_vision'][] = $completeName;
         }
     }

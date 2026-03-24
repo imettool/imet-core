@@ -23,6 +23,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.ecosystem_services';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.ecosystem_services';
 
     protected static $DEPENDENCIES = [
@@ -98,6 +99,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
         return $vue_data;
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####
@@ -167,6 +169,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
             $predefined['group9'][8],
         ];
     }
+
     public static function get_connectivity_predefined(): array
     {
         $predefined = (new self)->predefined_values['values'];

@@ -31,9 +31,9 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
  */
 final class ScalingUpAnalysis extends Model
 {
-    protected static int $ttl = 2;
+    private static int $ttl = 2;
 
-    protected static ?string $schema = Database::IMET_SCHEMA;
+    private static ?string $schema = Database::IMET_SCHEMA;
 
     protected $table = 'scaling_up';
 

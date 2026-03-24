@@ -20,9 +20,13 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\GeneralInfoDataProvide
 final class GeneralInfoAnalysis extends BaseAnalysis
 {
     public static string $template = 'general_elements';
+
     public static string $title = 'imet-core::analysis_report.sections.second';
+
     public static string $code = '2';
+
     public static string $exclude_elements = '';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.general_elements';
 
     private static function getGeneralInfoProvider(?int $scalingId = null): GeneralInfoDataProvider

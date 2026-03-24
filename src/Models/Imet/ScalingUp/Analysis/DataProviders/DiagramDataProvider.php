@@ -15,7 +15,7 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 use Illuminate\Support\Facades\App;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
-final class DiagramDataProvider implements DataProviderInterface
+final readonly class DiagramDataProvider implements DataProviderInterface
 {
     public function __construct(
         private int $scalingId
@@ -88,7 +88,7 @@ final class DiagramDataProvider implements DataProviderInterface
             ]
         ];
 
-        return array_map(function ($indicator) use ($average, $lowerLimit, $upperLimit) {
+        return array_map(function (array $indicator) use ($average, $lowerLimit, $upperLimit): array {
             $key = $indicator['key'];
             return [
                 'value' => $average[$key],

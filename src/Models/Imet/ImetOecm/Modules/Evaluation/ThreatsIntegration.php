@@ -62,6 +62,7 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];
@@ -93,6 +94,7 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
             ->toArray();
     }
 
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records

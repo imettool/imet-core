@@ -23,9 +23,11 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.work_program_implementation';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.work_program_implementation';
 
     public static string $group_key_field = 'MainCategory';
+
     public static string $virtual_group_key_field = '__groupKey';
 
     public function __construct(array $attributes = [])
@@ -54,6 +56,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
      * Calculate the $virtual_group_key_field for each record based, add it to the record array and generate the groups
      * array based on the unique values of $group_key_field
      */
+    #[\Override]
     public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
     {
         $data = parent::getModuleRecords($form_id, $collection);
@@ -71,9 +74,9 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
         foreach ($data['records'] as $i => $record) {
 
             // Retrieve the group_key for the record
-            $group_key = array_search($record[self::$group_key_field], $groups);
+            $group_key = array_search($record[self::$group_key_field], $groups, true);
             if($group_key === false) {
-                $group_key = array_search(null, $groups);
+                $group_key = array_search(null, $groups, true);
             }
 
             // Add the group_key to the groups array if it's not already there
@@ -85,11 +88,13 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
             // Update the record in the data array
             $data['records'][$i] = $record;
         }
+
         $data['groups'] = $groups;
 
         return $data;
     }
 
+    #[\Override]
     public static function getDefinitions(?int $form_id = null): array
     {
         $items = parent::getDefinitions($form_id);
@@ -106,6 +111,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
      * @param array<string, mixed> $definitions
      * @return array<string, mixed>
      */
+    #[\Override]
     public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $return = parent::getVueData($form_id, $records, $definitions);

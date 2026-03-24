@@ -33,16 +33,6 @@ class Export extends Command
     protected $description = 'Export IMETs to JSON.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle(): int

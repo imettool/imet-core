@@ -24,6 +24,7 @@ final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eva
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.evaluation.edit.modules.management_equipment_adequacy';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.evaluation.show.modules.management_equipment_adequacy';
 
     public function __construct(array $attributes = [])
@@ -52,6 +53,7 @@ final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eva
 
     }
 
+    #[\Override]
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];

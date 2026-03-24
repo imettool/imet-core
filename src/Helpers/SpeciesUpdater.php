@@ -149,6 +149,7 @@ class SpeciesUpdater
         }
 
     }
+
     protected static function logError(string $message, bool $verbose = false): void
     {
         if($verbose){

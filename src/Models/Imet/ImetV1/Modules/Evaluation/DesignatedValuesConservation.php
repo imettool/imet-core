@@ -22,6 +22,7 @@ final class DesignatedValuesConservation extends Modules\Component\ImetModule_Ev
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.evaluation.edit.modules.designated_values_conservation';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.evaluation.show.modules.designated_values_conservation';
 
     public function __construct(array $attributes = [])

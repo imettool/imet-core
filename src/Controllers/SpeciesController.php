@@ -54,7 +54,7 @@ class SpeciesController extends Controller
         ]);
     }
 
-    public static function info(Request $request)
+    public static function info(Request $request): \Illuminate\Http\JsonResponse
     {
         $species = null;
 

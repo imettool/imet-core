@@ -130,7 +130,7 @@ abstract class Imet extends Form
                     })
                     ->get()
                     // Replacement for PostgreSQL unaccent() function
-                    ->filter(function ($item) use ($request): bool {
+                    ->filter(function (array $item) use ($request): bool {
                         if ($request->filled('search')) {
                             if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
                                 return true;
@@ -192,13 +192,13 @@ abstract class Imet extends Form
 
         // filters & sort
         $query
-            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params): void {
                 $q->where('wdpa_id', $params['wdpa_id']);
             })
-            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params): void {
                 $q->where('Year', $params['year']);
             })
-            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params): void {
                 $q->where('Country', $params['country']);
             })
             ->where('version', static::$version)
@@ -211,9 +211,9 @@ abstract class Imet extends Form
      */
     public static function checkMissingPaData(): void
     {
-        static::query()->where('Country', null)
-            ->orWhere('wdpa_id', null)
-            ->orWhere('name', null)
+        static::query()->where('Country')
+            ->orWhere('wdpa_id')
+            ->orWhere('name')
             ->get()
             ->map(function (Imet $imet): void {
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
@@ -231,7 +231,7 @@ abstract class Imet extends Form
     public static function getLanguage(string $form_id)
     {
         $session_key = 'imet_language_'.$form_id;
-        $language = session($session_key, null);
+        $language = session($session_key);
         if ($language === null || $language === '') {
             $language = strtolower(static::query()->find($form_id)->language);
             session([$session_key => $language]);
@@ -310,8 +310,6 @@ abstract class Imet extends Form
 
     /**
      * Retrieve protected area data
-     *
-     * @return ProtectedAreaNonWdpa|ProtectedArea
      */
     public static function getProtectedArea($wdpa_id): ProtectedArea|ProtectedAreaNonWdpa
     {

@@ -200,7 +200,7 @@ return [
     |
     */
 
-    'cache_driver' => env('LOG_VIEWER_CACHE_DRIVER', null),
+    'cache_driver' => env('LOG_VIEWER_CACHE_DRIVER'),
 
     /*
     |--------------------------------------------------------------------------

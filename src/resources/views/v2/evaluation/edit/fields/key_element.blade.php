@@ -5,8 +5,6 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $slug */
-
 $vue_attributes = \ModularForms\Helpers\DOM::vueAttributes($v_id, $v_value);
 
 // Use the __key_element_label as label if exists, otherwise fallback to the original value

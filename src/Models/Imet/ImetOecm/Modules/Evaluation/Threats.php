@@ -26,6 +26,7 @@ final class Threats extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.evaluation.edit.modules.threats';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.evaluation.show.modules.threats';
 
     public function __construct(array $attributes = [])
@@ -55,6 +56,7 @@ final class Threats extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];

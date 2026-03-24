@@ -25,6 +25,7 @@ final class Stakeholders extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.context.edit.modules.stakeholders';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.context.show.modules.stakeholders';
 
     protected static $DEPENDENCIES = [
@@ -99,6 +100,7 @@ final class Stakeholders extends Modules\Component\ImetModule
     /**
      * Override: get the list with direct/indirect
      */
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records and compare

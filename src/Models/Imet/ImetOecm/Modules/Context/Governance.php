@@ -22,6 +22,7 @@ final class Governance extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.context.edit.modules.governance';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.context.show.modules.governance';
 
     public function __construct(array $attributes = [])

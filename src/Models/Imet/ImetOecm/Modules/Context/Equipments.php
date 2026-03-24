@@ -72,6 +72,7 @@ final class Equipments extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records

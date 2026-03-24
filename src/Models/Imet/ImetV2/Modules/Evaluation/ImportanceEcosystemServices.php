@@ -25,6 +25,7 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.importance_ecosystem_services';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.importance_ecosystem_services';
 
     protected static $DEPENDENCY_ON = 'Aspect';
@@ -84,6 +85,7 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
         ];
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
@@ -102,13 +104,11 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
     }
 
     /**
-     * @param array $groups
      * @param $needle
-     * @return int|null
      */
     private static function find_category_id(array $groups, $needle): ?int
     {
-        return array_find_key($groups, fn($sub) => is_array($sub) && in_array($needle, $sub, true));
+        return array_find_key($groups, fn($sub): bool => is_array($sub) && in_array($needle, $sub, true));
     }
 
     private static function getEcosystemServices(?int $form_id): Collection

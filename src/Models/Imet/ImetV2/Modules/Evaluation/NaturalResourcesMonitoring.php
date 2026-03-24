@@ -45,6 +45,7 @@ final class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####

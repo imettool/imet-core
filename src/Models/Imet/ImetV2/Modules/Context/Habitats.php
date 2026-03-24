@@ -49,6 +49,7 @@ final class Habitats extends Modules\Component\ImetModule
 
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.8 -> v2.10 (revised habitat list)  ####

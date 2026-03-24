@@ -56,6 +56,7 @@ final class Habitats extends Modules\Component\ImetModule
      *
      * @throws Exception
      */
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records
@@ -87,6 +88,7 @@ final class Habitats extends Modules\Component\ImetModule
     /**
      * Override: replace values with habitat + description
      */
+    #[\Override]
     public static function getReferenceList($form_id, $dependency_field): array
     {
         return self::getModule($form_id)

@@ -24,6 +24,7 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.ecosystem_services';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.ecosystem_services';
 
     protected static $DEPENDENCY_ON = 'Intervention';

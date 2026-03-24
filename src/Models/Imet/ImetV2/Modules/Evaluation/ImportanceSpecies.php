@@ -26,6 +26,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.importance_species';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.importance_species';
 
     protected static $DEPENDENCY_ON = 'Aspect';
@@ -74,12 +75,8 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
                     ->filter()
-                    ->map(function(Modules\Context\AnimalSpecies $item) {
-                        return $item->species!==null
-                            ? $item->species
-                            : ($item->CommonName!==null ? $item->CommonName : null);
-                    })
-                    ->toArray(),
+                    ->map(fn(Modules\Context\AnimalSpecies $item) => $item->species ?? $item->CommonName ?? null)
+                    ->all(),
                 'group1' => Modules\Context\VegetalSpecies::getModule($form_id)
                     ->filter()
                     ->pluck('Species')
@@ -97,6 +94,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
      * Override: for group0 (animal species) add a virtual field with the scientific name and vernacular names to be
      * used as label in the UI
      */
+    #[\Override]
     public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
     {
         $records = parent::getModuleRecords($form_id, $collection);
@@ -106,6 +104,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
                 $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Aspect']);
             }
         }
+
         return $records;
     }
 

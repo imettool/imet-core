@@ -29,6 +29,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     public static $USER_MODE;
 
+    #[\Override]
     protected static function arrange_records($predefined_values, $records, $empty_record): array
     {
         $form_id = $empty_record['FormID'];
@@ -44,10 +45,10 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             foreach ($groups as $group) {
 
                 if (
-                    in_array('provisioning', $stakeholder_categories) && in_array($group, ['group0', 'group1', 'group2', 'group3']) ||
-                    in_array('cultural', $stakeholder_categories) && in_array($group, ['group4', 'group5', 'group6']) ||
-                    in_array('regulating', $stakeholder_categories) && in_array($group, ['group7', 'group8']) ||
-                    in_array('supporting', $stakeholder_categories) && in_array($group, ['group9', 'group10'])
+                    in_array('provisioning', $stakeholder_categories) && in_array($group, ['group0', 'group1', 'group2', 'group3'], true) ||
+                    in_array('cultural', $stakeholder_categories) && in_array($group, ['group4', 'group5', 'group6'], true) ||
+                    in_array('regulating', $stakeholder_categories) && in_array($group, ['group7', 'group8'], true) ||
+                    in_array('supporting', $stakeholder_categories) && in_array($group, ['group9', 'group10'], true)
                 ) {
 
                     // Find a record for the given stakeholder/group

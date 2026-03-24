@@ -24,6 +24,7 @@ final class Areas extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.areas';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.areas';
 
     public function __construct(array $attributes = [])

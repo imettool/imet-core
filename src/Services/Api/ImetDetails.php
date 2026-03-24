@@ -27,7 +27,7 @@ final class ImetDetails
     public static function getImetDetails(string $slug, int $form_id): array
     {
         $model = ModuleKey::KeyToClassName($slug);
-        $items = $model::where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
+        $items = $model::query()->where('FormID', $form_id)->get()->makeHidden(['UpdateBy', 'UpdateDate', 'id', 'FormID', 'upload', 'hidden', 'file_BYTEA', 'file']);
         $accepted_fields = [];
         $labels = [];
 

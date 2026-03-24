@@ -77,6 +77,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
         return $vue_data;
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####

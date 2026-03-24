@@ -46,6 +46,7 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
             $items[$k] = $pa->toArray();
             $items[$k]['Country_name'] = Country::getByISO($pa['Country']);
         }
+
         uasort($items, fn (array $a, array $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
 
         return $items;
@@ -71,9 +72,7 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
      */
     public static function getWdpasByFormId(array $form_ids): array
     {
-        return array_map(function ($form_id) {
-            return ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id);
-        }, $form_ids);
+        return array_map(fn($form_id) => ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id), $form_ids);
     }
 }
 

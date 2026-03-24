@@ -108,7 +108,7 @@ final class Common
             if ($value < 0 && ! is_string($value)) {
                 return self::round_number((100 + $value), 3);
             }
-        } elseif (in_array($indicator, ['C2', 'OC2', 'OC3'])) {
+        } elseif (in_array($indicator, ['C2', 'OC2', 'OC3'], true)) {
             return self::round_number(50 + ((float) $value / 2), 3);
         }
 

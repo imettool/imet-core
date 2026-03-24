@@ -22,6 +22,7 @@ final class AssistanceActivities extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.assistance_activities';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.assistance_activities';
 
     public function __construct(array $attributes = [])
@@ -76,6 +77,7 @@ final class AssistanceActivities extends Modules\Component\ImetModule_Eval
         ];
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.7 -> v2.8 (marine pas)  ####

@@ -67,6 +67,7 @@ final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
         ];
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $form_id = $empty_record['FormID'];

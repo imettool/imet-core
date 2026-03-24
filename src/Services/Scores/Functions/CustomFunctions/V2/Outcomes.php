@@ -26,7 +26,7 @@ trait Outcomes
             AchievedObjectives::class,
             'EvaluationScore',
             3,
-            fn($avg, $denom) => ($avg * 50) / 3);
+            fn($avg, $denom): int|float => ($avg * 50) / 3);
 
         $values = KeyConservationTrend::getModule($imet_id)
             ->filter(fn (KeyConservationTrend $record): bool => intval($record['Condition']) !== -99
@@ -48,7 +48,7 @@ trait Outcomes
             LifeQualityImpact::class,
             'EvaluationScore',
             'group_key',
-            fn($avg) => 2 *(($avg+ 3) * 100/6));
+            fn($avg): int|float => 2 *(($avg+ 3) * 100/6));
 
         $sum = ($oc1_score ?? 0) + ($oc2_score ?? 0) + ($oc3_score ?? 0);
 

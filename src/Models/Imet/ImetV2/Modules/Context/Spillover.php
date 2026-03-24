@@ -22,6 +22,7 @@ final class Spillover extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_LOW;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.spillover';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.spillover';
 
     public function __construct(array $attributes = [])
@@ -50,6 +51,7 @@ final class Spillover extends Modules\Component\ImetModule
         parent::__construct($attributes);
     }
 
+    #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.3 -> v3.0 ####

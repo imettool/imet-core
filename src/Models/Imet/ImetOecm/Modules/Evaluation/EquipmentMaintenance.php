@@ -24,6 +24,7 @@ final class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.evaluation.edit.modules.equipment_maintenance';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.evaluation.show.modules.equipment_maintenance';
 
     protected static $DEPENDENCY_ON = 'Equipment';
@@ -55,6 +56,7 @@ final class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
 
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);

@@ -67,7 +67,8 @@ abstract class Controller extends __Controller
         $sanitizer = Validator::make($request->all(), static::sanitization_rules);
         if($sanitizer->fails()){
             $filtered_list = collect();
-            $countries = $years = [];
+            $countries = [];
+            $years = [];
             $filters_validation_messages = $sanitizer->errors()->messages();
 
         } else {

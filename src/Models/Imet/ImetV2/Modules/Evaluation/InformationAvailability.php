@@ -26,6 +26,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.evaluation.edit.modules.information_availability';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.evaluation.show.modules.information_availability';
 
     protected static $DEPENDENCY_ON = 'Element';
@@ -120,6 +121,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
      * Override: for group0 (animal species) add a virtual field with the scientific name and vernacular names to be
      * used as label in the UI
      */
+    #[\Override]
     public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
     {
         $records = parent::getModuleRecords($form_id, $collection);
@@ -129,6 +131,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
                 $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Element']);
             }
         }
+
         return $records;
     }
 

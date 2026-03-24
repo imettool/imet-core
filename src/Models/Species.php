@@ -187,11 +187,11 @@ class Species extends BaseModel
     {
         $locale = Locale::lower();
         $mapped_languages = ['eng'];
-        if($locale === 'sp'){
+        if ($locale === 'sp') {
             $mapped_languages = ['spa', 'eng'];
-        } else if($locale === 'pt'){
+        } elseif ($locale === 'pt') {
             $mapped_languages = ['por', 'eng'];
-        } else if($locale === 'fr'){
+        } elseif ($locale === 'fr') {
             $mapped_languages = ['fra', 'eng'];
         }
 
@@ -214,9 +214,10 @@ class Species extends BaseModel
             $scientific_name = $species->genus . ' ' . $species->species;
             $vernacular_names = implode(', ', $species->getVernacularNames());
             $label = '<div class="'.$inline.'font-bold">'.$scientific_name.'</div>';
-            if($vernacular_names){
+            if($vernacular_names !== '' && $vernacular_names !== '0'){
                 $label .= '<div class="'.$inline.'italic">'.$vernacular_names.'</div>';
             }
+
             return $label;
         }
 

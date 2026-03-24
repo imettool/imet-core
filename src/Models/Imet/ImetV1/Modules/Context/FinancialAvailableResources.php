@@ -24,6 +24,7 @@ final class FinancialAvailableResources extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.financial_available_resources';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.financial_available_resources';
 
     public function __construct(array $attributes = [])

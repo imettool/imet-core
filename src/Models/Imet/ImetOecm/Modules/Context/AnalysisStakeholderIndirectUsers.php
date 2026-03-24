@@ -24,6 +24,7 @@ final class AnalysisStakeholderIndirectUsers extends _AnalysisStakeholders
     public static $USER_MODE = Stakeholders::ONLY_INDIRECT;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::oecm.context.edit.modules.analysis_stakeholder_indirect_users';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.context.show.modules.analysis_stakeholder_indirect_users';
 
     public function __construct(array $attributes = [])

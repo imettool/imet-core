@@ -76,6 +76,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
         ];
     }
 
+    #[\Override]
     protected static function arrange_records(?array $predefined_values, array $records, array $empty_record): array
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
@@ -108,6 +109,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
             ->toArray();
     }
 
+    #[\Override]
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
         // Get list of values (of reference field) from DB and from updated records

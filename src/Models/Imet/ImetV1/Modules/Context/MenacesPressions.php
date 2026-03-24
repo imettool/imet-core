@@ -22,6 +22,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v1.context.edit.modules.menaces_pressions';
+
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v1.context.show.modules.menaces_pressions';
 
     public static array $groupsByCategory = [

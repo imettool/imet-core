@@ -49,7 +49,7 @@ class Imet_Report extends Imet
             'priorities', 'minimum_budget', 'additional_funding',
         ];
 
-        $legacy_field_found = !empty(array_intersect($legacy_report_fields, array_keys($records)));
+        $legacy_field_found = array_intersect($legacy_report_fields, array_keys($records)) !== [];
 
         if($legacy_field_found){
 

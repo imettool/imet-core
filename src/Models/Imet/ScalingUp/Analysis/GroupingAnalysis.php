@@ -21,9 +21,13 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\GroupingDataProvider;
 final class GroupingAnalysis extends BaseAnalysis
 {
     public static string $template = 'grouping_analysis_on_demand';
+
     public static string $title = 'imet-core::analysis_report.sections.fifth';
+
     public static string $code = '5';
+
     public static string $exclude_elements = 'js-grouping-action-buttons,start-zone,js-render-buttons';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.grouping';
 
     private static function getAssessmentProvider(): AssessmentDataProvider
@@ -52,7 +56,7 @@ final class GroupingAnalysis extends BaseAnalysis
     public static function getProtectedAreaWithCountries(array $form_ids): array
     {
         $items = self::getProtectedAreaProvider()->getProtectedAreasWithCountries($form_ids);
-        uasort($items, fn($a, $b) => strnatcmp($a['name'], $b['name']));
+        uasort($items, fn($a, $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
         return $items;
     }
 

@@ -83,6 +83,7 @@ final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
      * @throws MissingDependencyConfigurationException
      * @throws \Throwable
      */
+    #[\Override]
     protected static function arrange_records_with_predefined($form_id, $records, $empty_record): array
     {
         $predefined_values = self::getPredefined($form_id);
