@@ -17,6 +17,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator;
 use ImetCore\Controllers\__Controller;
 use ImetCore\Controllers\Imet\Traits\Backup;
 use ImetCore\Controllers\Imet\Traits\ConvertSQLite;
@@ -24,7 +25,6 @@ use ImetCore\Controllers\Imet\Traits\ImportExportJSON;
 use ImetCore\Controllers\Imet\Traits\Merge;
 use ImetCore\Controllers\Imet\Traits\Pame;
 use ImetCore\Models\Imet\Imet;
-use ModularForms\Helpers\HTTP;
 use Throwable;
 
 use function view;
@@ -60,19 +60,28 @@ abstract class Controller extends __Controller
     public function index(Request $request): View
     {
         $this->authorize('viewAny', static::$form_class);
-        HTTP::sanitize($request, static::sanitization_rules);
-
-        // set filter status
-        $filter_selected = filled(array_filter($request->except('_token')));
 
         /** @var class-string<Imet> $form_class */
         $form_class = static::$form_class;
 
-        // retrieve IMET list
-        $filtered_list = $form_class::get_assessments_list_with_extras($request);
-        $full_list = $form_class::get_assessments_list(new Request, ['country']);
-        $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
-        $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+        $sanitizer = Validator::make($request->all(), static::sanitization_rules);
+        if($sanitizer->fails()){
+            $filtered_list = collect();
+            $countries = $years = [];
+            $filters_validation_messages = $sanitizer->errors()->messages();
+
+        } else {
+
+            // retrieve IMET list
+            $filtered_list = $form_class::get_assessments_list_with_extras($request);
+            $full_list = $form_class::get_assessments_list(new Request, ['country']);
+            $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
+            $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
+            $filters_validation_messages = [];
+        }
+
+        // set filter status
+        $filter_selected = filled(array_filter($request->except('_token')));
 
         return view(Controller::$form_view_prefix.'list', [
             'controller' => static::class,
@@ -82,6 +91,7 @@ abstract class Controller extends __Controller
             'countries' => $countries,
             'years' => $years,
             'index_url' => URL::route(static::ROUTE_PREFIX.'index'),
+            'filters_validation_messages' => $filters_validation_messages
         ]);
     }
 

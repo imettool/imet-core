@@ -1496,36 +1496,6 @@ return [
         ],
     ],
 
-    'AchievedResults' => [
-        'title' => 'Logro de resultados del plan de trabajo/acción',
-        'fields' => [
-            'Category' => 'Categoría de actividades',
-            'Activity' => 'Actividad',
-            'TargetedOutput' => 'Resultado del objetivo',
-            'EvaluationScore' => 'Nivel de logro',
-            'Comments' => 'Comentarios/explicación',
-        ],
-        'module_info' => 'El sistema estadístico permite sólo cinco líneas para identificar las funciones del personal del área protegida',
-        'ratingLegend' => [
-            'EvaluationScore' => [
-                '0' => 'No se alcanzó o se ha alcanzado muy poco el resultado previsto del año anterior (entre el 0 y el 25%)',
-                '1' => 'Bajo nivel de logro de la meta del año anterior (entre el 26 y el 50%)',
-                '2' => 'Nivel moderado de logro de la meta del año anterior (entre el 51 y el 75%)',
-                '3' => 'Alto nivel de logro de la meta del año anterior (entre 76 y 100%)',
-            ],
-        ],
-        'module_info_EvaluationQuestion' => [
-            '¿En qué medida ha alcanzado el área protegida los principales resultados del plan de trabajo?',
-            'El enfoque predominante para la planificación de las áreas protegidas incluye el establecimiento de resultados de planes de trabajo/acciones anuales o multianuales que contribuyan al logro de los objetivos de conservación a largo plazo/objetivos o EFECTOS E IMPACTOS. En el proceso de planificación, las metas/objetivos a más largo plazo se traducen en objetivos de conservación a corto plazo para características específicas de la diversidad biológica, como especies, hábitats y amenazas o servicios de los ecosistemas que es posible lograr con el plan de trabajo/acción. Sin embargo, dado que la utilización de muchas metas de conservación de bajo nivel es un obstáculo para lograr un rendimiento de conservación de alto nivel, los productos deben estar fuertemente vinculados a los resultados para asegurar un rendimiento de conservación de alto nivel. El establecimiento de sistemas de medición del rendimiento es una forma importante de hacer un seguimiento de los progresos de sus actividades de gestión y conservación',
-        ],
-        'module_info_Rating' => [
-            'Evaluar el nivel de logro/cumplimiento de las principales metas del plan de trabajo/acción (en las observaciones, indicar el año de referencia si se solicita un plan de trabajo/acción plurianual).',
-            '<b>Categoría de actividades</b>: acción perteneciente a una de las principales categorías de actividades que se ejecuta para lograr un propósito particular',
-            '<b>Actividad</b>: action belonging to one of the main categories of activities that is executed to achieve particular purpose',
-            'Sin un plan de trabajo/acción, puede referirse a las categorías y las actividades del elemento Proceso: Gestión y protección de los elementos clave; Relaciones con las partes interesadas; Turismo; Monitoreo e investigación; Cambio climático y Servicios/funciones ecosistémicas',
-        ],
-    ],
-
     'AreaDomination' => [
         'title' => 'Dominio del área',
         'fields' => [

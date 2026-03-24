@@ -75,6 +75,8 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
             'values' => $form_id !== null
                 ? self::getEcosystemServices($form_id)
                     ->map(fn (Modules\Context\EcosystemServices $item): mixed => $item['Element'])
+                    ->filter()
+                    ->values()
                 : [],
         ];
     }
@@ -113,11 +115,16 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
             ->filter(fn ($item): bool => $item['Importance'] !== null)
             ->map(function (Modules\Context\EcosystemServices $item) use ($categories): Modules\Context\EcosystemServices {
 
+                // Create alias to uncrease readability of the formula
+                $importance = $item['Importance'];
+                $dependence = $item['ImportanceRegional'];
+                $trend = $item['ImportanceGlobal'];
+
                 $id = self::find_category_id($categories, $item['group_key']) + 1;
                 $item["_categories"] = $id.'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.$id);
-                $item['_rank'] = (floatval($item['Importance'])
-                        + ($item['ImportanceRegional'] / 3)
-                        + ((2 - $item['ImportanceGlobal']) / 4)) / 3 * 100;
+                $item['_rank'] = (floatval($importance)
+                        + ($dependence / 3)
+                        + (( $trend + 2) / 4)) / 3 * 100;
                 return $item;
             })
             ->sortByDesc('_rank');

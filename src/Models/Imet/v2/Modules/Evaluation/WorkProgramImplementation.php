@@ -22,7 +22,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 
     public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
     public static string $group_key_field = 'MainCategory';
-    public static string $virtual_field = 'GroupKey';
+    public static string $virtual_group_key_field = '__groupKey';
 
     public function __construct(array $attributes = [])
     {
@@ -39,8 +39,6 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
             ['name' => 'Comments', 'type' => 'text-area', 'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.Comments')],
         ];
 
-        $this->module_groups = array_fill(1, 20, [self::$group_key_field => '-', self::$virtual_field => '-']);
-
         $this->module_info_EvaluationQuestion = trans('imet-core::v2_evaluation.WorkProgramImplementation.module_info_EvaluationQuestion');
         $this->module_info_Rating = trans('imet-core::v2_evaluation.WorkProgramImplementation.module_info_Rating');
         $this->ratingLegend = trans('imet-core::v2_evaluation.WorkProgramImplementation.ratingLegend');
@@ -48,16 +46,44 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
         parent::__construct($attributes);
     }
 
+    /**
+     * Calculate the $virtual_group_key_field for each record based, add it to the record array and generate the groups
+     * array based on the unique values of $group_key_field
+     */
     public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
     {
-        $return = parent::getModuleRecords($form_id, $collection);
-        foreach ($return['records'] as $key => $record) {
-            $return['records'][$key][self::$virtual_field] = $record[self::$group_key_field];
+        $data = parent::getModuleRecords($form_id, $collection);
+
+        // Initialize $groups array (up to group20)
+        $groups = [];
+        $group_index = 1;
+        while($group_index <= 20) {
+            $group_key = 'group'.$group_index;
+            $groups[$group_key] = null;
+            $group_index++;
         }
-        $model = new static;
-        $groups = self::getGroupsUpdated($return['records'], $model->module_fields, $model->module_groups);
-        $return['groups'] = $groups;
-        return $return;
+
+        // Loop through records to assign group keys
+        foreach ($data['records'] as $i => $record) {
+
+            // Retrieve the group_key for the record
+            $group_key = array_search($record[self::$group_key_field], $groups);
+            if($group_key === false) {
+                $group_key = array_search(null, $groups);
+            }
+
+            // Add the group_key to the groups array if it's not already there
+            $groups[$group_key] = $record[self::$group_key_field];
+
+            // Add the group_key to the record into $virtual_group_key_field
+            $record[self::$virtual_group_key_field] = $group_key;
+
+            // Update the record in the data array
+            $data['records'][$i] = $record;
+        }
+        $data['groups'] = $groups;
+
+        return $data;
     }
 
     public static function getDefinitions(?int $form_id = null): array
@@ -65,91 +91,8 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
         $items = parent::getDefinitions($form_id);
         $records = self::getModuleRecords($form_id);
 
-        $items['fields'][] = ['name' => self::$virtual_field, 'type' => 'text-area', 'label' => trans('imet-core::v2_evaluation.WorkProgramImplementation.fields.MainCategory')];
         $items['groups'] = $records['groups'];
-        $items['virtual_field'] = self::$virtual_field;
         return $items;
-    }
-
-    public static function getEmptyRecord(?int $form_id = null): array
-    {
-        $empty_record = parent::getEmptyRecord($form_id);
-        $empty_record[self::$virtual_field] = '';
-
-        return $empty_record;
-    }
-
-    public static function updateModuleRecords(array $records, ?int $form_id): void
-    {
-        $groups = [];
-        $processed_records = [];
-
-        // Group records by their MainCategory
-        foreach ($records as $record) {
-            $mainCategory = $record[self::$group_key_field] ?? '';
-            $groups[$mainCategory][] = $record;
-        }
-
-        //Process the groups
-        foreach ($groups as $mainCategory => $groupRecords) {
-            $newGroupKey = null;
-
-            // Find if a new, non-empty GroupKey was provided for this group
-            foreach ($groupRecords as $record) {
-                if (!empty($record[self::$virtual_field]) && $record[self::$virtual_field] !== $mainCategory) {
-                    $newGroupKey = $record[self::$virtual_field];
-                    break;
-                }
-            }
-
-            // Update records in the group if a new GroupKey was found
-            if ($newGroupKey !== null) {
-                foreach ($groupRecords as $record) {
-                    $record[self::$group_key_field] = $newGroupKey;
-                    unset($record[self::$virtual_field]);
-                    unset($record['index']);
-                    $processed_records[] = $record;
-                }
-            } else {
-                // Otherwise, keep the records as they are and remove GroupKey
-                foreach ($groupRecords as $record) {
-                    unset($record[self::$virtual_field]);
-                    unset($record['index']);
-                    $processed_records[] = $record;
-                }
-            }
-        }
-
-        parent::updateModuleRecords($processed_records, $form_id);
-    }
-
-    public static function getGroupsUpdated(array $records, array $fields, array $groups): array
-    {
-        $new_groups = [];
-        foreach ($records as $record) {
-            foreach ($fields as $field) {
-                if (!in_array($field['name'], [self::$group_key_field, self::$virtual_field], true)) {
-                    continue;
-                }
-
-                $value = $record[$field['name']];
-
-                if (!in_array($value, $new_groups, true)) {
-                    $new_groups[] = $value;
-                }
-            }
-        }
-
-        foreach ($new_groups as $group_key => $group) {
-            $index = (int)$group_key + 1;
-            if (!isset($new_groups[$index])) {
-                continue;
-            }
-            $new_element = [self::$group_key_field => $new_groups[$index], self::$virtual_field => $new_groups[$index]];
-            $groups[$index] = $new_element;
-
-        }
-        return $groups;
     }
 
     /**
@@ -162,7 +105,12 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
     public static function getVueData(?int $form_id, array $records, array $definitions): array
     {
         $return = parent::getVueData($form_id, $records, $definitions);
-        $return['groups'] = self::getGroupsUpdated($records['records'], $definitions['fields'], $definitions['groups']);
+
+        // Trick UI to use $virtual_group_key_field instead of the $group_key_field for grouping records in the view,
+        // while keeping the original $group_key_field as the one stored in the database and used for grouping in the backend
+        $return['group_key_field'] = self::$virtual_group_key_field;
+        $return['original_group_key_field'] = self::$group_key_field;
+
         return $return;
     }
 

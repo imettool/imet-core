@@ -126,12 +126,12 @@ class ProtectedArea extends BaseModel
             })
             ->get()
             ->pluck('country')
-            ->sort()
             ->each(function ($iso) use (&$iso3s): void {
                 $iso3s = array_merge($iso3s, explode(';', $iso));
             });
 
-        return $iso3s;
+        sort($iso3s);
+        return array_values(array_unique($iso3s));
     }
 
     /**

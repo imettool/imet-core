@@ -12,7 +12,7 @@ import ModuleImet from "../../../Module.js";
 
 import { watch, computed } from "vue";
 
-export default class CreateNonWDPA extends ModuleImet {
+export default class Governance extends ModuleImet {
 
     constructor(input_data = {}) {
 

@@ -15,82 +15,97 @@ import {reactive, toRaw} from "vue";
 
 export default class WorkProgramImplementation extends ModuleImet {
 
+    constructor(input_data = {}) {
+
+        const custom_props = {
+            original_group_key_field: String
+        }
+        super(input_data, custom_props);
+    }
+
     setupApp(props, input_data) {
+
         let setup_obj = super.setupApp(props, input_data);
         let group_key_field = props.group_key_field;
+        let original_group_key_field = props.original_group_key_field;
         let empty_record = props.empty_record;
         let groups = reactive(props.groups);
 
-        delete setup_obj.replaceGroups;
-        delete setup_obj.addItem;
-
-        setup_obj.emitter.off('moduleSaved');
-
-        setup_obj.emitter.on('moduleSaved', (data) => {
-            replaceGroups(data.groups);
-        });
-
-        function replaceGroups(newGroups) {
-            Object.keys(groups).forEach(key => {
-                delete groups[key];
-            });
-            Object.keys(newGroups).forEach(key => {
-                groups[key] = newGroups[key];
-            });
+        function isGroupDefined(group_key) {
+            return groups[group_key] !== undefined && groups[group_key] !== null;
         }
 
-        function ensureAteLeastOneRecordPerGroup() {
-            let used_groups = setup_obj.records.map(record => record[group_key_field]);
-            let missing_groups = Object.keys(groups).filter(n => !used_groups.includes(n));
-            missing_groups.forEach(group_key => {
-                addItem(group_key);
+        /**
+         * Refresh the value of a group key in the groups object. The key is unchanged, only the value is updated.
+         */
+        function refreshGroupKey(group_key, new_value) {
+            // Update the value in the groups object
+            groups[group_key] = new_value;
+            // Update the value in all the group records
+            setup_obj.records.forEach(record => {
+                if (record[group_key_field] === group_key) {
+                    record[original_group_key_field] = new_value;   // Update the original group key field with the new value
+                }
             });
         }
 
-        function updateGroupKey(index, new_group_key) {
-            groups[index]['GroupKey'] = new_group_key;
+        /**
+         * Filter records by group key, but keep the original index of the record in the main records array (setup_obj.records)
+         */
+        function recordsFilterKeepIndex(group_key) {
+            return setup_obj.records
+                .map((i, d) => {
+                    i.__index = d;
+                    return i;
+                })
+                .filter(r => r[group_key_field] === group_key)
+                .slice(0, 1)
         }
 
-        function recordsFilterKeepIndex(records, index1, index2) {
-            return setup_obj.records.map((i, d) => {
-                i.index = d;
-                return i;
-            }).filter(r => {
-                return setup_obj.recordIsInGroup(r, index1[group_key_field]) || setup_obj.recordIsInGroup(r, index1['GroupKey'])
-            }).slice(0, 1)
+        /**
+         * Override: generate the accordion title by taking it from the groups object
+         */
+        function accordionTitle(group_key) {
+            let index = Object.keys(groups).indexOf(group_key) + 1;
+            let title = groups[group_key] !== null  ? groups[group_key] : '';
+            return index.toString() + ' - ' + title;
         }
 
-        function accordionTitle(index) {
-            return groups[index]['GroupKey'];
-        }
-
-        function addItem(group_key, stakeholder) {
+        /**
+         * Override: add group key and original group key values to the new record when adding a new item
+         */
+        function addItem(group_key) {
             let new_empty_record = JSON.parse(JSON.stringify(toRaw(empty_record)));
-            setup_obj.records.find(r => r[group_key_field] === group_key);
+            let original_group_value = setup_obj.records.find(r => r[group_key_field] === group_key)[original_group_key_field]
             new_empty_record[group_key_field] = group_key;
+            new_empty_record[original_group_key_field] = original_group_value;
             setup_obj.records.push(new_empty_record);
         }
 
+        /**
+         * Override: use __index to remove the correct item from the records
+         */
         function deleteItem(index){
-            let num_records= setup_obj.numRecordsInGroup(setup_obj.records[index][group_key_field])
+            let num_records = setup_obj.records.length;
+            let item_to_delete = setup_obj.records.find(r => r['__index'] === index);
+            let group_key = item_to_delete[group_key_field];
+            let record_index = item_to_delete['__index'];
+
             if(num_records > 1){
-                setup_obj.records.splice(index, 1);
+                setup_obj.records.splice(record_index, 1);
             } else {
                 let new_empty_record = JSON.parse(JSON.stringify(empty_record));
-                new_empty_record[group_key_field] = setup_obj.records[index][group_key_field];
-                setup_obj.records[index] = new_empty_record;
+                new_empty_record[group_key_field] = group_key;
+                setup_obj.records[record_index] = new_empty_record;
             }
         }
 
-
-        ensureAteLeastOneRecordPerGroup();
-
         return {
             ...setup_obj,
-            updateGroupKey,
+            isGroupDefined,
+            refreshGroupKey,
             recordsFilterKeepIndex,
             accordionTitle,
-            groups,
             addItem,
             deleteItem
         };

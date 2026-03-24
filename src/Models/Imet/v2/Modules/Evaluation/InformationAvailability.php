@@ -12,6 +12,7 @@
 
 namespace ImetCore\Models\Imet\v2\Modules\Evaluation;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\v2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
@@ -68,24 +69,64 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
             'values' => $form_id !== null
                 ? [
                     'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
-                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
-                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group1')->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group1')
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group3' => Modules\Evaluation\Menaces::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group4' => Modules\Evaluation\ImportanceClimateChange::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group5' => Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group6' => Modules\Evaluation\ImportanceClassification::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray(),
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->pluck('Aspect')
+                        ->filter()
+                        ->toArray(),
                     'group7' => Modules\Evaluation\SupportsAndConstraints::getModule($form_id)
-                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])->pluck('Aspect')->toArray()
+                        ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
+                        ->filter()
+                        ->pluck('Aspect')
+                        ->toArray()
                     ]
                 : [],
         ];
+    }
+
+    /**
+     * Override: for group0 (animal species) add a virtual field with the scientific name and vernacular names to be
+     * used as label in the UI
+     */
+    public static function getModuleRecords(?int $form_id, ?Collection $collection = null): array
+    {
+        $records = parent::getModuleRecords($form_id, $collection);
+
+        foreach ($records['records'] as $idx => $record) {
+            if($record[self::$group_key_field] === 'group0') {
+                $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Element']);
+            }
+        }
+        return $records;
     }
 
     /**

@@ -10,8 +10,8 @@
 
 import FormList from "@modular-forms/js/apps/FormList.js";
 
-import imet_encoders_responsibles from "../templates/imet_encoders_responsibles.vue";
-import imet_radar from "../templates/imet_radar.vue";
+import ImetEncodersResponsibles from "../templates/imet_encoders_responsibles.vue";
+import ImetRadar from "../templates/imet_radar.vue";
 
 export default class FormListImet extends FormList {
 
@@ -20,8 +20,8 @@ export default class FormListImet extends FormList {
         return super(options, input_data)
 
             // Register components
-            .component('imet_encoders_responsibles', imet_encoders_responsibles)
-            .component('imet_radar', imet_radar)
+            .component('ImetEncodersResponsibles', ImetEncodersResponsibles)
+            .component('imet_radar', ImetRadar)
 
         ;
     }

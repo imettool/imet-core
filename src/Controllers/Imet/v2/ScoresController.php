@@ -20,8 +20,10 @@ final class ScoresController extends Controller
 {
     public function __invoke(Request $request, int $item): JsonResponse
     {
+        $refresh_cache = $request->query('refresh_cache', 'false') === 'true';
+
         return new JsonResponse(
-            AssessmentsScores::scores($item)
+            AssessmentsScores::scores($item, $refresh_cache)
         );
     }
 }

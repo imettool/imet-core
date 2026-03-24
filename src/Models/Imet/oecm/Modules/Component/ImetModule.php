@@ -21,7 +21,7 @@ class ImetModule extends BaseImetModule
 {
     use Upgrade;
 
-    public const MODULE_SCOPE = null;
+    public const ?string MODULE_SCOPE = null;
 
     protected static ?string $schema = Database::OECM_SCHEMA;
 

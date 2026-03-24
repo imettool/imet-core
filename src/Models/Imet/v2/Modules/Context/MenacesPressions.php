@@ -234,53 +234,21 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
     public static function get_terrestrial_groups(): array
     {
-        $groups = (new self)->module_groups;
-
-        return [
-            $groups['group1'],
-            $groups['group2'],
-            $groups['group3'],
-            $groups['group8'],
-            $groups['group9'],
-            $groups['group10'],
-        ];
+        return collect((new self)->module_groups)
+            ->filter(function ($group, $key) {
+                return in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']);
+            })
+            ->keys()
+            ->toArray();
     }
 
     public static function get_marine_groups(): array
     {
-        $groups = (new self)->module_groups;
-
-        return [
-            $groups['group4'],
-            $groups['group11'],
-        ];
-    }
-
-    public static function injectGroupTitle($view, string $module_key, string $beforeGroup, string $title): string
-    {
-        $searchFor = '<h5 class="highlight group_title_'.$module_key.'_'.$beforeGroup.'"';
-        $textToAdd = '<h3 class="group_title_'.$module_key.'_'.$beforeGroup.'">'.$title.'</h3>';
-
-        return str_replace($searchFor, $textToAdd.$searchFor, $view);
-    }
-
-    /**
-     * Inject
-     */
-    public static function injectShowHideCategories($view, string $parent, $groups): string
-    {
-        $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
-        $vueIfDirective = 'isSubCategoryVisibly('.$parent.')';
-        $elements = ['h3' => 'class', 'h5' => 'class', 'table' => 'id'];
-        foreach ($groups as $group) {
-            foreach ($elements as $k => $element) {
-                $dom->filter($k.'['.$element.'*="_'.$group.'"]')->setAttribute('v-if', $vueIfDirective);
-            }
-
-            $dom->filter('table[id*="_'.$group.'"] + br')->setAttribute('v-if', $vueIfDirective);
-            $dom->filter('table[id*="_'.$group.'"] + br + br')->setAttribute('v-if', $vueIfDirective);
-        }
-
-        return $dom->saveHTML();
+        return collect((new self)->module_groups)
+            ->filter(function ($group, $key) {
+                return in_array($key, ['group4', 'group11']);
+            })
+            ->keys()
+            ->toArray();
     }
 }

@@ -191,6 +191,85 @@ return [
         'High', 'Medium', 'Poor',
     ],
 
+    'DocumentedConnectivity' => [
+        'no_connectivity' => 'No connectivity / highly isolated',
+        'limited_connectivity' => 'Limited connectivity (fragmented or weak structural links)',
+        'moderate_connectivity' => 'Moderate connectivity (partial ecological continuity)',
+        'strong_connectivity' => 'Strong connectivity (integrated ecological network)',
+    ],
+    'EvidenceOfConnectivity' => [
+        'no_information' => 'No information',
+        'only_anecdotal' => 'Anecdotal information',
+        'some_indications' => 'Some indications',
+        'strong_evidence' => 'Strong evidence (tagging, telemetry, genetic studies, larval dispersal models)',
+    ],
+    'EvidencesListConnectivity' => [
+        'habitat_mapping' => 'Habitat mapping',
+        'corridor_analysis' => 'Corridor analysis',
+        'marine_current_models' => 'Marine current models',
+        'landscape_fragmentation_index' => 'Landscape fragmentation index',
+        'transboundary_agreements' => 'Transboundary agreements',
+        'scientific_publications' => 'Scientific publications'
+    ],
+    'ConnectivityIntegrationInManagementPlan' => [
+        'not_considered' => 'Not considered',
+        'mentioned_not_operationalised' => 'Mentioned but not operationalised',
+        'partially_integrated' => 'Partially integrated (corridor protection, buffer zoning)',
+        'fully_integrated' => 'Fully integrated at landscape/seascape scale (network-level management approach)',
+    ],
+
+    'SupportingEvidence' => [
+        'no_information' => 'No information / not assessed',
+        'only_anecdotal' => 'No, only anecdotal information',
+        'some_indicators' => 'Yes, some indications (limited data or one-off study)',
+        'strong_evidence' => 'Yes, strong evidence (targeted studies / long-term monitoring)',
+    ],
+    'SupportingKeyObservations' => [
+        'monitoring_data' => 'Monitoring data (ecological)',
+        'scientific_study' => 'Scientific study / report',
+        'local_knowledge' => 'Local / traditional knowledge',
+        'ranger_observations' => 'Ranger / staff observations',
+        'other' => 'Other',
+    ],
+    'SupportingPerceivedSpeciesChange' => [
+        'many_fewer' => 'Many fewer species / less diverse',
+        'slightly_fewer' => 'Slightly fewer species',
+        'slightly_more' => 'Slightly more species / more diverse',
+        'many_more' => 'Many more species / much more diverse',
+    ],
+    'SupportingPerceivedSizeChange' => [
+        'much_smaller' => 'Much smaller',
+        'slightly_smaller' => 'Slightly smaller',
+        'slightly_larger' => 'Slightly larger',
+        'much_larger' => 'Much larger',
+    ],
+    'ProvisioningEvidence' => [
+        'no_information' => 'No information / not assessed',
+        'only_anecdotal' => 'No, only anecdotal information',
+        'some_indicators' => 'Yes, some indications (limited datasets, one-off study, partial observations)',
+        'strong_evidence' => 'Yes, strong evidence (long-term monitoring, targeted studies, repeated CPUE data)',
+    ],
+    'ProvisioningKeyObservations' => [
+        'fisheries_monitoring' => 'Fisheries monitoring data (catch per trip, CPUE trends, size measurements)',
+        'scientific_reports' => 'Scientific or technical reports on fisheries performance near the PA',
+        'local_knowledge' => 'Local / traditional knowledge from fishers about catch trends',
+        'staff_observations' => 'Observations by fisheries officers or PA staff near the boundaries',
+        'market_records' => 'Market or landing-site records (quantities, species composition)',
+        'other' => 'Other',
+    ],
+    'ProvisioningPerceivedCatchChange' => [
+        'much_lower' => 'Much lower',
+        'slightly_lower' => 'Slightly lower',
+        'slightly_higher' => 'Slightly higher',
+        'much_higher' => 'Much higher',
+    ],
+    'ProvisioningPerceivedSpillover' => [
+        'worse' => 'No, the MPA has clearly made catches worse',
+        'no_effect' => 'The MPA has had little or no effect on catches',
+        'somewhat_better' => 'The MPA has contributed somewhat to better catches',
+        'clearly_better' => 'The MPA has clearly contributed to better catches',
+    ],
+
     'Habitats' => [
         'artificial' => 'Artificial - plantations, gardens, pasturelands',
         'desert' => 'Desert – hot, cold, temperate',

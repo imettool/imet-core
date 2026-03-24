@@ -12,7 +12,7 @@ $constraints ??= false;
 
 $classes = match(true) {
     $threats => AssessmentsScores::score_class_threats($assessment_value),
-    $constraints => AssessmentsScores::score_class_threats($assessment_value, 'score_constraints_success'),
+    $constraints => AssessmentsScores::score_class_contraints($assessment_value),
     default => AssessmentsScores::score_class($assessment_value)
 };
 

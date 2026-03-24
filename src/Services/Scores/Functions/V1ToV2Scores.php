@@ -208,7 +208,6 @@ class V1ToV2Scores extends _Scores
         $scores_v1 = V1Scores::scores_outputs($imet_id);
         $scores = [
             'OP1' => $scores_v1['R1'] !== null ? round($scores_v1['R1'] * 0.76, 2) : null,
-            'OP2' => $scores_v1['R2'] !== null ? round($scores_v1['R2'] * 0.76, 2) : null,
             'OP3' => V1Scores::score_pr9($imet_id),
             'OP4' => null,
         ];

@@ -9,15 +9,31 @@
         <div class="container">
             <preview-template :scaling_up_id="{{ $scaling_up_id }}"></preview-template>
         </div>
-
-        <div id="imet_report" cclass="imet_report scrollButtons">
-            <div class="standalone" @click="downloadFiles">
-                {!! \ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}</div>
-            <div class="standalone" @click="printReport">
-                {!! \ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::analysis_report.print')) }}</div>
-        </div>
     </div>
 @endsection
+
+
+@section('side-buttons')
+
+    @component('modular-forms::module.side-buttons',[
+        'withZoom' => true
+    ])
+
+        <div id="imet_report" class="imet_report sideButtons">
+            <div @click="downloadFiles">
+                {!! \ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}
+            </div>
+        </div>
+        <div id="imet_report" class="imet_report sideButtons">
+            <div @click="printReport">
+                {!! \ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::common.print')) }}
+            </div>
+        </div>
+
+    @endcomponent
+
+@endsection
+
 
 @push('scripts')
     <style>

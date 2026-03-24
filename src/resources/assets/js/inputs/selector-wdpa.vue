@@ -17,8 +17,21 @@
         :label-url=labelUrl
         :multiple=multiple
         :with-id=true
+        :parent-search-params-valid=isSearchable
         ref="selectorDialogComponent"
     >
+
+        <!-- api search - search by country -->
+        <template v-slot:searchFilters>
+            <span>
+                <i>{{ Locale.getLabel('imet-core::common.country') }}</i> :
+                <select v-model=selectedCountry class="field-edit !max-w-3xs !mx-2">
+                    <option v-for="(label, iso) in dataCountries" :value=iso>
+                        {{ label }}
+                    </option>
+                </select>
+            </span>
+        </template>
 
         <!-- api search - result header -->
         <template v-slot:searchResultHeader>
@@ -46,7 +59,7 @@
 
 <script setup>
 
-import {ref, provide, onBeforeMount, onMounted} from "vue";
+import {ref, provide, computed} from "vue";
 const selectorDialog = window.ModularForms.Components.selectorDialog;
 
 const Locale = window.ModularForms.Helpers.Locale;
@@ -67,6 +80,10 @@ const props = defineProps({
     multiple: {
         type: Boolean,
         default: false,
+    },
+    dataCountries: {
+        type: Object,
+        default: null
     }
 });
 
@@ -74,9 +91,27 @@ const props = defineProps({
 const selectorDialogComponent = ref(null);
 provide('setLabel', setLabel);
 provide('setValue', setValue);
+provide('getSearchParams', getSearchParams);
 
 // values
 const inputValue = defineModel();
+const selectedCountry = ref(null);
+
+/**
+ *
+ */
+const isSearchable = computed(() => {
+    return selectedCountry.value !== null;
+});
+
+/**
+ * Extend the default search params with the country filter
+ */
+function getSearchParams(){
+    return {
+        'country': selectedCountry.value
+    };
+}
 
 function setLabel(item) {
    return item?.name

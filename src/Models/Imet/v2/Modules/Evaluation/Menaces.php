@@ -72,6 +72,8 @@ final class Menaces extends Modules\Component\ImetModule_Eval
             'values' => $form_id !== null
                 ? self::getMenacesPressions($form_id)
                     ->map(fn (Modules\Context\MenacesPressions $item): mixed => $item['Value'])
+                    ->filter()
+                    ->values()
                 : [],
         ];
     }

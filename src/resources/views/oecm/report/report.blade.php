@@ -36,6 +36,7 @@ if ($item!==null && $item->language != App::getLocale()) {
 @extends('modular-forms::layouts.forms')
 
 @section('content')
+
     {{--  Heading --}}
     @include('imet-core::components.heading', ['item' => $item])
 
@@ -193,59 +194,83 @@ if ($item!==null && $item->language != App::getLocale()) {
                 <report-editor v-model="report[0].additional_funding" :action="'{{ $action }}'"></report-editor>
             </div>
         </div>
-        @if ($action === 'edit')
-            <div class="scrollButtons report" v-cloak>
+    </div>
+@endsection
 
-                {{-- Save --}}
-                <div class="standalone" v-show=status==='changed'>
+@section('side-buttons')
+
+    @component('modular-forms::module.side-buttons', [
+        'withPrint' => $action==='edit',
+        'withZoom' => true,
+    ])
+
+        @if ($action === 'edit')
+
+            {{-- Save --}}
+            <div class="sideButtons collapsible" v-show=status==='changed'>
+                <div>
                     <form id="imet_report_form" method="post"
-                        action="{{ route(Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
-                        style="display: inline-block;">
+                          action="{{ route(REPORT_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          style="display: inline-block;">
                         @method('PATCH')
                         @csrf
                         <span @click="saveReport">{!! Template::icon('save') !!}
                             {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
-                <div class="standalone" v-show=status==='loading'>
+            </div>
+
+            {{-- Loading --}}
+            <div class="sideButtons collapsible" v-show=status==='loading'>
+                <div>
                     <i class="fa fa-spinner fa-spin text-primary-800"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
-                <div v-show=status==='saved' class="standalone highlight">
+            </div>
+
+            {{-- Saved --}}
+            <div class="sideButtons collapsible" v-show=status==='saved'">
+                <div class="highlight">
                     {{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!
                 </div>
-                <div v-show=status==='error' class="standalone error">
+            </div>
+
+            {{-- Error --}}
+            <div class="sideButtons collapsible" v-show=status==='error'>
+                <div class="error">
                     {{ ucfirst(trans('modular-forms::common.saved_error')) }}!
                 </div>
-
-                {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! Template::icon('print') !!}
-                    {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
+
         @endif
+
         @include('imet-core::oecm.report.components.navigation_menu')
-    </div>
-@endsection
+
+    @endcomponent
+
+
+
+@endSection
 
 @push('scripts')
     <style>
         @media print {
-            .scrollButtons {
+            .sideButtons {
                 display: none;
             }
 
-            .scrollButtons.report {
+            .sideButtons.report {
                 display: none;
             }
         }
 
         @media screen {
-            .scrollButtons {
+            .sideButtons {
                 margin-bottom: 0;
                 bottom: 100px;
             }
 
-            .scrollButtons.report {
+            .sideButtons.report {
                 margin-bottom: 0;
                 bottom: 20px;
             }
@@ -256,7 +281,7 @@ if ($item!==null && $item->language != App::getLocale()) {
             report: @json($report),
             scores: @json($scores),
             default_schema: @json($report_schema),
-            url: '{{ route(\ImetCore\Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
+            url: '{{ route(REPORT_PREFIX . 'report_update', ['item' => $item->getKey()]) }}',
             loading: false,
             loading_objectives: false,
             error_objectives: false,

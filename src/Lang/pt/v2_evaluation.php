@@ -1496,36 +1496,6 @@ return [
         ],
     ],
 
-    'AchievedResults' => [
-        'title' => 'Alcance dos produtos do plano de trabalho/acção',
-        'fields' => [
-            'Category' => 'Categorias de actividades',
-            'Activity' => 'Actividade',
-            'TargetedOutput' => 'Produto Alvo',
-            'EvaluationScore' => 'Nível de alcance',
-            'Comments' => 'Comentários/Explicação',
-        ],
-        'module_info' => 'O sistema estatistico permite apenas cinco linhas para identificar as funcoes do pessoal da area protegida',
-        'ratingLegend' => [
-            'EvaluationScore' => [
-                '0' => 'Nenhum ou muito baixo nível de implementação das actividades visadas do ano anterior (entre 0 e 25%)',
-                '1' => 'Baixo nível de implementação das actividades visadas do ano anterior (entre 26 e 50%)',
-                '2' => 'Nível moderado de implementação das actividades visadas do ano anterior (entre 51 e 75%)',
-                '3' => 'Alto nível de implementação das actividades visadas do ano anterior (entre 76 e 100%)',
-            ],
-        ],
-        'module_info_EvaluationQuestion' => [
-            'Em que medida é que a área protegida implementou as principais actividades do plano de trabalho?',
-            'A abordagem predominante para o planeamento de áreas protegidas inclui o estabelecimento de um plano de trabalho/plano de acção anual ou plurianual, PRODUTOS que contribuiem para a realização dos objectivos de conservação a longo prazo ou	RESULTADOS. No processo de planeamento, os objectivos gerais a longo prazo são traduzidos em metas de conservação a curto prazo para características específicas da biodiversidade, tais como espécies, habitats e ameaças ou serviços ecossistémicos possíveis de se alcançar com o plano de trabalho/plano de acção. Contudo, uma vez que a utilização de muitas metas de conservação de baixo nível são um obstáculo para alcançar um desempenho de conservação de alto nível, os produtos devem estar fortemente ligados aos resultados para assegurar um desempenho de conservação de alto nível. A implementação de sistemas de medição do desempenho é uma forma importante de acompanhar o progresso das suas actividades de gestão e conservação.',
-        ],
-        'module_info_Rating' => [
-            '•	Avaliar o nível de realização dos principais produtos do plano de trabalho/acção (nos comentários, indique o ano de referência se se candidatar a um plano de trabalho/acção plurianual)',
-            '<b>Categoria de actividade</b> = exemplo aplicação da lei, desenvolvimento de instalações sociais, educação ambiental, gestão do turismo, etc.',
-            '<b>Actividade</b> = acção pertencente a uma das principais categorias de actividades que é executada para alcançar um determinado objectivo',
-            'Sem um plano de trabalho/acção, pode referir-se às categorias e às actividades do elemento Processo: Gestão e protecção dos elementos-chave; Relações com as partes interessadas; Turismo; Monitorização e investigação; Alterações climáticas e Serviços do Ecossistema',
-        ],
-    ],
-
     'AreaDomination' => [
         'title' => 'Dominação da área',
         'fields' => [

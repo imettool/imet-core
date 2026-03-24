@@ -10,14 +10,29 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\Models\Imet\v2;
+namespace ImetCore\View;
 
-use ImetCore\Helpers\Database;
-use ImetCore\Models\Imet\Components\Report as BaseReport;
+use Illuminate\View\Component;
+use Illuminate\View\View;
 
-class Report extends BaseReport
+class ScoreBar extends Component
 {
-    protected static ?string $schema = Database::IMET_SCHEMA;
+    public bool $isNegative = false;
 
-    protected $table = 'report';
+    public function __construct(
+        public string $label,
+        public string $score,
+        public string $percentage,
+        public bool $withJs = true,
+        public string $color = '#87c89b',
+        public int $limitMin = 0,
+        public int $limitMax = 100,
+    ){
+        $this->isNegative = $limitMin < 0;
+    }
+
+    public function render(): View
+    {
+        return view('imet-core::components.score-bar');
+    }
 }

@@ -12,6 +12,9 @@
 
 return [
 
+    'spillover_waring_message' => 'Uniquement si la section CTX 2.5 a été analysée',
+    'connectivity_waring_message' => 'Uniquement si la section CTX 2.4 a été analysée',
+
     'Objectives' => [
         'title' => 'Détermination des objectifs',
         'fields' => [
@@ -301,50 +304,10 @@ return [
             'BenefitArea' => 'Estimer la zone habitée qui est influencée par l’aire protégée: a) en km² et b) en Km de largeur de la bande extérieure',
             'BenefitPopulation' => 'Estimer la population locale vivant dans l’aire d’influence socio-économique',
             'BenefitSocioEconomicAspects' => 'Énumérer et décrire les facteurs socio-économiques et administratifs (p. ex. les normes coutumières et  modernes qui régissent ou influencent la gestion des ressources naturelles)',
-            'SpillOverArea' => 'Estimer les effets du débordement (spill-over) des zones de conservation strictes. Zone de débordement pour maintenir l’approvisionnement en services écosystémiques (p. ex. pêche) fournis par l’aire protégée: a) en km² et b) en mètres de largeur de la bande extérieure',
-            'SpillOverEvalPredatory0_500' => '',
-            'SpillOverEvalPredatory500_1000' => '',
-            'SpillOverEvalPredatory200_3000' => '',
-            'SpillOverEvalComposition0_500' => '',
-            'SpillOverEvalComposition500_1000' => '',
-            'SpillOverEvalComposition200_3000' => '',
-            'SpillOverEvalDistance0_500' => '',
-            'SpillOverEvalDistance500_1000' => '',
-            'SpillOverEvalDistance200_3000' => '',
-        ],
-        'info' => [
-            'spillover_eval' => 'Le mouvement net des individus des réserves marines (également connues sous le nom d’aires marines protégées
-                sans prélèvement) vers les zones de pêche restantes est connu sous le nom de spill-over. Le débordement
-                peut contribuer à la réduction de la pauvreté des populations, bien que son effet soit modulé par le nombre
-                de pêcheurs et l’intensité de la pêche. En général:
-                <ul>
-                    <li>Fort effet positif de débordement (spill-over) lorsque la pêche est mal gérée</li>
-                    <li>Léger effet de débordement (spill-over) positif lorsque la pêche est bien gérée, mais un effet positif pour les espèces à plus grand mouvement et à croissance plus lente</li>
-                    <li>Évaluer l’effet de débordement (spill-over) d’une réserve capable de fournir un bénéfice net pour une pêcherie (de Garry Russ & Angel Alcala, Enhanced biodiversity beyond marine reserve boundaries: the cup spill-over):<ul>
-                    <li>les poissons prédateurs (les gros poissons prédateurs sont plus fréquents à l’intérieur et juste à l’extérieur des réserves que plus loin)</li>
-                    <li>composition à l’extérieur et à l’intérieur (la composition de la communauté à l’extérieur des réserves se rapproche de celle à l’intérieur au fil du temps)</li>
-                    <li>distance de détection de l’effet de débordement (la distance par rapport à la limite et le temps écoulé après la création de la réserve sont les variables qui ont l’effet le plus fort sur l’abondance des poissons; prédation des poissons: A) 500 m et moins; B) 500 à 1000 m; C) 2000 à 3000 m</li>
-                </ul>',
-            'spill_over_variation' => 'SPILL-OVER Variation à l’intérieur et à l’extérieur de l’AMP',
-            'variation' => 'Variation à l’intérieur et à l’extérieur de l’AMP',
-            '0_500' => '0 à 500m',
-            '500_1000' => '500 à 1000m',
-            '2000_3000' => '2000 à 3000m',
-            'predatory' => 'Poissons prédateurs',
-            'composition' => 'Composition de la communauté de poissons',
-            'distance' => 'Distance de l’effet de débordement (spil-over)',
-        ],
-        'ratingLegend' => [
-            'SpillOverEvalPredatory0_500' => [
-                '-2' => 'Forte différence négative',
-                '-1' => 'Faible différence négative',
-                '0' => 'Aucune différence',
-            ],
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
-            'SpillOverArea' => 'Zone de débordement (spill-over)',
         ],
         'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
           can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
@@ -568,7 +531,6 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
-            'TerrestrialOrMarine' => 'Terrestre ou marine et côtier?',
             'Value' => 'Description de l’état ou de la valeur',
             'Area' => 'Surface (ha)',
             'DesiredConservationStatus' => 'Etat de conservation souhaité',
@@ -902,7 +864,7 @@ return [
             'title3' => 'Culturel',
             'title4' => 'Support / Soutien',
         ],
-        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de: A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La détermination de la nature légale ou illégale de l’approvisionnement dépend de la désignation de l’aire protégée et des dispositions légales et règlementaires en vigueur dans l’aire évaluée</li> </ul>',
+        'module_info' => '<b>Services écosystémiques — importance, dépendance des communautés/société et tendance des services écosystémiques fournis par l’aire protégé </b> <ul> <li>Evaluation: Évaluer chaque service écosystémique sur la base de: A) son importance, B) la dépendance de la population locale/société à l’égard du service écosystémique et C) la tendance de sa quantité ou de sa qualité, selon les échelles suivantes:<ul><li>Vous n’avez pas besoin d’une mesure précise de la valeur pour attribuer une note.</li><li>La distinction entre services écosystémiques légaux et illégaux a été supprimée. Les utilisations illégales des ressources écosystémiques sont désormais systématiquement prises en compte dans le module sur les menaces.</li> </ul>',
         'ratingLegend' => [
             'Importance' => [
                 'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',

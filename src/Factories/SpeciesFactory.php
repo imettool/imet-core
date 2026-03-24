@@ -84,7 +84,7 @@ class SpeciesFactory extends Factory
             'genus' => $species[0],
             'species' => $species[1],
             'authorship' => fake()->lastName() . ' ' . fake()->year(),
-            'col_id' => fake()->bothify('******'),
+            'col_id' => fake()->unique()->bothify('******'),
             'vernacular_names_eng' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_EN),
             'vernacular_names_spa' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_SP),
             'vernacular_names_fra' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_FR),

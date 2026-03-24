@@ -12,6 +12,7 @@ use \Illuminate\Http\Request;
 /** @var array $countries */
 /** @var array $years */
 /** @var boolean $filter_selected */
+/** @var ?array $filters_validation_messages */
 
 if($controller === Controllers\Imet\oecm\Controller::class){
     $form_class = Imet\oecm\Imet::class;
@@ -29,8 +30,9 @@ if($controller === Controllers\Imet\oecm\Controller::class){
 
 @extends('modular-forms::page.list', [
     'controller' => $controller,
-    'request'=> $request,
-    'list'=> $list,
+    'request' => $request,
+    'list' => $list,
+    'filters_validation_messages' => $filters_validation_messages
 ])
 
 
@@ -100,7 +102,7 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                         <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id!==null)
-                            (<a target="_blank" href="{{ PROTECTEDPLANET_WEBSITE_URL }}{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                            (<a target="_blank" href="{{ PROTECTEDPLANET_WEBSITE_URL }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
                         @endif
                         <br/>
                         {{-- country --}}

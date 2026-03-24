@@ -11,9 +11,11 @@
 import Module from "@modular-forms/js/apps/Module.js";
 
 import scopeIcon from "../templates/scope_icon.vue";
+import radio from "../inputs/radio.vue";
 import selectorSpecies from "../inputs/selector-species.vue";
 import selectorWdpa from "../inputs/selector-wdpa.vue";
 import imetScoreBar from "../templates/imet_score_bar.vue";
+import progressBar from "../templates/progress_bar.vue";
 
 export default class ModuleImet extends Module {
 
@@ -22,10 +24,12 @@ export default class ModuleImet extends Module {
         return super(input_data, custom_props)
 
             // Register components
+            .component('radio', radio)
             .component('selector-wdpa', selectorWdpa)
             .component('selector-species', selectorSpecies)
             .component('scope-icon', scopeIcon)
-            .component('imet_score_bar', imetScoreBar);
+            .component('imet_score_bar', imetScoreBar)
+            .component('progressBar', progressBar);
     }
 
     setupApp(props, input_data) {
@@ -72,6 +76,7 @@ export default class ModuleImet extends Module {
 
         function isHabitat(value) {
             return !Locale.getLabel('imet-core::v2_lists.Habitats.' + value).includes('::v2_lists')
+                && Locale.getLabel('imet-core::v2_lists.Habitats.' + value).length > 1;
         }
 
         function getHabitatLabel(value) {

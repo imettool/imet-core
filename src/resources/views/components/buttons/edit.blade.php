@@ -39,7 +39,11 @@ if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
             </a>
 
             {{-- Analysis Report --}}
-            @if($version===\ImetCore\Models\Imet\Imet::IMET_V2 || $version===\ImetCore\Models\Imet\Imet::IMET_OECM)
+            @if($version===\ImetCore\Models\Imet\Imet::IMET_V2)
+                <a class="btn-nav my-0.5 small yellow" href="{{ action([$controller_report, 'edit'], [$item->getKey()]) }}">
+                    {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
+                </a>
+            @elseif($version===\ImetCore\Models\Imet\Imet::IMET_OECM)
                 <a class="btn-nav my-0.5 small yellow" href="{{ action([$controller_report, 'report'], [$item->getKey()]) }}">
                     {!! Template::icon('flag-checkered') . ' ' . ucfirst(trans('imet-core::common.report')) !!}
                 </a>

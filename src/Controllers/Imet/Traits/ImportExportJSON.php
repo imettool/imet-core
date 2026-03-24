@@ -280,7 +280,7 @@ trait ImportExportJSON
                 'Encoders' => Imet\v2\Encoder::exportModule($imet_id),
                 'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
                 'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\v2\Report::export($imet_id),
+                'Report' => Imet\v2\Imet_Report::exportModules($imet_id, $exclude_attachments),
             ];
         } // #####  IMET OECM  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
@@ -359,7 +359,7 @@ trait ImportExportJSON
             }
 
             // Import modules
-            [$formID, $modules_imported] = static::import_modules($json);
+            [$formID, $modules_imported] = static::import_modules($json, true);
 
             DB::commit();
 
@@ -418,7 +418,10 @@ trait ImportExportJSON
             $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
             Imet\v2\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\v2\Report::import($formID, $json['Report'] ?? null);
+                $modules_imported['Report'] = [
+                    ...Imet\v2\Imet_Report::upgradeLegacy( $json['Report'] ?? null, $formID, $imet_version),
+                    ...Imet\v2\Imet_Report::importModules( $json['Report'] ?? null, $formID, $imet_version)
+                ];
             }
         } // #####  IMET OECM  #####
         elseif ($version === Imet\Imet::IMET_OECM) {

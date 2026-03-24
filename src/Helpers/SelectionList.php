@@ -35,6 +35,11 @@ class SelectionList
                 $list = ProtectedArea::selectionList();
             } elseif ($matches[2] == 'Country') {
                 $list = Country::selectionList();
+            } elseif ($matches[2] == 'PaCountry') {
+                $list = ProtectedArea::getCountries()
+                    ->sortBy(Country::labelKey())
+                    ->pluck(Country::labelKey(), 'iso3')
+                    ->toArray();
             } elseif ($matches[2] == 'Currency') {
                 $list = Currency::selectionList();
             } elseif ($matches[2] == 'PaType') {

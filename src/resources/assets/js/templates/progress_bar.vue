@@ -11,9 +11,9 @@
 <template>
 
     <div class="progress-bar" >
-        <div class="bar" :class="{'float-right': negative}" :style=style v-if="value!==null"></div>
-        <div class="label" v-if="value!==null">
-            {{ value }}% {{ additional_label }}
+        <div class="bar" :class="{'float-right': negative}" :style=style v-if="percentage_value!==null"></div>
+        <div class="label" v-if="percentage_value!==null">
+            {{ percentage_value }}% {{ additional_label }}
         </div>
     </div>
 
@@ -35,7 +35,7 @@
         }
         .label{
             position: absolute;
-            top: 35%;
+            top: 25%;
             width: 100%;
             text-align: center;
             font-weight: bold;
@@ -73,6 +73,13 @@ const props = defineProps({
 
 const style = computed(() => {
     return 'width: ' +  Math.abs(props.value).toFixed(props.digit) + '%; background-color: ' + props.color + ' !important;';
+});
+
+const percentage_value = computed(() => {
+    if(props.value === null) return null;
+    return typeof props.value === 'number'
+        ? props.value.toFixed(props.digit)
+        : parseFloat(props.value).toFixed(props.digit);
 });
 
 </script>

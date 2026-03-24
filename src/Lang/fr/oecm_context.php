@@ -45,7 +45,7 @@ return [
             'status_year' => 'Année de la promulgation',
             'country' => 'Pays',
         ],
-
+        'module_info' => 'Tous les champs sont obligatoires, sauf la surface de l\'aire protégée.',
         'allowed_international' => 'Valeurs autorisées pour les désignations de niveau international',
         'allowed_regional' => 'Valeurs autorisées pour les désignations au niveau régional',
         'allowed_national' => 'Pas de valeurs fixes pour les zones protégées désignées au niveau national',

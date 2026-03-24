@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\App;
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
-/** @var bool $connection */
 /** @var bool $show_general_info */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
@@ -45,56 +44,49 @@ if ($item->language != App::getLocale()) {
                     <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
                 </div>
                 <div class="module-body">
-                    @if($connection)
-                        <div id="map"></div>
-                    @else
-                        <div class="connection_not_available">@lang('imet-core::common.connection_not_available')</div>
-                    @endif
-                    <div style="display: flex;">
+                    <div class="grid grid-flow-col grid-rows-4 gap-4">
                         <div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.country'):
-                                </div>{{ $general_info['Country'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.name'):
-                                </div>{{ $general_info['CompleteName'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.category'):
-                                </div>{{ $general_info['NationalCategory'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.gazetting'):
-                                </div>{{ $general_info['CreationYear'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.agency'):
-                                </div>{{ $general_info['Institution'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.biome'):
-                                </div>{{ $general_info['Biome'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.main_values_protected'):
-                                </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.vision'):
-                                </div>{{ $vision['LocalVision'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.mission'):
-                                </div>{{ $vision['LocalMission'] ?? '-' }}
-                            </div>
-                            <div>
-                                <div class="highlight">@lang('imet-core::v2_report.objectives'):
-                                </div>{{ $vision['LocalObjective'] ?? '-' }}
-                            </div>
+                            <div class="highlight">@lang('imet-core::v2_report.country'):
+                            </div>{{ $general_info['Country'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.name'):
+                            </div>{{ $general_info['CompleteName'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.category'):
+                            </div>{{ $general_info['NationalCategory'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.gazetting'):
+                            </div>{{ $general_info['CreationYear'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.surface'):</div>{{ $area }} [km2]
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.agency'):
+                            </div>{{ $general_info['Institution'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.biome'):
+                            </div>{{ $general_info['Biome'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.main_values_protected'):
+                            </div>{{ $general_info['ReferenceTextValues'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.vision'):
+                            </div>{{ $vision['LocalVision'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.mission'):
+                            </div>{{ $vision['LocalMission'] ?? '-' }}
+                        </div>
+                        <div>
+                            <div class="highlight">@lang('imet-core::v2_report.objectives'):
+                            </div>{{ $vision['LocalObjective'] ?? '-' }}
                         </div>
                     </div>
                 </div>
@@ -252,37 +244,59 @@ if ($item->language != App::getLocale()) {
             </div>
         </div>
 
+    </div>
+
+@endsection
+
+
+@section('side-buttons')
+
+    @component('modular-forms::module.side-buttons', [
+        'withPrint' => $action==='edit',
+        'withZoom' => true,
+    ])
+
         @if ($action === 'edit')
-            <div class="scrollButtons" v-cloak>
-                {{-- Save --}}
-                <div class="standalone" v-show=status==='changed'>
+
+            {{-- Save --}}
+            <div class="sideButtons collapsible" v-show=status==='changed'>
+                <div>
                     <form id="imet_report_form" method="post"
-                        action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
-                        style="display: inline-block;">
+                          action="{{ route(\ImetCore\Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'report_update', [$item->getKey()]) }}"
+                          style="display: inline-block;">
                         @method('PATCH')
                         @csrf
-                        <span @click="saveReport">{!! \ModularForms\Helpers\Template::icon('save') !!}
+                        <span @click="saveReport">{!! Template::icon('save') !!}
                             {{ ucfirst(trans('modular-forms::common.save')) }}</span>
                     </form>
                 </div>
-                <div class="standalone" v-show=status==='loading'>
+            </div>
+
+            {{-- Loading --}}
+            <div class="sideButtons collapsible" v-show=status==='loading'>
+                <div>
                     <i class="fa fa-spinner fa-spin text-primary-800"></i>
                     {{ ucfirst(trans('modular-forms::common.saving')) }}
                 </div>
-                <div v-show=status==='saved' class="standalone highlight">
+            </div>
+
+            {{-- Saved --}}
+            <div class="sideButtons collapsible" v-show=status==='saved'">
+                <div class="highlight">
                     {{ ucfirst(trans('modular-forms::common.saved_successfully')) }}!
                 </div>
-                <div v-show=status==='error' class="standalone error">
+            </div>
+
+            {{-- Error --}}
+            <div class="sideButtons collapsible" v-show=status==='error'>
+                <div class="error">
                     {{ ucfirst(trans('modular-forms::common.saved_error')) }}!
                 </div>
-
-                {{-- Print --}}
-                <div class="standalone" @click="printReport">{!! \ModularForms\Helpers\Template::icon('print') !!}
-                    {{ ucfirst(trans('modular-forms::common.print')) }}</div>
             </div>
+
         @endif
 
-    </div>
+    @endcomponent
 
 @endsection
 
@@ -292,14 +306,6 @@ if ($item->language != App::getLocale()) {
             padding-left: 15px !important;
         }
     </style>
-
-    <script type="module">
-        const appMap = (new window.ImetCore.Apps.AnalysisMap({
-            wdpa_id: '{{ $item->wdpa_id }}'
-        }));
-
-        appMap.mount('#imet_report_map');
-    </script>
 
     <script type="module">
         const app = (new window.ImetCore.Apps.Analysis({

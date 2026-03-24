@@ -30,7 +30,6 @@ return [
     'ranking_info_indicators' => '* Las puntuaciones en la ventana emergente son la contribución al indicador sintético',
     'source' => 'Fuente',
     'download_files' => 'descarga de archivos',
-    'print' => 'imprimir',
     'custom_names' => 'Nombres de zonas protegidas',
     'apply' => 'Aplícalo',
     'no_value' => 'Sin valor',

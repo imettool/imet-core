@@ -36,21 +36,13 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitKm',  'type' => 'numeric',   'label' => ''],
             ['name' => 'BenefitPopulation',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitPopulation')],
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
-            ['name' => 'SpillOverKm2',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverKm',  'type' => 'numeric',   'label' => ''],
-            ['name' => 'SpillOverEvalPredatory0_500', 'type' => 'rating-Minus2to0', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.info.spill_over_variation')],
-            ['name' => 'SpillOverEvalPredatory500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalPredatory200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalComposition200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance0_500', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance500_1000', 'type' => 'rating-Minus2to0', 'label' => ''],
-            ['name' => 'SpillOverEvalDistance200_3000', 'type' => 'rating-Minus2to0', 'label' => ''],
+            ['name' => 'DocumentedConnectivity',    'type' => 'imet-core::radio-ImetV2_DocumentedConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.DocumentedConnectivity')],
+            ['name' => 'EvidenceOfConnectivity',    'type' => 'imet-core::radio-ImetV2_EvidenceOfConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidenceOfConnectivity')],
+            ['name' => 'EvidencesListConnectivity',    'type' => 'checkbox-ImetV2_EvidencesListConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidencesListConnectivity')],
+            ['name' => 'ConnectivityIntegrationInManagementPlan',    'type' => 'imet-core::radio-ImetV2_ConnectivityIntegrationInManagementPlan', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.ConnectivityIntegrationInManagementPlan')],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
-        $this->ratingLegend = trans('imet-core::v2_context.TerritorialReferenceContext.ratingLegend');
 
         parent::__construct($attributes);
     }
@@ -67,7 +59,25 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::addField($record, 'BenefitPopulation');
         $record = self::renameField($record, 'SocioEconomicAspects', 'BenefitSocioEconomicAspects');
         $record = self::addField($record, 'SpillOverKm2');
+        $record = self::addField($record, 'SpillOverKm');
 
-        return self::addField($record, 'SpillOverKm');
+        // ####  v2.3 -> v3.0 ####
+        $record = self::dropField($record, 'SpillOverKm2');
+        $record = self::dropField($record, 'SpillOverKm');
+        $record = self::dropField($record, 'SpillOverEvalPredatory0_500');
+        $record = self::dropField($record, 'SpillOverEvalPredatory500_1000');
+        $record = self::dropField($record, 'SpillOverEvalPredatory200_3000');
+        $record = self::dropField($record, 'SpillOverEvalComposition0_500');
+        $record = self::dropField($record, 'SpillOverEvalComposition500_1000');
+        $record = self::dropField($record, 'SpillOverEvalComposition200_3000');
+        $record = self::dropField($record, 'SpillOverEvalDistance0_500');
+        $record = self::dropField($record, 'SpillOverEvalDistance500_1000');
+        $record = self::dropField($record, 'SpillOverEvalDistance200_3000');
+        $record = self::addField($record, 'DocumentedConnectivity');
+        $record = self::addField($record, 'EvidenceOfConnectivity');
+        $record = self::addField($record, 'EvidencesListConnectivity');
+        $record = self::addField($record, 'ConnectivityIntegrationInManagementPlan');
+
+        return $record;
     }
 }

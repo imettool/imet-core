@@ -30,7 +30,6 @@ return [
     'ranking_info_indicators' => '* As pontuações no pop-up são a contribuição para o indicador sintético',
     'source' => 'Fonte',
     'download_files' => 'ficheiros',
-    'print' => 'imprimir',
     'custom_names' => 'Nomes de áreas protegidas',
     'apply' => 'Aplicar',
     'no_value' => 'Sem valor',

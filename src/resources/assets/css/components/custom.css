@@ -20,6 +20,56 @@
   }
 }
 
+/* #########  Score bar with histogram  ######### */
+.score-bar{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .code{
+        width: 45px;
+    }
+    .title{
+        width: 35%;
+        /*min-width: 300px;*/
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: left;
+        &.short{
+            width: 20%;
+        }
+    }
+    .score{
+        width: 55px;
+        text-align: right;
+    }
+    .progress-bar-container{
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+        @apply text-2xs;
+        .limit-left{
+            width: 40px;
+            font-weight: bold;
+            text-align: right;
+            padding-right: 3px;
+        }
+        .progress-bar{
+            flex-grow: 1;
+        }
+        .limit-right{
+            width: 40px;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 3px;
+        }
+    }
+
+}
+
+
 /* #########  Histograms  ######### */
 .histogram-row {
   display: flex;
@@ -35,6 +85,7 @@
     /*min-width: 300px;*/
     padding-left: 5px;
     padding-right: 5px;
+    text-align: left;
   }
   .histogram-row__title.short{
     width: 20%;
@@ -42,6 +93,7 @@
 
   .histogram-row__value {
     width: 55px;
+    text-align: right;
   }
 
   .histogram-row__progress-bar {

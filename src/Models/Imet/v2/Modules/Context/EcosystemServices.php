@@ -154,4 +154,23 @@ final class EcosystemServices extends Modules\Component\ImetModule
 
         return $value;
     }
+
+    public static function get_spillover_predefined(): array
+    {
+        $predefined = (new self)->predefined_values['values'];
+
+        return [
+            $predefined['group0'][5],
+            $predefined['group9'][8],
+        ];
+    }
+    public static function get_connectivity_predefined(): array
+    {
+        $predefined = (new self)->predefined_values['values'];
+
+        return [
+            $predefined['group9'][9],
+        ];
+    }
+
 }

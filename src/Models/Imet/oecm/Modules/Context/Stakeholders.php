@@ -34,13 +34,13 @@ final class Stakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
     ];
 
-    public static array $rules = [
-        'Element' => 'required',
-        'UsesCategories' => 'required_with:Element',
-        'LevelEngagement' => 'required_unless:GeographicalProximity,true',
-        'LevelInterest' => 'required_unless:GeographicalProximity,true',
-        'LevelExpertise' => 'required_unless:GeographicalProximity,true',
-    ];
+//    public static array $rules = [
+//        'Element' => 'required',
+//        'UsesCategories' => 'required_with:Element',
+//        'LevelEngagement' => 'required_unless:GeographicalProximity,true',
+//        'LevelInterest' => 'required_unless:GeographicalProximity,true',
+//        'LevelExpertise' => 'required_unless:GeographicalProximity,true',
+//    ];
 
     public function __construct(array $attributes = [])
     {
