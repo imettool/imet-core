@@ -51,7 +51,7 @@ trait Outcomes
 
         $sum = ($oc1_score ?? 0) + ($oc2_score ?? 0) + ($oc3_score ?? 0);
 
-        return max(0, min(100, $sum / 5));
+        return max(0, min(100, $sum / 4.5));
     }
 
     protected static function score_oc2(int $imet_id): ?float

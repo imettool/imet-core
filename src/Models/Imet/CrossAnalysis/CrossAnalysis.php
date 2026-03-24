@@ -58,7 +58,7 @@ final class CrossAnalysis extends Model
 
             foreach ($item::modules()[$step_key] as $module) {
                 $definitions = $module::getDefinitions($item->FormID);
-                $code = strtolower(str_ireplace(['.', '/'], '', $definitions['module_code']));
+                $code = str_ireplace(['.', '/'], '', $definitions['module_code']);
                 if (isset($filteredArray[$code]) && is_array($definitions['module_info_EvaluationQuestion'])) {
                     $compareElements[$code] = [
                         'code' => $definitions['module_code'],
