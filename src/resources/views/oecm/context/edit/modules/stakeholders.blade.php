@@ -1,11 +1,10 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use Illuminate\Support\Facades\View;
 use ModularForms\View\Module\Components\Body;
 use Wa72\HtmlPageDom\HtmlPageCrawler;

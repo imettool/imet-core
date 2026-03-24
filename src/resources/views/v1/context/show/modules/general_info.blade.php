@@ -1,18 +1,21 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-/** @var mixed $item */
-
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetV1\Imet;
+use ImetCore\Models\ProtectedArea;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 
-if (\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)) {
-    $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($item->wdpa_id);
+$imet = Imet::find($module->vueData['form_id']);
+
+if (ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)) {
+    $pa = ProtectedAreaNonWdpa::query()->find($imet->wdpa_id);
 } else {
-    $pa = \ImetCore\Models\ProtectedArea::getByWdpa($item->wdpa_id);
+    $pa = ProtectedArea::getByWdpa($imet->wdpa_id);
 }
 
 if ($pa !== null) {

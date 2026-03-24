@@ -1,11 +1,7 @@
 <?php
-/** @var Imet $module */
-/** @var string $controller */
-/** @var string $mode */
+/** @var int $form_id */
 
-/** @var array $definitions */
-
-use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 use ImetCore\Controllers\Imet\ImetOecm\Controller;
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;

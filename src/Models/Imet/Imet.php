@@ -313,7 +313,7 @@ abstract class Imet extends Form
      *
      * @return ProtectedAreaNonWdpa|ProtectedArea
      */
-    public static function getProtectedArea($wdpa_id)
+    public static function getProtectedArea($wdpa_id): ProtectedArea|ProtectedAreaNonWdpa
     {
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
             $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($wdpa_id);

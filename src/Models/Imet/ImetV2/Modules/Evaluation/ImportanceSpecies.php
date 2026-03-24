@@ -74,7 +74,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
                     ->filter()
-                    ->map(function($item) {
+                    ->map(function(Modules\Context\AnimalSpecies $item) {
                         return $item->species!==null
                             ? $item->species
                             : ($item->CommonName!==null ? $item->CommonName : null);

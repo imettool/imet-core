@@ -1,23 +1,23 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $records */
 
-use ImetCore\Models\Imet\ImetV1\Imet_Eval;
-
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetV1\Modules\Context\MenacesPressions;
+use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $view_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $dom = HtmlPageCrawler::create(
-    \Wa72\HtmlPageDom\Helpers::trimNewlines($view_table)
+    Helpers::trimNewlines($view_table)
 );
 $dom->filter('thead > tr > th')->eq(0)->append('<th></th>');
 
-$stats = \ImetCore\Models\Imet\ImetV1\Modules\Context\MenacesPressions::getStats($item['FormID'])['category_stats'];
+$stats = MenacesPressions::getStats($module->data['id'])['category_stats'];
 $items = [];
 foreach ($stats as $i => $stat) {
     $input = '<input type="text" disabled="disabled" value="' . $stat . '" class="field-disabled field-edit field-numeric text-center" />';

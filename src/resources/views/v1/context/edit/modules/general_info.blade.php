@@ -1,11 +1,10 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetV1\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $imet = \ImetCore\Models\Imet\ImetV1\Imet::query()->find($module->vueData['form_id']);
 if (\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)) {

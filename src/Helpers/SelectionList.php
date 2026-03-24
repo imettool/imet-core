@@ -24,7 +24,8 @@ class SelectionList extends ModularFormsSelectionList
     #[Override]
     public static function getList(string $type): array
     {
-        $list = [];
+        $type = static::getListType($type);
+
         if (Str::startsWith($type, 'ImetV1')
             || Str::startsWith($type, 'ImetV2')
             || Str::startsWith($type, 'Imet_')

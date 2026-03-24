@@ -1,11 +1,10 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetV2\Imet_Eval;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $vue_record_index = $definitions['module_type'] === "ACCORDION" || $definitions['module_type'] === "GROUP_ACCORDION"
     ? 'index' : '0';

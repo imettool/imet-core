@@ -1,4 +1,5 @@
 <?php
+/** @var string $type */
 
 use ImetCore\Helpers\SelectionList;
 

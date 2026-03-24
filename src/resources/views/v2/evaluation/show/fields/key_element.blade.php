@@ -1,7 +1,7 @@
 <?php
 /** @var string $value */
 
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\Species;
 
 if (Species::isTaxonomy($value)) {

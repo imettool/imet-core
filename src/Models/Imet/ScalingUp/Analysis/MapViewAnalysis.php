@@ -12,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis;
 
-use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ComparisonProtectedAreaDataProvider;
 
 final class MapViewAnalysis extends BaseAnalysis
 {

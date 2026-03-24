@@ -27,7 +27,7 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
  * Main orchestrator class for scaling up analysis
  * Delegates responsibilities to specialized analysis classes
  *
- *
+ * @property mixed $wdpas
  */
 final class ScalingUpAnalysis extends Model
 {

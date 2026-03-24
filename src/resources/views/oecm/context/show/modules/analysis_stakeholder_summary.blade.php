@@ -1,7 +1,4 @@
 <?php
-/** @var array $definitions */
-/** @var array $records */
-
 /** @var int $form_id */
 
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;

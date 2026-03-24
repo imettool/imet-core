@@ -1,12 +1,11 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $records */
 
-use ImetCore\Models\Imet\ImetV2\Imet_Eval;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ModularForms\Enums\ModuleViewModes;
 
 $group_key = '';

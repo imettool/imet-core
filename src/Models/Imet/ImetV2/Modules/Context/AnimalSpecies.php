@@ -16,6 +16,10 @@ use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
 
+/**
+ * @property string $species
+ * @property string $CommonName
+ */
 final class AnimalSpecies extends Modules\Component\ImetModule
 {
     protected $table = 'context_species_animal_presence';

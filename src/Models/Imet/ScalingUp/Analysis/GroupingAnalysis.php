@@ -13,6 +13,7 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis;
 
+use Exception;
 use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\AssessmentDataProvider;
 use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ProtectedAreaDataProvider;
 use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\GroupingDataProvider;
@@ -45,6 +46,9 @@ final class GroupingAnalysis extends BaseAnalysis
         return self::getAssessmentProvider()->getAssessments($form_ids);
     }
 
+    /**
+     * @throws Exception
+     */
     public static function getProtectedAreaWithCountries(array $form_ids): array
     {
         $items = self::getProtectedAreaProvider()->getProtectedAreasWithCountries($form_ids);

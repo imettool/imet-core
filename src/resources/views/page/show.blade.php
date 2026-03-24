@@ -86,6 +86,17 @@ $show_scrollbar = true;
 
         {{--  Modules (by step) --}}
         <div class="imet_modules">
+
+
+            @if($version===Models\Imet\Imet::IMET_OECM and
+                    $step==='stakeholder_analysis' and
+                    Role::hasRequiredAccessLevel(Models\Imet\ImetOecm\Modules\Context\_AnalysisStakeholders::class))
+                @include('imet-core::oecm.context.show.modules.analysis_stakeholder_summary', [
+                    'form_id' => $item->getKey()
+                ])
+            @endif
+
+
             @foreach($item::modules()[$step] as $module)
                 @if(Role::hasRequiredAccessLevel($module))
                     <x-modular-forms::module.container

@@ -1,11 +1,10 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\EcosystemServices;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;

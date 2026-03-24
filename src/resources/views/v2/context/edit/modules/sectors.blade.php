@@ -1,16 +1,12 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
-
-use ImetCore\Models\Imet\ImetV2\Imet;
-
 /** @var ?string $group_key (optional - only for GROUP_TABLE) */
 
 use ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $group_key ??= '';
 

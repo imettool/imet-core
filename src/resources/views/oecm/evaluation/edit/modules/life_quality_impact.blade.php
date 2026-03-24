@@ -1,11 +1,10 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetOecm\Imet_Eval;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.edit.type.group_table', ['definitions' => $definitions])->render();
 

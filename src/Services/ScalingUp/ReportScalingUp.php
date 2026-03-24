@@ -141,14 +141,14 @@ final class ReportScalingUp
         $itemsArray = explode(',', $items);
         sort($itemsArray);
 
-        static::checkAuthorization($itemsArray);
+        ReportScalingUp::checkAuthorization($itemsArray);
 
         $validItems = array_filter(
             $itemsArray,
             fn($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists()
         );
 
-        abort_if(empty($itemsArray) || count($validItems) !== count($itemsArray), 404);
+        abort_if(count($itemsArray)==0 || (count($validItems) !== count($itemsArray)), 404);
 
     }
 

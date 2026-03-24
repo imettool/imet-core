@@ -1,12 +1,11 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $records */
 
-use ImetCore\Models\Imet\ImetV1\Imet_Eval;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records);
 $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();

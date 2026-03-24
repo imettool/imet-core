@@ -1,5 +1,5 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
@@ -7,15 +7,19 @@
 /** @var array $stakeholders */
 /** @var array $key_elements_importance */
 /** @var string $current_stakeholder */
-
 /** @var string $summary_title */
 
-use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
-
-$form_id = $collection[0]['FormID'];
+use Illuminate\Support\Str;
 
 $num_cols = count($definitions['fields']);
+
+$user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDirectUsers')
+    ? AnalysisStakeholderDirectUsers::$USER_MODE
+    : AnalysisStakeholderIndirectUsers::$USER_MODE;
 
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
@@ -23,11 +27,7 @@ $stakeholders_records = collect($records)
     ->map(fn($group) => $group->groupBy('group_key'))
     ->toArray();
 
-$stakeholders_categories = Stakeholders::getStakeholders(
-    $form_id,
-    ('ImetCore\Models\Imet\oecm\Modules\Context\\' . $definitions['module_class'])::$USER_MODE,
-    true
-);
+$stakeholders_categories = Stakeholders::getStakeholders($module->data['id'], $user_mode, true);
 
 ?>
 

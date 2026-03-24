@@ -1,12 +1,11 @@
 <?php
-/** @var Imet $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
 /** @var array $definitions */
-
 /** @var array $stakeholders */
 
-use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
 use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
@@ -20,12 +19,7 @@ $user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDir
     ? AnalysisStakeholderDirectUsers::$USER_MODE
     : AnalysisStakeholderIndirectUsers::$USER_MODE;
 
-$stakeholders_categories = Stakeholders::getStakeholders(
-    $module->vueData['form_id'],
-    $user_mode,
-    true
-);
-
+$stakeholders_categories = Stakeholders::getStakeholders($module->vueData['form_id'], $user_mode, true);
 
 ?>
 

@@ -1,12 +1,10 @@
 <?php
-/** @var Imet_Eval $module */
+/** @var ImetModule $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetV2\Imet_Eval;
-use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\DesignAdequacy;
 use Illuminate\Support\Facades\View;
 

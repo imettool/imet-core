@@ -65,7 +65,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
     {
         $vue_data = parent::getVueData($form_id, $records, $definitions);
 
-        $imet = \ImetCore\Models\Imet\ImetV2\Imet::query()->find($vue_data['form_id']);
+        $imet = Imet::query()->find($vue_data['form_id']);
         $pa = Imet::getProtectedArea($imet->wdpa_id);
 
         $vue_data['records'][0]['CompleteName'] ??= $pa->name;

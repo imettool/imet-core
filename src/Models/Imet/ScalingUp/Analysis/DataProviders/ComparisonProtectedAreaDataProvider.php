@@ -14,13 +14,11 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
-final class ComparisonProtectedAreaDataProvider implements DataProviderInterface
+final readonly class ComparisonProtectedAreaDataProvider implements DataProviderInterface
 {
     public function __construct(
         private int $scalingId
-    )
-    {
-    }
+    ){}
 
     /**
      * @param array $formIds

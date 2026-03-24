@@ -1,11 +1,10 @@
 <?php
-/** @var Imet $module */
+/** @var Areas $module */
 /** @var string $controller */
 /** @var string $mode */
-
 /** @var array $definitions */
 
-use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
 $vue_record_index = '0';
