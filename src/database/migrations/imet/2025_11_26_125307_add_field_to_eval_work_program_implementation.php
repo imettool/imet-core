@@ -32,7 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA,'eval_work_program_implementation'), function (Blueprint $table): void {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_work_program_implementation'), function (Blueprint $table): void {
             $table->dropColumn('MainCategory');
         });
     }

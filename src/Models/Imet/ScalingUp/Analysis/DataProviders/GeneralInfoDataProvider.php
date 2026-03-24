@@ -21,9 +21,7 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
 {
     public function __construct(
         private ?int $scalingId = null
-    )
-    {
-    }
+    ) {}
 
     /**
      * Get general information aggregated from multiple protected areas
@@ -82,6 +80,7 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
     private function getGeneralInfoData(int $formId): ?array
     {
         $records = Modules\Context\GeneralInfo::getModuleRecords($formId)['records'];
+
         return $records[0] ?? null;
     }
 
@@ -91,6 +90,7 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
     private function getVisionData(int $formId): ?array
     {
         $records = Modules\Context\Missions::getModuleRecords($formId)['records'];
+
         return $records[0] ?? null;
     }
 
@@ -117,13 +117,13 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addCountry(array $generalInfo, array &$generalElements): void
     {
-        if (!$generalInfo['Country']) {
+        if (! $generalInfo['Country']) {
             return;
         }
 
         $countryName = $this->getCountryName($generalInfo['Country']);
 
-        if ($countryName && !in_array($countryName, $generalElements['countries'], true)) {
+        if ($countryName && ! in_array($countryName, $generalElements['countries'], true)) {
             $generalElements['countries'][] = $countryName;
         }
     }
@@ -135,12 +135,12 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
     {
         $country = Country::getByISO($isoCode);
 
-        if (!$country instanceof \ImetCore\Models\Country) {
+        if (! $country instanceof Country) {
             return null;
         }
 
         $lang = Locale::lower();
-        $nameField = 'name_' . (trim((string)$lang) === '' ? 'en' : $lang);
+        $nameField = 'name_'.(trim((string) $lang) === '' ? 'en' : $lang);
 
         return $country->$nameField ?? null;
     }
@@ -170,7 +170,7 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function processVisionData(array $visionData, ?array $generalInfoData, array &$generalElements): void
     {
-        if (!$generalInfoData || blank($generalInfoData['CompleteName'])) {
+        if (! $generalInfoData || blank($generalInfoData['CompleteName'])) {
             return;
         }
 
@@ -199,4 +199,3 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
         );
     }
 }
-

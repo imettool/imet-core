@@ -12,9 +12,8 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\Components\Modules\ImetModule;
-use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\KeyConservationTrend;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AchievedObjectives;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\KeyConservationTrend;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\LifeQualityImpact;
 
 trait Outcomes
@@ -26,7 +25,7 @@ trait Outcomes
             AchievedObjectives::class,
             'EvaluationScore',
             3,
-            fn($avg, $denom): int|float => ($avg * 50) / 3);
+            fn ($avg, $denom): int|float => ($avg * 50) / 3);
 
         $values = KeyConservationTrend::getModule($imet_id)
             ->filter(fn (KeyConservationTrend $record): bool => intval($record['Condition']) !== -99
@@ -42,19 +41,18 @@ trait Outcomes
             })
             ->all();
         $average = static::average($values, null);
-        $oc2_score = $average !== null ? round(2*(($average+3)*100/6), 2) : null;
+        $oc2_score = $average !== null ? round(2 * (($average + 3) * 100 / 6), 2) : null;
 
         $oc3_score = static::score_group($imet_id,
             LifeQualityImpact::class,
             'EvaluationScore',
             'group_key',
-            fn($avg): int|float => 2 *(($avg+ 3) * 100/6));
+            fn ($avg): int|float => 2 * (($avg + 3) * 100 / 6));
 
         $sum = ($oc1_score ?? 0) + ($oc2_score ?? 0) + ($oc3_score ?? 0);
 
         return max(0, min(100, $sum / 5));
     }
-
 
     protected static function score_oc2(int $imet_id): ?float
     {
@@ -72,11 +70,10 @@ trait Outcomes
             })
             ->all();
         $score = static::average($values, null);
+
         return $score !== null ?
             round($score, 2)
             : null;
 
     }
-
-
 }

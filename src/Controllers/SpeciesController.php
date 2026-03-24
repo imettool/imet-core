@@ -54,15 +54,15 @@ class SpeciesController extends Controller
         ]);
     }
 
-    public static function info(Request $request): \Illuminate\Http\JsonResponse
+    public static function info(Request $request): JsonResponse
     {
         $species = null;
 
         if ($request->filled('taxonomy')) {
 
-//            HTTP::sanitize($request, [
-//                'taxonomy' => 'alpha',
-//            ]);
+            //            HTTP::sanitize($request, [
+            //                'taxonomy' => 'alpha',
+            //            ]);
 
             // Perform search query
             $species = Species::getByTaxonomy($request->input('taxonomy'));
@@ -71,5 +71,4 @@ class SpeciesController extends Controller
 
         return static::sendAPIResponse($species, null, 200);
     }
-
 }

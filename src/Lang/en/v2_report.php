@@ -37,15 +37,13 @@ return [
     // Planning options
     'planning_options' => 'From IMET diagnosis to planning options',
     'planning_options_info' => [
-        'general_info' =>
-            '<h6 class="font-bold">From IMET diagnosis to initial planning options</h6>
+        'general_info' => '<h6 class="font-bold">From IMET diagnosis to initial planning options</h6>
             <p>IMET provides a structured diagnosis of ecological values, threats and management processes. These results
             form the basis of a simple initial planning exercise using Conservation Action Planning (CAP, see:
             <a target="_blank" href="https://www.conservationstandards.org/wp-content/uploads/2020/10/Cap20Handbook_June2007-3.pdf">https://www.conservationstandards.org/wp-content/uploads/2020/10/Cap20Handbook_June2007-3.pdf)</a>
             logic of The Nature Conservancy (TNC). While IMET does not replace CAP, the following tables can be used to
             identify priority elements, threats, and actions for management plans, annual work plans, and other planning tools',
     ],
-
 
     'annexes' => 'Annexes',
     'forest_cover' => 'Forest Cover',
@@ -94,7 +92,7 @@ return [
             'priorities' => 'What are your management/governance priorities?',
             'minimum_budget' => 'What is your minimum operating budget to ensure the preservation of the values and importance of your protected area?',
             'additional_funding' => 'In the case of additional funding for the management of the protected area what actions would you like to take and for how much time?',
-        ]
+        ],
     ],
 
     // Planning Options: Table A
@@ -106,10 +104,9 @@ return [
             'targets_and_es' => 'Secondary Targets & Primary Ecosystem Services',
             'kea' => 'Key Ecological Attributes (KEA)',
             'threats' => 'Threats',
-            'note' => 'Notes / Justification'
+            'note' => 'Notes / Justification',
         ],
-        'module_info' =>
-            'This table A helps IMET users move from diagnosis to planning by identifying the most important ecological
+        'module_info' => 'This table A helps IMET users move from diagnosis to planning by identifying the most important ecological
             elements of the Protected Area, the services they provide, their essential characteristics, and the threats to
             act upon them. Each column plays a specific role in structuring early planning decisions.',
         'definitions' => [
@@ -117,7 +114,7 @@ return [
             'targets_es' => '<span class="font-bold italic">Secondary Targets & Primary Ecosystem Services</span>: The values and services linked to the KCE through the umbrella-species approach mean that protecting the KCE also protects the associated species, habitats and ecosystem services',
             'kea' => '<span class="font-bold italic">Key Ecological Attributes (KEA)</span>: Essential characteristics (area, composition, structure, population size) that define the integrity of the KCE. KEAs guide what must be maintained, monitored, and improved.',
             'threats' => '<span class="font-bold italic">Threats</span>: Pressures that directly affect the KCE and its KEA (e.g. poaching, deforestation, mining). Only include threats that have a real, measurable impact.',
-        ]
+        ],
     ],
 
     // Planning Options: Table B
@@ -135,10 +132,9 @@ return [
             'kce8' => 'KCE 8',
             'kce9' => 'KCE 9',
             'kce10' => 'KCE 10',
-            'impact' => 'Threat impact rating'
+            'impact' => 'Threat impact rating',
         ],
-        'module_info' =>
-            'Table B shows how each threat affects each KCE and highlights where management should focus efforts first.
+        'module_info' => 'Table B shows how each threat affects each KCE and highlights where management should focus efforts first.
              By placing threats in the first column and marking their impact across the KCEs, the matrix provides a quick
              visual overview of the most exposed conservation elements and the most critical pressures. This step identifies
              the threats that require management attention first and serves as a direct bridge towards defining the necessary
@@ -154,8 +150,8 @@ return [
                 '2' => 'Medium threat',
                 '3' => 'High threat',
                 '4' => 'Very high threat',
-            ]
-        ]
+            ],
+        ],
     ],
 
     // Planning Options: Table C
@@ -169,8 +165,7 @@ return [
             'activities' => 'Activities (priority year #)',
             'indicators' => 'Monitoring indicators',
         ],
-        'module_info' =>
-            'Table C translates the IMET diagnosis into practical conservation actions. Starting from the long-term conservation
+        'module_info' => 'Table C translates the IMET diagnosis into practical conservation actions. Starting from the long-term conservation
             goal for each Key Conservation Element (KCE), the user identifies the ecological attributes that must be maintained
             and the main threats to hinder this goal. They then determine the necessary improvements to address these threats.
             This analysis then informs the selection of priority activities, those most likely to reduce threats and strengthen
@@ -184,9 +179,7 @@ return [
             'improvements' => '<span class="font-bold italic">Required improvements</span>: The changes needed in management, condition, or governance to reduce threats and maintain the KEAs',
             'activities' => '<span class="font-bold italic">Priority activities (1–2 years)</span>: The key short-term actions that directly contribute to reducing the threats and achieving the improvements.',
             'monitoring' => '<span class="font-bold italic">Monitoring indicators</span>: Simple and measurable variables used to track progress toward the conservation goal and the effectiveness of the activities.',
-        ]
+        ],
     ],
-
-
 
 ];

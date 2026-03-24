@@ -31,7 +31,6 @@ final class Areas extends Modules\Component\ImetModule
 
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.context.show.modules.areas';
 
-
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'SIMPLE';
@@ -110,13 +109,13 @@ final class Areas extends Modules\Component\ImetModule
     public static function getArea(?int $form_id, $in_km2 = true): int|float|null
     {
         $records = self::getModuleRecords($form_id)['records'];
-        if(count($records) === 0) {
+        if (count($records) === 0) {
             return null;
         }
 
         $record = $records[0];
         foreach (['GISArea', 'WDPAArea', 'AdministrativeArea'] as $area_field) {
-            if(array_key_exists($area_field, $record) && $record[$area_field] !== null && $record[$area_field] > 0){
+            if (array_key_exists($area_field, $record) && $record[$area_field] !== null && $record[$area_field] > 0) {
                 return $in_km2
                     ? $record[$area_field] / 100  // ha->km2
                     : $record[$area_field];
@@ -126,10 +125,10 @@ final class Areas extends Modules\Component\ImetModule
         return null;
     }
 
-    public static function getShapeIndex($area, $boundary_length): float|null
+    public static function getShapeIndex($area, $boundary_length): ?float
     {
-        return floatval($area)>0 && floatval($boundary_length)>0
-            ? round(sqrt(3.14)/(2*3.14)*floatval($boundary_length)/sqrt($area), 2)
+        return floatval($area) > 0 && floatval($boundary_length) > 0
+            ? round(sqrt(3.14) / (2 * 3.14) * floatval($boundary_length) / sqrt($area), 2)
             : null;
     }
 

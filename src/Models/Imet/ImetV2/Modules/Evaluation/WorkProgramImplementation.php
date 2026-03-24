@@ -12,9 +12,9 @@
 
 namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
+use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
-use Illuminate\Database\Eloquent\Collection;
 
 final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {
@@ -64,7 +64,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
         // Initialize $groups array (up to group20)
         $groups = [];
         $group_index = 1;
-        while($group_index <= 20) {
+        while ($group_index <= 20) {
             $group_key = 'group'.$group_index;
             $groups[$group_key] = null;
             $group_index++;
@@ -75,7 +75,7 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 
             // Retrieve the group_key for the record
             $group_key = array_search($record[self::$group_key_field], $groups, true);
-            if($group_key === false) {
+            if ($group_key === false) {
                 $group_key = array_search(null, $groups, true);
             }
 
@@ -101,14 +101,15 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
         $records = self::getModuleRecords($form_id);
 
         $items['groups'] = $records['groups'];
+
         return $items;
     }
 
     /**
      * Generate the array of data needed by the Vue.js module's controller
      *
-     * @param array<string, mixed> $records
-     * @param array<string, mixed> $definitions
+     * @param  array<string, mixed>  $records
+     * @param  array<string, mixed>  $definitions
      * @return array<string, mixed>
      */
     #[\Override]
@@ -123,5 +124,4 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 
         return $return;
     }
-
 }

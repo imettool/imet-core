@@ -12,13 +12,13 @@
 
 namespace ImetCore\Models\Imet\ImetV2;
 
+use ImetCore\Models\Imet\ImetV2\Modules\Report\InitialPlanningOptions;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyConservationElements;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyQuestions;
 use ImetCore\Models\Imet\ImetV2\Modules\Report\ManagementContext;
 use ImetCore\Models\Imet\ImetV2\Modules\Report\ManagementEffectivenessAnalysis;
 use ImetCore\Models\Imet\ImetV2\Modules\Report\OperatingRecommendations;
-use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyConservationElements;
 use ImetCore\Models\Imet\ImetV2\Modules\Report\ThreatsAffectingKCEs;
-use ImetCore\Models\Imet\ImetV2\Modules\Report\InitialPlanningOptions;
-use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyQuestions;
 
 class Imet_Report extends Imet
 {
@@ -30,8 +30,8 @@ class Imet_Report extends Imet
             KeyConservationElements::class,
             ThreatsAffectingKCEs::class,
             InitialPlanningOptions::class,
-            KeyQuestions::class
-        ]
+            KeyQuestions::class,
+        ],
     ];
 
     /**
@@ -51,7 +51,7 @@ class Imet_Report extends Imet
 
         $legacy_field_found = array_intersect($legacy_report_fields, array_keys($records)) !== [];
 
-        if($legacy_field_found){
+        if ($legacy_field_found) {
 
             ManagementContext::importModule($formID, [
                 'key_species' => $records['key_species_comment'] ?? null,
@@ -86,5 +86,4 @@ class Imet_Report extends Imet
 
         return $modules_imported;
     }
-
 }

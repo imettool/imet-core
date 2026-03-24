@@ -12,6 +12,7 @@
 
 namespace ImetCore\Models\Imet\ImetV2;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,8 @@ class Imet extends BaseImetForm
     public static ?array $modules = [
 
         'general_info' => [
-            Modules\Context\ResponsablesInterviewers::class,
-            Modules\Context\ResponsablesInterviewees::class,
+            ResponsablesInterviewers::class,
+            ResponsablesInterviewees::class,
             Modules\Context\GeneralInfo::class,
             Modules\Context\Governance::class,
             Modules\Context\SpecialStatus::class,
@@ -60,16 +61,16 @@ class Imet extends BaseImetForm
             Modules\Context\ManagementStaffPartners::class,
             Modules\Context\ManagementStaffCommunities::class,
             Modules\Context\FinancialResources::class,
-            Modules\Context\FinancialAvailableResources::class,
-            Modules\Context\FinancialResourcesBudgetLines::class,
-            Modules\Context\FinancialResourcesPartners::class,
+            FinancialAvailableResources::class,
+            FinancialResourcesBudgetLines::class,
+            FinancialResourcesPartners::class,
             Modules\Context\Equipments::class,
             Modules\Context\Objectives3::class,
         ],
         'key_elements' => [
             Modules\Context\AnimalSpecies::class,
             Modules\Context\VegetalSpecies::class,
-            Modules\Context\Habitats::class,
+            Habitats::class,
             Modules\Context\Objectives4::class,
         ],
         'threats' => [
@@ -131,7 +132,7 @@ class Imet extends BaseImetForm
     /**
      * Get IMET available years for the given PA
      *
-     * @return \ImetCore\Models\Imet\ImetV2\Imet[]|\Illuminate\Database\Eloquent\Collection
+     * @return Imet[]|Collection
      */
     public static function getYears($wdpa_id)
     {

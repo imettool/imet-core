@@ -15,6 +15,7 @@ use Database\Seeders\ProtectedAreaSeeder;
 use Database\Seeders\SpeciesSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use ImetCore\Models\Imet;
 use ImetCore\Models\User\User;
 
@@ -94,7 +95,7 @@ describe('Browse IMET v1', function () {
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }
@@ -133,7 +134,7 @@ describe('Browse IMET v2', function () {
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }
@@ -172,7 +173,7 @@ describe('Browse OECM', function () {
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }

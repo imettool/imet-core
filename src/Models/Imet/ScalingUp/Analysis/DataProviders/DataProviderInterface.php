@@ -12,8 +12,4 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-interface DataProviderInterface
-{
-
-}
-
+interface DataProviderInterface {}

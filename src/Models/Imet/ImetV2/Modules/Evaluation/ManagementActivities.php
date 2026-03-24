@@ -70,31 +70,31 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
             'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
                 ? [
-                    'group0' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
+                    'group0' => ImportanceSpecies::getModule($form_id)
                         ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group0')
                         ->pluck('Aspect')
                         ->filter()
                         ->toArray(),
-                    'group1' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
+                    'group1' => ImportanceSpecies::getModule($form_id)
                         ->filter(fn ($item): bool => $item['IncludeInStatistics'] && $item['group_key'] === 'group1')
                         ->pluck('Aspect')
                         ->filter()
                         ->toArray(),
-                    'group2' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
+                    'group2' => ImportanceHabitats::getModule($form_id)
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                         ->pluck('Aspect')
                         ->filter()
                         ->toArray(),
-                    'group4' => Modules\Evaluation\Menaces::getModule($form_id)
+                    'group4' => Menaces::getModule($form_id)
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                         ->pluck('Aspect')
                         ->filter()
                         ->toArray(),
-                    'group5' => Modules\Evaluation\SupportsAndConstraints::getModule($form_id)
+                    'group5' => SupportsAndConstraints::getModule($form_id)
                         ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                         ->pluck('Aspect')
                         ->filter()
-                        ->toArray()
+                        ->toArray(),
                 ]
                 : [],
         ];
@@ -110,7 +110,7 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
         $records = parent::getModuleRecords($form_id, $collection);
 
         foreach ($records['records'] as $idx => $record) {
-            if($record[self::$group_key_field] === 'group0') {
+            if ($record[self::$group_key_field] === 'group0') {
                 $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Activity']);
             }
         }

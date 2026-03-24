@@ -12,9 +12,9 @@
 
 namespace ImetCore\Services\Scores;
 
+use ImetCore\Models\Imet\ImetOecm\Imet as ImetOecm;
 use ImetCore\Models\Imet\ImetV1\Imet as ImetV1;
 use ImetCore\Models\Imet\ImetV2\Imet as ImetV2;
-use ImetCore\Models\Imet\ImetOecm\Imet as ImetOecm;
 use ImetCore\Services\Assessment\ImetAssessment;
 use ImetCore\Services\Assessment\OecmAssessment;
 use ImetCore\Services\Scores\Functions\_Scores;
@@ -83,6 +83,4 @@ class AssessmentsScores
 
         return $class;
     }
-
-
 }

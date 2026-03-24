@@ -41,7 +41,6 @@ return new class extends Migration
             $table->integer('kce9')->nullable();
             $table->integer('kce10')->nullable();
 
-
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
                 ->on(Database::getTable(Database::IMET_SCHEMA, 'forms'))

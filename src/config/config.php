@@ -1,5 +1,7 @@
 <?php
 
+use ImetCore\Models\User\User;
+
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -13,7 +15,7 @@
 return [
 
     // Models class references: allow overriding default models
-    'user' => \ImetCore\Models\User\User::class,
+    'user' => User::class,
 
     // Routes' prefixes
     'web_routes_prefix' => null,

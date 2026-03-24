@@ -36,6 +36,4 @@ final class OverallManagementEffectivenessAnalysis extends BaseAnalysis
     {
         return self::getOverallManagementEffectivenessProvider()->getOverallManagementEffectivenessScores($params['form_ids']);
     }
-
 }
-

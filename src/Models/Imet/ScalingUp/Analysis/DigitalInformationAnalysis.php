@@ -29,4 +29,3 @@ final class DigitalInformationAnalysis extends BaseAnalysis
         return [];
     }
 }
-

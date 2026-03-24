@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\CrossAnalysis;
 
 use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class CrossAnalysis extends Model
@@ -44,7 +45,7 @@ final class CrossAnalysis extends Model
     /**
      * retrieve all indicators data
      */
-    public static function getIndicators(\ImetCore\Models\Imet\ImetV1\Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $item): array
+    public static function getIndicators(Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $item): array
     {
         $filteredArray = [];
         $compareElements = [];

@@ -18,17 +18,15 @@ final readonly class ComparisonProtectedAreaDataProvider implements DataProvider
 {
     public function __construct(
         private int $scalingId
-    ){}
+    ) {}
 
     public function getUpperLowerProtectedAreasDiagramCompare(
         array $formIds,
-        bool  $width = true,
+        bool $width = true,
         array $assessments = [],
-        bool  $overall = true
-    ): array
-    {
+        bool $overall = true
+    ): array {
 
         return Radar::get_radar_indicators($formIds, $width, $assessments, $overall, $this->scalingId);
     }
 }
-

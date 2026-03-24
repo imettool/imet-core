@@ -19,9 +19,9 @@ class ExtractionFromArchiveFailed extends Exception
 {
     public function __construct(?string $custom_message = '', $code = 0, ?Throwable $previous = null)
     {
-        $message = "Unable to extract archive";
-        if (!in_array($custom_message, [null, '', '0'], true)) {
-            $message .= ": " . $custom_message;
+        $message = 'Unable to extract archive';
+        if (! in_array($custom_message, [null, '', '0'], true)) {
+            $message .= ': '.$custom_message;
         }
 
         parent::__construct($message, $code, $previous);

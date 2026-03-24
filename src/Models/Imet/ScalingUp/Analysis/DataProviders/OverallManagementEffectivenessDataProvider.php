@@ -13,8 +13,8 @@
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Helpers\ScalingUp\Common;
-use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 
 final readonly class OverallManagementEffectivenessDataProvider implements DataProviderInterface
 {
@@ -59,6 +59,7 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
     private function getRanking(array $formIds, array $assessments): array
     {
         $indexRanking = Ranking::get_overall_ranking($formIds, $assessments);
+
         return $indexRanking['values'];
     }
 
@@ -84,6 +85,7 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
             $assessments,
             true
         );
+
         return $radars['diagrams'];
     }
 
@@ -112,11 +114,12 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
     {
         return array_map(function (int $formId): array {
             $pa = ScalingUpWdpa::getCustomNames($formId, $this->scalingId);
+
             return [
                 'id' => $formId,
                 'group' => $formId,
                 'name' => $pa['name'],
-                'color' => $pa['color']
+                'color' => $pa['color'],
             ];
         }, $formIds);
     }
@@ -129,4 +132,3 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
         return $assessments['assessments_average'];
     }
 }
-

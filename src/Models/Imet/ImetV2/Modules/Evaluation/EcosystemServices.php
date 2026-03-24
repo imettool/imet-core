@@ -57,7 +57,7 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
         return [
             'field' => self::$DEPENDENCY_ON,
             'values' => $form_id !== null
-                ? Modules\Evaluation\ImportanceEcosystemServices::getModule($form_id)
+                ? ImportanceEcosystemServices::getModule($form_id)
                     ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
                     ->pluck('Aspect')
                     ->filter()

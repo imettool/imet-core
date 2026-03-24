@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -31,9 +30,8 @@ final class ManagementContext extends ImetModule_Report
             ['name' => 'climate_change',        'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementContext.fields.climate_change')],
             ['name' => 'ecosystem_services',    'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementContext.fields.ecosystem_services')],
             ['name' => 'threats',               'type' => 'text-editor',     'label' => trans('imet-core::v2_report.ManagementContext.fields.threats')],
-       ];
+        ];
 
         parent::__construct($attributes);
     }
-
 }

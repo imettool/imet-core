@@ -45,7 +45,7 @@ final class AverageContribution
 
         $average_contribution['legends'] = [
             trans('imet-core::v2_common.steps.threats'),
-            trans('imet-core::analysis_report.variability')
+            trans('imet-core::analysis_report.variability'),
         ];
 
         return ['average_contribution' => $average_contribution];
@@ -55,7 +55,7 @@ final class AverageContribution
     {
         $indicators = [];
         foreach (array_keys($categoryStats) as $index) {
-            $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($index + 1), []);
+            $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title'.($index + 1), []);
         }
 
         return array_reverse($indicators);
@@ -66,7 +66,7 @@ final class AverageContribution
         foreach ($categoryStats as $key => $value) {
             $processedValue = ($value === '')
                 ? '-'
-                : Common::round_number(-1 * (float)$value);
+                : Common::round_number(-1 * (float) $value);
 
             $data[$key][] = $processedValue;
         }
@@ -84,7 +84,7 @@ final class AverageContribution
     private static function sortAveragesByValue(array &$average_contribution): void
     {
         if (isset($average_contribution['data']['Average'])) {
-            usort($average_contribution['data']['Average'], fn(array $a, array $b): int => $b['value'] <=> $a['value']);
+            usort($average_contribution['data']['Average'], fn (array $a, array $b): int => $b['value'] <=> $a['value']);
         }
     }
 
@@ -102,7 +102,7 @@ final class AverageContribution
         $average_contribution['options'] = $options ?: null;
         $average_contribution['legends'] = [
             self::getLegendName($origType),
-            trans('imet-core::analysis_report.variability')
+            trans('imet-core::analysis_report.variability'),
         ];
 
         return ['average_contribution' => $average_contribution];
@@ -126,10 +126,10 @@ final class AverageContribution
         return $data;
     }
 
-    private static function applyValueCorrection(string $indicator, mixed  $value, array  $negativeIndicators, array  $zeroNegativeIndicators): mixed
+    private static function applyValueCorrection(string $indicator, mixed $value, array $negativeIndicators, array $zeroNegativeIndicators): mixed
     {
         if (in_array($indicator, $negativeIndicators) || in_array($indicator, $zeroNegativeIndicators)) {
-            return Common::values_correction($indicator, (float)$value);
+            return Common::values_correction($indicator, (float) $value);
         }
 
         return $value;
@@ -147,12 +147,11 @@ final class AverageContribution
         ];
 
         if (str_contains($origType, '_')) {
-            return trans('imet-core::analysis_report.guidance.process.' . $processLegends[$origType].'.intro');
+            return trans('imet-core::analysis_report.guidance.process.'.$processLegends[$origType].'.intro');
         }
 
-        return trans('imet-core::common.steps_eval.' . $origType);
+        return trans('imet-core::common.steps_eval.'.$origType);
     }
-
 
     private static function calculate_data_average_contribution(array $average_contribution, array $data, string $colors, string $label, string $type): array
     {
@@ -164,7 +163,7 @@ final class AverageContribution
                 $v = $index;
 
                 if (is_numeric($index)) {
-                    $v = (int)$index + 1;
+                    $v = (int) $index + 1;
                 }
 
                 $values = array_filter(array_values($value), is_numeric(...));
@@ -186,15 +185,15 @@ final class AverageContribution
         $average_contribution['data']['Average'][$i] = [
             'value' => $average_value,
             'upper limit' => [$percentile_10, $percentile_90],
-            'label' => trans('imet-core::v2_common.assessment.' . $v),
+            'label' => trans('imet-core::v2_common.assessment.'.$v),
             'color' => '#000000',
             'itemStyle' => ['color' => $colors],
         ];
 
         if (is_numeric($index)) {
-            $average_contribution['data']['Average'][$i]['indicator'] = trans($label . ($v), []);
-        } elseif ($type === 'process' && stripos((string)$v, '_') === true) {
-            $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v] . ' ' . trans('imet-core::analysis_report.legends.' . $v);
+            $average_contribution['data']['Average'][$i]['indicator'] = trans($label.($v), []);
+        } elseif ($type === 'process' && stripos((string) $v, '_') === true) {
+            $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
             // Common::indicator_label($v, $label, 'imet-core::analysis_report.legends.');
         } else {
             $average_contribution['data']['Average'][$i]['indicator'] = Common::get_all_indicator_labels_cached()[$v]; // Common::indicator_label($v, $label);

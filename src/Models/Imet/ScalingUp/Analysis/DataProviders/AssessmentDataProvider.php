@@ -24,6 +24,7 @@ final readonly class AssessmentDataProvider implements DataProviderInterface
     {
         $assessments = Common::get_assessments($formIds, $this->scalingId);
         unset($assessments['assessments']);
+
         return $assessments;
     }
 }

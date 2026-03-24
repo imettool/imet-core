@@ -29,8 +29,8 @@ use ImetCore\Models\User\Role;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Type\Chars;
 use ModularForms\Models\Form;
-
 use Override;
+
 use function session;
 
 /**
@@ -113,7 +113,7 @@ abstract class Imet extends Form
             : null;
 
         // Create a Collection merging v1 and v2 IMETs
-        $list = new Collection();
+        $list = new Collection;
         foreach ([ImetV1\Imet::class, ImetV2\Imet::class] as $imet_class) {
             $list = $list->merge(
                 $imet_class::query()
@@ -186,7 +186,7 @@ abstract class Imet extends Form
     #[Scope, Override]
     protected function byRequestParams(Builder $query, array $params): void
     {
-        if(array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
+        if (array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
             $params['wdpa_id'] = $params['wdpa'];
         }
 
@@ -217,7 +217,7 @@ abstract class Imet extends Form
             ->get()
             ->map(function (Imet $imet): void {
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
-                    ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
+                    ? ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
                     : ProtectedArea::getByWdpa($imet->wdpa_id);
                 $imet->Country = $pa->country;
                 $imet->name = $pa->name;
@@ -314,7 +314,7 @@ abstract class Imet extends Form
     public static function getProtectedArea($wdpa_id): ProtectedArea|ProtectedAreaNonWdpa
     {
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
-            $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($wdpa_id);
+            $pa = ProtectedAreaNonWdpa::query()->find($wdpa_id);
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
             $pa->iucn_category = null;

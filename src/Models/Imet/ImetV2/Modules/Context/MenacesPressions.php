@@ -14,8 +14,6 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
-use Wa72\HtmlPageDom\Helpers;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 final class MenacesPressions extends Modules\Component\ImetModule
 {
@@ -240,7 +238,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public static function get_terrestrial_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(fn($group, $key) => in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']))
+            ->filter(fn ($group, $key) => in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']))
             ->keys()
             ->all();
     }
@@ -248,7 +246,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public static function get_marine_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(fn($group, $key) => in_array($key, ['group4', 'group11']))
+            ->filter(fn ($group, $key) => in_array($key, ['group4', 'group11']))
             ->keys()
             ->all();
     }

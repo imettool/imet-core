@@ -30,9 +30,9 @@ final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
     protected static $DEPENDENCY_ON = 'Aspect';
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
+        [KeyConservationTrend::class, 'Aspect'],
+        [ManagementActivities::class, 'Aspect'],
     ];
 
     public function __construct(array $attributes = [])
@@ -70,7 +70,6 @@ final class ImportanceHabitats extends Modules\Component\ImetModule_Eval
                 ->filter()
                 ->toArray()
             : [];
-
 
         return [
             'field' => self::$DEPENDENCY_ON,

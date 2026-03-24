@@ -13,8 +13,8 @@
 namespace ImetCore\Models\Imet\Components;
 
 use Exception;
-use ImetCore\Models\Currency;
 use ImetCore\Helpers\SelectionList;
+use ImetCore\Models\Currency;
 
 trait Upgrade
 {

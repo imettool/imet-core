@@ -26,9 +26,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
 
     public function __construct(
         private int $scalingId
-    )
-    {
-    }
+    ) {}
 
     /**
      * Get threats categories analysis for protected areas
@@ -53,6 +51,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
     private function getThreatsValues(array $formIds): array
     {
         $radarData = Radar::get_threats_radar_indicators($formIds, $this->scalingId);
+
         return $radarData['total_categories'];
     }
 
@@ -86,7 +85,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
     private function getRadarData(array $formIds): array
     {
         $radarData = Radar::get_threats_radar_indicators($formIds, $this->scalingId);
+
         return $radarData['radar'];
     }
 }
-

@@ -419,8 +419,8 @@ trait ImportExportJSON
             Imet\ImetV2\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
                 $modules_imported['Report'] = [
-                    ...Imet\ImetV2\Imet_Report::upgradeLegacy( $json['Report'] ?? null, $formID, $imet_version),
-                    ...Imet\ImetV2\Imet_Report::importModules( $json['Report'] ?? null, $formID, $imet_version)
+                    ...Imet\ImetV2\Imet_Report::upgradeLegacy($json['Report'] ?? null, $formID, $imet_version),
+                    ...Imet\ImetV2\Imet_Report::importModules($json['Report'] ?? null, $formID, $imet_version),
                 ];
             }
         } // #####  IMET OECM  #####

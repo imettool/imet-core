@@ -10,13 +10,12 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-
 namespace ImetCore\Models\Imet\ScalingUp\Analysis;
 
 use Exception;
 use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\AssessmentDataProvider;
-use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ProtectedAreaDataProvider;
 use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\GroupingDataProvider;
+use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ProtectedAreaDataProvider;
 
 final class GroupingAnalysis extends BaseAnalysis
 {
@@ -56,20 +55,20 @@ final class GroupingAnalysis extends BaseAnalysis
     public static function getProtectedAreaWithCountries(array $form_ids): array
     {
         $items = self::getProtectedAreaProvider()->getProtectedAreasWithCountries($form_ids);
-        uasort($items, fn($a, $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
+        uasort($items, fn ($a, $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
+
         return $items;
     }
 
-    public static function data(array $params = []): array{
+    public static function data(array $params = []): array
+    {
         $radar = self::getGroupingProvider()->getRadarData($params['parameters'], $params['assessments']);
+
         return ['radar' => $radar];
     }
 
-
-    public static function getScatterGroupingAnalysis(array $parameters, array $assessments = [], bool  $not_grouped = false): array
+    public static function getScatterGroupingAnalysis(array $parameters, array $assessments = [], bool $not_grouped = false): array
     {
         return self::getGroupingProvider()->getScatterData($parameters, $assessments, $not_grouped);
     }
 }
-
-

@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
         // Seed forms with modules
         (new FormSeeder)->run(Imet::IMET_V1, self::NUM_FORMS);
-        (new FormSeeder)->run(Imet::IMET_V2,self::NUM_FORMS);
+        (new FormSeeder)->run(Imet::IMET_V2, self::NUM_FORMS);
         (new FormSeeder)->run(Imet::IMET_OECM, self::NUM_FORMS);
 
     }

@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common as ModelCommon;
 use ImetCore\Models\Imet\Imet as ImetAlias;
-use ImetCore\Models\Imet\ScalingUp\Analysis\DigitalInformationAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\GroupingAnalysis;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ComparisonProtectedAreaAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementContextAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\DigitalInformationAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\GeneralInfoAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\GroupingAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementContextAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\MapViewAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\OverallManagementEffectivenessAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class ReportScalingUp
@@ -111,7 +111,6 @@ final class ReportScalingUp
     /**
      * @throws AuthorizationException
      * @throws \Throwable
-     *
      */
     private static function validateAndPrepareItems(string $items): void
     {
@@ -122,7 +121,7 @@ final class ReportScalingUp
 
         $validItems = array_filter(
             $itemsArray,
-            fn($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists()
+            fn ($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists()
         );
 
         abort_if($itemsArray === [] || (count($validItems) !== count($itemsArray)), 404);
@@ -136,7 +135,7 @@ final class ReportScalingUp
         self::saveForm($request, $areas, $scalingUpId);
         self::save_default_names($scalingUpId, $protectedAreas['models']);
 
-        uasort($protectedAreas['models'], fn(ImetAlias $a, ImetAlias $b): int => $a['name'] <=> $b['name']);
+        uasort($protectedAreas['models'], fn (ImetAlias $a, ImetAlias $b): int => $a['name'] <=> $b['name']);
 
         return $protectedAreas;
     }

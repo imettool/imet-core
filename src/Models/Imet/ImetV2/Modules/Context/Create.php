@@ -24,7 +24,6 @@ final class Create extends Modules\Component\ImetModule
 
     protected $primaryKey = 'FormID';
 
-
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.create';
 
     public static array $rules = [

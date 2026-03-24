@@ -30,9 +30,10 @@ class CustomInput extends Input
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa')) {
             $countries = SelectionList::CacheListInSession('ImetV2_PaCountry');
-            if(Str::contains($this->type, '_multiple')) {
+            if (Str::contains($this->type, '_multiple')) {
                 return view('imet-core::components.inputs.selector-wdpa_multiple', ['countries' => $countries]);
             }
+
             return view('imet-core::components.inputs.selector-wdpa', ['countries' => $countries]);
         }
 

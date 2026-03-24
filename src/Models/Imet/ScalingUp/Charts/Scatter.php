@@ -58,7 +58,7 @@ final class Scatter
                 $form['name'],
                 $form['color'] ?? null,
                 $form['id'],
-                $form['wdpa_id'] ?? null
+                $form['wdpa_id'] ?? null,
             ];
         }
 

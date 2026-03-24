@@ -17,6 +17,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\ImetV1\Report;
 use ReflectionException;
 
 use function view;
@@ -64,7 +65,7 @@ abstract class ReportController extends Controller
     {
         $this->authorize('edit', (static::$form_class)::find($item));
 
-        \ImetCore\Models\Imet\ImetV1\Report::updateByForm($item, $request->input('report'));
+        Report::updateByForm($item, $request->input('report'));
 
         return ['status' => 'success'];
     }

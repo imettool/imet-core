@@ -28,7 +28,6 @@ class ImetModule_Report extends ImetModule
 
     public const ?string MODULE_SCOPE = null;
 
-
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
     public ?array $fieldsDefinitions = null;

@@ -18,6 +18,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
+use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 use function view;
@@ -43,7 +44,7 @@ final class EvalController extends BaseEvalController
      * return if any discrepancies are found for cross analysis
      * and also the classes to be used for indication in the menu
      */
-    private function get_cross_analysis(\ImetCore\Models\Imet\ImetV1\Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $form): array
+    private function get_cross_analysis(Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $form): array
     {
         $classes = [];
         $warnings = CrossAnalysis::getIndicators($form);

@@ -29,8 +29,8 @@ final class Stakeholders extends Modules\Component\ImetModule
     public const string BODY_SHOW_BLADE_VIEW = 'imet-core::oecm.context.show.modules.stakeholders';
 
     protected static $DEPENDENCIES = [
-        [Modules\Context\AnalysisStakeholderDirectUsers::class, 'Element'],
-        [Modules\Context\AnalysisStakeholderIndirectUsers::class, 'Element'],
+        [AnalysisStakeholderDirectUsers::class, 'Element'],
+        [AnalysisStakeholderIndirectUsers::class, 'Element'],
         [Modules\Evaluation\SupportsAndConstraints::class, 'Element'],
         [Modules\Evaluation\SupportsAndConstraintsIntegration::class, 'Element'],
         [Modules\Evaluation\CapacityAdequacy::class, 'Element'],
@@ -38,13 +38,13 @@ final class Stakeholders extends Modules\Component\ImetModule
         [Modules\Evaluation\StakeholderCooperation::class, 'Element'],
     ];
 
-//    public static array $rules = [
-//        'Element' => 'required',
-//        'UsesCategories' => 'required_with:Element',
-//        'LevelEngagement' => 'required_unless:GeographicalProximity,true',
-//        'LevelInterest' => 'required_unless:GeographicalProximity,true',
-//        'LevelExpertise' => 'required_unless:GeographicalProximity,true',
-//    ];
+    //    public static array $rules = [
+    //        'Element' => 'required',
+    //        'UsesCategories' => 'required_with:Element',
+    //        'LevelEngagement' => 'required_unless:GeographicalProximity,true',
+    //        'LevelInterest' => 'required_unless:GeographicalProximity,true',
+    //        'LevelExpertise' => 'required_unless:GeographicalProximity,true',
+    //    ];
 
     public function __construct(array $attributes = [])
     {

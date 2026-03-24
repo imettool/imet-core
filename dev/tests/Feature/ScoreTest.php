@@ -15,7 +15,6 @@ use Database\Seeders\ProtectedAreaSeeder;
 use Database\Seeders\SpeciesSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\JsonResponse;
 use ImetCore\Models\Imet;
 use ImetCore\Services\Scores\AssessmentsScores;
 

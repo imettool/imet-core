@@ -12,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 
@@ -27,11 +26,12 @@ final readonly class ProtectedAreaDataProvider implements DataProviderInterface
      */
     public function getProtectedAreasWithCountries(array $formIds): array
     {
-        $items = array_map(function(int $formId): array {
+        $items = array_map(function (int $formId): array {
             $pa = ScalingUpWdpa::getCustomNames($formId, $this->scalingId);
+
             return [
                 ...$pa->toArray(),
-                'Country_name' => Country::getByISO($pa['Country'])
+                'Country_name' => Country::getByISO($pa['Country']),
             ];
         }, $formIds);
 

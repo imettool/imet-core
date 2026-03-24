@@ -12,9 +12,9 @@
 
 namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
-use ImetCore\Helpers\SelectionList;
 
 final class EcosystemServices extends Modules\Component\ImetModule
 {
@@ -178,5 +178,4 @@ final class EcosystemServices extends Modules\Component\ImetModule
             $predefined['group9'][9],
         ];
     }
-
 }

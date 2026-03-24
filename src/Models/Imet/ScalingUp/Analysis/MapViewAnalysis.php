@@ -12,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis;
 
-
 final class MapViewAnalysis extends BaseAnalysis
 {
     public static string $template = 'map_view';
@@ -25,9 +24,8 @@ final class MapViewAnalysis extends BaseAnalysis
 
     public static string $info_label = 'imet-core::analysis_report.guidance.map';
 
-    public static function data(array $params = []): array{
+    public static function data(array $params = []): array
+    {
         return [];
     }
-
 }
-

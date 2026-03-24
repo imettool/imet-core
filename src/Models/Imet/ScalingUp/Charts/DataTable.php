@@ -16,7 +16,6 @@ use ImetCore\Helpers\ScalingUp\Common;
 
 final class DataTable
 {
-
     /**
      * @return array[]
      */
@@ -39,7 +38,8 @@ final class DataTable
     private static function initializeAverage(array $table_indicators): array
     {
         $averageLabel = trans('imet-core::analysis_report.average');
-        return ['wdpa_id' => $averageLabel, 'name' => $averageLabel] + array_map(fn(): int => 0, $table_indicators);
+
+        return ['wdpa_id' => $averageLabel, 'name' => $averageLabel] + array_map(fn (): int => 0, $table_indicators);
     }
 
     private static function buildProtectedAreaRow(int $id, array $values, ?int $scaling_id): array
@@ -50,14 +50,14 @@ final class DataTable
         return [
             'wdpa_id' => $pa->wdpa_id,
             'name' => $pa->name,
-            ...array_map(Common::round_number(...), $indicators)
+            ...array_map(Common::round_number(...), $indicators),
         ];
     }
 
     private static function accumulateValues(array $average, array $values, array $table_indicators): array
     {
         foreach (array_keys($table_indicators) as $indicator) {
-            $value = ($values[$indicator] === '-') ? 0 : (float)$values[$indicator];
+            $value = ($values[$indicator] === '-') ? 0 : (float) $values[$indicator];
             $average[$indicator] += $value;
         }
 

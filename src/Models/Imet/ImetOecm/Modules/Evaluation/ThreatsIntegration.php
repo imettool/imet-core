@@ -32,7 +32,7 @@ final class ThreatsIntegration extends Modules\Component\ImetModule_Eval
 
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Threat'],
-        [Modules\Evaluation\InformationAvailability::class, 'Threat'],
+        [InformationAvailability::class, 'Threat'],
     ];
 
     public static array $extra_raw_fields = ['Ranking' => '__score'];

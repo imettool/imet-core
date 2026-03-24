@@ -31,10 +31,10 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
     protected static $DEPENDENCY_ON = 'Aspect';
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
-        [Modules\Evaluation\EcosystemServices::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
+        [KeyConservationTrend::class, 'Aspect'],
+        [ManagementActivities::class, 'Aspect'],
+        [EcosystemServices::class, 'Aspect'],
     ];
 
     public static array $extra_raw_fields = ['rank' => '_rank',
@@ -103,17 +103,15 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
         return $records;
     }
 
-    /**
-     * @param $needle
-     */
     private static function find_category_id(array $groups, $needle): ?int
     {
-        return array_find_key($groups, fn($sub): bool => is_array($sub) && in_array($needle, $sub, true));
+        return array_find_key($groups, fn ($sub): bool => is_array($sub) && in_array($needle, $sub, true));
     }
 
     private static function getEcosystemServices(?int $form_id): Collection
     {
         $categories = Modules\Context\EcosystemServices::$groupsByCategory;
+
         return Modules\Context\EcosystemServices::getModule($form_id)
             ->filter(fn ($item): bool => $item['Importance'] !== null)
             ->map(function (Modules\Context\EcosystemServices $item) use ($categories): Modules\Context\EcosystemServices {
@@ -124,10 +122,11 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
                 $trend = $item['ImportanceGlobal'];
 
                 $id = self::find_category_id($categories, $item['group_key']) + 1;
-                $item["_categories"] = $id.'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.$id);
+                $item['_categories'] = $id.'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.$id);
                 $item['_rank'] = (floatval($importance)
                         + ($dependence / 3)
-                        + (( $trend + 2) / 4)) / 3 * 100;
+                        + (($trend + 2) / 4)) / 3 * 100;
+
                 return $item;
             })
             ->sortByDesc('_rank');

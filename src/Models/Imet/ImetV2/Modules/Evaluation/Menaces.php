@@ -30,9 +30,9 @@ final class Menaces extends Modules\Component\ImetModule_Eval
     protected static $DEPENDENCY_ON = 'Aspect';
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
+        [KeyConservationTrend::class, 'Aspect'],
+        [ManagementActivities::class, 'Aspect'],
     ];
 
     public static array $extra_raw_fields = ['rank' => '_rank',
@@ -102,12 +102,9 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         return $records;
     }
 
-    /**
-     * @param $needle
-     */
     private static function find_category_id(array $groups, $needle): ?int
     {
-        return array_find_key($groups, fn($sub): bool => is_array($sub) && in_array($needle, $sub, true));
+        return array_find_key($groups, fn ($sub): bool => is_array($sub) && in_array($needle, $sub, true));
     }
 
     private static function getMenacesPressions(?int $form_id)
@@ -116,7 +113,7 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         $ctx_records = Modules\Context\MenacesPressions::getModule($form_id)
             ->map(function (Modules\Context\MenacesPressions $item) use ($categories): Modules\Context\MenacesPressions {
                 $id = self::find_category_id($categories, $item['group_key']) + 1;
-                $item["_categories"] = $id.'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.$id);
+                $item['_categories'] = $id.'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.$id);
                 $item['_rank'] = Modules\Context\MenacesPressions::calculateStats(
                     [$item['Impact'], $item['Extension'], $item['Duration'], $item['Trend'], $item['Probability']],
                     true

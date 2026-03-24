@@ -12,6 +12,7 @@
 
 namespace ImetCore\Controllers\Imet\ImetOecm;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
 use ImetCore\Models\Imet\ImetOecm\Imet;
@@ -83,7 +84,7 @@ final class ReportController extends BaseReportController
      *
      * @return string[]
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      */
     #[\Override]
     public function report_update($imet, Request $request): array

@@ -31,7 +31,7 @@ final class Designation extends Modules\Component\ImetModule_Eval
 
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Aspect'],
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
     ];
 
     public function __construct(array $attributes = [])

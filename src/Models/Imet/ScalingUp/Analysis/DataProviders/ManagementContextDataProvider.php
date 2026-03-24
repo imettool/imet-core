@@ -12,9 +12,9 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ImetV2\Modules;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Species;
 
 final readonly class ManagementContextDataProvider implements DataProviderInterface
@@ -92,6 +92,7 @@ final readonly class ManagementContextDataProvider implements DataProviderInterf
         }
 
         $imet = Imet::query()->where(['FormID' => $formId])->first();
+
         return $imet ? $imet->toArray() : ['name' => ''];
     }
 
@@ -117,7 +118,7 @@ final readonly class ManagementContextDataProvider implements DataProviderInterf
         return Modules\Evaluation\ImportanceSpecies::getModule($formId)
             ->filter(fn ($item): mixed => $item['IncludeInStatistics'])
             ->map(fn ($item): array => [
-                $item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect'])
+                $item['group_key'] => Species::getPlainNameByTaxonomy($item['Aspect']),
             ])
             ->all();
     }
@@ -275,4 +276,3 @@ final readonly class ManagementContextDataProvider implements DataProviderInterf
         return $filtered;
     }
 }
-

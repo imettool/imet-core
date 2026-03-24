@@ -1,6 +1,5 @@
 <?php
 
-
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -26,10 +25,9 @@ final class OperatingRecommendations extends ImetModule_Report
         $this->module_code = 'RP 3';
 
         $this->module_fields = [
-            ['name' => 'recommendations',   'type' => 'text-editor']
+            ['name' => 'recommendations',   'type' => 'text-editor'],
         ];
 
         parent::__construct($attributes);
     }
-
 }

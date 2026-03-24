@@ -33,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA,'eval_climate_change_monitoring'), function (Blueprint $table): void {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_climate_change_monitoring'), function (Blueprint $table): void {
             $table->dropColumn('InManagementPlan');
             $table->dropColumn('EvaluationScoreAdequacy');
         });

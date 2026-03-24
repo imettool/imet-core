@@ -19,9 +19,7 @@ final readonly class DiagramDataProvider implements DataProviderInterface
 {
     public function __construct(
         private int $scalingId
-    )
-    {
-    }
+    ) {}
 
     /**
      * Get averages of each indicator of six elements with styling and limits
@@ -29,9 +27,8 @@ final readonly class DiagramDataProvider implements DataProviderInterface
     public function getAveragesOfEachIndicatorOfSixElements(
         array $formIds,
         array $assessments = [],
-        bool  $overall = false
-    ): array
-    {
+        bool $overall = false
+    ): array {
         $locale = App::getLocale();
         $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->scalingId);
 
@@ -46,7 +43,7 @@ final readonly class DiagramDataProvider implements DataProviderInterface
             'legends' => [
                 'Synthetic indicators',
                 'Variability',
-            ]
+            ],
         ];
     }
 
@@ -59,43 +56,44 @@ final readonly class DiagramDataProvider implements DataProviderInterface
             [
                 'key' => 'outcomes',
                 'translation' => 'imet-core::common.steps_eval.outcomes',
-                'color' => '#00B050'
+                'color' => '#00B050',
             ],
             [
                 'key' => 'outputs',
                 'translation' => 'imet-core::common.steps_eval.outputs',
-                'color' => '#92D050'
+                'color' => '#92D050',
             ],
             [
                 'key' => 'process',
                 'translation' => 'imet-core::common.steps_eval.process',
-                'color' => '#0099CC'
+                'color' => '#0099CC',
             ],
             [
                 'key' => 'inputs',
                 'translation' => 'imet-core::common.steps_eval.inputs',
-                'color' => '#ffc000'
+                'color' => '#ffc000',
             ],
             [
                 'key' => 'planning',
                 'translation' => 'imet-core::common.steps_eval.planning',
-                'color' => '#bfbfbf'
+                'color' => '#bfbfbf',
             ],
             [
                 'key' => 'context',
                 'translation' => 'imet-core::common.steps_eval.context',
-                'color' => '#ffff00'
-            ]
+                'color' => '#ffff00',
+            ],
         ];
 
         return array_map(function (array $indicator) use ($average, $lowerLimit, $upperLimit): array {
             $key = $indicator['key'];
+
             return [
                 'value' => $average[$key],
                 'upper limit' => [$lowerLimit[$key], $upperLimit[$key]],
                 'indicator_raw' => $key,
                 'indicator' => trans($indicator['translation']),
-                'itemStyle' => ['color' => $indicator['color']]
+                'itemStyle' => ['color' => $indicator['color']],
             ];
         }, $indicators);
     }
@@ -106,9 +104,8 @@ final readonly class DiagramDataProvider implements DataProviderInterface
     public function getProtectedAreasDiagramCompare(
         array $formIds,
         array $assessments = [],
-        bool  $overall = false
-    ): array
-    {
+        bool $overall = false
+    ): array {
         $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->scalingId);
         unset($data['diagrams']['upper limit']);
         unset($data['diagrams']['lower limit']);
@@ -116,4 +113,3 @@ final readonly class DiagramDataProvider implements DataProviderInterface
         return $data;
     }
 }
-

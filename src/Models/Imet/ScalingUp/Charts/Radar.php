@@ -47,24 +47,24 @@ final class Radar
             $i = 0;
             foreach ($values as $v => $value) {
                 if ($v !== 'avg') {
-                    if ($type === 'process' && stripos((string)$v, '_') === true) {
-                        $name = Common::get_all_indicator_labels_cached()[$v] . ' ' . trans('imet-core::analysis_report.legends.' . $v);
+                    if ($type === 'process' && stripos((string) $v, '_') === true) {
+                        $name = Common::get_all_indicator_labels_cached()[$v].' '.trans('imet-core::analysis_report.legends.'.$v);
                     } else {
                         $name = Common::get_all_indicator_labels_cached()[$v];
                     }
 
                     $indicators[$i] = $name;
 
-                    if (in_array($v, $radar_negative_indicators) && !in_array($i, $radar_indicators_for_negative, true)) {
+                    if (in_array($v, $radar_negative_indicators) && ! in_array($i, $radar_indicators_for_negative, true)) {
                         $radar_indicators_for_negative[] = $i;
-                    } elseif (in_array($v, $radar_zero_negative_indicators) && !in_array($i, $radar_indicators_zero_negative, true)) {
+                    } elseif (in_array($v, $radar_zero_negative_indicators) && ! in_array($i, $radar_indicators_zero_negative, true)) {
                         $radar_indicators_zero_negative[] = $i;
                     }
 
                     $rounded_value = Common::round_number($value);
                     $tables[$type][$idx][$v] = $valuesIndicators[$v][] = $rounded_value;
 
-                    if ((string)$value === '-') {
+                    if ((string) $value === '-') {
                         $value = 0;
                     } else {
                         $indicators_count_to_calculate_average[$v] = array_key_exists($v, $indicators_count_to_calculate_average) ? $indicators_count_to_calculate_average[$v] + 1 : 1;
@@ -100,9 +100,9 @@ final class Radar
             'radar_indicators_zero_negative' => $radar_indicators_zero_negative,
             'wdpas' => $wdpas,
             'values' => array_merge($radar_protected_areas['values'], [
-                    'upper limit' => $upperLimit,
-                    'lower limit' => $lowerLimit,
-                ]
+                'upper limit' => $upperLimit,
+                'lower limit' => $lowerLimit,
+            ]
             ),
             'indicators' => $analysis_diagrams_protected_areas['indicators'],
         ];
@@ -170,7 +170,7 @@ final class Radar
             'diagrams' => array_merge($analysis_diagrams, [
                 'Average' => $average,
                 'upper limit' => $limits['upper'],
-                'lower limit' => $limits['lower']
+                'lower limit' => $limits['lower'],
             ]),
         ];
     }
@@ -237,7 +237,6 @@ final class Radar
         return ['upper' => $upperLimit, 'lower' => $lowerLimit];
     }
 
-
     public static function get_threats_radar_indicators(array $form_ids, int $scaling_id = 0): array
     {
         $indicators = [];
@@ -259,7 +258,7 @@ final class Radar
 
         return [
             'radar' => ['values' => $radar_values, 'indicators' => $indicators],
-            'total_categories' => $total_categories
+            'total_categories' => $total_categories,
         ];
     }
 
@@ -267,7 +266,7 @@ final class Radar
     {
         $indicators = [];
         foreach (array_keys($categoryStats) as $index) {
-            $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($index + 1), []);
+            $indicators[] = trans('imet-core::v2_context.MenacesPressions.categories.title'.($index + 1), []);
         }
 
         return array_reverse($indicators);
@@ -276,12 +275,12 @@ final class Radar
     private static function aggregateThreatCategories(array $categoryStats, array &$total_categories, object $pa): void
     {
         foreach ($categoryStats as $key => $value) {
-            $processedValue = ($value === '') ? '-' : Common::round_number(-1 * (float)$value);
+            $processedValue = ($value === '') ? '-' : Common::round_number(-1 * (float) $value);
 
             $record = [
                 'id' => $pa->wdpa_id,
                 'name' => $pa->name,
-                'value' => $processedValue
+                'value' => $processedValue,
             ];
 
             if ($pa->color) {
@@ -297,13 +296,13 @@ final class Radar
         $radar_values = [];
 
         foreach ($total_categories as $key => $category) {
-            usort($category, fn(array $a, array $b): int => $a['value'] <=> $b['value']);
+            usort($category, fn (array $a, array $b): int => $a['value'] <=> $b['value']);
             $total_categories[$key] = $category;
 
             foreach ($category as $item) {
                 $name = $item['name'];
 
-                if (!isset($radar_values[$name])) {
+                if (! isset($radar_values[$name])) {
                     $radar_values[$name] = [];
                     if ($item['color'] !== null) {
                         $radar_values[$name]['color'] = $item['color'];
@@ -316,5 +315,4 @@ final class Radar
 
         return $radar_values;
     }
-
 }

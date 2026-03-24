@@ -37,8 +37,7 @@ final class GeneralInfoAnalysis extends BaseAnalysis
     public static function data(array $params = []): array
     {
         $generalElements = self::getGeneralInfoProvider()->getGeneralInfo($params['form_ids']);
+
         return ['general_info' => $generalElements];
     }
-
 }
-

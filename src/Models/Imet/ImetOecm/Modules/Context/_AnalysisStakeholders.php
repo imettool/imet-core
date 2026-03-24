@@ -151,7 +151,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
     protected static function retrieveStakeholdersWeights(?int $form_id): ?array
     {
-        $weights = Modules\Context\Stakeholders::calculateWeights($form_id, Stakeholders::ALL_USERS);
+        $weights = Stakeholders::calculateWeights($form_id, Stakeholders::ALL_USERS);
         $weights_sum = array_sum($weights);
 
         return $weights_sum > 0 ?

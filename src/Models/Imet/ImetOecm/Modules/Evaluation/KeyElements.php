@@ -32,9 +32,9 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
     protected static $DEPENDENCY_ON = 'Aspect';
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\Objectives::class, 'Aspect'],
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+        [Objectives::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
+        [ManagementActivities::class, 'Aspect'],
     ];
 
     public static array $extra_raw_fields = ['Ranking' => '__score'];
@@ -90,7 +90,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
         // Retrieve key elements (and importance calculation) form CTX
         $key_elements = collect(Modules\Context\AnalysisStakeholderDirectUsers::calculateKeyElementsImportances($form_id))
             ->keyBy('element');
-        $biodiversity_key_elements = collect(Modules\Evaluation\ThreatsBiodiversity::calculateRanking($form_id))
+        $biodiversity_key_elements = collect(ThreatsBiodiversity::calculateRanking($form_id))
             ->sortBy('_score');
         $biodiversity_key_elements_scores = $biodiversity_key_elements->pluck('__score', 'Criteria')->toArray();
 

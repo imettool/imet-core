@@ -32,9 +32,9 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     protected static $DEPENDENCY_ON = 'Aspect';
 
     protected static $DEPENDENCIES = [
-        [Modules\Evaluation\InformationAvailability::class, 'Aspect'],
-        [Modules\Evaluation\KeyConservationTrend::class, 'Aspect'],
-        [Modules\Evaluation\ManagementActivities::class, 'Aspect'],
+        [InformationAvailability::class, 'Aspect'],
+        [KeyConservationTrend::class, 'Aspect'],
+        [ManagementActivities::class, 'Aspect'],
     ];
 
     public function __construct(array $attributes = [])
@@ -75,7 +75,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
             ? [
                 'group0' => Modules\Context\AnimalSpecies::getModule($form_id)
                     ->filter()
-                    ->map(fn(Modules\Context\AnimalSpecies $item) => $item->species ?? $item->CommonName ?? null)
+                    ->map(fn (Modules\Context\AnimalSpecies $item) => $item->species ?? $item->CommonName ?? null)
                     ->all(),
                 'group1' => Modules\Context\VegetalSpecies::getModule($form_id)
                     ->filter()
@@ -100,7 +100,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
         $records = parent::getModuleRecords($form_id, $collection);
 
         foreach ($records['records'] as $idx => $record) {
-            if($record[self::$group_key_field] === 'group0') {
+            if ($record[self::$group_key_field] === 'group0') {
                 $records['records'][$idx]['__key_element_label'] = Species::getPreview($records['records'][$idx]['Aspect']);
             }
         }

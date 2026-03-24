@@ -15,9 +15,9 @@ namespace ImetCore\Controllers\Imet\ImetV1;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Str;
 use ImetCore\Controllers\Imet\ReportController as BaseReportController;
-use ImetCore\Helpers\ImetEnv;
 use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Models\Imet\ImetV1\Modules;
+use ImetCore\Models\Imet\ImetV1\Report;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
@@ -67,7 +67,7 @@ final class ReportController extends BaseReportController
             ],
             'scores' => ImetScores::get_all($item),
             'labels' => ImetScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_V1),
-            'report' => \ImetCore\Models\Imet\ImetV1\Report::getByForm($form_id),
+            'report' => Report::getByForm($form_id),
             'show_general_info' => $show_general_info,
             'show_non_wdpa' => $show_non_wdpa ?? false,
             'non_wdpa' => $non_wdpa ?? null,

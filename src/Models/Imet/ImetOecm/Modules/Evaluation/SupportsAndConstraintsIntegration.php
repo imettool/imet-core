@@ -34,7 +34,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
 
     protected static $DEPENDENCIES = [
         [Objectives::class, 'Stakeholder'],
-        [Modules\Evaluation\InformationAvailability::class, 'Stakeholder'],
+        [InformationAvailability::class, 'Stakeholder'],
     ];
 
     public static array $extra_raw_fields = ['Ranking' => '__score'];

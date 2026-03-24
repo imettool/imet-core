@@ -65,7 +65,7 @@ abstract class Controller extends __Controller
         $form_class = static::$form_class;
 
         $sanitizer = Validator::make($request->all(), static::sanitization_rules);
-        if($sanitizer->fails()){
+        if ($sanitizer->fails()) {
             $filtered_list = collect();
             $countries = [];
             $years = [];
@@ -92,7 +92,7 @@ abstract class Controller extends __Controller
             'countries' => $countries,
             'years' => $years,
             'index_url' => URL::route(static::ROUTE_PREFIX.'index'),
-            'filters_validation_messages' => $filters_validation_messages
+            'filters_validation_messages' => $filters_validation_messages,
         ]);
     }
 

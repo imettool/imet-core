@@ -89,13 +89,14 @@ class SpeciesSeeder extends Seeder
     public function runWithSample(): void
     {
         // Run on CSV file if exists, otherwise use sample data
-        if(file_exists(database_path(SpeciesUpdater::CSV_SPECIES_PATH))
-            && file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))){
+        if (file_exists(database_path(SpeciesUpdater::CSV_SPECIES_PATH))
+            && file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))) {
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
+
             return;
         }
 
-        foreach (self::SAMPLE_DATA as $species){
+        foreach (self::SAMPLE_DATA as $species) {
             SpeciesFactory::new()->create([
                 'kingdom' => $species[0],
                 'phylum' => $species[1],

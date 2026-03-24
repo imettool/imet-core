@@ -129,7 +129,6 @@ return [
         'PPP (Public/Private Partnership)',
     ],
 
-
     'GovernanceModel' => [
         'government' => 'Gobernanza por el gobierno',
         'shared' => 'Gobernanza compartida',

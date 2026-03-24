@@ -14,8 +14,8 @@ namespace ImetCore\Helpers\ScalingUp;
 
 use Illuminate\Support\Facades\Cache;
 use ImetCore\Models\Imet\Imet as ImetAlias;
-use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Services\Scores\ImetScores;
 
 final class Common

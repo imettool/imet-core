@@ -15,6 +15,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use ImetCore\Models\Imet\ImetV2\Modules;
+use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
 use ModularForms\Helpers\Type\JSON;
 
@@ -76,7 +77,7 @@ final class Networks extends Modules\Component\ImetModule
             // Convert global_id to wdpa
             $pas = collect($pas)->map(function ($pa) {
                 if (Str::startsWith($pa, 'OFAC_')) {
-                    $model = \ImetCore\Models\ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
+                    $model = ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
 
                     return $model->wdpa_id ?? null;
                 }
@@ -102,7 +103,7 @@ final class Networks extends Modules\Component\ImetModule
             $value = '';
             $pas_length = count($pas);
             for ($index = 0; $index < $pas_length; $index++) {
-                $model = \ImetCore\Models\ProtectedArea::query()->where('wdpa_id', '=', $pas[$index])->get()->toArray();
+                $model = ProtectedArea::query()->where('wdpa_id', '=', $pas[$index])->get()->toArray();
                 if (filled($model)) {
                     if ($index === 0) {
                         $value .= $model[0]['name'];

@@ -35,7 +35,7 @@ final class ManagementContextAnalysis extends BaseAnalysis
     public static function data(array $params = []): array
     {
         $keyElements = self::getManagementContextProvider()->getManagementContext($params['form_ids']);
+
         return ['key_elements' => $keyElements];
     }
 }
-

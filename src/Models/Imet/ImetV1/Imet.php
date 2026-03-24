@@ -29,8 +29,8 @@ class Imet extends BaseImetForm
     public static ?array $modules = [
 
         'general_info' => [
-            Modules\Context\ResponsablesInterviewers::class,
-            Modules\Context\ResponsablesInterviewees::class,
+            ResponsablesInterviewers::class,
+            ResponsablesInterviewees::class,
             Modules\Context\GeneralInfo::class,
             Modules\Context\Governance::class,
             Modules\Context\SpecialStatus::class,

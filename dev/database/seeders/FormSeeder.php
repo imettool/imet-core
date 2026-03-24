@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Helpers\SelectionList as ImetSelectionList;
 use ImetCore\Models\Imet;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\Species;
-use ImetCore\Helpers\SelectionList;
 use ModularForms\Models\Module;
 use Throwable;
 
@@ -251,6 +251,7 @@ class FormSeeder extends Seeder
                 ? SelectionList::getList('ImetV2_SubGovernanceModel')
                 : SelectionList::getList('ImetOECM_SubGovernanceModel');
             $random_group = collect($list)->random();
+
             return collect($random_group)->random();
         }
 

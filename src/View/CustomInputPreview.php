@@ -48,8 +48,9 @@ class CustomInputPreview extends InputPreview
 
         // Radio button
         if (Str::contains($this->type, 'radio')) {
-            $list_type = \Illuminate\Support\Str::replace('imet-core::radio-', '', $this->type);
+            $list_type = Str::replace('imet-core::radio-', '', $this->type);
             $list = SelectionList::getList($list_type);
+
             return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
         }
 

@@ -203,14 +203,14 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
      */
     private function getTableIndicatorsForType(string $type): array
     {
-        if (!isset(self::TABLE_INDICATORS[$type])) {
+        if (! isset(self::TABLE_INDICATORS[$type])) {
             return [];
         }
 
         $indicators = self::TABLE_INDICATORS[$type];
 
         // Convert indicator keys to empty arrays
-        return array_map(fn($group) => array_fill_keys($group, []), $indicators);
+        return array_map(fn ($group) => array_fill_keys($group, []), $indicators);
     }
 
     /**
@@ -220,10 +220,10 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
     {
         if (str_contains($type, 'process')) {
             $parts = explode('_', $type);
+
             return $parts[0];
         }
 
         return $type;
     }
 }
-
