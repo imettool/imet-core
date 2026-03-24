@@ -27,14 +27,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed admin user and login
+        // Seed admin User and login
         (new UserSeeder)->run();
 
-        // Seed protected areas
-        (new ProtectedAreaSeeder)->runWithSample();
+        // Seed ProtectedArea
+        (new ProtectedAreaSeeder)->runWithSample(false);
 
-        // Seed species
-        (new SpeciesSeeder)->runWithSample();
+        // Seed Species
+        (new SpeciesSeeder)->runWithSample(false);
 
         // Seed forms with modules
         (new FormSeeder)->run(Imet::IMET_V1, self::NUM_FORMS);

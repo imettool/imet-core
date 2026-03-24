@@ -48,15 +48,23 @@ class ProtectedAreaSeeder extends Seeder
     ];
 
     /**
+     * @throws UpdateFromProtectedPlanetCsvFailed
+     */
+    public function run(): void
+    {
+        $this->runWithSample(false);
+    }
+
+    /**
      * Run the database seeders using Sample data
      *
      * @throws UpdateFromProtectedPlanetCsvFailed
      */
-    public function runWithSample(): void
+    public function runWithSample(?bool $from_file = false): void
     {
         // Run on CSV file if exists, otherwise use sample data
         $csvFilePath = database_path('WDPA_WDOECM_Public_all_csv.csv');
-        if (file_exists($csvFilePath)) {
+        if ($from_file && file_exists($csvFilePath)) {
             ProtectedPlanetCSV::parseCSVFile($csvFilePath);
 
             return;

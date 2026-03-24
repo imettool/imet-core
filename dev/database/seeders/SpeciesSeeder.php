@@ -83,16 +83,22 @@ class SpeciesSeeder extends Seeder
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Canidae', 'Canis', 'Canis lupus', 'Linnaeus, 1758', 'QLXL', 'Gray Wolf, Wolf', 'Lobo gris', 'loup'],
     ];
 
+    public function run(): void
+    {
+        $this->runWithSample(false);
+    }
+
     /**
      * Run the database seeders using Sample data
      */
-    public function runWithSample(): void
+    public function runWithSample(?bool $from_file = false): void
     {
         // Run on CSV file if exists, otherwise use sample data
-        if (file_exists(database_path(SpeciesUpdater::CSV_SPECIES_PATH))
-            && file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))) {
+        if ($from_file &&
+            file_exists(database_path(SpeciesUpdater::CSV_SPECIES_PATH)) &&
+            file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))
+        ) {
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
-
             return;
         }
 
