@@ -130,7 +130,7 @@ abstract class Imet extends Form
                     })
                     ->get()
                     // Replacement for PostgreSQL unaccent() function
-                    ->filter(function (array $item) use ($request): bool {
+                    ->filter(function (ImetV1\Imet|ImetV2\Imet $item) use ($request): bool {
                         if ($request->filled('search')) {
                             if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
                                 return true;
