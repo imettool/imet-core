@@ -20,8 +20,11 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\OverallManagementEffec
 final class OverallManagementEffectivenessAnalysis extends BaseAnalysis
 {
     public static string $template = 'overall_management_effectiveness_scores';
+
     public static string $title = 'imet-core::analysis_report.sections.fourth';
+
     public static string $code = '4';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.overall';
 
     private static function getOverallManagementEffectivenessProvider(?int $scalingId = null): OverallManagementEffectivenessDataProvider
@@ -33,6 +36,4 @@ final class OverallManagementEffectivenessAnalysis extends BaseAnalysis
     {
         return self::getOverallManagementEffectivenessProvider()->getOverallManagementEffectivenessScores($params['form_ids']);
     }
-
 }
-

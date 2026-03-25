@@ -48,19 +48,29 @@ class ProtectedAreaSeeder extends Seeder
     ];
 
     /**
-     * Run the database seeders using Sample data
      * @throws UpdateFromProtectedPlanetCsvFailed
      */
-    public function runWithSample(): void
+    public function run(): void
+    {
+        $this->runWithSample(false);
+    }
+
+    /**
+     * Run the database seeders using Sample data
+     *
+     * @throws UpdateFromProtectedPlanetCsvFailed
+     */
+    public function runWithSample(?bool $from_file = false): void
     {
         // Run on CSV file if exists, otherwise use sample data
         $csvFilePath = database_path('WDPA_WDOECM_Public_all_csv.csv');
-        if(file_exists($csvFilePath)){
+        if ($from_file && file_exists($csvFilePath)) {
             ProtectedPlanetCSV::parseCSVFile($csvFilePath);
+
             return;
         }
 
-        foreach (self::SAMPLE_DATA as $species){
+        foreach (self::SAMPLE_DATA as $species) {
             ProtectedAreaFactory::new()->create([
                 'global_id' => $species[0],
                 'country' => $species[1],
@@ -70,7 +80,7 @@ class ProtectedAreaSeeder extends Seeder
                 'creation_date' => $species[5],
                 'perimeter' => $species[6],
                 'area' => $species[7],
-                'shape_index' => $species[8]
+                'shape_index' => $species[8],
             ]);
         }
 

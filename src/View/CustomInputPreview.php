@@ -25,35 +25,33 @@ class CustomInputPreview extends InputPreview
     public function render(): View
     {
 
-        // ### imet-core custom inputs ###
-        if (Str::startsWith($this->type, 'imet-core::')) {
-            // Wdpa selector
-            if (Str::contains($this->type, 'selector-wdpa_multiple')) {
-                $list = '';
-                if (filled($this->value)) {
-                    $list = array_map(fn (string $v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
-                    $list = implode(', ', $list);
-                }
-
-                return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
+        // Wdpa selector
+        if (Str::contains($this->type, 'selector-wdpa_multiple')) {
+            $list = '';
+            if (filled($this->value)) {
+                $list = array_map(fn (string $v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
+                $list = implode(', ', $list);
             }
 
-            // Wdpa selector
-            if (Str::contains($this->type, 'selector-species')) {
-                $name = null;
-                if (filled($this->value)) {
-                    $name = Species::getPlainNameByTaxonomy($this->value);
-                }
+            return view('imet-core::components.inputs-preview.selector-wdpa', ['list' => $list]);
+        }
 
-                return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
+        // Species selector
+        if (Str::contains($this->type, 'selector-species')) {
+            $name = null;
+            if (filled($this->value)) {
+                $name = Species::getPlainNameByTaxonomy($this->value);
             }
 
-            // Radio button
-            if (Str::contains($this->type, 'radio')) {
-                $list_type = \Illuminate\Support\Str::replace('imet-core::radio-', '', $this->type);
-                $list = SelectionList::getCustomList($list_type);
-                return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
-            }
+            return view('imet-core::components.inputs-preview.selector-species', ['name' => $name]);
+        }
+
+        // Radio button
+        if (Str::contains($this->type, 'radio')) {
+            $list_type = Str::replace('imet-core::radio-', '', $this->type);
+            $list = SelectionList::getList($list_type);
+
+            return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
         }
 
         return parent::render();

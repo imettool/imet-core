@@ -12,7 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 class V2Scores extends _Scores
 {
@@ -164,7 +164,7 @@ class V2Scores extends _Scores
             + ($scores['OC3'] ? $scores['OC3'] / 2 + 50 : 0);
         $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], fn (?float $x): bool => $x !== null));
         $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
-        //aggregate synthetic indicator
+        // aggregate synthetic indicator
         $scores['synthetic_indicator'] = static::synthetic_indicator_score_oc($imet_id);
 
         return $scores;

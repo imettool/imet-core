@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\Dependencies;
 use ImetCore\Models\User\Role;
+use ImetCore\View\CustomInput;
+use ImetCore\View\CustomInputPreview;
 use ModularForms\Exceptions\ValidationException;
 use ModularForms\Models\Module;
 use ReflectionException;
@@ -42,7 +44,15 @@ class ImetModule extends Module
 
     public const ?string MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
-    public const REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+    public const string SCRIPT_EDIT_BLADE_VIEW = 'imet-core::components.module.edit.script';
+
+    public const string SCRIPT_SHOW_BLADE_VIEW = 'imet-core::components.module.show.script';
+
+    public const string INPUT_COMPONENT_VIEW = CustomInput::class;
+
+    public const string INPUT_PREVIEW_COMPONENT_VIEW = CustomInputPreview::class;
+
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static ?string $schema = null;
 
@@ -50,10 +60,10 @@ class ImetModule extends Module
 
     public static ?string $foreign_key = 'FormID';
 
-    protected bool $enable_raw_export = true;
+    public bool $enable_raw_export = true;
 
     /** @phpstan-var null|array<string, array<string|int, string>> $ratingLegend */
-    public ?array $ratingLegend;
+    public ?array $ratingLegend = null;
 
     public $module_subTitle;
 
@@ -111,6 +121,7 @@ class ImetModule extends Module
     /**
      * Override: Get predefined_values according to form language
      */
+    #[\Override]
     public static function getPredefined(?int $form_id = null): ?array
     {
         static::forceLanguage($form_id);

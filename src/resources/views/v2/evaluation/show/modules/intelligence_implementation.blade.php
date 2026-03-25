@@ -1,10 +1,12 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $records */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
 
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\IntelligenceImplementation;
+use ImetCore\Models\Imet\ImetOecm\Modules\Component\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\IntelligenceImplementation;
 use Illuminate\Support\Facades\View;
 
 $page = View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
@@ -17,4 +19,4 @@ $page = ImetModule::injectIconToGroups($page, IntelligenceImplementation::get_ma
 
 {!! $page !!}
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

@@ -5,7 +5,7 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
 use ModularForms\Helpers\DOM;
 

@@ -1,11 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
-if(!$records[0]['LimitsExist']){
-    $definitions['fields'] =  array_splice($definitions['fields'], 0, 1);
+if (!$records[0]['LimitsExist']) {
+    $definitions['fields'] = array_splice($definitions['fields'], 0, 1);
 }
 
 ?>

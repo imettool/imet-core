@@ -12,11 +12,11 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceEcosystemServices;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceHabitats;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\ImportanceSpecies;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\EcosystemServices;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceEcosystemServices;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceHabitats;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceSpecies;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\SupportsAndConstraints;
 use ImetCore\Services\Scores\Functions\V1Scores;
 
 trait Context

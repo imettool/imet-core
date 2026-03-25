@@ -1,12 +1,15 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-$group_key ??= '';
-$table_id = 'table_'.$definitions['module_key'];
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
-$vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$group_key ??= '';
+$table_id = 'table_' . $definitions['slug'];
+
+$module->vueData['area'] = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -49,23 +52,23 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
             <input type="numeric" disabled="disabled"
                    class="field-edit field-numeric text-right"
                    v-bind:value="costs[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_total'"
-            />        </td>
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_total'"
+            /></td>
         <td>
             <input type="text" disabled="disabled" style="width: 80px;"
                    class="field-edit text-center"
                    v-bind:value="percentages[index]"
-                   v-bind:id="'{{$definitions['module_key'] }}_'+index+'_percentage'"
+                   v-bind:id="'{{$definitions['slug'] }}_'+index+'_percentage'"
             />
         </td>
         <td>
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
-                <x-modular-forms::module.components.buttons.delete-item />
+                <x-modular-forms::module.components.buttons.delete-item/>
             </span>
         </td>
     <tr class="module-table-item">
@@ -87,7 +90,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
     {{-- add button --}}
     <tr>
         <td colspan="{{ count($definitions['fields']) + 1 }}">
-            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
         </td>
     </tr>
     </tfoot>
@@ -95,11 +98,11 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResourcesBudgetLines(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -12,10 +12,10 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\Designation;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\KeyElements;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\SupportsAndConstraints;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\Threats;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\Designation;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\KeyElements;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\SupportsAndConstraints;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\Threats;
 
 trait Context
 {

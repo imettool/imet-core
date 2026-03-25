@@ -1,10 +1,11 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 
 ?>
@@ -46,9 +47,8 @@ use ImetCore\Models\Species;
 </div>
 
 
-
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
-    :definitions="$definitions"
+    :module="$module"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

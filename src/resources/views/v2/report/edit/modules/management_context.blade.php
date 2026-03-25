@@ -1,20 +1,21 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Services\Scores\ImetScores;
 
-$form_id = $vueData['form_id'];
+$form_id = $module->vueData['form_id'];
 $key_elements = [
     'key_species' => Modules\Evaluation\ImportanceSpecies::getModule($form_id)
         ->filter(fn($item): mixed => $item['IncludeInStatistics'])
         ->pluck('Aspect')
-        ->map(fn($item) => Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
+        ->map(fn($item) => \Illuminate\Support\Str::contains('|', $item) ? Species::getByTaxonomy($item)->binomial : $item)
         ->toArray(),
     'habitats' => Modules\Evaluation\ImportanceHabitats::getModule($form_id)
         ->filter(fn($item): mixed => $item['IncludeInStatistics'])
@@ -63,7 +64,7 @@ $key_elements = [
 
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
-    :definitions="$definitions"
+    :module="$module"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

@@ -14,7 +14,6 @@ namespace ImetCore\Controllers\Imet;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use ImetCore\Controllers\__Controller;
 use ImetCore\Models\Imet\ScalingUp\Basket as BasketModel;
@@ -25,8 +24,9 @@ class ScalingUpBasketController extends __Controller
     {
         try {
             return self::sendAPIResponse(BasketModel::save_item($request->value));
-        } catch (\Exception $e) {
-            report($e);
+        } catch (\Exception $exception) {
+            report($exception);
+
             return new JsonResponse([
                 'request_params' => $request?->all(),
                 'records' => trans('imet-core::analysis_report.error_wrong'),
@@ -45,8 +45,9 @@ class ScalingUpBasketController extends __Controller
             }
 
             return self::sendAPIResponse(0);
-        } catch (\Exception $e) {
-            report($e);
+        } catch (\Exception $exception) {
+            report($exception);
+
             return new JsonResponse([
                 'request_params' => [],
                 'records' => trans('imet-core::analysis_report.error_wrong'),
@@ -60,8 +61,9 @@ class ScalingUpBasketController extends __Controller
             $item = BasketModel::query()->find($request->id);
 
             return self::sendAPIResponse($item);
-        } catch (\Exception $e) {
-            report($e);
+        } catch (\Exception $exception) {
+            report($exception);
+
             return new JsonResponse([
                 'request_params' => $request?->all(),
                 'records' => trans('imet-core::analysis_report.error_wrong'),
@@ -77,8 +79,9 @@ class ScalingUpBasketController extends __Controller
             $items = BasketModel::retrieve_by_scaling_id($id);
 
             return self::sendAPIResponse($items);
-        } catch (\Exception $e) {
-            report($e);
+        } catch (\Exception $exception) {
+            report($exception);
+
             return new JsonResponse([
                 'request_params' => $request?->all(),
                 'records' => trans('imet-core::analysis_report.error_wrong'),
@@ -95,14 +98,15 @@ class ScalingUpBasketController extends __Controller
 
             foreach ($records as $e) {
 
-                if (!static::delete($e->id)) {
+                if (! static::delete($e->id)) {
                     return self::sendAPIResponse(0);
                 }
             }
 
             return self::sendAPIResponse(1);
-        } catch (\Exception $e) {
-            report($e);
+        } catch (\Exception $exception) {
+            report($exception);
+
             return new JsonResponse([
                 'request_params' => $request?->all(),
                 'records' => trans('imet-core::analysis_report.error_wrong'),

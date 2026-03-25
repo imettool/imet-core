@@ -9,11 +9,15 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ModularForms\Helpers\File\File;
 use ModularForms\Helpers\File\Zip;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Throwable;
 
 class DownloadScalingUp
 {
     use Common;
 
+    /**
+     * @throws Throwable
+     */
     public static function zipFile(int $scaling_id): string|BinaryFileResponse
     {
         $files = [];

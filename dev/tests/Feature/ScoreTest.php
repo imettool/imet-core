@@ -15,7 +15,6 @@ use Database\Seeders\ProtectedAreaSeeder;
 use Database\Seeders\SpeciesSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\JsonResponse;
 use ImetCore\Models\Imet;
 use ImetCore\Services\Scores\AssessmentsScores;
 
@@ -35,7 +34,7 @@ describe('Score services', function () {
 
         (new FormSeeder)->run(Imet\Imet::IMET_V1, 1);
 
-        $form = Imet\v1\Imet::query()->first();
+        $form = Imet\ImetV1\Imet::query()->first();
         $scores = AssessmentsScores::scores(item: $form, refresh_cache: true);
 
         expect($scores)
@@ -51,7 +50,7 @@ describe('Score services', function () {
 
         (new FormSeeder)->run(Imet\Imet::IMET_V2, 1);
 
-        $form = Imet\v2\Imet::query()->first();
+        $form = Imet\ImetV2\Imet::query()->first();
         $scores = AssessmentsScores::scores(item: $form, refresh_cache: true);
 
         expect($scores)
@@ -67,7 +66,7 @@ describe('Score services', function () {
 
         (new FormSeeder)->run(Imet\Imet::IMET_OECM, 1);
 
-        $form = Imet\oecm\Imet::query()->first();
+        $form = Imet\ImetOecm\Imet::query()->first();
         $scores = AssessmentsScores::scores_oecm(item: $form, refresh_cache: true);
 
         expect($scores)

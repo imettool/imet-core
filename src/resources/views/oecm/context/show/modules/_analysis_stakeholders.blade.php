@@ -1,5 +1,7 @@
 <?php
-/** @var Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 /** @var array $stakeholders */
@@ -7,12 +9,17 @@
 /** @var string $current_stakeholder */
 /** @var string $summary_title */
 
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
-use Illuminate\Database\Eloquent\Collection;
-
-$form_id = $collection[0]['FormID'];
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
+use Illuminate\Support\Str;
 
 $num_cols = count($definitions['fields']);
+
+$user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDirectUsers')
+    ? AnalysisStakeholderDirectUsers::$USER_MODE
+    : AnalysisStakeholderIndirectUsers::$USER_MODE;
 
 $grouped_records = collect($records)->groupBy('group_key')->toArray();
 $stakeholders_records = collect($records)
@@ -20,11 +27,7 @@ $stakeholders_records = collect($records)
     ->map(fn($group) => $group->groupBy('group_key'))
     ->toArray();
 
-$stakeholders_categories = Stakeholders::getStakeholders(
-    $form_id,
-    ('ImetCore\Models\Imet\oecm\Modules\Context\\'.$definitions['module_class'])::$USER_MODE,
-    true
-);
+$stakeholders_categories = Stakeholders::getStakeholders($module->data['id'], $user_mode, true);
 
 ?>
 
@@ -76,7 +79,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                         @endif
 
                         {{-- sub-titles --}}
-                        <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                        <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
                         {{-- Desctiptions --}}
                         <div class="pb-4 px-6 text-sm">
@@ -113,13 +116,13 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                             <td>
                                                 @if($field['name'] === 'Element')
                                                     <x-modular-forms::module.components.field.input-preview
-                                                        type="text-area"
-                                                        :value="$record[$field['name']]"
+                                                            type="text-area"
+                                                            :value="$record[$field['name']]"
                                                     ></x-modular-forms::module.components.field.input-preview>
                                                 @else
                                                     <x-modular-forms::module.components.field.input-preview
-                                                        :type="$field['type']"
-                                                        :value="$record[$field['name']]"
+                                                            :type="$field['type']"
+                                                            :value="$record[$field['name']]"
                                                     ></x-modular-forms::module.components.field.input-preview>
                                                 @endif
                                             </td>

@@ -16,12 +16,16 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Country;
 use ImetCore\Models\Currency;
 use ImetCore\Models\ProtectedArea;
+use ModularForms\Helpers\Input\SelectionList as ModularFormsSelectionList;
+use Override;
 
-class SelectionList
+class SelectionList extends ModularFormsSelectionList
 {
-    public static function getCustomList(string $type): array
+    #[Override]
+    public static function getList(string $type): array
     {
-        $list = [];
+        $type = static::getListType($type);
+
         if (Str::startsWith($type, 'ImetV1')
             || Str::startsWith($type, 'ImetV2')
             || Str::startsWith($type, 'Imet_')
@@ -30,20 +34,23 @@ class SelectionList
             || Str::startsWith($type, 'ImetOecm_')
         ) {
             preg_match("/Imet([\w\d]{0,2}|[\w\d]{0,4})\_([\w]+)/", $type, $matches);
-
             if ($matches[2] == 'ProtectedArea') {
-                $list = ProtectedArea::selectionList();
-            } elseif ($matches[2] == 'Country') {
-                $list = Country::selectionList();
-            } elseif ($matches[2] == 'PaCountry') {
-                $list = ProtectedArea::getCountries()
+                return ProtectedArea::selectionList();
+            }
+            if ($matches[2] == 'Country') {
+                return Country::selectionList();
+            }
+            if ($matches[2] == 'PaCountry') {
+                return ProtectedArea::getCountries()
                     ->sortBy(Country::labelKey())
                     ->pluck(Country::labelKey(), 'iso3')
                     ->toArray();
-            } elseif ($matches[2] == 'Currency') {
-                $list = Currency::selectionList();
-            } elseif ($matches[2] == 'PaType') {
-                $list = [
+            }
+            if ($matches[2] == 'Currency') {
+                return Currency::selectionList();
+            }
+            if ($matches[2] == 'PaType') {
+                return [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),
                     'marine_and_coastal' => trans('imet-core::oecm_lists.PaType.marine_and_coastal'),
                     'mixed' => trans('imet-core::oecm_lists.PaType.mixed'),
@@ -53,12 +60,12 @@ class SelectionList
             // Fallback to lang lists:
             // $matches[1] = V1, V2, OECM
             // $matches[2] = list name
-            elseif ($matches[1] != '') {
-                $list = trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
+            if ($matches[1] != '') {
+                return trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
             }
 
         }
 
-        return $list;
+        return parent::getList($type);
     }
 }

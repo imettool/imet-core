@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\CrossAnalysis;
 
 use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class CrossAnalysis extends Model
@@ -44,7 +45,7 @@ final class CrossAnalysis extends Model
     /**
      * retrieve all indicators data
      */
-    public static function getIndicators(\ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet|int|string $item): array
+    public static function getIndicators(Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $item): array
     {
         $filteredArray = [];
         $compareElements = [];
@@ -57,14 +58,14 @@ final class CrossAnalysis extends Model
 
             foreach ($item::modules()[$step_key] as $module) {
                 $definitions = $module::getDefinitions($item->FormID);
-                $code = strtolower(str_ireplace(['.', '/'], '', $definitions['module_code']));
+                $code = str_ireplace(['.', '/'], '', $definitions['module_code']);
                 if (isset($filteredArray[$code]) && is_array($definitions['module_info_EvaluationQuestion'])) {
                     $compareElements[$code] = [
                         'code' => $definitions['module_code'],
                         'value' => $filteredArray[$code],
                         'question' => $definitions['module_info_EvaluationQuestion'][0],
                         'step' => $step_key,
-                        'key' => 'module_'.$definitions['module_key']];
+                        'key' => 'module_'.$definitions['slug']];
                 }
             }
         }

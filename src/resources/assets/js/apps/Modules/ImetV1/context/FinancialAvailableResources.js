@@ -44,7 +44,7 @@ export default class FinancialAvailableResources extends ModuleImet {
         });
 
         function getTotalBudget(){
-            return window.imet__v1__context__financial_resources.records[0]['TotalBudget'];
+            return window.FinancialResources.records[0]['TotalBudget'];
         }
 
     return {

@@ -1,14 +1,18 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $record = $records[0];
 
 $group_key ??= '';
-$table_id = 'table_' . $definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
-$diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($records);
+$diffs = \ImetCore\Models\Imet\ImetV1\Modules\Context\ManagementStaff::diffs($records);
 
 ?>
 
@@ -40,8 +44,8 @@ $diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($record
             @foreach($definitions['fields'] as $index => $field)
                 <td>
                     <x-modular-forms::module.components.field.input-preview
-                        :type="$definitions['fields'][$index]['type']"
-                        :value="$record[$definitions['fields'][$index]['name']]"
+                            :type="$definitions['fields'][$index]['type']"
+                            :value="$record[$definitions['fields'][$index]['name']]"
                     ></x-modular-forms::module.components.field.input-preview>
                     @if($field['name']==="ActualPermanent")
                 </td>
@@ -64,4 +68,4 @@ $diffs = \ImetCore\Models\Imet\v1\Modules\Context\ManagementStaff::diffs($record
 </table>
 
 
-@include('modular-forms::module.show.type.commons', compact(['collection', 'definitions']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

@@ -1,12 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
 /** @var Imet $item */
 /** @var string $stakeholder */
+
 /** @var Array $categories */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+
 $categories = $categories !== null ? json_decode($categories) : [];
 
 ?>
@@ -49,7 +50,7 @@ $categories = $categories !== null ? json_decode($categories) : [];
             @endif
 
             {{-- sub-titles --}}
-            <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+            <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
             {{-- Desctiptions --}}
             <div class="pb-4 px-6 text-sm">
@@ -80,29 +81,31 @@ $categories = $categories !== null ? json_decode($categories) : [];
                                         <div class="field-preview" style="max-width: none; height: 120px;"></div>
                                     @elseif($field['name'] === 'Access')
                                         <x-modular-forms::module.components.field.input-preview
-                                            type="checkbox-ImetOECM_Access"
-                                            :value="[]"
+                                                type="checkbox-ImetOECM_Access"
+                                                :value="[]"
                                         ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Threats')
                                         <x-modular-forms::module.components.field.input-preview
-                                            type="checkbox-ImetOECM_Threats"
-                                            :value="[]"
+                                                type="checkbox-ImetOECM_Threats"
+                                                :value="[]"
                                         ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Guidelines')
                                         <x-modular-forms::module.components.field.input-preview
-                                            type="checkbox-ImetOECM_Guidelines"
-                                            :value="[]"
+                                                type="checkbox-ImetOECM_Guidelines"
+                                                :value="[]"
                                         ></x-modular-forms::module.components.field.input-preview>
                                     @elseif($field['name'] === 'Element')
                                         <x-modular-forms::module.components.field.input-preview
-                                            type="text"
-                                            value=""
+                                                type="text"
+                                                value=""
                                         ></x-modular-forms::module.components.field.input-preview>
-                                        <div style="margin-top: 5px;">Accepted Values: <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i></div>
+                                        <div style="margin-top: 5px;">Accepted Values:
+                                            <i>{{ implode(', ', trans('imet-core::oecm_context.AnalysisStakeholders.lists.'.$group_key)) }}</i>
+                                        </div>
                                     @else
                                         <x-modular-forms::module.components.field.input-preview
-                                            :type="$field['type']"
-                                            :value="null"
+                                                :type="$field['type']"
+                                                :value="null"
                                         ></x-modular-forms::module.components.field.input-preview>
                                     @endif
 
@@ -115,7 +118,6 @@ $categories = $categories !== null ? json_decode($categories) : [];
                     </x-modular-forms::accordion.item>
                 @endfor
             </x-modular-forms::accordion.container>
-
 
         @endif
     @endforeach

@@ -14,16 +14,12 @@ namespace ImetCore\Models\Imet\ScalingUp\Charts;
 
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis;
-use ImetCore\Models\Imet\v2\Modules;
 
 final class Ranking
 {
     /**
-     * @param array $form_ids
-     * @param string $type
-     * @param array $indicators
-     * @param int|null $scaling_id
      * @return array|array[]
      */
     public static function ranking_indicators(array $form_ids, string $type, array $indicators, ?int $scaling_id = 0): array
@@ -71,7 +67,7 @@ final class Ranking
             'legends' => [],
             'xAxis' => [],
             'wdpa_ids' => [],
-            'actual_value' => []
+            'actual_value' => [],
         ];
     }
 
@@ -84,56 +80,37 @@ final class Ranking
             'items_to_calculate' => [],
             'percent_values' => [],
             'sum_values' => [],
-            'separated_values' => []
+            'separated_values' => [],
         ];
     }
 
-    /**
-     * @param array $form_ids
-     * @param string $type
-     * @param array $indicators
-     * @return array
-     */
     private static function getFilteredData(array $form_ids, string $type, array $indicators): array
     {
         if (isset($indicators['PRE'])) {
             [$filtered, $indicators_numbers] = self::process_subindicators_for_ranking_protected_areas($form_ids, $type);
+
             return $filtered;
         }
 
         return Common::filtered_indicators_and_round_values($form_ids, $type, $indicators);
     }
 
-    /**
-     * @param array $values
-     * @return array
-     */
     private static function cleanValues(array $values): array
     {
         unset($values['avg'], $values['indicators_number']);
+
         return $values;
     }
 
-    /**
-     * @param array $values
-     * @param string $type
-     * @param int $id
-     * @param array $filtered
-     * @param int $paIndex
-     * @param array $ranking
-     * @param array $aggregation
-     * @return void
-     */
     private static function processIndicators(
-        array  $values,
+        array $values,
         string $type,
-        int    $id,
-        array  $filtered,
-        int    $paIndex,
-        array  &$ranking,
-        array  &$aggregation
-    ): void
-    {
+        int $id,
+        array $filtered,
+        int $paIndex,
+        array &$ranking,
+        array &$aggregation
+    ): void {
         $aggregation['items_to_calculate'][$paIndex] ??= 0;
         $aggregation['sum_values'][$paIndex] ??= 0;
 
@@ -147,7 +124,7 @@ final class Ranking
             $ranking['legends'][$indicator] = $name;
             $ranking['actual_value'][$name][] = $correctedValue;
 
-            if ((string)$correctedValue !== '-') {
+            if ((string) $correctedValue !== '-') {
                 $aggregation['items_to_calculate'][$paIndex]++;
                 $aggregation['separated_values'][$paIndex][] = $correctedValue;
                 $aggregation['sum_values'][$paIndex] += $correctedValue;
@@ -157,48 +134,33 @@ final class Ranking
         }
     }
 
-    /**
-     * @param array $filtered
-     * @param int $id
-     * @return array
-     */
     private static function getProcessNumbers(array $filtered, int $id): array
     {
         // Check if we have process sub-indicators (when filtered contains indicators_numbers)
         if (isset($filtered[$id]) && is_array($filtered[$id])) {
             return $filtered[$id]['indicators_numbers'] ?? [];
         }
+
         return [];
     }
 
-    /**
-     * @param string $indicator
-     * @param string $type
-     * @return string
-     */
     private static function getIndicatorName(string $indicator, string $type): string
     {
         $labels = Common::get_all_indicator_labels_cached();
         $baseName = $labels[$indicator] ?? $indicator;
 
         if ($type === 'process' && str_contains($indicator, '_')) {
-            return $baseName . ' _' . trans('imet-core::analysis_report.legends.' . $indicator);
+            return $baseName.' _'.trans('imet-core::analysis_report.legends.'.$indicator);
         }
 
         return $baseName;
     }
 
-    /**
-     * @param string $indicator
-     * @param mixed $value
-     * @param int $indicatorsCount
-     * @param array $processNumbers
-     * @return mixed
-     */
     private static function getCorrectedValue(string $indicator, mixed $value, int $indicatorsCount, array $processNumbers): mixed
     {
-        if (!empty($processNumbers)) {
+        if ($processNumbers !== []) {
             $corrected = Common::values_correction($indicator, $value);
+
             return Common::ranking_values_correction($corrected, $indicatorsCount, $processNumbers, $indicator);
         }
 
@@ -206,11 +168,6 @@ final class Ranking
     }
 
     /**
-     * @param array $ranking
-     * @param array $sum_values
-     * @param array $separated_values_by_pa
-     * @param array $percent_values
-     * @param array $items_to_calculate
      * @return array|array[]
      */
     private static function get_values_ranking(
@@ -219,8 +176,7 @@ final class Ranking
         array $separated_values_by_pa,
         array $percent_values,
         array $items_to_calculate = []
-    ): array
-    {
+    ): array {
         $indicatorKeys = array_keys($ranking['actual_value']);
 
         // Calculate percent values for each PA
@@ -238,18 +194,11 @@ final class Ranking
         return self::buildReorderedRanking($ranking, $average_values, $separated_values_by_pa, $percent_values);
     }
 
-    /**
-     * @param array $separated_values_by_pa
-     * @param array $sum_values
-     * @param array $indicatorKeys
-     * @return array
-     */
     private static function calculatePercentValues(
         array $separated_values_by_pa,
         array $sum_values,
         array $indicatorKeys
-    ): array
-    {
+    ): array {
         $percent_values = [];
 
         foreach ($separated_values_by_pa as $paIndex => $values) {
@@ -267,15 +216,10 @@ final class Ranking
         return $percent_values;
     }
 
-    /**
-     * @param array $sum_values
-     * @param array $items_to_calculate
-     * @return array
-     */
     private static function calculateAverageValues(array $sum_values, array $items_to_calculate): array
     {
         return array_map(
-            fn($value, $index): float|string|int => $items_to_calculate[$index] > 0
+            fn ($value, $index): float|string|int => $items_to_calculate[$index] > 0
                 ? Common::round_number($value / $items_to_calculate[$index])
                 : 0,
             $sum_values,
@@ -283,18 +227,11 @@ final class Ranking
         );
     }
 
-    /**
-     * @param array $ranking
-     * @param array $percent_values
-     * @param array $average_values
-     * @return array
-     */
     private static function calculateRankingValues(
         array $ranking,
         array $percent_values,
         array $average_values
-    ): array
-    {
+    ): array {
         foreach ($percent_values as $indicator => $values) {
             foreach ($values as $paIndex => $percentValue) {
                 if ($percentValue !== ScalingUpAnalysis::UNDEFINED_VALUE && isset($average_values[$paIndex])) {
@@ -311,10 +248,6 @@ final class Ranking
     }
 
     /**
-     * @param array $ranking
-     * @param array $average_values
-     * @param array $separated_values_by_pa
-     * @param array $percent_values
      * @return array[]
      */
     private static function buildReorderedRanking(
@@ -322,8 +255,7 @@ final class Ranking
         array $average_values,
         array $separated_values_by_pa,
         array $percent_values
-    ): array
-    {
+    ): array {
         $new_ranking = self::initializeRanking();
         $reorder_separated_values_by_pa = [];
         $reorder_percent_values = [];
@@ -351,8 +283,6 @@ final class Ranking
     }
 
     /**
-     * @param array $form_ids
-     * @param string $type
      * @return array[]
      */
     private static function process_subindicators_for_ranking_protected_areas(array $form_ids, string $type): array
@@ -388,8 +318,6 @@ final class Ranking
     }
 
     /**
-     * @param array $form_ids
-     * @param int $scaling_id
      * @return array[]
      */
     public static function ranking_threats_indicators(array $form_ids, int $scaling_id = 0): array
@@ -408,23 +336,23 @@ final class Ranking
             $wdpa_id = $pa->wdpa_id;
 
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if (!isset($sum_values[$j])) {
+                if (! isset($sum_values[$j])) {
                     $sum_values[$j] = 0;
                 }
 
-                if (!isset($items_to_calculate[$j])) {
+                if (! isset($items_to_calculate[$j])) {
                     $items_to_calculate[$j] = 0;
                 }
 
                 App::setLocale($locale);
-                $name = trans('imet-core::v2_context.MenacesPressions.categories.title' . ($k + 1), []);
+                $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($k + 1), []);
 
                 if ($protected_area === '') {
                     $value = ScalingUpAnalysis::UNDEFINED_VALUE;
                 } else {
                     $items_to_calculate[$j] += 1;
-                    $value = Common::round_number((-1 * (float)$protected_area));
-                    $sum_values[$j] += (float)($value);
+                    $value = Common::round_number((-1 * (float) $protected_area));
+                    $sum_values[$j] += (float) ($value);
                 }
 
                 $separated_values_by_pa[$j][] = $value;
@@ -439,11 +367,6 @@ final class Ranking
         return self::get_values_ranking($ranking, $sum_values, $separated_values_by_pa, $percent_values, $items_to_calculate);
     }
 
-    /**
-     * @param array $form_ids
-     * @param array $assessment
-     * @return array
-     */
     public static function get_overall_ranking(array $form_ids, array $assessment = []): array
     {
         $items = $assessment ?: Common::get_assessments($form_ids);
@@ -452,21 +375,15 @@ final class Ranking
 
         $ranking = self::buildOverallRankingData($items['assessments'], $form_ids);
 
-        return  ['values' => $ranking, 'form_ids' => $form_ids];
+        return ['values' => $ranking, 'form_ids' => $form_ids];
     }
 
-    /**
-     * @param array $assessments
-     * @return void
-     */
     private static function sortAssessmentsByIndex(array &$assessments): void
     {
-        usort($assessments, fn(array $first, array $second): int => $first['imet_index'] <=> $second['imet_index']);
+        usort($assessments, fn (array $first, array $second): int => $first['imet_index'] <=> $second['imet_index']);
     }
 
     /**
-     * @param array $assessments
-     * @param array $form_ids
      * @return array[]
      */
     private static function buildOverallRankingData(array $assessments, array &$form_ids): array
@@ -505,38 +422,25 @@ final class Ranking
         return $ranking;
     }
 
-    /**
-     * @param array $assessment
-     * @param array $indicatorTypes
-     * @return array
-     */
     private static function extractIndicatorValues(array $assessment, array $indicatorTypes): array
     {
         $values = [];
         foreach ($indicatorTypes as $type) {
             $values[$type] = Common::round_number($assessment[$type]);
         }
+
         return $values;
     }
 
-    /**
-     * @param array $indicatorTypes
-     * @param array $indicatorValues
-     * @param float $total
-     * @param float $imetIndex
-     * @param array $ranking
-     * @return void
-     */
     private static function processOverallIndicators(
         array $indicatorTypes,
         array $indicatorValues,
         float $total,
         float $imetIndex,
         array &$ranking
-    ): void
-    {
+    ): void {
         foreach ($indicatorTypes as $type) {
-            $label = trans('imet-core::common.steps_eval.' . $type);
+            $label = trans('imet-core::common.steps_eval.'.$type);
             $value = $indicatorValues[$type];
 
             $ranking['legends'][$type] = $label;

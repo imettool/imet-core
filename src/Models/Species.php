@@ -14,6 +14,7 @@ namespace ImetCore\Models;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use ImetCore\Helpers\Database;
 use ImetCore\Models\Imet\Components\BaseModel;
 use ModularForms\Helpers\Locale;
@@ -111,7 +112,7 @@ class Species extends BaseModel
     private static function sortByLevenshteinDistance(Collection $collection, string $search_key): Collection
     {
         return $collection
-            ->map(function ($item) use ($search_key): \Illuminate\Database\Eloquent\Model {
+            ->map(function ($item) use ($search_key): Model {
                 $item['__levenshtein'] = max(
                     $item['phylum'] !== null ? levenshtein($item['phylum'], $search_key) : 0,
                     $item['class'] !== null ? levenshtein($item['class'], $search_key) : 0,
@@ -187,11 +188,11 @@ class Species extends BaseModel
     {
         $locale = Locale::lower();
         $mapped_languages = ['eng'];
-        if($locale === 'sp'){
+        if ($locale === 'sp') {
             $mapped_languages = ['spa', 'eng'];
-        } else if($locale === 'pt'){
+        } elseif ($locale === 'pt') {
             $mapped_languages = ['por', 'eng'];
-        } else if($locale === 'fr'){
+        } elseif ($locale === 'fr') {
             $mapped_languages = ['fra', 'eng'];
         }
 
@@ -208,20 +209,19 @@ class Species extends BaseModel
 
     public static function getPreview(?string $taxonomy, bool $inline = false): string
     {
-        if($taxonomy!==null && Species::isTaxonomy($taxonomy)){
+        if ($taxonomy !== null && Species::isTaxonomy($taxonomy)) {
             $inline = $inline ? 'inline mr-1 ' : '';
             $species = Species::getByTaxonomy($taxonomy);
-            $scientific_name = $species->genus . ' ' . $species->species;
+            $scientific_name = $species->genus.' '.$species->species;
             $vernacular_names = implode(', ', $species->getVernacularNames());
             $label = '<div class="'.$inline.'font-bold">'.$scientific_name.'</div>';
-            if($vernacular_names){
+            if ($vernacular_names !== '' && $vernacular_names !== '0') {
                 $label .= '<div class="'.$inline.'italic">'.$vernacular_names.'</div>';
             }
+
             return $label;
         }
 
         return '';
     }
-
-
 }

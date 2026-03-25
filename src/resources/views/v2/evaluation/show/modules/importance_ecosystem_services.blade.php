@@ -1,9 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $records */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
 
-
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $page = \Illuminate\Support\Facades\View::make('imet-core::components.module.show.table_with_nothing_to_evaluate', ['definitions' => $definitions, 'records' => $records])->render();
@@ -11,20 +13,20 @@ $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
 );
 
-$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records): void {
+$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use ($records): void {
 
     $input = isset($records[$index]['_rank'])
         ? '<div class="text-left" style="padding: 4px;">
-                <b class="highlight">'.round($records[$index]['_rank'], 2).'</b>&nbsp;&nbsp;
+                <b class="highlight">' . round($records[$index]['_rank'], 2) . '</b>&nbsp;&nbsp;
                 <span style="font-size: 0.85em; font-style: italic; ">
-                    ('.trans('imet-core::v2_context.EcosystemServices.fields.Importance').': <b>'.$records[$index]['_Importance'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional').': <b>'.$records[$index]['_ImportanceRegional'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal').': <b>'.$records[$index]['_ImportanceGlobal'].'</b>)
+                    (' . trans('imet-core::v2_context.EcosystemServices.fields.Importance') . ': <b>' . $records[$index]['_Importance'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.EcosystemServices.fields.ImportanceRegional') . ': <b>' . $records[$index]['_ImportanceRegional'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.EcosystemServices.fields.ImportanceGlobal') . ': <b>' . $records[$index]['_ImportanceGlobal'] . '</b>)
                 </span>
             </div>'
         : '';
 
-    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void{
+    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void {
         $td->append($input);
     });
 });

@@ -124,10 +124,10 @@ trait ImportExportJSON
     /**
      * export records for specific module to csv format
      */
-    public function exportModuleToCsv(string $ids, string $module_key): BinaryFileResponse|string|null
+    public function exportModuleToCsv(string $ids, string $slug): BinaryFileResponse|string|null
     {
         /** @var class-string<Imet\Components\Modules\ImetModule> $model */
-        $model = ModuleKey::KeyToClassName($module_key);
+        $model = ModuleKey::KeyToClassName($slug);
 
         $query = $model::query()
             ->where(function ($query) use ($ids): void {
@@ -191,9 +191,9 @@ trait ImportExportJSON
         $countries = Country::all()->sortBy(Country::labelKey())->keyBy('iso3')->toArray();
         $countries = array_map(fn (array $item) => $item['name'], $countries);
 
-        $imet_keys = Imet\v2\Imet::getModulesKeys();
-        $imet_eval_keys = Imet\v2\Imet_Eval::getModulesKeys();
-        $modules = array_merge(Imet\v2\Imet::$modules, Imet\v1\Imet_Eval::$modules);
+        $imet_keys = Imet\ImetV2\Imet::getModulesKeys();
+        $imet_eval_keys = Imet\ImetV2\Imet_Eval::getModulesKeys();
+        $modules = array_merge(Imet\ImetV2\Imet::$modules, Imet\ImetV1\Imet_Eval::$modules);
 
         foreach ($modules as $key => $module) {
             $temp_array[$key] = $module;
@@ -268,28 +268,28 @@ trait ImportExportJSON
         if ($imet_form['version'] === Imet\Imet::IMET_V1) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\v1\Encoder::exportModule($imet_id),
-                'Context' => Imet\v1\Imet::exportModules($imet_id, $exclude_attachments),
-                'Evaluation' => Imet\v1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\v1\Report::export($imet_id),
+                'Encoders' => Imet\ImetV1\Encoder::exportModule($imet_id),
+                'Context' => Imet\ImetV1\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\ImetV1\Imet_Eval::exportModules($imet_id, $exclude_attachments),
+                'Report' => Imet\ImetV1\Report::export($imet_id),
             ];
         } // #####  IMET V2  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_V2) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\v2\Encoder::exportModule($imet_id),
-                'Context' => Imet\v2\Imet::exportModules($imet_id, $exclude_attachments),
-                'Evaluation' => Imet\v2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\v2\Imet_Report::exportModules($imet_id, $exclude_attachments),
+                'Encoders' => Imet\ImetV2\Encoder::exportModule($imet_id),
+                'Context' => Imet\ImetV2\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\ImetV2\Imet_Eval::exportModules($imet_id, $exclude_attachments),
+                'Report' => Imet\ImetV2\Imet_Report::exportModules($imet_id, $exclude_attachments),
             ];
         } // #####  IMET OECM  #####
         elseif ($imet_form['version'] === Imet\Imet::IMET_OECM) {
             $json = [
                 'Imet' => $imet_form,
-                'Encoders' => Imet\oecm\Encoder::exportModule($imet_id),
-                'Context' => Imet\oecm\Imet::exportModules($imet_id, $exclude_attachments),
-                'Evaluation' => Imet\oecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
-                'Report' => Imet\oecm\Report::export($imet_id),
+                'Encoders' => Imet\ImetOecm\Encoder::exportModule($imet_id),
+                'Context' => Imet\ImetOecm\Imet::exportModules($imet_id, $exclude_attachments),
+                'Evaluation' => Imet\ImetOecm\Imet_Eval::exportModules($imet_id, $exclude_attachments),
+                'Report' => Imet\ImetOecm\Report::export($imet_id),
             ];
         } else {
             throw new UnrecognizedVersionException($imet_form['version']);
@@ -366,13 +366,13 @@ trait ImportExportJSON
             // Force refresh scores && backup
             if ($version === Imet\Imet::IMET_V1) {
                 ImetScores::refresh_scores($formID);
-                (new Controllers\Imet\v1\Controller)->backup($formID, $version);
+                (new Controllers\Imet\ImetV1\Controller)->backup($formID, $version);
             } elseif ($version === Imet\Imet::IMET_V2) {
                 ImetScores::refresh_scores($formID);
-                (new Controllers\Imet\v2\Controller)->backup($formID, $version);
+                (new Controllers\Imet\ImetV2\Controller)->backup($formID, $version);
             } elseif ($version === Imet\Imet::IMET_OECM) {
                 OecmScores::refresh_scores($formID);
-                (new Controllers\Imet\oecm\Controller)->backup($formID, $version);
+                (new Controllers\Imet\ImetOecm\Controller)->backup($formID, $version);
             } else {
                 throw new UnrecognizedVersionException($version);
             }
@@ -404,33 +404,33 @@ trait ImportExportJSON
 
         // #####  IMET V1  #####
         if ($version === Imet\Imet::IMET_V1) {
-            $formID = Imet\v1\Imet::importForm($json['Imet']);
-            $modules_imported['Context'] = Imet\v1\Imet::importModules($json['Context'], $formID, $imet_version);
-            $modules_imported['Evaluation'] = Imet\v1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\v1\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            $formID = Imet\ImetV1\Imet::importForm($json['Imet']);
+            $modules_imported['Context'] = Imet\ImetV1\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = Imet\ImetV1\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+            Imet\ImetV1\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\v1\Report::import($formID, $json['Report'] ?? null);
+                Imet\ImetV1\Report::import($formID, $json['Report'] ?? null);
             }
         } // #####  IMET V2  #####
         elseif ($version === Imet\Imet::IMET_V2) {
-            $formID = Imet\v2\Imet::importForm($json['Imet']);
-            $modules_imported['Context'] = Imet\v2\Imet::importModules($json['Context'], $formID, $imet_version);
-            $modules_imported['Evaluation'] = Imet\v2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\v2\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            $formID = Imet\ImetV2\Imet::importForm($json['Imet']);
+            $modules_imported['Context'] = Imet\ImetV2\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = Imet\ImetV2\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+            Imet\ImetV2\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
                 $modules_imported['Report'] = [
-                    ...Imet\v2\Imet_Report::upgradeLegacy( $json['Report'] ?? null, $formID, $imet_version),
-                    ...Imet\v2\Imet_Report::importModules( $json['Report'] ?? null, $formID, $imet_version)
+                    ...Imet\ImetV2\Imet_Report::upgradeLegacy($json['Report'] ?? null, $formID, $imet_version),
+                    ...Imet\ImetV2\Imet_Report::importModules($json['Report'] ?? null, $formID, $imet_version),
                 ];
             }
         } // #####  IMET OECM  #####
         elseif ($version === Imet\Imet::IMET_OECM) {
-            $formID = Imet\oecm\Imet::importForm($json['Imet']);
-            $modules_imported['Context'] = Imet\oecm\Imet::importModules($json['Context'], $formID, $imet_version);
-            $modules_imported['Evaluation'] = Imet\oecm\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
-            Imet\oecm\Encoder::importModule($formID, $json['Encoders'] ?? null);
+            $formID = Imet\ImetOecm\Imet::importForm($json['Imet']);
+            $modules_imported['Context'] = Imet\ImetOecm\Imet::importModules($json['Context'], $formID, $imet_version);
+            $modules_imported['Evaluation'] = Imet\ImetOecm\Imet_Eval::importModules($json['Evaluation'], $formID, $imet_version);
+            Imet\ImetOecm\Encoder::importModule($formID, $json['Encoders'] ?? null);
             if ($with_report) {
-                Imet\oecm\Report::import($formID, $json['Report'] ?? null);
+                Imet\ImetOecm\Report::import($formID, $json['Report'] ?? null);
             }
         } else {
             throw new UnrecognizedVersionException($version);

@@ -1,0 +1,98 @@
+<?php
+
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+namespace ImetCore\Controllers\Imet\ImetOecm;
+
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\Request;
+use ImetCore\Controllers\Imet\ReportController as BaseReportController;
+use ImetCore\Models\Imet\ImetOecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Modules;
+use ImetCore\Models\Imet\ImetOecm\Report;
+use ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Services\Reports\OECM;
+use ImetCore\Services\Scores\OecmScores;
+
+final class ReportController extends BaseReportController
+{
+    protected static ?string $form_class = Imet::class;
+
+    protected static ?string $form_view_prefix = 'imet-core::oecm.report';
+
+    /**
+     * Retrieve data to populate report view
+     */
+    protected function __retrieve_report_data(Imet $imet): array
+    {
+        $form_id = $imet->getKey();
+        $show_non_wdpa = false;
+
+        if (ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)) {
+            $show_non_wdpa = true;
+            $non_wdpa = ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)->toArray();
+        }
+
+        $governance = Modules\Context\Governance::getModuleRecords($form_id);
+        $key_elements = OECM::getKeyElements($form_id);
+        $records = Modules\Evaluation\KeyElements::getModuleRecords($form_id)['records'];
+        $threats = collect($records)
+            ->toArray();
+
+        return [
+            'item' => $imet,
+            'main_threats' => OECM::getThreats($form_id),
+            'key_elements_ecosystem_charts' => OECM::getBiodiversityThreats($threats, true),
+            'key_elements_biodiversity_charts' => OECM::getBiodiversityThreats($threats),
+            'key_elements_biodiversity_charts_global' => OECM::getBiodiversityGlobalThreats($form_id, $key_elements),
+            'key_elements_biodiversity' => array_values(OECM::getKeyElementsBiodiversity($key_elements)),
+            'key_elements_ecosystem' => array_values(OECM::getKeyElementsEcosystems($key_elements)),
+            'key_elements_impacts' => OECM::getElementImpacts($form_id),
+            'stake_holders' => OECM::getStakeholderDirectIndirect($form_id),
+            'stake_analysis' => OECM::getStakeAnalysis($form_id),
+            'objectives' => OECM::getObjectives($form_id),
+            'scores' => OecmScores::get_all($form_id),
+            'labels' => OecmScores::indicators_labels(\ImetCore\Models\Imet\Imet::IMET_OECM),
+            'report' => Report::getByForm($form_id),
+            'report_schema' => Report::getSchema(),
+            'show_non_wdpa' => $show_non_wdpa,
+            'non_wdpa' => $non_wdpa ?? null,
+            'governance' => $governance['records'][0] ?? null,
+            'area' => Modules\Context\Areas::getArea($form_id),
+            'form_id' => $form_id,
+        ];
+    }
+
+    /**
+     * @return array[]
+     */
+    public function get_objectives(int $form_id): array
+    {
+        return OECM::get_objectives($form_id);
+    }
+
+    /**
+     * Manage "report" update route
+     *
+     * @return string[]
+     *
+     * @throws AuthorizationException
+     */
+    #[\Override]
+    public function report_update($imet, Request $request): array
+    {
+        $this->authorize('edit', (self::$form_class)::find($imet));
+
+        Report::updateByForm($imet, $request->input('report'));
+
+        return ['status' => 'success'];
+    }
+}

@@ -1,7 +1,7 @@
 <?php
-use \ImetCore\Helpers\Template;
-use \ImetCore\Models\Imet\Imet;
-use \ImetCore\Models\ProtectedAreaNonWdpa;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\Imet;
+use ImetCore\Models\ProtectedAreaNonWdpa;
 
 /** @var Imet $item */
 

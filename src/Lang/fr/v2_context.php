@@ -847,7 +847,7 @@ return [
             'group9' => 'Support / Soutien',
         ],
         'predefined_values' => [
-            'group0' => ['Approvisionnement en eau (disponibilité, épuration)', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.)', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes)', 'Médicaments / pharmacopée', 'Aliments pour l’élevage (poissons et bétail)'],
+            'group0' => ['Approvisionnement en eau (disponibilité, épuration)', 'Alimentation humaine - végétale  (tubercules, feuilles, fruits, miel, champignons, etc.)', 'Alimentation humaine - animale (viande sauvage/d’élevage, insectes)', 'Médicaments / pharmacopée', 'Aliments pour l’élevage (poissons et bétail)', 'Bénéfices d’entraînement dans les zones de pêche voisines'],
             'group1' => ['Bois à haute valeur économique', 'Bois pour la construction locale', 'Fibres de tiges (palmiers, kénaf, jute, etc.)', 'Autres fibres (kapok, coco,  etc.)', 'Ornementale (graines, coquilles, etc.)', 'Sable (bâtiment)', 'Algues/coquillages', 'Terres cultivées (agriculture, élevage, forêts)'],
             'group2' => ['Bois de feu et biocarburants', 'Eau pour énergie', 'Engrais (production – transformation)'],
             'group3' => ['Régulation du gaz (séquestration du C)', 'Enterrement/décomposition/neutralisation des déchets', 'Régulation des déchets (absorption d’éléments nutritifs)', 'Contrôle de l’érosion éolienne'],
@@ -856,7 +856,7 @@ return [
             'group6' => ['Science — Recherche', 'Education', 'Patrimoine culturel/héritage'],
             'group7' => ['Symboliqu ou Historique', 'Sacré ou Religieuse'],
             'group8' => ['Conservation ex-situ'],
-            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces', 'Formation du paysage marin', 'Anciennes espèces d\'habitat (ex. coraux)', 'Pollinisation (plantes)', 'Cycle de l’eau', 'Paysage marin : hétérogénéité/complexité de l\'habitat (diversité favorable)'],
+            'group9' => ['Production primaire nette (végétation)', 'Cycle des nutriments (décomposition et minéralisation de la litière)', 'Formation de l’habitat des espèces', 'Formation du paysage marin', 'Anciennes espèces d\'habitat (ex. coraux)', 'Pollinisation (plantes)', 'Cycle de l’eau', 'Paysage marin : hétérogénéité/complexité de l\'habitat (diversité favorable)', 'Bénéfices d’entraînement en matière de récupération de la biomasse, de reproduction et de connectivité', 'Connectivité (liens écologiques et continuité fonctionnelle)'],
         ],
         'categories' => [
             'title1' => 'Approvisionnement',

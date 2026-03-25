@@ -1,6 +1,4 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
 /** @var array $definitions */
 
 ?>

@@ -18,8 +18,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\__Controller;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Services\ScalingUp\DownloadScalingUp;
 use ImetCore\Services\ScalingUp\PreviewScalingUp;
 use ImetCore\Services\ScalingUp\ReportScalingUp;
@@ -60,7 +60,7 @@ class ScalingUpAnalysisController extends __Controller
         $years = $full_list->pluck('Year')->sort()->unique()->values()->toArray();
         $countries = $full_list->pluck('country.name', 'country.iso3')->sort()->unique()->toArray();
 
-        return view(static::$form_view_prefix . 'scaling_up.list', [
+        return view(static::$form_view_prefix.'scaling_up.list', [
             'controller' => static::class,
             'list' => $filtered_list,
             'request' => $request,
@@ -85,17 +85,18 @@ class ScalingUpAnalysisController extends __Controller
             foreach ($parameters as $value) {
                 if (is_array($value)) {
                     $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value['id']));
-                } elseif ((int)$value > 0) {
+                } elseif ((int) $value > 0) {
                     $this->authorize('wdpa_scaling_up', (static::$form_class)::find($value));
                 }
             }
 
             $response = ModelScalingUpAnalysis::$action($parameters);
             App::setLocale($locale);
+
             return self::sendAPIResponse($response);
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             App::setLocale($locale);
-            report($e);
+            report($exception);
 
             return new JsonResponse([
                 'request_params' => $request?->all(),
@@ -111,7 +112,7 @@ class ScalingUpAnalysisController extends __Controller
     {
         $result = ReportScalingUp::report($request, $items);
 
-        return view(static::$form_view_prefix . 'scaling_up.report', $result);
+        return view(static::$form_view_prefix.'scaling_up.report', $result);
     }
 
     /**
@@ -126,6 +127,6 @@ class ScalingUpAnalysisController extends __Controller
     {
         $result = PreviewScalingUp::preview($id);
 
-        return view(static::$form_view_prefix . 'scaling_up.preview_template', $result);
+        return view(static::$form_view_prefix.'scaling_up.preview_template', $result);
     }
 }

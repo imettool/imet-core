@@ -1,9 +1,12 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-$vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['module_type']==="GROUP_ACCORDION"
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
+$vue_record_index = $definitions['module_type'] === "ACCORDION" || $definitions['module_type'] === "GROUP_ACCORDION"
     ? 'index' : '0';
 
 ?>
@@ -52,7 +55,7 @@ $vue_record_index = $definitions['module_type']==="ACCORDION" || $definitions['m
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkPlan(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

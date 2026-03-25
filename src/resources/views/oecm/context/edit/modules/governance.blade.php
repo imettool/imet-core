@@ -1,11 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-use ModularForms\Helpers\Input\SelectionList;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Helpers\SelectionList;
 
-$vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
+$module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
@@ -67,8 +69,8 @@ $vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.Governance(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.context.Governance(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

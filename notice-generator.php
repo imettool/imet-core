@@ -14,12 +14,12 @@
 // It requires the dependencies to be installed first, as it relies on the 'vendor' and 'node_modules' directories (in
 // the root folder of the project - not in dev/) to parse the dependencies and their licenses.
 
-if(!is_dir(__DIR__.'/vendor/')){
-    print("\033[31mPlease run 'composer install' before running this script.\033[0m \n\n");
+if (! is_dir(__DIR__.'/vendor/')) {
+    echo "\033[31mPlease run 'composer install' before running this script.\033[0m \n\n";
     exit();
 }
-if(!is_dir(__DIR__.'/node_modules/')){
-    print("\033[31mPlease run 'npm install' before running this script.\033[0m \n\n");
+if (! is_dir(__DIR__.'/node_modules/')) {
+    echo "\033[31mPlease run 'npm install' before running this script.\033[0m \n\n";
     exit();
 }
 

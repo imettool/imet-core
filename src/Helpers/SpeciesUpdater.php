@@ -144,15 +144,16 @@ class SpeciesUpdater
 
     protected static function logInfo(string $message, bool $verbose = false): void
     {
-        if($verbose){
-            Log::info(self::JOB_LOG_PREFIX . $message);
+        if ($verbose) {
+            Log::info(self::JOB_LOG_PREFIX.$message);
         }
 
     }
+
     protected static function logError(string $message, bool $verbose = false): void
     {
-        if($verbose){
-            Log::error(self::JOB_LOG_PREFIX . $message);
+        if ($verbose) {
+            Log::error(self::JOB_LOG_PREFIX.$message);
         }
     }
 

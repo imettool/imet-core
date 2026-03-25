@@ -21,7 +21,7 @@ export default class KeyElements extends ModuleImet {
 
         function get_index(element_id) {
             return element_id
-                .replace(props.module_key, '')
+                .replace(props.slug, '')
                 .replace('Aspect', '')
                 .replaceAll('_', '');
         }

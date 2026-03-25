@@ -12,8 +12,8 @@
 
 namespace ImetCore\Services\Reports;
 
-use ImetCore\Models\Imet\oecm\Modules;
-use ImetCore\Models\Imet\oecm\Report;
+use ImetCore\Models\Imet\ImetOecm\Modules;
+use ImetCore\Models\Imet\ImetOecm\Report;
 
 class OECM
 {

@@ -1,14 +1,17 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $groups = $definitions['groups'];
 
 ?>
 
-<!-- Collapsible groups with histograms -->
-<x-modular-forms::accordion.container :id="'accordion_'.$definitions['module_key']">
+        <!-- Collapsible groups with histograms -->
+<x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($groups as $group_key => $group_label)
         <x-modular-forms::accordion.item>
@@ -18,16 +21,14 @@ $groups = $definitions['groups'];
                     $percentage_value = "averages_percentage['" . $group_key . "']";
                 @endphp
                 <x-imet-core::score-bar
-                    :label="$group_label"
-                    :score="$score_value"
-                    :percentage="$percentage_value"
+                        :label="$group_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
                 ></x-imet-core::score-bar>
             </x-slot:title>
 
             @include('modular-forms::module.edit.type.table', [
-                'collection' => $collection,
                 'definitions' => $definitions,
-                'vueData' => $vueData,
                 'group_key' => $group_key
             ])
 
@@ -35,11 +36,11 @@ $groups = $definitions['groups'];
     @endforeach
 </x-modular-forms::accordion.container>
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.Equipments(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.context.Equipments(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

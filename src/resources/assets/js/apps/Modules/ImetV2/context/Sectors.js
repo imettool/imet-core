@@ -55,7 +55,7 @@ export default class Sectors extends ModuleImet {
         });
 
         function getPaArea(){
-            let area = window.imet__v2__context__areas.getArea();
+            let area = window.Areas.getArea();
             if(area!==null){
                 area = parseFloat(area.toString().replace(',', '.'));
             }

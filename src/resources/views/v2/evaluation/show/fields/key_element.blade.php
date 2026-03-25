@@ -1,8 +1,8 @@
 <?php
 /** @var string $value */
 
-use \ModularForms\Helpers\Input\SelectionList;
-use \ImetCore\Models\Species;
+use ImetCore\Helpers\SelectionList;
+use ImetCore\Models\Species;
 
 if (Species::isTaxonomy($value)) {
     $taxonomy = Species::parseTaxonomy($value);

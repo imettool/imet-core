@@ -13,7 +13,7 @@
 namespace ImetCore\Services\Scores;
 
 use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
+use ImetCore\Models\Imet\ImetOecm\Imet as ImetOecm;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Functions\OECMScores as OECMScoresFunctions;
 

@@ -1,15 +1,16 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $stakeholders */
 
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderIndirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderIndirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 use ModularForms\Helpers\DOM;
 use ModularForms\Helpers\Template;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 
 $num_cols = count($definitions['fields']);
@@ -18,12 +19,7 @@ $user_mode = Str::contains($definitions['module_class'], 'AnalysisStakeholderDir
     ? AnalysisStakeholderDirectUsers::$USER_MODE
     : AnalysisStakeholderIndirectUsers::$USER_MODE;
 
-$stakeholders_categories = Stakeholders::getStakeholders(
-    $vueData['form_id'],
-    $user_mode,
-    true
-);
-
+$stakeholders_categories = Stakeholders::getStakeholders($module->vueData['form_id'], $user_mode, true);
 
 ?>
 
@@ -62,7 +58,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                         @foreach($definitions['groups'] as $group_key => $group_label)
 
                             @php
-                                $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                                $table_id = 'group_table_'.$definitions['slug'].'_'.$group_key;
                                 $element_list = trans('imet-core::oecm_context.AnalysisStakeholders.lists.' . $group_key);
                                 $element_list = gettype($element_list) === 'string' ? [] : array_combine($element_list, $element_list);
                             @endphp
@@ -86,7 +82,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                 @endif
 
                                 {{-- sub-titles --}}
-                                <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+                                <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
                                 {{-- Desctiptions --}}
                                 <div class="pb-4 px-6 text-sm">
@@ -112,55 +108,57 @@ $stakeholders_categories = Stakeholders::getStakeholders(
                                     {{-- records --}}
                                     <tbody class="{{ $group_key }}">
 
-                                        <template v-for="(item, index) in records">
-                                            <tr class="module-table-item"
-                                                    v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
-                                                {{--  fields  --}}
-                                                @foreach($definitions['fields'] as $index => $field)
+                                    <template v-for="(item, index) in records">
+                                        <tr class="module-table-item"
+                                            v-if="recordIsInGroup(item, '{{ $group_key }}') && isCurrentStakeholder(item['Stakeholder'])">
+                                            {{--  fields  --}}
+                                            @foreach($definitions['fields'] as $index => $field)
 
-                                                    <td>
-
-                                                        @if($field['name'] === 'Element')
-                                                            <dropdown
-                                                                data-values='@json($element_list)'
-                                                                {!! DOM::vueAttributes("'".$definitions['module_key']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
-                                                            ></dropdown>
-                                                        @else
-                                                                @include('modular-forms::module.edit.field.module-to-vue', [
-                                                                   'definitions' => $definitions,
-                                                                   'field' => $field,
-                                                                   'vue_record_index' => 'index',
-                                                                   'group_key' => $group_key
-                                                               ])
-                                                        @endif
-                                                    </td>
-                                                @endforeach
                                                 <td>
-                                                    {{-- record id  --}}
-                                                    <x-modular-forms::module.components.field.input
+
+                                                    @if($field['name'] === 'Element')
+                                                        <dropdown
+                                                                data-values='@json($element_list)'
+                                                                {!! DOM::vueAttributes("'".$definitions['slug']."_'+index+'_".$field['name']."'", 'records[index].'.$field['name']) !!}
+                                                        ></dropdown>
+                                                    @else
+                                                        @include('modular-forms::module.edit.field.module-to-vue', [
+                                                           'definitions' => $definitions,
+                                                           'field' => $field,
+                                                           'vue_record_index' => 'index',
+                                                           'group_key' => $group_key
+                                                       ])
+                                                    @endif
+                                                </td>
+                                            @endforeach
+                                            <td>
+                                                {{-- record id  --}}
+                                                <x-modular-forms::module.components.field.input
                                                         type="hidden"
                                                         :value="'item.'.$definitions['primary_key']"
-                                                    ></x-modular-forms::module.components.field.input>
-                                                    <span v-if="typeof item.__predefined === 'undefined'">
-                                                         <button type="button" class="btn-nav small red" v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
+                                                ></x-modular-forms::module.components.field.input>
+                                                <span v-if="typeof item.__predefined === 'undefined'">
+                                                         <button type="button" class="btn-nav small red"
+                                                                 v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">
                                                              {!! Template::icon('trash', 'white') !!}
                                                         </button>
                                                     </span>
-                                                </td>
-                                            </tr>
-                                        </template>
+                                            </td>
+                                        </tr>
+                                    </template>
 
                                     </tbody>
 
                                     {{-- add button --}}
                                     <tfoot v-if="numItemPerGroupAndStakeholder('{{ $group_key }}', '{{ $stakeholder }}') < {{ $definitions['max_rows'] }}">
-                                        <tr>
-                                            <td colspan="{{ count($definitions['fields']) + 1 }}">
-                                                <button type="button" class="btn-nav small " v-on:click="addItem('{{ $group_key }}', '{{ $stakeholder }}')">
-                                                    {!! Template::icon('plus-circle', 'white') !!} {!! Str::ucfirst((trans('modular-forms::common.add_item'))) !!}
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="{{ count($definitions['fields']) + 1 }}">
+                                            <button type="button" class="btn-nav small "
+                                                    v-on:click="addItem('{{ $group_key }}', '{{ $stakeholder }}')">
+                                                {!! Template::icon('plus-circle', 'white') !!} {!! Str::ucfirst((trans('modular-forms::common.add_item'))) !!}
+                                            </button>
+                                        </td>
+                                    </tr>
                                     </tfoot>
 
                                 </table>
@@ -184,7 +182,7 @@ $stakeholders_categories = Stakeholders::getStakeholders(
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.context.AnalysisStakeholder(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

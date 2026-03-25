@@ -1,18 +1,19 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use Illuminate\Support\Facades\View;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
-$view = View::make('modular-forms::module.edit.type.table', ['collection' => $collection, 'vueData' => $vueData, 'definitions' => $definitions])->render();
+$view = View::make('modular-forms::module.edit.type.table', ['definitions' => $definitions])->render();
 $diff_col = '<input type="text" disabled="disabled" style="width: 80px;"
                 class="field-edit text-right"
                 v-bind:value="diffs[index]"
-                v-bind:id="\'' . $definitions['module_key']  .'\' + index + \'_diff\'"
+                v-bind:id="\'' . $definitions['slug'] . '\' + index + \'_diff\'"
             />';
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
@@ -26,7 +27,7 @@ $dom->filter('tbody tr td')->eq(5)->append('<td>' . $diff_col . '</td>');
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.context.ManagementStaff(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

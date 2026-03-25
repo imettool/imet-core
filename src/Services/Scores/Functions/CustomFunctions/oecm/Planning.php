@@ -12,10 +12,10 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\BoundaryLevel;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\ManagementPlan;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\Objectives;
-use ImetCore\Models\Imet\oecm\Modules\Evaluation\WorkPlan;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\BoundaryLevel;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\ManagementPlan;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\Objectives;
+use ImetCore\Models\Imet\ImetOecm\Modules\Evaluation\WorkPlan;
 
 trait Planning
 {

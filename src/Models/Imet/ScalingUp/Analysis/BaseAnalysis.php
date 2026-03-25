@@ -27,10 +27,7 @@ abstract class BaseAnalysis
 
     public static string $info_label = '';
 
-
     protected static ?int $scaling_id = null;
-
-
 
     /**
      * Set the scaling ID for all analysis operations
@@ -51,4 +48,3 @@ abstract class BaseAnalysis
 
     abstract public static function data(array $params = []): array;
 }
-

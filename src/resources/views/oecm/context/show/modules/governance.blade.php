@@ -1,7 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 ?>
 <h3>@lang('imet-core::oecm_context.Governance.governance')</h3>
@@ -15,8 +19,8 @@
                 'label_width' => 4
             ])
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
         @endcomponent
 
@@ -37,8 +41,8 @@
                     'label_width' => 5
                 ])
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$records[0][$field['name']]"
+                        :type="$field['type']"
+                        :value="$records[0][$field['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             @endcomponent
 

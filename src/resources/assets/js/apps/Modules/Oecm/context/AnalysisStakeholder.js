@@ -22,7 +22,7 @@ export default class AnalysisStakeholder extends ModuleImet {
 
         setup_obj.emitter.on('moduleSaved', (data) => {
             current_stakeholder.value = null;
-            window.ModularForms.Helpers.Animation.scrollPageToAnchor('module_' + props.module_key);
+            window.ModularForms.Helpers.Animation.scrollPageToAnchor('module_' + props.slug);
             window.AnalysisStakeholderSummary.refresh_importance(data.key_elements_importance);
         });
 

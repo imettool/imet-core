@@ -13,21 +13,22 @@
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
 /** @var Array $governance */
+
 /** @var Array $stake_analysis */
 
 use ImetCore\Services\Scores\AssessmentsScores;
-use ImetCore\Controllers\Imet\v2\Controller;
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Controllers\Imet\ImetV2\Controller;
+use ImetCore\Models\Imet\ImetOecm\Imet;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Template;
 use Illuminate\Support\Facades\App;
-use ImetCore\Controllers\Imet\oecm;
+use ImetCore\Controllers\Imet\ImetOecm;
 
-const REPORT_PREFIX = oecm\Controller::ROUTE_PREFIX;
+const REPORT_PREFIX = ImetOecm\Controller::ROUTE_PREFIX;
 
 // Force Language
-if ($item!==null && $item->language != App::getLocale()) {
+if ($item !== null && $item->language != App::getLocale()) {
     App::setLocale($item->language);
 }
 
@@ -145,7 +146,7 @@ if ($item!==null && $item->language != App::getLocale()) {
                     <div>
                         <b>@lang('imet-core::oecm_report.management_effectiveness.opportunities')</b>
                         <report-editor v-model="report[0].opportunities_swot"
-                            :action="'{{ $action }}'"></report-editor>
+                                       :action="'{{ $action }}'"></report-editor>
                     </div>
                     <div>
                         <b>@lang('imet-core::oecm_report.management_effectiveness.threats')</b>
@@ -247,8 +248,6 @@ if ($item!==null && $item->language != App::getLocale()) {
         @include('imet-core::oecm.report.components.navigation_menu')
 
     @endcomponent
-
-
 
 @endSection
 

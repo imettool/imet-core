@@ -16,12 +16,6 @@ use ImetCore\Helpers\ScalingUp\Common;
 
 final class Group
 {
-    /**
-     * @param array $parameters
-     * @param array $assessments
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_calculation_grouping_analysis(array $parameters, array $assessments = [], int $scaling_id = 0): array
     {
         $groups = [];
@@ -57,14 +51,6 @@ final class Group
         return $average;
     }
 
-    /**
-     * @param array $indicator
-     * @param array $parameters
-     * @param array $form_ids
-     * @param array $assessments
-     * @param int $scaling_id
-     * @return array
-     */
     public static function calculate_indicators_by_group(array $indicator, array $parameters, array $form_ids, array $assessments = [], int $scaling_id = 0): array
     {
         $assessments = $assessments !== [] ? $assessments : Common::get_assessments($form_ids, $scaling_id);

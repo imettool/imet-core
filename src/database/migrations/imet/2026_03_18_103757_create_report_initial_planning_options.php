@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('activities')->nullable();
             $table->string('indicators')->nullable();
 
-
             $table->foreign(['FormID'], 'FormID_fk')
                 ->references(['FormID'])
                 ->on(Database::getTable(Database::IMET_SCHEMA, 'forms'))

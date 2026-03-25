@@ -1,7 +1,7 @@
 <?php
 /** @var Imet_Report $item */
 
-use ImetCore\Models\Imet\v2\Imet_Report;
+use ImetCore\Models\Imet\ImetV2\Imet_Report;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 
 $non_wdpa = ProtectedAreaNonWdpa::query()->find($item->wdpa_id)->toArray();

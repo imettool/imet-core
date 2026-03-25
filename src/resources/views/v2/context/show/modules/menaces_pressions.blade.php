@@ -1,11 +1,14 @@
 <?php
-/** @var Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 use ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\v2\Modules\Context\MenacesPressions;
-use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\MenacesPressions;
 
 $groups = $definitions['groups'];
 
@@ -19,7 +22,7 @@ $categoryStats = array_key_exists('FormID', $records[0])
 
 ?>
 
-<!-- Categories with histograms -->
+        <!-- Categories with histograms -->
 <div class="accordion">
 
     @foreach($module::$groupsByCategory as $cat_idx => $category)
@@ -35,9 +38,9 @@ $categoryStats = array_key_exists('FormID', $records[0])
                         $percentage_value = $score_value;
                     @endphp
                     <x-imet-core::score-bar
-                        :label="$category_label"
-                        :score="$score_value"
-                        :percentage="$percentage_value"
+                            :label="$category_label"
+                            :score="$score_value"
+                            :percentage="$percentage_value"
                     ></x-imet-core::score-bar>
                 </div>
             </div>
@@ -70,8 +73,8 @@ $categoryStats = array_key_exists('FormID', $records[0])
                             @endphp
                             {!! $view !!}
 
-                            <br />
-                            <br />
+                            <br/>
+                            <br/>
 
                         @endif
                     @endforeach

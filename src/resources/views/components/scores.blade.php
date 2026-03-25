@@ -5,7 +5,7 @@ use ImetCore\Services\Assessment;
 use ImetCore\Services\Scores\AssessmentsScores;
 
 /** @var ?string $step */
-/** @var Imet\v1\Imet|Imet\v2\Imet|Imet\oecm\Imet $item */
+/** @var Imet\ImetV1\Imet|Imet\ImetV2\Imet|Imet\ImetOecm\Imet $item */
 /** @var string $version */
 
 $step ??= null;
@@ -22,10 +22,10 @@ if ($version === Imet\Imet::IMET_OECM) {
 
 <div id="assessment_scores">
     <imet_scores
-        current_step="{{ $step }}"
-        :labels='@json($labels)'
-        :store=store
-        version="{{ $version }}"
+            current_step="{{ $step }}"
+            :labels='@json($labels)'
+            :store=store
+            version="{{ $version }}"
     ></imet_scores>
 </div>
 

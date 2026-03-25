@@ -1,10 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 $new_records = \ModularForms\Helpers\Module::createRecordsArrayByGroup($records);
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 // Inject Average calculation
 $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_groupTable, 'group0', 3, 2, '', \ModularForms\Helpers\Module::calculateAverage('EvaluationScore', 'group0', $new_records));
@@ -17,5 +21,5 @@ $view_groupTable = \ModularForms\Helpers\Module::injectAverageInGroup($view_grou
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.show.type.commons', compact(['collection', 'records', 'definitions']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])
 

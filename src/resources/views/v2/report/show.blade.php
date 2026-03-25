@@ -3,15 +3,15 @@
 
 /** @var Imet_Report $item */
 
-use ImetCore\Controllers\Imet\v2\ReportController;
-use ImetCore\Models\Imet\v2\Imet_Report;
-use ImetCore\Models\Imet\v2\Modules\Report\InitialPlanningOptions;
-use ImetCore\Models\Imet\v2\Modules\Report\KeyConservationElements;
-use ImetCore\Models\Imet\v2\Modules\Report\KeyQuestions;
-use ImetCore\Models\Imet\v2\Modules\Report\ManagementContext;
-use ImetCore\Models\Imet\v2\Modules\Report\ManagementEffectivenessAnalysis;
-use ImetCore\Models\Imet\v2\Modules\Report\OperatingRecommendations;
-use ImetCore\Models\Imet\v2\Modules\Report\ThreatsAffectingKCEs;
+use ImetCore\Controllers\Imet\ImetV2\ReportController;
+use ImetCore\Models\Imet\ImetV2\Imet_Report;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\InitialPlanningOptions;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyConservationElements;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\KeyQuestions;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\ManagementContext;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\ManagementEffectivenessAnalysis;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\OperatingRecommendations;
+use ImetCore\Models\Imet\ImetV2\Modules\Report\ThreatsAffectingKCEs;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Enums\ModuleViewModes;
@@ -49,30 +49,30 @@ $scores = ImetScores::get_all($item);
     {{-- Management Context --}}
     <div class="imet_report">
         <x-modular-forms::module.container
-            :controller="ReportController::class"
-            :module="ManagementContext::class"
-            :formId="$item->getKey()"
-            :mode="ModuleViewModes::SHOW"
+                :controller="ReportController::class"
+                :module="ManagementContext::class"
+                :formId="$item->getKey()"
+                :mode="ModuleViewModes::SHOW"
         ></x-modular-forms::module.container>
     </div>
 
     {{-- Management Effectiveness Analysis --}}
     <div class="imet_report">
         <x-modular-forms::module.container
-            :controller="ReportController::class"
-            :module="ManagementEffectivenessAnalysis::class"
-            :formId="$item->getKey()"
-            :mode="ModuleViewModes::SHOW"
+                :controller="ReportController::class"
+                :module="ManagementEffectivenessAnalysis::class"
+                :formId="$item->getKey()"
+                :mode="ModuleViewModes::SHOW"
         ></x-modular-forms::module.container>
     </div>
 
     {{-- Operating recommendations --}}
     <div class="imet_report">
         <x-modular-forms::module.container
-            :controller="ReportController::class"
-            :module="OperatingRecommendations::class"
-            :formId="$item->getKey()"
-            :mode="ModuleViewModes::SHOW"
+                :controller="ReportController::class"
+                :module="OperatingRecommendations::class"
+                :formId="$item->getKey()"
+                :mode="ModuleViewModes::SHOW"
         ></x-modular-forms::module.container>
     </div>
 
@@ -80,31 +80,31 @@ $scores = ImetScores::get_all($item);
     <h2>@lang('imet-core::v2_report.planning_options')</h2>
     <div class="mb-4">@lang('imet-core::v2_report.planning_options_info.general_info')</div>
     <x-modular-forms::module.container
-        :controller="ReportController::class"
-        :module="KeyConservationElements::class"
-        :formId="$item->getKey()"
-        :mode="ModuleViewModes::SHOW"
+            :controller="ReportController::class"
+            :module="KeyConservationElements::class"
+            :formId="$item->getKey()"
+            :mode="ModuleViewModes::SHOW"
     ></x-modular-forms::module.container>
     <x-modular-forms::module.container
-        :controller="ReportController::class"
-        :module="ThreatsAffectingKCEs::class"
-        :formId="$item->getKey()"
-        :mode="ModuleViewModes::SHOW"
+            :controller="ReportController::class"
+            :module="ThreatsAffectingKCEs::class"
+            :formId="$item->getKey()"
+            :mode="ModuleViewModes::SHOW"
     ></x-modular-forms::module.container>
     <x-modular-forms::module.container
-        :controller="ReportController::class"
-        :module="InitialPlanningOptions::class"
-        :formId="$item->getKey()"
-        :mode="ModuleViewModes::SHOW"
+            :controller="ReportController::class"
+            :module="InitialPlanningOptions::class"
+            :formId="$item->getKey()"
+            :mode="ModuleViewModes::SHOW"
     ></x-modular-forms::module.container>
 
     {{-- Key Questions --}}
     <div class="imet_report">
         <x-modular-forms::module.container
-            :controller="ReportController::class"
-            :module="KeyQuestions::class"
-            :formId="$item->getKey()"
-            :mode="ModuleViewModes::SHOW"
+                :controller="ReportController::class"
+                :module="KeyQuestions::class"
+                :formId="$item->getKey()"
+                :mode="ModuleViewModes::SHOW"
         ></x-modular-forms::module.container>
     </div>
 

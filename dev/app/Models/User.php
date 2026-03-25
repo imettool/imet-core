@@ -12,13 +12,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Validator;
 use ImetCore\Models\User\Role;
 use ImetCore\Models\User\User as ImetUser;
 
 class User extends ImetUser
 {
-    use \Illuminate\Database\Eloquent\Factories\HasFactory;
+    use HasFactory;
 
     /** @phpstan-var array<string, string> $rules */
     public static array $rules = [

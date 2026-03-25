@@ -14,9 +14,9 @@ namespace ImetCore\Controllers\Imet\Traits;
 
 use Illuminate\Support\Str;
 use ImetCore\Models\Imet\Imet as ImetAlias;
-use ImetCore\Models\Imet\v1\Imet;
-use ImetCore\Models\Imet\v1\Imet_Eval;
-use ImetCore\Models\Imet\v1\Modules;
+use ImetCore\Models\Imet\ImetV1\Imet;
+use ImetCore\Models\Imet\ImetV1\Imet_Eval;
+use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 
 trait ConvertSQLite

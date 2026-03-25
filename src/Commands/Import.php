@@ -17,7 +17,7 @@ use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ImetCore\Controllers\Imet\v2\Controller;
+use ImetCore\Controllers\Imet\ImetV2\Controller;
 use ModularForms\Helpers\File\File;
 use Throwable;
 
@@ -41,8 +41,6 @@ class Import extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {

@@ -1,10 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 $group_key ??= '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 
@@ -18,14 +21,13 @@ $table_id = 'table_'.$definitions['module_key'];
                 <th class="text-center">
                     {{ ucfirst($field['label'] ?? '') }}
                     @if($field['name']==="ActualPermanent")
-                        </th>
-                        <th class="text-center">
-                            @uclang('imet-core::v1_context.ManagementStaff.fields.difference')
+                </th>
+                <th class="text-center">
+                    @uclang('imet-core::v1_context.ManagementStaff.fields.difference')
                     @endif
 
                 </th>
             @endif
-
 
         @endforeach
     </tr>
@@ -45,13 +47,13 @@ $table_id = 'table_'.$definitions['module_key'];
                 ])
 
                 @if($field['name']==="ActualPermanent")
-                    </td>
-                    <td>
-                        <input type="text" disabled="disabled" style="width: 80px;"
-                            class="field-edit text-right"
-                            v-bind:value="diffs[index]"
-                            v-bind:id="'{{$definitions['module_key'] }}_'+index+'_diff'"
-                        />
+            </td>
+            <td>
+                <input type="text" disabled="disabled" style="width: 80px;"
+                       class="field-edit text-right"
+                       v-bind:value="diffs[index]"
+                       v-bind:id="'{{$definitions['slug'] }}_'+index+'_diff'"
+                />
                 @endif
 
             </td>
@@ -59,11 +61,11 @@ $table_id = 'table_'.$definitions['module_key'];
         <td>
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
             <span v-if="typeof item.__predefined === 'undefined'">
-                <x-modular-forms::module.components.buttons.delete-item />
+                <x-modular-forms::module.components.buttons.delete-item/>
             </span>
         </td>
     <tr>
@@ -73,7 +75,7 @@ $table_id = 'table_'.$definitions['module_key'];
     {{-- add button --}}
     <tr>
         <td colspan="{{ count($definitions['fields']) + 1 }}">
-            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+            <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
         </td>
     </tr>
     </tfoot>
@@ -81,11 +83,11 @@ $table_id = 'table_'.$definitions['module_key'];
 </table>
 
 
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV1.context.ManagementStaff(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV1.context.ManagementStaff(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

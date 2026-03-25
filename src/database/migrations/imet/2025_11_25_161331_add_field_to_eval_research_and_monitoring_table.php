@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_research_and_monitoring'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_research_and_monitoring'), function (Blueprint $table): void {
             $table->boolean('InManagementPlan')->nullable()->after('EvaluationScore');
             $table->decimal('EvaluationScoreAdequacy')->nullable()->after('InManagementPlan');
         });
@@ -33,7 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table(Database::getTable(Database::IMET_SCHEMA,'eval_research_and_monitoring'), function (Blueprint $table) {
+        Schema::table(Database::getTable(Database::IMET_SCHEMA, 'eval_research_and_monitoring'), function (Blueprint $table): void {
             $table->dropColumn('InManagementPlan');
             $table->dropColumn('EvaluationScoreAdequacy');
         });

@@ -1,10 +1,10 @@
 <?php
-/** @var \ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet $source */
-/** @var \ImetCore\Models\Imet\v1\Imet|\ImetCore\Models\Imet\v2\Imet $destination */
-/** @var \ImetCore\Models\Imet\v1\Modules\Component\ImetModule|\ImetCore\Models\Imet\v2\Modules\Component\ImetModule $module */
+/** @var \ImetCore\Models\Imet\ImetV1\Imet|\ImetCore\Models\Imet\ImetV2\Imet $source */
+/** @var \ImetCore\Models\Imet\ImetV1\Imet|\ImetCore\Models\Imet\ImetV2\Imet $destination */
+/** @var \ImetCore\Models\Imet\ImetV1\Modules\Component\ImetModule|\ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule $module */
 /** @var string $route */
 
-$modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$module::getShortClassName();
+$modal_id = 'imet_merge_' . $source->FormID . '_to_' . $destination->FormID . '_' . $module::getShortClassName();
 
 ?>
 
@@ -29,7 +29,7 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                 <div style="padding: 5px 5px 15px 5px;">
                     <div style="text-align: center">
                         <i>{{ (new $module())->module_code }}</i>
-                        <br />
+                        <br/>
                         <b style="font-size: 1.2em;">
                             {{ (new $module())->module_title }}
                         </b>
@@ -46,7 +46,9 @@ $modal_id = 'imet_merge_'.$source->FormID.'_to_'.$destination->FormID.'_'.$modul
                         </div>
                     </div>
                 </div>
-                <div class="alert alert-danger" role="alert" style="padding: 10px;">Any existing data will be overwritten!</div>
+                <div class="alert alert-danger" role="alert" style="padding: 10px;">Any existing data will be
+                    overwritten!
+                </div>
             </div>
 
             <!-- dialog footer -->

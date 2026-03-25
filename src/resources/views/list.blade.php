@@ -1,12 +1,12 @@
 <?php
 
-use \ImetCore\Controllers;
-use \ImetCore\Models\Imet;
-use \ModularForms\Helpers\Template;
-use \Illuminate\Database\Eloquent\Collection;
-use \Illuminate\Http\Request;
+use ImetCore\Controllers;
+use ImetCore\Models\Imet;
+use ModularForms\Helpers\Template;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
-/** @var Controllers\Imet\Controller|Controllers\Imet\oecm\Controller $controller */
+/** @var Controllers\Imet\Controller|Controllers\Imet\ImetOecm\Controller $controller */
 /** @var Collection $list */
 /** @var Request $request */
 /** @var array $countries */
@@ -14,14 +14,14 @@ use \Illuminate\Http\Request;
 /** @var boolean $filter_selected */
 /** @var ?array $filters_validation_messages */
 
-if($controller === Controllers\Imet\oecm\Controller::class){
-    $form_class = Imet\oecm\Imet::class;
-    $route_prefix = Controllers\Imet\oecm\Controller::ROUTE_PREFIX;
+if ($controller === Controllers\Imet\ImetOecm\Controller::class) {
+    $form_class = Imet\ImetOecm\Imet::class;
+    $route_prefix = Controllers\Imet\ImetOecm\Controller::ROUTE_PREFIX;
     $scaling_up_enable = false;
     $create_title_prefix = 'imet-core::oecm_context.';
 } else {
     $form_class = Imet\Imet::class;
-    $route_prefix = Controllers\Imet\v2\Controller::ROUTE_PREFIX;
+    $route_prefix = Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX;
     $scaling_up_enable = true;
     $create_title_prefix = 'imet-core::common.';
 }
@@ -102,7 +102,8 @@ if($controller === Controllers\Imet\oecm\Controller::class){
                         <strong style="font-size: 1.1em;">{{ $item->name }}</strong>
                         {{-- wdpa_id --}}
                         @if($item->wdpa_id!==null)
-                            (<a target="_blank" href="{{ PROTECTEDPLANET_WEBSITE_URL }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
+                            (<a target="_blank"
+                                href="{{ PROTECTEDPLANET_WEBSITE_URL }}/{{ $item->wdpa_id }}">{{ $item->wdpa_id }}</a>)
                         @endif
                         <br/>
                         {{-- country --}}
@@ -137,9 +138,9 @@ if($controller === Controllers\Imet\oecm\Controller::class){
             </td>
             <td>
                 <imet_radar
-                        style="margin: 0 auto;"
-                        :width=150 :height=150
-                        :values='@json($item->assessment_radar)'
+                    style="margin: 0 auto;"
+                    :width=150 :height=150
+                    :values='@json($item->assessment_radar)'
                 ></imet_radar>
             </td>
             <td class="text-center">

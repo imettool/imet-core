@@ -1,22 +1,23 @@
 <?php
+
 use ImetCore\Controllers;
 use ImetCore\Models;
 use ModularForms\Helpers\Template;
 
-/** @var int|Models\Imet\v2\Imet|Models\Imet\v1\Imet|Models\Imet\oecm\Imet|Models\Imet\v2\Imet_Eval|Models\Imet\v1\Imet_Eval|Models\Imet\oecm\Imet_Eval $item */
+/** @var int|Models\Imet\ImetV2\Imet|Models\Imet\ImetV1\Imet|Models\Imet\ImetOecm\Imet|Models\Imet\ImetV2\Imet_Eval|Models\Imet\ImetV1\Imet_Eval|Models\Imet\ImetOecm\Imet_Eval $item */
 /** @var string $version */
 
 if ($version === Models\Imet\Imet::IMET_V1) {
-    $controller = Controllers\Imet\v1\Controller::class;
+    $controller = Controllers\Imet\ImetV1\Controller::class;
 } elseif ($version === Models\Imet\Imet::IMET_V2) {
-    $controller = Controllers\Imet\v2\Controller::class;
+    $controller = Controllers\Imet\ImetV2\Controller::class;
 } else {
-    $controller = Controllers\Imet\oecm\Controller::class;
+    $controller = Controllers\Imet\ImetOecm\Controller::class;
 }
 
 ?>
 
 <x-modular-forms::button.form.destroy
-        :controller="$controller"
-        :item="$item"
+    :controller="$controller"
+    :item="$item"
 ></x-modular-forms::button.form.destroy>

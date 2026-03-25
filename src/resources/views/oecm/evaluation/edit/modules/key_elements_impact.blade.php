@@ -1,15 +1,17 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 ?>
 
 @foreach($definitions['groups'] as $group_key => $group_label)
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
-    <div id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}">
+    <div id="{{ 'group_table_'.$definitions['slug'].'_'.$group_key }}">
 
         {{-- labels  --}}
         <div class="grid_module">
@@ -36,8 +38,8 @@
                             'group_key' => $group_key
                         ])
                         <x-modular-forms::module.components.field.input
-                            type="hidden"
-                            :value="'item.'.$definitions['primary_key']"
+                                type="hidden"
+                                :value="'item.'.$definitions['primary_key']"
                         ></x-modular-forms::module.components.field.input>
                     </div>
 
@@ -53,7 +55,8 @@
                         </div>
                     @endfor
 
-                    <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
+                    <div class="text-center">
+                        <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
                     @for ($i = 6; $i <= 10; $i++)
                         <div>
                             @include('modular-forms::module.edit.field.module-to-vue', [
@@ -70,8 +73,8 @@
             </template>
         </div>
 
-        <br />
-        <br />
+        <br/>
+        <br/>
 
     </div>
 
@@ -79,22 +82,22 @@
 
 @push('scripts')
     <style>
-        .grid_module{
+        .grid_module {
             display: grid;
             grid-template-columns: 170px 130px 122px 122px 120px 120px auto;
             column-gap: 10px;
             row-gap: 10px;
-            border-bottom: 1px solid #A3A3A3;   /* $gray-400; */
+            border-bottom: 1px solid #A3A3A3; /* $gray-400; */
             padding: 5px;
         }
 
-        .grid_module div{
+        .grid_module div {
             align-self: center;
         }
     </style>
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.evaluation.KeyElementsImpact(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 
 @endpush
