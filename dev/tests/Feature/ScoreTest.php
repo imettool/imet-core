@@ -10,11 +10,11 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-use Database\Seeders\FormSeeder;
-use Database\Seeders\ProtectedAreaSeeder;
-use Database\Seeders\SpeciesSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use ImetCore\Helpers\Seeders\FormSeeder;
+use ImetCore\Helpers\Seeders\ProtectedAreaSeeder;
+use ImetCore\Helpers\Seeders\SpeciesSeeder;
 use ImetCore\Models\Imet;
 use ImetCore\Services\Scores\AssessmentsScores;
 

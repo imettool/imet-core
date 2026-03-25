@@ -13,6 +13,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use ImetCore\Helpers\Seeders\FormSeeder;
+use ImetCore\Helpers\Seeders\ProtectedAreaSeeder;
+use ImetCore\Helpers\Seeders\SpeciesSeeder;
 use ImetCore\Models\Imet\Imet;
 use Throwable;
 
