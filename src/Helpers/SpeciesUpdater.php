@@ -85,15 +85,17 @@ class SpeciesUpdater
         // Remove all duplicates
         $table = new Species()->getTable();
         $duplicates = DB::table($table.' as t1')
-            ->join($table.' as t1', function ($join) {
+            ->join($table.' as t2', function ($join) {
                 $join->on('t1.species', '=', 't2.species')
                     ->on('t1.genus', '=', 't2.genus')
                     ->on('t1.family', '=', 't2.family')
-                    ->on('t1.order', '=', 't2.order')
-                    ->where('t1.id', '>', 't2.id'); // keep the lowest id, delete the rest
+                    ->on('t1.order', '=', 't2.order');
             })
-            ->select('a.id')
-            ->pluck('id');
+            ->whereRaw('t1.id < t2.id') // keep the lowest id, delete the rest
+            ->distinct()
+            ->get()
+            ->pluck('id')
+            ->toArray();
         Species::whereIn('id', $duplicates)->delete();
 
         static::logInfo('Species and vernacular names updated successfully.', $verbose);
