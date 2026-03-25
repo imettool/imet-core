@@ -2,7 +2,6 @@
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
-/** @var array $item */
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -13,7 +12,7 @@ $dom = HtmlPageCrawler::create(
 );
 $dom->filter('thead > tr > th')->eq(0)->append('<th></th>');
 
-$stats =  \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($item['FormID'])['category_stats'];
+$stats =  \ImetCore\Models\Imet\v1\Modules\Context\MenacesPressions::getStats($vueData['form_id'])['category_stats'];
 $items = [];
 foreach($stats as $i => $stat){
     $input = '<input type="text" disabled="disabled" value="'. $stat.'" class="field-disabled field-edit field-numeric text-center" />';

@@ -2,12 +2,14 @@
 /** @var \Illuminate\Database\Eloquent\Collection $collection */
 /** @var array $definitions */
 /** @var array $records */
-/** @var mixed $item */
+/** @var mixed $vueData */
 
-    if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id)){
-        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($item->wdpa_id);
+    $imet = \ImetCore\Models\Imet\v1\Imet::query()->find($vueData['form_id']);
+
+    if(\ImetCore\Models\ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)){
+        $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id);
     } else {
-        $pa = \ImetCore\Models\ProtectedArea::getByWdpa($item->wdpa_id);
+        $pa = \ImetCore\Models\ProtectedArea::getByWdpa($imet->wdpa_id);
     }
 
     if($pa!==null){

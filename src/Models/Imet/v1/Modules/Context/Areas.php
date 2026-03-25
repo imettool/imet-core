@@ -96,8 +96,20 @@ final class Areas extends Modules\Component\ImetModule
     {
         $areas = self::getModuleRecords($form_id)['records'];
         $area = 0;
-        if (count($areas) > 0 && array_key_exists('AdministrativeArea', $areas[0])) {
-            $area = $areas[0]['AdministrativeArea'];
+        if (count($areas) > 0) {
+            $area = null;
+            $area = array_key_exists(
+                'AdministrativeArea',
+                $areas[0]
+            ) && $areas[0]['AdministrativeArea'] !== null && $areas[0]['AdministrativeArea'] > 0 ? $areas[0]['AdministrativeArea'] : $area;
+            $area = array_key_exists(
+                'WDPAArea',
+                $areas[0]
+            ) && $areas[0]['WDPAArea'] !== null && $areas[0]['WDPAArea'] > 0 ? $areas[0]['WDPAArea'] : $area;
+            $area = array_key_exists(
+                'GISArea',
+                $areas[0]
+            ) && $areas[0]['GISArea'] !== null && $areas[0]['GISArea'] > 0 ? $areas[0]['GISArea'] : $area;
         }
 
         return $area === 0 ? null : $area / 100; // ha->km2
