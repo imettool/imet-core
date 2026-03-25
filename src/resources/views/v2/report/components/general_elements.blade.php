@@ -20,7 +20,7 @@ $area = Areas::getArea($item->getKey()) ?? null;
         <div class="grid grid-flow-col grid-rows-4 gap-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.country')</div>
-                <span class="italic">{{ Country::getByISO($general_info['Country'] ?? null)->name }}</span>
+                <span class="italic">{{ !empty($general_info['Country']) ? Country::getByISO($general_info['Country'])?->name : '-' }}</span>
             </div>
             <div>
                 <div class="strong">@lang('imet-core::v2_report.name')</div>
