@@ -85,8 +85,8 @@ trait Labels
         // Labels per each module
         $step_labels = [];
         $all_modules = $version === Imet\Imet::IMET_V2 || $version === Imet\Imet::IMET_V1
-            ? Imet\v2\Imet_Eval::allModules() // v1 & v2 are sharing the same labels - due to V1ToV2Scores compatibility layer
-            : Imet\oecm\Imet_Eval::allModules();
+            ? Imet\ImetV2\Imet_Eval::allModules() // v1 & v2 are sharing the same labels - due to V1ToV2Scores compatibility layer
+            : Imet\ImetOecm\Imet_Eval::allModules();
         foreach ($all_modules as $module) {
             $code = Str::replace(['.', '/'], '', (new $module)->module_code);
             $step_labels[$code] = (new $module)->module_title;
@@ -103,6 +103,7 @@ trait Labels
         foreach (trans('imet-core::'.$version.'_common.assessment') as $code => $item) {
             $custom_labels[$code] = $item;
         }
+
         $custom_labels['synthetic_indicator'] = trans('imet-core::'.$version.'_common.synthetic_indicator');
 
         App::setLocale($current_locale);

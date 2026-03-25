@@ -4,11 +4,11 @@
 use ModularForms\Helpers\Template;
 
 if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
-    $controller = \ImetCore\Controllers\Imet\v1\Controller::class;
+    $controller = \ImetCore\Controllers\Imet\ImetV1\Controller::class;
 } elseif ($version === \ImetCore\Models\Imet\Imet::IMET_V2) {
-    $controller = \ImetCore\Controllers\Imet\v2\Controller::class;
+    $controller = \ImetCore\Controllers\Imet\ImetV2\Controller::class;
 } else {
-    $controller = \ImetCore\Controllers\Imet\oecm\Controller::class;
+    $controller = \ImetCore\Controllers\Imet\ImetOecm\Controller::class;
 }
 
 ?>

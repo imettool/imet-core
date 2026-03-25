@@ -1,17 +1,21 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var Areas $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
 $vue_record_index = '0';
 
-$index_id = "'" . $definitions['module_key'] . "_'+" . $vue_record_index . "+'_Index'";
+$index_id = "'" . $definitions['slug'] . "_'+" . $vue_record_index . "+'_Index'";
 
 // Recalculate shapeIndex: in older versions it was miscalculated and stored in the database.
-if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists('FormID', $vueData['records'][$vue_record_index])){
-    $area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($vueData['records'][$vue_record_index]['FormID']);
-    $boundaryLength = $vueData['records'][$vue_record_index]['BoundaryLength'];
-    $vueData['records'][$vue_record_index]['Index'] = $module::getShapeIndex($area, $boundaryLength);
+if (array_key_exists($vue_record_index, $module->vueData['records']) && array_key_exists('FormID', $module->vueData['records'][$vue_record_index])) {
+    $area = Areas::getArea($module->vueData['records'][$vue_record_index]['FormID']);
+    $boundaryLength = $module->vueData['records'][$vue_record_index]['BoundaryLength'];
+    $module->vueData['records'][$vue_record_index]['Index'] = $module::getShapeIndex($area, $boundaryLength);
 }
 
 ?>
@@ -41,9 +45,9 @@ if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists(
             <span class="ml-2 mr-4">[ha]</span>
 
             <x-modular-forms::module.components.field.input
-                :type="$field['type']"
-                :value="$field['name'].'_km2'"
-                :other="$convert_to_ha"
+                    :type="$field['type']"
+                    :value="$field['name'].'_km2'"
+                    :other="$convert_to_ha"
             ></x-modular-forms::module.components.field.input>
             <span class="ml-2">[km2]</span>
 
@@ -82,10 +86,10 @@ if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists(
         @elseif($field_index===10)
 
             <x-modular-forms::module.components.field.input
-                type="numeric"
-                :value="'records['.$vue_record_index.'].'.$field['name']"
-                :id="$index_id"
-                other='style="max-width: 180px;" disabled="disabled"'
+                    type="numeric"
+                    :value="'records['.$vue_record_index.'].'.$field['name']"
+                    :id="$index_id"
+                    other='style="max-width: 180px;" disabled="disabled"'
             ></x-modular-forms::module.components.field.input>
 
         @endif
@@ -96,13 +100,13 @@ if(array_key_exists($vue_record_index, $vueData['records']) && array_key_exists(
 
 @push('scripts')
     <style>
-        #module_imet__v2__context__areas .module-row__input div {
+        #module_{{ $definitions['slug'] }} .module-row__input div {
             display: inline-block;
         }
     </style>
 
     <script type="module">
-        window.imet__v2__context__areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        window.Areas = (new window.ImetCore.Apps.Modules.ImetV2.context.Areas(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

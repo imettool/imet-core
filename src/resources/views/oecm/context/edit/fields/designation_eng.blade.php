@@ -5,7 +5,7 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
 ?>
 
@@ -16,7 +16,7 @@
     :class="$class"
     :rules="$rules"
     :other="$other"
-    :module_key="$module_key"
+    :slug="$slug"
 ></x-modular-forms::module.components.field.input>
 
 

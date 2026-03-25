@@ -1,11 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-$vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
-$threats_in_sa2 = collect($vueData['records'])
+$module->vueData['threats'] = $threats = trans('imet-core::oecm_lists.Threats');
+
+$threats_in_sa2 = collect($module->vueData['records'])
     ->filter(fn(array $item): bool => $item['__count_stakeholders_direct'] !== null
         || $item['__count_stakeholders_indirect'] !== null)
     ->pluck('__threat_key')
@@ -25,7 +28,7 @@ $threats_in_sa2 = collect($vueData['records'])
             <div class="histogram-row__value text-right" style="margin-right: 20px;">
                 <b v-html="threat_stats['{{ $threat_key }}'] || '-'"></b>
             </div>
-            <div class="histogram-row__progress-bar"  v-if="threat_stats['{{ $threat_key }}']!==null">
+            <div class="histogram-row__progress-bar" v-if="threat_stats['{{ $threat_key }}']!==null">
                 <imet_score_bar
                         :value=threat_stats['{{ $threat_key }}']
                         color="#87c89b"
@@ -38,11 +41,11 @@ $threats_in_sa2 = collect($vueData['records'])
     @endforeach
 </div>
 
-@include('modular-forms::module.edit.type.table', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.table', ['definitions' => $definitions])
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.evaluation.Threats(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.evaluation.Threats(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

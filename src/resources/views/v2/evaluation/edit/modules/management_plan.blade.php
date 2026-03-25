@@ -1,7 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 $vue_record_index = '0';
 
 ?>
@@ -50,7 +54,7 @@ $vue_record_index = '0';
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.ManagementPlan(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

@@ -12,9 +12,9 @@
 
 namespace ImetCore\Services\Scores;
 
-use ImetCore\Models\Imet\v1\Imet as ImetV1;
-use ImetCore\Models\Imet\v2\Imet as ImetV2;
-use ImetCore\Models\Imet\oecm\Imet as ImetOecm;
+use ImetCore\Models\Imet\ImetOecm\Imet as ImetOecm;
+use ImetCore\Models\Imet\ImetV1\Imet as ImetV1;
+use ImetCore\Models\Imet\ImetV2\Imet as ImetV2;
 use ImetCore\Services\Assessment\ImetAssessment;
 use ImetCore\Services\Assessment\OecmAssessment;
 use ImetCore\Services\Scores\Functions\_Scores;
@@ -44,6 +44,7 @@ class AssessmentsScores
         } else {
             $class = 'score_success';
         }
+
         return $class;
     }
 
@@ -70,7 +71,7 @@ class AssessmentsScores
             $class = 'score_very_high_danger';
         } elseif ($value < 0) {
             $class = 'score_high_danger';
-        } elseif ($value == 0) {
+        } elseif ($value === 0) {
             $class = 'score_danger';
         } elseif ($value <= 33.3) {
             $class = 'score_alert';
@@ -79,8 +80,7 @@ class AssessmentsScores
         } else {
             $class = 'score_success';
         }
+
         return $class;
     }
-
-
 }

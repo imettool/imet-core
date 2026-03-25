@@ -5,7 +5,7 @@
 /** @var ?string $other [optional] */
 /** @var ?string $rules [optional] */
 /** @var string $type */
-/** @var string $module_key */
+/** @var string $slug */
 
 $score = "records[index]['__score']";
 
@@ -18,7 +18,7 @@ $score = "records[index]['__score']";
     :class="$class"
     :rules="$rules"
     :other="$other"
-    :module_key="$module_key"
+    :slug="$slug"
 ></x-modular-forms::module.components.field.input>
 
 <div class="text-left text-xs" style="padding: 4px 4px 0 4px;">

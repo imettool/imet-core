@@ -12,7 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\oecm;
 
-use ImetCore\Models\Imet\oecm\Modules\Context\ManagementRelativeImportance;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\ManagementRelativeImportance;
 
 trait _Common
 {

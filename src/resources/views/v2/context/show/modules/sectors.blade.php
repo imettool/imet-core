@@ -1,17 +1,20 @@
-@php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+<?php
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-use \ImetCore\Helpers\Template;
-use \ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
-$table_id = 'table_' . $definitions['module_key'];
-$area = \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($collection[0]->FormID);
+$table_id = 'table_' . $definitions['slug'];
+$area = Areas::getArea($records[0]->FormID);
 $sumUnderControlArea = 0;
 $UnderControlPatrolKm = 0;
 $UnderControlPatrolManDay = 0;
-@endphp
+?>
 
 <table id="{{ $table_id }}" class="table module-table">
 
@@ -114,6 +117,6 @@ $UnderControlPatrolManDay = 0;
 
 </table>
 
-@include('modular-forms::module.show.type.commons', compact(['definitions', 'records']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])
 
 <?php

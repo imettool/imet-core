@@ -1,7 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $records */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 
 use Wa72\HtmlPageDom\HtmlPageCrawler;
@@ -11,22 +15,22 @@ $dom = HtmlPageCrawler::create(
     \Wa72\HtmlPageDom\Helpers::trimNewlines($page)
 );
 
-$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use($records): void {
+$dom->filter('tbody > tr.module-table-item')->each(function ($tr, $index) use ($records): void {
 
     $input = isset($records[$index]['_rank'])
         ? '<div class="text-left" style="padding: 4px;">
-                <b class="highlight">'.round($records[$index]['_rank'], 2).'</b>&nbsp;&nbsp;
+                <b class="highlight">' . round($records[$index]['_rank'], 2) . '</b>&nbsp;&nbsp;
                 <span style="font-size: 0.85em; font-style: italic; ">
-                    ('.trans('imet-core::v2_context.MenacesPressions.fields.Impact').': <b>'.$records[$index]['_Impact'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.MenacesPressions.fields.Extension').': <b>'.$records[$index]['_Extension'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.MenacesPressions.fields.Duration').': <b>'.$records[$index]['_Duration'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.MenacesPressions.fields.Trend').': <b>'.$records[$index]['_Trend'].'</b>,&nbsp;&nbsp;
-                    '.trans('imet-core::v2_context.MenacesPressions.fields.Probability').': <b>'.$records[$index]['_Probability'].'</b>)
+                    (' . trans('imet-core::v2_context.MenacesPressions.fields.Impact') . ': <b>' . $records[$index]['_Impact'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.MenacesPressions.fields.Extension') . ': <b>' . $records[$index]['_Extension'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.MenacesPressions.fields.Duration') . ': <b>' . $records[$index]['_Duration'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.MenacesPressions.fields.Trend') . ': <b>' . $records[$index]['_Trend'] . '</b>,&nbsp;&nbsp;
+                    ' . trans('imet-core::v2_context.MenacesPressions.fields.Probability') . ': <b>' . $records[$index]['_Probability'] . '</b>)
                 </span>
             </div>'
         : '';
 
-    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void{
+    $tr->filter('td')->first()->each(function ($td, $j) use ($input): void {
         $td->append($input);
     });
 });

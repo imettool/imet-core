@@ -12,9 +12,10 @@
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
 /** @var Array $governance */
+
 /** @var Array $stake_analysis */
 
-use ImetCore\Models\Imet\oecm\Imet;
+use ImetCore\Models\Imet\ImetOecm\Imet;
 
 ?>
 

@@ -3,40 +3,40 @@
 use ImetCore\Controllers;
 use ImetCore\Helpers\Template;
 use ImetCore\Models\Imet;
-use ImetCore\Models\Imet\v1;
-use ImetCore\Models\Imet\v2;
-use ImetCore\Models\Imet\oecm;
+use ImetCore\Models\Imet\ImetV1;
+use ImetCore\Models\Imet\ImetV2;
+use ImetCore\Models\Imet\ImetOecm;
 use ModularForms\Helpers\Module;
 
-/** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
-/** @var v1\Imet|v2\Imet|oecm\Imet $primary_form */
+/** @var Controllers\Imet\ImetV1\Controller|Controllers\Imet\ImetV2\Controller|Controllers\Imet\ImetOecm\Controller $controller */
+/** @var ImetV1\Imet|ImetV2\Imet|ImetOecm\Imet $primary_form */
 /** @var int[] $duplicated_forms */
 
 
 if ($primary_form->version === Imet\Imet::IMET_V1) {
     $all_modules = Module::getModulesList([
-        v1\Imet::$modules,
-        v1\Imet_Eval::$modules,
+        ImetV1\Imet::$modules,
+        ImetV1\Imet_Eval::$modules,
     ]);
-    $imet_class = v1\Imet::class;
-    $merge_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'merge';
-    $merge_view_route = Controllers\Imet\v1\Controller::ROUTE_PREFIX . 'merge_view';
+    $imet_class = ImetV1\Imet::class;
+    $merge_route = Controllers\Imet\ImetV1\Controller::ROUTE_PREFIX . 'merge';
+    $merge_view_route = Controllers\Imet\ImetV1\Controller::ROUTE_PREFIX . 'merge_view';
 } elseif ($primary_form->version === Imet\Imet::IMET_V2) {
     $all_modules = Module::getModulesList([
-        v2\Imet::$modules,
-        v2\Imet_Eval::$modules,
+        ImetV2\Imet::$modules,
+        ImetV2\Imet_Eval::$modules,
     ]);
-    $imet_class = v2\Imet::class;
-    $merge_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'merge';
-    $merge_view_route = Controllers\Imet\v2\Controller::ROUTE_PREFIX . 'merge_view';
+    $imet_class = ImetV2\Imet::class;
+    $merge_route = Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX . 'merge';
+    $merge_view_route = Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX . 'merge_view';
 } elseif ($primary_form->version === Imet\Imet::IMET_OECM) {
     $all_modules = Module::getModulesList([
-        oecm\Imet::$modules,
-        oecm\Imet_Eval::$modules,
+        ImetOecm\Imet::$modules,
+        ImetOecm\Imet_Eval::$modules,
     ]);
-    $imet_class = oecm\Imet::class;
-    $merge_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'merge';
-    $merge_view_route = Controllers\Imet\oecm\Controller::ROUTE_PREFIX . 'merge_view';
+    $imet_class = ImetOecm\Imet::class;
+    $merge_route = Controllers\Imet\ImetOecm\Controller::ROUTE_PREFIX . 'merge';
+    $merge_view_route = Controllers\Imet\ImetOecm\Controller::ROUTE_PREFIX . 'merge_view';
 }
 
 if (!function_exists('get_quoted_responsible')) {
@@ -44,7 +44,7 @@ if (!function_exists('get_quoted_responsible')) {
     function get_quoted_responsible(int $form_id, string $version): string
     {
         if ($version === Imet\Imet::IMET_OECM) {
-            $responsible = oecm\Imet::getResponsibles($form_id, $version);
+            $responsible = ImetOecm\Imet::getResponsibles($form_id, $version);
         } else {
             $responsible = Imet\Imet::getResponsibles($form_id, $version);
         }

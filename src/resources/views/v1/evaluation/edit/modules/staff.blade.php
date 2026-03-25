@@ -1,13 +1,15 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $group_key = '';
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
-$status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
+$status_id = "'" . $definitions['slug'] . "_'+index+'___status'";
 
 ?>
 
@@ -40,9 +42,9 @@ $status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
 
         <td>
             <x-modular-forms::module.components.field.input
-                type="disabled"
-                value="records[index].__status"
-                :id="$status_id"
+                    type="disabled"
+                    value="records[index].__status"
+                    :id="$status_id"
             ></x-modular-forms::module.components.field.input>
         </td>
 
@@ -65,19 +67,18 @@ $status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
         </td>
 
 
-
         <td>
             {{-- group_key_field (for GROUP_TABLE)  --}}
             @if($definitions['module_type']==='GROUP_TABLE')
                 <x-modular-forms::module.components.field.input
-                    type="hidden"
-                    :value="'item.'.$definitions['group_key_field']"
+                        type="hidden"
+                        :value="'item.'.$definitions['group_key_field']"
                 ></x-modular-forms::module.components.field.input>
             @endif
             {{-- record id  --}}
             <x-modular-forms::module.components.field.input
-                type="hidden"
-                :value="'item.'.$definitions['primary_key']"
+                    type="hidden"
+                    :value="'item.'.$definitions['primary_key']"
             ></x-modular-forms::module.components.field.input>
         </td>
     <tr>
@@ -87,7 +88,7 @@ $status_id = "'" . $definitions['module_key'] . "_'+index+'___status'";
 </table>
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
-    :definitions="$definitions"
+    :module="$module"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

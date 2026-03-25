@@ -1,25 +1,27 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
+
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Helpers\SelectionList;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ModularForms\Enums\ModuleViewModes;
 
-$vueData['SubGovernanceModel_SelectionList'] = SelectionList::getCustomList('ImetOECM_SubGovernanceModel');
+$module->vueData['SubGovernanceModel_SelectionList'] = SelectionList::getList('ImetOECM_SubGovernanceModel');
 
 ?>
 <div class="text-2xl font-bold highlight mb-3">@lang('imet-core::v2_context.Governance.governance')</div>
-@include('modular-forms::module.edit.type.commons', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.commons', ['definitions' => $definitions])
 
 <div class="text-2xl font-bold highlight mb-3">@lang('imet-core::v2_context.Governance.partnership')</div>
-@include('modular-forms::module.edit.type.accordion', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.accordion', ['definitions' => $definitions])
 
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.Governance(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.context.Governance(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

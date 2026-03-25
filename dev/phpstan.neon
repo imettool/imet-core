@@ -8,5 +8,10 @@ parameters:
         - app
         - package/imet-core/src
 
+    ignoreErrors:
+        -
+            identifier: larastan.noEnvCallsOutsideOfConfig
+            path: app/Providers/AppServiceProvider.php
+
 # Note: file src/Models/Imet/Components/Modules/ImetModule.php raise 4 errors on constant override, but they are false positives
 #       See https://github.com/phpstan/phpstan/issues/13119

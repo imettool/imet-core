@@ -1,15 +1,15 @@
 <?php
 
-use \ImetCore\Controllers;
-use \ImetCore\Models;
-use \ModularForms\Enums\ModuleViewModes;
+use ImetCore\Controllers;
+use ImetCore\Models;
+use ModularForms\Enums\ModuleViewModes;
 
-/** @var Controllers\Imet\v1\Controller|Controllers\Imet\v2\Controller|Controllers\Imet\oecm\Controller $controller */
+/** @var Controllers\Imet\ImetV1\Controller|Controllers\Imet\ImetV2\Controller|Controllers\Imet\ImetOecm\Controller $controller */
 /** @var integer $formID */
-/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module */
-/** @var Models\Imet\v1\Modules\Component\ImetModule|Models\Imet\v2\Modules\Component\ImetModule $module_class as String */
+/** @var Models\Imet\ImetV1\Modules\Component\ImetModule|Models\Imet\ImetV2\Modules\Component\ImetModule $module */
+/** @var Models\Imet\ImetV1\Modules\Component\ImetModule|Models\Imet\ImetV2\Modules\Component\ImetModule $module_class as String */
 
-$modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
+$modal_id = 'imet_' . $formID . '_' . $module_class::getShortClassName();
 ?>
 
 <floating_dialog>
@@ -34,10 +34,10 @@ $modal_id = 'imet_'.$formID.'_'.$module_class::getShortClassName();
             <!-- dialog body -->
             <div class="body text-center">
                 <x-modular-forms::module.container
-                        :controller="$controller"
-                        :module="$module_class"
-                        :formId="$formID"
-                        :mode="ModuleViewModes::SHOW"
+                    :controller="$controller"
+                    :module="$module_class"
+                    :formId="$formID"
+                    :mode="ModuleViewModes::SHOW"
                 ></x-modular-forms::module.container>
             </div>
 

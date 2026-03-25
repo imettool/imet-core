@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\Class_\ConvertStaticToSelfRector;
-use Rector\CodingStyle\Rector\String_\SymplifyQuoteEscapeRector;
+use Rector\CodingStyle\Rector\String_\SimplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
-use Rector\Php81\Rector\Array_\FirstClassCallableRector;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 use RectorLaravel\Rector\Class_\UseForwardsCallsTraitRector;
 use RectorLaravel\Rector\ClassMethod\MakeModelAttributesAndScopesProtectedRector;
@@ -36,12 +36,12 @@ return RectorConfig::configure()
         PATH_TO_DEV.'/bootstrap/cache',
         PATH_TO_PACKAGE.'/Models/Utils/Country.php',    // abstract class, cannot add Override attribute
         ConvertStaticToSelfRector::class,               // Need to review all changes
-        FirstClassCallableRector::class => [
+        ArrayToFirstClassCallableRector::class => [
             PATH_TO_DEV.'/routes',                      // do not convert to first class callable in routes
             PATH_TO_PACKAGE.'/Routes',
         ],
         MakeModelAttributesAndScopesProtectedRector::class,
-        SymplifyQuoteEscapeRector::class => [
+        SimplifyQuoteEscapeRector::class => [
             PATH_TO_PACKAGE.'/Lang',                    // Keep always same quote style in lang files
         ],
     ])

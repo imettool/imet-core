@@ -1,12 +1,11 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
-/** @var array $definitions */
 /** @var int $form_id */
 
-use ImetCore\Controllers\Imet\oecm\Controller;
-use ImetCore\Models\Imet\oecm\Modules\Context\AnalysisStakeholderDirectUsers;
-use ImetCore\Models\Imet\oecm\Modules\Context\Stakeholders;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
+use ImetCore\Controllers\Imet\ImetOecm\Controller;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\AnalysisStakeholderDirectUsers;
+use ImetCore\Models\Imet\ImetOecm\Modules\Context\Stakeholders;
 
 $stakeholders = Stakeholders::calculateWeights($form_id);
 arsort($stakeholders);

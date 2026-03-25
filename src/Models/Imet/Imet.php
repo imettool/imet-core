@@ -29,8 +29,8 @@ use ImetCore\Models\User\Role;
 use ImetCore\Services\Scores\ImetScores;
 use ModularForms\Helpers\Type\Chars;
 use ModularForms\Models\Form;
-
 use Override;
+
 use function session;
 
 /**
@@ -104,7 +104,7 @@ abstract class Imet extends Form
      *
      * @param  array<string>  $relations
      * @param  array<string>  $countries
-     * @return Collection<int, v1\Imet|v2\Imet>
+     * @return Collection<int, ImetV1\Imet|ImetV2\Imet>
      */
     public static function get_assessments_list(Request $request, array $relations = [], bool $only_allowed_wdpas = false, array $countries = []): Collection
     {
@@ -113,8 +113,8 @@ abstract class Imet extends Form
             : null;
 
         // Create a Collection merging v1 and v2 IMETs
-        $list = new Collection();
-        foreach ([v1\Imet::class, v2\Imet::class] as $imet_class) {
+        $list = new Collection;
+        foreach ([ImetV1\Imet::class, ImetV2\Imet::class] as $imet_class) {
             $list = $list->merge(
                 $imet_class::query()
                     ->byRequestParams($request->all())
@@ -130,7 +130,7 @@ abstract class Imet extends Form
                     })
                     ->get()
                     // Replacement for PostgreSQL unaccent() function
-                    ->filter(function ($item) use ($request): bool {
+                    ->filter(function (ImetV1\Imet|ImetV2\Imet $item) use ($request): bool {
                         if ($request->filled('search')) {
                             if (Chars::case_and_accent_insensitive_contains($item['name'], $request->input('search'))) {
                                 return true;
@@ -155,7 +155,7 @@ abstract class Imet extends Form
         $hasDuplicates = static::foundDuplicates();
 
         return static::get_assessments_list($request, ['country', 'encoder', 'responsible_interviewees', 'responsible_interviewers'], true)
-            ->map(function (v1\Imet|v2\Imet $item) use ($hasDuplicates): v1\Imet|v2\Imet {
+            ->map(function (ImetV1\Imet|ImetV2\Imet $item) use ($hasDuplicates): ImetV1\Imet|ImetV2\Imet {
 
                 // Add encoders
                 $item['encoders_responsibles'] = [
@@ -186,19 +186,19 @@ abstract class Imet extends Form
     #[Scope, Override]
     protected function byRequestParams(Builder $query, array $params): void
     {
-        if(array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
+        if (array_key_exists('wdpa', $params) && $params['wdpa'] !== null) {
             $params['wdpa_id'] = $params['wdpa'];
         }
 
         // filters & sort
         $query
-            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('wdpa_id', $params) && $params['wdpa_id'] !== null, function (Builder $q) use ($params): void {
                 $q->where('wdpa_id', $params['wdpa_id']);
             })
-            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('year', $params) && $params['year'] !== null, function (Builder $q) use ($params): void {
                 $q->where('Year', $params['year']);
             })
-            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params) {
+            ->when(array_key_exists('country', $params) && $params['country'] !== null, function (Builder $q) use ($params): void {
                 $q->where('Country', $params['country']);
             })
             ->where('version', static::$version)
@@ -211,13 +211,13 @@ abstract class Imet extends Form
      */
     public static function checkMissingPaData(): void
     {
-        static::query()->where('Country', null)
-            ->orWhere('wdpa_id', null)
-            ->orWhere('name', null)
+        static::query()->where('Country')
+            ->orWhere('wdpa_id')
+            ->orWhere('name')
             ->get()
             ->map(function (Imet $imet): void {
                 $pa = ProtectedAreaNonWdpa::isNonWdpa($imet->wdpa_id)
-                    ? \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
+                    ? ProtectedAreaNonWdpa::query()->find($imet->wdpa_id)
                     : ProtectedArea::getByWdpa($imet->wdpa_id);
                 $imet->Country = $pa->country;
                 $imet->name = $pa->name;
@@ -231,7 +231,7 @@ abstract class Imet extends Form
     public static function getLanguage(string $form_id)
     {
         $session_key = 'imet_language_'.$form_id;
-        $language = session($session_key, null);
+        $language = session($session_key);
         if ($language === null || $language === '') {
             $language = strtolower(static::query()->find($form_id)->language);
             session([$session_key => $language]);
@@ -246,14 +246,14 @@ abstract class Imet extends Form
     public static function getResponsibles($form_id, $version): array
     {
         $internal = $version === static::IMET_V1
-            ? v1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
-            : v2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
+            ? ImetV1\Modules\Context\ResponsablesInterviewers::getNames($form_id)
+            : ImetV2\Modules\Context\ResponsablesInterviewers::getNames($form_id);
         $external = $version === static::IMET_V1
-            ? v1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
-            : v2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
+            ? ImetV1\Modules\Context\ResponsablesInterviewees::getNames($form_id)
+            : ImetV2\Modules\Context\ResponsablesInterviewees::getNames($form_id);
         $encoders = $version === static::IMET_V1
-            ? v1\Encoder::getNames($form_id)
-            : v2\Encoder::getNames($form_id);
+            ? ImetV1\Encoder::getNames($form_id)
+            : ImetV2\Encoder::getNames($form_id);
 
         return [
             'encoders' => $encoders,
@@ -310,13 +310,11 @@ abstract class Imet extends Form
 
     /**
      * Retrieve protected area data
-     *
-     * @return ProtectedAreaNonWdpa|ProtectedArea
      */
-    public static function getProtectedArea($wdpa_id)
+    public static function getProtectedArea($wdpa_id): ProtectedArea|ProtectedAreaNonWdpa
     {
         if (ProtectedAreaNonWdpa::isNonWdpa($wdpa_id)) {
-            $pa = \ImetCore\Models\ProtectedAreaNonWdpa::query()->find($wdpa_id);
+            $pa = ProtectedAreaNonWdpa::query()->find($wdpa_id);
             $pa->wdpa_id = $pa->id;
             $pa->Type = null;
             $pa->iucn_category = null;
@@ -364,7 +362,7 @@ abstract class Imet extends Form
     {
         $records = static::upgradeModules($records, $imet_version);
         $modules_imported = [];
-        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var ImetV2\Modules\Component\ImetModule|ImetV2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $records)) {
                 $modules_imported[] = $module_class::getShortClassName();
@@ -383,7 +381,7 @@ abstract class Imet extends Form
     public static function upgradeModules(array $data, $imet_version = null): array
     {
         $upgraded_data = [];
-        /** @var v2\Modules\Component\ImetModule|v2\Modules\Component\ImetModule_Eval $module_class */
+        /** @var ImetV2\Modules\Component\ImetModule|ImetV2\Modules\Component\ImetModule_Eval $module_class */
         foreach (static::allModules() as $module_class) {
             if (array_key_exists($module_class::getShortClassName(), $data)) {
                 $upgraded_data[$module_class::getShortClassName()]

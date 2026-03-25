@@ -209,7 +209,7 @@ return [
         'marine_current_models' => 'Marine current models',
         'landscape_fragmentation_index' => 'Landscape fragmentation index',
         'transboundary_agreements' => 'Transboundary agreements',
-        'scientific_publications' => 'Scientific publications'
+        'scientific_publications' => 'Scientific publications',
     ],
     'ConnectivityIntegrationInManagementPlan' => [
         'not_considered' => 'Not considered',

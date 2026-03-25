@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\ScalingUp\Common as ModelCommon;
 use ImetCore\Models\Imet\Imet as ImetAlias;
-use ImetCore\Models\Imet\ScalingUp\Analysis\DigitalInformationAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\GroupingAnalysis;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ComparisonProtectedAreaAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementContextAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\DigitalInformationAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\GeneralInfoAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\GroupingAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementContextAnalysis;
+use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\MapViewAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\OverallManagementEffectivenessAnalysis;
-use ImetCore\Models\Imet\ScalingUp\Analysis\ManagementCycleAnalysis;
 use ImetCore\Models\Imet\ScalingUp\Analysis\ProtectedAreaAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class ReportScalingUp
@@ -43,12 +43,6 @@ final class ReportScalingUp
         ];
     }
 
-    /**
-     * @param Request $request
-     * @param string $items
-     * @param int $scaling_up_id
-     * @return void
-     */
     private static function update_custom_names(Request $request, string $items, int $scaling_up_id): void
     {
         $ids = explode(',', $items);
@@ -59,11 +53,6 @@ final class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @param array $areas
-     * @return void
-     */
     private static function save_default_names(int $scaling_up_id, array $areas): void
     {
         $isScalingUpInit = ScalingUpWdpa::retrieve_by_scaling_id($scaling_up_id);
@@ -73,10 +62,6 @@ final class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @return array
-     */
     private static function retrieve_custom_names(int $scaling_up_id): array
     {
         $custom_names = [];
@@ -88,10 +73,6 @@ final class ReportScalingUp
         return $custom_names;
     }
 
-    /**
-     * @param string $items
-     * @return array
-     */
     private static function loadItemsAndScalingUpID(string $items): array
     {
         $item = ModelScalingUpAnalysis::get_scaling_up_by_wdpas($items);
@@ -109,9 +90,6 @@ final class ReportScalingUp
     }
 
     /**
-     * @param Request $request
-     * @param string $items
-     * @return array
      * @throws AuthorizationException
      * @throws \Throwable
      */
@@ -131,33 +109,25 @@ final class ReportScalingUp
     }
 
     /**
-     * @param string $items
      * @throws AuthorizationException
      * @throws \Throwable
-     *
      */
     private static function validateAndPrepareItems(string $items): void
     {
         $itemsArray = explode(',', $items);
         sort($itemsArray);
 
-        static::checkAuthorization($itemsArray);
+        ReportScalingUp::checkAuthorization($itemsArray);
 
         $validItems = array_filter(
             $itemsArray,
-            fn($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists()
+            fn ($value): bool => is_numeric($value) && Imet::query()->where('FormID', $value)->exists()
         );
 
-        abort_if(empty($itemsArray) || count($validItems) !== count($itemsArray), 404);
+        abort_if($itemsArray === [] || (count($validItems) !== count($itemsArray)), 404);
 
     }
 
-    /**
-     * @param Request $request
-     * @param string $areas
-     * @param int $scalingUpId
-     * @return array
-     */
     private static function processProtectedAreas(Request $request, string $areas, int $scalingUpId): array
     {
         $protectedAreas = ModelScalingUpAnalysis::get_protected_area(explode(',', $areas), true);
@@ -165,17 +135,11 @@ final class ReportScalingUp
         self::saveForm($request, $areas, $scalingUpId);
         self::save_default_names($scalingUpId, $protectedAreas['models']);
 
-        uasort($protectedAreas['models'], fn(ImetAlias $a, ImetAlias $b): int => $a['name'] <=> $b['name']);
+        uasort($protectedAreas['models'], fn (ImetAlias $a, ImetAlias $b): int => $a['name'] <=> $b['name']);
 
         return $protectedAreas;
     }
 
-    /**
-     * @param array $protectedAreas
-     * @param array $customData
-     * @param int $scalingUpId
-     * @return array
-     */
     private static function buildReportData(array $protectedAreas, array $customData, int $scalingUpId): array
     {
         [$customColors, $customItems, $customNames, $protectedAreasNames] = $customData;
@@ -193,12 +157,6 @@ final class ReportScalingUp
         ];
     }
 
-    /**
-     * @param Request $request
-     * @param string $items
-     * @param int $scaling_up_id
-     * @return void
-     */
     private static function saveForm(Request $request, string $items, int $scaling_up_id): void
     {
         if ($request->input('save_form')) {
@@ -207,10 +165,6 @@ final class ReportScalingUp
         }
     }
 
-    /**
-     * @param int $scaling_up_id
-     * @return array
-     */
     private static function protectedAreaNames(int $scaling_up_id): array
     {
         $custom_items = self::retrieve_custom_names($scaling_up_id);

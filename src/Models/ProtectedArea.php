@@ -52,7 +52,7 @@ class ProtectedArea extends BaseModel
     #[Scope]
     protected function like(Builder $query, ?string $searchKey = null): void
     {
-        if($searchKey !== null && $searchKey !== ''){
+        if ($searchKey !== null && $searchKey !== '') {
 
             if (is_numeric($searchKey)) {
                 $query->where('wdpa_id', $searchKey);
@@ -131,6 +131,7 @@ class ProtectedArea extends BaseModel
             });
 
         sort($iso3s);
+
         return array_values(array_unique($iso3s));
     }
 

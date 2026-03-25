@@ -12,12 +12,12 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation\EcosystemServices;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\EquipmentMaintenance;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\GovernanceLeadership;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\LawEnforcementImplementation;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\StaffCompetence;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\StakeholderCooperation;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\EcosystemServices;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\GovernanceLeadership;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\LawEnforcementImplementation;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\StaffCompetence;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\StakeholderCooperation;
 
 trait Process
 {

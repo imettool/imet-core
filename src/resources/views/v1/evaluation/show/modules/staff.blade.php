@@ -1,9 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-$table_id = 'table_' . $definitions['module_key'];
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 <table id="{{ $table_id }}" class="table module-table">
@@ -25,29 +29,29 @@ $table_id = 'table_' . $definitions['module_key'];
             {{--  fields  --}}
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][0]['type']"
-                    :value="$record[$definitions['fields'][0]['name']]"
+                        :type="$definitions['fields'][0]['type']"
+                        :value="$record[$definitions['fields'][0]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    type="disabled"
-                    :value="$record['__status']"
+                        type="disabled"
+                        :value="$record['__status']"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][1]['type']"
-                    :value="$record[$definitions['fields'][1]['name']]"
+                        :type="$definitions['fields'][1]['type']"
+                        :value="$record[$definitions['fields'][1]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
 
             <td>
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][2]['type']"
-                    :value="$record[$definitions['fields'][2]['name']]"
+                        :type="$definitions['fields'][2]['type']"
+                        :value="$record[$definitions['fields'][2]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>

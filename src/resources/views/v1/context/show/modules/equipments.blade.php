@@ -1,10 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 $record = $records[0];
-$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['collection' => $collection, 'records' => $records, 'definitions' => $definitions])->render();
+$view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.group_table', ['definitions' => $definitions, 'records' => $records])->render();
 
 $averages = [];
 foreach ($records as $record) {
@@ -23,7 +27,7 @@ foreach ($averages as $group) {
     $number_of_items = count($group);
     $results[$i] = "";
     if ($sum >= 0 && $number_of_items > 0) {
-        $results[$i] = round($sum / count($group),2);
+        $results[$i] = round($sum / count($group), 2);
     }
     $i++;
 }
@@ -36,4 +40,4 @@ foreach ($results as $index => $result) {
 ?>
 
 {!! $view_groupTable !!}
-@include('modular-forms::module.show.type.commons', compact(['collection', 'definitions']))
+@include('modular-forms::module.show.type.commons', ['definitions' => $definitions, 'records' => $records])

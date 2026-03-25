@@ -14,16 +14,14 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
-use ImetCore\Models\Imet\v2\Modules;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ModularForms\Helpers\Locale;
 
-final class GeneralInfoDataProvider implements DataProviderInterface
+final readonly class GeneralInfoDataProvider implements DataProviderInterface
 {
     public function __construct(
         private ?int $scalingId = null
-    )
-    {
-    }
+    ) {}
 
     /**
      * Get general information aggregated from multiple protected areas
@@ -67,11 +65,11 @@ final class GeneralInfoDataProvider implements DataProviderInterface
 
         $generalElements['total_surface_protected_areas'] += $this->getProtectedAreaSurface($formId);
 
-        if (!empty($generalInfoData)) {
+        if ($generalInfoData !== null && $generalInfoData !== []) {
             $this->processGeneralInfo($generalInfoData, $generalElements);
         }
 
-        if (!empty($visionData)) {
+        if ($visionData !== null && $visionData !== []) {
             $this->processVisionData($visionData, $generalInfoData, $generalElements);
         }
     }
@@ -82,6 +80,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
     private function getGeneralInfoData(int $formId): ?array
     {
         $records = Modules\Context\GeneralInfo::getModuleRecords($formId)['records'];
+
         return $records[0] ?? null;
     }
 
@@ -91,6 +90,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
     private function getVisionData(int $formId): ?array
     {
         $records = Modules\Context\Missions::getModuleRecords($formId)['records'];
+
         return $records[0] ?? null;
     }
 
@@ -117,13 +117,13 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addCountry(array $generalInfo, array &$generalElements): void
     {
-        if (!$generalInfo['Country']) {
+        if (! $generalInfo['Country']) {
             return;
         }
 
         $countryName = $this->getCountryName($generalInfo['Country']);
 
-        if ($countryName && !in_array($countryName, $generalElements['countries'], true)) {
+        if ($countryName && ! in_array($countryName, $generalElements['countries'], true)) {
             $generalElements['countries'][] = $countryName;
         }
     }
@@ -135,12 +135,12 @@ final class GeneralInfoDataProvider implements DataProviderInterface
     {
         $country = Country::getByISO($isoCode);
 
-        if (!$country) {
+        if (! $country instanceof Country) {
             return null;
         }
 
         $lang = Locale::lower();
-        $nameField = 'name_' . (trim((string)$lang) === '' ? 'en' : $lang);
+        $nameField = 'name_'.(trim((string) $lang) === '' ? 'en' : $lang);
 
         return $country->$nameField ?? null;
     }
@@ -150,7 +150,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addNetwork(array $generalInfo, array &$generalElements): void
     {
-        if (!empty($generalInfo['CompleteName'])) {
+        if (filled($generalInfo['CompleteName'])) {
             $generalElements['network'][] = $generalInfo['CompleteName'];
         }
     }
@@ -160,7 +160,7 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function addEcoregions(array $generalInfo, array &$generalElements): void
     {
-        if (!empty($generalInfo['Ecoregions'])) {
+        if (filled($generalInfo['Ecoregions'])) {
             $generalElements['eco_regions'][] = $generalInfo['Ecoregions'];
         }
     }
@@ -170,21 +170,21 @@ final class GeneralInfoDataProvider implements DataProviderInterface
      */
     private function processVisionData(array $visionData, ?array $generalInfoData, array &$generalElements): void
     {
-        if (!$generalInfoData || empty($generalInfoData['CompleteName'])) {
+        if (! $generalInfoData || blank($generalInfoData['CompleteName'])) {
             return;
         }
 
         $completeName = $generalInfoData['CompleteName'];
 
-        if (!empty($visionData['LocalMission'])) {
+        if (filled($visionData['LocalMission'])) {
             $generalElements['local_mission'][] = $completeName;
         }
 
-        if (!empty($visionData['LocalObjective'])) {
+        if (filled($visionData['LocalObjective'])) {
             $generalElements['local_objective'][] = $completeName;
         }
 
-        if (!empty($visionData['LocalVision'])) {
+        if (filled($visionData['LocalVision'])) {
             $generalElements['local_vision'][] = $completeName;
         }
     }
@@ -199,4 +199,3 @@ final class GeneralInfoDataProvider implements DataProviderInterface
         );
     }
 }
-

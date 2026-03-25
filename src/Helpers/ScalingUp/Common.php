@@ -14,8 +14,8 @@ namespace ImetCore\Helpers\ScalingUp;
 
 use Illuminate\Support\Facades\Cache;
 use ImetCore\Models\Imet\Imet as ImetAlias;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\v2\Imet;
 use ImetCore\Services\Scores\ImetScores;
 
 final class Common
@@ -108,7 +108,7 @@ final class Common
             if ($value < 0 && ! is_string($value)) {
                 return self::round_number((100 + $value), 3);
             }
-        } elseif (in_array($indicator, ['C2', 'OC2', 'OC3'])) {
+        } elseif (in_array($indicator, ['C2', 'OC2', 'OC3'], true)) {
             return self::round_number(50 + ((float) $value / 2), 3);
         }
 

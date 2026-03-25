@@ -12,6 +12,7 @@
 
 namespace ImetCore\Models\User;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Auth;
 use ImetCore\Models\Country;
@@ -105,7 +106,7 @@ class Role extends BaseModel
     /**
      * Retrieve roles by user id
      *
-     * @return \ImetCore\Models\User\Role[]|\Illuminate\Database\Eloquent\Collection
+     * @return Role[]|Collection
      */
     public static function getByUser($user_id)
     {
@@ -176,7 +177,7 @@ class Role extends BaseModel
     /**
      * Retrieve the allowed wdpas
      *
-     * @return ProtectedArea[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return ProtectedArea[]|array|Collection|null
      */
     public static function allowedWdpas($user = null, bool $only_wdpa = true)
     {
@@ -215,7 +216,7 @@ class Role extends BaseModel
      * Retrieve the allowed countries
      * Returns NULL in case there are no limitations
      *
-     * @return Country[]|array|\Illuminate\Database\Eloquent\Collection|null
+     * @return Country[]|array|Collection|null
      */
     public static function allowedCountries($user = null, bool $only_iso = true)
     {

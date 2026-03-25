@@ -1,15 +1,17 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $group_key = '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
-$theme_id = "'" . $definitions['module_key'] . "_'+index+'_Theme'";
-$staff_number_adequacy_id = "'" . $definitions['module_key'] . "_'+index+'_StaffNumberAdequacy'";
+$theme_id = "'" . $definitions['slug'] . "_'+index+'_Theme'";
+$staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumberAdequacy'";
 
 ?>
 
@@ -28,60 +30,60 @@ $staff_number_adequacy_id = "'" . $definitions['module_key'] . "_'+index+'_Staff
     {{-- inputs --}}
     <tbody class="{{ $group_key }}" v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
 
-        <tr class="module-table-item" v-for="(item, index) in records">
+    <tr class="module-table-item" v-for="(item, index) in records">
 
-            {{--  fields  --}}
-            <td>
-                <x-modular-forms::module.components.field.input
-                    type="disabled"
-                    value="records[index].Theme"
-                    :id="$theme_id"
-                ></x-modular-forms::module.components.field.input>
-            </td>
+        {{--  fields  --}}
+        <td>
+            <x-modular-forms::module.components.field.input
+                type="disabled"
+                value="records[index].Theme"
+                :id="$theme_id"
+            ></x-modular-forms::module.components.field.input>
+        </td>
 
-            <td>
-                <x-modular-forms::module.components.field.input
-                    type="disabled"
-                    value="records[index].StaffNumberAdequacy"
-                    :id="$staff_number_adequacy_id"
-                ></x-modular-forms::module.components.field.input>
-            </td>
+        <td>
+            <x-modular-forms::module.components.field.input
+                type="disabled"
+                value="records[index].StaffNumberAdequacy"
+                :id="$staff_number_adequacy_id"
+            ></x-modular-forms::module.components.field.input>
+        </td>
 
-            <td>
-                @include('modular-forms::module.edit.field.module-to-vue', [
-                    'definitions' => $definitions,
-                    'field' => $definitions['fields'][2],
-                    'vue_record_index' => 'index',
-                    'group_key' => $group_key,
-                    'vue_directives' => 'v-if="records[index].StaffNumberAdequacy!==null"'
-                ])
-            </td>
+        <td>
+            @include('modular-forms::module.edit.field.module-to-vue', [
+                'definitions' => $definitions,
+                'field' => $definitions['fields'][2],
+                'vue_record_index' => 'index',
+                'group_key' => $group_key,
+                'vue_directives' => 'v-if="records[index].StaffNumberAdequacy!==null"'
+            ])
+        </td>
 
-            <td>
-                @include('modular-forms::module.edit.field.module-to-vue', [
-                    'definitions' => $definitions,
-                    'field' => $definitions['fields'][3],
-                    'vue_record_index' => 'index',
-                    'group_key' => $group_key
-                ])
-            </td>
+        <td>
+            @include('modular-forms::module.edit.field.module-to-vue', [
+                'definitions' => $definitions,
+                'field' => $definitions['fields'][3],
+                'vue_record_index' => 'index',
+                'group_key' => $group_key
+            ])
+        </td>
 
 
-            <td>
-                {{-- group_key_field (for GROUP_TABLE)  --}}
-                @if($definitions['module_type']==='GROUP_TABLE')
-                    <x-modular-forms::module.components.field.input
-                        type="hidden"
-                        :value="'item.'.$definitions['group_key_field']"
-                    ></x-modular-forms::module.components.field.input>
-                @endif
-                {{-- record id  --}}
+        <td>
+            {{-- group_key_field (for GROUP_TABLE)  --}}
+            @if($definitions['module_type']==='GROUP_TABLE')
                 <x-modular-forms::module.components.field.input
                     type="hidden"
-                    :value="'item.'.$definitions['primary_key']"
+                    :value="'item.'.$definitions['group_key_field']"
                 ></x-modular-forms::module.components.field.input>
-            </td>
-        <tr>
+            @endif
+            {{-- record id  --}}
+            <x-modular-forms::module.components.field.input
+                type="hidden"
+                :value="'item.'.$definitions['primary_key']"
+            ></x-modular-forms::module.components.field.input>
+        </td>
+    <tr>
     </tbody>
 
     @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 4])
@@ -89,7 +91,7 @@ $staff_number_adequacy_id = "'" . $definitions['module_key'] . "_'+index+'_Staff
 </table>
 
 <x-modular-forms::module.components.script
-    :vue-data="$vueData"
-    :definitions="$definitions"
+    :module="$module"
+    :controller="$controller"
     :mode="$mode"
 ></x-modular-forms::module.components.script>

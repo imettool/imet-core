@@ -1,11 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $vue_record_index = '0';
 
-$vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueData['form_id']);
+$module->vueData['area'] = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::getArea($module->vueData['form_id']);
 
 ?>
 
@@ -43,7 +46,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 
 
 
-<table id="{{ 'table_'.$definitions['module_key'] }}" class="table module-table">
+<table id="{{ 'table_'.$definitions['slug'] }}" class="table module-table">
 
     <tr>
         <td></td>
@@ -64,7 +67,8 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_1"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
         <td></td>
     </tr>
@@ -80,8 +84,10 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_2"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_2"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
@@ -96,9 +102,12 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
                 'vue_record_index' => $vue_record_index
             ])
         </td>
-        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3" class="field-edit field-numeric text-right"/></td>
-        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3" class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="functioning_costs_3"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_financial_plan_3"
+                   class="field-edit field-numeric text-right"/></td>
+        <td><input type="text" disabled="disabled" v-bind:value="estimation_operational_plan_3"
+                   class="field-edit field-numeric text-right"/></td>
         <td></td>
     </tr>
 
@@ -106,7 +115,7 @@ $vueData['area'] = \ImetCore\Models\Imet\v1\Modules\Context\Areas::getArea($vueD
 
 @push('scripts')
     <script type="module">
-        window.imet__v1__context__financial_resources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        window.FinancialResources = (new window.ImetCore.Apps.Modules.ImetV1.context.FinancialResources(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

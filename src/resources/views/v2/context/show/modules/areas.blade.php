@@ -1,12 +1,17 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $records */
+/** @var Areas $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
 
-$record  = $records[0];
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
+
+$record = $records[0];
 
 $area = array_key_exists('FormID', $record)
-    ? \ImetCore\Models\Imet\v2\Modules\Context\Areas::getArea($record['FormID'])
+    ? Areas::getArea($record['FormID'])
     : null;
 $boundaryLength = $record['BoundaryLength'];
 
@@ -21,7 +26,6 @@ $shapeIndex = $module::getShapeIndex($area, $boundaryLength);
             'label' => $field['label'] ?? '',
             'label_width' => $definitions['label_width']
         ])
-
 
         @if($f_index<3)
 

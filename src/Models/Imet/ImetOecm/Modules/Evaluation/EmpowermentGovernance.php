@@ -1,0 +1,57 @@
+<?php
+
+/*
+ * Copyright (C) 2025 European Union
+ * This program is free software: you can redistribute it and/or modify it under the terms of the
+ * EUROPEAN UNION PUBLIC LICENCE v. 1.2 as published by the European Union.
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+ * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the EUROPEAN UNION PUBLIC LICENCE v. 1.2 for
+ * further details. You should have received a copy of the EUROPEAN UNION PUBLIC LICENCE v. 1.2. along with this program.
+ * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
+ */
+
+namespace ImetCore\Models\Imet\ImetOecm\Modules\Evaluation;
+
+use ImetCore\Models\Imet\ImetOecm\Modules;
+use ImetCore\Models\User\Role;
+
+final class EmpowermentGovernance extends Modules\Component\ImetModule_Eval
+{
+    protected $table = 'eval_empowerment_governance';
+
+    public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
+
+    public function __construct(array $attributes = [])
+    {
+
+        $this->module_type = 'GROUP_TABLE';
+        $this->module_code = 'PR3';
+        $this->module_title = trans('imet-core::oecm_evaluation.EmpowermentGovernance.title');
+        $this->module_fields = [
+            ['name' => 'Conditions',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.Conditions')],
+            ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.EvaluationScore')],
+            ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.fields.Comments')],
+        ];
+
+        $this->module_groups = [
+            'group0' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group0'),
+            'group1' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group1'),
+            'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.groups.group2'),
+        ];
+
+        $this->predefined_values = [
+            'field' => 'Conditions',
+            'values' => [
+                'group0' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group0'),
+                'group1' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group1'),
+                'group2' => trans('imet-core::oecm_evaluation.EmpowermentGovernance.predefined_values.group2'),
+            ],
+        ];
+
+        $this->module_info_EvaluationQuestion = trans('imet-core::oecm_evaluation.EmpowermentGovernance.module_info_EvaluationQuestion');
+        $this->module_info_Rating = trans('imet-core::oecm_evaluation.EmpowermentGovernance.module_info_Rating');
+        $this->ratingLegend = trans('imet-core::oecm_evaluation.EmpowermentGovernance.ratingLegend');
+
+        parent::__construct($attributes);
+    }
+}

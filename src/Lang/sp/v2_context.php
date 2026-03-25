@@ -830,7 +830,7 @@ return [
             'group9' => 'Servicios de apoyo',
         ],
         'predefined_values' => [
-            'group0' => ['Suministro de agua ', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) ', 'Alimentación humana  - animal (carne silvestre/de granja, insectos) ', 'Medicamentos y biotecnología azul (aceite de pescado) ', 'Alimentación con peces y ganado (silvestre, de granja, cebo) '],
+            'group0' => ['Suministro de agua ', 'Alimentación humana (tubérculos, frutas, miel, setas, algas, etc.) ', 'Alimentación humana  - animal (carne silvestre/de granja, insectos) ', 'Medicamentos y biotecnología azul (aceite de pescado) ', 'Alimentación con peces y ganado (silvestre, de granja, cebo) ', 'Beneficios indirectos en los caladeros vecinos'],
             'group1' => ['Madera de alto valor ', 'Madera para la construcción local ', 'Fibras del tallo (palmas, tasta, chillca, wamanpito, etc.) ', 'Otras fibras (hojas, kapok, coco, etc.) ', 'Recursos ornamentales y de acuario (colección de semillas, conchas y peces) ', 'Arena (para la construcción) ', 'Algas/conchas ', 'Tierras de cultivo (agricultura, ganadería, bosques) '],
             'group2' => ['Leña y biocombustibles ', 'Generación de energía con agua ', 'Fertilizante '],
             'group3' => ['Regulación de gases (secuestro C)', 'Disposición /Enterramiento/eliminación/neutralización de residuos', 'Regulación de los desechos (absorción de nutrientes)', 'Prevención de la erosión costera'],
@@ -839,7 +839,7 @@ return [
             'group6' => ['Investigación y ciencia', 'Educacional', 'La herencia cultural'],
             'group7' => ['Simbólico o histórico', 'Sagrado y/o religioso'],
             'group8' => ['Conservación ex situ'],
-            'group9' => ['Producción primaria neta (vegetación)', 'Ciclo de nutrientes (descomposición y mineralización de la basura)', 'Hábitats importantes (hábitats de anidación de aves - playas de desove - guardería)', 'Formación del paisaje marino', 'Especies formadoras de hábitat (por ejemplo, corales)', 'Polinización (plantas)', 'Ciclo del agua', 'Paisaje marino: heterogeneidad/complejidad del hábitat (apoyando la diversidad)'],
+            'group9' => ['Producción primaria neta (vegetación)', 'Ciclo de nutrientes (descomposición y mineralización de la basura)', 'Hábitats importantes (hábitats de anidación de aves - playas de desove - guardería)', 'Formación del paisaje marino', 'Especies formadoras de hábitat (por ejemplo, corales)', 'Polinización (plantas)', 'Ciclo del agua', 'Paisaje marino: heterogeneidad/complejidad del hábitat (apoyando la diversidad)', 'Beneficios indirectos en recuperación, reproducción y conectividad de biomasa', 'Conectividad (vínculos ecológicos y continuidad funcional)'],
         ],
         'categories' => [
             'title1' => 'Provisión',

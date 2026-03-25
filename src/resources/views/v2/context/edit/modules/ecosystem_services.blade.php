@@ -1,23 +1,24 @@
 <?php
-/** @var Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 
-use Illuminate\Database\Eloquent\Collection;
-use ImetCore\Models\Imet\v2\Modules\Context\EcosystemServices;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\EcosystemServices;
 use Wa72\HtmlPageDom\Helpers;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 $groups = $definitions['groups'];
-$vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
-$vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
+$module->vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
+$module->vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
 
 function injectSpilloverMessages(string $view, string $label, string $vue_if): string
 {
     $message =
-        '<div class="text-xs mt-1 text-blue-600" v-if='.$vue_if.'>
+        '<div class="text-xs mt-1 text-blue-600" v-if=' . $vue_if . '>
             <i class="fa fa-exclamation-triangle" style="font-size: 1.2em; margin-right: 10px;"></i>
-            <span>'. $label .'</span>
+            <span>' . $label . '</span>
         </div>';
     $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
     $td = $dom->filter('tr.module-table-item td')->eq(0);
@@ -27,8 +28,8 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
 ?>
 
-<!-- Collapsible categories with histograms -->
-<x-modular-forms::accordion.container :id="'accordion_'.$definitions['module_key']">
+        <!-- Collapsible categories with histograms -->
+<x-modular-forms::accordion.container :id="'accordion_'.$definitions['slug']">
 
     @foreach($module::$groupsByCategory as $cat_idx => $category)
 
@@ -41,9 +42,9 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
                     $percentage_value = "categoryStats['" . $cat_idx . "']";
                 @endphp
                 <x-imet-core::score-bar
-                    :label="$category_label"
-                    :score="$score_value"
-                    :percentage="$percentage_value"
+                        :label="$category_label"
+                        :score="$score_value"
+                        :percentage="$percentage_value"
                 ></x-imet-core::score-bar>
             </x-slot:title>
 
@@ -54,14 +55,12 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
                     @php
                         $view = View::make('modular-forms::module.edit.type.table', [
-                            'collection' => $collection,
                             'definitions' => $definitions,
-                            'vueData' => $vueData,
                             'group_key' => $group_key
                         ])->render();
                         $view = injectSpilloverMessages($view, trans('imet-core::v2_context.spillover_waring_message'), 'is_spillover(records[index].Element)');
                         $view = injectSpilloverMessages($view, trans('imet-core::v2_context.connectivity_waring_message'), 'is_connectivity(records[index].Element)');
-                        @endphp
+                    @endphp
                     {!! $view !!}
 
                 @endif
@@ -75,7 +74,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.context.EcosystemServices(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

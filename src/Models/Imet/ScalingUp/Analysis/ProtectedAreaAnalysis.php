@@ -15,8 +15,8 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis;
 use Exception;
 use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Country;
+use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-use ImetCore\Models\Imet\v2\Modules;
 
 /**
  * Handles protected area related analysis
@@ -46,12 +46,14 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
             $items[$k] = $pa->toArray();
             $items[$k]['Country_name'] = Country::getByISO($pa['Country']);
         }
+
         uasort($items, fn (array $a, array $b): int => strnatcmp((string) $a['name'], (string) $b['name']));
 
         return $items;
     }
 
-    public static function data(array $params = []): array{
+    public static function data(array $params = []): array
+    {
         $protected_area = [];
         $categories = [];
 
@@ -71,9 +73,6 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
      */
     public static function getWdpasByFormId(array $form_ids): array
     {
-        return array_map(function ($form_id) {
-            return ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id);
-        }, $form_ids);
+        return array_map(fn ($form_id) => ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id), $form_ids);
     }
 }
-

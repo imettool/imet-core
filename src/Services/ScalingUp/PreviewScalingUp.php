@@ -23,7 +23,7 @@ final class PreviewScalingUp
         $labels = ImetScores::indicators_labels(ImetAlias::IMET_V2);
         if ($records) {
             $wdpas = explode(',', (string) $records->wdpas);
-            static::checkAuthorization($wdpas);
+            self::checkAuthorization($wdpas);
             ModelScalingUpAnalysis::$scaling_id = $id;
 
             $protected_areas = ModelScalingUpAnalysis::get_wdpas_by_form_id($wdpas);

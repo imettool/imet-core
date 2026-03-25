@@ -13,7 +13,7 @@
 namespace ImetCore\Commands;
 
 use Illuminate\Console\Command;
-use ImetCore\Controllers\Imet\v2\Controller as ImetController;
+use ImetCore\Controllers\Imet\ImetV2\Controller as ImetController;
 use ImetCore\Models\Imet\Imet;
 
 class Export extends Command
@@ -31,16 +31,6 @@ class Export extends Command
      * @var string
      */
     protected $description = 'Export IMETs to JSON.';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Execute the console command.

@@ -6,7 +6,7 @@
 /** @var array $countries */
 /** @var array $years */
 
-use \ImetCore\Models\Imet\Imet;
+use ImetCore\Models\Imet\Imet;
 
 ?>
 

@@ -19,13 +19,13 @@ trait CommonFunctions
     /**
      * Standard function for TABLE type modules
      */
-    protected static function score_table(int       $imet_id, $module_class, string $module_field, int $denominator = 3,
-                                          ?callable $transform = null): ?float
+    protected static function score_table(int $imet_id, $module_class, string $module_field, int $denominator = 3,
+        ?callable $transform = null): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->pluck($module_field)
-            ->filter(fn($value): bool => $value != -99)
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);
@@ -45,14 +45,14 @@ trait CommonFunctions
      * Standard function for GROUP type modules
      */
     protected static function score_group(int $imet_id, $module_class, string $module_field, string $group_field,
-                                          ?callable $transform = null): ?float
+        ?callable $transform = null): ?float
     {
         $records = $module_class::getModule($imet_id);
         $values = $records
             ->groupBy($group_field)
             ->map(function ($group) use ($module_field) {
                 $group_values = $group
-                    ->filter(fn(ImetModule $value): bool => $value[$module_field] != -99)
+                    ->filter(fn (ImetModule $value): bool => $value[$module_field] != -99)
                     ->pluck($module_field)
                     ->toArray();
 
@@ -60,7 +60,7 @@ trait CommonFunctions
                     ? static::average($group_values, null)
                     : null;
             })
-            ->filter(fn($value): bool => $value != -99)
+            ->filter(fn ($value): bool => $value != -99)
             ->toArray();
 
         $average = static::average($values, null);

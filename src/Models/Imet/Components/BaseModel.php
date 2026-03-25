@@ -27,5 +27,4 @@ abstract class BaseModel extends Model
     {
         return Database::getTable(static::$schema, parent::getTable());
     }
-
 }

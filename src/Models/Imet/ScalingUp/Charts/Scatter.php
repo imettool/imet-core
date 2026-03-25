@@ -16,13 +16,6 @@ use ImetCore\Helpers\ScalingUp\Common;
 
 final class Scatter
 {
-    /**
-     * @param array $parameters
-     * @param array $assessments
-     * @param bool $not_grouped
-     * @param int $scaling_id
-     * @return array
-     */
     public static function get_scatter_grouping_analysis(array $parameters, array $assessments = [], bool $not_grouped = false, int $scaling_id = 0): array
     {
         $groups = self::extractGroups($parameters);
@@ -65,9 +58,10 @@ final class Scatter
                 $form['name'],
                 $form['color'] ?? null,
                 $form['id'],
-                $form['wdpa_id'] ?? null
+                $form['wdpa_id'] ?? null,
             ];
         }
+
         return $groups;
     }
 

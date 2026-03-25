@@ -13,8 +13,8 @@
 namespace ImetCore\Services\Scores;
 
 use ImetCore\Models\Imet\Imet;
-use ImetCore\Models\Imet\v1\Imet as ImetV1;
-use ImetCore\Models\Imet\v2\Imet as ImetV2;
+use ImetCore\Models\Imet\ImetV1\Imet as ImetV1;
+use ImetCore\Models\Imet\ImetV2\Imet as ImetV2;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\Functions\V1ToV2Scores;
 use ImetCore\Services\Scores\Functions\V2Scores;

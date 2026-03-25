@@ -35,16 +35,6 @@ class CalculateScores extends Command
     protected $description = 'Calculate all IMET and OECM scores.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle(): int

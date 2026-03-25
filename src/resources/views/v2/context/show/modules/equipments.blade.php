@@ -1,9 +1,11 @@
 <?php
-/** @var Collection $collection */
-/** @var array $records */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+/** @var array $records */
 
-use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use ImetCore\Helpers\Math;
@@ -28,9 +30,9 @@ $groups = $definitions['groups'];
                         $group_score = round(Math::records_average($group_records, 'AdequacyLevel'), 2);
                     @endphp
                     <x-imet-core::score-bar
-                        :label="$group_label"
-                        :score="$group_score"
-                        :percentage="$group_score/3*100"
+                            :label="$group_label"
+                            :score="$group_score"
+                            :percentage="$group_score/3*100"
                     ></x-imet-core::score-bar>
                 </div>
             </div>
@@ -46,7 +48,7 @@ $groups = $definitions['groups'];
             </div>
 
         </div>
-        <br />
+        <br/>
 
     @endforeach
 

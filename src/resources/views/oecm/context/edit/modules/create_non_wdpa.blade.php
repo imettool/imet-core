@@ -1,17 +1,20 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 ?>
 
-@include('modular-forms::module.edit.type.simple', compact(['collection', 'vueData', 'definitions']))
+@include('modular-forms::module.edit.type.simple', ['definitions' => $definitions])
 
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.Oecm.CreateNonWDPA(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.Oecm.CreateNonWDPA(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush
 

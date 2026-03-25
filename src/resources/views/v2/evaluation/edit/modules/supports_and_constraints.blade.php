@@ -1,17 +1,19 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
-/** @var array $vueData */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
-/** @var ?string $group_key (optional - only for GROUP_TABLE) */
+
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 $group_key = '';
 
-$table_id = 'table_'.$definitions['module_key'];
+$table_id = 'table_' . $definitions['slug'];
 
 ?>
 @foreach($definitions['groups'] as $group_key => $group_label)
 
-    <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+    <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
     <table id="{{ $table_id }}" class="table module-table">
 
         {{-- labels  --}}
@@ -29,7 +31,7 @@ $table_id = 'table_'.$definitions['module_key'];
         </thead>
 
         {{-- inputs --}}
-        <tbody class="{{ $group_key }}"  v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
+        <tbody class="{{ $group_key }}" v-if="hasRecordsToEvaluate('{{ $definitions['fields'][0]['name'] }}')">
         <template v-for="(item, index) in records">
             <tr class="module-table-item" v-if="recordIsInGroup(item, '{{ $group_key }}')">
                 <td>
@@ -64,8 +66,8 @@ $table_id = 'table_'.$definitions['module_key'];
                         'group_key' => $group_key,
                     ])
                 </td>
-                <td >
-                    <div class="mr-5" ><strong><span v-html="evaluation[index]"></span></strong></div>
+                <td>
+                    <div class="mr-5"><strong><span v-html="evaluation[index]"></span></strong></div>
                 </td>
 
                 <td>
@@ -80,14 +82,14 @@ $table_id = 'table_'.$definitions['module_key'];
                     {{-- group_key_field (for GROUP_TABLE)  --}}
                     @if($definitions['module_type']==='GROUP_TABLE')
                         <x-modular-forms::module.components.field.input
-                            type="hidden"
-                            :value="'item.'.$definitions['group_key_field']"
+                                type="hidden"
+                                :value="'item.'.$definitions['group_key_field']"
                         ></x-modular-forms::module.components.field.input>
                     @endif
                     {{-- record id  --}}
                     <x-modular-forms::module.components.field.input
-                        type="hidden"
-                        :value="'item.'.$definitions['primary_key']"
+                            type="hidden"
+                            :value="'item.'.$definitions['primary_key']"
                     ></x-modular-forms::module.components.field.input>
                 </td>
             <tr>
@@ -98,7 +100,7 @@ $table_id = 'table_'.$definitions['module_key'];
             {{-- add button--}}
             <tr>
                 <td colspan="{{ count($definitions['fields']) + 1 }}">
-                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key" />
+                    <x-modular-forms::module.components.buttons.add-item :group-key="$group_key"/>
                 </td>
             </tr>
             </tfoot>
@@ -106,13 +108,13 @@ $table_id = 'table_'.$definitions['module_key'];
         @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 5])
 
     </table>
-    <br />
-    <br />
+    <br/>
+    <br/>
 @endforeach
 
 @push('scripts')
     <script type="module">
-        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints(@json($vueData)))
-            .mount('#module_{{ $definitions['module_key'] }}');
+        (new window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
     </script>
 @endpush

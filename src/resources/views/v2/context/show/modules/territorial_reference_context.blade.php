@@ -1,12 +1,14 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-$definitions['label_width'] = 7;
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
-use \ImetCore\Helpers\Template;
-use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
+$definitions['label_width'] = 7;
 
 ?>
 
@@ -24,15 +26,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             </div>
 
             {{-- input field --}}
-            <div  class="module-row__input" style="display: flex; align-items: center;">
+            <div class="module-row__input" style="display: flex; align-items: center;">
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][$i]['type']"
-                    :value="$records[0][$definitions['fields'][$i]['name']]"
+                        :type="$definitions['fields'][$i]['type']"
+                        :value="$records[0][$definitions['fields'][$i]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][$i+1]['type']"
-                    :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                        :type="$definitions['fields'][$i+1]['type']"
+                        :value="$records[0][$definitions['fields'][$i+1]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km]
             </div>
@@ -51,15 +53,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             </div>
 
             {{-- input field --}}
-            <div  class="module-row__input" style="display: flex; align-items: center;">
+            <div class="module-row__input" style="display: flex; align-items: center;">
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][$i]['type']"
-                    :value="$records[0][$definitions['fields'][$i]['name']]"
+                        :type="$definitions['fields'][$i]['type']"
+                        :value="$records[0][$definitions['fields'][$i]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$definitions['fields'][$i+1]['type']"
-                    :value="$records[0][$definitions['fields'][$i+1]['name']]"
+                        :type="$definitions['fields'][$i+1]['type']"
+                        :value="$records[0][$definitions['fields'][$i+1]['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 &nbsp;[km]
             </div>
@@ -71,8 +73,8 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
         <div class="font-weight-bold">{{ $field['label'] }}</div>
         <div class="BenefitSocioEconomicAspects">
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
         </div>
 
@@ -98,8 +100,8 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
             </div>
 
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
 
 
@@ -116,8 +118,8 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
             {{-- input field --}}
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$records[0][$field['name']]"
+                    :type="$field['type']"
+                    :value="$records[0][$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
 
         @endcomponent
@@ -128,13 +130,15 @@ use ImetCore\Models\Imet\v2\Modules\Component\ImetModule;
 
 @push('scripts')
     <style lang="postcss">
-        #module_imet__v2__context__territorial_reference_context{
-            .BenefitSocioEconomicAspects{
+        #module_{{ $definitions['slug'] }} {
+            .BenefitSocioEconomicAspects {
                 padding: 10px 10px 40px 10px;
             }
-            .BenefitSocioEconomicAspects span span{
+
+            .BenefitSocioEconomicAspects span span {
                 max-width: 100%;
             }
+
             .Connectivity {
                 ul {
                     margin-left: 20px;

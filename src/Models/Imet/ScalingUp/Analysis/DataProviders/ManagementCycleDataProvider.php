@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\DataTable;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final class ManagementCycleDataProvider implements DataProviderInterface
+final readonly class ManagementCycleDataProvider implements DataProviderInterface
 {
     private const array OPTIONS = [
         'context' => ['height' => '500px'],
@@ -203,16 +203,14 @@ final class ManagementCycleDataProvider implements DataProviderInterface
      */
     private function getTableIndicatorsForType(string $type): array
     {
-        if (!isset(self::TABLE_INDICATORS[$type])) {
+        if (! isset(self::TABLE_INDICATORS[$type])) {
             return [];
         }
 
         $indicators = self::TABLE_INDICATORS[$type];
 
         // Convert indicator keys to empty arrays
-        return array_map(function($group) {
-            return array_fill_keys($group, []);
-        }, $indicators);
+        return array_map(fn ($group) => array_fill_keys($group, []), $indicators);
     }
 
     /**
@@ -222,10 +220,10 @@ final class ManagementCycleDataProvider implements DataProviderInterface
     {
         if (str_contains($type, 'process')) {
             $parts = explode('_', $type);
+
             return $parts[0];
         }
 
         return $type;
     }
 }
-

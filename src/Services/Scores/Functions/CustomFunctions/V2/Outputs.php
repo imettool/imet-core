@@ -12,8 +12,8 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDomination;
-use ImetCore\Models\Imet\v2\Modules\Evaluation\AreaDominationMPA;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AreaDomination;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AreaDominationMPA;
 
 trait Outputs
 {
@@ -50,12 +50,11 @@ trait Outputs
     {
         $values = AreaDominationMPA::getModule($imet_id);
 
-
         $formula = function (AreaDominationMPA $item): int|float {
             $num = (int) $item['Patrol'] +
                 (int) $item['RapidIntervention'] +
-                (($item['DetectionRemoteSensing']==='true' || $item['DetectionRemoteSensing']===true) ? 1 : 0) +
-                (($item['SpecialMeansRapidIntervention']==='true' || $item['SpecialMeansRapidIntervention']===true) ? 1 : 0);
+                (($item['DetectionRemoteSensing'] === 'true' || $item['DetectionRemoteSensing'] === true) ? 1 : 0) +
+                (($item['SpecialMeansRapidIntervention'] === 'true' || $item['SpecialMeansRapidIntervention'] === true) ? 1 : 0);
             $denom = (
                 ($item['Patrol'] === null ? 0 : 3) +
                 ($item['RapidIntervention'] === null ? 0 : 3) +
@@ -65,6 +64,7 @@ trait Outputs
             if ($denom === 0) {
                 return 0;
             }
+
             return $num / $denom * 100;
         };
 

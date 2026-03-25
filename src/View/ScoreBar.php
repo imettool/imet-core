@@ -27,7 +27,7 @@ class ScoreBar extends Component
         public string $color = '#87c89b',
         public int $limitMin = 0,
         public int $limitMax = 100,
-    ){
+    ) {
         $this->isNegative = $limitMin < 0;
     }
 

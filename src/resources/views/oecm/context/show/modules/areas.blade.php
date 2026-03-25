@@ -1,9 +1,13 @@
 <?php
-/** @var \Illuminate\Database\Eloquent\Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-$record  = $records[0];
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
+$record = $records[0];
 
 ?>
 
@@ -15,19 +19,18 @@ $record  = $records[0];
             'label_width' => $definitions['label_width']
         ])
 
-
         @if($f_index>2)
 
             <div style="display: flex; justify-content: space-between;">
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$record[$field['name']]"
+                        :type="$field['type']"
+                        :value="$record[$field['name']]"
                 ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[ha]</div>
 
                 <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$record[$field['name']]/100"
+                        :type="$field['type']"
+                        :value="$record[$field['name']]/100"
                 ></x-modular-forms::module.components.field.input-preview>
                 <div style="margin: 0 40px 0 5px;">[km2]</div>
             </div>
@@ -36,8 +39,8 @@ $record  = $records[0];
 
             {{-- input field --}}
             <x-modular-forms::module.components.field.input-preview
-                :type="$field['type']"
-                :value="$record[$field['name']]"
+                    :type="$field['type']"
+                    :value="$record[$field['name']]"
             ></x-modular-forms::module.components.field.input-preview>
             [km2]
 

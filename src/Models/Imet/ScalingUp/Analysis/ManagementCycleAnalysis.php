@@ -21,9 +21,13 @@ use ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders\ThreatsDataProvider;
 final class ManagementCycleAnalysis extends BaseAnalysis
 {
     public static string $template = 'analysis_per_element_of_them_management_cycle';
+
     public static string $title = 'imet-core::analysis_report.sections.sixth';
+
     public static string $code = '6';
+
     public static string $exclude_elements = '';
+
     public static string $info_label = 'imet-core::analysis_report.guidance.analysis_per_element';
 
     private static function getManagementCycleProvider(?int $scalingId = null): ManagementCycleDataProvider
@@ -42,15 +46,12 @@ final class ManagementCycleAnalysis extends BaseAnalysis
     public static function analysisPerElementOfTheManagementCycle(array $form_ids): array
     {
         $type = array_pop($form_ids);
+
         return self::getManagementCycleProvider()->getAnalysisPerElement($form_ids, $type);
     }
 
-    /**
-     * @param array $params
-     * @return array
-     */
-    public static function data(array $params = []): array{
+    public static function data(array $params = []): array
+    {
         return self::getThreadsProvider()->getThreatsCategoriesAnalysis($params['form_ids']);
     }
 }
-

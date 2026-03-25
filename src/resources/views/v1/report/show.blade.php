@@ -1,5 +1,5 @@
 <?php
-/** @var \ImetCore\Models\Imet\v1\Imet $item */
+/** @var \ImetCore\Models\Imet\ImetV1\Imet $item */
 /** @var array $scores */
 /** @var array $labels */
 /** @var array $key_elements */
@@ -7,7 +7,7 @@
 /** @var array $general_info */
 /** @var array $vision */
 /** @var array $area */
-/** @var bool  $show_general_info */
+/** @var bool $show_general_info */
 /** @var bool $show_non_wdpa */
 /** @var Array $non_wdpa */
 ?>

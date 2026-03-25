@@ -1,8 +1,9 @@
 <?php
 /** @var Imet $item */
+
 /** @var array $scores */
 
-use ImetCore\Models\Imet\v2\Imet;
+use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Services\Scores\Functions\_Scores;
 use ImetCore\Services\Scores\AssessmentsScores;
 

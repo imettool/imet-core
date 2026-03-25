@@ -15,6 +15,7 @@ use Database\Seeders\ProtectedAreaSeeder;
 use Database\Seeders\SpeciesSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use ImetCore\Models\Imet;
 use ImetCore\Models\User\User;
 
@@ -78,8 +79,8 @@ describe('Browse IMET v1', function () {
 
     $routes = getAllRoutes(
         version: Imet\Imet::IMET_V1,
-        steps_context: array_keys(Imet\v1\Imet::$modules),
-        steps_eval: array_keys(Imet\v1\Imet_Eval::$modules)
+        steps_context: array_keys(Imet\ImetV1\Imet::$modules),
+        steps_eval: array_keys(Imet\ImetV1\Imet_Eval::$modules)
     );
 
     foreach ($routes as $route) {
@@ -89,12 +90,12 @@ describe('Browse IMET v1', function () {
             $this->actingAs(User::query()->find(0));
 
             // Retrieve seeded forms
-            $forms = Imet\v1\Imet::all()->pluck('FormID')->toArray();
+            $forms = Imet\ImetV1\Imet::all()->pluck('FormID')->toArray();
 
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }
@@ -117,8 +118,8 @@ describe('Browse IMET v2', function () {
 
     $routes = getAllRoutes(
         version: Imet\Imet::IMET_V2,
-        steps_context: array_keys(Imet\v2\Imet::$modules),
-        steps_eval: array_keys(Imet\v2\Imet_Eval::$modules)
+        steps_context: array_keys(Imet\ImetV2\Imet::$modules),
+        steps_eval: array_keys(Imet\ImetV2\Imet_Eval::$modules)
     );
 
     foreach ($routes as $route) {
@@ -128,12 +129,12 @@ describe('Browse IMET v2', function () {
             $this->actingAs(User::query()->find(0));
 
             // Retrieve seeded forms
-            $forms = Imet\v2\Imet::all()->pluck('FormID')->toArray();
+            $forms = Imet\ImetV2\Imet::all()->pluck('FormID')->toArray();
 
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }
@@ -156,8 +157,8 @@ describe('Browse OECM', function () {
 
     $routes = getAllRoutes(
         version: Imet\Imet::IMET_OECM,
-        steps_context: array_keys(Imet\oecm\Imet::$modules),
-        steps_eval: array_keys(Imet\oecm\Imet_Eval::$modules)
+        steps_context: array_keys(Imet\ImetOecm\Imet::$modules),
+        steps_eval: array_keys(Imet\ImetOecm\Imet_Eval::$modules)
     );
 
     foreach ($routes as $route) {
@@ -167,12 +168,12 @@ describe('Browse OECM', function () {
             $this->actingAs(User::query()->find(0));
 
             // Retrieve seeded forms
-            $forms = Imet\oecm\Imet::all()->pluck('FormID')->toArray();
+            $forms = Imet\ImetOecm\Imet::all()->pluck('FormID')->toArray();
 
             foreach ($forms as $formID) {
 
                 // Visit the route and assert no smoke (no javascript errors and no console logs)
-                $route = \Illuminate\Support\Str::replace('{form-id}', $formID, $route);
+                $route = Str::replace('{form-id}', $formID, $route);
                 $response = visit($route);
                 $response->assertNoSmoke();
             }

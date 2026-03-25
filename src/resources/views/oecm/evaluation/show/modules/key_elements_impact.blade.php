@@ -1,18 +1,20 @@
 <?php
-/** @var Collection $collection */
+/** @var ImetModule $module */
+/** @var string $controller */
+/** @var string $mode */
 /** @var array $definitions */
 /** @var array $records */
 
-use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 ?>
 
 @foreach($definitions['groups'] as $group_key => $group_label)
     <div class="{{ $group_key }}">
 
-        <h5 class="highlight group_title_{{ $definitions['module_key'] }}_{{ $group_key }}">{{ $group_label }}</h5>
+        <h5 class="highlight group_title_{{ $definitions['slug'] }}_{{ $group_key }}">{{ $group_label }}</h5>
 
-        <div id="{{ 'group_table_'.$definitions['module_key'].'_'.$group_key }}">
+        <div id="{{ 'group_table_'.$definitions['slug'].'_'.$group_key }}">
 
             {{-- labels  --}}
             <div class="grid_module">
@@ -26,7 +28,7 @@ use Illuminate\Database\Eloquent\Collection;
             </div>
 
             @php
-                $table_id = 'group_table_'.$definitions['module_key'].'_'.$group_key;
+                $table_id = 'group_table_'.$definitions['slug'].'_'.$group_key;
                 $group_records = array_filter($records, function($item) use ($group_key, $definitions){
                     return $item[$definitions['group_key_field']] === $group_key;
                 });
@@ -39,28 +41,30 @@ use Illuminate\Database\Eloquent\Collection;
 
                         <div style="grid-row-start: 1; grid-row-end: span 2;">
                             <x-modular-forms::module.components.field.input-preview
-                                :type="$definitions['fields'][0]['type']"
-                                :value="$record[$definitions['fields'][0]['name']]"
+                                    :type="$definitions['fields'][0]['type']"
+                                    :value="$record[$definitions['fields'][0]['name']]"
                             ></x-modular-forms::module.components.field.input-preview>
                         </div>
 
-                        <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b></div>
+                        <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b>
+                        </div>
                         @for ($i = 1; $i <= 5; $i++)
                             <div>
                                 <x-modular-forms::module.components.field.input-preview
-                                    :type="$definitions['fields'][$i]['type']"
-                                    :value="$record[$definitions['fields'][$i]['name']]"
+                                        :type="$definitions['fields'][$i]['type']"
+                                        :value="$record[$definitions['fields'][$i]['name']]"
                                 ></x-modular-forms::module.components.field.input-preview>
                             </div>
                         @endfor
 
 
-                        <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
+                        <div class="text-center">
+                            <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
                         @for ($i = 6; $i <= 10; $i++)
                             <div>
                                 <x-modular-forms::module.components.field.input-preview
-                                    :type="$definitions['fields'][$i]['type']"
-                                    :value="$record[$definitions['fields'][$i]['name']]"
+                                        :type="$definitions['fields'][$i]['type']"
+                                        :value="$record[$definitions['fields'][$i]['name']]"
                                 ></x-modular-forms::module.components.field.input-preview>
                             </div>
                         @endfor
@@ -71,8 +75,8 @@ use Illuminate\Database\Eloquent\Collection;
 
         </div>
 
-        <br />
-        <br />
+        <br/>
+        <br/>
 
     </div>
 @endforeach

@@ -1,13 +1,14 @@
 <?php
-
-use ImetCore\Controllers\Imet\Controller;
-use ImetCore\Models\Imet\Imet;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
-
 /** @var Controller $controller */
 /** @var Request $request */
 /** @var Collection $list */
+/** @var array $countries */
+/** @var array $years */
+
+use Illuminate\Support\Collection;
+use ImetCore\Controllers\Imet\Controller;
+use ImetCore\Models\Imet\Imet;
+use Illuminate\Http\Request;
 
 $num_records = count($list);
 $form_class = Imet::class;

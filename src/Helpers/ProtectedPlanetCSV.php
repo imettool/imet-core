@@ -13,30 +13,33 @@ use ZipArchive;
 class ProtectedPlanetCSV
 {
     const int CHUNK_SIZE = 200;
+
     const string LEGACY_GLOBAL_IDS_FILE = 'legacy_global_ids.csv';
 
     /**
      * Update protected areas from a CSV file downloaded from Protected Planet website.
+     *
      * @throws Throwable
      */
     public static function updateFromCSV(string $sourcePath, ?callable $afterChunkExecution = null): void
     {
         // If the source path is a ZIP file, extract the CSV file from it
-        if(str_ends_with($sourcePath, '.zip')) {
+        if (str_ends_with($sourcePath, '.zip')) {
             $csvPath = self::extractZip($sourcePath);
         }
         // Otherwise, assume it's a CSV file
-        elseif(str_ends_with($sourcePath, '.csv')) {
+        elseif (str_ends_with($sourcePath, '.csv')) {
             $csvPath = $sourcePath;
+        } else {
+            throw new ExtractionFromArchiveFailed('unsupported file format: '.$sourcePath);
         }
-        else {
-            throw new ExtractionFromArchiveFailed("unsupported file format: $sourcePath");
-        }
+
         self::parseCSVFile($csvPath, $afterChunkExecution);
     }
 
     /**
      * Parse the CSV file and upsert protected areas into the database
+     *
      * @throws UpdateFromProtectedPlanetCsvFailed
      */
     public static function parseCSVFile(string $csvFilePath, ?callable $afterChunkExecution = null): void
@@ -47,7 +50,7 @@ class ProtectedPlanetCSV
         foreach ($generator->rows(self::CHUNK_SIZE) as $idx => $chunk) {
             /** @var array<int, array<string, mixed>> $chunk */
             $data = collect($chunk)
-                ->map(fn($item) => self::parseProtectedArea($item, $legacyGlobalIds))
+                ->map(fn (array $item): ?array => self::parseProtectedArea($item, $legacyGlobalIds))
                 ->filter()
                 ->all();
             $progress_status = self::calculateProgressStatus($generator->num_rows, $idx);
@@ -55,12 +58,12 @@ class ProtectedPlanetCSV
             try {
                 ProtectedArea::query()
                     ->upsert($data, ['global_id']);
-            } catch (Exception){
+            } catch (Exception) {
                 throw new UpdateFromProtectedPlanetCsvFailed('error while upserting protected areas');
             }
 
             // Optionally, execute a callback after each upsert
-            if($afterChunkExecution !== null) {
+            if ($afterChunkExecution !== null) {
                 $afterChunkExecution($progress_status);
             }
         }
@@ -69,17 +72,17 @@ class ProtectedPlanetCSV
     /**
      * Parse a single protected area from a CSV item and prepare it for upsert
      */
-    private static function parseProtectedArea(array $csv_item, array $legacyGlobalIds): array|null
+    private static function parseProtectedArea(array $csv_item, array $legacyGlobalIds): ?array
     {
         $wdpa_id_key = array_key_exists('WDPAID', $csv_item)
             ? 'WDPAID' : 'SITE_ID';
 
-        if($csv_item['ISO3'] === 'ABNJ') { // Skip "Areas Beyond National Jurisdiction"
+        if ($csv_item['ISO3'] === 'ABNJ') { // Skip "Areas Beyond National Jurisdiction"
             return null;
         }
 
         // Determine the global_id, using legacy IDs if available
-        if(array_key_exists($csv_item[$wdpa_id_key], $legacyGlobalIds)) {
+        if (array_key_exists($csv_item[$wdpa_id_key], $legacyGlobalIds)) {
             $global_id = $legacyGlobalIds[$csv_item[$wdpa_id_key]];
         } else {
             $global_id = $csv_item['ISO3'] !== null && $csv_item[$wdpa_id_key] !== null
@@ -105,22 +108,23 @@ class ProtectedPlanetCSV
      */
     public static function getLegacyGlobalIDs(?callable $afterChunkExecution = null): array
     {
-        $csvFilename = __DIR__ . '/../database/' . self::LEGACY_GLOBAL_IDS_FILE;
+        $csvFilename = __DIR__.'/../database/'.self::LEGACY_GLOBAL_IDS_FILE;
 
-        $legacyGlobalIds = array_map('str_getcsv', file($csvFilename));
-        array_walk($legacyGlobalIds, function(&$a) use ($legacyGlobalIds) {
+        $legacyGlobalIds = array_map(str_getcsv(...), file($csvFilename));
+        array_walk($legacyGlobalIds, function (&$a) use ($legacyGlobalIds): void {
             $a = array_combine($legacyGlobalIds[0], $a);
         });
         array_shift($legacyGlobalIds);
 
         return array_combine(
-            array_map(fn($item) => $item['wdpa_id'], $legacyGlobalIds),
-            array_map(fn($item) => $item['global_id'], $legacyGlobalIds)
+            array_map(fn (array $item) => $item['wdpa_id'], $legacyGlobalIds),
+            array_map(fn (array $item) => $item['global_id'], $legacyGlobalIds)
         );
     }
 
     /**
      * Extract the CSV file from the ZIP archive downloaded from Protected Planet
+     *
      * @throws Throwable
      */
     public static function extractZip(string $zipFilePath): int|string
@@ -128,9 +132,7 @@ class ProtectedPlanetCSV
         // Unzip the file
         $zip = new ZipArchive;
         $zipHandle = $zip->open($zipFilePath, ZipArchive::RDONLY);
-        if( $zipHandle !== true) {
-            throw new ExtractionFromArchiveFailed("cannot open archive $zipFilePath");
-        }
+        throw_if($zipHandle !== true, ExtractionFromArchiveFailed::class, 'cannot open archive '.$zipFilePath);
 
         // Locate the CSV file to extract
         // Protected Planet ZIP files contains 2 CSV files and some folders: the first CSV file (the one to extract) contains the list
@@ -139,24 +141,21 @@ class ProtectedPlanetCSV
         $csvFilename = null;
         for ($i = 0; $i < $zip->numFiles; $i++) {
             $filename = $zip->getNameIndex($i);
-            if (str_ends_with($filename, '.csv') and !str_contains(basename($filename), 'sources')) {
+            if (str_ends_with($filename, '.csv') && ! str_contains(basename($filename), 'sources')) {
                 $csvFilename = $filename;
                 break;
             }
         }
-        if($csvFilename === null) {
-            throw new ExtractionFromArchiveFailed("cannot locate CSV file $csvFilename in archive $zipFilePath");
-        }
+
+        throw_if($csvFilename === null, ExtractionFromArchiveFailed::class, sprintf('cannot locate CSV file %s in archive %s', $csvFilename, $zipFilePath));
 
         // Extract the CSV file
         $destinationFilePath = Storage::disk('temp')->path('');
         $zip->extractTo($destinationFilePath, $csvFilename);
         $zip->close();
-        if (! file_exists($destinationFilePath)) {
-            throw new ExtractionFromArchiveFailed("extraction of archive $zipFilePath failed");
-        }
+        throw_unless(file_exists($destinationFilePath), ExtractionFromArchiveFailed::class, sprintf('extraction of archive %s failed', $zipFilePath));
 
-        return $destinationFilePath . $csvFilename;
+        return $destinationFilePath.$csvFilename;
     }
 
     /**
@@ -166,7 +165,7 @@ class ProtectedPlanetCSV
     {
         $progress = intval((($chunk_index + 1) * self::CHUNK_SIZE / $num_rows) * 100);
         $progress = ($progress / 100 * 80) + 10;     // CSV parsing takes 80% of the job progress, starting from 10%
+
         return round($progress);
     }
-
 }
