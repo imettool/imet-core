@@ -67,7 +67,7 @@ class SpeciesUpdater
      */
     public static function insertSpeciesAndVernacularNames(string $jobId, bool $verbose = false): void
     {
-        self::dispatchEvent(jobId: $jobId, progress: 1);
+        static::dispatchEvent(jobId: $jobId, progress: 1);
 
         // Upsert species data from CSV
         self::upsertSpeciesFromCSV($jobId, $verbose);
@@ -83,6 +83,7 @@ class SpeciesUpdater
             ->delete();
 
         // Remove all duplicates
+        static::logInfo('Removing species duplicates', $verbose);
         $table = new Species()->getTable();
         $duplicates = DB::table($table.' as t1')
             ->join($table.' as t2', function ($join) {
@@ -121,7 +122,7 @@ class SpeciesUpdater
                 // Update job progress
                 $partial_progress = intval((($idx + 1) * self::CHUNK_SIZE / $generator->num_rows) * 100);
                 $total_progress = ($partial_progress / 100 * 50); // CSV parsing takes 50% of the job progress
-                self::dispatchEvent(jobId: $jobId, progress: $total_progress);
+                static::dispatchEvent(jobId: $jobId, progress: $total_progress);
             }
 
         } else {
@@ -150,7 +151,7 @@ class SpeciesUpdater
                 // Update job progress
                 $partial_progress = intval((($idx + 1) * self::CHUNK_SIZE / $generator->num_rows) * 100);
                 $total_progress = ($partial_progress / 100 * 50) + 50; // CSV parsing takes 50% of the job progress, starting from 50%
-                self::dispatchEvent(jobId: $jobId, progress: $total_progress);
+                static::dispatchEvent(jobId: $jobId, progress: $total_progress);
             }
 
         } else {
@@ -174,7 +175,7 @@ class SpeciesUpdater
         }
     }
 
-    protected static function dispatchEvent($jobId, int $progress): void
+    protected static function dispatchEvent($jobId, float $progress): void
     {
         // Do nothing: this method is intended to be overridden in IMET Offline
     }
