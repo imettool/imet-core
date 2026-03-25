@@ -1,18 +1,20 @@
 <?php
-/** @var array $definitions */
+/** @var ImetModule $module */
+
+use ImetCore\Helpers\Template;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+
 ?>
 
 <div class="module-header">
-    @if($definitions['module_code']!==null)
+    @if($module->module_code!==null)
         <div class="module-code text-center">
-            {!! ucfirst($definitions['module_code']) !!}
+            {!! ucfirst($module->module_code) !!}
         </div>
     @endif
     <div class="module-title">
-        @if(array_key_exists('module_scope', $definitions))
-            {!! \ImetCore\Helpers\Template::module_scope($definitions['module_scope']) !!}&nbsp;
-        @endif
-        {!! ucfirst($definitions['module_title']) !!}
+        {!! Template::module_scope($module::MODULE_SCOPE) !!}
+        {!! ucfirst($module->module_title) !!}
     </div>
 
 </div>

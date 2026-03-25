@@ -44,14 +44,6 @@ class ImetModule extends Module
 
     public const ?string MODULE_SCOPE = self::TERRESTRIAL_AND_MARINE;
 
-    public const string SCRIPT_EDIT_BLADE_VIEW = 'imet-core::components.module.edit.script';
-
-    public const string SCRIPT_SHOW_BLADE_VIEW = 'imet-core::components.module.show.script';
-
-    public const string INPUT_COMPONENT_VIEW = CustomInput::class;
-
-    public const string INPUT_PREVIEW_COMPONENT_VIEW = CustomInputPreview::class;
-
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_FULL;
 
     protected static ?string $schema = null;
@@ -71,14 +63,18 @@ class ImetModule extends Module
 
     public $module_info_Rating;
 
-    // Override modular-forms views
-    public const string MODULE_TITLE_VIEW = 'imet-core::components.module.components.title';
+    // Override modular-forms views components and blade views
+    public const string INPUT_COMPONENT_VIEW = CustomInput::class;
 
-    public const string MODULE_INFO_BAR_VIEW = 'imet-core::components.module.components.bars.info';
+    public const string INPUT_PREVIEW_COMPONENT_VIEW = CustomInputPreview::class;
 
-    public const string MODULE_SCRIPT_EDIT_VIEW = 'imet-core::components.module.edit.script';
+    public const string SCRIPT_EDIT_BLADE_VIEW = 'imet-core::components.module.edit.script';
 
-    public const string MODULE_SCRIPT_SHOW_VIEW = 'imet-core::components.module.show.script';
+    public const string SCRIPT_SHOW_BLADE_VIEW = 'imet-core::components.module.show.script';
+
+    public const string TITLE_BLADE_VIEW = 'imet-core::components.module.components.title';
+
+    public const string INFO_BAR_BLADE_VIEW = 'imet-core::components.module.components.bars.info';
 
     /**
      * Override: get the table name with schema

@@ -1,26 +1,30 @@
 <?php
-/** @var array $definitions */
+/** @var ImetModule $module */
+
+use Illuminate\Support\Str;
+use ImetCore\Models\Imet\Components\Modules\ImetModule;
+use ModularForms\Helpers\Template;
 
 ?>
 
 {{-- Custom view for IMET v1 --}}
-@if(\Illuminate\Support\Str::startsWith($definitions['slug'], 'imet__v1'))
-    @include('imet-core::v1.info', ['$definitions' => $definitions])
+@if(Str::startsWith($module->getSlug(), 'imet__v1'))
+    @include('imet-core::v1.info', ['$module' => $module])
 
-{{-- Custom view for IMET v2 or OECM --}}
-@elseif(\Illuminate\Support\Str::startsWith($definitions['slug'], 'imet__v2')
-    || \Illuminate\Support\Str::startsWith($definitions['slug'], 'imet__oecm'))
-    @include('imet-core::components.info', ['$definitions' => $definitions])
+    {{-- Custom view for IMET v2 or OECM --}}
+@elseif(Str::startsWith($module->getSlug(), 'imet__v2')
+    || Str::startsWith($module->getSlug(), 'imet__oecm'))
+    @include('imet-core::components.info', ['$module' => $module])
 
-@elseif($definitions['module_info']!==null)
+@elseif($module->module_info!==null)
 
     {{-- #########  Standard vendor (modular-forms) view ######### --}}
     <div class="module-bar info-bar">
         <div class="icon">
-            {!! \ModularForms\Helpers\Template::icon('info-circle', '', '1.4em') !!}
+            {!! Template::icon('info-circle', '', '1.4em') !!}
         </div>
         <div class="message">
-            {!! $definitions['module_info'] !!}
+            {!! $module->module_info !!}
         </div>
     </div>
 
