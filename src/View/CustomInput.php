@@ -26,7 +26,6 @@ class CustomInput extends Input
     #[\Override]
     public function render(): View
     {
-
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa')) {
             $countries = SelectionList::CacheListInSession('ImetV2_PaCountry');
@@ -45,6 +44,11 @@ class CustomInput extends Input
         // Radio button
         if (Str::contains($this->type, 'radio')) {
             return view('imet-core::components.inputs.radio');
+        }
+
+        // Version
+        if(Str::startsWith($this->type, 'version-')) {
+            return view('imet-core::components.inputs-preview.version-'.Str::replaceFirst('version-', '', $this->type));
         }
 
         return parent::render();

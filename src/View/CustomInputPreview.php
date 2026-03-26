@@ -24,7 +24,6 @@ class CustomInputPreview extends InputPreview
     #[\Override]
     public function render(): View
     {
-
         // Wdpa selector
         if (Str::contains($this->type, 'selector-wdpa_multiple')) {
             $list = '';
@@ -52,6 +51,11 @@ class CustomInputPreview extends InputPreview
             $list = SelectionList::getList($list_type);
 
             return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
+        }
+
+        // Version
+        if(Str::startsWith($this->type, 'version-')) {
+            return view('imet-core::components.inputs-preview.version-'.Str::replaceFirst('version-', '', $this->type));
         }
 
         return parent::render();

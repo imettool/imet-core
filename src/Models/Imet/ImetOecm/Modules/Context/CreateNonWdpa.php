@@ -34,7 +34,7 @@ final class CreateNonWdpa extends Modules\Component\ImetModule
         $this->module_type = 'SIMPLE';
         $this->module_title = trans('imet-core::oecm_context.CreateNonWdpa.title');
         $this->module_fields = [
-            ['name' => 'version',       'type' => 'blade-imet-core::oecm.context.fields.version', 'label' => trans('imet-core::oecm_context.CreateNonWdpa.fields.version')],
+            ['name' => 'version',       'type' => 'version-oecm', 'label' => trans('imet-core::oecm_context.CreateNonWdpa.fields.version')],
             ['name' => 'Year',          'type' => 'yearMaxCurrent',                             'label' => trans('imet-core::oecm_context.CreateNonWdpa.fields.Year')],
             ['name' => 'language',      'type' => 'toggle-ImetOECM_languages',                    'label' => trans('imet-core::oecm_context.CreateNonWdpa.fields.language')],
             ['name' => 'pa_def',        'type' => 'dropdown-ImetV2_NonWdpaPaDef',               'label' => trans('imet-core::oecm_context.CreateNonWdpa.fields.pa_def')],
