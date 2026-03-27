@@ -18,6 +18,8 @@ final class ManagementEffectivenessAnalysis extends ImetModule_Report
 {
     protected $table = 'report_management_effectiveness_analysis';
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.report.edit.modules.management_effectiveness_analysis';
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'SIMPLE';
