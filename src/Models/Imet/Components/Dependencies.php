@@ -85,14 +85,12 @@ trait Dependencies
         // Get list of values (of reference field) from DB, from updated records and emptied
         $existing_values = static::getModule($form_id)->pluck($dependency_on)->unique()->toArray();
         $updated_values = collect($records)->pluck($dependency_on)->unique()->values()->toArray();
-        $empty_values = collect($records)->filter(function ($item){
-            return new static()->isEmptyRecord($item);
-        })->pluck($dependency_on)->unique()->values()->toArray();
+        $empty_values = collect($records)->filter(fn ($item) => new static()->isEmptyRecord($item))->pluck($dependency_on)->unique()->values()->toArray();
 
         // Make diff to find out what to drop
         $to_be_dropped = [
             ...array_diff($existing_values, $updated_values),
-            ...array_intersect($existing_values, $empty_values )
+            ...array_intersect($existing_values, $empty_values),
         ];
 
         return array_values($to_be_dropped);

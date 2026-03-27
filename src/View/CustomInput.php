@@ -27,7 +27,7 @@ class CustomInput extends Input
     #[\Override]
     public function render(): View
     {
-        if(Str::startsWith($this->type, 'custom::')) {
+        if (Str::startsWith($this->type, 'custom::')) {
 
             $type = Str::replace('custom::', '', $this->type);
 
@@ -52,6 +52,7 @@ class CustomInput extends Input
             if (Str::contains($type, 'radio')) {
                 $list_type = Str::replace('radio-', '', $type);
                 $list = SelectionList::getList($list_type);
+
                 return view('imet-core::components.inputs.radio', ['list' => $list]);
             }
 
@@ -59,7 +60,7 @@ class CustomInput extends Input
 
             // Version
             if (Str::startsWith($type, 'version-')) {
-                return view('imet-core::components.inputs-preview.version-' . Str::replaceFirst('version-', '', $type));
+                return view('imet-core::components.inputs-preview.version-'.Str::replaceFirst('version-', '', $type));
             }
 
             // Designation (shared v2/oecm)

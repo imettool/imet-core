@@ -120,6 +120,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
             || $record['ImportanceGlobal'] !== null) {
             return false;
         }
+
         return true;
     }
 

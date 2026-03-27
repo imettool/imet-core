@@ -132,9 +132,8 @@ class ImetModule extends Module
     public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
         $vue_data = parent::getVueData($form_id, $data, $definitions);
-        $vue_data = static::warningOnSave($vue_data);
 
-        return $vue_data;
+        return static::warningOnSave($vue_data);
     }
 
     /**

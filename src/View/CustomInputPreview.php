@@ -25,7 +25,7 @@ class CustomInputPreview extends InputPreview
     #[\Override]
     public function render(): View
     {
-        if(Str::startsWith($this->type, 'custom::')) {
+        if (Str::startsWith($this->type, 'custom::')) {
 
             $type = Str::replace('custom::', '', $this->type);
 
@@ -35,7 +35,7 @@ class CustomInputPreview extends InputPreview
             if (Str::contains($type, 'selector-wdpa_multiple')) {
                 $list = '';
                 if (filled($this->value)) {
-                    $list = array_map(fn(string $v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
+                    $list = array_map(fn (string $v) => ProtectedArea::getByWdpa($v)->name, explode(',', $this->value));
                     $list = implode(', ', $list);
                 }
 
@@ -64,7 +64,7 @@ class CustomInputPreview extends InputPreview
 
             // Version
             if (Str::startsWith($type, 'version-')) {
-                return view('imet-core::components.inputs-preview.version-' . Str::replaceFirst('version-', '', $type));
+                return view('imet-core::components.inputs-preview.version-'.Str::replaceFirst('version-', '', $type));
             }
 
             // V2 key element preview
@@ -83,7 +83,7 @@ class CustomInputPreview extends InputPreview
             }
 
             // Fallback to parent in case a custom input for EDIT exists but not necessary in SHOW
-            if(in_array($type, [
+            if (in_array($type, [
                 'sub-governance-model',
                 'management-equipment-adequacy-equipment',
                 'management-equipment-adequacy-score',
@@ -92,7 +92,7 @@ class CustomInputPreview extends InputPreview
                 'v2-ecosystem-services-intervention',
                 'oecm-support-integration-stakeholder-with-ranking',
                 'oecm-threat-with-ranking',
-                'oecm-key-elements-element'
+                'oecm-key-elements-element',
             ])) {
                 return parent::render();
             }

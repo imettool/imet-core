@@ -24,7 +24,7 @@ class SpeciesSeeder extends Seeder
         ['Animalia', 'Chordata', 'Mammalia', 'Artiodactyla', 'Cervidae', 'Alces', 'Alces alces', '(Linnaeus, 1758)', 'BHC3', 'Eurasian Elk, moose', '', 'orignal'],
         ['Animalia', 'Chordata', 'Aves', 'Charadriiformes', 'Alcidae', 'Fratercula', 'Fratercula arctica', '(Linnaeus, 1758)', '6JMR3', 'Atlantic Puffin', 'Frailecillo atlántico', 'Macareux moine'],
         ['Animalia', 'Chordata', 'Mammalia', 'Perissodactyla', 'Rhinocerotidae', 'Diceros', 'Diceros bicornis', '(Linnaeus, 1758)', '35JVB', 'African black rhinoceros, Black Rhinoceros', '', ''],
-        ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Otariidae', 'Phocarctos', 'Phocarctos hookeri', '(Gray, 1844)', '4GK6L', 'Auckland sea lion, Hooker\'s sea lion, New Zealand Sealion, New Zealand sea lion', '', ''],
+        ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Otariidae', 'Phocarctos', 'Phocarctos hookeri', '(Gray, 1844)', '4GK6L', "Auckland sea lion, Hooker's sea lion, New Zealand Sealion, New Zealand sea lion", '', ''],
         ['Animalia', 'Chordata', 'Aves', 'Anseriformes', 'Anatidae', 'Anas', 'Anas platyrhynchos', 'Linnaeus, 1758', 'DGP6', 'Mallard', 'Pato de collar, Ánade azulón', 'Canard colvert'],
         ['Animalia', 'Chordata', 'Mammalia', 'Primates', 'Hominidae', 'Pongo', 'Pongo pygmaeus', '(Linnaeus, 1760)', '4LTT2', 'Bornean Orangutan, orangutan', '', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Canidae', 'Otocyon', 'Otocyon megalotis', '(Desmarest, 1822)', '4B7CH', 'Bat-eared Fox, Big-eared Fox', '', ''],
@@ -64,22 +64,22 @@ class SpeciesSeeder extends Seeder
         ['Animalia', 'Chordata', 'Mammalia', 'Cetacea', 'Balaenopteridae', 'Balaenoptera', 'Balaenoptera musculus', '(Linnaeus, 1758)', 'KF8T', 'Blue Whale', 'Ballena azul', 'rorqual bleu'],
         ['Animalia', 'Chordata', 'Mammalia', 'Cetacea', 'Delphinidae', 'Delphinus', 'Delphinus delphis', 'Linnaeus, 1758', '34JWM', 'Short-beaked Common Dolphin, Short-beaked Saddleback Dolphin, common dolphin, saddle-backed dolphin, short-beaked saddle-backed dolphin', 'Delfín común', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Rodentia', 'Caviidae', 'Hydrochoerus', 'Hydrochoerus isthmius', 'Goldman, 1912', '3N64F', 'Lesser Capybara', '', ''],
-        ['Animalia', 'Chordata', 'Aves', 'Strigiformes', 'Strigidae', 'Bubo', 'Bubo bubo', '(Linnaeus, 1758)', 'NKSD', 'Eurasian Eagle-Owl', 'Búho real', 'Grand-duc d\'Europe'],
+        ['Animalia', 'Chordata', 'Aves', 'Strigiformes', 'Strigidae', 'Bubo', 'Bubo bubo', '(Linnaeus, 1758)', 'NKSD', 'Eurasian Eagle-Owl', 'Búho real', "Grand-duc d'Europe"],
         ['Animalia', 'Chordata', '', 'Squamata', 'Elapidae', 'Naja', 'Naja naja', '(Linnaeus, 1758)', '45KXG', 'Common cobra, Spectacled cobra', '', ''],
         ['Animalia', 'Chordata', 'Aves', 'Falconiformes', 'Falconidae', 'Falco', 'Falco peregrinus', 'Tunstall, 1771', '3DTGL', 'Peregrine Falcon', 'Halcón peregrino', 'Faucon pèlerin'],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Otariidae', 'Zalophus', 'Zalophus wollebaeki', 'Sivertsen, 1953', '5CV57', 'Galápagos sea lion', '', ''],
-        ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Otariidae', 'Eumetopias', 'Eumetopias jubatus', '(Schreber, 1776)', '6H93Y', 'Northern Sea Lion, Steller Sea Lion, Steller\'s sea lion', '', ''],
+        ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Otariidae', 'Eumetopias', 'Eumetopias jubatus', '(Schreber, 1776)', '6H93Y', "Northern Sea Lion, Steller Sea Lion, Steller's sea lion", '', ''],
         ['Animalia', 'Chordata', 'Aves', 'Accipitriformes', 'Accipitridae', 'Buteo', 'Buteo jamaicensis', '(J. F. Gmelin, 1788)', '69669', 'Red-tailed Hawk', 'Aguililla cola roja, Busardo colirrojo', 'Buse à queue rousse'],
         ['Animalia', 'Chordata', 'Aves', 'Ciconiiformes', 'Ciconiidae', 'Ciconia', 'Ciconia ciconia', '(Linnaeus, 1758)', '5Z5T3', 'White Stork', 'Cigüeña blanca', 'Cigogne blanche'],
         ['Animalia', 'Chordata', 'Mammalia', 'Artiodactyla', 'Suidae', 'Sus', 'Sus scrofa', 'Linnaeus, 1758', '53HGR', 'pig, pig (feral), wild boar', '', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Ursidae', 'Ailuropoda', 'Ailuropoda melanoleuca', '(David, 1869)', '6673Q', 'Bamboo Bear, Giant Panda, Great Panda, Panda Bear, Parti-colored Bear, White Bear', '', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Cetacea', 'Delphinidae', 'Pseudorca', 'Pseudorca crassidens', '(Owen, 1846)', '4P9FG', 'False Killer Whale', 'Orca-falsa', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Proboscidea', 'Elephantidae', 'Loxodonta', 'Loxodonta africana', '(Blumenbach, 1797)', '3W9KV', 'African Bush Elephant, African Savanna Elephant, African elephant, African savannah elephant', '', ''],
-        ['Animalia', 'Chordata', 'Mammalia', 'Cetacea', 'Delphinidae', 'Orcinus', 'Orcinus rectipinnus', '(Cope in Scammon, 1869)', 'CBP3Q', 'Bigg\'s Killer Whale', '', ''],
+        ['Animalia', 'Chordata', 'Mammalia', 'Cetacea', 'Delphinidae', 'Orcinus', 'Orcinus rectipinnus', '(Cope in Scammon, 1869)', 'CBP3Q', "Bigg's Killer Whale", '', ''],
         ['Animalia', 'Chordata', 'Mammalia', 'Rodentia', 'Muridae', 'Rattus', 'Rattus norvegicus', '(Berkenhout, 1769)', '4RM67', 'Brown Rat, Norway Rat', '', 'rat surmulot'],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Felidae', 'Panthera', 'Panthera tigris', '(Linnaeus, 1758)', '4CGXS', 'Tiger', 'Tigre', 'Tigre'],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Mustelidae', 'Lutra', 'Lutra lutra', '(Linnaeus, 1758)', '72PQL', 'Common Otter, Eurasian Otter, European Otter', '', ''],
-        ['Animalia', 'Chordata', 'Teleostei', 'Salmoniformes', 'Salmonidae', 'Salmo', 'Salmo salar', 'Linnaeus, 1758', '6XCXT', 'Atlantic salmon, N. Atlantic salmon, black salmon, common Atlantic salmon, grilse, kelt, parr, salmon, sea salmon, silver salmon', 'salmón, salmón común, salmón del Atlántico', 'saumon, saumon Atlantique, saumon d\'Atlantique, saumon de l\'Atlantique, tacon Atlantique'],
+        ['Animalia', 'Chordata', 'Teleostei', 'Salmoniformes', 'Salmonidae', 'Salmo', 'Salmo salar', 'Linnaeus, 1758', '6XCXT', 'Atlantic salmon, N. Atlantic salmon, black salmon, common Atlantic salmon, grilse, kelt, parr, salmon, sea salmon, silver salmon', 'salmón, salmón común, salmón del Atlántico', "saumon, saumon Atlantique, saumon d'Atlantique, saumon de l'Atlantique, tacon Atlantique"],
         ['Animalia', 'Chordata', 'Mammalia', 'Carnivora', 'Canidae', 'Canis', 'Canis lupus', 'Linnaeus, 1758', 'QLXL', 'Gray Wolf, Wolf', 'Lobo gris', 'loup'],
     ];
 
@@ -99,6 +99,7 @@ class SpeciesSeeder extends Seeder
             file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))
         ) {
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
+
             return;
         }
 
