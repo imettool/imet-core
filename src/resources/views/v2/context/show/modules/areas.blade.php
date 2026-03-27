@@ -10,6 +10,7 @@ use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
 $record = $records[0];
 
+
 $area = array_key_exists('FormID', $record)
     ? Areas::getArea($record['FormID'])
     : null;

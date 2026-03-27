@@ -32,7 +32,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'UsedName',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.UsedName')],
             ['name' => 'CompleteNameWDPA',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.CompleteNameWDPA')],
             ['name' => 'WDPA',  'type' => 'code',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.WDPA')],
-            ['name' => 'Type',  'type' => 'blade-imet-core::oecm.context.fields.ctx11_type',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Type')],
+            ['name' => 'Type',  'type' => 'custom::oecm-ctx11-type',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Type')],
             ['name' => 'Country',  'type' => 'dropdown-Imet_Country',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.Country')],
             ['name' => 'CreationYear',  'type' => 'year',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.CreationYear')],
             ['name' => 'ReferenceText',  'type' => 'text-area',   'label' => trans('imet-core::oecm_context.GeneralInfo.fields.ReferenceText')],

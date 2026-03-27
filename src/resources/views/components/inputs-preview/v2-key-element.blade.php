@@ -1,5 +1,4 @@
 <?php
-/** @var string $value */
 
 use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\Species;

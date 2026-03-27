@@ -38,7 +38,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
             ['name' => 'UsedName',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.UsedName')],
             ['name' => 'CompleteNameWDPA',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.CompleteNameWDPA')],
             ['name' => 'WDPA',  'type' => 'code',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.WDPA')],
-            ['name' => 'Type',  'type' => 'blade-imet-core::v2.context.fields.ctx11_type',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Type')],
+            ['name' => 'Type',  'type' => 'custom::v2-ctx11-type',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.Type')],
             ['name' => 'NationalCategory',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.NationalCategory')],
             ['name' => 'IUCNCategory1',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory1')],
             ['name' => 'IUCNCategory2',  'type' => 'dropdown-ImetV2_IUCNDesignation',   'label' => trans('imet-core::v2_context.GeneralInfo.fields.IUCNCategory2')],

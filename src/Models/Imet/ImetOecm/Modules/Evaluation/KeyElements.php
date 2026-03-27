@@ -46,7 +46,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C4';
         $this->module_title = trans('imet-core::oecm_evaluation.KeyElements.title');
         $this->module_fields = [
-            ['name' => 'Aspect',                'type' => 'blade-imet-core::oecm.evaluation.fields.key_elements_element',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
+            ['name' => 'Aspect',                'type' => 'custom::oecm-key-elements-element',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Aspect')],
             ['name' => 'Importance',            'type' => 'disabled',      'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.Importance')],
             ['name' => 'EvaluationScore',       'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.EvaluationScore')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.KeyElements.fields.IncludeInStatistics')],

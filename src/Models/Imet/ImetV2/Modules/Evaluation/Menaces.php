@@ -49,7 +49,7 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         $this->module_code = 'C3';
         $this->module_title = trans('imet-core::v2_evaluation.Menaces.title');
         $this->module_fields = [
-            ['name' => 'Aspect',                'type' => 'blade-imet-core::v2.evaluation.fields.menaces_aspect',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.Aspect')],
+            ['name' => 'Aspect',                'type' => 'custom::v2-menaces-aspect',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.Aspect')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.Menaces.fields.Comments')],
         ];

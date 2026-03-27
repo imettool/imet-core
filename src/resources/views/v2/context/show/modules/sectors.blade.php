@@ -10,7 +10,7 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 
 $table_id = 'table_' . $definitions['slug'];
-$area = Areas::getArea($records[0]->FormID);
+$area = Areas::getArea($records[0]['FormID']);
 $sumUnderControlArea = 0;
 $UnderControlPatrolKm = 0;
 $UnderControlPatrolManDay = 0;

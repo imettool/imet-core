@@ -38,7 +38,7 @@ final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
         $this->module_code = 'O/C2';
         $this->module_title = trans('imet-core::v2_evaluation.KeyConservationTrend.title');
         $this->module_fields = [
-            ['name' => 'Element',   'type' => 'blade-imet-core::v2.evaluation.fields.key_element',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
+            ['name' => 'Element',   'type' => 'custom::v2-key-element',           'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Element')],
             ['name' => 'Condition', 'type' => 'rating-Minus3to3Exclude0',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Condition')],
             ['name' => 'Trend',     'type' => 'rating-Minus3to3Exclude0',    'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Trend')],
             ['name' => 'Reliability',  'type' => 'dropdown-ImetV2_SpeciesReliability',   'label' => trans('imet-core::v2_evaluation.KeyConservationTrend.fields.Reliability'), 'class' => 'width100px'],

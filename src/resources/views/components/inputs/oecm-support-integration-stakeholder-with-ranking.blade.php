@@ -1,11 +1,4 @@
 <?php
-/** @var string $v_id */
-/** @var string $v_value */
-/** @var string $class  */
-/** @var ?string $other [optional] */
-/** @var ?string $rules [optional] */
-/** @var string $type */
-/** @var string $slug */
 
 $score = "records[index]['__score']";
 
@@ -13,7 +6,7 @@ $score = "records[index]['__score']";
 
 <x-modular-forms::module.components.field.input
     type="disabled"
-    :value="$v_value"
+    :value="$value"
     :id="$id"
     :class="$class"
     :rules="$rules"

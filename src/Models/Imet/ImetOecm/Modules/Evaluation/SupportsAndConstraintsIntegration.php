@@ -46,7 +46,7 @@ final class SupportsAndConstraintsIntegration extends Modules\Component\ImetModu
         $this->module_code = 'C2.2';
         $this->module_title = trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.title');
         $this->module_fields = [
-            ['name' => 'Stakeholder',       'type' => 'blade-imet-core::oecm.evaluation.fields.support_integration_stakeholder_with_ranking',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Stakeholder')],
+            ['name' => 'Stakeholder',       'type' => 'custom::oecm-support-integration-stakeholder-with-ranking',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Stakeholder')],
             ['name' => 'Integration',       'type' => 'rating-0to3',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Integration')],
             ['name' => 'IncludeInStatistics',   'type' => 'checkbox-boolean',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.IncludeInStatistics')],
             ['name' => 'Comments',              'type' => 'text-area',   'label' => trans('imet-core::oecm_evaluation.SupportsAndConstraintsIntegration.fields.Comments')],

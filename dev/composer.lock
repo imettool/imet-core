@@ -1299,16 +1299,16 @@
         },
         {
             "name": "andreamarelli/modular-forms",
-            "version": "4.1.0",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:andreamarelli/modular-forms.git",
-                "reference": "4aace81e26ed770836c3c01466a0f06e94701da2"
+                "reference": "dfa2608449c80d8140c30aa4ff1365967b957129"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/4aace81e26ed770836c3c01466a0f06e94701da2",
-                "reference": "4aace81e26ed770836c3c01466a0f06e94701da2",
+                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/dfa2608449c80d8140c30aa4ff1365967b957129",
+                "reference": "dfa2608449c80d8140c30aa4ff1365967b957129",
                 "shasum": ""
             },
             "require": {
@@ -1373,10 +1373,10 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/v4.1.0",
+                "source": "https://github.com/andreamarelli/modular-forms/tree/v4.1.2",
                 "issues": "https://github.com/andreamarelli/modular-forms/issues"
             },
-            "time": "2026-03-26T16:52:47+00:00"
+            "time": "2026-03-27T07:52:30+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",

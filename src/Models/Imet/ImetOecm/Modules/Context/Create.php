@@ -41,7 +41,7 @@ final class Create extends Modules\Component\ImetModule
             ['name' => 'version',   'type' => 'version-oecm',   'label' => trans('imet-core::common.version')],
             ['name' => 'language',  'type' => 'toggle-ImetOECM_languages',                        'label' => trans('imet-core::common.language')],
             ['name' => 'Year',      'type' => 'yearMaxCurrent',                                 'label' => trans('imet-core::oecm_context.Create.fields.Year')],
-            ['name' => 'wdpa_id',   'type' => 'imet-core::selector-wdpa',                       'label' => trans('imet-core::oecm_context.Create.fields.wdpa_id')],
+            ['name' => 'wdpa_id',   'type' => 'custom::selector-wdpa',                       'label' => trans('imet-core::oecm_context.Create.fields.wdpa_id')],
         ];
 
         parent::__construct($attributes);

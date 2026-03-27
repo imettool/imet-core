@@ -36,7 +36,7 @@ $table_id = 'table_' . $definitions['slug'];
             <td>
                 <x-modular-forms::module.components.field.input-preview
                         type="disabled"
-                        :value="$record['__adequacy_type']"
+                        :value="$record['__adequacy']"
                 ></x-modular-forms::module.components.field.input-preview>
             </td>
             <td>
