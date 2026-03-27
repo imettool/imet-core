@@ -67,6 +67,21 @@ $show_scrollbar = true;
                 </div>
             </div>
         @endif
+
+        {{-- Removed O/P2 module info --}}
+        @if($step === 'outputs')
+            <div class="module-container">
+                <div class="module-bar info-black-bar">
+                    <div class="icon">
+                        {!! \ModularForms\Helpers\Template::icon('circle-exclamation', '', '1.4em') !!}
+                    </div>
+                    <div class="message !font-normal">
+                        @lang('imet-core::v2_evaluation.removed_op2')
+                    </div>
+                </div>
+            </div>
+        @endif
+
     @endif
 
     {{-- Global errors --}}
