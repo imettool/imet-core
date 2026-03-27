@@ -1,5 +1,8 @@
 <?php
+/** @phpstan-var ?string $slug  */
+
 $adequacy_id = "'" . $slug . "_'+index+'___adequacy'";
+
 ?>
 
 <x-modular-forms::module.components.field.input

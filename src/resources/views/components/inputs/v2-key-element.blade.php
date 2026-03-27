@@ -1,4 +1,5 @@
 <?php
+/** @phpstan-var string $value  */
 
 use ModularForms\Helpers\DOM;
 

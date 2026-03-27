@@ -67,7 +67,7 @@ class FormSeeder extends Seeder
             Imet\ImetV1\Imet_Eval::allModules()
         );
 
-        static::seedFormModules($form_id, $modules);
+        self::seedFormModules($form_id, $modules);
     }
 
     /**
@@ -93,7 +93,7 @@ class FormSeeder extends Seeder
             Imet\ImetV2\Imet_Eval::allModules()
         );
 
-        static::seedFormModules($form_id, $modules);
+        self::seedFormModules($form_id, $modules);
     }
 
     /**
@@ -119,7 +119,7 @@ class FormSeeder extends Seeder
             Imet\ImetOecm\Imet_Eval::allModules()
         );
 
-        static::seedFormModules($form_id, $modules);
+        self::seedFormModules($form_id, $modules);
     }
 
     /**
@@ -140,12 +140,12 @@ class FormSeeder extends Seeder
             if (Str::contains($module_type, 'GROUP')) {
                 foreach (collect((new $module)->module_groups)->keys() as $group_key) {
                     for ($y = 1; $y <= $num_records; $y++) {
-                        $records[] = static::createRecord($module, $form_id, $group_key);
+                        $records[] = self::createRecord($module, $form_id, $group_key);
                     }
                 }
             } else {
                 for ($y = 1; $y <= $num_records; $y++) {
-                    $records[] = static::createRecord($module, $form_id);
+                    $records[] = self::createRecord($module, $form_id);
                 }
             }
 

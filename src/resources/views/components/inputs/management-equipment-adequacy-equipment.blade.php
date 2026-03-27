@@ -1,4 +1,6 @@
 <?php
+/** @phpstan-var ?string $slug  */
+
 $equipment_id = "'" . $slug . "_'+index+'_Equipment'";
 $equipment_predefined_label_id = "'".$slug."_'+index+'_Equipment-predefined_label'";
 

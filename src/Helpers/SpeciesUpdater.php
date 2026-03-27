@@ -94,10 +94,8 @@ class SpeciesUpdater
             })
             ->whereRaw('t1.id < t2.id') // keep the lowest id, delete the rest
             ->distinct()
-            ->get()
-            ->pluck('id')
-            ->toArray();
-        Species::whereIn('id', $duplicates)->delete();
+            ->get();
+        Species::whereIn('id', $duplicates->pluck('id')->toArray())->delete();
 
         static::logInfo('Species and vernacular names updated successfully.', $verbose);
     }
