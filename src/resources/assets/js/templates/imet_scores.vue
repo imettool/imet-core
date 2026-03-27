@@ -39,12 +39,6 @@
                 <imet_score_row :label="labels[index]" :code=index :value="api_data['scores'][step_key][index]"
                     :histogram_type="histogram_type(step_key, idx)" :color=step_props.color></imet_score_row>
             </div>
-            <!-- synthetic indicator for outcomes -->
-            <div class="mt-4 border-t border-gray-400 pt-2 mt-2" v-if="step_key === 'outcomes' && version !== 'oecm'">
-                <imet_score_row :label="labels['synthetic_indicator']" :class_values="'text-right font-bold'"
-                                :value="api_data['scores']['outcomes']['synthetic_indicator']" histogram_type="0_to_100_full_width"
-                                :color=step_props.color></imet_score_row>
-            </div>
             <!-- custom additional scores -->
             <div class="mt-4" v-if="step_key === 'context' && version !== 'oecm'">
                 <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']" :key="ctx_key">
@@ -122,7 +116,7 @@ const score_properties = {
         'process': {
             'indexes': [
                 'PR1', 'PR2', 'PR3', 'PR4', 'PR5', 'PR6', 'PR7', 'PR8', 'PR9', 'PR10',
-                'PR11', 'PR12', 'PR13', 'PR14', 'PR15', 'PR16', 'PR17', 'PR18', 'PR19'
+                'PR11', 'PR12', 'PR13', 'PR14', 'PR15', 'PR16', 'PR17', 'PR18'
             ],
             'color': '#00B0F0'
         },
@@ -132,7 +126,6 @@ const score_properties = {
         },
         'outcomes': {
             'indexes': ['OC1', 'OC2', 'OC3'],
-            'histogram_types': ['0_to_100', 'minus100_to_0', 'minus100_to_0'],
             'color': '#00B050'
         },
     },
