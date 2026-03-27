@@ -61,9 +61,9 @@ final class GeneralInfo extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData(?int $form_id, array $records, array $definitions): array
+    public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data = parent::getVueData($form_id, $data, $definitions);
 
         $imet = Imet::query()->find($vue_data['form_id']);
         $pa = Imet::getProtectedArea($imet->wdpa_id);
