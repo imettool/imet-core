@@ -73,6 +73,6 @@ final class ProtectedAreaAnalysis extends BaseAnalysis
      */
     public static function getWdpasByFormId(array $form_ids): array
     {
-        return array_map(fn ($form_id) => ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id), $form_ids);
+        return array_map(fn (int $form_id): ?ScalingUpWdpa => ScalingUpWdpa::getByFormID(self::$scaling_id, $form_id), $form_ids);
     }
 }

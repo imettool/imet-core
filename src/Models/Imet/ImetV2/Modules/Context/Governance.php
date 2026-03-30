@@ -42,7 +42,7 @@ final class Governance extends Modules\Component\ImetModule
 
         $this->module_common_fields = [
             ['name' => 'GovernanceModel',      'type' => 'dropdown-ImetV2_GovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.GovernanceModel')],
-            ['name' => 'SubGovernanceModel',   'type' => 'blade-imet-core::v2.context.fields.SubGovernanceModel',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
+            ['name' => 'SubGovernanceModel',   'type' => 'custom::sub-governance-model',   'label' => trans('imet-core::v2_context.Governance.fields.SubGovernanceModel')],
             ['name' => 'AdditionalInfo',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Governance.fields.AdditionalInfo')],
         ];
 

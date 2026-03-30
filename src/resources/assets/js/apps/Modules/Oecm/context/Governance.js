@@ -38,7 +38,7 @@ export default class Governance extends ModuleImet {
             return setup_obj.records[0]['ManagementUnique'];
         })
 
-        const SubGovernanceModel_options = computed(() => {
+        const sub_gov_options = computed(() => {
             return setup_obj.records[0]['GovernanceModel'] !== null &&
             setup_obj.records[0]['GovernanceModel'] in props.SubGovernanceModel_SelectionList
                 ? JSON.stringify(props.SubGovernanceModel_SelectionList[setup_obj.records[0]['GovernanceModel']])
@@ -68,7 +68,7 @@ export default class Governance extends ModuleImet {
             ...setup_obj,
             resetManagement,
             management_unique,
-            SubGovernanceModel_options
+            sub_gov_options
         };
 
     }

@@ -18,6 +18,8 @@ final class ManagementContext extends ImetModule_Report
 {
     protected $table = 'report_management_context';
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.report.edit.modules.management_context';
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = 'SIMPLE';

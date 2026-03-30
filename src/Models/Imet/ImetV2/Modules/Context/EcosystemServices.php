@@ -91,9 +91,9 @@ final class EcosystemServices extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData(?int $form_id, array $records, array $definitions): array
+    public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data = parent::getVueData($form_id, $data, $definitions);
         $vue_data['groupsByCategory'] = self::$groupsByCategory;
 
         return $vue_data;
@@ -107,6 +107,21 @@ final class EcosystemServices extends Modules\Component\ImetModule
         $record = self::dropIfPredefinedValueObsolete($record, 'Element', 'other - legal');
 
         return self::dropIfPredefinedValueObsolete($record, 'Element', 'other - illegal');
+    }
+
+    /**
+     * Override
+     */
+    #[\Override]
+    public function isEmptyRecord($record, $foreign_key = null): bool
+    {
+        if ($record['Importance'] !== null
+            || $record['ImportanceRegional'] !== null
+            || $record['ImportanceGlobal'] !== null) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

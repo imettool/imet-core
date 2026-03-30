@@ -152,20 +152,18 @@ class V2Scores extends _Scores
      */
     public static function scores_outcomes(int $imet_id): array
     {
+        $score_oc1 = static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore');
+        $score_oc2 = static::score_oc2($imet_id);
+        $score_oc3 = static::score_group($imet_id, Evaluation\LifeQualityImpact::class, 'EvaluationScore', 'group_key');
+
         $scores = [
-            'OC1' => static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore'),
-            'OC2' => static::score_oc2($imet_id),
-            'OC3' => static::score_group($imet_id, Evaluation\LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
+            'OC1' => round(($score_oc1 / 9), 2),
+            'OC2' => round((($score_oc2 + 100) / 4.5), 2),
+            'OC3' => round((($score_oc3 + 100) / 4.5), 2)
         ];
 
         // aggregate step score
-        $sum = ($scores['OC1'] ?? 0)
-            + ($scores['OC2'] ? $scores['OC2'] / 2 + 50 : 0)
-            + ($scores['OC3'] ? $scores['OC3'] / 2 + 50 : 0);
-        $count = count(array_filter([$scores['OC1'], $scores['OC2'], $scores['OC3']], fn (?float $x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
-        // aggregate synthetic indicator
-        $scores['synthetic_indicator'] = static::synthetic_indicator_score_oc($imet_id);
+        $scores['avg_indicator'] = round(static::score_oc($imet_id), 2);
 
         return $scores;
     }

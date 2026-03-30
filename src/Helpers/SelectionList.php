@@ -37,18 +37,22 @@ class SelectionList extends ModularFormsSelectionList
             if ($matches[2] == 'ProtectedArea') {
                 return ProtectedArea::selectionList();
             }
+
             if ($matches[2] == 'Country') {
                 return Country::selectionList();
             }
+
             if ($matches[2] == 'PaCountry') {
                 return ProtectedArea::getCountries()
                     ->sortBy(Country::labelKey())
                     ->pluck(Country::labelKey(), 'iso3')
                     ->toArray();
             }
+
             if ($matches[2] == 'Currency') {
                 return Currency::selectionList();
             }
+
             if ($matches[2] == 'PaType') {
                 return [
                     'terrestrial' => trans('imet-core::oecm_lists.PaType.terrestrial'),

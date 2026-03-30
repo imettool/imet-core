@@ -129,9 +129,9 @@ class ImetModule extends Module
      * Override: Check for "warning_on_save" labels
      */
     #[\Override]
-    public static function getVueData(?int $form_id, array $records, array $definitions): array
+    public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data = parent::getVueData($form_id, $data, $definitions);
 
         return static::warningOnSave($vue_data);
     }

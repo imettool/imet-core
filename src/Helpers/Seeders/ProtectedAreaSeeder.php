@@ -17,7 +17,7 @@ class ProtectedAreaSeeder extends Seeder
     private const array SAMPLE_DATA = [
         ['ATA_555548003', 'ATA', '555548003', 'Amanda Bay', 'Ia', '2014', '17.1398876307', '16.9595456934178', '16.9595456934178'],
         ['ATA_14270', 'ATA', '14270', 'Yukidori Zawa, Langhovde, Lützow-Holmbukta', 'Not Reported', '1987', '3.6', '', ''],
-        ['ATA_555548090', 'ATA', '555548090', 'Mawson\'s Huts', 'Ia', '2014', '1.0486611421', '1.02186286741104', '1.02186286741104'],
+        ['ATA_555548090', 'ATA', '555548090', "Mawson's Huts", 'Ia', '2014', '1.0486611421', '1.02186286741104', '1.02186286741104'],
         ['ATA_4781', 'ATA', '4781', 'Green Island, Berthelot Islands, Antarctic Pen.', 'Not Reported', '1966', '0.1', '', ''],
         ['ATA_4780', 'ATA', '4780', 'Dion Islands', 'Not Reported', '1966', '6', '', ''],
         ['ATA_9783', 'ATA', '9783', 'South Bay, Doumer Island, Palmer Archipelago', 'Not Reported', '1987', '1', '', ''],

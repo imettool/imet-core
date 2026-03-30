@@ -1,7 +1,3 @@
-<?php
-/** @var array $list */
-/** @var string $value */
-?>
 <div class="radio">
 
     @foreach($list as $key=>$label)

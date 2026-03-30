@@ -18,8 +18,9 @@ use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\LifeQualityImpact;
 
 trait Outcomes
 {
-    public static function synthetic_indicator_score_oc(int $imet_id): ?float
+    public static function score_oc(int $imet_id): ?float
     {
+        // ###  OC1 score  ###
         $oc1_score = static::score_table(
             $imet_id,
             AchievedObjectives::class,
@@ -27,6 +28,7 @@ trait Outcomes
             3,
             fn ($avg, $denom): int|float => ($avg * 50) / 3);
 
+        // ###  OC2 score  ###
         $values = KeyConservationTrend::getModule($imet_id)
             ->filter(fn (KeyConservationTrend $record): bool => intval($record['Condition']) !== -99
                 && $record['Condition'] !== null
@@ -43,12 +45,14 @@ trait Outcomes
         $average = static::average($values, null);
         $oc2_score = $average !== null ? round(2 * (($average + 3) * 100 / 6), 2) : null;
 
+        // ###  OC3 score  ###
         $oc3_score = static::score_group($imet_id,
             LifeQualityImpact::class,
             'EvaluationScore',
             'group_key',
             fn ($avg): int|float => 2 * (($avg + 3) * 100 / 6));
 
+        // ###  Global OC score  ###
         $sum = ($oc1_score ?? 0) + ($oc2_score ?? 0) + ($oc3_score ?? 0);
 
         return max(0, min(100, $sum / 4.5));

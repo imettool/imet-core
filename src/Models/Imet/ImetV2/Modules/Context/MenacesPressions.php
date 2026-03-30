@@ -130,9 +130,9 @@ final class MenacesPressions extends Modules\Component\ImetModule
     }
 
     #[\Override]
-    public static function getVueData(?int $form_id, array $records, array $definitions): array
+    public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
-        $vue_data = parent::getVueData($form_id, $records, $definitions);
+        $vue_data = parent::getVueData($form_id, $data, $definitions);
         $vue_data['groupsByCategory'] = self::$groupsByCategory;
 
         return $vue_data;
@@ -238,7 +238,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public static function get_terrestrial_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(fn ($group, $key) => in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']))
+            ->filter(fn ($group, $key): bool => in_array($key, ['group1', 'group2', 'group3', 'group8', 'group9', 'group10']))
             ->keys()
             ->all();
     }
@@ -246,7 +246,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public static function get_marine_groups(): array
     {
         return collect((new self)->module_groups)
-            ->filter(fn ($group, $key) => in_array($key, ['group4', 'group11']))
+            ->filter(fn ($group, $key): bool => in_array($key, ['group4', 'group11']))
             ->keys()
             ->all();
     }

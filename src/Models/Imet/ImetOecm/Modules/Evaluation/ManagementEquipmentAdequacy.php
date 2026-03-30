@@ -36,8 +36,8 @@ final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eva
         $this->module_code = 'I5';
         $this->module_title = trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.title');
         $this->module_fields = [
-            ['name' => 'Equipment',     'type' => 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy',          'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
-            ['name' => 'Adequacy',      'type' => 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy_score', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Adequacy')],
+            ['name' => 'Equipment',     'type' => 'custom::management-equipment-adequacy-equipment',          'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Equipment')],
+            ['name' => 'Adequacy',      'type' => 'custom::management-equipment-adequacy-score', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Adequacy')],
             ['name' => 'PresentNeeds',  'type' => 'rating-0to2', 'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.PresentNeeds')],
             ['name' => 'Comments',      'type' => 'text-area',              'label' => trans('imet-core::oecm_evaluation.ManagementEquipmentAdequacy.fields.Comments')],
         ];
@@ -102,11 +102,11 @@ final class ManagementEquipmentAdequacy extends Modules\Component\ImetModule_Eva
     protected function customValue(array $record, array $field): string|array|null
     {
         $value = $record[$field['name']] ?? null;
-        if ($field['type'] === 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy') {
+        if ($field['type'] === 'management-equipment-adequacy-equipment') {
             return $record['__predefined_label'];
         }
 
-        if ($field['type'] === 'blade-imet-core::oecm.evaluation.fields.management_equipment_adequacy_score') {
+        if ($field['type'] === 'management-equipment-adequacy-score') {
             return $record['__adequacy'];
         }
 

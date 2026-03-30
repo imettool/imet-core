@@ -33,9 +33,9 @@ trait Dependencies
         $this_class_name = end($array_this_class);
         $labels = null;
 
-        if (Str::contains($this_class, 'v2')) {
+        if (Str::contains($this_class, 'ImetV2')) {
             $label_prefix = 'imet-core::v2_';
-        } elseif (Str::contains($this_class, 'v1')) {
+        } elseif (Str::contains($this_class, 'ImetV1')) {
             $label_prefix = 'imet-core::v1_';
         } else {
             $label_prefix = 'imet-core::oecm_';
@@ -61,6 +61,7 @@ trait Dependencies
      */
     protected static function updateDependencies($records, $form_id): void
     {
+
         if (static::$DEPENDENCIES !== null) {
 
             foreach (static::$DEPENDENCIES as $dependency) {
@@ -81,12 +82,16 @@ trait Dependencies
      */
     protected static function getRecordsToBeDropped($records, $form_id, $dependency_on): array
     {
-        // Get list of values (of reference field) from DB and from updated records
+        // Get list of values (of reference field) from DB, from updated records and emptied
         $existing_values = static::getModule($form_id)->pluck($dependency_on)->unique()->toArray();
-        $updated_values = collect($records)->pluck($dependency_on)->unique()->toArray();
+        $updated_values = collect($records)->pluck($dependency_on)->unique()->values()->toArray();
+        $empty_values = collect($records)->filter(fn ($item) => new static()->isEmptyRecord($item))->pluck($dependency_on)->unique()->values()->toArray();
 
         // Make diff to find out what to drop
-        $to_be_dropped = array_diff($existing_values, $updated_values);
+        $to_be_dropped = [
+            ...array_diff($existing_values, $updated_values),
+            ...array_intersect($existing_values, $empty_values),
+        ];
 
         return array_values($to_be_dropped);
     }

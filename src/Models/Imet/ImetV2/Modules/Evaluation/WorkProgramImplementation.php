@@ -108,14 +108,14 @@ final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
     /**
      * Generate the array of data needed by the Vue.js module's controller
      *
-     * @param  array<string, mixed>  $records
+     * @param  array<string, mixed>  $data
      * @param  array<string, mixed>  $definitions
      * @return array<string, mixed>
      */
     #[\Override]
-    public static function getVueData(?int $form_id, array $records, array $definitions): array
+    public static function getVueData(?int $form_id, array $data, array $definitions): array
     {
-        $return = parent::getVueData($form_id, $records, $definitions);
+        $return = parent::getVueData($form_id, $data, $definitions);
 
         // Trick UI to use $virtual_group_key_field instead of the $group_key_field for grouping records in the view,
         // while keeping the original $group_key_field as the one stored in the database and used for grouping in the backend
