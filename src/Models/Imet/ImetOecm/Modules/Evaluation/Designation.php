@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class Designation extends Modules\Component\ImetModule_Eval
 {
@@ -37,7 +38,7 @@ final class Designation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'C1';
         $this->module_title = trans('imet-core::oecm_evaluation.Designation.title');
         $this->module_fields = [

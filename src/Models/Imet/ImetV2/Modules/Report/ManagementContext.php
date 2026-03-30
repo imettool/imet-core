@@ -13,6 +13,7 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Report;
 
 use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule_Report;
+use ModularForms\Enums\ModuleTypes;
 
 final class ManagementContext extends ImetModule_Report
 {
@@ -22,7 +23,7 @@ final class ManagementContext extends ImetModule_Report
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_title = trans('imet-core::v2_report.ManagementContext.title');
         $this->module_code = 'RP 1';
 

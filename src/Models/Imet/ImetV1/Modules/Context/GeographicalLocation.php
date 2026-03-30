@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class GeographicalLocation extends Modules\Component\ImetModule
 {
@@ -24,7 +25,7 @@ final class GeographicalLocation extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'CTX 2.1';
         $this->module_title = trans('imet-core::v1_context.GeographicalLocation.title');
         $this->module_fields = [

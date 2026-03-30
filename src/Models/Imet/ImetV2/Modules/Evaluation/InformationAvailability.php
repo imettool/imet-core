@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
@@ -34,7 +35,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'I1';
         $this->module_title = trans('imet-core::v2_evaluation.InformationAvailability.title');
         $this->module_fields = [
