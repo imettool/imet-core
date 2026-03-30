@@ -13,6 +13,7 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Report;
 
 use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule_Report;
+use ModularForms\Enums\ModuleTypes;
 
 final class ThreatsAffectingKCEs extends ImetModule_Report
 {
@@ -20,7 +21,7 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_title = trans('imet-core::v2_report.ThreatsAffectingKCEs.title');
         $this->module_code = 'RP 4B';
 

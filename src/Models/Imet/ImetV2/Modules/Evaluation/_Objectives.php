@@ -13,13 +13,14 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
+use ModularForms\Enums\ModuleTypes;
 
 class _Objectives extends Modules\Component\ImetModule
 {
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_title = trans('imet-core::v2_evaluation._Objectives.title');
         $this->module_fields = [
             ['name' => 'Element',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation._Objectives.fields.Element')],

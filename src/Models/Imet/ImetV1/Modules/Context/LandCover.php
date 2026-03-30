@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class LandCover extends Modules\Component\ImetModule
 {
@@ -28,7 +29,7 @@ final class LandCover extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'CTX 4.4';
         $this->module_title = trans('imet-core::v1_context.LandCover.title');
         $this->module_fields = [

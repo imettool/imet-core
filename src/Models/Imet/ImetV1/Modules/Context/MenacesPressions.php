@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class MenacesPressions extends Modules\Component\ImetModule
 {
@@ -43,7 +44,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'CTX 5.1';
         $this->module_title = trans('imet-core::v1_context.MenacesPressions.title');
         $this->module_fields = [

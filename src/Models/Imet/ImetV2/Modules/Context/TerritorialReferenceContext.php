@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class TerritorialReferenceContext extends Modules\Component\ImetModule
 {
@@ -28,7 +29,7 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'CTX 2.4';
         $this->module_title = trans('imet-core::v2_context.TerritorialReferenceContext.title');
         $this->module_fields = [

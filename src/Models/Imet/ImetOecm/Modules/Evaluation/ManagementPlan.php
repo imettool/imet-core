@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Traits\Payload;
+use ModularForms\Enums\ModuleTypes;
 
 final class ManagementPlan extends Modules\Component\ImetModule_Eval
 {
@@ -26,7 +27,7 @@ final class ManagementPlan extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'P4';
         $this->module_title = trans('imet-core::oecm_evaluation.ManagementPlan.title');
         $this->module_fields = [

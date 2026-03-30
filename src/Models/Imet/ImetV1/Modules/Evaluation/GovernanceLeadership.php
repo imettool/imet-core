@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class GovernanceLeadership extends Modules\Component\ImetModule_Eval
 {
@@ -24,7 +25,7 @@ final class GovernanceLeadership extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'PR4';
         $this->module_title = trans('imet-core::v1_evaluation.GovernanceLeadership.title');
         $this->module_fields = [

@@ -16,6 +16,7 @@ use ImetCore\Exceptions\MissingDependencyConfigurationException;
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\ThreatsService;
+use ModularForms\Enums\ModuleTypes;
 
 final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
 {
@@ -30,7 +31,7 @@ final class ThreatsBiodiversity extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'C3.1.1';
         $this->module_title = trans('imet-core::oecm_evaluation.ThreatsBiodiversity.title');
         $this->module_fields = [

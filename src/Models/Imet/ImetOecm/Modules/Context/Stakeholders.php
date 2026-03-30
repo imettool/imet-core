@@ -15,6 +15,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
 use Illuminate\Support\Str;
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class Stakeholders extends Modules\Component\ImetModule
 {
@@ -48,7 +49,7 @@ final class Stakeholders extends Modules\Component\ImetModule
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'SA 1';
         $this->module_title = trans('imet-core::oecm_context.Stakeholders.title');
         $this->module_fields = [

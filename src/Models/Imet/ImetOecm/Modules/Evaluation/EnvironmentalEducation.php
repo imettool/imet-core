@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class EnvironmentalEducation extends Modules\Component\ImetModule_Eval
 {
@@ -24,7 +25,7 @@ final class EnvironmentalEducation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'PR11';
         $this->module_title = trans('imet-core::oecm_evaluation.EnvironmentalEducation.title');
         $this->module_fields = [

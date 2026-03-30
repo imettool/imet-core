@@ -16,6 +16,7 @@ use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
 use ImetCore\Services\StakeholdersService;
 use ImetCore\Services\ThreatsService;
+use ModularForms\Enums\ModuleTypes;
 
 final class Threats extends Modules\Component\ImetModule_Eval
 {
@@ -32,7 +33,7 @@ final class Threats extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'C3.1.2';
         $this->module_title = trans('imet-core::oecm_evaluation.Threats.title');
         $this->module_fields = [

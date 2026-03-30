@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
 {
@@ -30,7 +31,7 @@ final class SupportsAndConstraints extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'C2';
         $this->module_title = trans('imet-core::v2_evaluation.SupportsAndConstraints.title');
         $this->module_fields = [

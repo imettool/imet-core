@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class ClimateChangeImportanceElements extends Modules\Component\ImetModule
 {
@@ -28,7 +29,7 @@ final class ClimateChangeImportanceElements extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'ACCORDION';
+        $this->module_type = ModuleTypes::ACCORDION;
         $this->module_code = 'CTX 6.1';
         $this->module_title = trans('imet-core::v1_context.ClimateChangeImportanceElements.title');
         $this->module_fields = [

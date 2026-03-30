@@ -17,6 +17,7 @@ use ImetCore\Models\Imet\ImetOecm\Imet;
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\ProtectedArea;
 use ModularForms\Models\Traits\Payload;
+use ModularForms\Enums\ModuleTypes;
 
 final class Create extends Modules\Component\ImetModule
 {
@@ -35,7 +36,7 @@ final class Create extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_title = trans('imet-core::oecm_context.Create.title');
         $this->module_fields = [
             ['name' => 'version',   'type' => 'version-oecm',   'label' => trans('imet-core::common.version')],

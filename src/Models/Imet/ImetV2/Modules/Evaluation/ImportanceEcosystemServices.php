@@ -15,6 +15,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eval
 {
@@ -45,7 +46,7 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'C1.5';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceEcosystemServices.title');
         $this->module_fields = [

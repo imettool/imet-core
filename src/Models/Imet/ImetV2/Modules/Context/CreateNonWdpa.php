@@ -13,6 +13,7 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
+use ModularForms\Enums\ModuleTypes;
 
 final class CreateNonWdpa extends Modules\Component\ImetModule
 {
@@ -31,7 +32,7 @@ final class CreateNonWdpa extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_title = trans('imet-core::common.CreateNonWdpa.title');
         $this->module_fields = [
             ['name' => 'version',       'type' => 'custom::version-v2', 'label' => trans('imet-core::common.CreateNonWdpa.fields.version')],
