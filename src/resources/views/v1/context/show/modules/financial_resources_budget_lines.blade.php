@@ -62,10 +62,10 @@ foreach ($records as $index => $record) {
             {{--  fields  --}}
             @foreach($definitions['fields'] as $f_index => $field)
                 <td>
-                    <x-modular-forms::module.components.field.input-preview
+                    <x-imet-core::custom-input-preview
                         :type="$definitions['fields'][$f_index]['type']"
                         :value="$record[$definitions['fields'][$f_index]['name']]"
-                    ></x-modular-forms::module.components.field.input-preview>
+                    ></x-imet-core::custom-input-preview>
                 </td>
             @endforeach
             <td>

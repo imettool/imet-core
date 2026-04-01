@@ -33,10 +33,10 @@ $area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV2\Modul
            ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
             :type="$definitions['fields'][0]['type']"
             :value="$record[$definitions['fields'][0]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 
 @endcomponent
 
@@ -47,10 +47,10 @@ $area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV2\Modul
            ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
             :type="$definitions['fields'][1]['type']"
             :value="$record[$definitions['fields'][1]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 
 @endcomponent
 
@@ -73,16 +73,16 @@ $area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV2\Modul
             <label for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][2]['type']"
                     :value="$record[$definitions['fields'][2]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['ManagementFinancialPlanCosts'], $area)"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td></td>
         <td></td>
@@ -92,22 +92,22 @@ $area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV2\Modul
             <label for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][3]['type']"
                     :value="$record[$definitions['fields'][3]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['OperationalWorkPlanCosts'], $area)"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['OperationalWorkPlanCosts'], $record['ManagementFinancialPlanCosts'])*100"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td></td>
     </tr>
@@ -116,28 +116,28 @@ $area = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV2\Modul
             <label for="{{  $definitions['fields'][4]['name'] }}">{!! ucfirst($definitions['fields'][4]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][4]['type']"
                     :value="$record[$definitions['fields'][4]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['TotalBudget'], $area)"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['TotalBudget'], $record['ManagementFinancialPlanCosts'])*100"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="financial_resources_calc($record['TotalBudget'], $record['OperationalWorkPlanCosts'])*100"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
     </tr>
     </tbody>

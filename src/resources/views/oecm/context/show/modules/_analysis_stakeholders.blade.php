@@ -115,15 +115,15 @@ $stakeholders_categories = Stakeholders::getStakeholders($module->data['id'], $u
                                         @foreach($definitions['fields'] as $f_index=>$field)
                                             <td>
                                                 @if($field['name'] === 'Element')
-                                                    <x-modular-forms::module.components.field.input-preview
+                                                    <x-imet-core::custom-input-preview
                                                             type="text-area"
                                                             :value="$record[$field['name']]"
-                                                    ></x-modular-forms::module.components.field.input-preview>
+                                                    ></x-imet-core::custom-input-preview>
                                                 @else
-                                                    <x-modular-forms::module.components.field.input-preview
+                                                    <x-imet-core::custom-input-preview
                                                             :type="$field['type']"
                                                             :value="$record[$field['name']]"
-                                                    ></x-modular-forms::module.components.field.input-preview>
+                                                    ></x-imet-core::custom-input-preview>
                                                 @endif
                                             </td>
                                         @endforeach

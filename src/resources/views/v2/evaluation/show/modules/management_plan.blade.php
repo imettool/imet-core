@@ -26,10 +26,10 @@ $PlanExistence = boolval($records['PlanExistence']);
 
             {{-- input --}}
             <div class="module-row__input">
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$field['type']"
                         :value="$records[$field['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
             </div>
 
         </div>

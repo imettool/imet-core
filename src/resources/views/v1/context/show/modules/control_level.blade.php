@@ -43,20 +43,20 @@ $ecological_monitoring_patrol_km_percentage = \ImetCore\Models\Imet\ImetV1\Modul
     </tr>
     <tr>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][0]['type']"
                     :value="$record[$definitions['fields'][0]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
             <input type="text" disabled="disabled" value="{{ $area_percentage  }}"
                    class="field-edit field-numeric text-right"/>
         </td>
         <td rowspan="3">
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][1]['type']"
                     :value="$record[$definitions['fields'][1]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
             <input type="text" disabled="disabled" value="{{ $average_time  }}"
@@ -72,10 +72,10 @@ $ecological_monitoring_patrol_km_percentage = \ImetCore\Models\Imet\ImetV1\Modul
     </tr>
     <tr>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][3]['type']"
                     :value="$record[$definitions['fields'][2]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{ $area_percentage_conversion  }}"
                    class="field-edit field-numeric text-right"/></td>
@@ -87,10 +87,10 @@ $ecological_monitoring_patrol_km_percentage = \ImetCore\Models\Imet\ImetV1\Modul
                     for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$definitions['fields'][3]['type']"
                     :value="$record[$definitions['fields'][3]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{ $ecological_monitoring_patrol_km_percentage  }}"
                    class="field-edit field-numeric text-right"/></td>
@@ -105,10 +105,10 @@ $ecological_monitoring_patrol_km_percentage = \ImetCore\Models\Imet\ImetV1\Modul
            ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
             :type="$definitions['fields'][4]['type']"
             :value="$record[$definitions['fields'][4]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 
 @endcomponent
 
@@ -120,10 +120,10 @@ $ecological_monitoring_patrol_km_percentage = \ImetCore\Models\Imet\ImetV1\Modul
            ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
             :type="$definitions['fields'][5]['type']"
             :value="$record[$definitions['fields'][5]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 
 @endcomponent
 

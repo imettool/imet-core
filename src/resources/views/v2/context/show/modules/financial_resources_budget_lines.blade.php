@@ -54,33 +54,33 @@ $totalBudget = array_key_exists('FormID', $record) ? \ImetCore\Models\Imet\ImetV
             {{--  fields  --}}
             @foreach($definitions['fields'] as $field)
                 <td>
-                    <x-modular-forms::module.components.field.input-preview
+                    <x-imet-core::custom-input-preview
                             :type="$field['type']"
                             :value="$record[$field['name']]"
-                    ></x-modular-forms::module.components.field.input-preview>
+                    ></x-imet-core::custom-input-preview>
                 </td>
             @endforeach
             <td>
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         type="numeric"
                         :value="$sumRow>0 ? $sumRow : ''"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
             </td>
             <td>
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         type="numeric"
                         :value="$percentRow>0 ? $percentRow : ''"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
             </td>
         </tr>
     @endforeach
     <tr class="module-table-item">
         <td></td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     type="numeric"
                     :value="999"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td colspan="4">
         </td>
