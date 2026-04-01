@@ -27,15 +27,15 @@ $definitions['label_width'] = 7;
 
             {{-- input field --}}
             <div class="module-row__input" style="display: flex; align-items: center;">
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$definitions['fields'][$i]['type']"
                         :value="$records[0][$definitions['fields'][$i]['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$definitions['fields'][$i+1]['type']"
                         :value="$records[0][$definitions['fields'][$i+1]['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 &nbsp;[km]
             </div>
 
@@ -54,15 +54,15 @@ $definitions['label_width'] = 7;
 
             {{-- input field --}}
             <div class="module-row__input" style="display: flex; align-items: center;">
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$definitions['fields'][$i]['type']"
                         :value="$records[0][$definitions['fields'][$i]['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 &nbsp;[km2]&nbsp;&nbsp;
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$definitions['fields'][$i+1]['type']"
                         :value="$records[0][$definitions['fields'][$i+1]['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 &nbsp;[km]
             </div>
 
@@ -72,39 +72,10 @@ $definitions['label_width'] = 7;
 
         <div class="font-weight-bold">{{ $field['label'] }}</div>
         <div class="BenefitSocioEconomicAspects">
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$field['type']"
                     :value="$records[0][$field['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
-        </div>
-
-    @elseif($field['name'] === 'DocumentedConnectivity'
-        || $field['name'] === 'EvidenceOfConnectivity'
-        || $field['name'] === 'EvidencesListConnectivity'
-        || $field['name'] === 'ConnectivityIntegrationInManagementPlan')
-
-        @if($field['name'] === 'DocumentedConnectivity')
-            <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.Connectivity')</h3>
-            <div class="Connectivity">
-                @lang('imet-core::v2_context.TerritorialReferenceContext.connectivity_info')
-            </div>
-        @endif
-
-        <div class="module-row !mb-4">
-
-            {{-- label  --}}
-            <div class="module-row__label !w-2/5">
-                <label for="{{ $field['name'] }}"
-                       @if($field['name'] === 'EvidencesListConnectivity') class="!font-normal" @endif
-                >{!! ucfirst( $field['label']) !!}</label>
-            </div>
-
-            <x-modular-forms::module.components.field.input-preview
-                    :type="$field['type']"
-                    :value="$records[0][$field['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
-
-
+            ></x-imet-core::custom-input-preview>
         </div>
 
     @elseif($field['name']!=='FunctionalKm'
@@ -117,10 +88,10 @@ $definitions['label_width'] = 7;
             ])
 
             {{-- input field --}}
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$field['type']"
                     :value="$records[0][$field['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
 
         @endcomponent
 
@@ -137,13 +108,6 @@ $definitions['label_width'] = 7;
 
             .BenefitSocioEconomicAspects span span {
                 max-width: 100%;
-            }
-
-            .Connectivity {
-                ul {
-                    margin-left: 20px;
-                    margin-bottom: 10px;
-                }
             }
         }
 

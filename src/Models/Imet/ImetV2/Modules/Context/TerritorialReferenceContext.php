@@ -41,10 +41,6 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
             ['name' => 'BenefitKm',  'type' => 'numeric',   'label' => ''],
             ['name' => 'BenefitPopulation',  'type' => 'numeric',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitPopulation')],
             ['name' => 'BenefitSocioEconomicAspects',  'type' => 'text-area',   'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.BenefitSocioEconomicAspects')],
-            ['name' => 'DocumentedConnectivity',    'type' => 'custom::radio-ImetV2_DocumentedConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.DocumentedConnectivity')],
-            ['name' => 'EvidenceOfConnectivity',    'type' => 'custom::radio-ImetV2_EvidenceOfConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidenceOfConnectivity')],
-            ['name' => 'EvidencesListConnectivity',    'type' => 'checkbox-ImetV2_EvidencesListConnectivity', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.EvidencesListConnectivity')],
-            ['name' => 'ConnectivityIntegrationInManagementPlan',    'type' => 'custom::radio-ImetV2_ConnectivityIntegrationInManagementPlan', 'label' => trans('imet-core::v2_context.TerritorialReferenceContext.fields.ConnectivityIntegrationInManagementPlan')],
         ];
 
         $this->module_info = trans('imet-core::v2_context.TerritorialReferenceContext.module_info');
@@ -83,6 +79,49 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::addField($record, 'EvidenceOfConnectivity');
         $record = self::addField($record, 'EvidencesListConnectivity');
 
-        return self::addField($record, 'ConnectivityIntegrationInManagementPlan');
+        // #### v3.0.0-rc.41 -> v3.0.0-rc.42 ####
+        $record = self::dropField($record, 'DocumentedConnectivity');
+        $record = self::dropField($record, 'EvidenceOfConnectivity');
+        $record = self::dropField($record, 'EvidencesListConnectivity');
+        $record = self::dropField($record, 'ConnectivityIntegrationInManagementPlan');
+        // Existing data split managed in splitConnectivity()
+
+        return $record;
     }
+
+    /**
+     * Upgrade: move connectivity columns to dedicated module Connectivity (CTX 2.5)
+     */
+    public static function splitConnectivity(array $data): array
+    {
+        $self_class = self::getShortClassName();
+        $connectivity_class = Connectivity::getShortClassName();
+
+        if( array_key_exists($self_class, $data)
+            && array_key_exists('DocumentedConnectivity', $data[$self_class][0])
+            && !array_key_exists($connectivity_class, $data)){
+
+            $self_class_records = $data[$self_class][0];
+
+            // Copy to Connectivity table
+            $data[$connectivity_class] = [];
+            $data[$connectivity_class][] = [
+                'DocumentedConnectivity' => $self_class_records['DocumentedConnectivity'],
+                'EvidenceOfConnectivity' => $self_class_records['EvidenceOfConnectivity'],
+                'EvidencesListConnectivity' => $self_class_records['EvidencesListConnectivity'],
+                'ConnectivityIntegrationInManagementPlan' => $self_class_records['ConnectivityIntegrationInManagementPlan'],
+                'UpdateDate' => $self_class_records['UpdateDate'],
+                'UpdateBy' => $self_class_records['UpdateBy'],
+            ];
+
+            // Remove from TerritorialReferenceContext
+            unset($data[$self_class][0]['DocumentedConnectivity']);
+            unset($data[$self_class][0]['EvidenceOfConnectivity']);
+            unset($data[$self_class][0]['EvidencesListConnectivity']);
+            unset($data[$self_class][0]['ConnectivityIntegrationInManagementPlan']);
+        }
+
+        return $data;
+    }
+
 }
