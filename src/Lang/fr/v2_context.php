@@ -417,11 +417,11 @@ return [
             une aire marine protégée (AMP), qui s\'étendent au-delà de ses limites ou sont reçus d\'aires protégées voisines
             au sein d\'un paysage ou d\'un paysage marin connecté.</p>
             <b class="blue">Description</b>
-            <p><b>Le débordement écologique</b> se produit lorsque les espèces au sein d\'une AMP augmentent en abondance, en taille ou en production reproductive,
+            <p><b>Le débordement écologique</b> (voir SE – Support) se produit lorsque les espèces au sein d\'une AMP augmentent en abondance, en taille ou en production reproductive,
             puis se dispersent en dehors de l\'AMP par le mouvement des adultes, la migration des juvéniles ou l\'exportation larvaire. Ces processus peuvent
             fonctionner dans deux directions : une AMP peut activement fournir des bénéfices de débordement aux zones environnantes, ou elle peut recevoir
             des apports écologiques d\'AMP voisines, en particulier là où il existe une connectivité écologique, pour fournir des bénéfices de débordement.</p>
-            <p><b>Le débordement socio-économique</b> survient lorsque ces processus écologiques conduisent à une amélioration des captures, une plus grande
+            <p><b>Le débordement socio-économique</b> (voir SE – Approvisionnement) survient lorsque ces processus écologiques conduisent à une amélioration des captures, une plus grande
             diversité des espèces ou des poissons plus grands dans les zones de pêche voisines. Cela soutient les moyens de subsistance locaux.</p>
             <p>Dans le contexte de l\'analyse IMET, le débordement peut être compris comme un service écosystémique fourni par l\'aire marine
             protégée. Il fonctionne comme un service de soutien car les mesures de protection au sein de l\'AMP améliorent des processus

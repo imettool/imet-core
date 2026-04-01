@@ -415,12 +415,12 @@ return [
             un área marina protegida (AMP), que se extienden más allá de sus límites o son recibidos de áreas protegidas vecinas
             dentro de un paisaje terrestre o marino interconectado.</p>
             <b class="blue">Descripción</b>
-            <p><b>El spillover ecológico</b> ocurre cuando las especies dentro de un AMP aumentan en abundancia, tamaño o producción
+            <p><b>El spillover ecológico</b> (ver SE – Soporte) ocurre cuando las especies dentro de un AMP aumentan en abundancia, tamaño o producción
             reproductiva, y luego se dispersan fuera del AMP a través del movimiento de adultos, migración de juveniles o exportación
             larval. Estos procesos pueden operar en dos direcciones: un AMP puede proporcionar activamente beneficios de spillover a
             las áreas circundantes, o puede recibir aportes ecológicos de AMPs vecinas, particularmente donde existe conectividad
             ecológica, para generar beneficios de spillover.</p>
-            <p><b>El spillover socioeconómico</b> surge cuando estos procesos ecológicos conducen a mejores capturas, mayor diversidad
+            <p><b>El spillover socioeconómico</b> (ver SE – Aprovisionamiento) surge cuando estos procesos ecológicos conducen a mejores capturas, mayor diversidad
             de especies o peces más grandes en las zonas de pesca vecinas. Esto apoya los medios de vida locales.</p>
             <p>En el contexto del análisis IMET, el spillover puede entenderse como un servicio ecosistémico prestado por el área
             marina protegida. Funciona como un servicio de soporte porque las medidas de protección dentro del AMP potencian los

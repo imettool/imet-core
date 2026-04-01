@@ -409,12 +409,12 @@ return [
             a marine protected area (MPA), that extend beyond its boundaries or are received from neighbouring protected
             areas within a connected landscape or seascape.</p>
             <b class="blue">Description</b>
-            <p><b>Ecological spillover</b> occurs when species within a MPA increase in abundance, size or reproductive output,
+            <p><b>Ecological spillover</b> (see ES - Support) occurs when species within a MPA increase in abundance, size or reproductive output,
             and then disperse outside the MPA through adult movement, juvenile migration or larval export. These processes can
             operate in two directions: an MPA may actively deliver spillover benefits to surrounding areas, or it may receive
             ecological inputs from neighbouring MPAs, particularly where there is ecological connectivity, to deliver spillover
             benefits.</p>
-            <p><b>Socio-economic spillover</b> arises when these ecological processes lead to improved catches, greater species
+            <p><b>Socio-economic spillover</b> (see ES – Provisioning) arises when these ecological processes lead to improved catches, greater species
             diversity or larger fish in neighbouring fishing grounds. This supports local livelihoods.</p>
             <p>In the context of IMET analysis, spillover can be understood as an ecosystem service provided by the marine
             protected area. It functions as a supporting service because protection measures within the MPA enhance key
