@@ -69,7 +69,7 @@ final class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['Description'] !== null
             || $record['Dependence'] !== null
