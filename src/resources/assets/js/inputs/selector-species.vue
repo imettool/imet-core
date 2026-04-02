@@ -164,17 +164,22 @@
     }
 
     function setLabel(item){
+
+        // Insert value (string)
+        if(typeof item === "string" && item.split("|").length<=3){
+            return item;
+        }
+
+        // Selected item (taxonomy)
         let taxonomy = '';
         if(typeof item === "object"){
             taxonomy = getFullTaxonomy(item);
         } else if(item.split("|").length>3){
             taxonomy = item;
         }
-
         if(!(taxonomy in cached_species.value)){
             getSpeciesInfo(taxonomy);
         }
-
         return computedLabel.value;
     }
 
