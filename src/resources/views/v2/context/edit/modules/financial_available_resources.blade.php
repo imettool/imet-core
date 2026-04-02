@@ -106,4 +106,11 @@ $table_id = 'table_' . $definitions['slug'];
         (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialAvailableResources(@json($module->vueData)))
             .mount('#module_{{ $definitions['slug'] }}');
     </script>
+
+    <style>
+        table#{{ $table_id }}{
+
+        }
+    </style>
+
 @endpush
