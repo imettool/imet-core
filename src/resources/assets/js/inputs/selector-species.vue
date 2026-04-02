@@ -114,10 +114,6 @@
     const classes = ref([]);
     const cached_species = ref({});
 
-    onBeforeMount(() => {
-        getSpeciesInfo(inputValue.value);
-    });
-
     const computedLabel = computed(() => {
         if(inputValue.value in cached_species.value){
             let speciesInfo = cached_species.value[inputValue.value];
@@ -183,7 +179,7 @@
     }
 
     function getSpeciesInfo(taxonomy){
-        if(!(taxonomy in cached_species.value)){
+        if(!(taxonomy in cached_species.value) && taxonomy !== null){
             fetch(props.infoUrl, {
                 method: 'POST',
                 headers: {
