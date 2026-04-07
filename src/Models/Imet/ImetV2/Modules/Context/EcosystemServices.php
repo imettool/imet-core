@@ -114,7 +114,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['Importance'] !== null
             || $record['ImportanceRegional'] !== null

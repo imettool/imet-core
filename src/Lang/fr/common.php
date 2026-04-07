@@ -117,6 +117,23 @@ return [
         'cross_analysis' => 'Analyse croisée',
     ],
 
+    'score_info' => [
+        'outcomes' =>
+            'L\'<b>indicateur synthétique</b> n\'est pas calculé comme une simple moyenne des trois composantes (O/C1, O/C2, O/C3).
+            Il est dérivé d\'une transformation des scores bruts, conçue pour refléter la contribution relative
+            de chaque composante à la performance globale des effets.
+            Les indicateurs O/C2 et O/C3 sont exprimés sur une échelle bipolaire allant de -100 à +100, reflétant des tendances
+            et des effets négatifs à positifs. En revanche, O/C1 est exprimé sur une échelle unipolaire (0 à 100), représentant
+            le niveau d\'atteinte des objectifs de conservation.
+            La transformation tient compte de ces différences d\'échelle, ainsi que de la distribution et de l\'équilibre entre
+            les composantes. En conséquence, les composantes avec des scores bruts plus faibles mais une importance structurelle
+            plus élevée—telles que les éléments clés de conservation ou les bénéfices pour les parties prenantes—peuvent contribuer
+            plus significativement à l\'indicateur final que leurs valeurs initiales ne le suggèrent.
+            Bien que O/C1 atteigne le score maximal, sa contribution à l\'indicateur synthétique reste limitée, tandis que
+            O/C2 et O/C3 ont une influence plus forte, reflétant l\'importance des conditions écologiques et des résultats
+            pour les parties prenantes dans l\'efficacité globale de la conservation.'
+    ],
+
     'Create' => [
         'title' => 'Créer un nouveau IMET (WDPA)',
         'fields' => [

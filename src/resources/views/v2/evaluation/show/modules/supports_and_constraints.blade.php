@@ -45,10 +45,10 @@ $table_id = 'table_' . $definitions['slug'];
                 <tr class="module-table-item">
                     @foreach($definitions['fields'] as $f_index=>$field)
                         <td>
-                            <x-modular-forms::module.components.field.input-preview
+                            <x-imet-core::custom-input-preview
                                     :type="$field['type']"
                                     :value="$record[$field['name']]"
-                            ></x-modular-forms::module.components.field.input-preview>
+                            ></x-imet-core::custom-input-preview>
 
 
                         </td>

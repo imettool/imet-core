@@ -126,6 +126,7 @@ const score_properties = {
         },
         'outcomes': {
             'indexes': ['OC1', 'OC2', 'OC3'],
+            'histogram_types': ['0_to_100', 'minus100_to_100', 'minus100_to_100'],
             'color': '#00B050'
         },
     },

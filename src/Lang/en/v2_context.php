@@ -285,6 +285,7 @@ return [
         'area_percentage' => '% of the area',
         'average_time' => 'Average patrol * d * km² of the sector',
     ],
+
     'TerritorialReferenceContext' => [
         'title' => 'Baseline territorial context (Landscape) of the Protected Area',
         'fields' => [
@@ -295,15 +296,10 @@ return [
             'BenefitArea' => 'Estimate the inhabited area around the protected area that benefits from the ecosystem services delivered by the protected area: a) in km² and b) in Km as width of the outer strip',
             'BenefitPopulation' => 'Estimate the size of local population living within the socio-economic area of influence',
             'BenefitSocioEconomicAspects' => 'List and describe the socio-economic and administrative factors (e.g. traditional or modern roles about natural resources establish by traditional and modern authorities) that influence the protected area management',
-            'DocumentedConnectivity' => 'Q1. Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
-            'EvidenceOfConnectivity' => 'Q2. Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
-            'EvidencesListConnectivity' => 'Indications and evidence may include:',
-            'ConnectivityIntegrationInManagementPlan' => 'Q3. Is connectivity integrated into management planning?',
         ],
         'categories' => [
             'FunctionalEcosystemArea' => 'Functional ecosystem area',
             'BenefitsOfEcosystemServicesArea' => 'Area that benefits of the ecosystem services of the protected area',
-            'Connectivity' => 'Connectivity',
         ],
         'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
           can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
@@ -316,10 +312,38 @@ return [
           essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
           grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
-        'connectivity_info' => '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
+    ],
+
+    'Connectivity' => [
+        'title'  => 'Connectivity',
+        'fields' => [
+            'DocumentedConnectivity' => '1.	First, document the evidence',
+            'EvidenceOfConnectivity' => '2.	Base your classification on the evidence, not your assumptions',
+            'ConnectivityIntegrationInManagementPlan' => '3. Analyse the degree of integration of connectivity in management planning',
+        ],
+        'sub_titles' => [
+            'DocumentedConnectivity' => 'Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
+            'EvidenceOfConnectivity' => 'Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
+            'EvidencesListConnectivity' => 'Indications and evidence may include:',
+            'ConnectivityIntegrationInManagementPlan' => 'Is connectivity integrated into management planning?',
+        ],
+        'connectivity_title' => 'How to assess connectivity in IMET',
+        'link_to_me' => '4.	Link connectivity to management effectiveness',
+        'link_to_me_details' => '
+            <p>The selected classification informs IMET analysis across:</p>
+            <ul>
+                <li>C1.5 – Ecosystem services (importance and prioritisation)</li>
+                <li>I1 - Basic information</li>
+                <li>PR7 - Management of key values and threats (management actions)</li>
+                <li>O/C2 - Ecological outcomes and/or O/C3: Effects on local quality of life</li>
+            </ul>',
+
+        'module_info' => '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
             surrounding habitats or ecosystems that enable key ecological processes such as species movement, gene flow,
-            migration, larval dispersal, and climate adaptation. Connectivity sustains the long-term viability of the site’s
-            major natural values and underpins processes such as biomass recovery and spillover.</p>
+            migration, larval dispersal, and climate adaptation.</p>
+             <b class="blue">Description</b>
+             <p>Connectivity sustains the long-term viability of the site’s major natural values and underpins processes such as
+             biomass recovery and spillover.</p>
             <p>Connectivity can be:</p>
             <ul>
                 <li>Structural: the physical continuity of habitats, corridors, stepping stones and currents.</li>
@@ -385,12 +409,12 @@ return [
             a marine protected area (MPA), that extend beyond its boundaries or are received from neighbouring protected
             areas within a connected landscape or seascape.</p>
             <b class="blue">Description</b>
-            <p><b>Ecological spillover</b> occurs when species within a MPA increase in abundance, size or reproductive output,
+            <p><b>Ecological spillover</b> (see ES - Support) occurs when species within a MPA increase in abundance, size or reproductive output,
             and then disperse outside the MPA through adult movement, juvenile migration or larval export. These processes can
             operate in two directions: an MPA may actively deliver spillover benefits to surrounding areas, or it may receive
             ecological inputs from neighbouring MPAs, particularly where there is ecological connectivity, to deliver spillover
             benefits.</p>
-            <p><b>Socio-economic spillover</b> arises when these ecological processes lead to improved catches, greater species
+            <p><b>Socio-economic spillover</b> (see ES – Provisioning) arises when these ecological processes lead to improved catches, greater species
             diversity or larger fish in neighbouring fishing grounds. This supports local livelihoods.</p>
             <p>In the context of IMET analysis, spillover can be understood as an ecosystem service provided by the marine
             protected area. It functions as a supporting service because protection measures within the MPA enhance key

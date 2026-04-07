@@ -52,7 +52,7 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['EvaluationScore'] !== null || $record['InManagementPlan'] !== null || $record['Comments'] !== null) {
             return false;

@@ -44,11 +44,11 @@ if (array_key_exists($vue_record_index, $module->vueData['records']) && array_ke
             ])
             <span class="ml-2 mr-4">[ha]</span>
 
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     :type="$field['type']"
                     :value="$field['name'].'_km2'"
                     :other="$convert_to_ha"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
             <span class="ml-2">[km2]</span>
 
         @elseif($field_index===3)
@@ -85,12 +85,12 @@ if (array_key_exists($vue_record_index, $module->vueData['records']) && array_ke
 
         @elseif($field_index===10)
 
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     type="numeric"
                     :value="'records['.$vue_record_index.'].'.$field['name']"
                     :id="$index_id"
                     other='style="max-width: 180px;" disabled="disabled"'
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
 
         @endif
 

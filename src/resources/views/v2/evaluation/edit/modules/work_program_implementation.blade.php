@@ -76,10 +76,10 @@ $table_id = 'group_table_' . $definitions['slug'] . '_' . $group_key;
                     @endforeach
                     <td>
                         {{-- record id  --}}
-                        <x-modular-forms::module.components.field.input
+                        <x-imet-core::custom-input
                                 type="hidden"
                                 :value="'item.'.$definitions['primary_key']"
-                        ></x-modular-forms::module.components.field.input>
+                        ></x-imet-core::custom-input>
                         {{-- delete button  --}}
                         @include('modular-forms::module.components.buttons.delete_item', [
                             'onClick' => 'deleteItem(item[\'__index\'])',

@@ -29,7 +29,7 @@ final class Spillover extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
         $this->module_type = ModuleTypes::SIMPLE;
-        $this->module_code = 'CTX 2.5';
+        $this->module_code = 'CTX 2.6';
         $this->module_title = trans('imet-core::v2_context.Spillover.title');
         $this->module_fields = [
             ['name' => 'SupportingEvidence',                'type' => 'custom::radio-ImetV2_SupportingEvidence',                 'label' => trans('imet-core::v2_context.Spillover.fields.SupportingEvidence')],

@@ -30,16 +30,16 @@ $equipment_id = "'" . $definitions['slug'] . "_'+index+'_Equipment'";
 
         {{--  fields  --}}
         <td>
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     type="hidden"
                     value="records[index].Equipment"
                     :id="$equipment_id"
-            ></x-modular-forms::module.components.field.input>
-            <x-modular-forms::module.components.field.input
+            ></x-imet-core::custom-input>
+            <x-imet-core::custom-input
                     type="disabled"
                     value="records[index].__predefined_label"
                     class="field-disabled"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
         </td>
 
         <td>
@@ -68,10 +68,10 @@ $equipment_id = "'" . $definitions['slug'] . "_'+index+'_Equipment'";
 
         <td>
             {{-- record id  --}}
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     type="hidden"
                     :value="'item.'.$definitions['primary_key']"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
             @if(!$definitions['fixed_rows'])
                 <span v-if="typeof item.__predefined === 'undefined'">
                         <x-modular-forms::module.components.buttons.delete-item/>

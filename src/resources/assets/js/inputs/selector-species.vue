@@ -114,10 +114,6 @@
     const classes = ref([]);
     const cached_species = ref({});
 
-    onBeforeMount(() => {
-        getSpeciesInfo(inputValue.value);
-    });
-
     const computedLabel = computed(() => {
         if(inputValue.value in cached_species.value){
             let speciesInfo = cached_species.value[inputValue.value];
@@ -168,22 +164,27 @@
     }
 
     function setLabel(item){
+
+        // Insert value (string)
+        if(typeof item === "string" && item.split("|").length<=3){
+            return item;
+        }
+
+        // Selected item (taxonomy)
         let taxonomy = '';
         if(typeof item === "object"){
             taxonomy = getFullTaxonomy(item);
         } else if(item.split("|").length>3){
             taxonomy = item;
         }
-
         if(!(taxonomy in cached_species.value)){
             getSpeciesInfo(taxonomy);
         }
-
         return computedLabel.value;
     }
 
     function getSpeciesInfo(taxonomy){
-        if(!(taxonomy in cached_species.value)){
+        if(!(taxonomy in cached_species.value) && taxonomy !== null){
             fetch(props.infoUrl, {
                 method: 'POST',
                 headers: {

@@ -41,14 +41,18 @@ $table_dom->filter('thead tr th')->eq(4)->after(
     ');
 
 $table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
-    $tr->filter('td')->eq(4)->after(
-        '<td>
+    if($index>0) {
+        $tr->filter('td')->eq(4)->after(
+            '<td>
             ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $records[$index]['__sum_row'])) . '
         </td>
         <td>
             ' . Blade::renderComponent(new InputPreview(type: 'text-area', value: $records[$index]['__percent_row'])) . '
         </td>'
-    );
+        );
+    } else {
+        $tr->filter('td')->eq(4)->after('<td></td><td></td>');
+    }
 });
 
 $table_dom->filter('tbody tr')->last()->after(

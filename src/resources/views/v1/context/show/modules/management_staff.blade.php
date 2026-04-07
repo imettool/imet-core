@@ -43,10 +43,10 @@ $diffs = \ImetCore\Models\Imet\ImetV1\Modules\Context\ManagementStaff::diffs($re
             {{--  fields  --}}
             @foreach($definitions['fields'] as $index => $field)
                 <td>
-                    <x-modular-forms::module.components.field.input-preview
+                    <x-imet-core::custom-input-preview
                             :type="$definitions['fields'][$index]['type']"
                             :value="$record[$definitions['fields'][$index]['name']]"
-                    ></x-modular-forms::module.components.field.input-preview>
+                    ></x-imet-core::custom-input-preview>
                     @if($field['name']==="ActualPermanent")
                 </td>
                 <td>

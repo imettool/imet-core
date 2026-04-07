@@ -320,6 +320,151 @@ return [
             carbono como al garantizar que los ecosistemas sigan proporcionando bienes y servicios a las sociedades humanas (WWF).',
     ],
 
+    'Connectivity' => [
+        'title'  => 'Conectividad',
+        'fields' => [
+            'DocumentedConnectivity' => '1.	Primero, documente las evidencias',
+            'EvidenceOfConnectivity' => '2.	Base su clasificación en las evidencias, no en sus suposiciones',
+            'ConnectivityIntegrationInManagementPlan' => '3. Analice el grado de integración de la conectividad en la planificación de la gestión',
+        ],
+        'sub_titles' => [
+            'DocumentedConnectivity' => '¿Existe conectividad estructural documentada entre el área protegida y los hábitats circundantes (corredores, continuidad de hábitats, corrientes marinas, piedras de paso)?',
+            'EvidenceOfConnectivity' => '¿Existe evidencia de conectividad funcional (movimiento de especies, migración, intercambio genético, dispersión larval)?',
+            'EvidencesListConnectivity' => 'Las indicaciones y evidencias pueden incluir:',
+            'ConnectivityIntegrationInManagementPlan' => '¿La conectividad está integrada en la planificación de la gestión?',
+        ],
+        'connectivity_title' => 'Cómo evaluar la conectividad en IMET',
+        'link_to_me' => '4.	Vincule la conectividad con la efectividad de la gestión',
+        'link_to_me_details' => '
+            <p>La clasificación seleccionada informa el análisis IMET en:</p>
+            <ul>
+                <li>C1.5 – Servicios ecosistémicos (importancia y priorización)</li>
+                <li>I1 - Información básica</li>
+                <li>PR7 - Gestión de los valores y amenazas principales (acciones de gestión)</li>
+                <li>O/C2 - Resultados ecológicos y/o O/C3: Efectos en la calidad de vida local</li>
+            </ul>',
+
+        'module_info' => '<p>La conectividad se refiere a los vínculos ecológicos estructurales y funcionales entre el área protegida y
+            los hábitats o ecosistemas circundantes que permiten procesos ecológicos clave, como el movimiento de especies,
+            el flujo génico, la migración, la dispersión larval y la adaptación climática.</p>
+             <b class="blue">Descripción</b>
+             <p>La conectividad sostiene la viabilidad a largo plazo de los principales valores naturales del sitio y sustenta procesos como
+             la recuperación de biomasa y el spillover.</p>
+            <p>La conectividad puede ser:</p>
+            <ul>
+                <li>Estructural: la continuidad física de los hábitats, corredores, piedras de paso y corrientes.</li>
+                <li>Funcional (el movimiento real de especies, el flujo génico y los patrones de dispersión);</li>
+                <li>Ecológica (mantenimiento de los vínculos tróficos y los procesos ecosistémicos más allá de las fronteras).</li>
+            </ul>
+            <p>En sistemas marinos, la conectividad puede incluir:</p>
+            <ul>
+                <li>Rutas de migración de adultos</li>
+                <li>Sistemas de corrientes y redes de dispersión larval</li>
+                <li>Continuidad de hábitats (arrecifes, praderas marinas y manglares).</li>
+            </ul>
+            <p>En sistemas terrestres:</p>
+            <ul>
+                <li>Corredores</li>
+                <li>Zonas de amortiguamiento</li>
+                <li>Redes ecológicas</li>
+                <li>Vínculos transfronterizos</li>
+            </ul>
+            <p>La conectividad apoya:</p>
+            <ul>
+                <li>Resiliencia ecológica</li>
+                <li>Dinámicas de spillover</li>
+                <li>La viabilidad a largo plazo de los elementos clave de conservación</li>
+                <li>Adaptación climática</li>
+            </ul>',
+    ],
+
+    'Spillover' => [
+        'title' => 'Spillover',
+        'fields' => [
+            'SupportingEvidence' => 'P1. Evaluación de las evidencias de Spillover Ecológico',
+            'SupportingKeyObservations' => 'P2. Evidencias y Observaciones Principales',
+            'SupportingOtherObservation' => 'Especifique',
+            'SupportingPerceivedSpeciesChange' => 'P3. Cambio percibido en el monitoreo/captura de especies',
+            'SupportingPerceivedSizeChange' => 'P4. Cambio percibido en el tamaño de las principales especies objetivo',
+            'SupportingComments' => 'Observaciones',
+            'ProvisioningEvidence' => 'P1. Evaluación de las evidencias de Spillover de Aprovisionamiento',
+            'ProvisioningKeyObservations' => 'P2. Evidencias y observaciones principales',
+            'ProvisioningOtherObservation' => 'Especifique',
+            'ProvisioningPerceivedCatchChange' => 'P3. Cambio percibido en la captura cerca del AMP',
+            'ProvisioningPerceivedSpillover' => 'P4. ¿Los pescadores perciben un efecto de spillover del AMP?',
+            'ProvisioningComments' => 'Observaciones',
+
+        ],
+        'sub_titles' => [
+            'SupportingEvidence' => '¿Existe evidencia científica o de monitoreo de spillover ecológico del AMP (por ejemplo, gradientes de biomasa, marcado, exportación larval, mejora del hábitat cerca de los límites)?',
+            'SupportingKeyObservations' => 'Describa las principales observaciones o información que respaldan su evaluación en P1',
+            'SupportingPerceivedSpeciesChange' => 'En esas mismas zonas de pesca fuera del AMP, ¿cómo perciben el personal/pescadores del AMP la variedad y composición de especies en su monitoreo/captura en comparación con antes del AMP?',
+            'SupportingPerceivedSizeChange' => '¿Cómo perciben el personal/pescadores del AMP el tamaño promedio de las principales especies que capturan en áreas fuera pero cercanas al AMP, en comparación con antes del AMP?',
+            'ProvisioningEvidence' => '¿Existe evidencia científica, de monitoreo o documentada de que el AP genera beneficios de spillover de aprovisionamiento en las zonas de pesca vecinas (por ejemplo, mejores capturas, peces más grandes, cambios en la composición de especies, aumento del Rendimiento por Unidad de Esfuerzo -CPUE)?',
+            'ProvisioningKeyObservations' => 'Describa brevemente las observaciones clave que respaldan su elección (por ejemplo, resultados de monitoreo, retroalimentación de la comunidad, resultados de investigación, observaciones de guardabosques o funcionarios de pesca)',
+            'ProvisioningPerceivedCatchChange' => 'En comparación con el período anterior al establecimiento del AMP, ¿cómo perciben el personal/pescadores del AMP que operan fuera pero cerca del AMP el cambio en su captura total por viaje?',
+            'ProvisioningPerceivedSpillover' => '¿Los pescadores creen que la presencia del AMP ha contribuido a mejores capturas en las zonas donde pescan (por ejemplo, porque los peces salen desde dentro del AMP o se concentran cerca de su límite)?',
+        ],
+        'other_labels' => [
+            'SupportingTitle' => 'Soporte (SE – Soporte)',
+            'SupportingSubTitle' => 'Se utiliza cuando los procesos ecológicos (por ejemplo, reproducción, recuperación de biomasa, exportación larval) son conocidos o sospechados, pero los efectos socioeconómicos no están demostrados. El spillover se analizará entonces principalmente en el contexto y los resultados ecológicos',
+            'ProvisioningTitle' => 'Servicio ecosistémico de aprovisionamiento (SE – Aprovisionamiento)',
+            'ProvisioningSubTitle' => 'Se utiliza cuando los pescadores o comunidades reportan mejores capturas, peces más grandes o cambios en la composición de especies sin mecanismos ecológicos documentados. El análisis se centrará en los medios de vida y los resultados socioeconómicos.',
+        ],
+        'module_info' => '<p>El spillover se refiere a los beneficios ecológicos y socioeconómicos generados por un área protegida, en particular
+            un área marina protegida (AMP), que se extienden más allá de sus límites o son recibidos de áreas protegidas vecinas
+            dentro de un paisaje terrestre o marino interconectado.</p>
+            <b class="blue">Descripción</b>
+            <p><b>El spillover ecológico</b> (ver SE – Soporte) ocurre cuando las especies dentro de un AMP aumentan en abundancia, tamaño o producción
+            reproductiva, y luego se dispersan fuera del AMP a través del movimiento de adultos, migración de juveniles o exportación
+            larval. Estos procesos pueden operar en dos direcciones: un AMP puede proporcionar activamente beneficios de spillover a
+            las áreas circundantes, o puede recibir aportes ecológicos de AMPs vecinas, particularmente donde existe conectividad
+            ecológica, para generar beneficios de spillover.</p>
+            <p><b>El spillover socioeconómico</b> (ver SE – Aprovisionamiento) surge cuando estos procesos ecológicos conducen a mejores capturas, mayor diversidad
+            de especies o peces más grandes en las zonas de pesca vecinas. Esto apoya los medios de vida locales.</p>
+            <p>En el contexto del análisis IMET, el spillover puede entenderse como un servicio ecosistémico prestado por el área
+            marina protegida. Funciona como un servicio de soporte porque las medidas de protección dentro del AMP potencian los
+            procesos ecológicos clave, como la reproducción, la recuperación de biomasa y la conectividad ecológica con las áreas
+            circundantes. Al mismo tiempo, el spillover constituye un servicio de aprovisionamiento ya que estos procesos ecológicos
+            generados localmente o reforzados externamente producen beneficios tangibles para los pescadores y las comunidades
+            costeras, como el aumento de las capturas, la mejora de la composición de especies y el mayor tamaño promedio de los peces</p>
+            <b class="blue">Cómo evaluar el spillover en IMET</b>
+            <ol style="list-style-type:decimal">
+                <li>
+                    <b>Primero, documente las evidencias</b>
+                    <p>Antes de clasificar el spillover, los usuarios de IMET deben completar ambas secciones analíticas.</p>
+                    <ul>
+                        <li>Servicios ecosistémicos de soporte (spillover ecológico): evalúe las evidencias relacionadas con los procesos
+                        ecológicos, como la reproducción, la recuperación de biomasa, el movimiento de adultos, la migración de juveniles
+                        o la exportación larval.</li>
+                        <li>Servicios ecosistémicos de aprovisionamiento (spillover socioeconómico): evalúe las evidencias relacionadas
+                        con los beneficios para los pescadores y las comunidades, como los cambios en las capturas, la composición de
+                        especies, el tamaño de los peces o el CPUE.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base su clasificación en las evidencias, no en sus suposiciones</b>
+                    <p>Tras completar ambas secciones, seleccione la clasificación más adecuada:</p>
+                    <ul>
+                        <li>Solo soporte: los procesos ecológicos son evidentes, pero los beneficios socioeconómicos no están demostrados.</li>
+                        <li>Solo aprovisionamiento: se reportan beneficios para los medios de vida, pero los mecanismos ecológicos no están documentados.</li>
+                        <li>Soporte y aprovisionamiento: tanto los procesos ecológicos como los beneficios socioeconómicos están respaldados por evidencias.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Vincule el spillover con la efectividad de la gestión</b>
+                    <p>La clasificación seleccionada informa el análisis IMET en:</p>
+                    <ul>
+                        <li>C1.5 – Servicios ecosistémicos (importancia y priorización);</li>
+                        <li>I1 - Información básica</li>
+                        <li>PR7 - Gestión de los valores y amenazas principales (acciones de gestión).</li>
+                        <li>O/C2 - resultados ecológicos y/o O/C3: Efectos en la calidad de vida local.</li>
+                    </ul>
+                </li>
+            </ol>',
+
+    ],
+
     'ManagementStaff' => [
         'title' => 'Tamaño y composición del personal: Personal del área protegida',
         'fields' => [

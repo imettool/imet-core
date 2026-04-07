@@ -84,6 +84,10 @@ export default class FinancialResources extends ModuleImet {
             return !isNaN(parseFloat(n)) && isFinite(n) && n !== null;
         }
 
+        function getTotalBudget(){
+            return setup_obj.records[0]['TotalBudget'];
+        }
+
 
         return {
             ...setup_obj,
@@ -92,7 +96,8 @@ export default class FinancialResources extends ModuleImet {
             functioning_costs_3,
             estimation_financial_plan_2,
             estimation_financial_plan_3,
-            estimation_operational_plan_3
+            estimation_operational_plan_3,
+            getTotalBudget
         };
 
     }

@@ -5,9 +5,9 @@ $adequacy_id = "'" . $slug . "_'+index+'___adequacy'";
 
 ?>
 
-<x-modular-forms::module.components.field.input
+<x-imet-core::custom-input
     type="disabled"
     value="records[index].__adequacy"
     :id="$adequacy_id"
     class='style="width: 100px; text-align: center;"'
-></x-modular-forms::module.components.field.input>
+></x-imet-core::custom-input>

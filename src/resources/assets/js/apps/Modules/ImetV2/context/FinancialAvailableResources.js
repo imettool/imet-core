@@ -21,12 +21,14 @@ export default class FinancialAvailableResources extends ModuleImet {
         const totals = computed(() => {
             let result = [];
             setup_obj.records.forEach(function (item, index) {
-                result[index] = 0;
-                result[index] += item['NationalBudget'] !== null ? parseFloat(item['NationalBudget']) : 0;
-                result[index] += item['OwnRevenues'] !== null ? parseFloat(item['OwnRevenues']) : 0;
-                result[index] += item['Disputes'] !== null ? parseFloat(item['Disputes']) : 0;
-                result[index] += item['Partners'] !== null ? parseFloat(item['Partners']) : 0;
-                result[index] = result[index]===0 ? null : result[index];
+                if (index > 0) {
+                    result[index] = 0;
+                    result[index] += item['NationalBudget'] !== null ? parseFloat(item['NationalBudget']) : 0;
+                    result[index] += item['OwnRevenues'] !== null ? parseFloat(item['OwnRevenues']) : 0;
+                    result[index] += item['Disputes'] !== null ? parseFloat(item['Disputes']) : 0;
+                    result[index] += item['Partners'] !== null ? parseFloat(item['Partners']) : 0;
+                    result[index] = result[index] === 0 ? null : result[index];
+                }
             });
             return result;
         });
@@ -34,11 +36,8 @@ export default class FinancialAvailableResources extends ModuleImet {
         const percentages = computed(() => {
             let result = [];
             let totalPlannedBudget = parseFloat(getTotalBudget());
-            setup_obj.records.forEach(function (item, index) {
-                let total =  parseFloat(totals[index]);
-                if(total>0 && totalPlannedBudget>0){
-                    result[index] = (total/totalPlannedBudget*100).toFixed(1) + ' %';
-                }
+            totals.value.forEach(function (total, index) {
+                result[index] = (total/totalPlannedBudget*100).toFixed(1) + ' %';
             });
             return result;
         });
@@ -62,7 +61,7 @@ export default class FinancialAvailableResources extends ModuleImet {
         });
 
         function getTotalBudget(){
-            return window.FinancialResources.records[0]['TotalBudget'];
+            return window.FinancialResources.getTotalBudget();
         }
 
     return {

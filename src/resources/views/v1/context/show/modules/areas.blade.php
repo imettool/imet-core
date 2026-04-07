@@ -21,22 +21,22 @@ $record = $records[0];
 
         @if($field_index<3)
             <div style="display: flex; justify-content: space-between;">
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$field['type']"
                         :value="$record[$field['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 <div style="margin: 0 40px 0 5px;">[ha]</div>
-                <x-modular-forms::module.components.field.input-preview
+                <x-imet-core::custom-input-preview
                         :type="$field['type']"
                         :value="$record[$field['name']]"
-                ></x-modular-forms::module.components.field.input-preview>
+                ></x-imet-core::custom-input-preview>
                 <div style="margin: 0 40px 0 5px;">[km2]</div>
             </div>
         @else
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$field['type']"
                     :value="$record[$field['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         @endif
     @endcomponent
 @endforeach

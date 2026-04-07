@@ -117,6 +117,23 @@ return [
         'cross_analysis' => 'Cross Analysis',
     ],
 
+    'score_info' => [
+        'outcomes' =>
+            'The <b>synthetic indicator</b> is not calculated as a simple average of the three components (O/C1, O/C2, O/C3).
+            Instead, it is derived from a transformation of the raw scores, designed to reflect the relative contribution
+            of each component to the overall outcome performance.
+            The indicators O/C2 and O/C3 are expressed on a bipolar scale ranging from -100 to +100, reflecting negative
+            to positive trends and effects. In contrast, O/C1 is expressed on a unipolar scale (0 to 100), representing
+            the level of achievement of conservation objectives.
+            The transformation accounts for these differences in scale, as well as the distribution and balance between
+            components. As a result, components with lower raw scores but higher structural importance—such as key
+            conservation elements or stakeholder benefits—may contribute more significantly to the final indicator than
+            suggested by their initial values.
+            Although O/C1 reaches the maximum score, its contribution to the synthetic indicator remains limited, while
+            O/C2 and O/C3 have a stronger influence, reflecting the importance of ecological conditions and stakeholder
+            outcomes in overall conservation effectiveness.'
+    ],
+
     'Create' => [
         'title' => 'Create a new IMET (WDPA)',
         'fields' => [

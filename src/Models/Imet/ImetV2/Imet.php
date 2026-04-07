@@ -25,6 +25,7 @@ use ImetCore\Models\Imet\ImetV2\Modules\Context\FinancialResourcesPartners;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\Habitats;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\ResponsablesInterviewees;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\ResponsablesInterviewers;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\TerritorialReferenceContext;
 use ImetCore\Services\Scores\ImetScores;
 
 class Imet extends BaseImetForm
@@ -53,6 +54,7 @@ class Imet extends BaseImetForm
             Modules\Context\Areas::class,
             Modules\Context\Sectors::class,
             Modules\Context\TerritorialReferenceContext::class,
+            Modules\Context\Connectivity::class,
             Modules\Context\Spillover::class,
             Modules\Context\Objectives2::class,
         ],
@@ -180,9 +182,12 @@ class Imet extends BaseImetForm
             $data = FinancialResourcesPartners::copyCurrencyFromCTX213($data);
         }
 
-        // ####  v2.7 -> v2.8 (marine pas):  merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
+        // #### v2.7 -> v2.8 (marine pas): merge CTX 4.3.1, 4.3.2, 4.4 into 4.3 ####
         $data = Habitats::mergeFromCTX432($data);
         $data = Habitats::mergeFromCTX44($data);
+
+        // #### v3.0.0-rc.41 -> v3.0.0-rc.42: move connectivity from CTX2.5 to dedicated module ####
+        $data = TerritorialReferenceContext::splitConnectivity($data);
 
         return parent::upgradeModules($data, $imet_version);
     }

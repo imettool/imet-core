@@ -85,35 +85,6 @@ $definitions['label_width'] = 7;
             ])
         </div>
 
-    @elseif($field['name'] === 'DocumentedConnectivity'
-        || $field['name'] === 'EvidenceOfConnectivity'
-        || $field['name'] === 'EvidencesListConnectivity'
-        || $field['name'] === 'ConnectivityIntegrationInManagementPlan')
-
-        @if($field['name'] === 'DocumentedConnectivity')
-            <h3>@lang('imet-core::v2_context.TerritorialReferenceContext.categories.Connectivity')</h3>
-            <div class="Connectivity">
-                @lang('imet-core::v2_context.TerritorialReferenceContext.connectivity_info')
-            </div>
-        @endif
-
-        <div class="module-row !mb-4">
-
-            {{-- label  --}}
-            <div class="module-row__label !w-2/5">
-                <label for="{{ $field['name'] }}"
-                       @if($field['name'] === 'EvidencesListConnectivity') class="!font-normal" @endif
-                >{!! ucfirst( $field['label']) !!}</label>
-            </div>
-
-            {{-- input field --}}
-            @include('modular-forms::module.edit.field.module-to-vue', [
-                'definitions' => $definitions,
-                'field' => $field,
-                'vue_record_index' => 0
-            ])
-        </div>
-
     @elseif($field['name']!=='FunctionalKm'
             and $field['name']!=='BenefitKm')
 
@@ -151,14 +122,6 @@ $definitions['label_width'] = 7;
 
             .BenefitSocioEconomicAspects span span {
                 max-width: 100%;
-            }
-
-            .Connectivity {
-                ul {
-                    margin-left: 20px;
-                    margin-bottom: 10px;
-                }
-
             }
         }
 

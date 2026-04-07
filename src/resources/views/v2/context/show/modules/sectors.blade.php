@@ -63,24 +63,24 @@ $UnderControlPatrolManDay = 0;
         <tr class="module-table-item">
             @foreach($definitions['fields'] as $f_index=>$field)
                 <td>
-                    <x-modular-forms::module.components.field.input-preview
+                    <x-imet-core::custom-input-preview
                         :type="$field['type']"
                         :value="$record[$field['name']]"
-                    ></x-modular-forms::module.components.field.input-preview>
+                    ></x-imet-core::custom-input-preview>
                 </td>
                 @if($f_index==2)
                     <td>
-                        <x-modular-forms::module.components.field.input-preview
+                        <x-imet-core::custom-input-preview
                             type="numeric"
                             :value="$area_percentage"
-                        ></x-modular-forms::module.components.field.input-preview>
+                        ></x-imet-core::custom-input-preview>
                     </td>
                 @elseif($f_index==4)
                     <td>
-                        <x-modular-forms::module.components.field.input-preview
+                        <x-imet-core::custom-input-preview
                             type="numeric"
                             :value="$average_time"
-                        ></x-modular-forms::module.components.field.input-preview>
+                        ></x-imet-core::custom-input-preview>
                     </td>
                 @endif
 
@@ -92,23 +92,23 @@ $UnderControlPatrolManDay = 0;
         <td></td>
         <td></td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 type="numeric"
                 :value="$sumUnderControlArea"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td></td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 type="numeric"
                 :value="$UnderControlPatrolKm"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 type="numeric"
                 :value="$UnderControlPatrolManDay"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td></td>
     </tr>

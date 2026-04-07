@@ -68,7 +68,7 @@ final class KeyElements extends Modules\Component\ImetModule_Eval
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['EvaluationScore'] !== null
             || ($record['IncludeInStatistics'] !== null && $record['IncludeInStatistics'] !== false)

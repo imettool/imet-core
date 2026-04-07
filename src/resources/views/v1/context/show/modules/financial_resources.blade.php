@@ -64,10 +64,10 @@ if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_o
        ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
         type=""
         :value="$record[$definitions['fields'][0]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 
 @endcomponent
 
@@ -79,10 +79,10 @@ if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_o
        ])
 
     {{-- input field --}}
-    <x-modular-forms::module.components.field.input-preview
+    <x-imet-core::custom-input-preview
         :type="$definitions['fields'][1]['type']"
         :value="$record[$definitions['fields'][1]['name']]"
-    ></x-modular-forms::module.components.field.input-preview>
+    ></x-imet-core::custom-input-preview>
 @endcomponent
 
 <table id="{{ 'table_'.$definitions['slug'] }}" class="table module-table">
@@ -99,10 +99,10 @@ if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_o
                 for="{{  $definitions['fields'][2]['name'] }}">{!! ucfirst($definitions['fields'][2]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 :type="$definitions['fields'][2]['type']"
                 :value="$record[$definitions['fields'][2]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_financial_plans_costs_result}}"
                    class="field-edit field-numeric text-right"/></td>
@@ -115,10 +115,10 @@ if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_o
                 for="{{  $definitions['fields'][3]['name'] }}">{!! ucfirst($definitions['fields'][3]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 :type="$definitions['fields'][3]['type']"
                 :value="$record[$definitions['fields'][3]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_operation_work_plan_costs_result}}"
                    class="field-edit field-numeric text-right"/></td>
@@ -132,10 +132,10 @@ if ($fn($value_estimation_operational_plan_3_value_1) && $fn($value_estimation_o
                 for="{{  $definitions['fields'][4]['name'] }}">{!! ucfirst($definitions['fields'][4]['label']) !!}</label>
         </td>
         <td>
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                 :type="$definitions['fields'][4]['type']"
                 :value="$record[$definitions['fields'][4]['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
         </td>
         <td><input type="text" disabled="disabled" value="{{$value_total_budget_result}}"
                    class="field-edit field-numeric text-right"/></td>

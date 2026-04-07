@@ -130,7 +130,7 @@ final class KeyConservationTrend extends Modules\Component\ImetModule_Eval
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['Condition'] !== null
             || $record['Trend'] !== null

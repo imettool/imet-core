@@ -37,10 +37,10 @@ $table_id = 'table_' . $definitions['slug'];
                     <td>
                         @if($record['StaffNumberAdequacy']!==null || $field['name']==='Theme' || $field['name']==='Comments')
 
-                            <x-modular-forms::module.components.field.input-preview
+                            <x-imet-core::custom-input-preview
                                     :type="$field['type']"
                                     :value="$record[$field['name']]"
-                            ></x-modular-forms::module.components.field.input-preview>
+                            ></x-imet-core::custom-input-preview>
                         @endif
                     </td>
                 @endforeach
