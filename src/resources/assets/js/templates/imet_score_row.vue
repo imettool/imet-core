@@ -19,7 +19,7 @@
         <div :class="[ 'histogram-row__title', class_values, { 'text-xl font-bold text-primary-600': isHeader, 'short': shortLabel || isHeader } ]">{{ label }}</div>
 
         <!-- value -->
-        <div class="histogram-row__value text-right font-bold">{{ format(value) }}</div>
+        <div class="histogram-row__value text-right font-bold">{{ props.histogram_type === 'stacked' ? format(sum(value)) : format(value) }}</div>
 
         <!-- histogram -->
         <div class="histogram-row__progress-bar text-2xs pl-4" :style=grid_according_to_histogram_type>
@@ -64,6 +64,14 @@
                 ></imet_score_bar>
             </template>
 
+            <template v-else-if="histogram_type==='stacked'">
+                <imet_score_bar
+                    :value=value
+                    :color=color
+                    :stacked=true
+                ></imet_score_bar>
+            </template>
+
         </div>
     </div>
 
@@ -77,7 +85,7 @@ import imet_score_bar from "./imet_score_bar.vue";
 
 const props = defineProps({
     value: {
-        type: [String, Number],
+        type: [String, Number, Array],
         default: null
     },
     code: {
@@ -130,6 +138,10 @@ function format(value) {
     return typeof value === 'number'
         ? value.toFixed(1)
         : parseFloat(value).toFixed(1);
+}
+
+function sum(value){
+    return value.reduce((acc, num) => acc + num, 0);
 }
 
 
