@@ -658,9 +658,9 @@ return [
         'title' => 'Habitats seleccionados como indicadores para a área protegida e que terão de ser monitorizados ao longo do tempo',
         'fields' => [
             'EcosystemType' => 'Tipo de habitat',
-            'Value' => 'Descricao do estado ou valor',
-            'Area' => 'Superficie da area (ha)',
-            'DesiredConservationStatus' => 'Estado de conservação favorável',
+            'EcosystemDescription' => 'Descrição detalhada do habitat',
+            'EstimatedStatus' => 'Estado estimado',
+            'DesiredConservationStatus' => 'Descrição do estado ideal',
             'Trend' => 'Tendencias',
             'Reliability' => 'Fiabilidade da informação',
             'Sectors' => 'sectores',

@@ -37,9 +37,9 @@ final class Habitats extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.Habitats.title');
         $this->module_fields = [
             ['name' => 'EcosystemType',             'type' => 'suggestion-ImetV2_Habitats',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemType')],
-            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Value')],
-            ['name' => 'Area',                      'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.Area')],
-            ['name' => 'DesiredConservationStatus', 'type' => 'numeric',   'label' => trans('imet-core::v2_context.Habitats.fields.DesiredConservationStatus')],
+            ['name' => 'EcosystemDescription',      'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.EcosystemDescription')],
+            ['name' => 'EstimatedStatus',           'type' => 'dropdown-ImetV2_EstimatedStatus',   'label' => trans('imet-core::v2_context.Habitats.fields.EstimatedStatus')],
+            ['name' => 'DesiredConservationStatus', 'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.DesiredConservationStatus')],
             ['name' => 'Sectors',                   'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Sectors')],
             ['name' => 'Comments',                  'type' => 'text-area',   'label' => trans('imet-core::v2_context.Habitats.fields.Comments')],
         ];
@@ -76,7 +76,10 @@ final class Habitats extends Modules\Component\ImetModule
         $record = self::replacePredefinedValue($record, 'EcosystemType', 'Plantations', 'artificial');
 
         // ####  v2.13.7 -> v3.*  ####
-        return self::dropField($record, 'TerrestrialOrMarine');
+        $record = self::dropField($record, 'TerrestrialOrMarine');
+        $record = self::renameField($record, 'Value', 'EcosystemDescription');
+        $record = self::dropField($record, 'Area');
+        return self::addField($record, 'EstimatedStatus');
     }
 
     /**

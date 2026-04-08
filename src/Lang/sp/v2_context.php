@@ -660,9 +660,9 @@ return [
         'title' => 'Hábitats seleccionados como indicadores del área protegida y que deberán ser monitoreados a lo largo del tiempo.',
         'fields' => [
             'EcosystemType' => 'Tipo de hábitat',
-            'Value' => 'Descripción del estado o valor',
-            'Area' => 'Superficie (ha)',
-            'DesiredConservationStatus' => 'Estado de conservación favorable',
+            'EcosystemDescription' => 'Descripción detallada del hábitat',
+            'EstimatedStatus' => 'Estado estimado',
+            'DesiredConservationStatus' => 'Descripción del estado óptimo',
             'Trend' => 'Tendencia',
             'Reliability' => 'Fiabilidad de la información',
             'Sectors' => 'Sectores',

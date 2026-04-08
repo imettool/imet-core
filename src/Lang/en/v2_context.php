@@ -652,9 +652,9 @@ return [
         'title' => 'Habitats selected as indicators for the protected area and that will need to be monitored over time',
         'fields' => [
             'EcosystemType' => 'Type of habitat',
-            'Value' => 'Description of the status or value',
-            'Area' => 'Surface area (ha)',
-            'DesiredConservationStatus' => 'Favourable conservation status',
+            'EcosystemDescription' => 'Detailed description of the habitat',
+            'EstimatedStatus' => 'Estimated status',
+            'DesiredConservationStatus' => 'Description of the optimum status',
             'Trend' => 'Trend',
             'Reliability' => 'Reliability of information',
             'Sectors' => 'Sectors',
