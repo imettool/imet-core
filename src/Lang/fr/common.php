@@ -19,6 +19,7 @@ return [
     'language' => 'langue',
     'version' => 'version',
     'link' => 'lien|liens',
+    'print' => 'imprimer',
 
     'staff' => [
         'first_name' => 'prénom',

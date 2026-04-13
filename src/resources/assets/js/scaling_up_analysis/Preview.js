@@ -18,17 +18,26 @@ export default class Preview {
 
     constructor(input_data = {}) {
 
+        window.ImetPreview = {
+            printReport: () => {
+                window.print();
+            },
+            downloadFiles: () => {
+                window.location.href = input_data.url;
+            }
+        };
+
         const options = {
             name: 'Preview',
             setup() {
                 const emitter = mitt();
                 provide('emitter', emitter);
                 const printReport = () => {
-                    window.print();
+                    window.ImetPreview.printReport();
                 };
 
                 const downloadFiles = () => {
-                    window.location.href = input_data.url;
+                    window.ImetPreview.downloadFiles();
                 };
 
                 return {
