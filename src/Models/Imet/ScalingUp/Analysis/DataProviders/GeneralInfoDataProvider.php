@@ -95,9 +95,9 @@ final readonly class GeneralInfoDataProvider implements DataProviderInterface
     }
 
     /**
-     * Get protected area surface
+     * Get a protected area surface
      */
-    private function getProtectedAreaSurface(int $formId): float
+    private function getProtectedAreaSurface(int $formId): int|float|null
     {
         return Modules\Context\Areas::getArea($formId);
     }
