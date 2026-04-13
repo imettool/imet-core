@@ -19,13 +19,13 @@
         'withZoom' => true
     ])
 
-        <div id="imet_report" class="imet_report sideButtons">
-            <div @click="downloadFiles">
+        <div class="imet_report sideButtons">
+            <div onclick="window.ImetPreview.downloadFiles()">
                 {!! \ModularForms\Helpers\Template::icon('download') !!} {{ ucfirst(trans('imet-core::analysis_report.download_files')) }}
             </div>
         </div>
-        <div id="imet_report" class="imet_report sideButtons">
-            <div @click="printReport">
+        <div class="imet_report sideButtons">
+            <div onclick="window.ImetPreview.printReport()">
                 {!! \ModularForms\Helpers\Template::icon('print') !!} {{ ucfirst(trans('imet-core::common.print')) }}
             </div>
         </div>
