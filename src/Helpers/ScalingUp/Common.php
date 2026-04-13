@@ -22,13 +22,13 @@ final class Common
 {
     private static array $protected_areas_ids = [];
 
-    public static function round_number($val, int $round = 1): float|string
+    public static function round_number($val, int $round = 1): float|string|int|null
     {
         if ($val == '-') {
             return $val;
         }
 
-        if ($val == 100 || $val == 0) {
+        if (in_array($val, [0, 100])) {
             return $val;
         }
 
