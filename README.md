@@ -13,10 +13,10 @@ database migrations, routes, controllers, views and frontend assets.
 A complete and comprehensive documentation of the codebase is available [here](docs/documentation.md).
 
 ## Related codebases
-- [IMET Offline Tool](https://github.com/andreamarelli/imet): desktop application integrating the IMET core codebase 
+- [IMET Offline Tool](https://github.com/imettool/imet-offline): desktop application integrating the IMET core codebase 
   for offline use. This is the most known implementation of the IMET tool, and it is widely used by conservation practitioners worldwide. 
   It is built using NativePHP, a brand-new framework for building cross-platform desktop applications with PHP. For more
-  information, please refer to its [documentation](https://github.com/andreamarelli/imet).
+  information, please refer to its [documentation](https://github.com/imettool/imet-offline).
 - [IMET online](https://github.com/andreamarelli/imet_global): web application integrating the IMET core codebase for online use.
 
 ## Copyright
