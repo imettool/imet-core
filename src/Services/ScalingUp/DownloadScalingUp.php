@@ -28,7 +28,9 @@ class DownloadScalingUp
             static::checkAuthorization(explode(',', (string) $item->wdpas));
 
             foreach ($scaling_ups as $record) {
-                $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$record->item;
+                $asset_url = config('app.asset_url', '');
+                $item = ($asset_url && $asset_url !== '/') ? str_replace($asset_url, '', $record->item) : $record->item;
+                $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$item;
             }
 
             if (count($files) > 1) {
