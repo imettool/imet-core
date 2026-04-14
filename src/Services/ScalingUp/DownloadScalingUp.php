@@ -26,10 +26,12 @@ class DownloadScalingUp
             $item = ModelScalingUpAnalysis::query()->where('id', $scaling_id)->first();
 
             static::checkAuthorization(explode(',', (string) $item->wdpas));
+            $asset_url = config('app.asset_url', '');
+            $has_asset_url = $asset_url && $asset_url !== '/';
 
             foreach ($scaling_ups as $record) {
-                $asset_url = config('app.asset_url', '');
-                $item = ($asset_url && $asset_url !== '/') ? str_replace($asset_url, '', $record->item) : $record->item;
+
+                $item = $has_asset_url ? str_replace($asset_url, '', "/".$record->item) : $record->item;
                 $files[] = Storage::disk(Basket::BASKET_DISK)->path('').$item;
             }
 
