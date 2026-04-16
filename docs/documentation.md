@@ -199,7 +199,78 @@ resources/views/
 ```
 
 ### Analysis report
-:construction: under development
+
+The _Analysis report_ is a section available in **IMET v2** (and the OECM variant) that collects the qualitative synthesis of the assessment: key conservation elements, threat analysis, management effectiveness findings, recommendations, and budget priorities. It is built on the same `modular-forms` foundation as the intervention context and management effectiveness sections, but uses a dedicated report-specific module base class.
+
+#### Model classes
+
+`Imet_Report` is a subclass of `ImetV2\Imet` that declares the `$modules` map for the report step. Its module classes extend `ImetModule_Report` — a subclass of `ImetModule` that pins the module scope to `null` (reports are not filtered by terrestrial/marine scope) and sets a higher access level requirement. Individual report modules live under `ImetV2\Modules\Report\*`:
+
+| Module class | Code | Purpose |
+|---|---|---|
+| `ManagementContext` | RP 1 | Narrative context: key species, habitats, climate change, ecosystem services, threats |
+| `ManagementEffectivenessAnalysis` | RP 2 | SWOT-style analysis of overall management effectiveness |
+| `OperatingRecommendations` | RP 3 | Recommendations for improving management |
+| `KeyConservationElements` | RP 4 | List of prioritised key conservation elements |
+| `ThreatsAffectingKCEs` | RP 5 | Threats affecting key conservation elements |
+| `InitialPlanningOptions` | RP 6 | Initial planning options and priorities |
+| `KeyQuestions` | RP 7 | Key questions, minimum budget estimates, and additional funding needs |
+
+```mermaid
+classDiagram
+    direction TB
+
+    class ImetModule:::external
+    class ImetModule_Report {
+        <<abstract>>
+        MODULE_SCOPE: null
+        REQUIRED_ACCESS_LEVEL: HIGH
+    }
+    class ImetV2_Imet["ImetV2\\Imet"]
+    class ImetV2_Imet_Report["ImetV2\\Imet_Report"]
+
+    ImetModule <|-- ImetModule_Report
+    ImetV2_Imet <|-- ImetV2_Imet_Report
+
+    ImetModule_Report <|-- ManagementContext
+    ImetModule_Report <|-- ManagementEffectivenessAnalysis
+    ImetModule_Report <|-- OperatingRecommendations
+    ImetModule_Report <|-- KeyConservationElements
+    ImetModule_Report <|-- ThreatsAffectingKCEs
+    ImetModule_Report <|-- InitialPlanningOptions
+    ImetModule_Report <|-- KeyQuestions
+
+    ImetV2_Imet_Report ..> ManagementContext : $modules
+    ImetV2_Imet_Report ..> ManagementEffectivenessAnalysis : $modules
+    ImetV2_Imet_Report ..> OperatingRecommendations : $modules
+    ImetV2_Imet_Report ..> KeyConservationElements : $modules
+    ImetV2_Imet_Report ..> ThreatsAffectingKCEs : $modules
+    ImetV2_Imet_Report ..> InitialPlanningOptions : $modules
+    ImetV2_Imet_Report ..> KeyQuestions : $modules
+```
+
+#### Controllers
+
+The base `ReportController` (in `Controllers\Imet\`) extends `Controller` and adds three report-specific actions: `report` (edit view), `report_show` (read-only view), and `report_update` (save). The concrete version-specific controllers are thin subclasses:
+
+- **`ImetV2\ReportController`** — bound to `Imet_Report` and the `v2.report` view prefix.
+- **`ImetV1\ReportController`** and **`ImetOecm\ReportController`** — follow the same pattern for their respective versions.
+
+#### Views
+
+The report views follow the same pattern as the context and evaluation sections:
+
+```
+resources/views/v2/report/
+├── edit.blade.php          ← entry point for editing the report
+├── show.blade.php          ← entry point for read-only view
+└── edit/modules/           ← one .blade.php per report module
+    ├── management_context.blade.php
+    ├── management_effectiveness_analysis.blade.php
+    └── ...
+```
+
+Entry-point views extend the shared `page.edit` / `page.show` layout. Module views under `edit/modules/` render the Vue.js component entry points for each module, receiving data and definition objects from the framework.
 ### Scaling up
 :construction: under development
 
