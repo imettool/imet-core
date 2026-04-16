@@ -74,7 +74,33 @@ of the application. Below is an overview of the main folders and their contents:
     - `ServiceProvider.php`: main service provider for the application
 
 ## Database structure
-:construction: under development
+
+The database is organized around two central concepts: the **form** and the **module**.
+
+A **form** represents a single IMET assessment for a specific protected area and year. Each form record holds identifying metadata (protected area, country, year, language, version) and acts as the anchor to which all data is attached. A **module** is an individual thematic section of the assessment (e.g. habitats, staff, budget); each module stores its own rows in a dedicated table, linked back to the parent form via a `FormID` foreign key.
+
+### Schemas and prefixes
+
+To keep data sets cleanly separated, tables are organized into three logical groups, implemented as **schemas** in PostgreSQL and as **table name prefixes** in SQLite:
+
+| Group | PostgreSQL schema | SQLite prefix | Contents |
+|---|---|---|---|
+| Common reference data | `imet_common` | `imet_common_` | Countries, currencies, regions, protected areas, species |
+| IMET v1 & v2 assessments | `imet_v1v2` | `imet_v1v2_` | Forms, context modules, evaluation modules, report modules, scaling-up |
+| OECM assessments | `imet_oecm` | `imet_oecm_` | Forms, context modules, evaluation modules, report modules |
+
+The `Database` helper class (`src/Helpers/Database.php`) centralises this logic and is used by every model to build its qualified table name at runtime.
+
+### Table organization within an assessment schema
+
+Within `imet_v1v2` (and mirrored in `imet_oecm`), tables follow a naming convention that reflects the section of the assessment they belong to:
+
+- **`forms`** — the main assessment record (one row per IMET assessment)
+- **`imet_encoders`** — people who encoded or were interviewed for the assessment
+- **`context_*`** — one table per _Intervention context_ module (e.g. `context_general_info`, `context_habitats`, `context_management_staff`)
+- **`eval_*`** — one table per _Management effectiveness_ evaluation module (e.g. `eval_boundary_level`, `eval_staff`, `eval_budget_adequacy`)
+- **`report_*`** — one table per _Analysis report_ module, present in v2 only (e.g. `report_management_context`, `report_key_conservation_elements`)
+- **`scaling_up_*`** — tables for the _Scaling up_ section, present in v1v2 only
 
 ## Module descriptions
 ### _Intervention context_ and _Management effectiveness_
