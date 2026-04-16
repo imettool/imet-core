@@ -115,7 +115,88 @@ assessment needs.
 > package. It is highly recommended to refer to its documentation for a comprehensive understanding of the underlying 
 > architecture and functionalities.
 
-:construction: under development
+#### Model classes
+
+The models are layered in a three-level hierarchy that separates generic form management, IMET-specific behaviour, and version-specific details.
+
+At the top sits the abstract `Imet` class (extending `Form` from the `modular-forms` package), which holds logic common to all IMET versions — listing and filtering assessments, resolving protected area data, driving import/export, and so on. Each version then provides a concrete subclass (`ImetV1\Imet`, `ImetV2\Imet`, `ImetOecm\Imet`) that declares its own `$modules` map: an associative array grouping the module classes that belong to each navigational step (tab) of the context form. The _management effectiveness_ evaluation is handled by a parallel subclass (`Imet_Eval`) of the same version-specific form, whose `$modules` map covers the evaluation steps (context, planning, inputs, process, outputs, outcomes).
+
+Module classes follow the same layered pattern. The `modular-forms` base `Module` class is extended by `ImetCore`'s `ImetModule` (in `Components\Modules\`) which adds IMET-specific behaviour: schema-aware table resolution, dependency propagation between modules, and injection of extra metadata into the Vue.js view layer. A sibling class `ImetModule_Eval` marks evaluation-specific modules. Each version then provides its own thin subclasses (`ImetV1\Modules\Component\ImetModule`, `ImetV2\Modules\Component\ImetModule`, etc.) that pin the schema and the parent form class. Individual modules — one PHP class per thematic section — extend the version-specific component class and live under `ImetV1\Modules\Context\*`, `ImetV1\Modules\Evaluation\*`, `ImetV2\Modules\Context\*`, and so on.
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Form:::external
+    class Module:::external
+
+    class Imet {
+        <<abstract>>
+    }
+    class ImetModule {
+        <<abstract>>
+    }
+    class ImetModule_Eval {
+        <<abstract>>
+    }
+
+    Form <|-- Imet
+    Imet <|-- ImetV1_Imet["ImetV1\\Imet"]
+    Imet <|-- ImetV2_Imet["ImetV2\\Imet"]
+    Imet <|-- ImetOecm_Imet["ImetOecm\\Imet"]
+    ImetV1_Imet <|-- ImetV1_Imet_Eval["ImetV1\\Imet_Eval"]
+    ImetV2_Imet <|-- ImetV2_Imet_Eval["ImetV2\\Imet_Eval"]
+    ImetOecm_Imet <|-- ImetOecm_Imet_Eval["ImetOecm\\Imet_Eval"]
+
+    Module <|-- ImetModule
+    ImetModule <|-- ImetModule_Eval
+    ImetModule <|-- V1CtxBase["ImetV1\\Modules\\Component\\ImetModule"]
+    ImetModule_Eval <|-- V1EvalBase["ImetV1\\Modules\\Component\\ImetModule_Eval"]
+    ImetModule <|-- V2CtxBase["ImetV2\\Modules\\Component\\ImetModule"]
+    ImetModule_Eval <|-- V2EvalBase["ImetV2\\Modules\\Component\\ImetModule_Eval"]
+
+    V1CtxBase <|-- V1CtxModules["ImetV1\\Modules\\Context\\*"]
+    V1EvalBase <|-- V1EvalModules["ImetV1\\Modules\\Evaluation\\*"]
+    V2CtxBase <|-- V2CtxModules["ImetV2\\Modules\\Context\\*"]
+    V2EvalBase <|-- V2EvalModules["ImetV2\\Modules\\Evaluation\\*"]
+
+    ImetV1_Imet ..> V1CtxModules : $modules
+    ImetV1_Imet_Eval ..> V1EvalModules : $modules
+    ImetV2_Imet ..> V2CtxModules : $modules
+    ImetV2_Imet_Eval ..> V2EvalModules : $modules
+```
+
+#### Controllers
+
+Controllers are organized along the same version axis. The base `Controller` class (extending `__Controller`) handles the IMET assessment list (index) and deletion and is extended by `ImetV1\Controller` and `ImetV2\Controller`, each bound to the corresponding form class and view prefix.
+
+The context and evaluation sections each get a dedicated controller per version:
+
+- **`ContextController`** (`ImetV1\ContextController`, `ImetV2\ContextController`, `ImetOecm\ContextController`) — manages editing and viewing the intervention context steps; it extends the version-specific `Controller`.
+- **`EvalController`** (`ImetV1\EvalController`, `ImetV2\EvalController`, `ImetOecm\EvalController`) — manages the management effectiveness evaluation steps; it extends the base `EvalController`.
+
+The `modular-forms` framework handles the actual saving and retrieving of individual module records through API endpoints; the `ContextController` and `EvalController` are therefore thin wrappers that resolve the form instance, check authorization, and delegate rendering to the appropriate Blade view.
+
+#### Views
+
+Blade views mirror the controller and version structure. For each version and section, there is an entry-point view (`edit.blade.php` / `show.blade.php`) that extends the shared `page.edit` or `page.show` layout. Individual module views live under a `modules/` subfolder and are loaded dynamically based on the current step and the module definitions declared in the form's `$modules` property. The `modules/` views are plain Blade templates that receive the module data and definition objects passed down from `modular-forms` and render the Vue.js component entry points.
+
+```
+resources/views/
+├── v1/
+│   ├── context/
+│   │   ├── edit.blade.php          ← entry point for editing context
+│   │   ├── show.blade.php          ← entry point for read-only view
+│   │   ├── edit/modules/           ← one .blade.php per context module
+│   │   └── show/modules/
+│   └── evaluation/
+│       ├── edit.blade.php
+│       ├── show.blade.php
+│       ├── edit/modules/           ← one .blade.php per evaluation module
+│       └── show/modules/
+├── v2/                             ← same structure as v1
+└── oecm/                           ← same structure as v1
+```
 
 ### Analysis report
 :construction: under development
