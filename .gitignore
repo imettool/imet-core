@@ -5,6 +5,7 @@ composer
 /composer.lock
 /package-lock.json
 sbom-*.xml
+TASK.md
 
 # Modules & Libraries
 /vendor/
