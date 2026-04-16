@@ -103,36 +103,28 @@ Within `imet_v1v2` (and mirrored in `imet_oecm`), tables follow a naming convent
 - **`scaling_up_*`** — tables for the _Scaling up_ section, present in v1v2 only
 
 ## Module descriptions
-### _Intervention context_ and _Management effectiveness_
+### _Intervention context_,  _Management effectiveness_ and _Analysis report_
 A significant part of the `imet-core` codebase is dedicated to the definition of the assessment modules, which are responsible 
-for managing the different sections of the IMET assessment form (_Intervention context_ and _Management effectiveness_). 
+for managing the different sections of the IMET assessment form (_Intervention context_, _Management effectiveness_ and _Analysis report_). 
 Each module corresponds to a specific aspect of the protected area management effectiveness evaluation. These modules are 
 designed to be extremely flexible and modular, allowing for easy customization and extension to accommodate different 
 assessment needs. 
 
 > [!IMPORTANT]
-> _Intervention context_ and _Management effectiveness_ models are built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms)
+> _Intervention context_, _Management effectiveness_ and _Analysis report_ models are built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms)
 > package. It is highly recommended to refer to its documentation for a comprehensive understanding of the underlying 
 > architecture and functionalities.
 
 #### Model classes
 
-The models are layered in multi-level hierarchy that separates generic form management, version-specific details and IMET-specific behavior.
+The models are layered in a three-level hierarchy that separates generic form management, IMET-specific behaviour, and version-specific details.
 
-At the top sits the abstract `Imet` class (extending `Form` from the `modular-forms` package), which holds logic common to all IMET 
+At the top sits `Form` class from the `modular-forms` package which is extended by `ImetCore\Models\Imet` class: it holds logic common to all IMET 
 versions — listing and filtering assessments, resolving protected area data, driving import/export, and so on. Each version then 
 provides a concrete subclass (`ImetV1\Imet`, `ImetV2\Imet`, `ImetOecm\Imet`) that declares its own `$modules` map: an associative 
 array grouping the module classes that belong to each navigational step (tab) of the context form. The _management effectiveness_ 
 evaluation is handled by a parallel subclass (`Imet_Eval`) of the same version-specific form, whose `$modules` map covers the 
-evaluation steps (context, planning, inputs, process, outputs, outcomes).
-
-Module classes follow the same layered pattern. The `modular-forms` base `Module` class is extended by `ImetCore`'s `ImetModule` 
-(in `Components\Modules\`) which adds IMET-specific behaviour: schema-aware table resolution, dependency propagation between
-modules, and injection of extra metadata into the Vue.js view layer. A sibling class `ImetModule_Eval` marks evaluation-specific 
-modules. Each version then provides its own thin subclasses (`ImetV1\Modules\Component\ImetModule`, `ImetV2\Modules\Component\ImetModule`, etc.) 
-that pin the schema and the parent form class. Individual modules — one PHP class per thematic section — extend the 
-version-specific component class and live under `ImetV1\Modules\Context\*`, `ImetV1\Modules\Evaluation\*`, `ImetV2\Modules\Context\*`, 
-and so on.
+evaluation steps (context, planning, inputs, process, outputs, outcomes). The same pattern is followed by `Imet_Report` classes.
 
 ```
     ┌─────────────────────────────┐
@@ -164,20 +156,28 @@ and so on.
        │          └────▶│   [...]   │          └────▶│   [...]   │        └────▶│   [...]   │ 
        │                └───────────┘                └───────────┘              └───────────┘ 
        │
-       │   ┌─────────────────────────┐ 
-       ├──▶│    ..\ImetV1\Imet       │ 
-       │   └───────┬─────────────────┘
-       │           │ $modules[]
-       │           .
-       │           .
-       │
-       │   ┌─────────────────────────┐ 
+       │   ┌──────────────────────────┐   ┌───────────────────────┐   ┌───────────────────────┐
+       ├──▶│    ..\ImetV1\Imet        │   │  ..\ImetV1\Imet_Eval  │   │ ..\ImetV1\Imet_Report │
+       │   └───────┬──────────────┬───┘   └───────────────────────┘   └────┬──────────────────┘
+       │           │ $modules[]   │         ▲   │ $modules[]            ▲  │ $modules[]              
+       │           .              │         │   │                       │  │      
+       │           .              └─────────┴───│───────────────────────┘  │        
+       │                                        .                          .  
+       │   ┌─────────────────────────┐          .                          .       
        └──▶│   ..\ImetOecm\Imet      │ 
            └───────┬─────────────────┘
                    │ $modules[]
                    .
                    .
 ```
+
+Module classes follow the same layered pattern. The `modular-forms` base `Module` class is extended by `ImetModule` 
+(in `ImetCore\Models\Imet\Components\Modules`) which adds IMET-specific behaviour: schema-aware table resolution, dependency propagation between
+modules, and injection of extra metadata into the Vue.js view layer. A sibling class `ImetModule_Eval` marks evaluation-specific 
+modules. Each version then provides its own thin subclasses (`ImetV1\Modules\Component\ImetModule`, `ImetV2\Modules\Component\ImetModule`, etc.) 
+that pin the schema and the parent form class. Individual modules — one PHP class per thematic section — extend the 
+version-specific component class and live under `ImetV1\Modules\Context\*`, `ImetV1\Modules\Evaluation\*`, `ImetV2\Modules\Context\*`, 
+and so on.
 
 ```
                                             ┌──────────────────────────────┐
@@ -226,18 +226,26 @@ and so on.
 
 #### Controllers
 
-Controllers are organized along the same version axis. The base `Controller` class (extending `__Controller`) handles the IMET assessment list (index) and deletion and is extended by `ImetV1\Controller` and `ImetV2\Controller`, each bound to the corresponding form class and view prefix.
+Controllers are organized along the same version axis. The base `Controller` class (extending `__Controller`) handles the 
+IMET assessment list (index) and deletion and is extended by `ImetV1\Controller` and `ImetV2\Controller`, each bound to the 
+corresponding form class and view prefix.
 
-The context and evaluation sections each get a dedicated controller per version:
-
+The context, evaluation and report sections each get a dedicated controller per version:
 - **`ContextController`** (`ImetV1\ContextController`, `ImetV2\ContextController`, `ImetOecm\ContextController`) — manages editing and viewing the intervention context steps; it extends the version-specific `Controller`.
 - **`EvalController`** (`ImetV1\EvalController`, `ImetV2\EvalController`, `ImetOecm\EvalController`) — manages the management effectiveness evaluation steps; it extends the base `EvalController`.
+- **`ReportController`** (`ImetV1\ReportController`, `ImetV2\ReportController`, `ImetOecm\ReportController`) —  adds three report-specific actions: `report` (edit view), `report_show` (read-only view), and `report_update` (save)
 
-The `modular-forms` framework handles the actual saving and retrieving of individual module records through API endpoints; the `ContextController` and `EvalController` are therefore thin wrappers that resolve the form instance, check authorization, and delegate rendering to the appropriate Blade view.
+The `modular-forms` framework handles the actual saving and retrieving of individual module records through API endpoints; 
+the `ContextController` and `EvalController` are therefore thin wrappers that resolve the form instance, check authorization, 
+and delegate rendering to the appropriate Blade view.
 
 #### Views
 
-Blade views mirror the controller and version structure. For each version and section, there is an entry-point view (`edit.blade.php` / `show.blade.php`) that extends the shared `page.edit` or `page.show` layout. Individual module views live under a `modules/` subfolder and are loaded dynamically based on the current step and the module definitions declared in the form's `$modules` property. The `modules/` views are plain Blade templates that receive the module data and definition objects passed down from `modular-forms` and render the Vue.js component entry points.
+Blade views mirror the controller and version structure. For each version and section, there is an entry-point view 
+(`edit.blade.php` / `show.blade.php`) that extends the shared `page.edit` or `page.show` layout. Individual module views 
+live under a `modules/` subfolder and are loaded dynamically based on the current step and the module definitions declared 
+in the form's `$modules` property. The `modules/` views are plain Blade templates that receive the module data and definition 
+objects passed down from `modular-forms` and render the Vue.js component entry points.
 
 ```
 resources/views/
@@ -245,48 +253,21 @@ resources/views/
 │   ├── context/
 │   │   ├── edit.blade.php          ← entry point for editing context
 │   │   ├── show.blade.php          ← entry point for read-only view
-│   │   ├── edit/modules/           ← one .blade.php per context module
+│   │   ├── edit/modules/           ← custom blade view for `edit` mode
+│   │   └── show/modules/           ← custom blade view for `show` mode
+│   ├── context/
+│   │   ├── edit.blade.php          
+│   │   ├── show.blade.php          
+│   │   ├── edit/modules/ 
 │   │   └── show/modules/
-│   └── evaluation/
-│       ├── edit.blade.php
-│       ├── show.blade.php
-│       ├── edit/modules/           ← one .blade.php per evaluation module
-│       └── show/modules/
+│   └── report/
+│       ├── edit.blade.php         
+│       ├── show.blade.php          
+│       ├── edit/modules/           
 ├── v2/                             ← same structure as v1
 └── oecm/                           ← same structure as v1
 ```
 
-### Analysis report
-
-The _Analysis report_ is a section available in **IMET v2** (and the OECM variant) that collects the qualitative synthesis of the assessment: key conservation elements, threat analysis, management effectiveness findings, recommendations, and budget priorities. It is built on the same `modular-forms` foundation as the intervention context and management effectiveness sections, but uses a dedicated report-specific module base class.
-
-#### Model classes
-
-`Imet_Report` is a subclass of `ImetV2\Imet` that declares the `$modules` map for the report step. Its module classes extend `ImetModule_Report` — a subclass of `ImetModule` that pins the module scope to `null` (reports are not filtered by terrestrial/marine scope) and sets a higher access level requirement. Individual report modules live under `ImetV2\Modules\Report\*`:
-
-
-#### Controllers
-
-The base `ReportController` (in `Controllers\Imet\`) extends `Controller` and adds three report-specific actions: `report` (edit view), `report_show` (read-only view), and `report_update` (save). The concrete version-specific controllers are thin subclasses:
-
-- **`ImetV2\ReportController`** — bound to `Imet_Report` and the `v2.report` view prefix.
-- **`ImetV1\ReportController`** and **`ImetOecm\ReportController`** — follow the same pattern for their respective versions.
-
-#### Views
-
-The report views follow the same pattern as the context and evaluation sections:
-
-```
-resources/views/v2/report/
-├── edit.blade.php          ← entry point for editing the report
-├── show.blade.php          ← entry point for read-only view
-└── edit/modules/           ← one .blade.php per report module
-    ├── management_context.blade.php
-    ├── management_effectiveness_analysis.blade.php
-    └── ...
-```
-
-Entry-point views extend the shared `page.edit` / `page.show` layout. Module views under `edit/modules/` render the Vue.js component entry points for each module, receiving data and definition objects from the framework.
 ### Scaling up
 :construction: under development
 
