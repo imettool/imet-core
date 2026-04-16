@@ -1,10 +1,23 @@
 # `imet-core` - Technical documentation
 
+1. [Architecture & technology overview](#architecture-and-technology-overview)
+   1. [Backend](#backend)
+   2. [Database](#database)
+   3. [Frontend](#frontend)
+   4. [Development environment](#development-environment)
+2. [Folder structure](#folder-structure)
+3. [Database structure](#database-structure)
+   1. [Schemas and prefixes](#schemas-and-prefixes)
+   2. [Table organization within an assessment schema](#table-organization-within-an-assessment-schema)
+4. [Module descriptions](#module-descriptions)
+   1. [_Intervention context_,  _Management effectiveness_ and _Analysis report_](#_intervention-context_-_management-effectiveness_-and-_analysis-report_)
+   2. [Scaling up](#scaling-up)
+
 > [!IMPORTANT]
 > This repository does not contain a standalone application. In order to execute this codebase, you need to integrate it
 > into a hosting laravel based application such as `imet-offline` or `imet-online`.
 
-## Architecture & technology overview
+## Architecture and technology overview
 
 The `imet-core` codebase is built using web technologies: the choice derives from the need to create a versatile tool that 
 can be easily deployed across different platforms. By using web technologies, the application can be accessed through 
@@ -209,7 +222,7 @@ and so on.
                             └───────────┘                     │
                                                               │
                        ┌──────────────────────────────────────┼────────────────────────────────┐                  
-                      ▼                                      ▼                                 ▼
+                       ▼                                      ▼                                ▼
 ┌────────────────────────────────────────────────┐ ┌──────────────────────────────┐ ┌─────────────────────────────────┐ 
 │ ImetCore\Models\Imet\ImetV2\..\ImetModule_Eval │ │ ..\ImetV1\..\ImetModule_Eval │ │ ..\ImetVOecm\..\ImetModule_Eval │ 
 └────────────────────┬───────────────────────────┘ └───────────────┬──────────────┘ └───────────────┬─────────────────┘ 
@@ -269,15 +282,4 @@ resources/views/
 ```
 
 ### Scaling up
-:construction: under development
-
-## Development workflow
-:construction: under development
-### Development environment setup
-:construction: under development
-### Git branching strategy and contribution guidelines
-:construction: under development
-### Coding standards and conventions
-:construction: under development
-### Code quality and testing
 :construction: under development
