@@ -83,11 +83,11 @@ A **form** represents a single IMET assessment for a specific protected area and
 
 To keep data sets cleanly separated, tables are organized into three logical groups, implemented as **schemas** in PostgreSQL and as **table name prefixes** in SQLite:
 
-| Group | PostgreSQL schema | SQLite prefix | Contents |
-|---|---|---|---|
-| Common reference data | `imet_common` | `imet_common_` | Countries, currencies, regions, protected areas, species |
-| IMET v1 & v2 assessments | `imet_v1v2` | `imet_v1v2_` | Forms, context modules, evaluation modules, report modules, scaling-up |
-| OECM assessments | `imet_oecm` | `imet_oecm_` | Forms, context modules, evaluation modules, report modules |
+| Group                    | PostgreSQL schema | SQLite prefix  | Contents                                                               |
+|--------------------------|-------------------|----------------|------------------------------------------------------------------------|
+| Common reference data    | `imet_common`     | `imet_common_` | Countries, currencies, regions, protected areas, species               |
+| IMET v1 & v2 assessments | `imet_v1v2`       | `imet_v1v2_`   | Forms, context modules, evaluation modules, report modules, scaling-up |
+| OECM assessments         | `imet_oecm`       | `imet_oecm_`   | Forms, context modules, evaluation modules, report modules             |
 
 The `Database` helper class (`src/Helpers/Database.php`) centralises this logic and is used by every model to build its qualified table name at runtime.
 
@@ -117,53 +117,111 @@ assessment needs.
 
 #### Model classes
 
-The models are layered in a three-level hierarchy that separates generic form management, IMET-specific behaviour, and version-specific details.
+The models are layered in multi-level hierarchy that separates generic form management, version-specific details and IMET-specific behavior.
 
-At the top sits the abstract `Imet` class (extending `Form` from the `modular-forms` package), which holds logic common to all IMET versions — listing and filtering assessments, resolving protected area data, driving import/export, and so on. Each version then provides a concrete subclass (`ImetV1\Imet`, `ImetV2\Imet`, `ImetOecm\Imet`) that declares its own `$modules` map: an associative array grouping the module classes that belong to each navigational step (tab) of the context form. The _management effectiveness_ evaluation is handled by a parallel subclass (`Imet_Eval`) of the same version-specific form, whose `$modules` map covers the evaluation steps (context, planning, inputs, process, outputs, outcomes).
+At the top sits the abstract `Imet` class (extending `Form` from the `modular-forms` package), which holds logic common to all IMET 
+versions — listing and filtering assessments, resolving protected area data, driving import/export, and so on. Each version then 
+provides a concrete subclass (`ImetV1\Imet`, `ImetV2\Imet`, `ImetOecm\Imet`) that declares its own `$modules` map: an associative 
+array grouping the module classes that belong to each navigational step (tab) of the context form. The _management effectiveness_ 
+evaluation is handled by a parallel subclass (`Imet_Eval`) of the same version-specific form, whose `$modules` map covers the 
+evaluation steps (context, planning, inputs, process, outputs, outcomes).
 
-Module classes follow the same layered pattern. The `modular-forms` base `Module` class is extended by `ImetCore`'s `ImetModule` (in `Components\Modules\`) which adds IMET-specific behaviour: schema-aware table resolution, dependency propagation between modules, and injection of extra metadata into the Vue.js view layer. A sibling class `ImetModule_Eval` marks evaluation-specific modules. Each version then provides its own thin subclasses (`ImetV1\Modules\Component\ImetModule`, `ImetV2\Modules\Component\ImetModule`, etc.) that pin the schema and the parent form class. Individual modules — one PHP class per thematic section — extend the version-specific component class and live under `ImetV1\Modules\Context\*`, `ImetV1\Modules\Evaluation\*`, `ImetV2\Modules\Context\*`, and so on.
+Module classes follow the same layered pattern. The `modular-forms` base `Module` class is extended by `ImetCore`'s `ImetModule` 
+(in `Components\Modules\`) which adds IMET-specific behaviour: schema-aware table resolution, dependency propagation between
+modules, and injection of extra metadata into the Vue.js view layer. A sibling class `ImetModule_Eval` marks evaluation-specific 
+modules. Each version then provides its own thin subclasses (`ImetV1\Modules\Component\ImetModule`, `ImetV2\Modules\Component\ImetModule`, etc.) 
+that pin the schema and the parent form class. Individual modules — one PHP class per thematic section — extend the 
+version-specific component class and live under `ImetV1\Modules\Context\*`, `ImetV1\Modules\Evaluation\*`, `ImetV2\Modules\Context\*`, 
+and so on.
 
-```mermaid
-classDiagram
-    direction TB
+```
+    ┌─────────────────────────────┐
+    │   ModularForms\Models\Form  │
+    └─────────────┬───────────────┘
+                  │                     
+                  ▼               
+    ┌─────────────────────────────┐
+    │     ImetCore\Models\Imet    │
+    └──┬──────────────────────────┘
+       │            
+ ── ── │ ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ──                   
+       │            
+       │   ┌─────────────────────────┐   ┌───────────────────────┐   ┌───────────────────────┐
+       ├──▶│     ..\ImetV2\Imet      │   │  ..\ImetV2\Imet_Eval  │   │ ..\ImetV2\Imet_Report │
+       │   └──────┬──────────────┬───┘   └───────────────────────┘   └────┬──────────────────┘
+       │          │ $modules[]   │         ▲   │ $modules[]            ▲  │ $modules[]        
+       │          │              │         │   │                       │  │
+       │          │              └─────────┴───│───────────────────────┘  │                   
+       │          │                            │                          │                   
+       │          │                            │                          │                   
+       │          │     ┌───────────┐          │     ┌───────────┐        │     ┌───────────┐ 
+       │          ├────▶│  Module1  │          ├────▶│  Module1  │        ├────▶│  Module1  │ 
+       │          │     └───────────┘          │     └───────────┘        │     └───────────┘ 
+       │          │     ┌───────────┐          │     ┌───────────┐        │     ┌───────────┐ 
+       │          ├────▶│  Module2  │          ├────▶│  Module2  │        ├────▶│  Module2  │ 
+       │          │     └───────────┘          │     └───────────┘        │     └───────────┘ 
+       │          │     ┌───────────┐          │     ┌───────────┐        │     ┌───────────┐ 
+       │          └────▶│   [...]   │          └────▶│   [...]   │        └────▶│   [...]   │ 
+       │                └───────────┘                └───────────┘              └───────────┘ 
+       │
+       │   ┌─────────────────────────┐ 
+       ├──▶│    ..\ImetV1\Imet       │ 
+       │   └───────┬─────────────────┘
+       │           │ $modules[]
+       │           .
+       │           .
+       │
+       │   ┌─────────────────────────┐ 
+       └──▶│   ..\ImetOecm\Imet      │ 
+           └───────┬─────────────────┘
+                   │ $modules[]
+                   .
+                   .
+```
 
-    class Form:::external
-    class Module:::external
-
-    class Imet {
-        <<abstract>>
-    }
-    class ImetModule {
-        <<abstract>>
-    }
-    class ImetModule_Eval {
-        <<abstract>>
-    }
-
-    Form <|-- Imet
-    Imet <|-- ImetV1_Imet["ImetV1\\Imet"]
-    Imet <|-- ImetV2_Imet["ImetV2\\Imet"]
-    Imet <|-- ImetOecm_Imet["ImetOecm\\Imet"]
-    ImetV1_Imet <|-- ImetV1_Imet_Eval["ImetV1\\Imet_Eval"]
-    ImetV2_Imet <|-- ImetV2_Imet_Eval["ImetV2\\Imet_Eval"]
-    ImetOecm_Imet <|-- ImetOecm_Imet_Eval["ImetOecm\\Imet_Eval"]
-
-    Module <|-- ImetModule
-    ImetModule <|-- ImetModule_Eval
-    ImetModule <|-- V1CtxBase["ImetV1\\Modules\\Component\\ImetModule"]
-    ImetModule_Eval <|-- V1EvalBase["ImetV1\\Modules\\Component\\ImetModule_Eval"]
-    ImetModule <|-- V2CtxBase["ImetV2\\Modules\\Component\\ImetModule"]
-    ImetModule_Eval <|-- V2EvalBase["ImetV2\\Modules\\Component\\ImetModule_Eval"]
-
-    V1CtxBase <|-- V1CtxModules["ImetV1\\Modules\\Context\\*"]
-    V1EvalBase <|-- V1EvalModules["ImetV1\\Modules\\Evaluation\\*"]
-    V2CtxBase <|-- V2CtxModules["ImetV2\\Modules\\Context\\*"]
-    V2EvalBase <|-- V2EvalModules["ImetV2\\Modules\\Evaluation\\*"]
-
-    ImetV1_Imet ..> V1CtxModules : $modules
-    ImetV1_Imet_Eval ..> V1EvalModules : $modules
-    ImetV2_Imet ..> V2CtxModules : $modules
-    ImetV2_Imet_Eval ..> V2EvalModules : $modules
+```
+                                            ┌──────────────────────────────┐
+                                            │  ModularForms\Models\Module  │
+                                            └──────────────┬───────────────┘
+                                                           │               ┌───────┐  
+                                                           ▼               │       ▼
+                                ┌───────────────────────────────────────┐  │   ┌──────────────────────────┐
+                                │  ImetCore\Models\Imet\...\ImetModule  │  │   │    ..\ImetModule_Eval    │
+                                └───────────────────┬─────────────┬─────┘  │   └────────────┬─────────────┘
+                                                    │             └────────┘                │    
+ ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── │ ── ── ── ── ── ── ── ── ── ── ── ── ──│── ── ── ── ── ── ── ── ── ── ── ─ 
+                                                    │                                       │
+                                                    │                                       └───────────────────────────────┐
+                                                    │                                                                       │
+                           ┌────────────────────────┴───────────────┬────────────────────────────────────┐                  │
+                           ▼                                        ▼                                    ▼                  │
+    ┌─────────────────────────────────────────────┐   ┌────────────────────────────┐   ┌───────────────────────────────┐    │
+    │  ImetCore\Models\Imet\ImetV2\..\ImetModule  │   │  ..\ImetV1\...\ImetModule  │   │  ..\ImetVOecm\...\ImetModule  │    │
+    └─────────────────────┬───────────────────────┘   └─────────────┬──────────────┘   └─────────────┬─────────────────┘    │ 
+                          │     ┌───────────┐                       │                                │                      │
+                          ├────▶│  Module1  │                       .                                .                      │
+                          │     └───────────┘                       .                                .                      │
+                          │     ┌───────────┐                                                                               │
+                          ├────▶│  Module2  │                                                                               │
+                          │     └───────────┘                       ┌───────────────────────────────────────────────────────┘
+                          │     ┌───────────┐                       │
+                          └────▶│   [...]   │                       │
+                                └───────────┘                       │
+                                                                    │
+                           ┌────────────────────────────────────────┼────────────────────────────────────┐                  
+                           ▼                                        ▼                                    ▼
+    ┌──────────────────────────────────────────────────┐   ┌─────────────────────────────────┐   ┌────────────────────────────────────┐ 
+    │  ImetCore\Models\Imet\ImetV2\..\ImetModule_Eval  │   │  ..\ImetV1\...\ImetModule_Eval  │   │  ..\ImetVOecm\...\ImetModule_Eval  │ 
+    └─────────────────────┬────────────────────────────┘   └────────────────┬────────────────┘   └────────────────┬───────────────────┘ 
+                          │     ┌───────────┐                               │                                     │
+                          ├────▶│  Module1  │                               .                                     .
+                          │     └───────────┘                               .                                     .
+                          │     ┌───────────┐                    
+                          ├────▶│  Module2  │  
+                          │     └───────────┘  
+                          │     ┌───────────┐  
+                          └────▶│   [...]   │  
+                                └───────────┘  
 ```
 
 #### Controllers
@@ -206,48 +264,6 @@ The _Analysis report_ is a section available in **IMET v2** (and the OECM varian
 
 `Imet_Report` is a subclass of `ImetV2\Imet` that declares the `$modules` map for the report step. Its module classes extend `ImetModule_Report` — a subclass of `ImetModule` that pins the module scope to `null` (reports are not filtered by terrestrial/marine scope) and sets a higher access level requirement. Individual report modules live under `ImetV2\Modules\Report\*`:
 
-| Module class | Code | Purpose |
-|---|---|---|
-| `ManagementContext` | RP 1 | Narrative context: key species, habitats, climate change, ecosystem services, threats |
-| `ManagementEffectivenessAnalysis` | RP 2 | SWOT-style analysis of overall management effectiveness |
-| `OperatingRecommendations` | RP 3 | Recommendations for improving management |
-| `KeyConservationElements` | RP 4 | List of prioritised key conservation elements |
-| `ThreatsAffectingKCEs` | RP 5 | Threats affecting key conservation elements |
-| `InitialPlanningOptions` | RP 6 | Initial planning options and priorities |
-| `KeyQuestions` | RP 7 | Key questions, minimum budget estimates, and additional funding needs |
-
-```mermaid
-classDiagram
-    direction TB
-
-    class ImetModule:::external
-    class ImetModule_Report {
-        <<abstract>>
-        MODULE_SCOPE: null
-        REQUIRED_ACCESS_LEVEL: HIGH
-    }
-    class ImetV2_Imet["ImetV2\\Imet"]
-    class ImetV2_Imet_Report["ImetV2\\Imet_Report"]
-
-    ImetModule <|-- ImetModule_Report
-    ImetV2_Imet <|-- ImetV2_Imet_Report
-
-    ImetModule_Report <|-- ManagementContext
-    ImetModule_Report <|-- ManagementEffectivenessAnalysis
-    ImetModule_Report <|-- OperatingRecommendations
-    ImetModule_Report <|-- KeyConservationElements
-    ImetModule_Report <|-- ThreatsAffectingKCEs
-    ImetModule_Report <|-- InitialPlanningOptions
-    ImetModule_Report <|-- KeyQuestions
-
-    ImetV2_Imet_Report ..> ManagementContext : $modules
-    ImetV2_Imet_Report ..> ManagementEffectivenessAnalysis : $modules
-    ImetV2_Imet_Report ..> OperatingRecommendations : $modules
-    ImetV2_Imet_Report ..> KeyConservationElements : $modules
-    ImetV2_Imet_Report ..> ThreatsAffectingKCEs : $modules
-    ImetV2_Imet_Report ..> InitialPlanningOptions : $modules
-    ImetV2_Imet_Report ..> KeyQuestions : $modules
-```
 
 #### Controllers
 
