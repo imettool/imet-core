@@ -5,7 +5,6 @@
 > into a hosting laravel based application such as `imet-offline` or `imet-online`.
 
 ## Architecture & technology overview
-:construction: under development
 
 The `imet-core` codebase is built using web technologies: the choice derives from the need to create a versatile tool that 
 can be easily deployed across different platforms. By using web technologies, the application can be accessed through 
@@ -14,8 +13,11 @@ a standard web application, but it can also be integrated into desktop applicati
 The `imet-core` is built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms), a PHP package 
 designed for building dynamic, modular data collection forms using Laravel. `imet-core` leverages its robust framework for 
 creating, managing, and customizing forms, which includes models, controllers, route, and views to build the IMET assessment forms.
+It is strongly suggested to read its [documentation](https://github.com/andreamarelli/modular-forms/blob/main/docs/user-guide.md) carefully.
 
-The **backend** is written in PHP and developed using [_Laravel_](https://laravel.com/), a popular PHP framework known 
+#### Backend
+
+The backend is written in PHP and developed using [_Laravel_](https://laravel.com/), a popular PHP framework known 
 for its elegant syntax and its robust and scalable architecture, and leveraging its features for routing, database management,
 and security. The `imet-core` does not directly require _Laravel,_ but requires to be integrated into a hosting application based 
 on it.
@@ -23,18 +25,20 @@ PHP dependency management is handled using [_Composer_](https://getcomposer.org/
 and packages, ensuring a high level of modularity of the codebase using a `composer.json` configuration file to declare, install, 
 and autoload depndencies to their required version. 
 
+#### Database
 The database interaction is managed using _Eloquent_, Laravel's Object-Relational Mapping system, which provides a simple 
 and intuitive interface for working with databases. The application is actually designed to work with SQLite and PostgreSQL,
 but it can be easily adapted to other relational databases with little efforts if needed.
 
+#### Frontend
 The **frontend** is built using a combination of _Blade_ templating engine (native to Laravel) and [Vue.js](https://vuejs.org/), 
 a modern JavaScript framework which ensures a dynamic and responsive user interface. The styling is done using [_Tailwind CSS_](https://tailwindcss.com/), 
 an utility-first CSS framework that allows for rapid UI development and a consistent design system.
-
-The codebase provides a `package.json` Package management is handled using [_npm_](https://www.npmjs.com/) (Node Package Manager), but the build 
+The codebase provides a `package.json` package management is handled using [_npm_](https://www.npmjs.com/) (Node Package Manager), but the build 
 process is delegated to the hosting application which can manage it using tools like [_Vite_](https://vitejs.dev/), a modern frontend build
 tool which provides fast and efficient development experience.
 
+### Development environment
 A _docker_-based environment is available in `dev/` for development purposes, allowing developers to easily set up a consistent 
 and isolated environment for working on the codebase. This is particularly useful for ensuring that all developers are working with
 the same versions of dependencies and configurations, and it simplifies the process of onboarding new contributors to the project.
