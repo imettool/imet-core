@@ -191,6 +191,85 @@ return [
         'High', 'Medium', 'Poor',
     ],
 
+    'DocumentedConnectivity' => [
+        'no_connectivity' => 'Sin conectividad / muy aislado',
+        'limited_connectivity' => 'Conectividad limitada (vínculos estructurales fragmentados o débiles)',
+        'moderate_connectivity' => 'Conectividad moderada (continuidad ecológica parcial)',
+        'strong_connectivity' => 'Conectividad fuerte (red ecológica integrada)',
+    ],
+    'EvidenceOfConnectivity' => [
+        'no_information' => 'Sin información',
+        'only_anecdotal' => 'Información anecdótica',
+        'some_indications' => 'Algunas indicaciones',
+        'strong_evidence' => 'Evidencia sólida (marcado, telemetría, estudios genéticos, modelos de dispersión larval)',
+    ],
+    'EvidencesListConnectivity' => [
+        'habitat_mapping' => 'Cartografía de hábitats',
+        'corridor_analysis' => 'Análisis de corredores',
+        'marine_current_models' => 'Modelos de corrientes marinas',
+        'landscape_fragmentation_index' => 'Índice de fragmentación del paisaje',
+        'transboundary_agreements' => 'Acuerdos transfronterizos',
+        'scientific_publications' => 'Publicaciones científicas',
+    ],
+    'ConnectivityIntegrationInManagementPlan' => [
+        'not_considered' => 'No considerado',
+        'mentioned_not_operationalised' => 'Mencionado pero no operacionalizado',
+        'partially_integrated' => 'Parcialmente integrado (protección de corredores, zonificación de amortiguación)',
+        'fully_integrated' => 'Totalmente integrado a escala de paisaje/seascape (enfoque de gestión a nivel de red)',
+    ],
+
+    'SupportingEvidence' => [
+        'no_information' => 'Sin información / no evaluado',
+        'only_anecdotal' => 'No, solo información anecdótica',
+        'some_indicators' => 'Sí, algunas indicaciones (datos limitados o estudio puntual)',
+        'strong_evidence' => 'Sí, evidencia sólida (estudios dirigidos / monitoreo a largo plazo)',
+    ],
+    'SupportingKeyObservations' => [
+        'monitoring_data' => 'Datos de monitoreo (ecológico)',
+        'scientific_study' => 'Estudio / informe científico',
+        'local_knowledge' => 'Conocimiento local / tradicional',
+        'ranger_observations' => 'Observaciones de guardabosques / personal',
+        'other' => 'Otro',
+    ],
+    'SupportingPerceivedSpeciesChange' => [
+        'many_fewer' => 'Muchas menos especies / menos diverso',
+        'slightly_fewer' => 'Ligeramente menos especies',
+        'slightly_more' => 'Ligeramente más especies / más diverso',
+        'many_more' => 'Muchas más especies / mucho más diverso',
+    ],
+    'SupportingPerceivedSizeChange' => [
+        'much_smaller' => 'Mucho más pequeño',
+        'slightly_smaller' => 'Ligeramente más pequeño',
+        'slightly_larger' => 'Ligeramente más grande',
+        'much_larger' => 'Mucho más grande',
+    ],
+    'ProvisioningEvidence' => [
+        'no_information' => 'Sin información / no evaluado',
+        'only_anecdotal' => 'No, solo información anecdótica',
+        'some_indicators' => 'Sí, algunas indicaciones (datos limitados, estudio puntual, observaciones parciales)',
+        'strong_evidence' => 'Sí, evidencia sólida (monitoreo a largo plazo, estudios dirigidos, datos CPUE repetidos)',
+    ],
+    'ProvisioningKeyObservations' => [
+        'fisheries_monitoring' => 'Datos de monitoreo pesquero (capturas por salida, tendencias CPUE, medidas de talla)',
+        'scientific_reports' => 'Informes científicos o técnicos sobre el rendimiento pesquero cerca del AP',
+        'local_knowledge' => 'Conocimiento local / tradicional de los pescadores sobre las tendencias de captura',
+        'staff_observations' => 'Observaciones de funcionarios de pesca o personal del AP cerca de los límites',
+        'market_records' => 'Registros de mercado o sitios de desembarque (cantidades, composición de especies)',
+        'other' => 'Otro',
+    ],
+    'ProvisioningPerceivedCatchChange' => [
+        'much_lower' => 'Mucho menor',
+        'slightly_lower' => 'Ligeramente menor',
+        'slightly_higher' => 'Ligeramente mayor',
+        'much_higher' => 'Mucho mayor',
+    ],
+    'ProvisioningPerceivedSpillover' => [
+        'worse' => 'No, el AMP ha empeorado claramente las capturas',
+        'no_effect' => 'El AMP ha tenido poco o ningún efecto en las capturas',
+        'somewhat_better' => 'El AMP ha contribuido algo a mejorar las capturas',
+        'clearly_better' => 'El AMP ha contribuido claramente a mejorar las capturas',
+    ],
+
     'Habitats' => [
         'artificial' => 'Artificial - plantations, gardens, pasturelands',
         'desert' => 'Desert – hot, cold, temperate',
@@ -216,6 +295,13 @@ return [
         'wetlands_lakes' => 'Wetlands (inland) - lake',
         'wetlands_rivers' => 'Wetlands (inland) - rivers, streams, waterfalls',
         'wetlands_shrub' => 'Wetlands (inland) - shrub dominated wetlands',
+    ],
+
+    'EstimatedStatus' => [
+        'scarce' => 'Escaso',
+        'below_optimum' => 'Por debajo del óptimo',
+        'optimum' => 'Óptimo',
+        'exceeding_optimum' => 'Por encima del óptimo',
     ],
 
     'EcosystemServicesImportance' => [

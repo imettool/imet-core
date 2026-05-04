@@ -39,10 +39,10 @@ use Illuminate\Support\Str;
                 @endphp
                 <div class="mb-4">
                     <strong class="mr-4">{{ ucfirst($group_key_field['label']) ?? '' }} </strong>
-                    <x-modular-forms::module.components.field.input-preview
+                    <x-imet-core::custom-input-preview
                             :type="$group_key_field['type']"
                             :value="$group_label"
-                    ></x-modular-forms::module.components.field.input-preview>
+                    ></x-imet-core::custom-input-preview>
                 </div>
 
 
@@ -79,10 +79,10 @@ use Illuminate\Support\Str;
                                 @if($field['name'] !== $definitions['fields'][0]['name'])
                                     {{-- skip group key field --}}
                                     <td>
-                                        <x-modular-forms::module.components.field.input-preview
+                                        <x-imet-core::custom-input-preview
                                                 :type="$field['type']"
                                                 :value="$record[$field['name']]"
-                                        ></x-modular-forms::module.components.field.input-preview>
+                                        ></x-imet-core::custom-input-preview>
                                     </td>
                                 @endif
                             @endforeach

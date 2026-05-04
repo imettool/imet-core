@@ -63,10 +63,10 @@ $module->vueData['area'] = \ImetCore\Models\Imet\ImetV1\Modules\Context\Areas::g
         </td>
         <td>
             {{-- record id  --}}
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     type="hidden"
                     :value="'item.'.$definitions['primary_key']"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
             <span v-if="typeof item.__predefined === 'undefined'">
                 <x-modular-forms::module.components.buttons.delete-item/>
             </span>

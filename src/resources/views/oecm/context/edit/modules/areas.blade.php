@@ -29,11 +29,11 @@ $vue_record_index = '0';
             ])
             <span class="ml-2 mr-4">[ha]</span>
 
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     :type="$field['type']"
                     :value="$field['name'].'_km2'"
                     :other="'@input=convertToHa('.$field['name'].')'"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
 
             <span class="ml-2">[km2]</span>
 

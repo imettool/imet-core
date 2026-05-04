@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class Equipments extends Modules\Component\ImetModule
 {
@@ -28,7 +29,7 @@ final class Equipments extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'CTX 3.3';
         $this->module_title = trans('imet-core::v2_context.Equipments.title');
         $this->module_fields = [

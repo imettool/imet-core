@@ -322,6 +322,148 @@ return [
           and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
     ],
 
+    'Connectivity' => [
+        'title'  => 'Connectivité',
+        'fields' => [
+            'DocumentedConnectivity' => '1.	Commencer par documenter les preuves',
+            'EvidenceOfConnectivity' => '2.	Baser la classification sur les preuves, non sur les suppositions',
+            'ConnectivityIntegrationInManagementPlan' => '3. Analyser le degré d\'intégration de la connectivité dans la planification de la gestion',
+        ],
+        'sub_titles' => [
+            'DocumentedConnectivity' => 'Existe-t-il une connectivité structurelle documentée entre l\'aire protégée et les habitats environnants (corridors, continuité des habitats, courants marins, îlots-relais) ?',
+            'EvidenceOfConnectivity' => 'Existe-t-il des preuves de connectivité fonctionnelle (déplacement des espèces, migration, échanges génétiques, dispersion larvaire) ?',
+            'EvidencesListConnectivity' => 'Les indications et preuves peuvent inclure :',
+            'ConnectivityIntegrationInManagementPlan' => 'La connectivité est-elle intégrée dans la planification de la gestion ?',
+        ],
+        'connectivity_title' => 'Comment évaluer la connectivité dans l\'IMET',
+        'link_to_me' => '4.	Relier la connectivité à l\'efficacité de la gestion',
+        'link_to_me_details' => '
+            <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :</p>
+            <ul>
+                <li>C1.5 – Services écosystémiques (importance et priorisation)</li>
+                <li>I1 - Informations de base</li>
+                <li>PR7 - Gestion des valeurs clés et des menaces (actions de gestion)</li>
+                <li>O/C2 - Résultats écologiques et/ou O/C3 : Effets sur la qualité de vie locale</li>
+            </ul>',
+
+        'module_info' => '<p>La connectivité désigne les liens écologiques structurels et fonctionnels entre l\'aire protégée et
+            les habitats ou écosystèmes environnants qui permettent des processus écologiques clés tels que le déplacement des espèces, le flux génétique,
+            la migration, la dispersion larvaire et l\'adaptation au changement climatique.</p>
+             <b class="blue">Description</b>
+             <p>La connectivité soutient la viabilité à long terme des principales valeurs naturelles du site et sous-tend des processus tels que
+             la récupération de la biomasse et l\'effet de débordement (spillover).</p>
+            <p>La connectivité peut être :</p>
+            <ul>
+                <li>Structurelle : la continuité physique des habitats, corridors, îlots-relais et courants.</li>
+                <li>Fonctionnelle (le déplacement réel des espèces, le flux génétique et les schémas de dispersion) ;</li>
+                <li>Écologique (maintien des liens trophiques et des processus écosystémiques au-delà des frontières).</li>
+            </ul>
+            <p>Dans les systèmes marins, la connectivité peut inclure :</p>
+            <ul>
+                <li>Les routes migratoires des adultes</li>
+                <li>Les systèmes de courants et les réseaux de dispersion larvaire</li>
+                <li>La continuité des habitats (récifs, herbiers marins et mangroves).</li>
+            </ul>
+            <p>Dans les systèmes terrestres :</p>
+            <ul>
+                <li>Corridors</li>
+                <li>Zones tampons</li>
+                <li>Réseaux écologiques</li>
+                <li>Liens transfrontaliers</li>
+            </ul>
+            <p>La connectivité soutient :</p>
+            <ul>
+                <li>La résilience écologique</li>
+                <li>La dynamique de débordement (spillover)</li>
+                <li>La viabilité à long terme des éléments de conservation clés</li>
+                <li>L\'adaptation au changement climatique</li>
+            </ul>',
+    ],
+
+    'Spillover' => [
+        'title' => 'Débordement (Spillover)',
+        'fields' => [
+            'SupportingEvidence' => 'Q1. Évaluation des preuves de débordement écologique',
+            'SupportingKeyObservations' => 'Q2. Preuves et observations clés',
+            'SupportingOtherObservation' => 'Préciser',
+            'SupportingPerceivedSpeciesChange' => 'Q3. Changement perçu dans le suivi/capture des espèces',
+            'SupportingPerceivedSizeChange' => 'Q4. Changement perçu dans la taille des principales espèces cibles',
+            'SupportingComments' => 'Notes',
+            'ProvisioningEvidence' => 'Q1. Évaluation des preuves de débordement d\'approvisionnement',
+            'ProvisioningKeyObservations' => 'Q2. Preuves et observations clés',
+            'ProvisioningOtherObservation' => 'Préciser',
+            'ProvisioningPerceivedCatchChange' => 'Q3. Changement perçu dans les captures à proximité de l\'AMP',
+            'ProvisioningPerceivedSpillover' => 'Q4. Les pêcheurs perçoivent-ils un effet de débordement de l\'AMP ?',
+            'ProvisioningComments' => 'Notes',
+
+        ],
+        'sub_titles' => [
+            'SupportingEvidence' => 'Existe-t-il des preuves scientifiques ou de suivi d\'un débordement écologique depuis l\'AMP (p. ex. gradients de biomasse, marquage, exportation larvaire, amélioration des habitats près des limites) ?',
+            'SupportingKeyObservations' => 'Veuillez décrire les principales observations ou informations qui soutiennent votre évaluation à la Q1',
+            'SupportingPerceivedSpeciesChange' => 'Dans ces mêmes zones de pêche en dehors de l\'AMP, comment le personnel de l\'AMP/les pêcheurs perçoivent-ils la variété et la composition des espèces dans leur suivi/captures par rapport à avant l\'AMP ?',
+            'SupportingPerceivedSizeChange' => 'Comment le personnel de l\'AMP/les pêcheurs perçoivent-ils la taille moyenne des principales espèces qu\'ils ciblent dans des zones en dehors mais proches de l\'AMP, par rapport à avant l\'AMP ?',
+            'ProvisioningEvidence' => 'Existe-t-il des preuves scientifiques, de suivi ou documentées que l\'AP génère des bénéfices de débordement d\'approvisionnement dans les zones de pêche voisines (p. ex. amélioration des captures, poissons plus grands, changements dans la composition des espèces, augmentation des prises par unité d\'effort - CPUE) ?',
+            'ProvisioningKeyObservations' => 'Décrire brièvement les principales observations soutenant votre choix (p. ex. résultats de suivi, retours des communautés, résultats de recherche, observations des gardes ou agents des pêches)',
+            'ProvisioningPerceivedCatchChange' => 'Par rapport à la période avant l\'établissement de l\'AMP, comment le personnel de l\'AMP/les pêcheurs qui opèrent en dehors mais à proximité de l\'AMP perçoivent-ils le changement de leurs captures totales par sortie ?',
+            'ProvisioningPerceivedSpillover' => 'Les pêcheurs pensent-ils que la présence de l\'AMP a contribué à de meilleures captures dans les zones où ils pêchent (par exemple, parce que les poissons sortent de l\'intérieur de l\'AMP ou s\'agglomèrent près de ses limites) ?',
+        ],
+        'other_labels' => [
+            'SupportingTitle' => 'Soutien (SE – Support)',
+            'SupportingSubTitle' => 'Utilisé lorsque des processus écologiques (p. ex. reproduction, récupération de la biomasse, exportation larvaire) sont connus ou suspectés, mais que les effets socio-économiques ne sont pas démontrés. Le débordement sera alors analysé principalement dans le contexte et les résultats écologiques',
+            'ProvisioningTitle' => 'Service écosystémique d\'approvisionnement (SE – Approvisionnement)',
+            'ProvisioningSubTitle' => 'Utilisé lorsque les pêcheurs ou les communautés signalent une amélioration des captures, des poissons plus grands ou des changements dans la composition des espèces sans mécanismes écologiques documentés. L\'analyse se concentrera sur les moyens de subsistance et les résultats socio-économiques.',
+        ],
+        'module_info' => '<p>Le débordement (spillover) désigne les bénéfices écologiques et socio-économiques générés par une aire protégée, en particulier
+            une aire marine protégée (AMP), qui s\'étendent au-delà de ses limites ou sont reçus d\'aires protégées voisines
+            au sein d\'un paysage ou d\'un paysage marin connecté.</p>
+            <b class="blue">Description</b>
+            <p><b>Le débordement écologique</b> (voir SE – Support) se produit lorsque les espèces au sein d\'une AMP augmentent en abondance, en taille ou en production reproductive,
+            puis se dispersent en dehors de l\'AMP par le mouvement des adultes, la migration des juvéniles ou l\'exportation larvaire. Ces processus peuvent
+            fonctionner dans deux directions : une AMP peut activement fournir des bénéfices de débordement aux zones environnantes, ou elle peut recevoir
+            des apports écologiques d\'AMP voisines, en particulier là où il existe une connectivité écologique, pour fournir des bénéfices de débordement.</p>
+            <p><b>Le débordement socio-économique</b> (voir SE – Approvisionnement) survient lorsque ces processus écologiques conduisent à une amélioration des captures, une plus grande
+            diversité des espèces ou des poissons plus grands dans les zones de pêche voisines. Cela soutient les moyens de subsistance locaux.</p>
+            <p>Dans le contexte de l\'analyse IMET, le débordement peut être compris comme un service écosystémique fourni par l\'aire marine
+            protégée. Il fonctionne comme un service de soutien car les mesures de protection au sein de l\'AMP améliorent des processus
+            écologiques clés, tels que la reproduction, la récupération de la biomasse et la connectivité écologique avec les zones environnantes.
+            En même temps, le débordement constitue un service d\'approvisionnement car ces processus écologiques générés localement ou renforcés de l\'extérieur
+            produisent des bénéfices tangibles pour les pêcheurs et les communautés côtières, tels que l\'augmentation des captures,
+            l\'amélioration de la composition des espèces et une taille moyenne des poissons plus grande</p>
+            <b class="blue">Comment évaluer le débordement dans l\'IMET</b>
+            <ol style="list-style-type:decimal">
+                <li>
+                    <b>Commencer par documenter les preuves</b>
+                    <p>Avant de classifier le débordement, les utilisateurs de l\'IMET doivent compléter les deux sections analytiques.</p>
+                    <ul>
+                        <li>Services écosystémiques de soutien (débordement écologique) : évaluer les preuves relatives aux processus écologiques,
+                        tels que la reproduction, la récupération de la biomasse, le mouvement des adultes, la migration des juvéniles ou l\'exportation larvaire.</li>
+                        <li>Services écosystémiques d\'approvisionnement (débordement socio-économique) : évaluer les preuves relatives aux bénéfices pour
+                        les pêcheurs et les communautés, tels que les changements dans les captures, la composition des espèces, la taille des poissons ou la CPUE.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Baser la classification sur les preuves, non sur les suppositions</b>
+                    <p>Après avoir complété les deux sections, sélectionner la classification la plus appropriée :</p>
+                    <ul>
+                        <li>Soutien uniquement : les processus écologiques sont évidents, mais les bénéfices socio-économiques ne sont pas démontrés.</li>
+                        <li>Approvisionnement uniquement : les bénéfices pour les moyens de subsistance sont signalés, mais les mécanismes écologiques ne sont pas documentés.</li>
+                        <li>Soutien et approvisionnement : les processus écologiques et les bénéfices socio-économiques sont tous deux étayés par des preuves.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Relier le débordement à l\'efficacité de la gestion</b>
+                    <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :</p>
+                    <ul>
+                        <li>C1.5 – Services écosystémiques (importance et priorisation) ;</li>
+                        <li>I1 - Informations de base</li>
+                        <li>PR7 - Gestion des valeurs clés et des menaces (actions de gestion).</li>
+                        <li>O/C2 - Résultats écologiques et/ou O/C3 : Effets sur la qualité de vie locale.</li>
+                    </ul>
+                </li>
+            </ol>',
+
+    ],
+
     'ManagementStaff' => [
         'title' => 'Effectifs et composition du personnel: Personnel de l\'aire protégée',
         'fields' => [
@@ -531,9 +673,9 @@ return [
         'title' => 'Habitats choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'EcosystemType' => 'Type d\'habitat',
-            'Value' => 'Description de l’état ou de la valeur',
-            'Area' => 'Surface (ha)',
-            'DesiredConservationStatus' => 'Etat de conservation souhaité',
+            'EcosystemDescription' => 'Description détaillée de l’habitat',
+            'EstimatedStatus' => 'Statut estimé',
+            'DesiredConservationStatus' => 'Description de l\'état optimal',
             'Trend' => 'Tendance',
             'Reliability' => 'Fiabilité',
             'Sectors' => 'Secteurs',

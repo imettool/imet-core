@@ -13,13 +13,14 @@
 namespace ImetCore\Models\Imet\ImetV1\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
+use ModularForms\Enums\ModuleTypes;
 
 class _Objectives extends Modules\Component\ImetModule
 {
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_title = trans('imet-core::v1_context.Objectives.title');
         $this->module_fields = [
             ['name' => 'Status',  'type' => 'text-area',   'label' => trans('imet-core::v1_context.Objectives.fields.Status')],

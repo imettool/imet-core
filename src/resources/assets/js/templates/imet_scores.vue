@@ -15,8 +15,12 @@
         <!-- histogram -->
         <div class="grow">
             <div v-for="(step_props, step_key) in properties" :key="step_key">
-                <imet_score_row :label="labels[step_key]" :value="api_data['scores'][step_key].avg_indicator"
-                    :color=step_props.color :short-label=true></imet_score_row>
+                <imet_score_row
+                    :label="labels[step_key]"
+                    :value="api_data['scores'][step_key].avg_indicator"
+                    :color=step_props.color
+                    :short-label=true
+                ></imet_score_row>
             </div>
         </div>
         <!-- radar -->
@@ -31,20 +35,45 @@
         <div class="mb-10" v-if="current_step === step_key || current_step === 'management_effectiveness'" :key="step_key">
 
             <!-- Title + synthetic score-->
-            <imet_score_row :label="labels[step_key]" :value="api_data['scores'][step_key].avg_indicator"
-                :color=step_props.color :is-header=true></imet_score_row>
+            <template v-if="current_step==='outcomes'">
+                <imet_score_row
+                    :label="labels[step_key]"
+                    :value="api_data['scores'][step_key]['stacked']"
+                    :color=step_props.color
+                    :is-header=true
+                    histogram_type="stacked"
+                ></imet_score_row>
+            </template>
+            <template v-else>
+                <imet_score_row
+                    :label="labels[step_key]"
+                    :value="api_data['scores'][step_key].avg_indicator"
+                    :color=step_props.color
+                    :is-header=true
+                ></imet_score_row>
+            </template>
+
 
             <!-- Scores-->
             <div v-for="(index, idx) in step_props.indexes" :key="index">
-                <imet_score_row :label="labels[index]" :code=index :value="api_data['scores'][step_key][index]"
-                    :histogram_type="histogram_type(step_key, idx)" :color=step_props.color></imet_score_row>
+                <imet_score_row
+                    :label="labels[index]"
+                    :code=index
+                    :value="api_data['scores'][step_key][index]"
+                    :histogram_type="histogram_type(step_key, idx)"
+                    :color=step_props.color
+                ></imet_score_row>
             </div>
             <!-- custom additional scores -->
             <div class="mt-4" v-if="step_key === 'context' && version !== 'oecm'">
                 <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']" :key="ctx_key">
-                    <imet_score_row :label="labels[ctx_key]" :code=ctx_key
-                        :value="api_data['scores']['context'][ctx_key]" histogram_type="0_to_100"
-                        :color=step_props.color></imet_score_row>
+                    <imet_score_row
+                        :label="labels[ctx_key]"
+                        :code=ctx_key
+                        :value="api_data['scores']['context'][ctx_key]"
+                        histogram_type="0_to_100"
+                        :color=step_props.color
+                    ></imet_score_row>
                 </template>
             </div>
             <div class="mt-4" v-else-if="step_key === 'process' && version !== 'oecm'">
@@ -126,6 +155,7 @@ const score_properties = {
         },
         'outcomes': {
             'indexes': ['OC1', 'OC2', 'OC3'],
+            'histogram_types': ['0_to_100', 'minus100_to_100', 'minus100_to_100'],
             'color': '#00B050'
         },
     },

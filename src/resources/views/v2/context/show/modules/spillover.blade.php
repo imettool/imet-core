@@ -34,10 +34,10 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                 @endif
             </div>
 
-            <x-modular-forms::module.components.field.input-preview
+            <x-imet-core::custom-input-preview
                     :type="$field['type']"
                     :value="$records[0][$field['name']]"
-            ></x-modular-forms::module.components.field.input-preview>
+            ></x-imet-core::custom-input-preview>
 
         </div>
     @endif

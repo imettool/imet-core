@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class StaffCompetence extends Modules\Component\ImetModule_Eval
 {
@@ -29,7 +30,7 @@ final class StaffCompetence extends Modules\Component\ImetModule_Eval
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'PR1';
         $this->module_title = trans('imet-core::oecm_evaluation.StaffCompetence.title');
         $this->module_fields = [

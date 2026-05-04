@@ -37,10 +37,10 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                             'vue_record_index' => 'index',
                             'group_key' => $group_key
                         ])
-                        <x-modular-forms::module.components.field.input
+                        <x-imet-core::custom-input
                                 type="hidden"
                                 :value="'item.'.$definitions['primary_key']"
-                        ></x-modular-forms::module.components.field.input>
+                        ></x-imet-core::custom-input>
                     </div>
 
                     <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b></div>

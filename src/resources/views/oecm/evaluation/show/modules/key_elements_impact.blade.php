@@ -40,20 +40,20 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                     <div class="grid_module">
 
                         <div style="grid-row-start: 1; grid-row-end: span 2;">
-                            <x-modular-forms::module.components.field.input-preview
+                            <x-imet-core::custom-input-preview
                                     :type="$definitions['fields'][0]['type']"
                                     :value="$record[$definitions['fields'][0]['name']]"
-                            ></x-modular-forms::module.components.field.input-preview>
+                            ></x-imet-core::custom-input-preview>
                         </div>
 
                         <div class="text-center"><b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_sa')</b>
                         </div>
                         @for ($i = 1; $i <= 5; $i++)
                             <div>
-                                <x-modular-forms::module.components.field.input-preview
+                                <x-imet-core::custom-input-preview
                                         :type="$definitions['fields'][$i]['type']"
                                         :value="$record[$definitions['fields'][$i]['name']]"
-                                ></x-modular-forms::module.components.field.input-preview>
+                                ></x-imet-core::custom-input-preview>
                             </div>
                         @endfor
 
@@ -62,10 +62,10 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                             <b>@lang('imet-core::oecm_evaluation.KeyElementsImpact.from_external_source')</b></div>
                         @for ($i = 6; $i <= 10; $i++)
                             <div>
-                                <x-modular-forms::module.components.field.input-preview
+                                <x-imet-core::custom-input-preview
                                         :type="$definitions['fields'][$i]['type']"
                                         :value="$record[$definitions['fields'][$i]['name']]"
-                                ></x-modular-forms::module.components.field.input-preview>
+                                ></x-imet-core::custom-input-preview>
                             </div>
                         @endfor
 

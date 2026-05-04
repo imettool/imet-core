@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class Networks extends Modules\Component\ImetModule
 {
@@ -24,7 +25,7 @@ final class Networks extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'CTX 1.4';
         $this->module_title = trans('imet-core::oecm_context.Networks.title');
         $this->module_fields = [

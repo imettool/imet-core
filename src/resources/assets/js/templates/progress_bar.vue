@@ -10,11 +10,30 @@
 
 <template>
 
-    <div class="progress-bar" >
-        <div class="bar" :class="{'float-right': negative}" :style=style v-if="percentage_value!==null"></div>
-        <div class="label" v-if="percentage_value!==null">
-            {{ percentage_value }}% {{ additional_label }}
-        </div>
+    <div class="progress-bar" :class="{'stacked': stacked}">
+
+        <template v-if="stacked">
+
+            <template v-for="(item, index) in value">
+                <template v-if="percent(item)!==null">
+                    <div class="bar" :class="{'float-right': negative}" :style="style(item, index)">
+                        <span v-if="width(item)>10">{{ percent(item) }}%</span>
+                    </div>
+                </template>
+            </template>
+
+        </template>
+        <template v-else>
+
+            <template v-if="percent(value)!==null">
+                <div class="bar" :class="{'float-right': negative}" :style=style(value)></div>
+                <div class="label">
+                    {{ percent(value) }}%
+                </div>
+            </template>
+
+        </template>
+
     </div>
 
 </template>
@@ -40,6 +59,14 @@
             text-align: center;
             font-weight: bold;
         }
+
+        &.stacked{
+            @apply flex flex-row;
+            .bar{
+                @apply flex items-center justify-center font-bold;
+            }
+        }
+
     }
 
 </style>
@@ -50,14 +77,10 @@ import { computed } from "vue";
 
 const props = defineProps({
     value: {
-        type: [Number, String],
+        type: [Number, Array],
         default: () => 0
     },
     color: {
-        type: String,
-        default: () => ''
-    },
-    additional_label: {
         type: String,
         default: () => ''
     },
@@ -68,19 +91,31 @@ const props = defineProps({
     negative: {
         type: Boolean,
         default: false
+    },
+    stacked: {
+        type: Boolean,
+        default: false
     }
 });
 
-const style = computed(() => {
-    return 'width: ' +  Math.abs(props.value).toFixed(props.digit) + '%; background-color: ' + props.color + ' !important;';
-});
+function percent(value){
+    if(value === null) return null;
+    return parseFloat(value).toFixed(props.digit);
+}
 
-const percentage_value = computed(() => {
-    if(props.value === null) return null;
-    return typeof props.value === 'number'
-        ? props.value.toFixed(props.digit)
-        : parseFloat(props.value).toFixed(props.digit);
-});
+function width(value){
+    return Math.abs(value);
+}
+
+
+function style(value, index = null){
+    let color = props.color;
+    if(index != null){
+        let lightness = index * 5;
+        color = 'hsl(from ' + color + ' h s calc(l + ' + lightness + '))';
+    }
+    return 'width: ' +  width(value).toFixed(props.digit) + '%; background-color: ' + color + ' !important;';
+}
 
 </script>
 

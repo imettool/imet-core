@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class ManagementStaff extends Modules\Component\ImetModule
 {
@@ -33,7 +34,7 @@ final class ManagementStaff extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'CTX 3.1.2';
         $this->module_title = trans('imet-core::oecm_context.ManagementStaff.title');
         $this->module_fields = [

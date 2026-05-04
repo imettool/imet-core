@@ -15,6 +15,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 /**
  * @property string $species
@@ -36,7 +37,7 @@ final class AnimalSpecies extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'CTX 4.1';
         $this->module_title = trans('imet-core::v2_context.AnimalSpecies.title');
         $this->module_fields = [

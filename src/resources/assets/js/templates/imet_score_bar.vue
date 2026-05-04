@@ -18,6 +18,8 @@
             :value=score_value
             :color=color
             :negative=negative
+            :stacked=stacked
+            :digit=1
         ></progress_bar>
 
         <div v-if="showLimits && max!==null" class="score-bar__limit-right">{{ max }}%</div>
@@ -62,7 +64,7 @@ import progress_bar from "./progress_bar.vue";
 
 const props = defineProps({
     value: {
-        type: [String, Number],
+        type: [String, Number, Array],
         default: 0
     },
     color: {
@@ -81,13 +83,20 @@ const props = defineProps({
         type: Number,
         default: 100
     },
+    stacked: {
+        type: Boolean,
+        default: false
+    }
 });
 
 const score_value = computed(() => {
-    if(props.value === null) return null;
-    return typeof props.value === 'number'
-        ? props.value.toFixed(1)
-        : parseFloat(props.value).toFixed(1);
+    if(props.value === null) {
+        return null;
+    }
+    if(typeof props.value === 'string'){
+        return parseFloat(props.value)
+    }
+    return props.value;
 });
 
 const negative = computed(() => {

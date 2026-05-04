@@ -1,6 +1,7 @@
 <?php
 
 use ImetCore\Models\Imet;
+use ModularForms\Helpers\Template;
 
 /** @var string $step */
 /** @var Imet\ImetV1\Imet|Imet\ImetV2\Imet|Imet\ImetOecm\Imet $item */
@@ -19,5 +20,13 @@ use ImetCore\Models\Imet;
             'step' => $step,
             'version' => $item::$version
         ])
+        @if($step === 'outcomes')
+            <span class="text-sm">
+                <span class="icon text-blue-600">
+                   {!! Template::icon(icon:'circle-info', size:'1.4em') !!}
+                </span>
+                @lang('imet-core::common.score_info.outcomes')
+            </span>
+        @endif
     </div>
 </div>

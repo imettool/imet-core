@@ -133,10 +133,10 @@ $stakeholders_categories = Stakeholders::getStakeholders($module->vueData['form_
                                             @endforeach
                                             <td>
                                                 {{-- record id  --}}
-                                                <x-modular-forms::module.components.field.input
+                                                <x-imet-core::custom-input
                                                         type="hidden"
                                                         :value="'item.'.$definitions['primary_key']"
-                                                ></x-modular-forms::module.components.field.input>
+                                                ></x-imet-core::custom-input>
                                                 <span v-if="typeof item.__predefined === 'undefined'">
                                                          <button type="button" class="btn-nav small red"
                                                                  v-on:click="deleteItem(index, '{{ $group_key }}', '{{ $stakeholder }}')">

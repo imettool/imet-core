@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class Spillover extends Modules\Component\ImetModule
 {
@@ -27,8 +28,8 @@ final class Spillover extends Modules\Component\ImetModule
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'SIMPLE';
-        $this->module_code = 'CTX 2.5';
+        $this->module_type = ModuleTypes::SIMPLE;
+        $this->module_code = 'CTX 2.6';
         $this->module_title = trans('imet-core::v2_context.Spillover.title');
         $this->module_fields = [
             ['name' => 'SupportingEvidence',                'type' => 'custom::radio-ImetV2_SupportingEvidence',                 'label' => trans('imet-core::v2_context.Spillover.fields.SupportingEvidence')],

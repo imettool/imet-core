@@ -34,19 +34,19 @@ $staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumber
 
         {{--  fields  --}}
         <td>
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                 type="disabled"
                 value="records[index].Theme"
                 :id="$theme_id"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
         </td>
 
         <td>
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                 type="disabled"
                 value="records[index].StaffNumberAdequacy"
                 :id="$staff_number_adequacy_id"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
         </td>
 
         <td>
@@ -72,16 +72,16 @@ $staff_number_adequacy_id = "'" . $definitions['slug'] . "_'+index+'_StaffNumber
         <td>
             {{-- group_key_field (for GROUP_TABLE)  --}}
             @if($definitions['module_type']==='GROUP_TABLE')
-                <x-modular-forms::module.components.field.input
+                <x-imet-core::custom-input
                     type="hidden"
                     :value="'item.'.$definitions['group_key_field']"
-                ></x-modular-forms::module.components.field.input>
+                ></x-imet-core::custom-input>
             @endif
             {{-- record id  --}}
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                 type="hidden"
                 :value="'item.'.$definitions['primary_key']"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
         </td>
     <tr>
     </tbody>

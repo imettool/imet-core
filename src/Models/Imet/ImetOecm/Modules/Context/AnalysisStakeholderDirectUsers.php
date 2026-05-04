@@ -13,6 +13,7 @@
 namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
 
 use Illuminate\Http\Request;
+use ModularForms\Enums\ModuleTypes;
 
 /**
  * @property string[] $titles
@@ -29,7 +30,7 @@ final class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
 
     public function __construct(array $attributes = [])
     {
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'SA 2.1';
         $this->module_title = trans('imet-core::oecm_context.AnalysisStakeholderDirectUsers.title');
         $this->module_fields = [
@@ -68,7 +69,7 @@ final class AnalysisStakeholderDirectUsers extends _AnalysisStakeholders
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['Description'] !== null
             || $record['Dependence'] !== null

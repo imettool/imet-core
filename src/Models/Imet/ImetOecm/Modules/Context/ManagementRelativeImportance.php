@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Context;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class ManagementRelativeImportance extends Modules\Component\ImetModule
 {
@@ -28,7 +29,7 @@ final class ManagementRelativeImportance extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'CTX 3.1.1';
         $this->module_title = trans('imet-core::oecm_context.ManagementRelativeImportance.title');
         $this->module_fields = [

@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetOecm\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetOecm\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class InformationAvailability extends Modules\Component\ImetModule_Eval
 {
@@ -30,7 +31,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'I1';
         $this->module_title = trans('imet-core::oecm_evaluation.InformationAvailability.title');
         $this->module_fields = [
@@ -51,7 +52,7 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['EvaluationScore'] !== null || $record['Comments'] !== null) {
             return false;

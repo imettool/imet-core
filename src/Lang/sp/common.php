@@ -118,6 +118,23 @@ return [
         'cross_analysis' => 'Análisis cruzado',
     ],
 
+    'score_info' => [
+        'outcomes' =>
+            'El <b>indicador sintético</b> no se calcula como un simple promedio de los tres componentes (O/C1, O/C2, O/C3).
+            En cambio, se deriva de una transformación de las puntuaciones brutas, diseñada para reflejar la contribución relativa
+            de cada componente al desempeño general de los resultados.
+            Los indicadores O/C2 y O/C3 se expresan en una escala bipolar que va de -100 a +100, reflejando tendencias
+            y efectos negativos a positivos. En contraste, O/C1 se expresa en una escala unipolar (0 a 100), representando
+            el nivel de logro de los objetivos de conservación.
+            La transformación tiene en cuenta estas diferencias de escala, así como la distribución y el equilibrio entre
+            los componentes. Como resultado, los componentes con puntuaciones brutas más bajas pero con mayor importancia estructural—como
+            elementos clave de conservación o beneficios para las partes interesadas—pueden contribuir más significativamente
+            al indicador final que lo sugerido por sus valores iniciales.
+            Aunque O/C1 alcanza la puntuación máxima, su contribución al indicador sintético sigue siendo limitada, mientras que
+            O/C2 y O/C3 tienen una influencia más fuerte, reflejando la importancia de las condiciones ecológicas y los resultados
+            para las partes interesadas en la efectividad global de la conservación.'
+    ],
+
     'Create' => [
         'title' => 'Crear un nuevo IMET (WDPA)',
         'fields' => [

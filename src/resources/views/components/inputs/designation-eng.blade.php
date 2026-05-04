@@ -1,5 +1,5 @@
 
-<x-modular-forms::module.components.field.input
+<x-imet-core::custom-input
     type="text-area"
     :value="$value"
     :id="$id"
@@ -7,7 +7,7 @@
     :rules="$rules"
     :other="$other"
     :slug="$slug"
-></x-modular-forms::module.components.field.input>
+></x-imet-core::custom-input>
 
 
 <ul class="text-xs" style="margin-top: 10px; padding-inline-start: 30px;">

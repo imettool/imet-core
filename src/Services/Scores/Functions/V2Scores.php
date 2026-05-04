@@ -152,18 +152,20 @@ class V2Scores extends _Scores
      */
     public static function scores_outcomes(int $imet_id): array
     {
-        $score_oc1 = static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore');
-        $score_oc2 = static::score_oc2($imet_id);
-        $score_oc3 = static::score_group($imet_id, Evaluation\LifeQualityImpact::class, 'EvaluationScore', 'group_key');
-
         $scores = [
-            'OC1' => round(($score_oc1 / 9), 2),
-            'OC2' => round((($score_oc2 + 100) / 4.5), 2),
-            'OC3' => round((($score_oc3 + 100) / 4.5), 2)
+            'OC1' => static::score_table($imet_id, Evaluation\AchievedObjectives::class, 'EvaluationScore'),
+            'OC2' => static::score_oc2($imet_id),
+            'OC3' => static::score_group($imet_id, Evaluation\LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
+        $scores['stacked'] = array(
+            round($scores['OC1']/9, 2),
+            round(($scores['OC2']+100)/4.5, 2),
+            round(($scores['OC3']+100)/4.5, 2),
+        );
+
         // aggregate step score
-        $scores['avg_indicator'] = round(static::score_oc($imet_id), 2);
+        $scores['avg_indicator'] = round(array_sum($scores['stacked']), 2);
 
         return $scores;
     }

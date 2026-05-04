@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Models\Module;
+use ModularForms\Enums\ModuleTypes;
 
 /**
  * @property string $Currency
@@ -35,7 +36,7 @@ final class FinancialAvailableResources extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'TABLE';
+        $this->module_type = ModuleTypes::TABLE;
         $this->module_code = 'CTX 3.2.2';
         $this->module_title = trans('imet-core::v2_context.FinancialAvailableResources.title');
         $this->module_fields = [

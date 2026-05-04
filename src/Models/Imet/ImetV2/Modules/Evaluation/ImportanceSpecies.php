@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Species;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
 {
@@ -40,7 +41,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'C1.2';
         $this->module_title = trans('imet-core::v2_evaluation.ImportanceSpecies.title');
         $this->module_fields = [
@@ -112,7 +113,7 @@ final class ImportanceSpecies extends Modules\Component\ImetModule_Eval
      * Override
      */
     #[\Override]
-    public function isEmptyRecord($record, $foreign_key = null): bool
+    public function isEmptyRecord($record): bool
     {
         if ($record['EvaluationScore'] !== null
             || $record['SignificativeSpecies'] !== null

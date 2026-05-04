@@ -17,6 +17,7 @@ use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 /**
  * @property string $Type
@@ -30,7 +31,7 @@ final class GeneralInfo extends Modules\Component\ImetModule
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'SIMPLE';
+        $this->module_type = ModuleTypes::SIMPLE;
         $this->module_code = 'CTX 1.1';
         $this->module_title = trans('imet-core::v2_context.GeneralInfo.title');
         $this->module_fields = [

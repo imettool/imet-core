@@ -6,15 +6,15 @@ $equipment_predefined_label_id = "'".$slug."_'+index+'_Equipment-predefined_labe
 
 ?>
 
-<x-modular-forms::module.components.field.input
+<x-imet-core::custom-input
     type="hidden"
     value="records[index].Equipment"
     :id="$equipment_id"
-></x-modular-forms::module.components.field.input>
+></x-imet-core::custom-input>
 
-<x-modular-forms::module.components.field.input
+<x-imet-core::custom-input
     type="disabled"
     value="records[index].__predefined_label"
     :id="$equipment_predefined_label_id"
     class="field-disabled"
-></x-modular-forms::module.components.field.input>
+></x-imet-core::custom-input>

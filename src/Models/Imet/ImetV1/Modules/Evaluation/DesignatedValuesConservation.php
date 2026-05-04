@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV1\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetV1\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class DesignatedValuesConservation extends Modules\Component\ImetModule_Eval
 {
@@ -28,7 +29,7 @@ final class DesignatedValuesConservation extends Modules\Component\ImetModule_Ev
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'E/I2';
         $this->module_title = trans('imet-core::v1_evaluation.DesignatedValuesConservation.title');
         $this->module_fields = [

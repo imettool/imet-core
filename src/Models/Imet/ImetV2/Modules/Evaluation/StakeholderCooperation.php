@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
+use ModularForms\Enums\ModuleTypes;
 
 final class StakeholderCooperation extends Modules\Component\ImetModule_Eval
 {
@@ -24,7 +25,7 @@ final class StakeholderCooperation extends Modules\Component\ImetModule_Eval
     public function __construct(array $attributes = [])
     {
 
-        $this->module_type = 'GROUP_TABLE';
+        $this->module_type = ModuleTypes::GROUP_TABLE;
         $this->module_code = 'PR10';
         $this->module_title = trans('imet-core::v2_evaluation.StakeholderCooperation.title');
         $this->module_fields = [

@@ -297,6 +297,13 @@ return [
         'wetlands_shrub' => 'Wetlands (inland) - shrub dominated wetlands',
     ],
 
+    'EstimatedStatus' => [
+        'scarce' => 'Scarse',
+        'below_optimum' => 'Below optimum',
+        'optimum' => 'Optimum',
+        'exceeding_optimum' => 'Exceeding optimum',
+    ],
+
     'EcosystemServicesImportance' => [
         'null' => null,        // need to force string keys
         '0' => 'Local',

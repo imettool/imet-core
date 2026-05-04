@@ -74,10 +74,10 @@ $table_id = 'table_' . $definitions['slug'];
         @endforeach
         <td>
             {{-- record id  --}}
-            <x-modular-forms::module.components.field.input
+            <x-imet-core::custom-input
                     type="hidden"
                     :value="'item.'.$definitions['primary_key']"
-            ></x-modular-forms::module.components.field.input>
+            ></x-imet-core::custom-input>
             @if(!$definitions['fixed_rows'])
                 <span v-if="typeof item.__predefined === 'undefined'">
                         <x-modular-forms::module.components.buttons.delete-item/>

@@ -39,11 +39,11 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                                 $activity_id = "'".$definitions['slug']."_".$group_key."_'+index+'_".$field['name']."'";
                                 $activity_value = 'records[\''.$group_key.'\'][index].'.$field['name'];
                             @endphp
-                            <x-modular-forms::module.components.field.input
+                            <x-imet-core::custom-input
                                 type="text-area"
                                 :value="$activity_value"
                                 :id="$activity_id"
-                            ></x-modular-forms::module.components.field.input>
+                            ></x-imet-core::custom-input>
                         @else
                             @include('modular-forms::module.edit.field.module-to-vue', [
                                 'definitions' => $definitions,
@@ -56,10 +56,10 @@ use ImetCore\Models\Imet\Components\Modules\ImetModule;
                 @endforeach
                 <td>
                     {{-- record id  --}}
-                    <x-modular-forms::module.components.field.input
+                    <x-imet-core::custom-input
                         type="hidden"
                         :value="'item.'.$definitions['primary_key']"
-                    ></x-modular-forms::module.components.field.input>
+                    ></x-imet-core::custom-input>
                     @if($group_key==='group6')
                         <span v-if="typeof item.__predefined === 'undefined'">
                                 <x-modular-forms::module.components.buttons.delete-item/>
