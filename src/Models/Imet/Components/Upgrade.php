@@ -97,7 +97,7 @@ trait Upgrade
     /**
      * Drop a record if predefined value had been removed
      */
-    protected static function dropIfPredefinedValueObsolete(array $record, $field, $old_value): ?array
+    protected static function dropIfPredefinedValueObsolete(?array $record, $field, $old_value): ?array
     {
         return $record !== null && $record[$field] === $old_value
             ? null

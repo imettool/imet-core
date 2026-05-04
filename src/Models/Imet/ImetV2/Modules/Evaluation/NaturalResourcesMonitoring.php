@@ -65,7 +65,8 @@ final class NaturalResourcesMonitoring extends Modules\Component\ImetModule_Eval
         $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoring land cover–land use–land take');
         $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Suivi de la couverture terrestre, utilisation et occupation des sols');
         $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitorização de terrenos (cobretura do solo, uso e ocupacão)');
+        $record = self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio');
 
-        return self::dropIfPredefinedValueObsolete($record, 'Aspect', 'Monitoreo de la cobertura del suelo  - uso del suelo - tenencia del territorio');
+        return $record ?? [];
     }
 }
