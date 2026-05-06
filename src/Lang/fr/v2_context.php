@@ -274,24 +274,22 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'module_info' => '<b>Nombre moyen de jours de patrouille par kilomètre carré dans les parcs nationaux africains - Pratique courante</b>:
-            Pour une gestion efficace, <b>certaines études et directives de gestion des parcs suggèrent une moyenne de
-            1 à 4 jours de patrouille par kilomètre carré et par an</b>. Cela signifie que pour chaque kilomètre carré
-            d\'aire protégée, les gardes devraient idéalement consacrer entre 1 et 4 jours de patrouille par an.
-            <ul>
-            <li><b>Intensité accrue dans les zones à forte menace</b>: Dans les zones à forte pression de braconnage ou
-            présentant une biodiversité importante, le rythme recommandé peut atteindre 5 à 10 jours de patrouille par
-            kilomètre carré et par an, voire plus. Cet effort de patrouille accru est essentiel pour dissuader les
-            braconniers et réagir rapidement aux menaces.</li>
-            <li><b>Intensité réduite dans les zones à faible risque</b>: En revanche, les zones à faible risque ou celles
-            où les menaces pour la faune sont minimes peuvent nécessiter moins de patrouilles, peut-être moins d\'une journée
-            de patrouille par kilomètre carré et par an.</li>
-            </ul>
-            <b>Note sur le parc national Kruger, en Afrique du Sud</b>: En raison de la forte menace du braconnage
-            des rhinocéros, certaines zones du parc Kruger ont des intensités de patrouille de 10 jours de patrouille
-            par kilomètre carré et par an, voire plus.',
+        'module_info' =>
+            '<div class="font-bold">Jours-Patrouille moyens par Km² (cas des Parcs Nationaux Africains)</div>
+            Pour une gestion efficace, l\'intensité des patrouilles est exprimée en <b>nombre de jours-patrouille par kilomètre carré par an</b>,
+            calculé en divisant le total des jours-patrouille par la superficie du secteur ou de l\'aire protégée. Un <b>jour-patrouille</b> correspond à une
+            équipe de patrouille opérant pendant une journée, quelle que soit la taille de l\'équipe.
+            En pratique, les données issues des aires protégées africaines indiquent que l\'intensité des patrouilles se situe généralement entre <b>0,1 et 0,6
+            jours-patrouille par km² par an</b>, avec <b>0,3 à 0,4</b> représentant une couverture modérée et opérationnellement réaliste. Les valeurs
+            approchant ou dépassant 0,6 jour-patrouille/km²/an sont considérées comme élevées et sont souvent difficiles à maintenir sur de grandes superficies.
+            <div class="font-bold">Intensité plus élevée dans les petites aires ou les zones à forte menace</div>
+            Dans les petites aires protégées ou dans les secteurs soumis à une forte pression de braconnage ou abritant une biodiversité critique, l\'intensité des patrouilles peut
+            atteindre 1 à 3 jours-patrouille/km²/an, voire davantage. Ces valeurs reflètent des efforts localisés et prioritaires, et non des
+            normes applicables à l\'ensemble d\'une aire.
+            <div class="font-bold">Intensité plus faible dans les zones à faible risque</div>
+            Les zones à faible risque ou difficiles d\'accès peuvent présenter <0,1 jour-patrouille/km²/an, indiquant une présence limitée des patrouilles et une capacité de surveillance réduite.',
         'area_percentage' => '% de la surface',
-        'average_time' => 'Patrouille moyenne * j * Km² de secteur',
+        'average_time' => 'Jours de patrouille / km² couverts',
     ],
 
     'TerritorialReferenceContext' => [

@@ -270,24 +270,22 @@ return [
             'Source' => 'Fuente',
             'Observations' => 'Notas',
         ],
-        'module_info' => 'Promedio de días de patrullaje por km² en parques nacionales africanos: práctica estándar:
-            Para una gestión eficaz, algunos estudios y directrices de gestión de parques sugieren un promedio de 1 a
-            4 días de patrullaje por kilómetro cuadrado al año. Esto significa que, por cada kilómetro cuadrado de
-             área protegida, los guardabosques deberían dedicar idealmente entre 1 y 4 días de patrullaje al año.
-            <ul>
-            <li>Mayor intensidad en zonas de alta amenaza: En zonas con alta presión de caza furtiva o con una biodiversidad
-            significativa, la tasa recomendada puede aumentar a 5-10 días de patrullaje por kilómetro cuadrado al año,
-            o incluso más. Este mayor esfuerzo de patrullaje es fundamental para disuadir a los cazadores furtivos y responder
-            con rapidez a las amenazas.</li>
-            <li><b>Menor intensidad en zonas de bajo riesgo</b>: Por el contrario, las zonas de menor riesgo o las zonas
-            donde las amenazas a la fauna silvestre son mínimas pueden requerir menos patrullajes, posiblemente menos de
-            un día de patrullaje por kilómetro cuadrado al año.</li>
-            </ul>
-            <b>Nota sobre el Parque Nacional Kruger, Sudáfrica</b>: Debido a la alta amenaza de la caza furtiva de
-            rinocerontes, en algunas zonas de Kruger la intensidad de los patrullajes es de 10 días de patrullaje por
-            kilómetro cuadrado al año o más.',
+        'module_info' =>
+            '<div class="font-bold">Días-Patrulla promedio por Km² (caso de los Parques Nacionales Africanos)</div>
+            Para una gestión eficaz, la intensidad de patrullaje se expresa como el <b>número de días-patrulla por kilómetro cuadrado por año</b>,
+            calculado dividiendo el total de días-patrulla por el área del sector o del área protegida. Un <b>día-patrulla</b> corresponde a un
+            equipo de patrullaje operando durante un día, independientemente del tamaño del equipo.
+            En la práctica, la evidencia de las áreas protegidas africanas indica que la intensidad de patrullaje generalmente oscila entre <b>0,1 y 0,6
+            días-patrulla por km² por año</b>, donde <b>0,3 a 0,4</b> representa una cobertura moderada y operativamente realista. Los valores
+            que se aproximan o superan 0,6 días-patrulla/km²/año se consideran altos y suelen ser difíciles de mantener en áreas extensas.
+            <div class="font-bold">Mayor intensidad en áreas pequeñas o zonas de alta amenaza</div>
+            En áreas protegidas pequeñas o en sectores con alta presión de caza furtiva o biodiversidad crítica, la intensidad de patrullaje puede
+            aumentar a 1–3 días-patrulla/km²/año o más. Estos valores reflejan esfuerzos localizados y prioritarios, no estándares
+            aplicables a toda el área.
+            <div class="font-bold">Menor intensidad en áreas de bajo riesgo</div>
+            Las áreas de bajo riesgo o inaccesibles pueden tener <0,1 días-patrulla/km²/año, lo que indica una presencia limitada de patrullas y una capacidad de vigilancia reducida.',
         'area_percentage' => '% de área',
-        'average_time' => 'Patrullaje promedio * d * km² del sector',
+        'average_time' => 'Días de patrulla / km² cubiertos',
     ],
 
     'TerritorialReferenceContext' => [

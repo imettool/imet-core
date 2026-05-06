@@ -269,21 +269,23 @@ return [
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
-        'module_info' => '<b>Average Patrol Day-Km² in African National Parks - Standard Practice</b>:
-            For effective management, <b>some studies and park management guidelines suggest an average of 1-4 patrol
-            days per square kilometre per year</b>. This means that for every square kilometre of protected area, rangers
-            should ideally spend between 1 and 4 days patrolling each year.
-            <ul>
-            <li><b>Higher intensity in high threat areas</b>: In areas with high poaching pressure or significant
-            biodiversity, the recommended rate may increase to 5-10 patrol days per square kilometre per year, or even
-            higher. This increased patrol effort is critical to deterring poachers and responding quickly to threats.</li>
-            <li><b>Lower intensity in low-risk areas</b>: In contrast, lower risk areas or areas where wildlife threats
-            are minimal may require fewer patrols, possibly less than 1 patrol day per square kilometre per year.</li>
-            </ul>
-            <b>Note on Kruger National Park, South Africa</b>: Due to the high threat of rhino poaching, parts of Kruger
-            have patrol intensities of 10 patrol days per square kilometre per year or more.',
+        'module_info' =>
+            '<div class="font-bold">Average Patrol Day-Km² (case of African National Parks)</div>
+            For effective management, patrol intensity is expressed as the <b>number of patrol-days per square kilometer per year</b>,
+            calculated as total patrol-days divided by the area of the sector or protected area. A <b>patrol-day</b> corresponds to one
+            patrol team operating for one day, regardless of team size.
+            In practice, evidence from African protected areas indicates that patrol intensity typically ranges between <b>0.1 and 0.6
+            patrol-days per km² per year</b>, with <b>0.3 to 0.4</b> representing moderate and operationally realistic coverage. Values
+            approaching 0.6 or more patrol-day/km²/year are considered high and are often difficult to sustain across large areas.
+            <div class="font-bold">Higher intensity in small areas or high-threat areas</div>
+            In small protected areas or in sectors with high poaching pressure or critical biodiversity, patrol intensity may
+            increase to 1–3 patrol-days/km²/year or more. These values reflect localized, high-priority efforts, not whole-area
+            standards.
+            <div class="font-bold">Lower intensity in low-risk areas</div>
+            Low-risk or inaccessible areas may have <0.1 patrol-days/km²/year, indicating limited patrol presence and reduced surveillance capacity.
+            ',
         'area_percentage' => '% of the area',
-        'average_time' => 'Average patrol * d * km² of the sector',
+        'average_time' => 'Patrol days / km² covered',
     ],
 
     'TerritorialReferenceContext' => [
