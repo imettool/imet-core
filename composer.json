@@ -17,7 +17,7 @@
         "php": ">=8.4",
         "ext-json": "*",
         "ext-zip": "*",
-        "andreamarelli/modular-forms": "^4.0"
+        "andreamarelli/modular-forms": "^4.3"
     },
     "require-dev": {
         "orchestra/testbench": "^11.0"
