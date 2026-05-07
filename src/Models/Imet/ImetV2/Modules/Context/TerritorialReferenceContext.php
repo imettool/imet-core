@@ -98,6 +98,7 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $connectivity_class = Connectivity::getShortClassName();
 
         if( array_key_exists($self_class, $data)
+            && array_key_exists(0, $data[$self_class])
             && array_key_exists('DocumentedConnectivity', $data[$self_class][0])
             && !array_key_exists($connectivity_class, $data)){
 
