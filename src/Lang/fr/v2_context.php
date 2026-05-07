@@ -531,7 +531,17 @@ return [
             'Budget total annuel disponible pour le fonctionnement',
             'Budget total annuel disponible pour les investissements',
         ],
-        'module_info' => 'Montants dans la même devise spécifiée dans le module <b>CTX 3.2.1</b>',
+        'module_info' =>
+            'Ce tableau permet de résumer les ressources financières annuelles effectivement disponibles pour la gestion de l\'aire protégée.
+            Il doit refléter le budget réel mobilisé et accessible au cours de l\'année de référence, quelle que soit la source de financement d\'origine.
+            L\'objectif est de :
+            <ul>
+                <li>identifier l\'origine des ressources financières ;</li>
+                <li>distinguer les dépenses opérationnelles des dépenses d\'investissement ;</li>
+                <li>évaluer le niveau de durabilité financière de l\'aire protégée ;</li>
+                <li>comparer le budget disponible avec les besoins de gestion planifiés.</li>
+            </ul>
+            Montants dans la même devise précisée dans <b>CTX 3.2.1</b>',
         'sum_error' => 'Le total doit correspondre au budget total déclaré dans le module <b>CTX 3.2.1</b>.',
     ],
 

@@ -530,7 +530,17 @@ return [
             'Orçamento total anual disponível para o funcionamento',
             'Orçamento total anual disponível para investimentos',
         ],
-        'module_info' => 'O total deve corresponder ao orçamento total declarado no módulo <b>CTX 3.2.1</b>',
+        'module_info' =>
+            'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
+            Deve refletir o orçamento real mobilizado e acessível durante o ano de referência, independentemente da fonte de financiamento original.
+            O objetivo é:
+            <ul>
+                <li>identificar a origem dos recursos financeiros;</li>
+                <li>distinguir entre despesas operacionais e de investimento;</li>
+                <li>avaliar o nível de sustentabilidade financeira da área protegida;</li>
+                <li>comparar o orçamento disponível com as necessidades de gestão planeadas.</li>
+            </ul>
+            Valores na mesma moeda especificada em <b>CTX 3.2.1</b>',
         'sum_error' => 'O total deve corresponder ao orçamento total declarado no módulo <b>CTX 3.2.1</b>',
     ],
 

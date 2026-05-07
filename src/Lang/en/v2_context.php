@@ -520,15 +520,24 @@ return [
             'OwnRevenues' => 'Revenues from the operations of the protected area',
             'Disputes' => 'Income from litigation (national treasury)',
             'Partners' => 'Contributions from the partners',
-            'total' => 'total',
-            'percentage' => '% of planned budget',
+            'total' => 'total'
         ],
         'predefined_values' => [
             'Total annual budget available',
             'Total annual budget available for operating',
             'Total annual budget available for investments',
         ],
-        'module_info' => 'Amounts in the same currency specified in <b>CTX 3.2.1</b>',
+        'module_info' =>
+            'This table is used to summarize the annual financial resources effectively available for the management of the protected area.
+            It should reflect the real budget mobilized and accessible during the reference year, regardless of the original funding source.
+            The objective is to:
+            <ul>
+                <li>identify the origin of the financial resources;</li>
+                <li>distinguish between operational and investment expenditures;</li>
+                <li>assess the level of financial sustainability of the protected area;</li>
+                <li>compare the available budget with the planned management needs.</li>
+            </ul>
+            Amounts in the same currency specified in <b>CTX 3.2.1</b>',
         'sum_error' => 'The total should correspond to the total budget declared in the module <b>CTX 3.2.1</b>',
     ],
 

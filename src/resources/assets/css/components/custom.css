@@ -8,6 +8,10 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
+.has-error{
+    @apply border! border-red-500! text-red-500;
+}
+
 
 /* #########  Imet name in lists  ######## */
 .imet_name {

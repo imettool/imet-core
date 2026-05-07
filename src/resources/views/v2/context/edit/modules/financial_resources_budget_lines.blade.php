@@ -73,12 +73,11 @@ $module->vueData['area'] = \ImetCore\Models\Imet\ImetV2\Modules\Context\Areas::g
     <tr class="module-table-item">
         <td></td>
         <td>
-            <div :class="!totalIsValid ? 'form-group has-error' : 'form-group'">
-                <input type="text" disabled="disabled"
-                       class="field-edit field-numeric text-center"
-                       v-bind:value="sumBudget"
-                />
-            </div>
+            <input type="text" disabled="disabled"
+                   class="field-edit field-numeric text-center"
+                   :class="!totalIsValid ? 'has-error' : ''"
+                   v-bind:value="sumBudget"
+            />
         </td>
         <td colspan="4">
             <div v-if="!totalIsValid" class="text-contextual-danger text-left" style="font-size: 0.9em;">
