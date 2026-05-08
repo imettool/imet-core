@@ -33,7 +33,7 @@ $categoryStats = array_key_exists('FormID', $records[0])
             <div class="accordion-item-header">
                 <div class="accordion-item-header-title">
                     @php
-                        $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                        $category_label = ($cat_idx+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
                         $score_value = $categoryStats[$cat_idx];
                         $percentage_value = $score_value;
                     @endphp
