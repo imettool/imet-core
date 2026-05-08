@@ -5,6 +5,7 @@
 /** @var array $definitions */
 /** @var array $records */
 
+use ImetCore\Helpers\Math;
 use ImetCore\Models\Imet\Components\Modules\ImetModule;
 
 use ModularForms\Helpers\Template;
@@ -27,9 +28,15 @@ use Illuminate\Support\Str;
 
                 <!-- Accordion header -->
                 <x-slot:title>
-                    <span>
-                        {{ $group_index }} - {{ $group_label }}
-                    </span>
+                    @php
+                        $group_records = array_filter($records, fn(array $item): bool => $item['MainCategory'] === $group_label);
+                        $group_score = round(Math::records_average($group_records, 'EvaluationScore'), 2);
+                    @endphp
+                    <x-imet-core::score-bar
+                        :label="$group_index .'. '.$group_label"
+                        :score="$group_score"
+                        :percentage="$group_score/3*100"
+                    ></x-imet-core::score-bar>
                 </x-slot:title>
 
                 <!-- Group field -->
@@ -40,8 +47,8 @@ use Illuminate\Support\Str;
                 <div class="mb-4">
                     <strong class="mr-4">{{ ucfirst($group_key_field['label']) ?? '' }} </strong>
                     <x-imet-core::custom-input-preview
-                            :type="$group_key_field['type']"
-                            :value="$group_label"
+                        :type="$group_key_field['type']"
+                        :value="$group_label"
                     ></x-imet-core::custom-input-preview>
                 </div>
 
@@ -80,8 +87,8 @@ use Illuminate\Support\Str;
                                     {{-- skip group key field --}}
                                     <td>
                                         <x-imet-core::custom-input-preview
-                                                :type="$field['type']"
-                                                :value="$record[$field['name']]"
+                                            :type="$field['type']"
+                                            :value="$record[$field['name']]"
                                         ></x-imet-core::custom-input-preview>
                                     </td>
                                 @endif
