@@ -1,5 +1,5 @@
 <div class="score-bar">
-    <div class="title">{{ $label }}</div>
+    <div class="title">{!! $label !!}</div>
     <div class="score" style="margin-right: 20px;">
         @if($withJs)
             <span v-html="{!! $score !!}"></span>
