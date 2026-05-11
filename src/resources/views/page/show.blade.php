@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 /** @var Imet\ImetV2\ContextController|Imet\ImetV1\ContextController|Imet\ImetOecm\ContextController|Imet\ImetV1\EvalController|Imet\ImetV2\EvalController|Imet\ImetOecm\EvalController $controller */
 /** @var Models\Imet\ImetV2\Imet|Models\Imet\ImetV1\Imet|Models\Imet\ImetOecm\Imet|Models\Imet\ImetV2\Imet_Eval|Models\Imet\ImetV1\Imet_Eval|Models\Imet\ImetOecm\Imet_Eval $item */
 /** @var string $step */
+/** @var array $cross_analysis_warnings */
 
 if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
@@ -21,12 +22,19 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     $step_labels = 'oecm_common.steps';
 }
 
-if (Str::contains($controller, 'ContextController')) {
-    $phase = 'context';
-} elseif (Str::contains($controller, 'EvalController')) {
+$phase = 'context';
+if (Str::contains($controller, 'EvalController')) {
     $phase = 'evaluation';
     $step_labels = 'common.steps_eval';
 }
+
+if(count($cross_analysis_warnings)>0);{
+    $step_menu_classes['cross_analysis'] = 'cross-analysis-warnings';
+}
+
+$steps = $phase === 'evaluation' && Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V2)
+    ? Imet\ImetV2\EvalController::steps($item)
+    : array_keys($item::modules());
 
 $show_scrollbar = true;
 
@@ -47,7 +55,8 @@ $show_scrollbar = true;
         'url' => action([$controller, 'show'], ['item' => $item->getKey()]),
         'current_step' => $step,
         'label_prefix' =>  'imet-core::' . $step_labels . '.',
-        'steps' => array_keys($item::modules())
+        'steps' => $steps,
+        'classes' => $step_menu_classes ?? []
     ])
 
     {{-- Steps info --}}
@@ -70,9 +79,9 @@ $show_scrollbar = true;
     @if($step==='cross_analysis' and $version==Models\Imet\Imet::IMET_V2)
         @include('imet-core::'.$version.'.cross_analysis.index', [
             'item_id' => $item->getKey(),
-            'warnings' => $warnings
+            'mode' => ModuleViewModes::SHOW,
+            'warnings' => $cross_analysis_warnings
         ])
-
     @else
 
         {{-- Management effectiveness scores --}}

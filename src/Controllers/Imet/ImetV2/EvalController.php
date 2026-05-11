@@ -41,21 +41,6 @@ final class EvalController extends BaseEvalController
     }
 
     /**
-     * return if any discrepancies are found for cross analysis
-     * and also the classes to be used for indication in the menu
-     */
-    private function get_cross_analysis(Imet|\ImetCore\Models\Imet\ImetV2\Imet|int|string $form): array
-    {
-        $classes = [];
-        $warnings = CrossAnalysis::getIndicators($form);
-        if ($warnings !== []) {
-            $classes['cross_analysis'] = 'cross-analysis-warnings';
-        }
-
-        return [$warnings, $classes];
-    }
-
-    /**
      * Override edit route
      *
      * @throws AuthorizationException
@@ -67,14 +52,13 @@ final class EvalController extends BaseEvalController
         $this->authorize('edit', $imet);
 
         $step = $step == null ? 'context' : $step;
-        [$warnings, $classes] = $this->get_cross_analysis($imet);
+        $cross_analysis_warnings = CrossAnalysis::getIndicators($imet);
 
         return view(self::$form_view_prefix.'.edit', [
             'controller' => self::class,
             'item' => $imet,
             'step' => $step,
-            'warnings' => $warnings,
-            'classes' => $classes,
+            'cross_analysis_warnings' => $cross_analysis_warnings,
         ]);
     }
 
@@ -90,14 +74,13 @@ final class EvalController extends BaseEvalController
         $this->authorize('view', $imet);
 
         $step = $step == null ? 'context' : $step;
-        [$warnings, $classes] = $this->get_cross_analysis($imet);
+        $cross_analysis_warnings = CrossAnalysis::getIndicators($imet);
 
         return view(self::$form_view_prefix.'.show', [
             'controller' => self::class,
             'item' => $imet,
             'step' => $step,
-            'warnings' => $warnings,
-            'classes' => $classes,
+            'cross_analysis_warnings' => $cross_analysis_warnings,
         ]);
     }
 }
