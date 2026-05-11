@@ -21,7 +21,7 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Services\Scores\ImetScores;
 
-final class ReportScalingUp
+final class DataHandleScalingUp
 {
     use Common;
 
@@ -93,7 +93,7 @@ final class ReportScalingUp
      * @throws AuthorizationException
      * @throws \Throwable
      */
-    public static function report(Request $request, string $items): array
+    public static function preparingData(Request $request, string $items): array
     {
         $locale = App::getLocale();
 
@@ -105,7 +105,7 @@ final class ReportScalingUp
 
         App::setLocale($locale);
 
-        return self::buildReportData($protectedAreas, $customData, $scalingUpId);
+        return self::buildData($protectedAreas, $customData, $scalingUpId);
     }
 
     /**
@@ -117,7 +117,7 @@ final class ReportScalingUp
         $itemsArray = explode(',', $items);
         sort($itemsArray);
 
-        ReportScalingUp::checkAuthorization($itemsArray);
+        DataHandleScalingUp::checkAuthorization($itemsArray);
 
         $validItems = array_filter(
             $itemsArray,
@@ -140,7 +140,7 @@ final class ReportScalingUp
         return $protectedAreas;
     }
 
-    private static function buildReportData(array $protectedAreas, array $customData, int $scalingUpId): array
+    private static function buildData(array $protectedAreas, array $customData, int $scalingUpId): array
     {
         [$customColors, $customItems, $customNames, $protectedAreasNames] = $customData;
 
