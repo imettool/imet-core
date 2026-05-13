@@ -9,7 +9,9 @@ use Illuminate\Support\Str;
 /** @var Imet\ImetV2\ContextController|Imet\ImetV1\ContextController|Imet\ImetOecm\ContextController|Imet\ImetV1\EvalController|Imet\ImetV2\EvalController|Imet\ImetOecm\EvalController $controller */
 /** @var Models\Imet\ImetV2\Imet|Models\Imet\ImetV1\Imet|Models\Imet\ImetOecm\Imet|Models\Imet\ImetV2\Imet_Eval|Models\Imet\ImetV1\Imet_Eval|Models\Imet\ImetOecm\Imet_Eval $item */
 /** @var string $step */
-/** @var array $cross_analysis_warnings */
+/** @var ?array $cross_analysis_warnings */
+
+$cross_analysis_warnings = $cross_analysis_warnings ?? [];
 
 if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
@@ -80,7 +82,7 @@ $show_scrollbar = true;
         @include('imet-core::'.$version.'.cross_analysis.index', [
             'item_id' => $item->getKey(),
             'mode' => ModuleViewModes::SHOW,
-            'warnings' => $cross_analysis_warnings
+            'cross_analysis_warnings' => $cross_analysis_warnings
         ])
     @else
 
