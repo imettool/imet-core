@@ -23,10 +23,10 @@ The `imet-core` codebase is built using web technologies: the choice derives fro
 can be easily deployed across different platforms. By using web technologies, the application can be accessed through 
 a standard web application, but it can also be integrated into desktop applications using frameworks like Electron or similar.
 
-The `imet-core` is built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms), a PHP package 
+The `imet-core` is built on top of [akp/modular-forms](https://code.europa.eu/akp/modular-forms), a PHP package 
 designed for building dynamic, modular data collection forms using Laravel. `imet-core` leverages its robust framework for 
 creating, managing, and customizing forms, which includes models, controllers, route, and views to build the IMET assessment forms.
-It is strongly suggested to read its [documentation](https://github.com/andreamarelli/modular-forms/blob/main/docs/user-guide.md) carefully.
+It is strongly suggested to read its [documentation](https://code.europa.eu/akp/modular-forms/blob/main/docs/user-guide.md) carefully.
 
 #### Backend
 
@@ -124,7 +124,7 @@ designed to be extremely flexible and modular, allowing for easy customization a
 assessment needs. 
 
 > [!IMPORTANT]
-> _Intervention context_, _Management effectiveness_ and _Analysis report_ models are built on top of [andreamarelli/modular-forms](https://github.com/andreamarelli/modular-forms)
+> _Intervention context_, _Management effectiveness_ and _Analysis report_ models are built on top of [akp/modular-forms](https://code.europa.eu/akp/modular-forms)
 > package. It is highly recommended to refer to its documentation for a comprehensive understanding of the underlying 
 > architecture and functionalities.
 
