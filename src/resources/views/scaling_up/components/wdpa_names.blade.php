@@ -9,7 +9,7 @@ use ModularForms\Helpers\Input\Input;
         <div class="module-container">
             <div class="module-body">
                 <form class="form-horizontal" method="POST"
-                    action="{{ action([ScalingUpAnalysisController::class, 'report'], ['items' => $pa_ids]) }}">
+                    action="{{ action([ScalingUpAnalysisController::class, 'data_handle'], ['items' => $pa_ids]) }}">
                     {{ csrf_field() }}
                     <guidance :text="'imet-core::analysis_report.guidance.custom_names'"></guidance>
                     <div class="max-w-7xl mx-auto mt-4">
