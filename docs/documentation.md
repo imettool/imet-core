@@ -17,6 +17,12 @@
    2. [Import](#import)
    3. [Upgrade system](#upgrade-system)
    4. [Automatic backups](#automatic-backups)
+6. [Scoring system](#scoring-system)
+   1. [What gets scored](#what-gets-scored)
+   2. [How a score is computed](#how-a-score-is-computed)
+   3. [Per-version differences](#per-version-differences)
+   4. [Caching and refresh](#caching-and-refresh)
+   5. [Public API and UI consumption](#public-api-and-ui-consumption)
 
 > [!IMPORTANT]
 > This repository does not contain a standalone application. In order to execute this codebase, you need to integrate it
@@ -44,11 +50,13 @@ and packages, ensuring a high level of modularity of the codebase using a `compo
 and autoload depndencies to their required version. 
 
 #### Database
+
 The database interaction is managed using _Eloquent_, Laravel's Object-Relational Mapping system, which provides a simple 
 and intuitive interface for working with databases. The application is actually designed to work with SQLite and PostgreSQL,
 but it can be easily adapted to other relational databases with little efforts if needed.
 
 #### Frontend
+
 The **frontend** is built using a combination of _Blade_ templating engine (native to Laravel) and [Vue.js](https://vuejs.org/), 
 a modern JavaScript framework which ensures a dynamic and responsive user interface. The styling is done using [_Tailwind CSS_](https://tailwindcss.com/), 
 an utility-first CSS framework that allows for rapid UI development and a consistent design system.
@@ -57,13 +65,16 @@ process is delegated to the hosting application which can manage it using tools 
 tool which provides fast and efficient development experience.
 
 ### Development environment
+
 A _docker_-based environment is available in `dev/` for development purposes, allowing developers to easily set up a consistent 
 and isolated environment for working on the codebase. This is particularly useful for ensuring that all developers are working with
 the same versions of dependencies and configurations, and it simplifies the process of onboarding new contributors to the project.
 
 ## Folder structure
+
 The `imet-core` codebase is organized into several key folders, each serving a specific purpose in the development and deployment 
 of the application. Below is an overview of the main folders and their contents:
+
 - `dev/`: contains a full Laravel base application to be used for development purposes: it is not intended
   for production use. It includes all necessary dependencies and configurations to run the IMET code.
 - `docs/`: documentation files
@@ -71,25 +82,25 @@ of the application. Below is an overview of the main folders and their contents:
   for development purposes.
 - `src/`: contains the main source code of the application. This is where the core functionalities of IMET are implemented
   and its structure reflects the Laravel framework conventions:
-    - `Commands/`: artisan command definitions
-    - `config/`: configuration files and settings
-    - `Controllers/`: controller classes that handle HTTP requests and responses
-    - `database/`: database migrations to set up the database
-    - `Exceptions/`: custom exception classes
-    - `Factories/`: model factories for generating test data
-    - `Helpers/`: helper functions and utilities
-    - `Jobs/`: background job classes
-    - `Lang/`: localization files for different languages
-    - `Middleware/`: middleware classes to manage and process HTTP requests
-    - `Models/`: Eloquent model classes representing database tables
-    - `Policies/`: authorization policies
-    - `resources/`: views, assets, and other resources
-        - `assets/`: CSS, JavaScript, images, and other static files
-        - `views/`: Blade templates for rendering HTML views
-    - `Routes/`: route definitions for the application
-    - `Services/`: service classes encapsulating business logic
-    - `View/`: custom view components and directives
-    - `ServiceProvider.php`: main service provider for the application
+  - `Commands/`: artisan command definitions
+  - `config/`: configuration files and settings
+  - `Controllers/`: controller classes that handle HTTP requests and responses
+  - `database/`: database migrations to set up the database
+  - `Exceptions/`: custom exception classes
+  - `Factories/`: model factories for generating test data
+  - `Helpers/`: helper functions and utilities
+  - `Jobs/`: background job classes
+  - `Lang/`: localization files for different languages
+  - `Middleware/`: middleware classes to manage and process HTTP requests
+  - `Models/`: Eloquent model classes representing database tables
+  - `Policies/`: authorization policies
+  - `resources/`: views, assets, and other resources
+    - `assets/`: CSS, JavaScript, images, and other static files
+    - `views/`: Blade templates for rendering HTML views
+  - `Routes/`: route definitions for the application
+  - `Services/`: service classes encapsulating business logic
+  - `View/`: custom view components and directives
+  - `ServiceProvider.php`: main service provider for the application
 
 ## Database structure
 
@@ -102,7 +113,7 @@ A **form** represents a single IMET assessment for a specific protected area and
 To keep data sets cleanly separated, tables are organized into three logical groups, implemented as **schemas** in PostgreSQL and as **table name prefixes** in SQLite:
 
 | Group                    | PostgreSQL schema | SQLite prefix  | Contents                                                               |
-|--------------------------|-------------------|----------------|------------------------------------------------------------------------|
+| ------------------------ | ----------------- | -------------- | ---------------------------------------------------------------------- |
 | Common reference data    | `imet_common`     | `imet_common_` | Countries, currencies, regions, protected areas, species               |
 | IMET v1 & v2 assessments | `imet_v1v2`       | `imet_v1v2_`   | Forms, context modules, evaluation modules, report modules, scaling-up |
 | OECM assessments         | `imet_oecm`       | `imet_oecm_`   | Forms, context modules, evaluation modules, report modules             |
@@ -121,7 +132,9 @@ Within `imet_v1v2` (and mirrored in `imet_oecm`), tables follow a naming convent
 - **`scaling_up_*`** — tables for the _Scaling up_ section, present in v1v2 only
 
 ## Module descriptions
+
 ### _Intervention context_,  _Management effectiveness_ and _Analysis report_
+
 A significant part of the `imet-core` codebase is dedicated to the definition of the assessment modules, which are responsible 
 for managing the different sections of the IMET assessment form (_Intervention context_, _Management effectiveness_ and _Analysis report_). 
 Each module corresponds to a specific aspect of the protected area management effectiveness evaluation. These modules are 
@@ -249,6 +262,7 @@ IMET assessment list (index) and deletion and is extended by `ImetV1\Controller`
 corresponding form class and view prefix.
 
 The context, evaluation and report sections each get a dedicated controller per version:
+
 - **`ContextController`** (`ImetV1\ContextController`, `ImetV2\ContextController`, `ImetOecm\ContextController`) — manages editing and viewing the intervention context steps; it extends the version-specific `Controller`.
 - **`EvalController`** (`ImetV1\EvalController`, `ImetV2\EvalController`, `ImetOecm\EvalController`) — manages the management effectiveness evaluation steps; it extends the base `EvalController`.
 - **`ReportController`** (`ImetV1\ReportController`, `ImetV2\ReportController`, `ImetOecm\ReportController`) —  adds three report-specific actions: `report` (edit view), `report_show` (read-only view), and `report_update` (save)
@@ -287,6 +301,7 @@ resources/views/
 ```
 
 ### Scaling up
+
 :construction: under development
 
 ## Import / Export
@@ -429,3 +444,108 @@ A backup is a full JSON export under `backups/` on the default disk, named `IMET
 Limits: **`MAX_NUM_BACKUPS = 5` per form** (oldest is deleted on overflow); **`MIN_MINUTES_DIFF = 90` minutes** between
 consecutive backups of the same form (save bursts don't flood the folder). The **first** backup of a form is always
 written, regardless of the minute rule.
+
+## Scoring system
+
+The output of an assessment is a **set of management-effectiveness scores** derived from the raw evaluation data. Every
+chart, every report, and every API value comes out of this pipeline. All scoring code lives under
+`src/Services/Scores/`, with two public facades — **`ImetScores`** for v1 and v2 (v1 forms pass through a compatibility
+layer that reshapes them as v2) and **`OecmScores`** for OECM — fronted by `AssessmentsScores`, the dispatch wrapper
+controllers and the API actually call.
+
+### What gets scored
+
+Every evaluation is organised into the **six standard management-effectiveness steps**:
+
+| Step     | Abbreviation    | Meaning                                                                                  |
+| -------- | --------------- | ---------------------------------------------------------------------------------------- |
+| Context  | `C`             | What the protected area protects and the pressures on it.                                |
+| Planning | `P`             | Whether the area has the legal, design, and objective-setting basis it needs.            |
+| Inputs   | `I`             | The resources actually available — staff, money, infrastructure, equipment, information. |
+| Process  | `PR`            | How management is carried out day to day.                                                |
+| Outputs  | `OP` (v1: `R`)  | Implementation of the planned work programme.                                            |
+| Outcomes | `OC` (v1: `EI`) | Effects on biodiversity, ecosystem services, and local livelihoods.                      |
+
+Each step contains a fixed list of **indicators** (`C1`, `C2`, …, `PR18`, …) that depends on the version — v2 reshapes
+v1's set, OECM has its own. The constants live in `_Scores.php` and the per-version score classes; the `Labels` trait
+produces the translated step titles.
+
+A complete computation produces a two-tier structure:
+
+```
+{
+  "context":  { "C1": 71.2, "C2": -45, ..., "avg_indicator": 58.4 },
+  "planning": { "P1": 50.0, ..., "avg_indicator": 62.1 },
+  ...
+  "outcomes": { "OC1": 65.0, ..., "avg_indicator": 70.3 },
+  "global":   { "context": 58.4, ..., "outcomes": 70.3 }
+}
+```
+
+- **Indicator scores** are usually 0–100 (100 best). A few — notably `C2` _Supports & Constraints_, `C3` _Threats_, and
+  some outcomes — are **signed pressures** on a `-100..+100` scale and are re-centred before being mixed with the rest.
+- **`avg_indicator`** summarises the step: a null-skipping mean for most steps, a weighted formula for Context and
+  Outcomes (which mix positive scores with signed pressures).
+
+Indicators may legitimately be `null` when a module hasn't been filled yet. The pipeline carries `null` through every
+layer (`Math::average()` is null-skipping) so partial assessments still produce scores for the steps that are complete.
+
+### How a score is computed
+
+Each version's score class inherits from `_Scores` and provides the six step methods
+(`scores_context`, `scores_planning`, …). The base class glues them together: it calls each step method, copies each
+step's `avg_indicator` into the `global` block, and computes `imet_index` from those six numbers.
+
+Inside a step method, every indicator is computed by either a **standard helper** or a **custom function**:
+
+- **Standard helpers** — `score_table()` and `score_group()` in `CommonFunctions`. These cover the common case where an
+  indicator is the average of a single field across a module (`score_table`) or the average of per-group averages
+  (`score_group`). Both filter out the sentinel value `-99` (used in the form to mean _not applicable / not assessable_)
+  and scale the raw 0–3 evaluation scale to 0–100 unless a custom transform is given.
+- **Custom functions** — anything more complex lives under `Services/Scores/Functions/CustomFunctions/{V1,V2,oecm}/`,
+  one trait per step (`Context`, `Planning`, `Inputs`, `Process`, `Outputs`, `Outcomes`). These contain the bespoke
+  formulas — weighted by species significance, ecosystem-service importance, climate vulnerability, currency-converted
+  budgets, etc. Each method takes the IMET id, loads the relevant module(s), applies its formula, and returns one number
+  (or `null`).
+
+### Per-version differences
+
+All three versions share the six-step shape; the indicators inside differ.
+
+**v2** is the native path. `scores_context()` and `scores_outcomes()` use weighted aggregations to mix positive
+indicators with the signed `C2`/`C3` and `OC2`/`OC3` pressures; the other four steps are plain means.
+
+**v1** is read through `V1ToV2Scores`, a compatibility layer: v1's own formulas live in `V1Scores` but `ImetScores`
+routes v1 forms through `V1ToV2Scores`, which re-keys and re-scales them to the v2 layout. Several mappings are
+non-linear (`P3`, `I3`, `I4` use piecewise-linear curves from cross-version calibration), and a few v2 indicators
+(`OP4`) have no v1 equivalent and come back as `null`. Downstream consumers don't have to care which version a form is.
+
+**OECM** has its own indicator set, weights, and sub-aggregates (`PRA`–`PRD`). Its Process step has twelve indicators
+instead of eighteen, and Outputs is `OP1`/`OP2` rather than `OP1`/`OP3`/`OP4`. It is therefore produced by its own
+facade and cached under a separate key prefix.
+
+### Caching and refresh
+
+Scoring touches many rows and runs repeatedly per page, so results are cached in modular-forms's `Cache` model (a
+database-backed key-value store) under the prefix `imet_scores` or `oecm_scores`. Entries have **no expiry** — they are
+explicitly invalidated by writers:
+
+1. **Saving an evaluation module** — modular-forms's save hook calls `refresh_scores()`, so the next chart reflects
+   what was just entered.
+2. **Importing a JSON** — `import()` calls `refresh_scores()` after the commit. JSON-carried scores are never trusted
+   (source and target may run different formula versions).
+3. **`?refresh_cache=true`** on the public API — the manual escape hatch for stale-cache suspicions.
+
+The console command **`php artisan imet:calculate_scores`** walks every form and recomputes — the right tool after
+deploying a formula change, since cache entries otherwise survive the deploy.
+
+### Public API and UI consumption
+
+Two endpoints expose scores: **`GET /api/imet/scores/{id}`** and **`GET /api/imet/scores_oecm/{id}`**.
+Both return the full score tree plus the form's identifying fields (`form_id`, `wdpa_id`, `iso3`, `name`, `version`)
+and a translated `labels` dictionary, and both honour `?refresh_cache=true`.
+
+Inside the app, controllers and Blade views call `ImetScores::get_radar()` (radar payload), `get_step($step)` (one
+step's full breakdown), or `get_score()` (just `imet_index`); the Vue charts hydrate from these. Everything routes
+through the same `_Scores::get_scores()` plumbing, so a number shown in the UI is by construction the same number an
+external consumer receives.
