@@ -27,6 +27,11 @@ class CustomInput extends Input
     #[\Override]
     public function render(): View
     {
+        // rating: Override standard behavior in order to inject legend
+        if (Str::contains($this->type, 'rating')) {
+            return view('imet-core::components.inputs.rating');
+        }
+
         if (Str::startsWith($this->type, 'custom::')) {
 
             $type = Str::replace('custom::', '', $this->type);

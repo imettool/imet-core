@@ -268,24 +268,22 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
-        'module_info' => '<b>Dia médio de patrulha-km² nos parques nacionais africanos - prática padrão</b>:
-            Para uma gestão eficaz, <b>alguns estudos e orientações de gestão de parques sugerem uma média de 1 a 4 dias
-            de patrulha por quilómetro quadrado por ano</b>. Isto significa que, por cada quilómetro quadrado de área
-            protegida, os guardas florestais deveriam, idealmente, passar entre 1 a 4 dias a patrulhar todos os anos.
-            <ul>
-            <li><b>Maior intensidade em áreas de alto risco</b>: Em áreas com elevada pressão de caça ilegal ou
-            biodiversidade significativa, a taxa recomendada pode aumentar para 5 a 10 dias de patrulha por quilómetro
-            quadrado por ano, ou até mais. Este aumento do esforço de patrulha é essencial para dissuadir os caçadores
-            ilegais e responder rapidamente às ameaças.
-            <li><b>Menor intensidade em áreas de baixo risco</b>: Em contraste, as áreas de menor risco ou as áreas onde
-            as ameaças à vida selvagem são mínimas podem exigir menos patrulhas, possivelmente menos de 1 dia de patrulha
-            por quilómetro quadrado por ano.</li>
-            </ul>
-            <b>Observação sobre o Parque Nacional Kruger, África do Sul</b>: Devido à elevada ameaça de caça ilegal de
-            rinocerontes, partes do Kruger têm intensidades de patrulha de 10 dias de patrulha por quilómetro quadrado
-             por ano ou mais.',
+        'module_info' =>
+            '<div class="font-bold">Dias-Patrulha médios por Km² (caso dos Parques Nacionais Africanos)</div>
+            Para uma gestão eficaz, a intensidade de patrulhamento é expressa como o <b>número de dias-patrulha por quilômetro quadrado por ano</b>,
+            calculado dividindo o total de dias-patrulha pela área do setor ou da área protegida. Um <b>dia-patrulha</b> corresponde a uma
+            equipe de patrulhamento operando durante um dia, independentemente do tamanho da equipe.
+            Na prática, evidências das áreas protegidas africanas indicam que a intensidade de patrulhamento geralmente varia entre <b>0,1 e 0,6
+            dias-patrulha por km² por ano</b>, sendo <b>0,3 a 0,4</b> uma cobertura moderada e operacionalmente realista. Valores
+            que se aproximam ou ultrapassam 0,6 dia-patrulha/km²/ano são considerados elevados e frequentemente difíceis de sustentar em grandes áreas.
+            <div class="font-bold">Intensidade maior em áreas pequenas ou de alta ameaça</div>
+            Em áreas protegidas pequenas ou em setores com alta pressão de caça furtiva ou biodiversidade crítica, a intensidade de patrulhamento pode
+            aumentar para 1–3 dias-patrulha/km²/ano ou mais. Esses valores refletem esforços localizados e prioritários, não padrões
+            aplicáveis a toda a área.
+            <div class="font-bold">Intensidade menor em áreas de baixo risco</div>
+            Áreas de baixo risco ou inacessíveis podem ter <0,1 dia-patrulha/km²/ano, indicando presença limitada de patrulhas e capacidade reduzida de vigilância.',
         'area_percentage' => '% da area',
-        'average_time' => 'Patrulhamento médio * d * km² do setor',
+        'average_time' => 'Dias de patrulha / km² percorridos',
     ],
 
     'TerritorialReferenceContext' => [
@@ -532,7 +530,17 @@ return [
             'Orçamento total anual disponível para o funcionamento',
             'Orçamento total anual disponível para investimentos',
         ],
-        'module_info' => 'O total deve corresponder ao orçamento total declarado no módulo <b>CTX 3.2.1</b>',
+        'module_info' =>
+            'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
+            Deve refletir o orçamento real mobilizado e acessível durante o ano de referência, independentemente da fonte de financiamento original.
+            O objetivo é:
+            <ul>
+                <li>identificar a origem dos recursos financeiros;</li>
+                <li>distinguir entre despesas operacionais e de investimento;</li>
+                <li>avaliar o nível de sustentabilidade financeira da área protegida;</li>
+                <li>comparar o orçamento disponível com as necessidades de gestão planeadas.</li>
+            </ul>
+            Valores na mesma moeda especificada em <b>CTX 3.2.1</b>',
         'sum_error' => 'O total deve corresponder ao orçamento total declarado no módulo <b>CTX 3.2.1</b>',
     ],
 

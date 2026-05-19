@@ -45,13 +45,13 @@ final class InformationAvailability extends Modules\Component\ImetModule_Eval
         ];
 
         $this->module_groups = [
+            'group6' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group6'),
             'group0' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group0'),
             'group1' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group1'),
             'group2' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group2'),
             'group3' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group3'),
             'group4' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group4'),
             'group5' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group5'),
-            'group6' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group6'),
             'group7' => trans('imet-core::v2_evaluation.InformationAvailability.groups.group7'),
         ];
 

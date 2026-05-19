@@ -26,7 +26,7 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
         <x-modular-forms::accordion.item>
             <x-slot:title>
                 @php
-                    $category_label = trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
+                    $category_label = ($cat_idx+1).'. '.trans('imet-core::v2_context.MenacesPressions.categories.title'.($cat_idx+1));
                     $score_value = "categoryStats['".$cat_idx."'] || '-'";
                     $percentage_value = "categoryStats['" . $cat_idx . "']";
                 @endphp

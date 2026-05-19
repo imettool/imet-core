@@ -8,8 +8,8 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__andreamarelli/modular-forms 4.2.1__
-  * git@github.com:andreamarelli/modular-forms
+__akp/modular-forms 4.4.0__
+  * https://code.europa.eu/akp/modular-forms
   * License: EUPL-1.2
   * Copyright: 
     * Copyright (C) 2026 European Union 
@@ -32,7 +32,7 @@ __html-to-image 1.11.13__
   * Copyright: 
     * Copyright (c) 2017-2025 W.Y. 
 
-__maplibre-gl 5.22.0__
+__maplibre-gl 5.24.0__
   * https://maplibre.org/
   * License: BSD-3-Clause
   * Copyright: 

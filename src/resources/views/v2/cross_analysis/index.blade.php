@@ -1,9 +1,16 @@
 <?php
-/** @var \ImetCore\Models\Imet\ImetV2\Imet $item */
-
+/** @var Imet $item */
+/** @var string $mode */
 /** @var array $warnings */
 
 use Illuminate\Support\Facades\App;
+use ImetCore\Controllers\Imet\ImetV2\Controller;
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ModularForms\Enums\ModuleViewModes;
+
+$route = $mode === ModuleViewModes::EDIT
+    ? Controller::ROUTE_PREFIX . 'evaluation_edit'
+    : Controller::ROUTE_PREFIX . 'evaluation_show';
 
 // Force Language
 if ($item->language != App::getLocale()) {
@@ -37,10 +44,10 @@ $i = 0;
                         <tbody>
                         @foreach($w as $warning)
                             <tr>
-                                <td class="col-1">{{ $warning['code'] }}</td>
+                                <td class="col-1 pr-2">{{ $warning['code'] }}</td>
                                 <td class="col-11">
                                     <strong> <a
-                                                href="{{ route(\ImetCore\Controllers\Imet\ImetV2\Controller::ROUTE_PREFIX . 'evaluation_edit', [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
+                                            href="{{ route($route, [$item->getKey(), $warning['step']]) }}#{{$warning['key']}}"
                                         >{!! $warning['question'] !!}</a>
                                     </strong>
                                 </td>

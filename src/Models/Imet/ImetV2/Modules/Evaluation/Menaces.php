@@ -89,8 +89,13 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
 
+        $menaces_and_pressions = self::getMenacesPressions($form_id)
+            ->filter(fn (Modules\Context\MenacesPressions $item): bool => $item['Value']!==null)
+            ->values()
+            ->toArray();
+
         // Inject rankings
-        foreach (self::getMenacesPressions($form_id)->values()->toArray() as $index => $record) {
+        foreach ($menaces_and_pressions as $index => $record) {
             $records[$index]['_rank'] = -$record['_rank'] * 100 / 3.0;
             $records[$index]['_Impact'] = $record['Impact'];
             $records[$index]['_Extension'] = $record['Extension'];
