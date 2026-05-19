@@ -12,6 +12,11 @@
 4. [Module descriptions](#module-descriptions)
    1. [_Intervention context_,  _Management effectiveness_ and _Analysis report_](#_intervention-context_-_management-effectiveness_-and-_analysis-report_)
    2. [Scaling up](#scaling-up)
+5. [Import / Export](#import--export)
+   1. [Export](#export)
+   2. [Import](#import)
+   3. [Upgrade system](#upgrade-system)
+   4. [Automatic backups](#automatic-backups)
 
 > [!IMPORTANT]
 > This repository does not contain a standalone application. In order to execute this codebase, you need to integrate it
@@ -283,3 +288,144 @@ resources/views/
 
 ### Scaling up
 :construction: under development
+
+## Import / Export
+
+A complete assessment — the form header, its encoders, every context/evaluation/report module — can be packaged into
+a single JSON file and later imported back into the same instance, or into a different one. This is how data moves
+between the desktop tool (`imet-offline`) and the web instance (`imet-online`), how encoders share work, and how the
+tool takes its own automatic backups.
+
+Both directions live in one trait, `ImetCore\Controllers\Imet\Traits\ImportExportJSON`, which is mixed into every
+version-specific `Controller`. The same code path serves UI downloads, batch ZIPs, and the silent backup routine.
+
+### Export
+
+The entry point is `Controller::export()`. It loads the requested form, checks the user is allowed to view its WDPA
+(the export policy delegates to `view`), and then walks the form layer by layer to produce a tree shaped like this:
+
+```
+{
+  "Imet":       { ...form header... },
+  "Encoders":   [ ...encoders... ],
+  "Context":    { "ModuleShortName": [ ...rows... ], ... },
+  "Evaluation": { "ModuleShortName": [ ...rows... ], ... },
+  "Report":     { ... }
+}
+```
+
+The keys under each layer are the **short class names** of the modules (`Habitats`, `ManagementStaff`, …), which is
+how the importer rediscovers where each block of rows belongs. Internal bookkeeping columns (`FormID`, `UpdateDate`,
+`UpdateBy`, sync flags, internal PA pointer) are stripped so the JSON only describes the assessment, not the row that
+held it.
+
+One field is added that does **not** exist in the database: `imet_version`. It carries the version of the application
+that produced the file (or the literal `online` if the offline-only helper isn't available). The importer reads this
+field to decide which historical migrations need to run — without it, the upgrade chain has no way to tell a fresh
+export from a five-year-old one.
+
+If the assessment is attached to a user-defined (non-WDPA) protected area, an extra `NonWdpaProtectedArea` block is
+appended so the target instance can recreate that PA before the form is inserted.
+
+Two thin wrappers cover common UI flows: `export_no_attachments()` strips the binary `_BYTEA` fields (useful for sharing
+small JSONs by email); `export_batch()` runs `export()` over a list of ids and zips the results. The CSV exporters
+under _Tools_ produce one-module-across-many-assessments tables for analysts and do not go through this pipeline.
+
+### Import
+
+There are two entry points, both ending in the same place:
+
+- **`upload(Request)`** receives a `.json` or `.zip` from the UI and dispatches the contents to the importer. ZIPs
+  are unpacked in memory; up to ten JSON entries are honoured.
+- **`import(Request, $json)`** is the actual importer. It can be called with a raw HTTP request or with a pre-decoded
+  array (this is what `upload()` does internally).
+
+`import()` wraps everything in a single database transaction so a partial failure leaves no half-imported form behind.
+Inside the transaction it:
+
+1. Recreates the local protected area if the JSON brought a `NonWdpaProtectedArea` block, and rewires the form's
+   `wdpa_id` to point at it.
+2. Looks at `$json['Imet']['version']` (`v1`, `v2`, `oecm`) and routes the payload to the matching family of model
+   classes — `Imet::importForm`, `Imet::importModules`, `Imet_Eval::importModules`, `Encoder::importModule`. For v2
+   it also runs `Imet_Report::upgradeLegacy` first to translate pre-3.x flat reports into the modular structure.
+3. After the commit, **recomputes the form's scores** rather than trusting whatever scores the JSON contained — score
+   values are derived data and the source instance may have computed them on a different formula version.
+4. Triggers an immediate **backup** of the freshly imported form, so the new form is captured in the rolling backup
+   set without waiting for the user to edit it.
+
+A version it doesn't recognise raises `UnrecognizedVersionException`. In production any other failure is logged via
+`report()` and the user sees a generic error response; in development and inside the offline tool the underlying
+exception is re-thrown so the cause is visible.
+
+One subtle behaviour worth knowing: `Imet::importForm()` reconciles the protected area against the **target** instance.
+It looks up the PA by `protected_area_global_id` (or, failing that, by `wdpa_id`) and **overwrites the form's `name`
+and `Country` with the local registry's values**. An assessment imported into an instance that uses different PA names
+or country mappings will adopt the local naming rather than carrying the exporter's version.
+
+### Upgrade system
+
+A JSON exported from an older version of IMET will almost certainly carry fields that have since been renamed, removed,
+split, or merged, and may reference predefined values that no longer exist. To keep historical assessments importable
+indefinitely, every incoming payload runs through an **upgrade chain** before it reaches the database.
+
+The chain has two layers, both driven by the trait `ImetCore\Models\Imet\Components\Upgrade`:
+
+- **Per-record upgrades.** Each module class can override `upgradeModule($record, $imet_version)`, which is called
+  on every row of that module before it is persisted. This is where you express things like "the column was renamed
+  from `staff` to `staff_total`" or "the predefined value `MARINE_SMALL` is now `MARINE_COASTAL`". The default
+  implementation is a no-op, so a module only needs to override the hook when it actually has migrations to apply.
+
+- **Form-level upgrades.** `Imet::upgradeModules($data, $imet_version)` runs once per import, _before_ the per-record
+  pass, and sees the whole multi-module payload at once. This is the right place for migrations that move data between
+  modules — for instance `ImetV2\Imet::upgradeModules()` copies the currency from the financial-context module into
+  the three financial-resource modules, merges the three legacy habitat modules into a single one, and splits
+  connectivity data out of the territorial-context module into its own dedicated module. Cross-module migrations belong
+  here because the per-record hook can't see sibling modules.
+
+Both hooks receive `$imet_version` (the value stamped by the exporter), so overrides can branch on the source version
+when they need to. In practice most migrations are written to be idempotent — the helpers below all no-op when the
+input is already in the new shape — so they can simply run on every import without further checking.
+
+A third, more specialised hook exists for v2 reports only: **`Imet_Report::upgradeLegacy()`**. Before IMET 3.x the
+report was stored as a single flat record on the form; this method recognises the old field names
+(`key_species_comment`, `analysis`, `strengths_swot`, `recommendations`, `priorities`, …) and synthesises rows for the
+new modular report tables. It runs in addition to the regular module import, so payloads from any era still flow
+through the same pipeline.
+
+To keep individual module migrations short and uniform, the `Upgrade` trait provides a small kit of helpers:
+
+- **`addField` / `dropField` / `renameField`** — add a column (defaulted to `null`), remove one, or rename one.
+  They also handle the paired `_BYTEA` blob field used for attachments, so a renamed attachment column travels with
+  its binary sibling automatically.
+- **`replacePredefinedValue`** — translate one enum value to another.
+- **`dropIfPredefinedValueObsolete`** — drop the entire row if it referenced a predefined value that no longer exists.
+- **`dropIfValueNotInPredefinedList`** — filter a scalar or JSON-encoded array of values against the current
+  `SelectionList`, dropping anything that is no longer accepted.
+- **`forceCurrency`** — convert legacy monetary amounts to EUR through `Currency::exchange()` and normalise the
+  currency field at the same time.
+- **`replaceGroup`** — re-map a row into a renamed grouping field.
+
+A typical module override is half a dozen calls to these helpers in sequence; the trait itself contains no business
+logic beyond them.
+
+What this means in practice for contributors:
+
+- **Every export must carry `imet_version`.** The fallback `'online'` is treated as "older than any tagged version",
+  which is the safe default.
+- **Adding a column** in a module table is not just a database migration. The same column has to be added in
+  `upgradeModule()` (or, if its value comes from a sibling module, in the form-level `upgradeModules()`); otherwise
+  old JSONs will keep importing with the database default instead of a sensible value.
+- **Removing or renaming a column** likewise needs a matching `dropField` / `renameField`. Old JSONs are in
+  circulation indefinitely — the import pipeline is where they get cleaned, not the schema.
+- **Cross-module migrations go on the form class**, not on an individual module, because only the form-level hook
+  sees more than one module at a time.
+
+### Automatic backups
+
+`ImetCore\Controllers\Imet\Traits\Backup` runs only when `ImetEnv::isImetOfflineEnv()` is true — online relies on the
+database as source of truth. It is invoked after every import and by other write paths.
+
+A backup is a full JSON export under `backups/` on the default disk, named `IMET[_wdpa]_Year_FormID_YYYY-MM-DD-H-i-s.json`.
+Limits: **`MAX_NUM_BACKUPS = 5` per form** (oldest is deleted on overflow); **`MIN_MINUTES_DIFF = 90` minutes** between
+consecutive backups of the same form (save bursts don't flood the folder). The **first** backup of a form is always
+written, regardless of the minute rule.
