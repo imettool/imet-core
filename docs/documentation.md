@@ -300,6 +300,176 @@ resources/views/
 └── oecm/                           ← same structure as v1
 ```
 
+#### Customisations over modular-forms
+
+A useful mental model for `imet-core` is a **definition layer between `akp/modular-forms` and the hosting Laravel
+application**: modular-forms supplies the generic form engine (modules, fields, persistence, the basic widget kit), the
+hosting app supplies routing and a frontend build pipeline, and `imet-core` slots in the IMET-specific vocabulary —
+custom input types, custom selection lists, custom Vue widgets, and custom Blade components — that make a generic form
+behave like a management-effectiveness assessment.
+
+##### Custom input types
+
+modular-forms looks at a field's `type` to pick a renderer. `imet-core` introduces a `custom::` prefix and dispatches
+those types through `ImetCore\View\CustomInput`, which extends modular-forms's `Input` component. A field definition
+inside a module looks like this:
+
+```php
+$this->module_fields = [
+    ['name' => 'DocumentedConnectivity',
+     'type' => 'custom::radio-ImetV2_DocumentedConnectivity',
+     'label' => trans('imet-core::v2_context.Connectivity.fields.DocumentedConnectivity')],
+    ['name' => 'wdpa_id',
+     'type' => 'custom::selector-wdpa',
+     'label' => trans_choice('imet-core::common.protected_area.protected_area', 1)],
+];
+```
+
+`CustomInput::render()` parses the suffix and returns the right Blade component. The catalogue falls into three groups:
+
+- **Generic IMET widgets** — `radio-<ListType>` (styled radio bound to a selection list), `rating` (the 0–3 evaluation
+  scale with its inline legend), `selector-wdpa` / `selector-wdpa_multiple` (typeahead over the protected-area
+  registry), and `selector-species` / `selector-species-withInsert` (typeahead over the species registry, the second
+  variant lets the encoder add a new entry inline).
+- **Form-bootstrap widgets** — `version-v2`, `version-oecm`, `designation-eng`, `sub-governance-model`, used on the
+  _Create_ and _CreateNonWdpa_ modules to drive assessment creation.
+- **Composite domain widgets** — bespoke inputs that need to bind several fields at once: `v2-key-element`,
+  `v2-ctx11-type`, `v2-importance-ecosystem-services-aspect`, `v2-menaces-aspect`,
+  `v2-ecosystem-services-intervention`, `oecm-key-elements-element`, `oecm-ctx11-type`,
+  `oecm-threat-with-ranking`, `oecm-support-integration-stakeholder-with-ranking`. These are the inputs the encoder
+  actually spends most of their time in.
+
+A `custom::` type the dispatcher doesn't recognise raises `UnrecognizedInputType` — typos fail loud at render time
+rather than silently falling through to a generic input.
+
+##### Custom selection lists
+
+modular-forms's `SelectionList` resolves a list code (e.g. `Yes_No`) to an array of `value => label` pairs.
+`ImetCore\Helpers\SelectionList` extends it and recognises the version-prefixed naming convention used everywhere in
+`imet-core`:
+
+| Code pattern | Resolves to |
+|--------------|-------------|
+| `ImetV1_*`, `ImetV2_*`, `ImetOecm_*`, `OECM_*`, `Imet_*` | a translation under `imet-core::{version}_lists.{name}` |
+| `*_ProtectedArea`, `*_Country`, `*_PaCountry`, `*_Currency` | a dynamic list built from the reference-data models |
+| `*_PaType` | the hard-coded OECM `terrestrial` / `marine_and_coastal` / `mixed` triple |
+| anything else | fallback to modular-forms's base resolver |
+
+So the `radio-ImetV2_DocumentedConnectivity` example above lands on the `DocumentedConnectivity` key inside
+`Lang/en/v2_lists.php`. New static lists are added by dropping an entry into the relevant `*_lists.php` translation
+file — no PHP changes — which keeps domain vocabulary purely declarative and translatable.
+
+##### Vue widgets and Blade components
+
+The custom Blade views the dispatcher returns are mostly thin shells that mount a Vue component. The Vue side lives
+under `src/resources/assets/js/inputs/`:
+
+- `selector-wdpa.vue` / `selector-wdpa_multiple.vue` — debounced typeahead against `/imet/selector/pas`.
+- `selector-species.vue` — debounced typeahead against `/imet/selector/species` (with optional insert).
+- `selector-user.vue` — encoder picker.
+- `editor.vue` — rich-text editor used by report modules.
+- `multiple-files-upload.vue` — Dropzone-based attachment uploader.
+- `radio.vue` / `checkbox-boolean.vue` — styled versions of the native widgets, used wherever the design system needs
+  to override the modular-forms defaults.
+
+On the page-chrome side, `src/resources/views/components/` adds Blade components that surround the modular-forms
+scaffold: `score-bar`, `score-container`, `scores` for the score widgets the encoder sees beside each evaluation
+module; `heading`, `breadcrumbs_and_page_title`, `phase`, `side-buttons`, `common_filters` for the navigation and
+filter chrome; and `module/not_allowed_container`, `module/nothing_to_evaluate` for the guard states (read-only because
+of policy, or empty because the upstream context module hasn't been filled yet).
+
+##### Custom module edit views
+
+By default, modular-forms renders a module's edit form from its field definitions using a generic layout (table or
+group). A module can replace that body wholesale by declaring `BODY_EDIT_BLADE_VIEW`:
+
+```php
+class Connectivity extends ImetModule
+{
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.connectivity';
+    // ...
+}
+```
+
+The view referenced here takes over rendering of the module body — but, depending on how much extra behaviour the
+module needs, it can either lean entirely on modular-forms's JS app or swap in a custom one. The two patterns below
+illustrate both ends of the spectrum.
+
+**Blade-only customisation: `Connectivity` (v2 context)**
+
+`Connectivity` needs a different visual layout — every field gets a sub-title under its label and the page ends with
+a link-to-evaluation note — but the inputs themselves and their state management are unchanged. The custom blade
+loops over the field definitions and hands each one to modular-forms's standard field renderer, then keeps the default
+JS app by including the standard script component at the end:
+
+```php
+@foreach($definitions['fields'] as $i => $field)
+    <div class="module-row !mb-4">
+        <div class="module-row__label !w-2/5">
+            <label for="{{ $field['name'] }}">{!! ucfirst($field['label'] ?? '') !!}</label>
+            <div class="italic">@lang('imet-core::v2_context.Connectivity.sub_titles.' . $field['name'])</div>
+        </div>
+        @include('modular-forms::module.edit.field.module-to-vue', [
+            'definitions' => $definitions, 'field' => $field, 'vue_record_index' => 0
+        ])
+    </div>
+@endforeach
+
+<x-modular-forms::module.components.script
+    :module="$module" :controller="$controller" :mode="$mode"/>
+```
+
+The takeaway: `BODY_EDIT_BLADE_VIEW` is enough on its own when the customisation is layout-only. The blade is free to
+restructure the HTML but still defers field rendering to `modular-forms::module.edit.field.module-to-vue`, so all
+input dispatching, validation, and persistence keep working through the default JS Module instance instantiated by the
+standard `<x-modular-forms::module.components.script>` component.
+
+**Blade + custom JS class: `FinancialAvailableResources` (v2 context)**
+
+This module is a budget grid where each row needs a live total, every column needs a sum, and the grand total has its
+own validity flag. None of that is expressible through field definitions alone, so the module ships **both** a custom
+blade body and a custom JS module class that extends `ModuleImet`:
+
+```js
+// src/resources/assets/js/apps/Modules/ImetV2/context/FinancialAvailableResources.js
+import ModuleImet from "../../../Module.js";
+import { computed } from "vue";
+
+export default class FinancialAvailableResources extends ModuleImet {
+    setupApp(props, input_data) {
+        let setup_obj = super.setupApp(props, input_data);
+
+        const line_totals   = computed(() => /* sum of the four columns for each row */);
+        const column_totals = computed(() => /* sum of each column across all rows  */);
+        const sumTotals     = computed(() => /* grand total                          */);
+        const nationalBudgetIsValid = computed(() => columnIsValid('NationalBudget', 0));
+        // ... other validity flags ...
+
+        return { ...setup_obj, line_totals, column_totals, sumTotals,
+                 nationalBudgetIsValid, /* ... */ };
+    }
+}
+```
+
+The blade body binds to those refs directly with regular Vue syntax — `:class="!annualTotalBudgetIsValid ? 'has-error' : ''"`,
+`v-bind:value="line_totals[index]"` — and the script tag at the bottom mounts the custom class instead of the default
+one:
+
+```php
+@push('scripts')
+    <script type="module">
+        (new window.ImetCore.Apps.Modules.ImetV2.context.FinancialAvailableResources(@json($module->vueData)))
+            .mount('#module_{{ $definitions['slug'] }}');
+    </script>
+@endpush
+```
+
+The pattern is the same every time: extend `ModuleImet`, override `setupApp()` to call `super.setupApp()` and then
+add the extra computeds / methods / watchers the module needs, register the class on the global `window.ImetCore.Apps.Modules.*`
+namespace through the host app's entry point, and mount it explicitly from the custom blade. Everything modular-forms
+gives you for free — records reactivity, dirty tracking, save-debounce, the score-refresh hook — keeps working because
+it lives in the base class.
+
 ### Scaling up
 
 :construction: under development
