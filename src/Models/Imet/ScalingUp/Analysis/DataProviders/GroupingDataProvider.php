@@ -15,11 +15,8 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 use ImetCore\Models\Imet\ScalingUp\Charts\Group;
 use ImetCore\Models\Imet\ScalingUp\Charts\Scatter;
 
-final readonly class GroupingDataProvider
+final readonly class GroupingDataProvider extends BaseDataProvider
 {
-    public function __construct(
-        private int $scalingId
-    ) {}
 
     public function getRadarData(array $parameters, array $assessments = []): array
     {

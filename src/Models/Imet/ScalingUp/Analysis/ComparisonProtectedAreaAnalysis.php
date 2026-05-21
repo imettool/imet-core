@@ -28,7 +28,7 @@ final class ComparisonProtectedAreaAnalysis extends BaseAnalysis
 
     private static function getComparisonProtectedAreaProvider(?int $scalingId = null): ComparisonProtectedAreaDataProvider
     {
-        return new ComparisonProtectedAreaDataProvider($scalingId ?? self::$scaling_id);
+        return new ComparisonProtectedAreaDataProvider($scalingId ?? self::getScalingId());
     }
 
     public static function data(?array $params = []): array

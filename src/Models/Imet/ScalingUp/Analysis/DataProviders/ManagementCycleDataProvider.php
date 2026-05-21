@@ -18,7 +18,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\DataTable;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final readonly class ManagementCycleDataProvider implements DataProviderInterface
+final readonly class ManagementCycleDataProvider extends BaseDataProvider
 {
     private const array OPTIONS = [
         'context' => ['height' => '500px'],
@@ -82,10 +82,6 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
         ],
     ];
 
-    public function __construct(
-        private int $scalingId
-    ) {}
-
     /**
      * Get analysis per element of the management cycle
      */
@@ -146,7 +142,7 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
             $color,
             $options,
             '',
-            $this->scalingId
+            $this->getScalingId()
         );
     }
 
@@ -159,7 +155,7 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
             $formIds,
             $indicators,
             $type,
-            $this->scalingId,
+            $this->getScalingId(),
             true
         );
 
@@ -171,7 +167,7 @@ final readonly class ManagementCycleDataProvider implements DataProviderInterfac
      */
     private function getRankingData(array $formIds, string $type, array $indicators): array
     {
-        return Ranking::ranking_indicators($formIds, $type, $indicators, $this->scalingId);
+        return Ranking::ranking_indicators($formIds, $type, $indicators, $this->getScalingId());
     }
 
     /**
