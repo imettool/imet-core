@@ -33,7 +33,7 @@ abstract class BaseAnalysis
      * Set the scaling ID for all analysis operations
      * Call this once before performing any analysis
      */
-    public static function setScalingId(int $scalingId): void
+    public static function setScalingId(?int $scalingId): void
     {
         static::$scaling_id = $scalingId;
     }
