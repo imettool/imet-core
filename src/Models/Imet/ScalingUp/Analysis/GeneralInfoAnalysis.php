@@ -31,7 +31,7 @@ final class GeneralInfoAnalysis extends BaseAnalysis
 
     private static function getGeneralInfoProvider(?int $scalingId = null): GeneralInfoDataProvider
     {
-        return new GeneralInfoDataProvider($scalingId ?? self::$scaling_id);
+        return new GeneralInfoDataProvider($scalingId ?? self::getScalingId());
     }
 
     public static function data(array $params = []): array

@@ -10,7 +10,7 @@
 
 import ModuleImet from "../../../Module.js";
 
-import {reactive, toRaw} from "vue";
+import {reactive, computed, toRaw} from "vue";
 
 
 export default class WorkProgramImplementation extends ModuleImet {
@@ -68,8 +68,21 @@ export default class WorkProgramImplementation extends ModuleImet {
         function accordionTitle(group_key) {
             let index = Object.keys(groups).indexOf(group_key) + 1;
             let title = groups[group_key] !== null  ? groups[group_key] : '';
-            return index.toString() + ' - ' + title;
+            return index.toString() + '. ' + title;
         }
+
+        const averages = computed(() => {
+            return setup_obj.calculateGroupsAverages('EvaluationScore');
+        });
+
+        const averages_percentage = computed(() => {
+            let percentages = {};
+            Object.entries(averages.value).forEach(([key, value]) => {
+                percentages[key] = value/3*100;
+            });
+
+            return percentages;
+        });
 
         /**
          * Override: add group key and original group key values to the new record when adding a new item
@@ -106,6 +119,8 @@ export default class WorkProgramImplementation extends ModuleImet {
             refreshGroupKey,
             recordsFilterKeepIndex,
             accordionTitle,
+            averages,
+            averages_percentage,
             addItem,
             deleteItem
         };

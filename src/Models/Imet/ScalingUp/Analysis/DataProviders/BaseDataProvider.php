@@ -12,4 +12,28 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-interface DataProviderInterface {}
+use ImetCore\Models\Imet\ImetV2\Imet;
+use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
+
+/**
+ * Base class for data providers with common functionality
+ *
+ * All data provider classes should extend this base class to inherit
+ * common utility methods and maintain consistency across providers.
+ */
+abstract readonly class BaseDataProvider
+{
+    public function __construct(
+        protected ?int $scalingId = null
+    ) {}
+
+    /**
+     * Get the scaling ID
+     */
+    protected function getScalingId(): ?int
+    {
+        return $this->scalingId;
+    }
+
+}
+

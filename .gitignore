@@ -6,7 +6,9 @@ composer
 /package-lock.json
 sbom-*.xml
 .claude/
-TASK.md
+CLAUDE.md
+SUMMARY.md
+plan-*.md
 
 # Modules & Libraries
 /vendor/

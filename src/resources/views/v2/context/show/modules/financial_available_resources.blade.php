@@ -21,9 +21,6 @@ foreach ($records as $index => $record) {
         + $record[$definitions['fields'][2]['name']]
         + $record[$definitions['fields'][3]['name']]
         + $record[$definitions['fields'][4]['name']];
-    $records[$index]['__percent_row'] = $totalBudget > 0
-        ? round($records[$index]['__sum_row'] / $totalBudget * 100, 1) . '%'
-        : '';
     $totalSum += $records[$index]['__sum_row'];
 }
 $totalSum /= 2;
@@ -35,35 +32,15 @@ $dom = HtmlPageCrawler::create(
 );
 $table_dom = $dom->filter('table#table_' . $definitions['slug']);
 
-$table_dom->filter('thead tr th')->eq(4)->after(
-    '<th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.total')) . '</th>
-         <th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.percentage')) . '</th>
-    ');
+$table_dom->filter('thead tr th')->eq(4)
+    ->after('<th class="text-center">' . ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.fields.total')) . '</th>');
 
 $table_dom->filter('tbody tr')->each(function ($tr, $index) use ($records): void {
-    if($index>0) {
-        $tr->filter('td')->eq(4)->after(
-            '<td>
-            ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $records[$index]['__sum_row'])) . '
-        </td>
-        <td>
-            ' . Blade::renderComponent(new InputPreview(type: 'text-area', value: $records[$index]['__percent_row'])) . '
-        </td>'
-        );
-    } else {
-        $tr->filter('td')->eq(4)->after('<td></td><td></td>');
-    }
+    $tr->filter('td')->eq(4)->after(
+        '<td>
+        ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $records[$index]['__sum_row'])) . '
+    </td>');
 });
-
-$table_dom->filter('tbody tr')->last()->after(
-    '<tr>
-        <td colspan="5"></td>
-        <td>
-            ' . Blade::renderComponent(new InputPreview(type: 'integer', value: $totalSum)) . '
-        </td>
-        <td></td>
-    </tr>'
-);
 
 ?>
 

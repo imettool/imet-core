@@ -91,27 +91,4 @@ final class Equipments extends Modules\Component\ImetModule
         return $record;
     }
 
-    /**
-     * Calculate the average adequacy level for each group
-     */
-    public static function getAverages(?int $form_id): array
-    {
-        $records = Equipments::getModuleRecords($form_id)['records'];
-
-        $averages = [];
-        foreach (array_keys((new Equipments)->module_groups) as $group) {
-            $sum = 0;
-            $count = 0;
-            foreach ($records as $record) {
-                if ($record['group_key'] === $group && $record['AdequacyLevel'] !== null) {
-                    $sum += (int) $record['AdequacyLevel'];
-                    $count++;
-                }
-            }
-
-            $averages[] = $count > 0 ? round($sum / $count, 2) : 0;
-        }
-
-        return $averages;
-    }
 }

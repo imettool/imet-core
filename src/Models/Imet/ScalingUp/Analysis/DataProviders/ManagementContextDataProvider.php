@@ -17,17 +17,13 @@ use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 use ImetCore\Models\Species;
 
-final readonly class ManagementContextDataProvider implements DataProviderInterface
+final readonly class ManagementContextDataProvider extends BaseDataProvider
 {
     private const int ECOSYSTEM_SERVICES_LIMIT = 10;
 
     private const int THREATS_LIMIT = 5;
 
     private const int MIN_OCCURRENCES = 2; // Minimum occurrences to include in results
-
-    public function __construct(
-        private ?int $scalingId = null
-    ) {}
 
     /**
      * Get management context data for protected areas
@@ -87,8 +83,8 @@ final readonly class ManagementContextDataProvider implements DataProviderInterf
      */
     private function getProtectedAreaByFormId(int $formId): array
     {
-        if ($this->scalingId !== null) {
-            return ScalingUpWdpa::getCustomNames($formId, $this->scalingId)->toArray();
+        if ($this->getScalingId() !== null) {
+            return ScalingUpWdpa::getCustomNames($formId, $this->getScalingId())->toArray();
         }
 
         $imet = Imet::query()->where(['FormID' => $formId])->first();

@@ -141,7 +141,7 @@ Route::middleware([SetLocale::class, 'web'])->group(function (): void {
 
             Route::match(['get', 'post'], '/', [ScalingUpAnalysisController::class, 'index'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_index');
             Route::post('analysis', [ScalingUpAnalysisController::class, 'analysis'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_analysis');
-            Route::match(['get', 'post'], '/{items}', [ScalingUpAnalysisController::class, 'report'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_report');
+            Route::match(['get', 'post'], '/{items}', [ScalingUpAnalysisController::class, 'data_handle'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_report');
             Route::get('download/{scaling_id}', [ScalingUpAnalysisController::class, 'download_zip_file'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_download');
             Route::get('preview/{id}', [ScalingUpAnalysisController::class, 'preview_template'])->name(Imet\Controller::ROUTE_PREFIX.'scaling_up_preview');
 

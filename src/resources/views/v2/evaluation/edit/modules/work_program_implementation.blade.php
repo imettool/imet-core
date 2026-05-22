@@ -20,7 +20,16 @@ $table_id = 'group_table_' . $definitions['slug'] . '_' . $group_key;
 
         <!-- Accordion header -->
         <x-slot:title>
-            <span>@{{ accordionTitle(group_key) }}</span>
+            @php
+                $group_label = "<span>{{ accordionTitle(group_key)  }}</span>";
+                $score_value = "averages[group_key] || '-'";
+                    $percentage_value = "averages_percentage[group_key]";
+            @endphp
+            <x-imet-core::score-bar
+                :label="$group_label"
+                :score="$score_value"
+                :percentage="$percentage_value"
+            ></x-imet-core::score-bar>
         </x-slot:title>
 
         <!-- Group field -->

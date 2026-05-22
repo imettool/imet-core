@@ -16,14 +16,14 @@ use ImetCore\Helpers\ScalingUp\Common;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 
-final readonly class OverallManagementEffectivenessDataProvider implements DataProviderInterface
+final readonly class OverallManagementEffectivenessDataProvider extends BaseDataProvider
 {
     private DiagramDataProvider $diagramProvider;
 
     private GroupingDataProvider $groupingProvider;
 
     public function __construct(
-        private int $scalingId
+        protected ?int $scalingId
     ) {
         $this->diagramProvider = new DiagramDataProvider($scalingId);
         $this->groupingProvider = new GroupingDataProvider($scalingId);
@@ -50,7 +50,7 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
      */
     private function getAssessments(array $formIds): array
     {
-        return $syntheticIndicatorsTable = Common::get_assessments($formIds, $this->scalingId);
+        return $syntheticIndicatorsTable = Common::get_assessments($formIds, $this->getScalingId());
     }
 
     /**
@@ -113,7 +113,7 @@ final readonly class OverallManagementEffectivenessDataProvider implements DataP
     private function buildScatterParameters(array $formIds): array
     {
         return array_map(function (int $formId): array {
-            $pa = ScalingUpWdpa::getCustomNames($formId, $this->scalingId);
+            $pa = ScalingUpWdpa::getCustomNames($formId, $this->getScalingId());
 
             return [
                 'id' => $formId,

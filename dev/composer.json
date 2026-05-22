@@ -21,9 +21,9 @@
         "rector/rector": "^2.1 "
     },
     "repositories": {
-        "andreamarelli/modular-forms": {
+        "akp/modular-forms": {
             "type": "vcs",
-            "url": "https://github.com/andreamarelli/modular-forms"
+            "url": "https://code.europa.eu/akp/modular-forms"
         },
         "imettool/imet-core": {
             "type": "path",
@@ -71,7 +71,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
-        }
+        },
+        "gitlab-domains": ["code.europa.eu"]
     },
     "minimum-stability": "dev",
     "prefer-stable": true

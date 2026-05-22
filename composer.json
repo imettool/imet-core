@@ -17,15 +17,15 @@
         "php": ">=8.4",
         "ext-json": "*",
         "ext-zip": "*",
-        "andreamarelli/modular-forms": "^4.0"
+        "akp/modular-forms": "^4.4.0"
     },
     "require-dev": {
         "orchestra/testbench": "^11.0"
     },
     "repositories": {
-        "andreamarelli/modular-forms": {
+        "akp/modular-forms": {
             "type": "vcs",
-            "url": "https://github.com/andreamarelli/modular-forms"
+            "url": "https://code.europa.eu/akp/modular-forms"
         }
     },
     "autoload": {
@@ -63,7 +63,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "gitlab-domains": ["code.europa.eu"]
     },
     "minimum-stability": "stable",
     "prefer-stable": true

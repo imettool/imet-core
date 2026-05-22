@@ -22,7 +22,7 @@ use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ScalingUp\ScalingUpAnalysis as ModelScalingUpAnalysis;
 use ImetCore\Services\ScalingUp\DownloadScalingUp;
 use ImetCore\Services\ScalingUp\PreviewScalingUp;
-use ImetCore\Services\ScalingUp\ReportScalingUp;
+use ImetCore\Services\ScalingUp\DataHandleScalingUp;
 use ModularForms\Helpers\HTTP;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Throwable;
@@ -108,9 +108,9 @@ class ScalingUpAnalysisController extends __Controller
     /**
      * @throws AuthorizationException
      */
-    public function report(Request $request, ?string $items = null): View
+    public function data_handle(Request $request, ?string $items = null): View
     {
-        $result = ReportScalingUp::report($request, $items);
+        $result = DataHandleScalingUp::preparingData($request, $items);
 
         return view(static::$form_view_prefix.'scaling_up.report', $result);
     }

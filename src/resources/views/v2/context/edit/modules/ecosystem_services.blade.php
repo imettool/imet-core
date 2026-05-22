@@ -37,7 +37,7 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
         <x-modular-forms::accordion.item>
             <x-slot:title>
                 @php
-                    $category_label = trans('imet-core::v2_context.EcosystemServices.categories.title'.($cat_idx+1));
+                    $category_label = ($cat_idx+1).'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.($cat_idx+1));
                     $score_value = "categoryStats['".$cat_idx."'] || '-'";
                     $percentage_value = "categoryStats['" . $cat_idx . "']";
                 @endphp
