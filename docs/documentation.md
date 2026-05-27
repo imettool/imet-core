@@ -512,7 +512,7 @@ a matter of adding a new analysis class and registering its method on the facade
 - **`ScalingUpAnalysis`** — the session record, orchestrator facade, and dynamic dispatcher for all analysis methods.
 - **`ScalingUpWdpa`** — stores custom shortened names and colours for each protected area within a session, ensuring 
   consistent labelling across all charts.
-- **`Basket`** — holds temporary PNG images captured by the user; rows belong to a session and are purged on final download.
+- **`Basket`** — holds temporary PNG images captured by the user; rows belong to a session.
 
 **Analysis Classes** (under `Services/Scores/ScalingUpAnalysis/`):
 - Extend `BaseAnalysis`, inherit constructor pattern (`__construct($scalingId = null)`), and implement one or more public 
@@ -582,7 +582,7 @@ Sessions are identified by `scaling_id` and stored in the `scaling_up` table. Wh
 `DataHandleScalingUp` either **creates a new session** (if none exists for that exact combination) or **reuses an existing one**. 
 The `scaling_id` is returned to the frontend and attached to every subsequent analysis request. Custom PA names and colours 
 (stored in `scaling_up_wdpa`) persist across all analysis calls, ensuring chart legends and labels are consistent. Sessions 
-are long-lived by default (no automatic expiry), though basket items are purged after successful download.
+are long-lived by default (no automatic expiry).
 
 #### Data Flow
 
@@ -629,7 +629,6 @@ are long-lived by default (no automatic expiry), though basket items are purged 
   artifacts are:
   - Session metadata (`scaling_up` table).
   - Custom PA names (`scaling_up_wdpa` table).
-  - Basket images (filesystem, purged after download).
 - **Export** is handled by `DownloadScalingUp`, which zips all PNGs in the basket and returns the archive.
 - There is **no JSON import** for scaling-up sessions themselves (unlike normal IMET forms); if the underlying IMET forms 
   are imported, the scaling-up session can be recreated by re-selecting the same forms.
