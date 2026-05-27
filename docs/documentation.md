@@ -572,7 +572,7 @@ a matter of adding a new analysis class and registering its method on the facade
 - **Composables** extract reusable logic (e.g. fetching analysis data, handling async state).
 - **Key components:** `management-context.vue`, `scaling-radar.vue`, `datatable.vue`, `bar-category-stack.vue`,
   `scatter.vue`, `radar-threats.vue`, container components. Each receives `scaling_id` and `form_ids` as props, calls the
-  backend analysis endpoint, and renders the returned charts using Chart.js or Apache ECharts. Users click a _Save to basket_
+  backend analysis endpoint, and renders the returned charts using Apache ECharts. Users click a _Save to basket_
   button; the component uses `html2canvas` to capture the chart DOM node, encodes it as a data URL, and POSTs to
   `ScalingUpBasketController::save()`.
 
