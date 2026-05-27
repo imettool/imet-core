@@ -16,7 +16,7 @@ use ImetCore\Models\Imet\ScalingUp\Charts\AverageContribution;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 use ImetCore\Models\Imet\ScalingUp\Charts\Ranking;
 
-final readonly class ThreatsDataProvider implements DataProviderInterface
+final readonly class ThreatsDataProvider extends BaseDataProvider
 {
     private const string DEFAULT_COLOR = '#C23531';
 
@@ -24,9 +24,6 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
 
     private const string DEFAULT_TRANSLATION_KEY = 'imet-core::v2_context.MenacesPressions.categories.title';
 
-    public function __construct(
-        private int $scalingId
-    ) {}
 
     /**
      * Get threats categories analysis for protected areas
@@ -50,7 +47,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
      */
     private function getThreatsValues(array $formIds): array
     {
-        $radarData = Radar::get_threats_radar_indicators($formIds, $this->scalingId);
+        $radarData = Radar::get_threats_radar_indicators($formIds, $this->getScalingId());
 
         return $radarData['total_categories'];
     }
@@ -76,7 +73,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
      */
     private function getRanking(array $formIds): array
     {
-        return Ranking::ranking_threats_indicators($formIds, $this->scalingId);
+        return Ranking::ranking_threats_indicators($formIds, $this->getScalingId());
     }
 
     /**
@@ -84,7 +81,7 @@ final readonly class ThreatsDataProvider implements DataProviderInterface
      */
     private function getRadarData(array $formIds): array
     {
-        $radarData = Radar::get_threats_radar_indicators($formIds, $this->scalingId);
+        $radarData = Radar::get_threats_radar_indicators($formIds, $this->getScalingId());
 
         return $radarData['radar'];
     }

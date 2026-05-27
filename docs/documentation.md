@@ -472,19 +472,19 @@ it lives in the base class.
 
 ### Scaling up
 
-The **Scaling Up Analysis** feature enables comparative analysis of management effectiveness across multiple protected areas.
-It aggregates IMET assessment data from selected protected areas into unified visualizations, allowing users to identify
-patterns, compare performance across sites, and generate consolidated reports. The system is built on a modular,
+The **Scaling Up Analysis** feature enables comparative analysis of management effectiveness across multiple protected areas. 
+It aggregates IMET assessment data from selected protected areas into unified visualizations, allowing users to identify 
+patterns, compare performance across sites, and generate consolidated reports. The system is built on a modular, 
 layered architecture that cleanly separates data access, business logic, and presentation concerns.
 
 A typical scaling-up workflow:
 
-1. **Session Creation** — The user selects multiple IMET forms (protected areas) to analyse together; the system creates
+1. **Session Creation** — The user selects multiple IMET forms (protected areas) to analyse together; the system creates 
    a `scaling_id` that groups these forms into a persistent session.
-2. **Analysis Execution** — The frontend sends analysis requests (e.g. _Management Context_, _Radar Analysis_); the backend
-   orchestrates a pipeline of data providers, analysis classes, and chart formatters to transform raw module data into
+2. **Analysis Execution** — The frontend sends analysis requests (e.g. _Management Context_, _Radar Analysis_); the backend 
+   orchestrates a pipeline of data providers, analysis classes, and chart formatters to transform raw module data into 
    visualization-ready JSON.
-3. **Basket Export** — The user captures charts or tables as PNG images, saves them to a temporary basket, and later
+3. **Basket Export** — The user captures charts or tables as PNG images, saves them to a temporary basket, and later 
    downloads the entire collection as a ZIP archive.
 
 #### Architecture
@@ -501,21 +501,21 @@ The feature is structured in seven layers:
 | **Data Providers** | 10+ provider classes | Fetch and transform raw module data, apply filters and aggregations   |
 | **Charts/Visualization** | Chart formatters (radar, table, ranking, scatter, etc.) | Convert analysis output into charts / visualization library JSON      |
 
-The **Orchestrator pattern** is central: `ScalingUpAnalysis` acts as a facade. Controllers set a global `$scaling_id`,
-then call a method like `ScalingUpAnalysis::get_radar_analysis($form_ids)`. The orchestrator resolves which analysis class
-to instantiate, invokes it, and returns the result. This keeps controller logic thin and makes adding a new analysis section
+The **Orchestrator pattern** is central: `ScalingUpAnalysis` acts as a facade. Controllers set a global `$scaling_id`, 
+then call a method like `ScalingUpAnalysis::get_radar_analysis($form_ids)`. The orchestrator resolves which analysis class 
+to instantiate, invokes it, and returns the result. This keeps controller logic thin and makes adding a new analysis section 
 a matter of adding a new analysis class and registering its method on the facade.
 
 #### Key Components
 
 **Backend Models:**
 - **`ScalingUpAnalysis`** — the session record, orchestrator facade, and dynamic dispatcher for all analysis methods.
-- **`ScalingUpWdpa`** — stores custom shortened names and colours for each protected area within a session, ensuring
+- **`ScalingUpWdpa`** — stores custom shortened names and colours for each protected area within a session, ensuring 
   consistent labelling across all charts.
 - **`Basket`** — holds temporary PNG images captured by the user; rows belong to a session and are purged on final download.
 
 **Analysis Classes** (under `Services/Scores/ScalingUpAnalysis/`):
-- Extend `BaseAnalysis`, inherit constructor pattern (`__construct($scalingId = null)`), and implement one or more public
+- Extend `BaseAnalysis`, inherit constructor pattern (`__construct($scalingId = null)`), and implement one or more public 
   data methods.
 - Examples: `ManagementContext`, `Grouping`, `ManagementCycle`, `DigitalTransformation`.
 - Return a standard envelope: `['status' => 'success', 'data' => [...charts...]]` or `['status' => 'error', 'message' => '...']`.
@@ -526,7 +526,7 @@ a matter of adding a new analysis class and registering its method on the facade
 - Each provider encapsulates data fetching and transformation for a specific analysis domain.
 - Examples: `AssessmentDataProvider`, `ComparisonProtectedAreaDataProvider`, `ThreatsDataProvider`, `ManagementCycleDataProvider`,
   `ManagementContextDataProvider`, `GeneralInfoDataProvider`, `OverallManagementEffectivenessDataProvider`.
-- They apply transformations (colour assignment, indicator→label mapping, value corrections, filtering by `MIN_OCCURRENCES`),
+- They apply transformations (colour assignment, indicator→label mapping, value corrections, filtering by `MIN_OCCURRENCES`), 
   cache frequently used lookups, and return plain arrays/collections ready for chart formatters.
 - The `BaseDataProvider` abstract class consolidates ~40+ lines of duplicate code per provider, ensuring consistency and
   maintainability across the system.
@@ -535,84 +535,84 @@ a matter of adding a new analysis class and registering its method on the facade
 > no technical value. All providers now extend `BaseDataProvider` for code reuse and consistency.
 
 **Services:**
-- **`DataHandleScalingUp`** — main service; drives session initialization (`preparingData()`) which creates or updates the
-  `ScalingUpAnalysis` record, populates `ScalingUpWdpa` custom names, builds a full data bundle for the initial frontend load,
+- **`DataHandleScalingUp`** — main service; drives session initialization (`preparingData()`) which creates or updates the 
+  `ScalingUpAnalysis` record, populates `ScalingUpWdpa` custom names, builds a full data bundle for the initial frontend load, 
   returns the section list (`templates()`), and enforces authorization via `checkAuthorization()`.
-- **`PreviewScalingUp`** — read-only loader; resolves a `scaling_id`, retrieves its configuration and metadata, enforces
+- **`PreviewScalingUp`** — read-only loader; resolves a `scaling_id`, retrieves its configuration and metadata, enforces 
   authorization, and returns a summary for display (no modifications).
-- **`DownloadScalingUp`** — handles ZIP export of basket items; gathers all saved PNGs for the given `scaling_id`, verifies
+- **`DownloadScalingUp`** — handles ZIP export of basket items; gathers all saved PNGs for the given `scaling_id`, verifies 
   authorization, zips them, and returns the archive.
-- **`Common` Trait** — authorization utility; provides `checkAuthorization(array $wdpas, string $ability = 'wdpa_scaling_up')`
-  method used by service classes. Iterates through IMET form IDs and throws `AuthorizationException` if the user lacks permission
+- **`Common` Trait** — authorization utility; provides `checkAuthorization(array $wdpas, string $ability = 'wdpa_scaling_up')` 
+  method used by service classes. Iterates through IMET form IDs and throws `AuthorizationException` if the user lacks permission 
   on any form. Mixed into `DataHandleScalingUp`, `PreviewScalingUp`, and `DownloadScalingUp`.
 
 **Helpers:**
-- `Helpers\ScalingUp\Common` provides 12 utility functions: `get_assessments()` (list of forms in the session),
-  `get_labels()` (translate PA IDs → names/colours), `values_correction()` (normalise indicator scales),
-  `get_all_indicator_labels_cached()` (memoized label dictionary), `indicator_labels()`, `modules_labels()`,
+- `Helpers\ScalingUp\Common` provides 12 utility functions: `get_assessments()` (list of forms in the session), 
+  `get_labels()` (translate PA IDs → names/colours), `values_correction()` (normalise indicator scales), 
+  `get_all_indicator_labels_cached()` (memoized label dictionary), `indicator_labels()`, `modules_labels()`, 
   `reset_areas_ids()` (swaps locale-dependent form lists), and locale-preservation wrappers.
 
 **Controllers:**
-- **`ScalingUpAnalysisController::analysis(Request)`** — POST endpoint; expects `{ func, parameter, scaling_id }`; performs
-  authorization check on each FormID in parameters using `$this->authorize('wdpa_scaling_up', ...)`, calls
+- **`ScalingUpAnalysisController::analysis(Request)`** — POST endpoint; expects `{ func, parameter, scaling_id }`; performs 
+  authorization check on each FormID in parameters using `$this->authorize('wdpa_scaling_up', ...)`, calls 
   `ModelScalingUpAnalysis::$func($parameter)` dynamically and returns JSON.
-- **`ScalingUpAnalysisController::data_handle(Request)`** — delegates to `DataHandleScalingUp::preparingData()` which
+- **`ScalingUpAnalysisController::data_handle(Request)`** — delegates to `DataHandleScalingUp::preparingData()` which 
   handles authorization and data preparation, then renders the report view.
 - **`ScalingUpAnalysisController::download_zip_file(int)`** — delegates to `DownloadScalingUp::zipFile()` for ZIP export.
 - **`ScalingUpAnalysisController::preview_template(int)`** — delegates to `PreviewScalingUp::preview()` for preview display.
-- **`ScalingUpBasketController`** — CRUD for basket: `save` (store a PNG), `delete` (delete one item), `retrieve` (get one item),
-  `all` (list items), `clear` (purge all). Note: Basket operations do not include explicit authorization checks; access control
+- **`ScalingUpBasketController`** — CRUD for basket: `save` (store a PNG), `delete` (delete one item), `retrieve` (get one item), 
+  `all` (list items), `clear` (purge all). Note: Basket operations do not include explicit authorization checks; access control 
   is assumed to be enforced through session creation.
 
 #### Frontend
 
 - **Vue.js 3 Composition API** components live under `resources/assets/js/components/scaling-up/`.
-- **Stores** manage state: `BasketStore` (basket operations), `BaseStore` (shared scaling-up state), `LocalStorageStore`
+- **Stores** manage state: `BasketStore` (basket operations), `BaseStore` (shared scaling-up state), `LocalStorageStore` 
   (persistent selection memory).
 - **Composables** extract reusable logic (e.g. fetching analysis data, handling async state).
-- **Key components:** `management-context.vue`, `scaling-radar.vue`, `datatable.vue`, `bar-category-stack.vue`,
-  `scatter.vue`, `radar-threats.vue`, container components. Each receives `scaling_id` and `form_ids` as props, calls the
-  backend analysis endpoint, and renders the returned charts using Apache ECharts. Users click a _Save to basket_
-  button; the component uses `html2canvas` to capture the chart DOM node, encodes it as a data URL, and POSTs to
+- **Key components:** `management-context.vue`, `scaling-radar.vue`, `datatable.vue`, `bar-category-stack.vue`, 
+  `scatter.vue`, `radar-threats.vue`, container components. Each receives `scaling_id` and `form_ids` as props, calls the 
+  backend analysis endpoint, and renders the returned charts using Chart.js or Apache ECharts. Users click a _Save to basket_ 
+  button; the component uses `html2canvas` to capture the chart DOM node, encodes it as a data URL, and POSTs to 
   `ScalingUpBasketController::save()`.
 
 #### Session Management
 
-Sessions are identified by `scaling_id` and stored in the `scaling_up` table. When the user selects a set of forms,
-`DataHandleScalingUp` either **creates a new session** (if none exists for that exact combination) or **reuses an existing one**.
-The `scaling_id` is returned to the frontend and attached to every subsequent analysis request. Custom PA names and colours
-(stored in `scaling_up_wdpa`) persist across all analysis calls, ensuring chart legends and labels are consistent. Sessions
+Sessions are identified by `scaling_id` and stored in the `scaling_up` table. When the user selects a set of forms, 
+`DataHandleScalingUp` either **creates a new session** (if none exists for that exact combination) or **reuses an existing one**. 
+The `scaling_id` is returned to the frontend and attached to every subsequent analysis request. Custom PA names and colours 
+(stored in `scaling_up_wdpa`) persist across all analysis calls, ensuring chart legends and labels are consistent. Sessions 
 are long-lived by default (no automatic expiry), though basket items are purged after successful download.
 
 #### Data Flow
 
-1. **Request:** User clicks _Generate Management Context Analysis_ → Vue component emits `POST /scaling-up/analysis` with
+1. **Request:** User clicks _Generate Management Context Analysis_ → Vue component emits `POST /scaling-up/analysis` with 
    `{ func: 'get_management_context', parameter: [1, 2, 3], scaling_id: 5 }`.
-2. **Controller:** `ScalingUpAnalysisController::analysis()` validates, authorizes, sets `ScalingUpAnalysis::$scaling_id = 5`,
+2. **Controller:** `ScalingUpAnalysisController::analysis()` validates, authorizes, sets `ScalingUpAnalysis::$scaling_id = 5`, 
    and calls `ScalingUpAnalysis::get_management_context([1, 2, 3])`.
-3. **Orchestrator:** `ScalingUpAnalysis` sets scaling ID on `ManagementContextAnalysis`, then calls
+3. **Orchestrator:** `ScalingUpAnalysis` sets scaling ID on `ManagementContextAnalysis`, then calls 
    `ManagementContextAnalysis::data(['form_ids' => [1, 2, 3]])`.
-4. **Analysis Class:** `ManagementContextAnalysis::data()` instantiates `ManagementContextDataProvider` with the scaling ID,
-   fetches raw data from IMET evaluation modules (species, habitats, threats, climate change, ecosystem services), applies
+4. **Analysis Class:** `ManagementContextAnalysis::data()` instantiates `ManagementContextDataProvider` with the scaling ID, 
+   fetches raw data from IMET evaluation modules (species, habitats, threats, climate change, ecosystem services), applies 
    filtering (minimum 2 occurrences), sorting, and aggregation, then returns structured data.
-5. **Response:** JSON structure `{ key_elements: { species: {...}, habitats: [...], threats: [...], ... } }`
+5. **Response:** JSON structure `{ key_elements: { species: {...}, habitats: [...], threats: [...], ... } }` 
    flows back to the Vue component, which renders the data using appropriate chart components.
-6. **Chart Render:** Vue components use Apache ECharts library to draw visualizations. User clicks _Save to basket_ →
-   `html2canvas` captures the canvas, converts to PNG, POSTs to `/basket/save`, stores the file in
+6. **Chart Render:** Vue components use Apache ECharts library to draw visualizations. User clicks _Save to basket_ → 
+   `html2canvas` captures the canvas, converts to PNG, POSTs to `/basket/save`, stores the file in 
    `public/basket/`.
 
 #### Authorization & Security
 
 **Service Layer Authorization:**
-- The `Common` trait (`Services/ScalingUp/Common.php`) provides `checkAuthorization()` method that verifies `wdpa_scaling_up`
+- The `Common` trait (`Services/ScalingUp/Common.php`) provides `checkAuthorization()` method that verifies `wdpa_scaling_up` 
   permission on all IMET forms in the session.
 - Used by service classes:
-    - `DataHandleScalingUp::preparingData()` - checks authorization before preparing session data (line 120)
-    - `PreviewScalingUp::preview()` - checks authorization before loading preview (line 26)
-    - `DownloadScalingUp::zipFile()` - checks authorization before ZIP export (line 28)
+  - `DataHandleScalingUp::preparingData()` - checks authorization before preparing session data (line 120)
+  - `PreviewScalingUp::preview()` - checks authorization before loading preview (line 26)
+  - `DownloadScalingUp::zipFile()` - checks authorization before ZIP export (line 28)
 
 **Controller-Level Authorization:**
-- `ScalingUpAnalysisController::analysis()` - performs direct authorization using `$this->authorize('wdpa_scaling_up', ...)`
+- `ScalingUpAnalysisController::analysis()` - performs direct authorization using `$this->authorize('wdpa_scaling_up', ...)` 
   for each FormID in the parameters array (lines 86-91), ensuring the user can access each protected area individually.
 - `ScalingUpAnalysisController::data_handle()` - authorization delegated to `DataHandleScalingUp::preparingData()` service call.
 
@@ -625,13 +625,13 @@ are long-lived by default (no automatic expiry), though basket items are purged 
 
 #### Import/Export
 
-- The feature does **not** persist analysis results in the database (scores are computed on demand). The only persistent
+- The feature does **not** persist analysis results in the database (scores are computed on demand). The only persistent 
   artifacts are:
-    - Session metadata (`scaling_up` table).
-    - Custom PA names (`scaling_up_wdpa` table).
-    - Basket images (filesystem, purged after download).
+  - Session metadata (`scaling_up` table).
+  - Custom PA names (`scaling_up_wdpa` table).
+  - Basket images (filesystem, purged after download).
 - **Export** is handled by `DownloadScalingUp`, which zips all PNGs in the basket and returns the archive.
-- There is **no JSON import** for scaling-up sessions themselves (unlike normal IMET forms); if the underlying IMET forms
+- There is **no JSON import** for scaling-up sessions themselves (unlike normal IMET forms); if the underlying IMET forms 
   are imported, the scaling-up session can be recreated by re-selecting the same forms.
 
 #### Extending the Feature
@@ -640,13 +640,13 @@ Adding a new analysis section involves:
 
 1. **Data Provider** — Create a class that extends `BaseDataProvider`, fetches the required module data,
    and returns shaped arrays. Leverage inherited utility methods from the base class for common operations.
-2. **Analysis Class** — Extend `BaseAnalysis`, implement a `data($parameters)` method that instantiates
+2. **Analysis Class** — Extend `BaseAnalysis`, implement a `data($parameters)` method that instantiates 
    the provider(s), computes the analysis, and returns `['status' => 'success', 'data' => [...] ]`.
-3. **Orchestrator Method** — Add a public method on `ScalingUpAnalysis` (e.g. `get_budget_analysis()`) that calls
+3. **Orchestrator Method** — Add a public method on `ScalingUpAnalysis` (e.g. `get_budget_analysis()`) that calls 
    `return (new BudgetAnalysis(static::$scaling_id))->data($parameters);`.
-4. **Service Registration** — Add an entry to `DataHandleScalingUp::templates()` with the section key, translated title,
+4. **Service Registration** — Add an entry to `DataHandleScalingUp::templates()` with the section key, translated title, 
    and blade view path.
-5. **View Template** — Create `resources/views/.../scaling-up/sections/budget_analysis.blade.php` that mounts the Vue component
+5. **View Template** — Create `resources/views/.../scaling-up/sections/budget_analysis.blade.php` that mounts the Vue component 
    and passes down `scaling_id` / `form_ids`.
 6. **Translation** — Add keys under `imet-core::analysis_report.*` for the section title and any UI strings.
 
