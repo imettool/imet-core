@@ -15,11 +15,8 @@ namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 use Illuminate\Support\Facades\App;
 use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
-final readonly class DiagramDataProvider implements DataProviderInterface
+final readonly class DiagramDataProvider extends BaseDataProvider
 {
-    public function __construct(
-        private int $scalingId
-    ) {}
 
     /**
      * Get averages of each indicator of six elements with styling and limits
@@ -30,7 +27,7 @@ final readonly class DiagramDataProvider implements DataProviderInterface
         bool $overall = false
     ): array {
         $locale = App::getLocale();
-        $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->scalingId);
+        $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->getScalingId());
 
         $average = $data['diagrams']['Average'];
         $upperLimit = $data['diagrams']['upper limit'];
@@ -106,7 +103,7 @@ final readonly class DiagramDataProvider implements DataProviderInterface
         array $assessments = [],
         bool $overall = false
     ): array {
-        $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->scalingId);
+        $data = Radar::get_radar_indicators($formIds, false, $assessments, $overall, $this->getScalingId());
         unset($data['diagrams']['upper limit']);
         unset($data['diagrams']['lower limit']);
 

@@ -17,11 +17,8 @@ use ImetCore\Models\Country;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ModularForms\Helpers\Locale;
 
-final readonly class GeneralInfoDataProvider implements DataProviderInterface
+final readonly class GeneralInfoDataProvider extends BaseDataProvider
 {
-    public function __construct(
-        private ?int $scalingId = null
-    ) {}
 
     /**
      * Get general information aggregated from multiple protected areas
