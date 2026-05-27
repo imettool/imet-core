@@ -567,8 +567,7 @@ a matter of adding a new analysis class and registering its method on the facade
 #### Frontend
 
 - **Vue.js 3 Composition API** components live under `resources/assets/js/components/scaling-up/`.
-- **Stores** manage state: `BasketStore` (basket operations), `BaseStore` (shared scaling-up state), `LocalStorageStore` 
-  (persistent selection memory).
+- **Stores** manage state: `BasketStore` (basket operations), `BaseStore` (shared scaling-up state).
 - **Composables** extract reusable logic (e.g. fetching analysis data, handling async state).
 - **Key components:** `management-context.vue`, `scaling-radar.vue`, `datatable.vue`, `bar-category-stack.vue`, 
   `scatter.vue`, `radar-threats.vue`, container components. Each receives `scaling_id` and `form_ids` as props, calls the 
@@ -598,8 +597,7 @@ are long-lived by default (no automatic expiry).
 5. **Response:** JSON structure `{ key_elements: { species: {...}, habitats: [...], threats: [...], ... } }` 
    flows back to the Vue component, which renders the data using appropriate chart components.
 6. **Chart Render:** Vue components use Apache ECharts library to draw visualizations. User clicks _Save to basket_ → 
-   `html2canvas` captures the canvas, converts to PNG, POSTs to `/basket/save`, stores the file in 
-   `public/basket/`.
+   `html2canvas` captures the canvas, converts to PNG, POSTs to `/basket/save`.
 
 #### Authorization & Security
 
@@ -620,7 +618,6 @@ are long-lived by default (no automatic expiry).
 - Input `scaling_id` and `parameter` arrays are sanitized; integer coercion and array validation prevent injection.
 - Authorization uses Laravel's Gate system: `Gate::denies($ability, Imet::query()->find($wdpa))`.
 - Throws `AuthorizationException` if user lacks permission on any IMET form in the session.
-- Basket images are stored in a non-public folder (`storage/app/scaling_analysis/basket/`).
 
 
 #### Import/Export
