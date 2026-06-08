@@ -44,8 +44,8 @@ window.ImetCore.Apps.Report = Report;
 import Preview from "./js/scaling_up_analysis/Preview.js";
 window.ImetCore.Apps.Preview = Preview;
 
-import Analysis from "./js/apps/Modules/ImetV1/Analysis.js";
-window.ImetCore.Apps.Analysis = Analysis;
+import V1Analysis from "./js/apps/Modules/ImetV1/Analysis.js";
+window.ImetCore.Apps.V1Analysis = V1Analysis;
 
 import OECMAnalysis from "./js/apps/Modules/Oecm/OECMAnalysis.js";
 window.ImetCore.Apps.OECMAnalysis = OECMAnalysis;
