@@ -14,13 +14,13 @@
 
         <div v-if="showLimits && min!==null" class="score-bar__limit-left">{{ min }}%</div>
 
-        <progress_bar
+        <progress-bar
             :value=score_value
             :color=color
             :negative=negative
             :stacked=stacked
             :digit=1
-        ></progress_bar>
+        ></progress-bar>
 
         <div v-if="showLimits && max!==null" class="score-bar__limit-right">{{ max }}%</div>
 
@@ -31,9 +31,6 @@
 <style lang="postcss" scoped>
 
     .score-bar{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
         width: 100%;
         align-items: center;
         margin: 1px 0;
@@ -60,7 +57,7 @@
 <script setup>
 
 import { computed } from "vue";
-import progress_bar from "./progress_bar.vue";
+import progressBar from "./progress_bar.vue";
 
 const props = defineProps({
     value: {

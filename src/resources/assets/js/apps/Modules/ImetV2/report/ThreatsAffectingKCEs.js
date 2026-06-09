@@ -1,5 +1,3 @@
-<?php
-
 /*
  * Copyright (C) 2025 European Union
  * This program is free software: you can redistribute it and/or modify it under the terms of the
@@ -10,28 +8,17 @@
  * If not, see <https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12 >.
  */
 
-namespace ImetCore\View;
+import ModuleImet from "../../../Module.js";
 
-use Illuminate\View\Component;
-use Illuminate\View\View;
+import { computed } from "vue";
+import heatmapRating from "../../../../inputs/heatmap-rating.vue";
 
-class ScoreBar extends Component
-{
-    public bool $isNegative = false;
+export default class ThreatsAffectingKCEs extends ModuleImet {
 
-    public function __construct(
-        public string $label,
-        public string $score,
-        public string $percentage,
-        public string $color = '#87c89b',
-        public int $limitMin = 0,
-        public int $limitMax = 100,
-    ) {
-        $this->isNegative = $limitMin < 0;
+    constructor(input_data = {}, custom_props = {}) {
+
+        return super(input_data, custom_props)
+            .component('heatmap-rating', heatmapRating);
     }
 
-    public function render(): View
-    {
-        return view('imet-core::components.score-bar');
-    }
 }
