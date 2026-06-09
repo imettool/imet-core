@@ -20,6 +20,7 @@ return [
     'version' => 'version',
     'link' => 'lien|liens',
     'print' => 'imprimer',
+    'clear' => 'effacer',
 
     'staff' => [
         'first_name' => 'prénom',

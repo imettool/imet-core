@@ -61,6 +61,11 @@ class CustomInput extends Input
                 return view('imet-core::components.inputs.radio', ['list' => $list]);
             }
 
+            // Heatmap rating
+            if (Str::contains($type, 'heatmapRating')) {
+                return view('imet-core::components.inputs.heatmap-rating');
+            }
+
             // ######### IMET or OECM specific inputs #########
 
             // Version

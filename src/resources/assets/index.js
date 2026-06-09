@@ -63,7 +63,8 @@ window.ImetCore.Apps.Modules = {
     },
     ImetV2: {
         context: {},
-        evaluation: {}
+        evaluation: {},
+        report: {}
     },
     Oecm: {
         context: {},
@@ -192,6 +193,11 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.SupportsAndConstraints = Supports
 
 import WorkProgramImplementation from "./js/apps/Modules/ImetV2/evaluation/WorkProgramImplementation";
 window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkProgramImplementation;
+
+// ##### ImetV2 - report #####
+
+import ThreatsAffectingKCEs from "./js/apps/Modules/ImetV2/report/ThreatsAffectingKCEs";
+window.ImetCore.Apps.Modules.ImetV2.report.ThreatsAffectingKCEs = ThreatsAffectingKCEs;
 
 // ##### OECM - context #####
 

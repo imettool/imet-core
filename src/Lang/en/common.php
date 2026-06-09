@@ -20,6 +20,7 @@ return [
     'version' => 'version',
     'link' => 'link|links',
     'print' => 'print',
+    'clear' => 'clear',
 
     'staff' => [
         'first_name' => 'first name',
