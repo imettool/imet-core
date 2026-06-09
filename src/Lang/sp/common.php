@@ -122,7 +122,7 @@ return [
     'score_info' => [
         'outcomes' =>
             'El <b>indicador sintético</b> no se calcula como un simple promedio de los tres componentes (O/C1, O/C2, O/C3).
-            En cambio, se deriva de una transformación de las puntuaciones brutas, diseñada para reflejar la contribución relativa
+            En cambio, se <b>deriva de una transformación de las puntuaciones brutas</b>, diseñada para reflejar la contribución relativa
             de cada componente al desempeño general de los resultados.
             Los indicadores O/C2 y O/C3 se expresan en una escala bipolar que va de -100 a +100, reflejando tendencias
             y efectos negativos a positivos. En contraste, O/C1 se expresa en una escala unipolar (0 a 100), representando

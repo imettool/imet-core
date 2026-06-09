@@ -122,7 +122,7 @@ return [
     'score_info' => [
         'outcomes' =>
             'The <b>synthetic indicator</b> is not calculated as a simple average of the three components (O/C1, O/C2, O/C3).
-            Instead, it is derived from a transformation of the raw scores, designed to reflect the relative contribution
+            Instead, it is <b>derived from a transformation of the raw scores</b>, designed to reflect the relative contribution
             of each component to the overall outcome performance.
             The indicators O/C2 and O/C3 are expressed on a bipolar scale ranging from -100 to +100, reflecting negative
             to positive trends and effects. In contrast, O/C1 is expressed on a unipolar scale (0 to 100), representing

@@ -23,7 +23,6 @@ class ScoreBar extends Component
         public string $label,
         public string $score,
         public string $percentage,
-        public bool $withJs = true,
         public string $color = '#87c89b',
         public int $limitMin = 0,
         public int $limitMax = 100,
