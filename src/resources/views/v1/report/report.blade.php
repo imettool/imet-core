@@ -308,7 +308,7 @@ if ($item->language != App::getLocale()) {
     </style>
 
     <script type="module">
-        const app = (new window.ImetCore.Apps.Analysis({
+        const app = (new window.ImetCore.Apps.V1Analysis({
             report: @json($report),
             scores: @json($scores),
             labels: @json($labels),

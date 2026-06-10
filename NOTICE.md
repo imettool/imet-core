@@ -1,6 +1,6 @@
 imet-core
 
-version: 3.7.0
+version: 3.7.1
 
 Copyright (C) 2025 European Union
 
@@ -20,7 +20,7 @@ __dropzone-vue3 1.0.2__
   * Copyright: 
     * Copyright (c) 2017 Ruoyun Wu 
 
-__echarts 6.0.0__
+__echarts 6.1.0__
   * https://echarts.apache.org
   * License: Apache-2.0
   * Copyright: 

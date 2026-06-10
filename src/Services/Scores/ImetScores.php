@@ -81,7 +81,7 @@ final class ImetScores
     /**
      * Retrieve the global IMET assessment score
      */
-    public static function get_score(ImetV1|ImetV2|int|string $imet): array
+    public static function get_score(ImetV1|ImetV2|int|string $imet): float
     {
         return self::get_radar($imet)['imet_index'];
     }

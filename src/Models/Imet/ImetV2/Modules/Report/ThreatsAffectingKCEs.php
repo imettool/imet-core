@@ -19,6 +19,8 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
 {
     protected $table = 'report_threats_affecting_kces';
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.report.edit.modules.threats_affecting_kces';
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = ModuleTypes::TABLE;
@@ -28,16 +30,16 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
         $this->module_fields = [
             ['name' => 'num_threat',    'type' => 'disabled'],
             ['name' => 'threat',    'type' => 'text-area',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.threat')],
-            ['name' => 'kce1',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce1')],
-            ['name' => 'kce2',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce2')],
-            ['name' => 'kce3',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce3')],
-            ['name' => 'kce4',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce4')],
-            ['name' => 'kce5',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce5')],
-            ['name' => 'kce6',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce6')],
-            ['name' => 'kce7',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce7')],
-            ['name' => 'kce8',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce8')],
-            ['name' => 'kce9',      'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce9')],
-            ['name' => 'kce10',     'type' => 'rating-0to4',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce10')],
+            ['name' => 'kce1',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce1')],
+            ['name' => 'kce2',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce2')],
+            ['name' => 'kce3',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce3')],
+            ['name' => 'kce4',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce4')],
+            ['name' => 'kce5',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce5')],
+            ['name' => 'kce6',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce6')],
+            ['name' => 'kce7',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce7')],
+            ['name' => 'kce8',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce8')],
+            ['name' => 'kce9',      'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce9')],
+            ['name' => 'kce10',     'type' => 'custom::heatmapRating',  'label' => trans('imet-core::v2_report.ThreatsAffectingKCEs.fields.kce10')],
         ];
 
         $this->module_info = trans('imet-core::v2_report.ThreatsAffectingKCEs.module_info');

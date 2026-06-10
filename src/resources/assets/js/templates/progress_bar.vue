@@ -17,7 +17,7 @@
             <template v-for="(item, index) in value">
                 <template v-if="percent(item)!==null">
                     <div class="bar" :class="{'float-right': negative}" :style="style(item, index)">
-                        <span v-if="width(item)>10">{{ percent(item) }}%</span>
+                        <span v-if="width(item)>5">{{ percent(item) }}%</span>
                     </div>
                 </template>
             </template>
