@@ -17,7 +17,7 @@ use Override;
 
 class DependencyParser extends BaseDependencyParser
 {
-    protected const string COPYRIGHT = 'Copyright (C) 2025 European Union';
+    protected const COPYRIGHT = 'Copyright (C) 2025 European Union';
 
     /**
      * Override: exclude modular-forms from the list of NPM dependencies
