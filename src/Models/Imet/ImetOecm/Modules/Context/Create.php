@@ -39,7 +39,7 @@ final class Create extends Modules\Component\ImetModule
         $this->module_type = ModuleTypes::SIMPLE;
         $this->module_title = trans('imet-core::oecm_context.Create.title');
         $this->module_fields = [
-            ['name' => 'version',   'type' => 'version-oecm',   'label' => trans('imet-core::common.version')],
+            ['name' => 'version',   'type' => 'custom::version-oecm',   'label' => trans('imet-core::common.version')],
             ['name' => 'language',  'type' => 'toggle-ImetOECM_languages',                        'label' => trans('imet-core::common.language')],
             ['name' => 'Year',      'type' => 'yearMaxCurrent',                                 'label' => trans('imet-core::oecm_context.Create.fields.Year')],
             ['name' => 'wdpa_id',   'type' => 'custom::selector-wdpa',                       'label' => trans('imet-core::oecm_context.Create.fields.wdpa_id')],
