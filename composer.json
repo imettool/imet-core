@@ -16,7 +16,7 @@
     "require": {
         "php": ">=8.4",
         "ext-json": "*",
-        "akp/modular-forms": "3.4.9"
+        "akp/modular-forms": "3.5.3"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"

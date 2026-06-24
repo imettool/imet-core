@@ -8,7 +8,7 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__akp/modular-forms 3.4.9__
+__akp/modular-forms 3.5.3__
   * https://code.europa.eu/akp/modular-forms
   * License: EUPL-1.2
   * Copyright: 
