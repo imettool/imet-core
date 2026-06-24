@@ -5,8 +5,8 @@
         "build": "vite build"
     },
     "dependencies": {
-        "imet-core": "file:./vendor/andreamarelli/imet-core/",
-        "modular-forms": "file:./vendor/andreamarelli/modular-forms/"
+        "imet-core": "file:./vendor/imettool/imet-core/",
+        "modular-forms": "file:./vendor/akp/modular-forms/"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.12",

@@ -6,11 +6,11 @@
         "echarts": "^5.5.1",
         "html-to-image": "1.11.1",
         "maplibre-gl": "^5.2.0",
-        "modular-forms": "file:./vendor/andreamarelli/modular-forms",
+        "modular-forms": "file:./vendor/akp/modular-forms",
         "pinia": "^2.1.7",
         "vue3-colorpicker": "^2.3.0"
     },
     "workspaces": [
-        "vendor/andreamarelli/modular-forms"
+        "vendor/akp/modular-forms"
     ]
 }

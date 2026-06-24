@@ -1,5 +1,5 @@
 {
-    "name": "andreamarelli/imet-core",
+    "name": "imettool/imet-core",
     "description": "Imet core package",
     "version": "3.1.6",
     "authors": [
@@ -16,15 +16,15 @@
     "require": {
         "php": ">=8.4",
         "ext-json": "*",
-        "andreamarelli/modular-forms": "^3.4.9"
+        "akp/modular-forms": "3.4.9"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0"
     },
     "repositories": {
-        "andreamarelli/modular-forms": {
+        "akp/modular-forms": {
             "type": "vcs",
-            "url": "https://github.com/andreamarelli/modular-forms"
+            "url": "https://code.europa.eu/akp/modular-forms"
         }
     },
     "autoload": {

@@ -17,7 +17,7 @@ use Override;
 
 class DependencyParser extends BaseDependencyParser
 {
-    protected const COPYRIGHT = 'Copyright (C) 2025 European Union';
+    protected const string COPYRIGHT = 'Copyright (C) 2025 European Union';
 
     /**
      * Override: exclude modular-forms from the list of NPM dependencies
@@ -64,7 +64,7 @@ class DependencyParser extends BaseDependencyParser
 
         // Hardcoded versions
         if ($packageInfo['name'] == 'modular-forms') {
-            $details = self::getDetailsFromComposerLock(['andreamarelli/'.$packageInfo['name']], false);
+            $details = self::getDetailsFromComposerLock(['imettool/'.$packageInfo['name']], false);
             $version = $details[0]['version'];
         }
 

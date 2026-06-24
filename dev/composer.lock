@@ -1230,7 +1230,7 @@
             "time": "2025-08-24T17:25:34+00:00"
         },
         {
-            "name": "andreamarelli/imet-core",
+            "name": "imettool/imet-core",
             "version": "3.0.2",
             "dist": {
                 "type": "path",
@@ -1238,7 +1238,7 @@
                 "reference": "acce1970f0f8700d6aeaf562f15b432d19303337"
             },
             "require": {
-                "andreamarelli/modular-forms": "^3.4.9",
+                "akp/modular-forms": "3.4.9",
                 "ext-json": "*",
                 "php": ">=8.4"
             },
@@ -1285,18 +1285,12 @@
             }
         },
         {
-            "name": "andreamarelli/modular-forms",
+            "name": "akp/modular-forms",
             "version": "3.4.9",
             "source": {
                 "type": "git",
-                "url": "git@github.com:andreamarelli/modular-forms.git",
+                "url": "https://code.europa.eu/akp/modular-forms",
                 "reference": "c49452b0df566326def6cc3edd6c5fc3ada4e47c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/andreamarelli/modular-forms/zipball/c49452b0df566326def6cc3edd6c5fc3ada4e47c",
-                "reference": "c49452b0df566326def6cc3edd6c5fc3ada4e47c",
-                "shasum": ""
             },
             "require": {
                 "conedevelopment/i18n": "^1.1",
@@ -1359,11 +1353,7 @@
                 }
             ],
             "description": "A package to build modular data collection forms",
-            "support": {
-                "source": "https://github.com/andreamarelli/modular-forms/tree/v3.4.9",
-                "issues": "https://github.com/andreamarelli/modular-forms/issues"
-            },
-            "time": "2025-10-30T09:01:21+00:00"
+            "time": "2026-03-19T22:10:28+00:00"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
