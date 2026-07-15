@@ -35,7 +35,7 @@ final class Connectivity extends Modules\Component\ImetModule
         $this->module_fields = [
             ['name' => 'DocumentedConnectivity',    'type' => 'custom::radio-ImetV2_DocumentedConnectivity', 'label' => trans('imet-core::v2_context.Connectivity.fields.DocumentedConnectivity')],
             ['name' => 'EvidenceOfConnectivity',    'type' => 'custom::radio-ImetV2_EvidenceOfConnectivity', 'label' => trans('imet-core::v2_context.Connectivity.fields.EvidenceOfConnectivity')],
-            ['name' => 'EvidencesListConnectivity',    'type' => 'checkbox-ImetV2_EvidencesListConnectivity'],
+            ['name' => 'EvidencesListConnectivity',    'type' => 'checkbox-ImetV2_EvidencesListConnectivity', 'label' => trans('imet-core::v2_context.Connectivity.fields.EvidencesListConnectivity')],
             ['name' => 'ConnectivityIntegrationInManagementPlan',    'type' => 'custom::radio-ImetV2_ConnectivityIntegrationInManagementPlan', 'label' => trans('imet-core::v2_context.Connectivity.fields.ConnectivityIntegrationInManagementPlan')],
         ];
 

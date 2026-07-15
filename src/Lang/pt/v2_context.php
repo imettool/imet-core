@@ -319,27 +319,18 @@ return [
     'Connectivity' => [
         'title'  => 'Conectividade',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Primeiro, documente as evidências',
-            'EvidenceOfConnectivity' => '2.	Baseie a sua classificação nas evidências, não nas suas suposições',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analise o grau de integração da conectividade no planeamento de gestão',
+            'DocumentedConnectivity' => 'Q1. Avaliação da conectividade estrutural',
+            'EvidenceOfConnectivity' => 'Q2. Confiança na conectividade funcional',
+            'EvidencesListConnectivity' => 'Q3. Evidências e observações-chave',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integração da conectividade na gestão',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Existe conectividade estrutural documentada entre a área protegida e os habitats circundantes (corredores, continuidade de habitats, correntes marinhas, trampolins)?',
-            'EvidenceOfConnectivity' => 'Existe evidência de conectividade funcional (movimento de espécies, migração, troca genética, dispersão larvar)?',
-            'EvidencesListConnectivity' => 'As indicações e evidências podem incluir:',
-            'ConnectivityIntegrationInManagementPlan' => 'A conectividade está integrada no planeamento de gestão?',
+            'DocumentedConnectivity' => 'Existe conectividade estrutural documentada entre a área protegida e os habitats circundantes (p. ex. corredores ecológicos, continuidade de habitats, trampolins, zonas tampão, sistemas fluviais ou correntes marinhas)?',
+            'EvidenceOfConnectivity' => 'Qual é o nível de confiança de que ocorre conectividade ecológica entre a área protegida e os ecossistemas circundantes (p. ex. movimento de espécies, migração, fluxo génico, dispersão larvar ou interações tróficas)?',
+            'EvidencesListConnectivity' => 'Descreva as principais observações ou informações que apoiam a sua avaliação na Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'Em que medida a conectividade ecológica é considerada explicitamente na gestão da área protegida?',
         ],
-        'connectivity_title' => 'Como avaliar a conectividade no IMET',
-        'link_to_me' => '4.	Relacione a conectividade com a eficácia de gestão',
-        'link_to_me_details' => '
-            <p>A classificação selecionada informa a análise IMET em:</p>
-            <ul>
-                <li>C1.5 – Serviços ecossistémicos (importância e priorização)</li>
-                <li>I1 - Informação básica</li>
-                <li>PR7 - Gestão dos valores e ameaças principais (ações de gestão)</li>
-                <li>O/C2 - Resultados ecológicos e/ou O/C3: Efeitos na qualidade de vida local</li>
-            </ul>',
-
+        'connectivity_title' => 'Avaliação da conectividade',
         'module_info' => '<p>A conectividade refere-se às ligações ecológicas estruturais e funcionais entre a área protegida e
             os habitats ou ecossistemas circundantes que permitem processos ecológicos chave, como o movimento de espécies,
             o fluxo génico, a migração, a dispersão larvar e a adaptação climática.</p>
@@ -371,7 +362,44 @@ return [
                 <li>Dinâmicas de spillover</li>
                 <li>A viabilidade a longo prazo dos elementos de conservação chave</li>
                 <li>Adaptação climática</li>
-            </ul>',
+            </ul>
+             <b class="blue">Como avaliar a conectividade no IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Primeiro, documente as evidências</b>
+                    <p>Antes de classificar a conectividade, avalie ambas:</p>
+                    <ul>
+                        <li>Conectividade estrutural: evidência de continuidade de habitats (p. ex. corredores, trampolins, zonas tampão, correntes marinhas ou redes ecológicas transfronteiriças). </li>
+                        <li>Conectividade funcional: evidência de que os processos ecológicos ocorrem ao longo da paisagem ou da paisagem marinha (p. ex. movimento de espécies, migração, fluxo génico ou dispersão larvar).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Baseie a sua classificação nas evidências, não nas suas suposições</b>
+                    <p>Após rever a informação disponível, selecione a classificação que melhor reflete o nível de conectividade documentado:</p>
+                    <ul>
+                        <li>Sem conectividade: a área protegida está muito isolada. </li>
+                        <li>Conectividade limitada: as ligações ecológicas são fracas ou fragmentadas. </li>
+                        <li>Conectividade moderada: existe uma continuidade ecológica parcial. </li>
+                        <li>Conectividade forte: a área protegida faz parte de uma rede ecológica integrada. </li>
+                    </ul>
+                    <p>Quando a evidência for limitada, indique o nível de confiança apropriado em vez de assumir uma conectividade mais forte.</p>
+                </li>
+                <li>
+                    <b>Relacione a conectividade com o planeamento de gestão</b>
+                    <p>Avalie se a conectividade é considerada explicitamente no planeamento de gestão através de medidas como a proteção de corredores, a gestão de zonas tampão, ações de restauro ou a coordenação com áreas protegidas vizinhas.</p>
+                </li>
+                <li>
+                    <b>Relacione a conectividade com a eficácia de gestão</b>
+                    <p>A classificação selecionada informa a análise IMET em:<p>
+                    <ul>
+                        <li>C1.5 – Serviços ecossistémicos (importância e priorização); </li>
+                        <li>I1 – Informação básica; </li>
+                        <li>PR7 – Gestão dos valores e ameaças principais (ações de gestão); </li>
+                        <li>O/C2 – Resultados ecológicos e/ou O/C3 – Efeitos na qualidade de vida local.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [

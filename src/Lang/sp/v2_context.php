@@ -321,27 +321,18 @@ return [
     'Connectivity' => [
         'title'  => 'Conectividad',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Primero, documente las evidencias',
-            'EvidenceOfConnectivity' => '2.	Base su clasificación en las evidencias, no en sus suposiciones',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analice el grado de integración de la conectividad en la planificación de la gestión',
+            'DocumentedConnectivity' => 'Q1. Evaluación de la conectividad estructural',
+            'EvidenceOfConnectivity' => 'Q2. Confianza en la conectividad funcional',
+            'EvidencesListConnectivity' => 'Q3. Evidencias y observaciones clave',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integración de la conectividad en la gestión',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => '¿Existe conectividad estructural documentada entre el área protegida y los hábitats circundantes (corredores, continuidad de hábitats, corrientes marinas, piedras de paso)?',
-            'EvidenceOfConnectivity' => '¿Existe evidencia de conectividad funcional (movimiento de especies, migración, intercambio genético, dispersión larval)?',
-            'EvidencesListConnectivity' => 'Las indicaciones y evidencias pueden incluir:',
-            'ConnectivityIntegrationInManagementPlan' => '¿La conectividad está integrada en la planificación de la gestión?',
+            'DocumentedConnectivity' => '¿Existe conectividad estructural documentada entre el área protegida y los hábitats circundantes (p. ej. corredores ecológicos, continuidad de hábitats, piedras de paso, zonas de amortiguamiento, sistemas fluviales o corrientes marinas)?',
+            'EvidenceOfConnectivity' => '¿Cuál es el nivel de confianza de que exista conectividad ecológica entre el área protegida y los ecosistemas circundantes (p. ej. movimiento de especies, migración, flujo génico, dispersión larval o interacciones tróficas)?',
+            'EvidencesListConnectivity' => 'Describa las principales observaciones o información que respaldan su evaluación en Q2.',
+            'ConnectivityIntegrationInManagementPlan' => '¿En qué medida se considera explícitamente la conectividad ecológica en la gestión del área protegida?',
         ],
-        'connectivity_title' => 'Cómo evaluar la conectividad en IMET',
-        'link_to_me' => '4.	Vincule la conectividad con la efectividad de la gestión',
-        'link_to_me_details' => '
-            <p>La clasificación seleccionada informa el análisis IMET en:</p>
-            <ul>
-                <li>C1.5 – Servicios ecosistémicos (importancia y priorización)</li>
-                <li>I1 - Información básica</li>
-                <li>PR7 - Gestión de los valores y amenazas principales (acciones de gestión)</li>
-                <li>O/C2 - Resultados ecológicos y/o O/C3: Efectos en la calidad de vida local</li>
-            </ul>',
-
+        'connectivity_title' => 'Evaluación de la conectividad',
         'module_info' => '<p>La conectividad se refiere a los vínculos ecológicos estructurales y funcionales entre el área protegida y
             los hábitats o ecosistemas circundantes que permiten procesos ecológicos clave, como el movimiento de especies,
             el flujo génico, la migración, la dispersión larval y la adaptación climática.</p>
@@ -373,7 +364,44 @@ return [
                 <li>Dinámicas de spillover</li>
                 <li>La viabilidad a largo plazo de los elementos clave de conservación</li>
                 <li>Adaptación climática</li>
-            </ul>',
+            </ul>
+             <b class="blue">Cómo evaluar la conectividad en IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Primero, documente las evidencias</b>
+                    <p>Antes de clasificar la conectividad, evalúe ambas:</p>
+                    <ul>
+                        <li>Conectividad estructural: evidencia de continuidad de hábitats (p. ej. corredores, piedras de paso, zonas de amortiguamiento, corrientes marinas o redes ecológicas transfronterizas). </li>
+                        <li>Conectividad funcional: evidencia de que los procesos ecológicos ocurren a lo largo del paisaje o del paisaje marino (p. ej. movimiento de especies, migración, flujo génico o dispersión larval).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base su clasificación en las evidencias, no en sus suposiciones</b>
+                    <p>Tras revisar la información disponible, seleccione la clasificación que mejor refleje el nivel de conectividad documentado:</p>
+                    <ul>
+                        <li>Sin conectividad: el área protegida está muy aislada. </li>
+                        <li>Conectividad limitada: los vínculos ecológicos son débiles o fragmentados. </li>
+                        <li>Conectividad moderada: existe una continuidad ecológica parcial. </li>
+                        <li>Conectividad fuerte: el área protegida forma parte de una red ecológica integrada. </li>
+                    </ul>
+                    <p>Cuando la evidencia sea limitada, indique el nivel de confianza apropiado en lugar de asumir una mayor conectividad.</p>
+                </li>
+                <li>
+                    <b>Vincule la conectividad con la planificación de la gestión</b>
+                    <p>Evalúe si la conectividad se considera explícitamente en la planificación de la gestión mediante medidas como la protección de corredores, la gestión de zonas de amortiguamiento, acciones de restauración o la coordinación con áreas protegidas vecinas.</p>
+                </li>
+                <li>
+                    <b>Vincule la conectividad con la efectividad de la gestión</b>
+                    <p>La clasificación seleccionada informa el análisis IMET en:<p>
+                    <ul>
+                        <li>C1.5 – Servicios ecosistémicos (importancia y priorización); </li>
+                        <li>I1 – Información básica; </li>
+                        <li>PR7 – Gestión de los valores y amenazas principales (acciones de gestión); </li>
+                        <li>O/C2 – Resultados ecológicos y/o O/C3 – Efectos en la calidad de vida local.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [

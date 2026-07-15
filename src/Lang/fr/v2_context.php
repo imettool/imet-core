@@ -323,27 +323,18 @@ return [
     'Connectivity' => [
         'title'  => 'Connectivité',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Commencer par documenter les preuves',
-            'EvidenceOfConnectivity' => '2.	Baser la classification sur les preuves, non sur les suppositions',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analyser le degré d\'intégration de la connectivité dans la planification de la gestion',
+            'DocumentedConnectivity' => 'Q1. Évaluation de la connectivité structurelle',
+            'EvidenceOfConnectivity' => 'Q2. Confiance dans la connectivité fonctionnelle',
+            'EvidencesListConnectivity' => 'Q3. Preuves et observations clés',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Intégration de la connectivité dans la gestion',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Existe-t-il une connectivité structurelle documentée entre l\'aire protégée et les habitats environnants (corridors, continuité des habitats, courants marins, îlots-relais) ?',
-            'EvidenceOfConnectivity' => 'Existe-t-il des preuves de connectivité fonctionnelle (déplacement des espèces, migration, échanges génétiques, dispersion larvaire) ?',
-            'EvidencesListConnectivity' => 'Les indications et preuves peuvent inclure :',
-            'ConnectivityIntegrationInManagementPlan' => 'La connectivité est-elle intégrée dans la planification de la gestion ?',
+            'DocumentedConnectivity' => 'Existe-t-il une connectivité structurelle documentée entre l\'aire protégée et les habitats environnants (p. ex. corridors écologiques, continuité des habitats, îlots-relais, zones tampons, systèmes fluviaux ou courants marins) ?',
+            'EvidenceOfConnectivity' => 'Quel est le niveau de confiance quant à l\'existence d\'une connectivité écologique entre l\'aire protégée et les écosystèmes environnants (p. ex. déplacement des espèces, migration, flux génétique, dispersion larvaire ou interactions trophiques) ?',
+            'EvidencesListConnectivity' => 'Veuillez décrire les principales observations ou informations qui appuient votre évaluation à la Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'Dans quelle mesure la connectivité écologique est-elle explicitement prise en compte dans la gestion de l\'aire protégée ?',
         ],
-        'connectivity_title' => 'Comment évaluer la connectivité dans l\'IMET',
-        'link_to_me' => '4.	Relier la connectivité à l\'efficacité de la gestion',
-        'link_to_me_details' => '
-            <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :</p>
-            <ul>
-                <li>C1.5 – Services écosystémiques (importance et priorisation)</li>
-                <li>I1 - Informations de base</li>
-                <li>PR7 - Gestion des valeurs clés et des menaces (actions de gestion)</li>
-                <li>O/C2 - Résultats écologiques et/ou O/C3 : Effets sur la qualité de vie locale</li>
-            </ul>',
-
+        'connectivity_title' => 'Évaluation de la connectivité',
         'module_info' => '<p>La connectivité désigne les liens écologiques structurels et fonctionnels entre l\'aire protégée et
             les habitats ou écosystèmes environnants qui permettent des processus écologiques clés tels que le déplacement des espèces, le flux génétique,
             la migration, la dispersion larvaire et l\'adaptation au changement climatique.</p>
@@ -375,7 +366,44 @@ return [
                 <li>La dynamique de débordement (spillover)</li>
                 <li>La viabilité à long terme des éléments de conservation clés</li>
                 <li>L\'adaptation au changement climatique</li>
-            </ul>',
+            </ul>
+             <b class="blue">Comment évaluer la connectivité dans l\'IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Commencer par documenter les preuves</b>
+                    <p>Avant de classer la connectivité, évaluez les deux aspects :</p>
+                    <ul>
+                        <li>Connectivité structurelle : preuves de continuité des habitats (p. ex. corridors, îlots-relais, zones tampons, courants marins ou réseaux écologiques transfrontaliers). </li>
+                        <li>Connectivité fonctionnelle : preuves que des processus écologiques se produisent à l\'échelle du paysage ou du paysage marin (p. ex. déplacement des espèces, migration, flux génétique ou dispersion larvaire).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Baser la classification sur les preuves, non sur les suppositions</b>
+                    <p>Après avoir examiné les informations disponibles, sélectionnez la classification qui reflète le mieux le niveau de connectivité documenté :</p>
+                    <ul>
+                        <li>Pas de connectivité : l\'aire protégée est très isolée. </li>
+                        <li>Connectivité limitée : les liens écologiques sont faibles ou fragmentés. </li>
+                        <li>Connectivité modérée : une continuité écologique partielle existe. </li>
+                        <li>Connectivité forte : l\'aire protégée fait partie d\'un réseau écologique intégré. </li>
+                    </ul>
+                    <p>Lorsque les preuves sont limitées, indiquez le niveau de confiance approprié plutôt que de supposer une connectivité plus forte.</p>
+                </li>
+                <li>
+                    <b>Relier la connectivité à la planification de la gestion</b>
+                    <p>Évaluez si la connectivité est explicitement prise en compte dans la planification de la gestion à travers des mesures telles que la protection des corridors, la gestion des zones tampons, des actions de restauration ou la coordination avec les aires protégées voisines.</p>
+                </li>
+                <li>
+                    <b>Relier la connectivité à l\'efficacité de la gestion</b>
+                    <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :<p>
+                    <ul>
+                        <li>C1.5 – Services écosystémiques (importance et priorisation) ; </li>
+                        <li>I1 – Informations de base ; </li>
+                        <li>PR7 – Gestion des valeurs clés et des menaces (actions de gestion) ; </li>
+                        <li>O/C2 – Résultats écologiques et/ou O/C3 – Effets sur la qualité de vie locale.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [

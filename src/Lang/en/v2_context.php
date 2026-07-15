@@ -319,27 +319,18 @@ return [
     'Connectivity' => [
         'title'  => 'Connectivity',
         'fields' => [
-            'DocumentedConnectivity' => '1.	First, document the evidence',
-            'EvidenceOfConnectivity' => '2.	Base your classification on the evidence, not your assumptions',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analyse the degree of integration of connectivity in management planning',
+            'DocumentedConnectivity' => 'Q1. Assessment of structural connectivity',
+            'EvidenceOfConnectivity' => 'Q2. Confidence in functional connectivity',
+            'EvidencesListConnectivity' => 'Q3. Evidence and key observations',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integration of connectivity into management',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
-            'EvidenceOfConnectivity' => 'Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
-            'EvidencesListConnectivity' => 'Indications and evidence may include:',
-            'ConnectivityIntegrationInManagementPlan' => 'Is connectivity integrated into management planning?',
+            'DocumentedConnectivity' => 'Is there documented structural connectivity between the protected area and surrounding habitats (e.g. ecological corridors, habitat continuity, stepping stones, buffer zones, river systems or marine currents)?',
+            'EvidenceOfConnectivity' => 'What is the level of confidence that ecological connectivity occurs between the protected area and surrounding ecosystems (e.g. species movement, migration, gene flow, larval dispersal or trophic interactions)?',
+            'EvidencesListConnectivity' => 'Please describe the main observations or information that support your assessment in Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'To what extent is ecological connectivity explicitly considered in protected area management?',
         ],
-        'connectivity_title' => 'How to assess connectivity in IMET',
-        'link_to_me' => '4.	Link connectivity to management effectiveness',
-        'link_to_me_details' => '
-            <p>The selected classification informs IMET analysis across:</p>
-            <ul>
-                <li>C1.5 – Ecosystem services (importance and prioritisation)</li>
-                <li>I1 - Basic information</li>
-                <li>PR7 - Management of key values and threats (management actions)</li>
-                <li>O/C2 - Ecological outcomes and/or O/C3: Effects on local quality of life</li>
-            </ul>',
-
+        'connectivity_title' => 'Connectivity assessment',
         'module_info' => '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
             surrounding habitats or ecosystems that enable key ecological processes such as species movement, gene flow,
             migration, larval dispersal, and climate adaptation.</p>
@@ -371,7 +362,44 @@ return [
                 <li>Spillover dynamics</li>
                 <li>The long-term viability of key conservation elements</li>
                 <li>Climate adaptation</li>
-            </ul>',
+            </ul>
+             <b class="blue">How to assess connectivity in IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>First, document the evidence</b>
+                    <p>Before classifying connectivity, assess both:</p>
+                    <ul>
+                        <li>Structural connectivity: evidence of habitat continuity (e.g. corridors, stepping stones, buffer zones, marine currents or transboundary ecological networks). </li>
+                        <li>Functional connectivity: evidence that ecological processes occur across the landscape or seascape (e.g. species movement, migration, gene flow or larval dispersal).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base your classification on the evidence, not your assumptions</b>
+                    <p>After reviewing the available information, select the classification that best reflects the documented level of connectivity:</p>
+                    <ul>
+                        <li>No connectivity: the protected area is highly isolated. </li>
+                        <li>Limited connectivity: ecological links are weak or fragmented. </li>
+                        <li>Moderate connectivity: partial ecological continuity exists. </li>
+                        <li>Strong connectivity: the protected area is part of an integrated ecological network. </li>
+                    </ul>
+                    <p>When evidence is limited, indicate the appropriate confidence level rather than assuming stronger connectivity.</p>
+                </li>
+                <li>
+                    <b>Link connectivity to management planning</b>
+                    <p>Assess whether connectivity is explicitly considered in management planning through measures such as corridor protection, buffer zone management, restoration actions or coordination with neighbouring protected areas.</p>
+                </li>
+                <li>
+                    <b>Link connectivity to management effectiveness</b>
+                    <p>The selected classification informs IMET analysis across:<p>
+                    <ul>
+                        <li>C1.5 – Ecosystem services (importance and prioritisation); </li>
+                        <li>I1 – Basic information; </li>
+                        <li>PR7 – Management of key values and threats (management actions); </li>
+                        <li>O/C2 – Ecological outcomes and/or O/C3 – Effects on local quality of life.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [

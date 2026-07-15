@@ -33,15 +33,6 @@ $definitions['label_width'] = 7;
 
 @endforeach
 
-<div class="module-row !mb-4">
-    <div class="module-row__label !w-2/5">
-        <div class="font-bold">@lang('imet-core::v2_context.Connectivity.link_to_me')</div>
-    </div>
-    <div>
-        @lang('imet-core::v2_context.Connectivity.link_to_me_details')
-    </div>
-</div>
-
 @push('scripts')
     <style lang="postcss">
         #module_{{ $definitions['slug'] }}  {
@@ -53,6 +44,14 @@ $definitions['label_width'] = 7;
             .info-bar .message {
 
                 color: oklch(21% 0.034 264.665); /* tailwind text-gray-900; */
+
+                ol {
+                    margin-left: 20px;
+
+                    ul {
+                        margin-left: 20px;
+                    }
+                }
 
                 .blue {
                     color: oklch(48.8% 0.243 264.376);
