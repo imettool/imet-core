@@ -1421,6 +1421,7 @@ return [
         'fields' => [
             'Intervention' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of ecosystem services management',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'categories' => [
