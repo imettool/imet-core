@@ -1384,7 +1384,6 @@ return [
         'fields' => [
             'Program' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation des mesures d’adaptation',
-            'EvaluationScoreAdequacy' => 'Adéquation des mesures de gestion',
             'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],

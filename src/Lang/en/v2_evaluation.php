@@ -1383,7 +1383,6 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating: Adequacy of adaptation measures',
-            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
             'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],

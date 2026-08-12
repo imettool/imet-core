@@ -1383,7 +1383,6 @@ return [
         'fields' => [
             'Program' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la gestión de la adaptación',
-            'EvaluationScoreAdequacy' => 'Adecuación de las medidas de gestión',
             'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
