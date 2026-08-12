@@ -898,7 +898,6 @@ return [
         'fields' => [
             'Activity' => 'Critério - Conceito Medido – Variável',
             'EvaluationScore' => 'Adequação das acções de gestão',
-            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'groups' => [
@@ -1346,8 +1345,6 @@ return [
         'fields' => [
             'Program' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Adequação da investigação e monitorização a longo prazo',
-            'EvaluationScoreAdequacy' => 'Adequação das acções de gestão',
-            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
