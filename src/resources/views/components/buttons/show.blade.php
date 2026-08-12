@@ -22,6 +22,9 @@ if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
     <span id="show_{{ $item->getKey() }}">
         <button class="btn-nav mr-1 small">{!! \ModularForms\Helpers\Template::icon('eye', 'white') !!}</button>
     </span>
+    <tooltip>
+        {{ ucfirst(trans('modular-forms::common.show')) }}
+    </tooltip>
     <tooltip :on-click=true
              anchor-elem-id="show_{{ $item->getKey() }}">
 
