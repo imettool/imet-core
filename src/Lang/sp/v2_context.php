@@ -553,7 +553,6 @@ return [
             'Disputes' => 'Ingresos por litigios (tesoro nacional)',
             'Partners' => 'Contribuciones de los socios',
             'total' => 'Total',
-            'percentage' => '% del presupuesto previsto',
         ],
         'predefined_values' => [
             '% anual total disponible',

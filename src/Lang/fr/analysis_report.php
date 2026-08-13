@@ -267,14 +267,6 @@ return [
             'persistent_increase' => 'Augmentation persistante de la productivité [km2]',
         ],
     ],
-    'total_carbon' => [
-        'title' => 'Carbone total',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Moyenne [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Somme [Mg]',
-        'std_dev' => 'Std. Dev.',
-    ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
             'context_sub_indicators' => 'Valeur moyenne des six sous-indicateurs de la valeur et l’importance',
@@ -297,24 +289,6 @@ return [
             'area_prot_terr_perc' => 'Aire protégée',
             'protconn' => 'Aires protégées et connectées',
         ],
-        'dopa_indicators' => [
-            'terrestial_area' => [
-                'title_table' => 'Aire terrestre',
-                'area_terr_perc' => 'Couverture [%]',
-                'area_prot_terr_km2' => 'Aire terrestre protégée [km2]',
-                'area_terr_km2' => 'Superficie totale des terres [km2]',
-                'carbon_stdev_c_mg' => 'Archi Terres 11 seuil',
-
-            ],
-            'marine_indicators' => [
-                'title_table' => 'Aire marine',
-                'area_mar_perc' => 'Couverture [%]',
-                'area_prot_mar_km2' => 'Aire marine protégée [km2]',
-                'area_mar_km2' => 'Aire marine totale [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Archi 11 seuil',
-            ],
-        ],
-
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Classement des indicateurs IMET',

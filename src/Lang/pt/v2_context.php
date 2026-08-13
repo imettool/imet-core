@@ -551,7 +551,6 @@ return [
             'Disputes' => 'Rendimento do litígio/multas (tesouro nacional)',
             'Partners' => 'Contribuições dos parceiros',
             'total' => 'total',
-            'percentage' => '% do orçamento previsto',
         ],
         'predefined_values' => [
             'Orçamento anual total disponível',

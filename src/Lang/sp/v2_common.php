@@ -26,7 +26,6 @@ return [
         'climate' => 'El cambio climático y la conservación',
         'ecosystem_services' => 'Servicios/funciones ecosistémicas y dependencia de las comunidades',
         'objectives' => 'Objetivos y gestión',
-        'cross_analysis' => 'Cross Analysis',
     ],
 
     'assessment' => [

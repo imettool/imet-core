@@ -267,14 +267,6 @@ return [
             'persistent_increase' => 'Aumento persistente de la productividad [km2]',
         ],
     ],
-    'total_carbon' => [
-        'title' => 'Carbono total',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Media [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Suma [Mg]',
-        'std_dev' => 'Desviación estándar Dev',
-    ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
             'context_sub_indicators' => 'Contribución media de los seis subindicadores al valor y la importancia',

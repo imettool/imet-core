@@ -552,7 +552,6 @@ return [
             'Disputes' => 'Contentieux (trésor public)',
             'Partners' => 'Contributions des partenaires',
             'total' => 'Total',
-            'percentage' => '% des prévisions du budget',
         ],
         'predefined_values' => [
             'Budget total annuel disponible',
