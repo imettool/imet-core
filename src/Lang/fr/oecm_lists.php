@@ -12,6 +12,13 @@
 
 return [
 
+    'languages' => [
+        'fr' => 'Français',
+        'en' => 'Anglais',
+        'sp' => 'Espagnol',
+        'pt' => 'Portugais',
+    ],
+
     'ShortOrLongTerm' => [
         'short' => 'Court terme',
         'long' => 'Long terme',
