@@ -60,6 +60,11 @@ class CustomInputPreview extends InputPreview
                 return view('imet-core::components.inputs-preview.radio', ['list' => $list, 'value' => $this->value]);
             }
 
+            // Heatmap rating
+            if (Str::contains($type, 'heatmapRating')) {
+                return view('imet-core::components.inputs-preview.heatmap-rating');
+            }
+
             // ######### IMET or OECM specific inputs #########
 
             // Version
@@ -93,6 +98,7 @@ class CustomInputPreview extends InputPreview
                 'oecm-support-integration-stakeholder-with-ranking',
                 'oecm-threat-with-ranking',
                 'oecm-key-elements-element',
+                'heatmapRating'
             ])) {
                 return parent::render();
             }
