@@ -898,7 +898,6 @@ return [
         'fields' => [
             'Activity' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation des mesures de gestion',
-            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -1346,8 +1345,6 @@ return [
         'fields' => [
             'Program' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation de la recherche et de la surveillance écologique à long terme',
-            'EvaluationScoreAdequacy' => 'Adéquation des mesures de gestion',
-            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
@@ -1387,7 +1384,6 @@ return [
         'fields' => [
             'Program' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation des mesures d’adaptation',
-            'EvaluationScoreAdequacy' => 'Adéquation des mesures de gestion',
             'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -1426,6 +1422,7 @@ return [
         'fields' => [
             'Intervention' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation de la gestion des services écosystémiques',
+            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'categories' => [

@@ -8,12 +8,12 @@ use ModularForms\Helpers\Template;
 ?>
 
 {{-- Custom view for IMET v1 --}}
-@if(Str::startsWith($module->getSlug(), 'imet__v1'))
+@if(Str::contains($module->getSlug(), 'imet_v1'))
     @include('imet-core::v1.info', ['module' => $module])
 
     {{-- Custom view for IMET v2 or OECM --}}
-@elseif(Str::startsWith($module->getSlug(), 'imet__v2')
-    || Str::startsWith($module->getSlug(), 'imet__oecm'))
+@elseif(Str::contains($module->getSlug(), 'imet_v2')
+    || Str::contains($module->getSlug(), 'imet_oecm'))
     @include('imet-core::components.info', ['module' => $module])
 
 @elseif($module->module_info!==null)

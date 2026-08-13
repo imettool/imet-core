@@ -138,7 +138,7 @@ final class EcosystemServices extends Modules\Component\ImetModule
             $category_count = 0;
             foreach ($records as $record) {
                 if (in_array($record['group_key'], $groups)) {
-                    $row_stats = self::row_stats($record);
+                    $row_stats = self::calculateRank($record);
                     if ($row_stats !== null) {
                         $category_sum += floatval($row_stats);
                         $category_count++;
@@ -152,12 +152,16 @@ final class EcosystemServices extends Modules\Component\ImetModule
         return $category_stats;
     }
 
-    private static function row_stats(array $record): ?float
+    public static function calculateRank(array $item): ?float
     {
-        if ($record['Importance'] !== null && $record['ImportanceRegional'] !== null && $record['ImportanceGlobal'] !== null) {
-            return floatval($record['Importance'])
-                + (floatval($record['ImportanceRegional']) / 3)
-                + ((2 - floatval($record['ImportanceGlobal'])) / 4);
+        $importance = $item['Importance'];
+        $dependence = $item['ImportanceRegional'];
+        $trend = $item['ImportanceGlobal'];
+
+        if($importance !== null && $dependence !== null && $trend !== null) {
+            return (floatval($importance)
+                + (floatval($dependence) / 3)
+                + ((floatval($trend) + 2) / 4));
         }
 
         return null;

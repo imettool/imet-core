@@ -11,29 +11,25 @@
 import ModuleImet from "../../../Module.js";
 
 import { computed } from "vue";
-import heatmapRating from "../../../../inputs/heatmap-rating.vue";
 
-export default class ThreatsAffectingKCEs extends ModuleImet {
-
-    constructor(input_data = {}, custom_props = {}) {
-
-        return super(input_data, custom_props)
-            .component('heatmap-rating', heatmapRating);
-    }
+export default class KeyConservationElements extends ModuleImet {
 
 
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
 
-
-        const kce_names = computed(() => {
-            return window.KeyConservationElements.kceNames;
+        const kceNames = computed(() => {
+            let names = [];
+            setup_obj.records.forEach(function (item, index) {
+                names[index] = item['kces'];
+            });
+            return names;
         });
 
         return {
             ...setup_obj,
-            kce_names
+            kceNames
         }
     }
 

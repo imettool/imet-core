@@ -1,7 +1,7 @@
 <?php
 /** @var Imet $item */
 /** @var string $mode */
-/** @var array $warnings */
+/** @var array $cross_analysis_warnings */
 
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\Imet\ImetV2\Controller;
@@ -31,8 +31,8 @@ $i = 0;
 </div>
 
 <div class="imet_modules">
-    @if(count($warnings) > 0)
-        @foreach($warnings as $k => $w)
+    @if(count($cross_analysis_warnings) > 0)
+        @foreach($cross_analysis_warnings as $k => $w)
             <div class="module-container">
                 <div class="module-header">
                     <div class="module-code text-center">

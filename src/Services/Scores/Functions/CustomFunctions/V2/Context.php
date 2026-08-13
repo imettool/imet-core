@@ -13,6 +13,7 @@
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
 use ImetCore\Models\Imet\ImetV2\Modules\Context\EcosystemServices;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceClassification;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceEcosystemServices;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceHabitats;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ImportanceSpecies;
@@ -23,7 +24,25 @@ trait Context
 {
     protected static function score_c11(int $imet_id): ?float
     {
-        return V1Scores::score_c12($imet_id);
+        $values = ImportanceClassification::getModule($imet_id)
+            ->filter(fn (ImportanceClassification $record): bool => $record['EvaluationScore'] !== null
+                && intval($record['EvaluationScore']) >= 0
+                && $record['IncludeInStatistics'] == 1)->map(function (ImportanceClassification $record): ImportanceClassification {
+                $record['SignificativeClassification'] ??= 0;
+
+                return $record;
+            });
+
+        $numerator = $values->sum(fn (ImportanceClassification $item): int|float => (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore']);
+        $denominator = $values->sum(fn (ImportanceClassification $item): int|float => 1 + 2 * $item['SignificativeClassification']);
+
+        $score = $denominator > 0
+            ? $numerator / $denominator * 100 / 3
+            : null;
+
+        return $score !== null ?
+            round($score, 2)
+            : null;
     }
 
     protected static function score_c12(int $imet_id): ?float

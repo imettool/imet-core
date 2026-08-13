@@ -898,7 +898,6 @@ return [
         'fields' => [
             'Activity' => 'Criterio - Concepto medido  - Variables',
             'EvaluationScore' => 'Adecuación de las medidas de gestión',
-            'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
         'groups' => [
@@ -1346,8 +1345,6 @@ return [
         'fields' => [
             'Program' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la investigación y el monitoreo a largo plazo',
-            'EvaluationScoreAdequacy' => 'Adecuación de las medidas de gestión',
-            'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
         'predefined_values' => [
@@ -1386,7 +1383,6 @@ return [
         'fields' => [
             'Program' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la gestión de la adaptación',
-            'EvaluationScoreAdequacy' => 'Adecuación de las medidas de gestión',
             'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
@@ -1425,6 +1421,7 @@ return [
         'fields' => [
             'Intervention' => 'Criterio - Concepto medido - Variables',
             'EvaluationScore' => 'Adecuación de la gestión de los servicios/funciones ecosistémicas',
+            'InManagementPlan' => 'Medidas incluidas en el plan de gestión',
             'Comments' => 'Comentarios/explicación',
         ],
         'categories' => [

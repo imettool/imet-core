@@ -196,6 +196,9 @@ window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkP
 
 // ##### ImetV2 - report #####
 
+import KeyConservationElements from "./js/apps/Modules/ImetV2/report/KeyConservationElements";
+window.ImetCore.Apps.Modules.ImetV2.report.KeyConservationElements = KeyConservationElements;
+
 import ThreatsAffectingKCEs from "./js/apps/Modules/ImetV2/report/ThreatsAffectingKCEs";
 window.ImetCore.Apps.Modules.ImetV2.report.ThreatsAffectingKCEs = ThreatsAffectingKCEs;
 
