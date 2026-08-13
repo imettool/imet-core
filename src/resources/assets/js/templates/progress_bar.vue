@@ -17,8 +17,9 @@
             <template v-for="(item, index) in value">
                 <template v-if="percent(item)!==null">
                     <div class="bar" :class="{'float-right': negative}" :style="style(item, index)">
-                        <span v-if="width(item)>5">{{ percent(item) }}%</span>
+                        <span v-if="width(item)>=5">{{ percent(item) }}%</span>
                     </div>
+                    <tooltip v-if="width(item)<5">{{ percent(item) }}%</tooltip>
                 </template>
             </template>
 
@@ -73,7 +74,7 @@
 
 <script setup>
 
-import { computed } from "vue";
+import tooltip from '@modular-forms/js/templates/tooltip.vue';
 
 const props = defineProps({
     value: {
