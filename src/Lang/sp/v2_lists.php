@@ -188,7 +188,9 @@ return [
     ],
 
     'SpeciesReliability' => [
-        'High', 'Medium', 'Poor',
+        'High' => 'Alta',
+        'Medium' => 'Media',
+        'Poor' => 'Baja',
     ],
 
     'DocumentedConnectivity' => [
