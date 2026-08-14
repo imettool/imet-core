@@ -43,7 +43,7 @@ final class ScalingUpWdpa extends BaseModel
             ->get();
     }
 
-    public static function getByFormID(int $scaling_id, int $id): ?ScalingUpWdpa
+    public static function getByFormID(?int $scaling_id, int $id): ?ScalingUpWdpa
     {
         return self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $id])?->first();
     }
@@ -73,7 +73,7 @@ final class ScalingUpWdpa extends BaseModel
         return null;
     }
 
-    public static function getCustomNames(int $form_id, int $scaling_id): ?ScalingUpWdpa
+    public static function getCustomNames(int $form_id, ?int $scaling_id): ?ScalingUpWdpa
     {
         return self::getByFormID($scaling_id, $form_id);
     }

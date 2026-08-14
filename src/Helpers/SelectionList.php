@@ -65,7 +65,8 @@ class SelectionList extends ModularFormsSelectionList
             // $matches[1] = V1, V2, OECM
             // $matches[2] = list name
             if ($matches[1] != '') {
-                return trans('imet-core::'.strtolower($matches[1]).'_lists.'.$matches[2]);
+                $translation = trans('imet-core::' . strtolower($matches[1]) . '_lists.' . $matches[2]);
+                return is_array($translation) ? $translation : [];
             }
 
         }
