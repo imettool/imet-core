@@ -922,32 +922,32 @@ return [
             'title12' => 'Otras presiones y amenazas',
         ],
         'ratingLegend' => [
-            'Impacto' => [
+            'Impact' => [
                 '0' => 'Suave',
                 '1' => 'Moderado',
                 '2' => 'Alto',
                 '3' => 'Severo',
             ],
-            'Extensión' => [
+            'Extension' => [
                 '0' => 'Localizado <5%',
                 '1' => 'Escaso 5-15%',
                 '2' => 'Ampliamente disperso 15-50%',
                 '3' => 'En todas partes>50%',
             ],
-            'Duración' => [
+            'Duration' => [
                 '0' => 'A corto plazo <5 años',
                 '1' => 'Medio plazo 5-20 años',
                 '2' => 'Muy largo plazo 20-100 años',
                 '3' => 'Permanente>100 años',
             ],
-            'Tendencia' => [
+            'Trend' => [
                 '-2' => 'Disminuye',
                 '-1' => 'Ligeramente decreciente',
                 '0' => 'No hay cambios',
                 '1' => 'Ligeramente creciente',
                 '2' => 'Incrementa',
             ],
-            'Probabilidad de la amenaza en el futuro' => [
+            'Probability' => [
                 '0' => 'Muy bajo',
                 '1' => 'Bajo',
                 '2' => 'Medio',

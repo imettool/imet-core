@@ -225,10 +225,10 @@ return [
         'fields' => [
             'LimitsExist' => 'Existência de limites oficiais georeferenciados (sim/não)',
             'Shapefile' => 'Arquivo GIS',
-            'Source SHP' => 'Fonte do Arquivo GIS',
+            'SourceSHP' => 'Fonte do Arquivo GIS',
             'Coordinates' => 'Coordenadas Geográficas (dados de base para ou ponto chave do parque)',
-            'Source Coords' => 'Fonte',
-            'Administrative Location' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
+            'SourceCoords' => 'Fonte',
+            'AdministrativeLocation' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
         ],
         'module_info' => 'Esta secção fornece informações sobre a localização geográfica da área protegida. Inclui as suas coordenadas
             e localização administrativa das áreas protegidas. A descrição destaca a posição das áreas protegidas dentro
@@ -239,11 +239,11 @@ return [
         'title' => 'Superficie da área protegida e contexto de conservação',
         'fields' => [
             'BoundaryLength' => 'Comprimento dos limites',
-            'Administrative Area' => 'Superficie Administrativa',
+            'AdministrativeArea' => 'Superficie Administrativa',
             'WDPAArea' => 'Superficie de acordo com a WDPA',
             'GISArea' => 'Superficie Actual (GIS para o parque ou autoridade responsável para a área protegida) correspondente ao carregamento dos arquivos',
-            'Terrestrial Area' => 'Área Protegida Terrestre',
-            'Marine Area' => 'Área protegida marinha e costeira',
+            'TerrestrialArea' => 'Área Protegida Terrestre',
+            'MarineArea' => 'Área protegida marinha e costeira',
             'PercentageNationalNetwork' => '% da Superficie da rede nacional de áreas protegidas',
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
@@ -546,7 +546,7 @@ return [
         'title' => 'Recursos financeiros: Orçamento disponível',
         'fields' => [
             'BudgetType' => '',
-            'National Budget' => 'Orçamento nacional',
+            'NationalBudget' => 'Orçamento nacional',
             'OwnRevenues' => 'Receitas provenientes das operações da área protegida',
             'Disputes' => 'Rendimento do litígio/multas (tesouro nacional)',
             'Partners' => 'Contribuições dos parceiros',

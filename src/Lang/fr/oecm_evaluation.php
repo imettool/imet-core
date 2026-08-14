@@ -85,7 +85,7 @@ return [
     'SupportsAndConstraints' => [
         'title' => 'Contraintes ou soutiens de la part des parties prenantes',
         'fields' => [
-            'Partie prenante' => 'Partie prenante',
+            'Stakeholder' => 'Partie prenante',
             'Weight' => 'Implication de la partie prenante (0-100)',
             'ConstraintLevel' => 'Niveau de la contrainte/du conflit ou du soutien/de la conformité',
             'Comments' => 'Commentaires/Explication',
@@ -114,10 +114,10 @@ return [
     ],
 
     'SupportsAndConstraintsIntegration' => [
-        'title' => 'Intégration of Partie prenantes\' constraints or supports in management and governance',
+        'title' => 'Intégration des contraintes ou des soutiens des parties prenantes dans la gestion et la gouvernance',
         'fields' => [
-            'Partie prenante' => 'Partie prenante',
-            'Intégration' => 'Intégration',
+            'Stakeholder' => 'Partie prenante',
+            'Integration' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -126,7 +126,7 @@ return [
             'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
-            'Intégration' => [
+            'Integration' => [
                 '0' => 'pas d’intégration',
                 '1' => 'faible intégration',
                 '2' => 'intégration modérée',
@@ -254,12 +254,12 @@ return [
         'title' => 'Intégration des menaces',
         'fields' => [
             'Threat' => 'Menace',
-            'Intégration' => 'Intégration',
+            'Integration' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
-            'Intégration' => [
+            'Integration' => [
                 '0' => 'pas d’intégration',
                 '1' => 'faible intégration',
                 '2' => 'intégration modérée',
