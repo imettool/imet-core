@@ -1702,14 +1702,13 @@ return [
                 '+2' => 'Efeitos favoráveis',
                 '+3' => 'Efeitos altamente favoráveis',
             ],
-
-            'module_info_EvaluationQuestion' => [
-                'A gestão da área protegida tem efeitos positivos ou negativos sobre a qualidade de vida dos intervenientes locais?',
-                'Mudanças correntes e futuras do ambiente e disponibilidade dos recursos essenciais podem afectar a qualidade de vida através dos impactos no consumo, renda e riqueza (padroes de vida materiais) e na boa vida, saúde e relações sociais e culturais (padrões imateriais de vida).  A gestão das áreas protegidas deve ter muito cuidado com os efeitos sobre a qualidade de vida dos intervenientes locais',
-            ],
-            'module_info_Rating' => [
-                'Avaliar os efeitos para os intervenientes locais resultantes das actividades operacionais da área protegida',
-            ],
+        ],
+        'module_info_EvaluationQuestion' => [
+            'A gestão da área protegida tem efeitos positivos ou negativos sobre a qualidade de vida dos intervenientes locais?',
+            'Mudanças correntes e futuras do ambiente e disponibilidade dos recursos essenciais podem afectar a qualidade de vida através dos impactos no consumo, renda e riqueza (padroes de vida materiais) e na boa vida, saúde e relações sociais e culturais (padrões imateriais de vida).  A gestão das áreas protegidas deve ter muito cuidado com os efeitos sobre a qualidade de vida dos intervenientes locais',
+        ],
+        'module_info_Rating' => [
+            'Avaliar os efeitos para os intervenientes locais resultantes das actividades operacionais da área protegida',
         ],
     ],
     'steps' => [
