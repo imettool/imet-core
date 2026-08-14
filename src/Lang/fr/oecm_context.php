@@ -470,9 +470,6 @@ return [
             'group8' => 'Réglementation-Prévention de l’érosion et maintien de la fertilité des sols',
             'group9' => 'Réglementation-Terres (agriculture, élevage, forêts)',
             'group10' => 'Support-Habitats pour les animaux et les plants',
-            'group11' => 'Animaux',
-            'group12' => 'Plants',
-            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
             'group0' => '<p>La fourniture de services écosystémiques - nutrition fait référence à la fourniture d’aliments essentiels à la santé et au bien-être de l’homme.
@@ -546,9 +543,6 @@ return [
                         <li>Les habitats de nurserie et de nidification : Les écosystèmes fournissent des habitats à une grande variété d’espèces végétales et animales, notamment des zones d’alimentation et des abris contre les prédateurs, comme les sites de nidification des oiseaux, les frayères dans la mer, les rivières et les lacs, les habitats de reproduction (par exemple les coraux, les abeilles, etc.), etc.</li>
                         <li>Habitats pour la pollinisation : Les zones boisées et les zones de végétation offrent un soutien aux pollinisateurs tels que les abeilles, les papillons et les insectes les colibris, qui fournissent un service écosystémique important pour l’agriculture, car ils aident les plantes à produire des fruits, des semences et des graines d’autres structures reproductives. . </li>
                      </ul>',
-            'group11' => '',
-            'group12' => '',
-            'group13' => '',
         ],
         'lists' => [
             'group0' => ['Alimentation humaine végétale', 'Alimentation humaine animale', 'Médicaments'],
