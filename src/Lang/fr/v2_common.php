@@ -14,6 +14,8 @@ return [
 
     'management' => 'gestion des formulaires IMET (v2 - Consolidé)',
     'v2' => 'v2 - Consolidé',
+    'terrestrial' => 'terrestre',
+    'marine' => 'maritime et côtier',
 
     'synthetic_indicator' => 'Indicateur synthétique',
 

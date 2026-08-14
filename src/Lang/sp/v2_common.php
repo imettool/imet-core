@@ -14,6 +14,8 @@ return [
 
     'management' => 'IMET management (v2 - Consolidated)',
     'v2' => 'v2 - Consolidated',
+    'terrestrial' => 'terrestre',
+    'marine' => 'marina y costera',
 
     'synthetic_indicator' => 'Indicador sintético',
 
