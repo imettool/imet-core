@@ -33,6 +33,7 @@ return [
         'PRA' => 'Internal management systems and processes',
         'PRB' => 'Management / Protection of the values',
         'PRC' => 'Stakeholder relations',
+        'PRD' => 'Tourism management',
     ],
 
 ];

@@ -307,17 +307,7 @@ return [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
         ],
-        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
-          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
-          services that ensure sustainable development of local communities. <br />
-          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of
-          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets
-          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic
-          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute
-          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources
-          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
-          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
-          and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
+        'module_info' => '<b>Paysage</b> : Une gouvernance et une gestion articulées d’une aire protégée et des territoires qui l’entourent peuvent contribuer à la conservation de la biodiversité et à la résilience climatique, au maintien des ressources naturelles et des services écosystémiques qui assurent le développement durable des communautés locales. <br /> <b>Aires protégées et conservées (APC)</b> : Elles constituent l’un des outils les plus efficaces pour prévenir la perte d’écosystèmes naturels et d’espèces, ainsi que pour atteindre un développement durable à long terme, y compris les objectifs d’Aichi 11 et 12 et plusieurs objectifs de développement durable (ODD). Dans certaines régions, les APC sont au cœur du développement économique, par le tourisme, l’utilisation durable des ressources et en tant que sources d’eau douce. Les APC contribuent également à la sécurité alimentaire par le maintien des services écosystémiques qui soutiennent l’agriculture, en protégeant des ressources essentielles aux programmes de sélection variétale et en offrant un espace aux systèmes traditionnels d’agriculture et de pâturage respectueux de la biodiversité. Les APC ont aussi un rôle majeur à jouer dans la résilience climatique, à la fois en stockant et en séquestrant le carbone, et en garantissant que les écosystèmes continuent de fournir des biens et des services aux sociétés humaines (WWF).',
     ],
 
     'Connectivity' => [
@@ -552,7 +542,6 @@ return [
             'Disputes' => 'Contentieux (trésor public)',
             'Partners' => 'Contributions des partenaires',
             'total' => 'Total',
-            'percentage' => '% des prévisions du budget',
         ],
         'predefined_values' => [
             'Budget total annuel disponible',
@@ -626,12 +615,12 @@ return [
             'group0' => ['Bureaux', 'Postes de patrouille', 'Points de barrières', 'Bâtiments scientifiques', 'Garage et atelier', 'Espace pour les bouteilles et autres équipements de plongée', 'Hangars à bateaux', 'Parking voitures-bateaux', 'Services divers (magazine, radio, etc.)', 'Dispensaires'],
             'group1' => ['pour Officiers et sous-officiers', 'pour les Agents', 'pour le Personnel d\'appui', 'pour le Personnel scientifique'],
             'group2' => ['Hôtels (capacité d’accueil)', 'Eco-lodges (capacité d’accueil)', 'Campements', 'Accueils des touristes', 'Points de vue ou points d’observation (miradors)', 'Parcours touristiques aménagés'],
-            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Jet ski', 'Animaux (chevaux)'],
+            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Engins lourds'],
             'group4' => ['Radar de contrôle', 'Armements', 'Cartouches', 'Tenues', 'Rations', 'GPS, Boussoles', 'Matériel de camping et de brousse'],
             'group5' => ['Radios VHF-HF', 'V-SAT', 'Téléphones fixes', 'Téléphones GSM', 'Téléphones satellitaires', 'Connexion internet'],
             'group6' => ['Ordinateurs fixes', 'Ordinateurs portables', 'Imprimantes', 'Photocopieurs', 'Onduleur'],
-            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne'],
-            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique'],
+            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne', 'Adduction d’eau'],
+            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique', 'Engins lourds'],
             'group9' => ['Routes/pistes de pénétration dans l\'aire protégée', 'Route de délimitation de l’aire protégée', 'Chemins à l’intérieur de l’aire protégée'],
             'group10' => ['Voies fluviales à l’intérieur de l’aire protégée'],
             'group11' => ['Pistes aériennes à l\'intérieur et/ou à l\'extérieur de l\'aire protégée'],
@@ -731,6 +720,7 @@ return [
             'Duration' => 'Durée',
             'Trend' => 'Tendance',
             'Probability' => 'Probabilité de la menace dans le futur',
+            'Comments' => 'Commentaires',
         ],
         'groups' => [
             'group0' => 'Développement commercial et résidentiel',
@@ -774,6 +764,7 @@ return [
                 'Petites exploitations agricoles',
                 'Exploitations agro-industrielles',
                 'Production de fruits/légumes',
+                'Extraction de fertilisant pour l’agriculture',
             ],
             'group2' => [
                 'Petites plantations',
@@ -806,10 +797,14 @@ return [
             'group8' => [
                 'Chasse d\'animaux terrestres',
                 'Prélèvement d\'animaux vivants',
+                'Collecte de petits animaux, comme les insectes, ou de leurs produits, comme le miel',
             ],
             'group9' => [
                 'Cueillette de produits des plantes',
                 'Prélèvement des plantes vivantes',
+                'Récolte de produits alimentaires végétaux (tubercules, fruits, etc.)',
+                'Récolte de plantes médicinales',
+                'Récolte de tiges et de fibres (palmiers, kénaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Exploitation bois d\'oeuvre à grande échelle',
@@ -828,6 +823,8 @@ return [
                 'Surpêche et pêche destructive',
                 'Exploitation des espèces menacées d’extinction',
                 'Chalutiers/sous-marins',
+                'Récolte de ressources ornementales et d’aquariophilie (collecte de graines, coquillages et poissons)',
+                'Récolte d’algues',
             ],
             'group12' => [
                 'Activités récréatives',
@@ -859,6 +856,7 @@ return [
                 'Petits barrages',
                 'Grands barrages',
                 'Barrages (taille inconnue)',
+                'Barrages pour la production d’énergie',
             ],
             'group16' => [
                 'Espèces ou maladies introduites et envahissantes',
@@ -901,7 +899,6 @@ return [
             'group22' => [
                 'Pollution lumineuse',
                 'Pollution thermique',
-                'Pollution à l\'ozone',
                 'Pollution sonore',
             ],
             'group23' => [
@@ -1046,7 +1043,7 @@ return [
         'ratingLegend' => [
             'Importance' => [
                 'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
-                'Larger' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
+                'Plus grand' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
             ],
             'ImportanceRegional' => [
                 '0' => 'très faible',

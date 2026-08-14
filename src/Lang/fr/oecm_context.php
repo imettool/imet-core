@@ -19,7 +19,7 @@ return [
             'Year' => 'Année faisant l’objet de l’évaluation',
             'wdpa_id' => 'espace conservé',
             'language' => 'langue',
-            'pré-remplissage avec les données de l’année précédente ',
+            'prefill_prev_year' => 'pré-remplissage avec les données de l’année précédente ',
         ],
     ],
 
@@ -56,7 +56,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nom complet de l’espace conservé',
             'UsedName' => 'Nom de l’espace conservé dans le site WDPA',
-            'CompleteNameWDPA' => 'Name of the conserved area in the WDPA site',
+            'CompleteNameWDPA' => 'Nom de l’espace conservé sur le site WDPA',
             'WDPA' => 'WDPA',
             'Type' => 'typologie',
             'Country' => 'Pays',
@@ -91,6 +91,8 @@ return [
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date de création',
             'OfficialRecognition' => 'Reconnaissance officielle : L’organe de gestion a-t-il reçu une reconnaissance officielle de la part des autorités nationales ou régionales ?',
+            'OfficialRecognition.0' => 'Non',
+            'OfficialRecognition.1' => 'Oui',
             'SupervisoryInstitution' => 'Institution de contrôle (le cas échéant)',
             'MemberRepresentativenessLevel' => 'Niveau de représentativité des membres',
             'AdditionalInformation' => 'Informations supplémentaires sur l\'entité de gestion (si nécessaire)',
@@ -470,9 +472,6 @@ return [
             'group8' => 'Réglementation-Prévention de l’érosion et maintien de la fertilité des sols',
             'group9' => 'Réglementation-Terres (agriculture, élevage, forêts)',
             'group10' => 'Support-Habitats pour les animaux et les plants',
-            'group11' => 'Animaux',
-            'group12' => 'Plants',
-            'group13' => 'Habitats',
         ],
         'groups_descriptions' => [
             'group0' => '<p>La fourniture de services écosystémiques - nutrition fait référence à la fourniture d’aliments essentiels à la santé et au bien-être de l’homme.
@@ -546,9 +545,6 @@ return [
                         <li>Les habitats de nurserie et de nidification : Les écosystèmes fournissent des habitats à une grande variété d’espèces végétales et animales, notamment des zones d’alimentation et des abris contre les prédateurs, comme les sites de nidification des oiseaux, les frayères dans la mer, les rivières et les lacs, les habitats de reproduction (par exemple les coraux, les abeilles, etc.), etc.</li>
                         <li>Habitats pour la pollinisation : Les zones boisées et les zones de végétation offrent un soutien aux pollinisateurs tels que les abeilles, les papillons et les insectes les colibris, qui fournissent un service écosystémique important pour l’agriculture, car ils aident les plantes à produire des fruits, des semences et des graines d’autres structures reproductives. . </li>
                      </ul>',
-            'group11' => '',
-            'group12' => '',
-            'group13' => '',
         ],
         'lists' => [
             'group0' => ['Alimentation humaine végétale', 'Alimentation humaine animale', 'Médicaments'],
@@ -564,6 +560,8 @@ return [
             'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation'],
         ],
         'summary' => 'Importance des éléments et implication des parties prenantes',
+        'element' => 'Critère',
+        'elements_importance' => 'Importance des éléments pour les parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Implication de la partie prenante (0-100)',
@@ -596,16 +594,6 @@ return [
             '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles
                  et les services fournis par les écosystèmes. Si une partie prenante n\'a pas accès à ces services, ses moyens de subsistance et
                  leur bien-être sont menacés et ils peuvent être confrontés à la pauvreté, à l\'insécurité alimentaire et à des problèmes de santé..</br >',
-        '<b>Rivalry</b>: La rivalité des acteurs dans les services écosystémiques renvoie à la compétition ou au conflit entre individus
-                  ou les parties prenantes sur l\'accès et l\'utilisation de ces services. La rivalité peut entraîner une surexploitation ou un épuisement des ressources,
-                  exacerbant la dégradation de l\'environnement et compromettant la disponibilité à long terme de ces services pour la communauté
-                  ou communautés.</br >'.
-        '<b>Qualité des services écosystémiques</b> facteurs physiques, biologiques et écologiques qui permettent à l\'écosystème de perdurer
-                  pour fournir le service souhaité, ou pour que l\espèce continue d\'être viable. (Exemple : pas de pollution, présence de juvéniles,
-                  biodiversité, etc.)'.
-        '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
-                  surface d\'une forêt, population d\'espèces, volume de cours d\'eau, etc.).</br >'.
-        '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element being assessed.</br >',
         'ratingLegend' => [
             'Dependence' => [
                 '0' => 'Très faible',

@@ -12,6 +12,13 @@
 
 return [
 
+    'languages' => [
+        'fr' => 'Français',
+        'en' => 'Anglais',
+        'sp' => 'Espagnol',
+        'pt' => 'Portugais',
+    ],
+
     'ShortOrLongTerm' => [
         'short' => 'Court terme',
         'long' => 'Long terme',
@@ -27,8 +34,8 @@ return [
 
     'SubGovernanceModel' => [
         'government' => [
-            'national' => 'Federal or national ministry or agency',
-            'sub_national' => 'Sub-national ministry or agency',
+            'national' => 'Ministère ou agence fédéral(e) ou national(e)',
+            'sub_national' => 'Ministère ou agence infranational(e)',
             'delegated' => 'Government-delegated management',
             'other' => 'Other',
         ],
@@ -41,7 +48,7 @@ return [
         'private' => [
             'individual' => 'Individual landowners',
             'non_profit' => 'Non-profit organisation',
-            'for_profit' => 'For-profit organisations',
+            'for_profit' => 'Organisations à but lucratif',
             'other' => 'Other',
         ],
         'indigenous' => [
@@ -55,7 +62,7 @@ return [
         'academic' => 'Académique',
         'confessionnel' => 'Confessionnel',
         'independent' => 'Indépendant',
-        'ngo' => 'NGO / ASBL',
+        'ngo' => 'ONG / ASBL',
         'internat_orgs' => 'Organisation internationale',
         'private' => 'Privé',
         'project' => 'Projet / Programme',

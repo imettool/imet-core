@@ -21,5 +21,8 @@ return [
         'multiple_records_found' => 'Multiple records found!',
         'no_records_found' => 'No records found!',
         'page_not_found' => 'Api page not found',
+        'mismatch_group_ids_years' => 'group and years key mismatch. The number of keys of group must be equal with years!',
+        'no_protected_areas_found' => 'No records for the requested protected areas found!',
+        'more_than_one_protected_areas_found' => 'More than one record with the same wdpa id found. Please add the year parameter to filter the requested record!',
     ],
 ];

@@ -33,6 +33,7 @@ return [
         'PRA' => 'Systèmes et processus de gestion interne',
         'PRB' => 'Gestion / Protection des valeurs',
         'PRC' => 'Relations avec les parties prenantes',
+        'PRD' => 'Gestion du tourisme',
 
     ],
 
