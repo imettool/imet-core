@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_habitats'), function (Blueprint $table): void {
             $table->renameColumn('Value', 'EcosystemDescription');
-            $table->dropColumn('Area');
             $table->string('EstimatedStatus', 250)->nullable();
         });
     }
@@ -27,7 +26,6 @@ return new class extends Migration
         Schema::table(Database::getTable(Database::IMET_SCHEMA, 'context_habitats'), function (Blueprint $table): void {
             $table->renameColumn('EcosystemDescription', 'Value');
             $table->dropColumn('EstimatedStatus');
-            $table->decimal('Area')->nullable();
         });
     }
 };
