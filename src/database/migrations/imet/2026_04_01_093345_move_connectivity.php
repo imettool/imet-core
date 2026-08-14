@@ -12,6 +12,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use ImetCore\Helpers\Database;
 
@@ -49,11 +50,11 @@ return new class extends Migration
             ->insertUsing(
                 ['id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan'],
                 DB::table($territorial_reference_context_table)
-                ->select('id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan')
-                ->whereNotNull('DocumentedConnectivity')
-                ->orWhereNotNull('EvidenceOfConnectivity')
-                ->orWhereNotNull('EvidencesListConnectivity')
-                ->orWhereNotNull('ConnectivityIntegrationInManagementPlan')
+                    ->select('id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan')
+                    ->whereNotNull('DocumentedConnectivity')
+                    ->orWhereNotNull('EvidenceOfConnectivity')
+                    ->orWhereNotNull('EvidencesListConnectivity')
+                    ->orWhereNotNull('ConnectivityIntegrationInManagementPlan')
             );
 
         // 3. Remove columns from 'context_territorial_reference_context'

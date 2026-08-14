@@ -17,8 +17,8 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Type\JSON;
 use ModularForms\Enums\ModuleTypes;
+use ModularForms\Helpers\Type\JSON;
 
 final class Networks extends Modules\Component\ImetModule
 {

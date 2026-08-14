@@ -24,7 +24,6 @@ final readonly class ThreatsDataProvider extends BaseDataProvider
 
     private const string DEFAULT_TRANSLATION_KEY = 'imet-core::v2_context.MenacesPressions.categories.title';
 
-
     /**
      * Get threats categories analysis for protected areas
      */

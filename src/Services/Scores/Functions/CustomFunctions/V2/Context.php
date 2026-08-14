@@ -28,10 +28,10 @@ trait Context
             ->filter(fn (ImportanceClassification $record): bool => $record['EvaluationScore'] !== null
                 && intval($record['EvaluationScore']) >= 0
                 && $record['IncludeInStatistics'] == 1)->map(function (ImportanceClassification $record): ImportanceClassification {
-                $record['SignificativeClassification'] ??= 0;
+                    $record['SignificativeClassification'] ??= 0;
 
-                return $record;
-            });
+                    return $record;
+                });
 
         $numerator = $values->sum(fn (ImportanceClassification $item): int|float => (1 + 2 * $item['SignificativeClassification']) * $item['EvaluationScore']);
         $denominator = $values->sum(fn (ImportanceClassification $item): int|float => 1 + 2 * $item['SignificativeClassification']);

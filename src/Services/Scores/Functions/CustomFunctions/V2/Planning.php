@@ -71,7 +71,7 @@ trait Planning
     {
         $record = $records[0] ?? null;
 
-        if ($record !== null and $record['PlanExistence']!=='false') {
+        if ($record !== null && $record['PlanExistence'] !== 'false') {
             $record['VisionAdequacy'] = intval($record['VisionAdequacy']);
             $record['PlanAdequacyScore'] = intval($record['PlanAdequacyScore']);
 

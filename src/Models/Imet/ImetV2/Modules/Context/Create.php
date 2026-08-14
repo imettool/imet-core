@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 use ImetCore\Models\Imet\ImetV2\Imet;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\ProtectedArea;
-use ModularForms\Models\Traits\Payload;
 use ModularForms\Enums\ModuleTypes;
+use ModularForms\Models\Traits\Payload;
 
 final class Create extends Modules\Component\ImetModule
 {

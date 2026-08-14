@@ -59,7 +59,7 @@ final class ScalingUpWdpa extends BaseModel
         return $saved_pas;
     }
 
-    public static function update_item($scaling_id, $form_id, $value, $color)
+    public static function update_item($scaling_id, $form_id, $value, $color): string|false|null
     {
         $record = self::query()->where(['scaling_id' => $scaling_id, 'FormID' => $form_id])->first();
         if ($record) {

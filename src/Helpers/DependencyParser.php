@@ -53,5 +53,4 @@ class DependencyParser extends BaseDependencyParser
 
         return $copyright;
     }
-
 }

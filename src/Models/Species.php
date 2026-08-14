@@ -44,7 +44,7 @@ class Species extends BaseModel
     protected function binomial(): Attribute
     {
         return Attribute::make(
-            get: fn () => array_key_exists('genus', $this->attributes) && array_key_exists('species', $this->attributes)
+            get: fn (): ?string => array_key_exists('genus', $this->attributes) && array_key_exists('species', $this->attributes)
                 ? $this->attributes['genus'].' '.$this->attributes['species']
                 : null
         );
