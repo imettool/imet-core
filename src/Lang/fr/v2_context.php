@@ -274,8 +274,7 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'module_info' =>
-            '<div class="font-bold">Jours-Patrouille moyens par Km² (cas des Parcs Nationaux Africains)</div>
+        'module_info' => '<div class="font-bold">Jours-Patrouille moyens par Km² (cas des Parcs Nationaux Africains)</div>
             Pour une gestion efficace, l\'intensité des patrouilles est exprimée en <b>nombre de jours-patrouille par kilomètre carré par an</b>,
             calculé en divisant le total des jours-patrouille par la superficie du secteur ou de l\'aire protégée. Un <b>jour-patrouille</b> correspond à une
             équipe de patrouille opérant pendant une journée, quelle que soit la taille de l\'équipe.
@@ -311,7 +310,7 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Connectivité',
+        'title' => 'Connectivité',
         'fields' => [
             'DocumentedConnectivity' => 'Q1. Évaluation de la connectivité structurelle',
             'EvidenceOfConnectivity' => 'Q2. Confiance dans la connectivité fonctionnelle',
@@ -548,8 +547,7 @@ return [
             'Budget total annuel disponible pour le fonctionnement',
             'Budget total annuel disponible pour les investissements',
         ],
-        'module_info' =>
-            'Ce tableau permet de résumer les ressources financières annuelles effectivement disponibles pour la gestion de l\'aire protégée.
+        'module_info' => 'Ce tableau permet de résumer les ressources financières annuelles effectivement disponibles pour la gestion de l\'aire protégée.
             Il doit refléter le budget réel mobilisé et accessible au cours de l\'année de référence, quelle que soit la source de financement d\'origine.
             L\'objectif est de :
             <ul>

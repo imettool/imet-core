@@ -121,8 +121,7 @@ return [
     ],
 
     'score_info' => [
-        'outcomes' =>
-            'O <b>indicador sintético</b> não é calculado como uma simples média dos três componentes (O/C1, O/C2, O/C3).
+        'outcomes' => 'O <b>indicador sintético</b> não é calculado como uma simples média dos três componentes (O/C1, O/C2, O/C3).
             Em vez disso, é <b>derivado de uma transformação das pontuações brutas</b>, concebida para refletir a contribuição relativa
             de cada componente para o desempenho global dos resultados.
             Os indicadores O/C2 e O/C3 são expressos numa escala bipolar que varia de -100 a +100, refletindo tendências
@@ -134,7 +133,7 @@ return [
             para o indicador final do que os seus valores iniciais sugerem.
             Embora O/C1 atinja a pontuação máxima, a sua contribuição para o indicador sintético permanece limitada, enquanto
             O/C2 e O/C3 têm uma influência mais forte, refletindo a importância das condições ecológicas e dos resultados
-            para as partes interessadas na eficácia global da conservação.'
+            para as partes interessadas na eficácia global da conservação.',
     ],
 
     'Create' => [

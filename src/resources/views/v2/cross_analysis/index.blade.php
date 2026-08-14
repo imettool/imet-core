@@ -1,14 +1,13 @@
 <?php
-/** @var Imet $item */
-/** @var string $mode */
-/** @var ?array $cross_analysis_warnings */
-
-$cross_analysis_warnings = $cross_analysis_warnings ?? [];
-
 use Illuminate\Support\Facades\App;
 use ImetCore\Controllers\Imet\ImetV2\Controller;
 use ImetCore\Models\Imet\ImetV2\Imet;
 use ModularForms\Enums\ModuleViewModes;
+/** @var Imet $item */
+/** @var string $mode */
+/** @var array $cross_analysis_warnings */
+
+$cross_analysis_warnings = $cross_analysis_warnings ?? [];
 
 $route = $mode === ModuleViewModes::EDIT
     ? Controller::ROUTE_PREFIX . 'evaluation_edit'

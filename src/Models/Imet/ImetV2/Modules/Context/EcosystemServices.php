@@ -158,10 +158,10 @@ final class EcosystemServices extends Modules\Component\ImetModule
         $dependence = $item['ImportanceRegional'];
         $trend = $item['ImportanceGlobal'];
 
-        if($importance !== null && $dependence !== null && $trend !== null) {
-            return (floatval($importance)
+        if ($importance !== null && $dependence !== null && $trend !== null) {
+            return floatval($importance)
                 + (floatval($dependence) / 3)
-                + ((floatval($trend) + 2) / 4));
+                + ((floatval($trend) + 2) / 4);
         }
 
         return null;

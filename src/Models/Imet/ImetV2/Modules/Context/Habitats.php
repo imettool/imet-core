@@ -79,6 +79,7 @@ final class Habitats extends Modules\Component\ImetModule
         $record = self::dropField($record, 'TerrestrialOrMarine');
         $record = self::renameField($record, 'Value', 'EcosystemDescription');
         $record = self::dropField($record, 'Area');
+
         return self::addField($record, 'EstimatedStatus');
     }
 

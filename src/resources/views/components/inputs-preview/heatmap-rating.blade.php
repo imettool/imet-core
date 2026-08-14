@@ -1,4 +1,5 @@
 <?php
+/** @var string|array|null $value */
 
 switch ($value) {
     case null:

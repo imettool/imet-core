@@ -120,8 +120,7 @@ return [
     ],
 
     'score_info' => [
-        'outcomes' =>
-            'L\'<b>indicateur synthétique</b> n\'est pas calculé comme une simple moyenne des trois composantes (O/C1, O/C2, O/C3).
+        'outcomes' => 'L\'<b>indicateur synthétique</b> n\'est pas calculé comme une simple moyenne des trois composantes (O/C1, O/C2, O/C3).
             Il est <b>dérivé d\'une transformation des scores bruts</b>, conçue pour refléter la contribution relative
             de chaque composante à la performance globale des effets.
             Les indicateurs O/C2 et O/C3 sont exprimés sur une échelle bipolaire allant de -100 à +100, reflétant des tendances
@@ -133,7 +132,7 @@ return [
             plus significativement à l\'indicateur final que leurs valeurs initiales ne le suggèrent.
             Bien que O/C1 atteigne le score maximal, sa contribution à l\'indicateur synthétique reste limitée, tandis que
             O/C2 et O/C3 ont une influence plus forte, reflétant l\'importance des conditions écologiques et des résultats
-            pour les parties prenantes dans l\'efficacité globale de la conservation.'
+            pour les parties prenantes dans l\'efficacité globale de la conservation.',
     ],
 
     'Create' => [

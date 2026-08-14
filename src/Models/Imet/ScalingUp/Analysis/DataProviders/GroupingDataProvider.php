@@ -17,7 +17,6 @@ use ImetCore\Models\Imet\ScalingUp\Charts\Scatter;
 
 final readonly class GroupingDataProvider extends BaseDataProvider
 {
-
     public function getRadarData(array $parameters, array $assessments = []): array
     {
         $average = Group::get_calculation_grouping_analysis(

@@ -12,9 +12,6 @@
 
 namespace ImetCore\Models\Imet\ScalingUp\Analysis\DataProviders;
 
-use ImetCore\Models\Imet\ImetV2\Imet;
-use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
-
 /**
  * Base class for data providers with common functionality
  *
@@ -34,6 +31,4 @@ abstract readonly class BaseDataProvider
     {
         return $this->scalingId;
     }
-
 }
-

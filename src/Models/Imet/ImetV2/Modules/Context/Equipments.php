@@ -90,5 +90,4 @@ final class Equipments extends Modules\Component\ImetModule
 
         return $record;
     }
-
 }

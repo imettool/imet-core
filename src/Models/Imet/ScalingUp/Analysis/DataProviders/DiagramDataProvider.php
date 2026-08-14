@@ -17,7 +17,6 @@ use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
 final readonly class DiagramDataProvider extends BaseDataProvider
 {
-
     /**
      * Get averages of each indicator of six elements with styling and limits
      */
