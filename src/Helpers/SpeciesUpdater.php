@@ -99,7 +99,7 @@ class SpeciesUpdater
 
     private static function upsertSpeciesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(env('CSV_SPECIES_SAMPLE_FILE'));
+        $filepath = database_path(config('dev.csv_species_sample_file'));
         if (file_exists($filepath)) {
 
             static::logInfo('Upserting species from CSV file: '.$filepath, $verbose);
@@ -128,7 +128,7 @@ class SpeciesUpdater
 
     private static function updateVernacularNamesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(env('CSV_VERNACULAR_NAMES_SAMPLE_FILE'));
+        $filepath = database_path(config('dev.csv_vernacular_names_sample_file'));
         if (file_exists($filepath)) {
 
             static::logInfo('Updating vernacular names from CSV file: '.$filepath, $verbose);
