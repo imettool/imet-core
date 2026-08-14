@@ -43,7 +43,7 @@ return [
         'module_info_EvaluationQuestion' => [
             'Evaluate the Intégration of values and importance of designations (national designation and international designations, e.g., World Heritage site or Ramsar site) for the management of the conserved area',
         ],
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
     'KeyElements' => [
@@ -79,7 +79,7 @@ return [
         'key_elements_importance_composition' => 'Importance composition: :imp_dir (de :num_dir partie(s) prenante(s) direct) + :imp_ind (de :num_ind partie(s) prenante(s) indirect)',
         'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
         'ranking' => 'Classement',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
     'SupportsAndConstraints' => [
@@ -143,7 +143,7 @@ return [
             'Évaluer l\'intégration actuelle dans la gestion des contraintes ou de l\'accompagnement des parties prenantes',
         ],
         'ranking' => 'Notation (C2.1)',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
     'ThreatsBiodiversity' => [
@@ -274,7 +274,7 @@ return [
             'Évaluer l\'intégration actuelle des menaces dans la gestion de l\'espace conservé',
         ],
         'ranking' => 'Notation (C3.1)',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
     ],
 
     'RegulationsAdequacy' => [
@@ -489,7 +489,7 @@ return [
         'module_info_Rating' => [
             'Évaluer la pertinence des objectifs du plan de gestion pour les éléments clés de l\'espace conservé, en fonction des objectifs existants du plan de gestion et du contexte de gestion',
         ],
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>O/C1</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>O/C1</i>',
     ],
 
     'ObjectivesContext' => [
