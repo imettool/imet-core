@@ -98,7 +98,7 @@ class CustomInputPreview extends InputPreview
                 'oecm-support-integration-stakeholder-with-ranking',
                 'oecm-threat-with-ranking',
                 'oecm-key-elements-element',
-                'heatmapRating'
+                'heatmapRating',
             ])) {
                 return parent::render();
             }

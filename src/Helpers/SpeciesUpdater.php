@@ -28,7 +28,6 @@ use ImetCore\Models\Species;
  */
 class SpeciesUpdater
 {
-
     private const array CSV_SPECIES_ATTRIBUTES = [
         'col_id',
         'species',

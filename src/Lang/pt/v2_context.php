@@ -268,8 +268,7 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
-        'module_info' =>
-            '<div class="font-bold">Dias-Patrulha médios por Km² (caso dos Parques Nacionais Africanos)</div>
+        'module_info' => '<div class="font-bold">Dias-Patrulha médios por Km² (caso dos Parques Nacionais Africanos)</div>
             Para uma gestão eficaz, a intensidade de patrulhamento é expressa como o <b>número de dias-patrulha por quilômetro quadrado por ano</b>,
             calculado dividindo o total de dias-patrulha pela área do setor ou da área protegida. Um <b>dia-patrulha</b> corresponde a uma
             equipe de patrulhamento operando durante um dia, independentemente do tamanho da equipe.
@@ -317,7 +316,7 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Conectividade',
+        'title' => 'Conectividade',
         'fields' => [
             'DocumentedConnectivity' => 'Q1. Avaliação da conectividade estrutural',
             'EvidenceOfConnectivity' => 'Q2. Confiança na conectividade funcional',
@@ -557,8 +556,7 @@ return [
             'Orçamento total anual disponível para o funcionamento',
             'Orçamento total anual disponível para investimentos',
         ],
-        'module_info' =>
-            'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
+        'module_info' => 'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
             Deve refletir o orçamento real mobilizado e acessível durante o ano de referência, independentemente da fonte de financiamento original.
             O objetivo é:
             <ul>

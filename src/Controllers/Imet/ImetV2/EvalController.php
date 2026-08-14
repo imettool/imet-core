@@ -18,7 +18,6 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use ImetCore\Controllers\Imet\EvalController as BaseEvalController;
 use ImetCore\Models\Imet\CrossAnalysis\CrossAnalysis;
-use ImetCore\Models\Imet\ImetV1\Imet;
 use ImetCore\Models\Imet\ImetV2\Imet_Eval;
 
 use function view;

@@ -96,12 +96,13 @@ class SpeciesSeeder extends Seeder
         // Run on CSV file (if provided)
         if (config('dev.csv_species_sample_file') !== null &&
             config('dev.csv_vernacular_names_sample_file') !== null) {
-            echo("Seeding species from CSV file ....\n");
+            echo "Seeding species from CSV file ....\n";
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
+
             return;
         }
 
-        echo("Seeding species from SAMPLE_DATA ....\n");
+        echo "Seeding species from SAMPLE_DATA ....\n";
         foreach (self::SAMPLE_DATA as $species) {
             SpeciesFactory::new()->create([
                 'kingdom' => $species[0],

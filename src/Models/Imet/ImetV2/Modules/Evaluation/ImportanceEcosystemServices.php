@@ -119,6 +119,7 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
                 $id = self::find_category_id($categories, $item['group_key']) + 1;
                 $item['_categories'] = $id.'. '.trans('imet-core::v2_context.EcosystemServices.categories.title'.$id);
                 $item['_rank'] = Modules\Context\EcosystemServices::calculateRank($item->toArray()) / 3 * 100;
+
                 return $item;
             })
             ->sortByDesc('_rank');

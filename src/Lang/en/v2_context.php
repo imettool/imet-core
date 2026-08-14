@@ -269,8 +269,7 @@ return [
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
-        'module_info' =>
-            '<div class="font-bold">Average Patrol Day-Km² (case of African National Parks)</div>
+        'module_info' => '<div class="font-bold">Average Patrol Day-Km² (case of African National Parks)</div>
             For effective management, patrol intensity is expressed as the <b>number of patrol-days per square kilometer per year</b>,
             calculated as total patrol-days divided by the area of the sector or protected area. A <b>patrol-day</b> corresponds to one
             patrol team operating for one day, regardless of team size.
@@ -317,7 +316,7 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Connectivity',
+        'title' => 'Connectivity',
         'fields' => [
             'DocumentedConnectivity' => 'Q1. Assessment of structural connectivity',
             'EvidenceOfConnectivity' => 'Q2. Confidence in functional connectivity',
@@ -548,15 +547,14 @@ return [
             'OwnRevenues' => 'Revenues from the operations of the protected area',
             'Disputes' => 'Income from litigation (national treasury)',
             'Partners' => 'Contributions from the partners',
-            'total' => 'total'
+            'total' => 'total',
         ],
         'predefined_values' => [
             'Total annual budget available',
             'Total annual budget available for operating',
             'Total annual budget available for investments',
         ],
-        'module_info' =>
-            'This table is used to summarize the annual financial resources effectively available for the management of the protected area.
+        'module_info' => 'This table is used to summarize the annual financial resources effectively available for the management of the protected area.
             It should reflect the real budget mobilized and accessible during the reference year, regardless of the original funding source.
             The objective is to:
             <ul>

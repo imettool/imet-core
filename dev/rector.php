@@ -73,7 +73,7 @@ return RectorConfig::configure()
         WithoutIncrementingPropertyToWithoutIncrementingAttributeRector::class,
         WithoutTimestampsPropertyToWithoutTimestampsAttributeRector::class,
         DescriptionPropertyToDescriptionAttributeRector::class,
-        SignaturePropertyToSignatureAttributeRector::class
+        SignaturePropertyToSignatureAttributeRector::class,
 
     ])
     ->withPhpSets(php84: true)

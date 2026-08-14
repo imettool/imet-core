@@ -63,17 +63,18 @@ class ProtectedAreaSeeder extends Seeder
     public function runWithSample(): void
     {
         // Run on CSV file (if provided)
-        if(config('dev.csv_protected_areas_sample_file') !== null){
+        if (config('dev.csv_protected_areas_sample_file') !== null) {
             $csvFilePath = database_path(config('dev.csv_protected_areas_sample_file'));
             if (file_exists($csvFilePath)) {
-                echo("Seeding protected areas from CSV file ....\n");
+                echo "Seeding protected areas from CSV file ....\n";
                 ProtectedPlanetCSV::parseCSVFile($csvFilePath);
+
                 return;
             }
         }
 
         // Run on SAMPLE_DATA
-        echo("Seeding protected areas from SAMPLE_DATA ....\n");
+        echo "Seeding protected areas from SAMPLE_DATA ....\n";
         foreach (self::SAMPLE_DATA as $species) {
             ProtectedAreaFactory::new()->create([
                 'global_id' => $species[0],

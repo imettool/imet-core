@@ -90,7 +90,7 @@ final class Menaces extends Modules\Component\ImetModule_Eval
         $form_id = $empty_record['FormID'];
 
         $menaces_and_pressions = self::getMenacesPressions($form_id)
-            ->filter(fn (Modules\Context\MenacesPressions $item): bool => $item['Value']!==null)
+            ->filter(fn (Modules\Context\MenacesPressions $item): bool => $item['Value'] !== null)
             ->values()
             ->toArray();
 

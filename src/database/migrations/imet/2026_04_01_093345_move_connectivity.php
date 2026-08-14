@@ -12,6 +12,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use ImetCore\Helpers\Database;
 
@@ -45,15 +46,15 @@ return new class extends Migration
         });
 
         // 2. Copy column values from 'context_territorial_reference_context' to 'context_connectivity'
-        \Illuminate\Support\Facades\DB::table($connectivity_table)
+        DB::table($connectivity_table)
             ->insertUsing(
                 ['id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan'],
-                \Illuminate\Support\Facades\DB::table($territorial_reference_context_table)
-                ->select('id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan')
-                ->whereNotNull('DocumentedConnectivity')
-                ->orWhereNotNull('EvidenceOfConnectivity')
-                ->orWhereNotNull('EvidencesListConnectivity')
-                ->orWhereNotNull('ConnectivityIntegrationInManagementPlan')
+                DB::table($territorial_reference_context_table)
+                    ->select('id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan')
+                    ->whereNotNull('DocumentedConnectivity')
+                    ->orWhereNotNull('EvidenceOfConnectivity')
+                    ->orWhereNotNull('EvidencesListConnectivity')
+                    ->orWhereNotNull('ConnectivityIntegrationInManagementPlan')
             );
 
         // 3. Remove columns from 'context_territorial_reference_context'
@@ -83,7 +84,7 @@ return new class extends Migration
         });
 
         // 2. Copy column values back from 'context_connectivity' to 'context_territorial_reference_context'
-        \Illuminate\Support\Facades\DB::statement('
+        DB::statement('
             UPDATE '.$territorial_reference_context_table.'
             SET DocumentedConnectivity = "'.$connectivity_table.'"."DocumentedConnectivity",
                 EvidenceOfConnectivity = "'.$connectivity_table.'"."EvidenceOfConnectivity",
