@@ -49,7 +49,7 @@ return [
     'KeyElements' => [
         'title' => 'Eléments clés de l’espace conservé',
         'fields' => [
-            'Aspect' => 'Key element / service',
+            'Aspect' => 'Élément clé / service',
             'Importance' => 'Importance',
             'EvaluationScore' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
@@ -403,7 +403,7 @@ return [
             'PlanApproved' => 'Le plan de gestion a-t-il été approuvé ?',
             'PlanImplemented' => 'Le plan de gestion a-t-il été mis en œuvre ?',
             'PlanAdequacyScore' => 'B) Adéquation concernant la clarté et l’applicabilité du plan de gestion',
-            'Comments' => 'Comments / Explanation',
+            'Comments' => 'Commentaires / Explication',
         ],
         'ratingLegend' => [
             'KnowledgePercentage' => [
@@ -833,7 +833,7 @@ return [
                 'Organisation du système d’informateurs orientation et soutien orientation et soutien des unités/groupes de contrôle contre les activités illégales ou les questions litigieuses',
                 'Système de mise en œuvre d’actions légales contre les activités illégales',
                 'Un système pour résoudre les questions litigieuses',
-                'System to solve contentious issues',
+                'Système de résolution des questions litigieuses',
                 'Jugements obtenus selon les règles traditionnelles',
                 'Collaboration avec des ONG spécialisées dans les lois terrestres et marines, l’application, etc. (droits, règles, etc.) sur la gestion durable des éléments clés de l’espace conservé',
             ],

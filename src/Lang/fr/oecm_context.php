@@ -56,7 +56,7 @@ return [
         'fields' => [
             'CompleteName' => 'Nom complet de l’espace conservé',
             'UsedName' => 'Nom de l’espace conservé dans le site WDPA',
-            'CompleteNameWDPA' => 'Name of the conserved area in the WDPA site',
+            'CompleteNameWDPA' => 'Nom de l’espace conservé sur le site WDPA',
             'WDPA' => 'WDPA',
             'Type' => 'typologie',
             'Country' => 'Pays',

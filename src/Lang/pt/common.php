@@ -32,7 +32,7 @@ return [
 
     'protected_area' => [
         'protected_area' => 'zona protegida|áreas protegidas',
-        'wdpa_id' => 'WDPA id|WDPA ids',
+        'wdpa_id' => 'ID WDPA|IDs WDPA',
         'iucn_category' => 'Categoria UICN',
     ],
 
@@ -171,9 +171,9 @@ return [
             'country' => 'país',
         ],
         'module_info' => 'Todos os campos são obrigatórios, exceto a área de superfície.',
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
+        'allowed_international' => 'Valores permitidos para designações de nível internacional',
+        'allowed_regional' => 'Valores permitidos para designações de nível regional',
+        'allowed_national' => 'Não existem valores fixos para as áreas protegidas designadas a nível nacional',
     ],
 
     'ResponsablesInterviewers' => [

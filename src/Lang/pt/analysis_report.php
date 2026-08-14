@@ -189,7 +189,7 @@ return [
         'main_values' => 'Principais valores da network - transbondary area - landscape',
         'total_surface_protected' => 'Superfície total das áreas protegidas',
         'total_surface_landscape' => 'Superfície total da paisagem',
-        'agency' => 'Agency - Agencies',
+        'agency' => 'Agência - Agências',
         'ecoregions' => 'Ecorregiões',
         'vision' => 'Áreas protegidas com uma visão',
         'mission' => 'Áreas protegidas com uma missão',
@@ -399,7 +399,7 @@ return [
                 'intro' => 'A subsecção permite analisar os Processos, os seus 6 sub-elementos e 18 indicadores relacionados.',
                 'info' => '<b>Orientação adicional</b>: Esta subsecção apresenta indicadores de Processos num dos 4 tipos de visualizações disponíveis (1) Ranking, (2) Gráfico de barras de contribuição média e variabilidade, (3) Radar, (4) Tabela de dados. A análise Radar de indicadores requer a selecção de áreas protegidas para o radar e a tabela de dados correspondente. A selecção manual permite fazer comparações entre áreas protegidas, se necessário (ver agrupamento).<br/><br/> Pode ordenar cada coluna da tabela de Dados do mais baixo para o mais alto, do mais alto para o mais baixo, ou por ordem alfabética. Depois de ter seleccionado as áreas protegidas, clicando no botão Aplicar, activa-se a análise.'],
             'overall' => [
-                'intro' => 'Six Sub Elements of the Process',
+                'intro' => 'Seis subelementos do processo',
                 'info' => ''],
             'PRA' => ['intro' => 'PR A: Sistemas e processos de gestão interna', 'info' => ''],
             'PRB' => ['intro' => 'PR B: Gestão/Protecção dos valores', 'info' => ''],

@@ -307,17 +307,7 @@ return [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
         ],
-        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
-          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
-          services that ensure sustainable development of local communities. <br />
-          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of
-          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets
-          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic
-          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute
-          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources
-          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
-          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
-          and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
+        'module_info' => '<b>Paysage</b> : Une gouvernance et une gestion articulées d’une aire protégée et des territoires qui l’entourent peuvent contribuer à la conservation de la biodiversité et à la résilience climatique, au maintien des ressources naturelles et des services écosystémiques qui assurent le développement durable des communautés locales. <br /> <b>Aires protégées et conservées (APC)</b> : Elles constituent l’un des outils les plus efficaces pour prévenir la perte d’écosystèmes naturels et d’espèces, ainsi que pour atteindre un développement durable à long terme, y compris les objectifs d’Aichi 11 et 12 et plusieurs objectifs de développement durable (ODD). Dans certaines régions, les APC sont au cœur du développement économique, par le tourisme, l’utilisation durable des ressources et en tant que sources d’eau douce. Les APC contribuent également à la sécurité alimentaire par le maintien des services écosystémiques qui soutiennent l’agriculture, en protégeant des ressources essentielles aux programmes de sélection variétale et en offrant un espace aux systèmes traditionnels d’agriculture et de pâturage respectueux de la biodiversité. Les APC ont aussi un rôle majeur à jouer dans la résilience climatique, à la fois en stockant et en séquestrant le carbone, et en garantissant que les écosystèmes continuent de fournir des biens et des services aux sociétés humaines (WWF).',
     ],
 
     'Connectivity' => [
