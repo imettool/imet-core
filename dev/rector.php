@@ -7,7 +7,17 @@ use Rector\CodingStyle\Rector\String_\SimplifyQuoteEscapeRector;
 use Rector\Config\RectorConfig;
 use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
+use RectorLaravel\Rector\Class_\AppendsPropertyToAppendsAttributeRector;
+use RectorLaravel\Rector\Class_\DescriptionPropertyToDescriptionAttributeRector;
+use RectorLaravel\Rector\Class_\FillablePropertyToFillableAttributeRector;
+use RectorLaravel\Rector\Class_\GuardedPropertyToGuardedAttributeRector;
+use RectorLaravel\Rector\Class_\HiddenPropertyToHiddenAttributeRector;
+use RectorLaravel\Rector\Class_\SignaturePropertyToSignatureAttributeRector;
+use RectorLaravel\Rector\Class_\TablePropertyToTableAttributeRector;
 use RectorLaravel\Rector\Class_\UseForwardsCallsTraitRector;
+use RectorLaravel\Rector\Class_\WithoutIncrementingPropertyToWithoutIncrementingAttributeRector;
+use RectorLaravel\Rector\Class_\WithoutTimestampsPropertyToWithoutTimestampsAttributeRector;
 use RectorLaravel\Rector\ClassMethod\MakeModelAttributesAndScopesProtectedRector;
 use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\MethodCall\ResponseHelperCallToJsonResponseRector;
@@ -36,14 +46,35 @@ return RectorConfig::configure()
         PATH_TO_DEV.'/bootstrap/cache',
         PATH_TO_PACKAGE.'/Models/Utils/Country.php',    // abstract class, cannot add Override attribute
         ConvertStaticToSelfRector::class,               // Need to review all changes
+
+        // Do not force strict type
+        SafeDeclareStrictTypesRector::class,
+
+        // Do not convert to first class callable in routes
         ArrayToFirstClassCallableRector::class => [
-            PATH_TO_DEV.'/routes',                      // do not convert to first class callable in routes
+            PATH_TO_DEV.'/routes',
             PATH_TO_PACKAGE.'/Routes',
         ],
+
+        // Do not change visibility: avoid to interfere with inheritance
         MakeModelAttributesAndScopesProtectedRector::class,
+
+        // Keep always same quote style in lang files
         SimplifyQuoteEscapeRector::class => [
-            PATH_TO_PACKAGE.'/Lang',                    // Keep always same quote style in lang files
+            PATH_TO_PACKAGE.'/Lang',
         ],
+
+        // Ignore attribute rules on Laravel models
+        FillablePropertyToFillableAttributeRector::class,
+        GuardedPropertyToGuardedAttributeRector::class,
+        AppendsPropertyToAppendsAttributeRector::class,
+        HiddenPropertyToHiddenAttributeRector::class,
+        TablePropertyToTableAttributeRector::class,
+        WithoutIncrementingPropertyToWithoutIncrementingAttributeRector::class,
+        WithoutTimestampsPropertyToWithoutTimestampsAttributeRector::class,
+        DescriptionPropertyToDescriptionAttributeRector::class,
+        SignaturePropertyToSignatureAttributeRector::class
+
     ])
     ->withPhpSets(php84: true)
     ->withSetProviders(LaravelSetProvider::class)
@@ -68,10 +99,10 @@ return RectorConfig::configure()
         LaravelSetList::LARAVEL_CONTAINER_STRING_TO_FULLY_QUALIFIED_NAME,
         LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
         LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
-        //        LaravelSetList::LARAVEL_FACTORIES,  // Not using model factories
+        //        LaravelSetList::LARAVEL_FACTORIES,            // Not using model factories
         LaravelSetList::LARAVEL_IF_HELPERS,
         LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
-        // LaravelSetList::LARAVEL_STATIC_TO_INJECTION      // No, not this one!! What's wrong with Laravel's Facades??
+        // LaravelSetList::LARAVEL_STATIC_TO_INJECTION          // No, not this one!! What's wrong with Laravel's Facades??
     ])
     ->withRules([
         AddOverrideAttributeToOverriddenMethodsRector::class,

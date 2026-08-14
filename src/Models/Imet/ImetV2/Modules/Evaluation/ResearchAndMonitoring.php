@@ -81,8 +81,6 @@ final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
 
         // ####  v3.7.3 -> v3.7.4 ####
         $record = self::dropField($record, 'EvaluationScoreAdequacy');
-        $record = self::dropField($record, 'InManagementPlan');
-
-        return $record;
+        return self::dropField($record, 'InManagementPlan');
     }
 }

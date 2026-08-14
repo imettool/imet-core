@@ -45,10 +45,10 @@ return new class extends Migration
         });
 
         // 2. Copy column values from 'context_territorial_reference_context' to 'context_connectivity'
-        DB::table($connectivity_table)
+        \Illuminate\Support\Facades\DB::table($connectivity_table)
             ->insertUsing(
                 ['id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan'],
-                DB::table($territorial_reference_context_table)
+                \Illuminate\Support\Facades\DB::table($territorial_reference_context_table)
                 ->select('id', 'FormID', 'UpdateBy', 'UpdateDate', 'DocumentedConnectivity', 'EvidenceOfConnectivity', 'EvidencesListConnectivity', 'ConnectivityIntegrationInManagementPlan')
                 ->whereNotNull('DocumentedConnectivity')
                 ->orWhereNotNull('EvidenceOfConnectivity')
@@ -83,7 +83,7 @@ return new class extends Migration
         });
 
         // 2. Copy column values back from 'context_connectivity' to 'context_territorial_reference_context'
-        DB::statement('
+        \Illuminate\Support\Facades\DB::statement('
             UPDATE '.$territorial_reference_context_table.'
             SET DocumentedConnectivity = "'.$connectivity_table.'"."DocumentedConnectivity",
                 EvidenceOfConnectivity = "'.$connectivity_table.'"."EvidenceOfConnectivity",

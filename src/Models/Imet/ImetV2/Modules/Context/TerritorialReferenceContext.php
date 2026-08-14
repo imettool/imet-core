@@ -83,10 +83,8 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::dropField($record, 'DocumentedConnectivity');
         $record = self::dropField($record, 'EvidenceOfConnectivity');
         $record = self::dropField($record, 'EvidencesListConnectivity');
-        $record = self::dropField($record, 'ConnectivityIntegrationInManagementPlan');
         // Existing data split managed in splitConnectivity()
-
-        return $record;
+        return self::dropField($record, 'ConnectivityIntegrationInManagementPlan');
     }
 
     /**

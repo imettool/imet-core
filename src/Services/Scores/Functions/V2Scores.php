@@ -158,14 +158,14 @@ class V2Scores extends _Scores
             'OC3' => static::score_group($imet_id, Evaluation\LifeQualityImpact::class, 'EvaluationScore', 'group_key'),
         ];
 
-        $scores['stacked'] = array(
+        $scores['stacked'] = [
             $scores['OC1'] ? round($scores['OC1']/9, 2) : null,
             $scores['OC2'] ? round(($scores['OC2']+100)/4.5, 2) : null,
             $scores['OC3'] ? round(($scores['OC3']+100)/4.5, 2) : null,
-        );
+        ];
 
         // aggregate step score
-        $scores['avg_indicator'] = !empty(array_filter($scores['stacked']))
+        $scores['avg_indicator'] = filled(array_filter($scores['stacked']))
             ? round(array_sum($scores['stacked']), 2)
             : null;
 

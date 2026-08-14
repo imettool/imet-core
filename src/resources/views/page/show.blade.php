@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 /** @var string $step */
 /** @var ?array $cross_analysis_warnings */
 
-$cross_analysis_warnings = $cross_analysis_warnings ?? [];
+$cross_analysis_warnings ??= [];
 
 if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     $version = Models\Imet\Imet::IMET_V1;
@@ -29,10 +29,7 @@ if (Str::contains($controller, 'EvalController')) {
     $phase = 'evaluation';
     $step_labels = 'common.steps_eval';
 }
-
-if(count($cross_analysis_warnings)>0);{
-    $step_menu_classes['cross_analysis'] = 'cross-analysis-warnings';
-}
+$step_menu_classes['cross_analysis'] = 'cross-analysis-warnings';
 
 $steps = $phase === 'evaluation' && Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V2)
     ? Imet\ImetV2\EvalController::steps($item)
