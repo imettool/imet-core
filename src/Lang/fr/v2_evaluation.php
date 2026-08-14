@@ -128,7 +128,6 @@ return [
     'ImportanceClimateChange' => [
         'title' => 'Changement climatique',
         'fields' => [
-            'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
@@ -136,6 +135,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
+                'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
                 '0' => 'Pas d’intégration',
                 '1' => 'Faible intégration',
                 '2' => 'Intégration partielle',
@@ -670,13 +670,13 @@ return [
             'Importance' => 'B) Priorité à présent pour la gestion',
             'Comments' => 'Commentaires/Explication',
         ],
+        'adequacy' => 'Adéquation des infrastructures, équipements et installations',
         'ratingLegend' => [
-            'Equipment' => [
-                '0' => 'Inadéquats même pour les activités de gestion essentielles (entre 1 et 25 % des besoins)',
-                '1' => 'Inadéquats pour de nombreuses activités de gestion (26 à 50 % des besoins)',
-                '2' => 'Adéquats pour les activités de gestion essentielles (entre 51 et 70 % des besoins)',
-                '3' => 'Adéquats pour de nombreuses activités, mais pas toutes (entre 71 % et 90 % des besoins)',
-                '4' => 'Adéquats pour toutes les activités (91 % ou plus des besoins)',
+            'EvaluationScore' => [
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
             'Importance' => [
                 '0' => 'Normal',
@@ -1698,7 +1698,7 @@ return [
                 '-2' => 'Dommageable',
                 '-1' => 'Légèrement dommageable',
                 '0' => 'Aucun',
-                '1' => 'Légèrement favorable',
+                '+1' => 'Légèrement favorable',
                 '+2' => 'Favorable',
                 '+3' => 'Très favorable',
             ],
