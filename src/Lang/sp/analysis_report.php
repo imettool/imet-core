@@ -28,6 +28,7 @@ return [
     'average_explained' => '* Media calculada en base al conjunto de áreas protegidas que participan en el ejercicio de ampliación',
     'ranking_rescaled_indicators' => 'Clasificación de los indicadores reescalada a 0-100',
     'ranking_info_indicators' => '* Las puntuaciones en la ventana emergente son la contribución al indicador sintético',
+    'average_protected_areas' => '* Sin áreas protegidas seleccionadas, las puntuaciones corresponden a la media de todas las áreas protegidas. Con áreas protegidas seleccionadas, las puntuaciones medias se refieren a las áreas protegidas seleccionadas.',
     'source' => 'Fuente',
     'download_files' => 'descarga de archivos',
     'custom_names' => 'Nombres de zonas protegidas',
@@ -47,6 +48,7 @@ return [
     'add_all' => 'Añadir todo',
     'close' => 'Cerrar',
     'remove_all' => 'Eliminar todo',
+    'average' => 'Media',
     'sections' => [
         'first' => 'Ubicación de las áreas protegidas seleccionadas',
         'second' => 'Información General de las áreas protegidas',

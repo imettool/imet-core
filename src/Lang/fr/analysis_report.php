@@ -28,6 +28,7 @@ return [
     'average_explained' => '* Moyenne calculée sur la base de l’ensemble des aires protégées participant à l’exercice de mise à l’échelle,',
     'ranking_rescaled_indicators' => 'Classement des indicateurs rééchelonnés sur 0-100',
     'ranking_info_indicators' => '* Les scores dans le pop-up sont la Valeur à l\'indicateur synthétique',
+    'average_protected_areas' => '* Sans aires protégées sélectionnées, les scores correspondent à la moyenne de toutes les aires protégées. Avec des aires protégées sélectionnées, les scores moyens se rapportent aux aires protégées sélectionnées.',
     'source' => 'Source',
     'download_files' => 'téléchargements de fichiers',
     'custom_names' => 'Noms des aires protégées',
@@ -47,6 +48,7 @@ return [
     'add_all' => 'Tout ajouter',
     'close' => 'Fermer',
     'remove_all' => 'Tout supprimer',
+    'average' => 'Moyenne',
     'sections' => [
         'first' => 'Localisation des aires protégées sélectionnées',
         'second' => 'Informations genérales des aires protégées',
