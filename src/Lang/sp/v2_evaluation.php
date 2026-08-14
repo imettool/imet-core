@@ -1643,9 +1643,9 @@ return [
                 '+3' => 'Impacto en disminución rápida (mejora rápida)',
             ],
             'Reliability' => [
-                'Elevado' => 'Certeza casi total sobre los valores del estado y de las tendencias',
-                'Médio' => 'Posibilidad de error en los valores del estado y de las tendencias',
-                'Fraco' => 'Gran incertidumbre sobre los valores del estado y de las tendencias',
+                'Alta' => 'Certeza casi total sobre los valores del estado y de las tendencias',
+                'Media' => 'Posibilidad de error en los valores del estado y de las tendencias',
+                'Baja' => 'Gran incertidumbre sobre los valores del estado y de las tendencias',
             ],
         ],
         'module_info_EvaluationQuestion' => [

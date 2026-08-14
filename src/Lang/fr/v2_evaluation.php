@@ -1645,7 +1645,7 @@ return [
                 '+3' => 'Impact en diminution rapide (amélioration rapide)',
             ],
             'Reliability' => [
-                'Élevé ' => 'Certitude presque totale quant aux valeurs de l’état et des tendances',
+                'Élevé' => 'Certitude presque totale quant aux valeurs de l’état et des tendances',
                 'Moyen' => 'Possibilité d’erreur quant aux valeurs de l’état et des tendances',
                 'Faible' => 'Forte incertitude quant aux valeurs de l’état et des tendances',
             ],

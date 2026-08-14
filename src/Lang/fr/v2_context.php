@@ -1053,7 +1053,7 @@ return [
         'ratingLegend' => [
             'Importance' => [
                 'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
-                'Larger' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
+                'Plus grand' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
             ],
             'ImportanceRegional' => [
                 '0' => 'très faible',
