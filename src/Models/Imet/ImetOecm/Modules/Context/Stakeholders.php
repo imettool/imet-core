@@ -137,7 +137,7 @@ final class Stakeholders extends Modules\Component\ImetModule
                 ->groupBy('Element')
                 ->map(function ($group): string|false {
                     $categories = [];
-                    $group->map(function (array $item) use (&$categories): void {
+                    $group->map(function (Stakeholders $item) use (&$categories): void {
                         if ($item['UsesCategories'] !== null) {
                             $categories = array_merge($categories, json_decode((string) $item['UsesCategories']));
                         }
