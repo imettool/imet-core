@@ -582,7 +582,7 @@ return [
     ],
 
     'BudgetSecurization' => [
-        'title' => 'Securing the budget',
+        'title' => 'Sécurisation du financement futur',
         'fields' => [
             'Percentage' => 'A) Evaluer en pourcentage la "Sécurité des financements futurs',
             'EvaluationScore' => 'B) Évaluer en années la "Période de sécurité des financements futurs',
@@ -762,10 +762,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -781,7 +781,7 @@ return [
         'title' => 'Gestion des éléments clés',
         'fields' => [
             'Activity' => 'Critères - Concept mesuré - Variable',
-            'EvaluationScore' => 'Adéquation of management actions',
+            'EvaluationScore' => 'Adéquation des mesures de gestion',
             'InManagementPlan' => 'Action incluse dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -791,10 +791,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -983,7 +983,7 @@ return [
         'title' => 'La gestion du tourisme',
         'fields' => [
             'Aspect' => 'Critères - Concept mesuré - Variable',
-            'EvaluationScore' => 'Adéquation of visitor facilities and services',
+            'EvaluationScore' => 'Adéquation des installations et des services aux visiteurs',
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
@@ -1259,10 +1259,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
