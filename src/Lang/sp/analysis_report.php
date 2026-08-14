@@ -75,6 +75,7 @@ return [
                 'ranking' => '6.1.2.1 Clasificación de los subindicadores de valor e importancia',
                 'average_contribution' => '6.1.2.2 Contribución media y variabilidad de los subindicadores de valor e Importancia',
                 'datatable' => '6.1.2.4 Tabla de datos de los subindicadores de valor e Importancia',
+                'datatable_average' => 'Subindicadores del valor y la importancia',
             ],
         ],
         'threats' => [
@@ -277,6 +278,16 @@ return [
             'process_sub_indicators' => 'Contribución media de los seis subelementos de los indicadores de proceso',
             'outputs' => 'Contribución media de los indicadores de resultados',
             'outcomes' => 'Contribución media de los indicadores de resultados',
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Subindicadores del valor y la importancia',
+            'context_indicators' => 'Indicadores del contexto de la gestión',
+            'planning_indicators' => 'Indicadores de planificación',
+            'inputs_indicators' => 'Indicadores de los insumos',
+            'process_indicators' => 'Indicadores del proceso',
+            'process_sub_indicators' => 'Subelementos de los indicadores de proceso',
+            'outputs_indicators' => 'Indicadores de productos',
+            'outcomes_indicators' => 'Indicadores de efectos e impactos',
         ],
     ],
 

@@ -75,6 +75,7 @@ return [
                 'ranking' => '6.1.2.1 Classement des sous-indicateurs de valeur et d’importance',
                 'average_contribution' => '6.1.2.2 Valeur moyenne et variabilité des sous-indicateurs Valeur et Importance',
                 'datatable' => '6.1.2.4 Tableau de données des sous-indicateurs Valeur et Importance',
+                'datatable_average' => 'Sous-indicateurs de la valeur et l’importance',
             ],
         ],
         'threats' => [
@@ -277,6 +278,16 @@ return [
             'process_sub_indicators' => 'Valeur moyenne des six sous-éléments des indicateurs de processus',
             'outputs' => 'Valeur moyenne des indicateurs des résultats',
             'outcomes' => 'Valeur moyenne des indicateurs d’effets et impacts',
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Sous-indicateurs de la valeur et l’importance',
+            'context_indicators' => 'Indicateurs du contexte de gestion',
+            'planning_indicators' => 'Indicateurs de planification',
+            'inputs_indicators' => 'Indicateurs d’intrants',
+            'process_indicators' => 'Indicateurs du processus',
+            'process_sub_indicators' => 'Sous-éléments des indicateurs de processus',
+            'outputs_indicators' => 'Indicateurs des résultats',
+            'outcomes_indicators' => 'Indicateurs d’effets et impacts',
         ],
     ],
     'protected_area' => [

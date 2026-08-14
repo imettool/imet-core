@@ -75,6 +75,7 @@ return [
                 'ranking' => '6.1.2.1 Ranking de Subindicadores de Valor e Importância',
                 'average_contribution' => '6.1.2.2 Contribuição média e variabilidade dos subindicadores de Valor e Importância',
                 'datatable' => '6.1.2.4 Tabela de dados de subindicadores de Valor e Importância',
+                'datatable_average' => 'Subindicadores do valor e da importância',
             ],
         ],
         'threats' => [
