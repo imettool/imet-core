@@ -1117,7 +1117,6 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure l’espace conservé a-t-elle atteint les principaux objectifs de son plan de gestion et de gouvernance ?',
-            '(Sur la base de l\'analyse du contexte d\'intervention, point CTX1.5 Vision – Objectifs ou éléments de planification, point P6 – Objectifs existants du plan de gestion).',
             'Les buts et objectifs d’une espace conservé doivent être clairement compris si l’on veut que la gestion soit réussie sur la base de résultats mesurables',
         ],
         'module_info_Rating' => [

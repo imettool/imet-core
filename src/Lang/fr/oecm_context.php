@@ -19,7 +19,7 @@ return [
             'Year' => 'Année faisant l’objet de l’évaluation',
             'wdpa_id' => 'espace conservé',
             'language' => 'langue',
-            'pré-remplissage avec les données de l’année précédente ',
+            'prefill_prev_year' => 'pré-remplissage avec les données de l’année précédente ',
         ],
     ],
 
@@ -91,6 +91,8 @@ return [
             'ManagementType' => 'Type',
             'DateOfCreation' => 'Date de création',
             'OfficialRecognition' => 'Reconnaissance officielle : L’organe de gestion a-t-il reçu une reconnaissance officielle de la part des autorités nationales ou régionales ?',
+            'OfficialRecognition.0' => 'Non',
+            'OfficialRecognition.1' => 'Oui',
             'SupervisoryInstitution' => 'Institution de contrôle (le cas échéant)',
             'MemberRepresentativenessLevel' => 'Niveau de représentativité des membres',
             'AdditionalInformation' => 'Informations supplémentaires sur l\'entité de gestion (si nécessaire)',
@@ -558,6 +560,8 @@ return [
             'group10' => ['Habitats de pépinière et de nidification', 'Habitats pour la pollinisation'],
         ],
         'summary' => 'Importance des éléments et implication des parties prenantes',
+        'element' => 'Critère',
+        'elements_importance' => 'Importance des éléments pour les parties prenantes',
         'involvement_ranking' => 'Implication des parties prenantes',
         'importance' => 'Importance (0-100)',
         'involvement' => 'Implication de la partie prenante (0-100)',
@@ -590,16 +594,6 @@ return [
             '<b>Access</b>: L’accès d’une partie prenante aux services écosystémiques fait référence à sa capacité à bénéficier des ressources naturelles
                  et les services fournis par les écosystèmes. Si une partie prenante n\'a pas accès à ces services, ses moyens de subsistance et
                  leur bien-être sont menacés et ils peuvent être confrontés à la pauvreté, à l\'insécurité alimentaire et à des problèmes de santé..</br >',
-        '<b>Rivalry</b>: La rivalité des acteurs dans les services écosystémiques renvoie à la compétition ou au conflit entre individus
-                  ou les parties prenantes sur l\'accès et l\'utilisation de ces services. La rivalité peut entraîner une surexploitation ou un épuisement des ressources,
-                  exacerbant la dégradation de l\'environnement et compromettant la disponibilité à long terme de ces services pour la communauté
-                  ou communautés.</br >'.
-        '<b>Qualité des services écosystémiques</b> facteurs physiques, biologiques et écologiques qui permettent à l\'écosystème de perdurer
-                  pour fournir le service souhaité, ou pour que l\espèce continue d\'être viable. (Exemple : pas de pollution, présence de juvéniles,
-                  biodiversité, etc.)'.
-        '<b>Quantité des services écosystémiques</b>: quantité, volume ou taille des services écosystémiques ou des espèces (Exemple:
-                  surface d\'une forêt, population d\'espèces, volume de cours d\'eau, etc.).</br >'.
-        '<b>Threads</b>: Human activities or processes that have impacted, are impacting or may impact the conserved area’s key element being assessed.</br >',
         'ratingLegend' => [
             'Dependence' => [
                 '0' => 'Très faible',
