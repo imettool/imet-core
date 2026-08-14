@@ -717,6 +717,7 @@ return [
             'Duration' => 'Cuánto tiempo',
             'Trend' => 'Tendencia',
             'Probability' => 'Probabilidad de una amenaza en el futuro',
+            'Comments' => 'Comentarios',
         ],
         'groups' => [
             'group0' => 'Comercial y residencial',
@@ -760,6 +761,7 @@ return [
                 'La agricultura en pequeña escala',
                 'Grandes empresas agroindustriales',
                 'Producción de frutas/huerto vegetal',
+                'Extracción de fertilizante para la agricultura',
             ],
             'group2' => [
                 'Pequeñas plantaciones',
@@ -792,10 +794,14 @@ return [
             'group8' => [
                 'Caza de animales terrestres',
                 'Recolección de animales vivos',
+                'Recolección de pequeños animales, como insectos, o de sus productos, como la miel',
             ],
             'group9' => [
                 'Recolección de plantas',
                 'Cosecha de plantas',
+                'Recolección de alimentos vegetales (tubérculos, frutos, etc.)',
+                'Recolección de plantas medicinales',
+                'Recolección de tallos y fibras (palmas, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Operaciones madereras en pequeña escala',
@@ -814,6 +820,8 @@ return [
                 'Sobrepesca y pesca destructiva',
                 'Explotación de especies en peligro',
                 'Arrastreros/marinos',
+                'Recolección de recursos ornamentales y de acuariofilia (recogida de semillas, conchas y peces)',
+                'Recolección de algas',
             ],
             'group12' => [
                 'Actividades recreativas',
@@ -845,6 +853,7 @@ return [
                 'Pequeñas presas',
                 'Grandes presas',
                 'Presas (tamaño desconocido)',
+                'Presas para producción de energía',
             ],
             'group16' => [
                 'Especies o enfermedades introducidas invasivas',

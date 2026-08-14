@@ -625,12 +625,12 @@ return [
             'group0' => ['Bureaux', 'Postes de patrouille', 'Points de barrières', 'Bâtiments scientifiques', 'Garage et atelier', 'Espace pour les bouteilles et autres équipements de plongée', 'Hangars à bateaux', 'Parking voitures-bateaux', 'Services divers (magazine, radio, etc.)', 'Dispensaires'],
             'group1' => ['pour Officiers et sous-officiers', 'pour les Agents', 'pour le Personnel d\'appui', 'pour le Personnel scientifique'],
             'group2' => ['Hôtels (capacité d’accueil)', 'Eco-lodges (capacité d’accueil)', 'Campements', 'Accueils des touristes', 'Points de vue ou points d’observation (miradors)', 'Parcours touristiques aménagés'],
-            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Jet ski', 'Animaux (chevaux)'],
+            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Engins lourds'],
             'group4' => ['Radar de contrôle', 'Armements', 'Cartouches', 'Tenues', 'Rations', 'GPS, Boussoles', 'Matériel de camping et de brousse'],
             'group5' => ['Radios VHF-HF', 'V-SAT', 'Téléphones fixes', 'Téléphones GSM', 'Téléphones satellitaires', 'Connexion internet'],
             'group6' => ['Ordinateurs fixes', 'Ordinateurs portables', 'Imprimantes', 'Photocopieurs', 'Onduleur'],
-            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne'],
-            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique'],
+            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne', 'Adduction d’eau'],
+            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique', 'Engins lourds'],
             'group9' => ['Routes/pistes de pénétration dans l\'aire protégée', 'Route de délimitation de l’aire protégée', 'Chemins à l’intérieur de l’aire protégée'],
             'group10' => ['Voies fluviales à l’intérieur de l’aire protégée'],
             'group11' => ['Pistes aériennes à l\'intérieur et/ou à l\'extérieur de l\'aire protégée'],
@@ -730,6 +730,7 @@ return [
             'Duration' => 'Durée',
             'Trend' => 'Tendance',
             'Probability' => 'Probabilité de la menace dans le futur',
+            'Comments' => 'Commentaires',
         ],
         'groups' => [
             'group0' => 'Développement commercial et résidentiel',
@@ -773,6 +774,7 @@ return [
                 'Petites exploitations agricoles',
                 'Exploitations agro-industrielles',
                 'Production de fruits/légumes',
+                'Extraction de fertilisant pour l’agriculture',
             ],
             'group2' => [
                 'Petites plantations',
@@ -805,10 +807,14 @@ return [
             'group8' => [
                 'Chasse d\'animaux terrestres',
                 'Prélèvement d\'animaux vivants',
+                'Collecte de petits animaux, comme les insectes, ou de leurs produits, comme le miel',
             ],
             'group9' => [
                 'Cueillette de produits des plantes',
                 'Prélèvement des plantes vivantes',
+                'Récolte de produits alimentaires végétaux (tubercules, fruits, etc.)',
+                'Récolte de plantes médicinales',
+                'Récolte de tiges et de fibres (palmiers, kénaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Exploitation bois d\'oeuvre à grande échelle',
@@ -827,6 +833,8 @@ return [
                 'Surpêche et pêche destructive',
                 'Exploitation des espèces menacées d’extinction',
                 'Chalutiers/sous-marins',
+                'Récolte de ressources ornementales et d’aquariophilie (collecte de graines, coquillages et poissons)',
+                'Récolte d’algues',
             ],
             'group12' => [
                 'Activités récréatives',
@@ -858,6 +866,7 @@ return [
                 'Petits barrages',
                 'Grands barrages',
                 'Barrages (taille inconnue)',
+                'Barrages pour la production d’énergie',
             ],
             'group16' => [
                 'Espèces ou maladies introduites et envahissantes',
@@ -900,7 +909,6 @@ return [
             'group22' => [
                 'Pollution lumineuse',
                 'Pollution thermique',
-                'Pollution à l\'ozone',
                 'Pollution sonore',
             ],
             'group23' => [
