@@ -898,7 +898,6 @@ return [
         'fields' => [
             'Activity' => 'Criteria - Measured concept – Variable',
             'EvaluationScore' => 'Adequacy of management actions',
-            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'groups' => [
@@ -1346,8 +1345,6 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of research and long-term monitoring',
-            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
-            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'predefined_values' => [
@@ -1386,7 +1383,6 @@ return [
         'fields' => [
             'Program' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Rating: Adequacy of adaptation measures',
-            'EvaluationScoreAdequacy' => 'Adequacy of management actions',
             'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
@@ -1425,6 +1421,7 @@ return [
         'fields' => [
             'Intervention' => 'Criteria – Concept measured – Variable',
             'EvaluationScore' => 'Adequacy of ecosystem services management',
+            'InManagementPlan' => 'Action included in the management plan',
             'Comments' => 'Comments/Explanation',
         ],
         'categories' => [

@@ -28,6 +28,7 @@ return [
     'average_explained' => '* Moyenne calculée sur la base de l’ensemble des aires protégées participant à l’exercice de mise à l’échelle,',
     'ranking_rescaled_indicators' => 'Classement des indicateurs rééchelonnés sur 0-100',
     'ranking_info_indicators' => '* Les scores dans le pop-up sont la Valeur à l\'indicateur synthétique',
+    'average_protected_areas' => '* Sans aires protégées sélectionnées, les scores correspondent à la moyenne de toutes les aires protégées. Avec des aires protégées sélectionnées, les scores moyens se rapportent aux aires protégées sélectionnées.',
     'source' => 'Source',
     'download_files' => 'téléchargements de fichiers',
     'custom_names' => 'Noms des aires protégées',
@@ -47,6 +48,7 @@ return [
     'add_all' => 'Tout ajouter',
     'close' => 'Fermer',
     'remove_all' => 'Tout supprimer',
+    'average' => 'Moyenne',
     'sections' => [
         'first' => 'Localisation des aires protégées sélectionnées',
         'second' => 'Informations genérales des aires protégées',
@@ -75,6 +77,7 @@ return [
                 'ranking' => '6.1.2.1 Classement des sous-indicateurs de valeur et d’importance',
                 'average_contribution' => '6.1.2.2 Valeur moyenne et variabilité des sous-indicateurs Valeur et Importance',
                 'datatable' => '6.1.2.4 Tableau de données des sous-indicateurs Valeur et Importance',
+                'datatable_average' => 'Sous-indicateurs de la valeur et l’importance',
             ],
         ],
         'threats' => [
@@ -267,14 +270,6 @@ return [
             'persistent_increase' => 'Augmentation persistante de la productivité [km2]',
         ],
     ],
-    'total_carbon' => [
-        'title' => 'Carbone total',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Moyenne [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Somme [Mg]',
-        'std_dev' => 'Std. Dev.',
-    ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
             'context_sub_indicators' => 'Valeur moyenne des six sous-indicateurs de la valeur et l’importance',
@@ -285,6 +280,16 @@ return [
             'process_sub_indicators' => 'Valeur moyenne des six sous-éléments des indicateurs de processus',
             'outputs' => 'Valeur moyenne des indicateurs des résultats',
             'outcomes' => 'Valeur moyenne des indicateurs d’effets et impacts',
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Sous-indicateurs de la valeur et l’importance',
+            'context_indicators' => 'Indicateurs du contexte de gestion',
+            'planning_indicators' => 'Indicateurs de planification',
+            'inputs_indicators' => 'Indicateurs d’intrants',
+            'process_indicators' => 'Indicateurs du processus',
+            'process_sub_indicators' => 'Sous-éléments des indicateurs de processus',
+            'outputs_indicators' => 'Indicateurs des résultats',
+            'outcomes_indicators' => 'Indicateurs d’effets et impacts',
         ],
     ],
     'protected_area' => [
@@ -297,24 +302,6 @@ return [
             'area_prot_terr_perc' => 'Aire protégée',
             'protconn' => 'Aires protégées et connectées',
         ],
-        'dopa_indicators' => [
-            'terrestial_area' => [
-                'title_table' => 'Aire terrestre',
-                'area_terr_perc' => 'Couverture [%]',
-                'area_prot_terr_km2' => 'Aire terrestre protégée [km2]',
-                'area_terr_km2' => 'Superficie totale des terres [km2]',
-                'carbon_stdev_c_mg' => 'Archi Terres 11 seuil',
-
-            ],
-            'marine_indicators' => [
-                'title_table' => 'Aire marine',
-                'area_mar_perc' => 'Couverture [%]',
-                'area_prot_mar_km2' => 'Aire marine protégée [km2]',
-                'area_mar_km2' => 'Aire marine totale [km2]',
-                'carbon_stdev_c_mg' => 'Terrestrial Archi 11 seuil',
-            ],
-        ],
-
     ],
     'overall' => [
         'imet_indicator_ranking' => 'Classement des indicateurs IMET',

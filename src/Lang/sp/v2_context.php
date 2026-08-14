@@ -553,7 +553,6 @@ return [
             'Disputes' => 'Ingresos por litigios (tesoro nacional)',
             'Partners' => 'Contribuciones de los socios',
             'total' => 'Total',
-            'percentage' => '% del presupuesto previsto',
         ],
         'predefined_values' => [
             '% anual total disponible',
@@ -718,6 +717,7 @@ return [
             'Duration' => 'Cuánto tiempo',
             'Trend' => 'Tendencia',
             'Probability' => 'Probabilidad de una amenaza en el futuro',
+            'Comments' => 'Comentarios',
         ],
         'groups' => [
             'group0' => 'Comercial y residencial',
@@ -761,6 +761,7 @@ return [
                 'La agricultura en pequeña escala',
                 'Grandes empresas agroindustriales',
                 'Producción de frutas/huerto vegetal',
+                'Extracción de fertilizante para la agricultura',
             ],
             'group2' => [
                 'Pequeñas plantaciones',
@@ -793,10 +794,14 @@ return [
             'group8' => [
                 'Caza de animales terrestres',
                 'Recolección de animales vivos',
+                'Recolección de pequeños animales, como insectos, o de sus productos, como la miel',
             ],
             'group9' => [
                 'Recolección de plantas',
                 'Cosecha de plantas',
+                'Recolección de alimentos vegetales (tubérculos, frutos, etc.)',
+                'Recolección de plantas medicinales',
+                'Recolección de tallos y fibras (palmas, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Operaciones madereras en pequeña escala',
@@ -815,6 +820,8 @@ return [
                 'Sobrepesca y pesca destructiva',
                 'Explotación de especies en peligro',
                 'Arrastreros/marinos',
+                'Recolección de recursos ornamentales y de acuariofilia (recogida de semillas, conchas y peces)',
+                'Recolección de algas',
             ],
             'group12' => [
                 'Actividades recreativas',
@@ -846,6 +853,7 @@ return [
                 'Pequeñas presas',
                 'Grandes presas',
                 'Presas (tamaño desconocido)',
+                'Presas para producción de energía',
             ],
             'group16' => [
                 'Especies o enfermedades introducidas invasivas',
@@ -923,32 +931,32 @@ return [
             'title12' => 'Otras presiones y amenazas',
         ],
         'ratingLegend' => [
-            'Impacto' => [
+            'Impact' => [
                 '0' => 'Suave',
                 '1' => 'Moderado',
                 '2' => 'Alto',
                 '3' => 'Severo',
             ],
-            'Extensión' => [
+            'Extension' => [
                 '0' => 'Localizado <5%',
                 '1' => 'Escaso 5-15%',
                 '2' => 'Ampliamente disperso 15-50%',
                 '3' => 'En todas partes>50%',
             ],
-            'Duración' => [
+            'Duration' => [
                 '0' => 'A corto plazo <5 años',
                 '1' => 'Medio plazo 5-20 años',
                 '2' => 'Muy largo plazo 20-100 años',
                 '3' => 'Permanente>100 años',
             ],
-            'Tendencia' => [
+            'Trend' => [
                 '-2' => 'Disminuye',
                 '-1' => 'Ligeramente decreciente',
                 '0' => 'No hay cambios',
                 '1' => 'Ligeramente creciente',
                 '2' => 'Incrementa',
             ],
-            'Probabilidad de la amenaza en el futuro' => [
+            'Probability' => [
                 '0' => 'Muy bajo',
                 '1' => 'Bajo',
                 '2' => 'Medio',

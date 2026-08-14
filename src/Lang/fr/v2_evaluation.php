@@ -128,7 +128,6 @@ return [
     'ImportanceClimateChange' => [
         'title' => 'Changement climatique',
         'fields' => [
-            'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
@@ -136,6 +135,7 @@ return [
         ],
         'ratingLegend' => [
             'EvaluationScore' => [
+                'N/A' => 'cet élément n\'est pas en rapport avec la gestion de l\'aire protégée',
                 '0' => 'Pas d’intégration',
                 '1' => 'Faible intégration',
                 '2' => 'Intégration partielle',
@@ -194,7 +194,7 @@ return [
         'fields' => [
             'Aspect' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Influence/pouvoir des parties prenantes',
-            'IncludeInStatistics' => 'Should it be a priority in management?',
+            'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion ?',
             'EvaluationScore2' => 'Niveau des contraintes/conflits ou soutiens/conformités',
             'Score' => 'Évaluation',
             'Comments' => 'Commentaires/Explication',
@@ -670,13 +670,13 @@ return [
             'Importance' => 'B) Priorité à présent pour la gestion',
             'Comments' => 'Commentaires/Explication',
         ],
+        'adequacy' => 'Adéquation des infrastructures, équipements et installations',
         'ratingLegend' => [
-            'Equipment' => [
-                '0' => 'Inadéquats même pour les activités de gestion essentielles (entre 1 et 25 % des besoins)',
-                '1' => 'Inadéquats pour de nombreuses activités de gestion (26 à 50 % des besoins)',
-                '2' => 'Adéquats pour les activités de gestion essentielles (entre 51 et 70 % des besoins)',
-                '3' => 'Adéquats pour de nombreuses activités, mais pas toutes (entre 71 % et 90 % des besoins)',
-                '4' => 'Adéquats pour toutes les activités (91 % ou plus des besoins)',
+            'EvaluationScore' => [
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
             'Importance' => [
                 '0' => 'Normal',
@@ -898,7 +898,6 @@ return [
         'fields' => [
             'Activity' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation des mesures de gestion',
-            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'groups' => [
@@ -979,6 +978,7 @@ return [
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure la gestion et la mise en œuvre de l’application de la loi par les patrouilles de surveillants sont-elles adéquates et axées sur la protection à long terme de la biodiversité ?',
             'La gestion des patrouilles de surveillants est une activité d’application de la loi essentielle pour faire respecter les règles juridiques existantes qui devraient assurer la protection à long terme de la biodiversité et des autres valeurs de l’aire protégée. Une gestion efficace des aires protégées nécessite l’application de la loi à tous les niveaux: patrouilles de surveillants, renseignements et systèmes de justice pénale efficaces. Cette étape de l’analyse porte sur le processus de gestion des patrouilles de surveillants (un module spécifique à une analyse approfondie de l’application de la loi est disponible)',
+            '(Note : un module IMET spécifique est disponible pour une analyse plus approfondie de l’application de la loi)',
         ],
         'module_info_Rating' => [
             'Évaluer l’adéquation des éléments de la gestion des patrouilles de surveillants visant à assurer la protection à long terme de la biodiversité et d’autres valeurs',
@@ -1346,8 +1346,6 @@ return [
         'fields' => [
             'Program' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation de la recherche et de la surveillance écologique à long terme',
-            'EvaluationScoreAdequacy' => 'Adéquation des mesures de gestion',
-            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
@@ -1387,7 +1385,6 @@ return [
         'fields' => [
             'Program' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation des mesures d’adaptation',
-            'EvaluationScoreAdequacy' => 'Adéquation des mesures de gestion',
             'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -1426,6 +1423,7 @@ return [
         'fields' => [
             'Intervention' => 'Critère — Concept mesuré — Variable',
             'EvaluationScore' => 'Adéquation de la gestion des services écosystémiques',
+            'InManagementPlan' => 'Inclus dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
         'categories' => [
@@ -1605,6 +1603,7 @@ return [
         'module_info_EvaluationQuestion' => [
             'Dans quelle proportion l’aire protégée a-t-elle atteint les principaux objectifs à long terme du plan de gestion ?',
             '(A partir de l’élément Contexte de l’intervention, point CTX1.5 Vision — Mission — Objectifs ou élément Planification, point P6 — Objectifs de l’aire protégée)<ul><li>Les objectifs doivent être bien définis et clairement compris de manière à faciliter le suivi de leur atteinte si l’on veut que la gestion soit efficace</li><li>Dans cet outil, nous faisons une distinction importante entre les résultats/extrants et les effets/impacts:</li><li>Les effets/impacts se rapportent aux changements liés aux OBJECTIFS/ÉTATS SOUHAITES ou à la vision exprimés dans le plan de gestion et caractérisant une situation visée ou souhaitée, à la fin de la période considérée. Ces objectifs sont généralement des énoncés spécifiques concernant les valeurs clés de l’aire protégée (p. ex. les espèces ou les services écosystémiques importants) ou les principaux domaines d’activités de gestion (p. ex. tourisme, éducation).</li><li>Les résultats/extrants se rapportent à la la réalisation d’ACTIVITES à court terme (ou à relativement court terme) généralement mesurés de manière quantitative, et qui contribuent avec d’autres réalisations, à atteindre les objectifs/états souhaités à long terme. Il est considéré que l’utilisation de nombreux objectifs de conservation de faible niveau est un obstacle à l’atteinte d’une performance élevée en matière de conservation</li></ul>',
+            'La gestion des aires protégées s’effectue de plus en plus selon les principes de la « gestion par objectifs ». Les buts et objectifs d’une aire protégée doivent être clairement compris pour que la gestion soit réussie sur la base de résultats mesurables. Dans cet outil, nous établissons une distinction importante entre les effets et impacts et les résultats :<ul><li>Les EFFETS ET IMPACTS renvoient aux changements liés aux BUTS / OBJECTIFS à long terme ou à la vision exprimée dans le plan de gestion. Ces buts / objectifs sont généralement des énoncés spécifiques relatifs aux valeurs clés de l’aire protégée (c’est-à-dire les espèces ou services écosystémiques importants) ou aux principaux domaines d’activités de gestion (par exemple le tourisme, l’éducation).</li><li>Les RÉSULTATS renvoient aux réalisations à court terme des ACTIVITÉS, généralement mesurées de manière quantitative, qui contribuent avec d’autres réalisations à atteindre les buts à long terme et les objectifs spécifiques. Nous estimons que le recours à de nombreuses cibles de conservation de bas niveau constitue un obstacle à l’obtention de performances de conservation de haut niveau</li></ul>',
         ],
         'module_info_Rating' => [
             'Évaluer le niveau d’atteinte des principaux objectifs à long terme liés aux valeurs clés de l’aire protégée ou des principaux aspects du plan de gestion',
@@ -1646,7 +1645,7 @@ return [
                 '+3' => 'Impact en diminution rapide (amélioration rapide)',
             ],
             'Reliability' => [
-                'Élevé ' => 'Certitude presque totale quant aux valeurs de l’état et des tendances',
+                'Élevé' => 'Certitude presque totale quant aux valeurs de l’état et des tendances',
                 'Moyen' => 'Possibilité d’erreur quant aux valeurs de l’état et des tendances',
                 'Faible' => 'Forte incertitude quant aux valeurs de l’état et des tendances',
             ],
@@ -1701,7 +1700,7 @@ return [
                 '-2' => 'Dommageable',
                 '-1' => 'Légèrement dommageable',
                 '0' => 'Aucun',
-                '1' => 'Légèrement favorable',
+                '+1' => 'Légèrement favorable',
                 '+2' => 'Favorable',
                 '+3' => 'Très favorable',
             ],
@@ -1716,11 +1715,11 @@ return [
     ],
     'steps' => [
         'context' => 'Ce domaine du cycle de gestion résume les données issues du contexte d\'intervention (CTX) pour établir les priorités opérationnelles. Chaque élément de conservation — espèces clés, habitats, vulnérabilités au changement climatique et services écosystémiques légaux — doit être évalué en fonction de son niveau actuel d\'intégration dans la gestion ou de son potentiel à devenir de nouveaux objectifs (CX). Les informations sont soit (i) importées directement du CTX (par exemple, espèces clés, habitats et scores de menace) ; (ii) importées et classées pour faciliter l\'évaluation (par exemple, menaces et services écosystémiques) ; soit (iii) évaluées spécifiquement lorsque des facteurs externes sont impliqués (C2 : soutiens/contraintes externes). Les éléments marqués « Priorité dans la gestion » sont transférés vers les domaines suivants (planification, intrants, processus, extrants et résultats) pour une évaluation détaillée. Les objectifs numérotés CX qui en résultent servent de référence fiable pour la planification, la budgétisation, la mise en œuvre et le suivi.',
-        'planning' => 'This domain evaluates the adequacy of the protected area’s planning framework for its management, and its effective incorporation of the priorities and conservation elements identified in the Management Context. It evaluates the extent to which legal, institutional and operational planning tools are results-oriented and provide clear guidance on how to achieve management objectives. The analysis focuses on the coherence and adequacy of existing instruments, such as the legal framework, spatial design, and management and work plans, and their capacity to integrate priority values, threats, and external factors.',
-        'inputs' => 'The Inputs domain evaluates the resources that empower protected areas to convert plans into effective action. This includes assessing the availability, adequacy and reliability of the information, human resources, financial resources, equipment and operational means required for management. The analysis verifies whether the site has access to the necessary data, whether staffing levels and competencies are sufficient, whether budgeting and financing are predictable and whether the infrastructure and logistics support day-to-day operations. The evaluation identifies any gaps that could hinder implementation, as well as any strengths that could facilitate efficient and timely management responses. Examining the Inputs domain enables managers to identify foundational resource needs and ensure that the conditions for effective management are in place before assessing processes and results.',
-        'process' => 'The Process domain examines the core management functions that translate intentions into concrete action. It is the operational engine of the management cycle. Based on the priorities identified in the context, the objectives defined during planning and the resources assessed under inputs, the site’s management teams carry out the day-to-day activities that generate outputs and, over time, influence outcomes. <br/><br/>In IMET, this domain is analysed through six sub-elements: internal management systems; protection and law enforcement; stakeholder relations; tourism management; monitoring and research; and the management of climate change and ecosystem services. Together, these sub-elements provide a detailed view of how consistently and effectively the management system functions in practice. The Process assessment highlights organisational strengths and identifies operational bottlenecks. It also clarifies where improvements in coordination, procedures or implementation are needed to ensure that planned interventions produce the expected results.',
-        'outputs' => 'The Outputs domain captures the tangible results arising from the implementation of planned activities over an annual or multi-annual period. Outputs represent what the management team delivers through its actions, such as completed restoration work, conducted patrols, held community engagements, maintained infrastructures, or collected monitoring data. They reflect the degree to which the annual or multiannual management objectives have been achieved, and these objectives are in turn aligned with the longer-term conservation vision of the protected area. <br/><br/>Analysing outputs verifies not only the volume of work accomplished, but also its relevance and coherence with the priorities defined in the management plans. This helps to determine whether the processes and resources mobilised are producing the expected short- and medium-term results effectively. By assessing outputs, managers can understand implementation performance, adjust operational strategies and strengthen the link between planned intentions and long-term conservation outcomes.',
-        'outcomes' => 'The Outcomes domain evaluates the medium- and long-term effects and impacts of management on the protected area and its surrounding communities. Three dimensions are examined: the extent to which the protected area is progressing towards its long-term conservation objectives; the state and trend of priority conservation elements; and the positive or negative impact of management on the well-being of local populations living around the site. <br/><br/>Unlike Outputs, which reflect short-term delivery, Outcomes capture real changes in ecosystems, species, natural resources and human livelihoods resulting from sustained management action. IMET evaluates whether conservation targets are moving in the right direction, whether key ecological values are stabilising or recovering, and whether the presence and management of the protected area is having a positive or negative effect on communities\' quality of life. This domain therefore provides essential evidence for adaptive management, linking implementation performance to the broader ecological and social impacts that define long-term success.',
+        'planning' => 'Ce domaine évalue l’adéquation du cadre de planification de l’aire protégée à sa gestion, ainsi que son intégration effective des priorités et des éléments de conservation identifiés dans le Contexte de gestion. Il évalue dans quelle mesure les outils de planification juridiques, institutionnels et opérationnels sont orientés vers les résultats et fournissent des orientations claires sur la manière d’atteindre les objectifs de gestion. L’analyse porte sur la cohérence et l’adéquation des instruments existants, tels que le cadre juridique, la configuration spatiale, les plans de gestion et de travail, et sur leur capacité à intégrer les valeurs prioritaires, les menaces et les facteurs externes.',
+        'inputs' => 'Le domaine des Intrants évalue les ressources qui permettent aux aires protégées de traduire les plans en actions effectives. Cela comprend l’évaluation de la disponibilité, de l’adéquation et de la fiabilité de l’information, des ressources humaines, des ressources financières, des équipements et des moyens opérationnels nécessaires à la gestion. L’analyse vérifie si le site a accès aux données nécessaires, si les effectifs et les compétences sont suffisants, si la budgétisation et le financement sont prévisibles et si les infrastructures et la logistique soutiennent les opérations quotidiennes. L’évaluation identifie les lacunes susceptibles d’entraver la mise en œuvre, ainsi que les forces susceptibles de faciliter des réponses de gestion efficaces et opportunes. L’examen du domaine des Intrants permet aux gestionnaires d’identifier les besoins fondamentaux en ressources et de s’assurer que les conditions d’une gestion efficace sont réunies avant d’évaluer les processus et les résultats.',
+        'process' => 'Le domaine des Processus examine les fonctions de gestion essentielles qui traduisent les intentions en actions concrètes. Il constitue le moteur opérationnel du cycle de gestion. Sur la base des priorités identifiées dans le contexte, des objectifs définis lors de la planification et des ressources évaluées au titre des intrants, les équipes de gestion du site mènent les activités quotidiennes qui produisent des résultats et, au fil du temps, influencent les effets et impacts. <br/><br/>Dans l’IMET, ce domaine est analysé à travers six sous-éléments : les systèmes de gestion interne ; la protection et l’application de la loi ; les relations avec les parties prenantes ; la gestion du tourisme ; le suivi et la recherche ; et la gestion des changements climatiques et des services écosystémiques. Ensemble, ces sous-éléments offrent une vision détaillée de la constance et de l’efficacité du fonctionnement du système de gestion dans la pratique. L’évaluation des Processus met en évidence les forces organisationnelles et identifie les goulets d’étranglement opérationnels. Elle précise également où des améliorations de la coordination, des procédures ou de la mise en œuvre sont nécessaires pour que les interventions planifiées produisent les résultats escomptés.',
+        'outputs' => 'Le domaine des Résultats saisit les réalisations tangibles issues de la mise en œuvre des activités planifiées sur une période annuelle ou pluriannuelle. Les résultats représentent ce que l’équipe de gestion produit par ses actions : travaux de restauration achevés, patrouilles effectuées, actions de mobilisation communautaire menées, infrastructures entretenues ou données de suivi collectées. Ils reflètent le degré d’atteinte des objectifs de gestion annuels ou pluriannuels, ces objectifs étant eux-mêmes alignés sur la vision de conservation à plus long terme de l’aire protégée. <br/><br/>L’analyse des résultats vérifie non seulement le volume de travail accompli, mais aussi sa pertinence et sa cohérence avec les priorités définies dans les plans de gestion. Elle aide à déterminer si les processus et les ressources mobilisés produisent effectivement les résultats attendus à court et moyen terme. En évaluant les résultats, les gestionnaires peuvent comprendre la performance de mise en œuvre, ajuster les stratégies opérationnelles et renforcer le lien entre les intentions planifiées et les effets de conservation à long terme.',
+        'outcomes' => 'Le domaine des Effets et impacts évalue les effets et impacts à moyen et long terme de la gestion sur l’aire protégée et les communautés environnantes. Trois dimensions sont examinées : la mesure dans laquelle l’aire protégée progresse vers ses objectifs de conservation à long terme ; l’état et la tendance des éléments de conservation prioritaires ; et l’impact positif ou négatif de la gestion sur le bien-être des populations locales vivant autour du site. <br/><br/>Contrairement aux Résultats, qui reflètent les réalisations à court terme, les Effets et impacts saisissent les changements réels dans les écosystèmes, les espèces, les ressources naturelles et les moyens de subsistance humains découlant d’une action de gestion soutenue. L’IMET évalue si les cibles de conservation évoluent dans la bonne direction, si les valeurs écologiques clés se stabilisent ou se rétablissent, et si la présence et la gestion de l’aire protégée ont un effet positif ou négatif sur la qualité de vie des communautés. Ce domaine fournit donc des données essentielles pour une gestion adaptative, en reliant la performance de mise en œuvre aux impacts écologiques et sociaux plus larges qui définissent le succès à long terme.',
     ],
-    'removed_op2' => '<b>Note</b>: In previous versions, the distinction between achievements under O/P1 and O/P2 proved difficult in practice, as these components are closely interrelated. Consequently, <b>O/P2 has been removed</b> as a separate analytical category. The original numbering for O/P3 and O/P4 has been maintained to ensure consistency with previous IMET versions.',
+    'removed_op2' => '<b>Note</b> : Dans les versions précédentes, la distinction entre les réalisations relevant de O/P1 et de O/P2 s’est révélée difficile dans la pratique, ces composantes étant étroitement liées. Par conséquent, <b>O/P2 a été supprimé</b> en tant que catégorie d’analyse distincte. La numérotation d’origine de O/P3 et O/P4 a été conservée afin d’assurer la cohérence avec les versions précédentes de l’IMET.',
 ];

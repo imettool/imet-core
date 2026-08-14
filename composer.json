@@ -1,7 +1,7 @@
 {
     "name": "imettool/imet-core",
     "description": "Imet core package",
-    "version": "3.7.2",
+    "version": "3.7.3",
     "authors": [
         {
             "name": "Andrea Marelli",
@@ -17,7 +17,7 @@
         "php": ">=8.4",
         "ext-json": "*",
         "ext-zip": "*",
-        "akp/modular-forms": "^4.4.0"
+        "akp/modular-forms": "^4.4.2"
     },
     "require-dev": {
         "orchestra/testbench": "^11.0"

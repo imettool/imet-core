@@ -34,10 +34,10 @@ class DatabaseSeeder extends Seeder
         (new UserSeeder)->run();
 
         // Seed ProtectedArea
-        (new ProtectedAreaSeeder)->runWithSample(false);
+        (new ProtectedAreaSeeder)->runWithSample();
 
         // Seed Species
-        (new SpeciesSeeder)->runWithSample(false);
+        (new SpeciesSeeder)->runWithSample();
 
         // Seed forms with modules
 //        (new FormSeeder)->run(Imet::IMET_V1, self::NUM_FORMS);

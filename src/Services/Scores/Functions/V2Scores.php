@@ -159,13 +159,15 @@ class V2Scores extends _Scores
         ];
 
         $scores['stacked'] = array(
-            round($scores['OC1']/9, 2),
-            round(($scores['OC2']+100)/4.5, 2),
-            round(($scores['OC3']+100)/4.5, 2),
+            $scores['OC1'] ? round($scores['OC1']/9, 2) : null,
+            $scores['OC2'] ? round(($scores['OC2']+100)/4.5, 2) : null,
+            $scores['OC3'] ? round(($scores['OC3']+100)/4.5, 2) : null,
         );
 
         // aggregate step score
-        $scores['avg_indicator'] = round(array_sum($scores['stacked']), 2);
+        $scores['avg_indicator'] = !empty(array_filter($scores['stacked']))
+            ? round(array_sum($scores['stacked']), 2)
+            : null;
 
         return $scores;
     }

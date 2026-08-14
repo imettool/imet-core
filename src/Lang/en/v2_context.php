@@ -851,9 +851,6 @@ return [
                 'Dams (size unknown)',
                 'Dams for energy',
             ],
-            'group' => [
-                'Harvesting sand from the beaches',
-            ],
             'group16' => [
                 'Invasive introduced species or diseases',
                 'Problematic indigenous species or diseases',

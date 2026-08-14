@@ -28,9 +28,6 @@ use ImetCore\Models\Species;
  */
 class SpeciesUpdater
 {
-    public const string CSV_SPECIES_PATH = 'species.csv';
-
-    public const string CSV_NAMES_PATH = 'vernacular_names.csv';
 
     private const array CSV_SPECIES_ATTRIBUTES = [
         'col_id',
@@ -102,7 +99,7 @@ class SpeciesUpdater
 
     private static function upsertSpeciesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(self::CSV_SPECIES_PATH);
+        $filepath = database_path(env('CSV_SPECIES_SAMPLE_FILE'));
         if (file_exists($filepath)) {
 
             static::logInfo('Upserting species from CSV file: '.$filepath, $verbose);
@@ -131,7 +128,7 @@ class SpeciesUpdater
 
     private static function updateVernacularNamesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(self::CSV_NAMES_PATH);
+        $filepath = database_path(env('CSV_VERNACULAR_NAMES_SAMPLE_FILE'));
         if (file_exists($filepath)) {
 
             static::logInfo('Updating vernacular names from CSV file: '.$filepath, $verbose);

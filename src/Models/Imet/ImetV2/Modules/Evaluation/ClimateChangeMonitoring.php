@@ -35,7 +35,6 @@ final class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Program')],
             ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScore')],
-            ['name' => 'EvaluationScoreAdequacy',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.EvaluationScoreAdequacy')],
             ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ClimateChangeMonitoring.fields.Comments')],
         ];
@@ -89,8 +88,13 @@ final class ClimateChangeMonitoring extends Modules\Component\ImetModule_Eval
             'Gestão da adaptação dos habitats e as dimensões relacionadas da cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)',
             'Gestão da adaptação dos habitats e cobertura do solo, uso e ocupação dentro e fora da área protegida (evitar a fragmentação da floresta, solo descoberto, etc.)');
 
-        return self::replacePredefinedValue($record, 'Program',
+        $record = self::replacePredefinedValue($record, 'Program',
             'Gestión de la adaptación de los hábitats y la tenencia del territorio  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)',
             'Gestión de la adaptación de los hábitats y las dimensiones relacionadas de cobertura de suelos  -  uso del suelo  -  cobertura del suelo dentro y fuera del área protegida (evitar la fragmentación del bosque, el suelo desnudo, etc.)');
+
+        // ####  v3.7.3 -> v3.7.4 ####
+        $record = self::dropField($record, 'EvaluationScoreAdequacy');
+
+        return $record;
     }
 }

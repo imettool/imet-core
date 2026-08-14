@@ -85,19 +85,17 @@ class SpeciesSeeder extends Seeder
 
     public function run(): void
     {
-        $this->runWithSample(false);
+        $this->runWithSample();
     }
 
     /**
      * Run the database seeders using Sample data
      */
-    public function runWithSample(?bool $from_file = false): void
+    public function runWithSample(): void
     {
-        // Run on CSV file if exists, otherwise use sample data
-        if ($from_file &&
-            file_exists(database_path(SpeciesUpdater::CSV_SPECIES_PATH)) &&
-            file_exists(database_path(SpeciesUpdater::CSV_NAMES_PATH))
-        ) {
+        // Run on CSV file (if provided)
+        if (env('CSV_SPECIES_SAMPLE_FILE') !== null &&
+            env('CSV_VERNACULAR_NAMES_SAMPLE_FILE') !== null) {
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
 
             return;

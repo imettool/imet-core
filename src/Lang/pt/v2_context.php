@@ -225,10 +225,10 @@ return [
         'fields' => [
             'LimitsExist' => 'Existência de limites oficiais georeferenciados (sim/não)',
             'Shapefile' => 'Arquivo GIS',
-            'Source SHP' => 'Fonte do Arquivo GIS',
+            'SourceSHP' => 'Fonte do Arquivo GIS',
             'Coordinates' => 'Coordenadas Geográficas (dados de base para ou ponto chave do parque)',
-            'Source Coords' => 'Fonte',
-            'Administrative Location' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
+            'SourceCoords' => 'Fonte',
+            'AdministrativeLocation' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
         ],
         'module_info' => 'Esta secção fornece informações sobre a localização geográfica da área protegida. Inclui as suas coordenadas
             e localização administrativa das áreas protegidas. A descrição destaca a posição das áreas protegidas dentro
@@ -239,11 +239,11 @@ return [
         'title' => 'Superficie da área protegida e contexto de conservação',
         'fields' => [
             'BoundaryLength' => 'Comprimento dos limites',
-            'Administrative Area' => 'Superficie Administrativa',
+            'AdministrativeArea' => 'Superficie Administrativa',
             'WDPAArea' => 'Superficie de acordo com a WDPA',
             'GISArea' => 'Superficie Actual (GIS para o parque ou autoridade responsável para a área protegida) correspondente ao carregamento dos arquivos',
-            'Terrestrial Area' => 'Área Protegida Terrestre',
-            'Marine Area' => 'Área protegida marinha e costeira',
+            'TerrestrialArea' => 'Área Protegida Terrestre',
+            'MarineArea' => 'Área protegida marinha e costeira',
             'PercentageNationalNetwork' => '% da Superficie da rede nacional de áreas protegidas',
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
@@ -546,12 +546,11 @@ return [
         'title' => 'Recursos financeiros: Orçamento disponível',
         'fields' => [
             'BudgetType' => '',
-            'National Budget' => 'Orçamento nacional',
+            'NationalBudget' => 'Orçamento nacional',
             'OwnRevenues' => 'Receitas provenientes das operações da área protegida',
             'Disputes' => 'Rendimento do litígio/multas (tesouro nacional)',
             'Partners' => 'Contribuições dos parceiros',
             'total' => 'total',
-            'percentage' => '% do orçamento previsto',
         ],
         'predefined_values' => [
             'Orçamento anual total disponível',
@@ -664,7 +663,7 @@ return [
             'Comments' => 'Fonte/Observação',
         ],
         'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
-        'validation_min3' => 'Please encode not less than 3 key species',
+        'validation_min3' => 'Introduza pelo menos 3 espécies chave',
         'warning_on_save' => 'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -716,6 +715,7 @@ return [
             'Duration' => 'Quanto tempo',
             'Trend' => 'Tendencias',
             'Probability' => 'Probabilidade para ameacas no futuro',
+            'Comments' => 'Comentários',
         ],
         'groups' => [
             'group0' => 'Comercial e residencial',
@@ -759,6 +759,7 @@ return [
                 'Pequenos Agricultores',
                 'Grandes empresas agro-industriais',
                 'Produção de frutas/vegetais de jardim',
+                'Extracção de fertilizante para a agricultura',
             ],
             'group2' => [
                 'Pequenas plantações',
@@ -791,10 +792,14 @@ return [
             'group8' => [
                 'Caça de animais terrestres',
                 'Colheita de animais vivos',
+                'Recolha de pequenos animais, como insectos, ou dos seus produtos, como o mel',
             ],
             'group9' => [
                 'Recolha de plantas',
                 'Colheita de plantas',
+                'Colheita de produtos alimentares vegetais (tubérculos, frutos, etc.)',
+                'Colheita de plantas medicinais',
+                'Colheita de caules e fibras (palmeiras, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Operações de madeireiras em pequena escala',
@@ -813,6 +818,8 @@ return [
                 'Sobrepesca e pesca destrutiva',
                 'Exploração de espécies ameaçadas de extinção',
                 'Arrastões/encarregadores',
+                'Recolha de recursos ornamentais e de aquariofilia (recolha de sementes, conchas e peixes)',
+                'Colheita de algas',
             ],
             'group12' => [
                 'Actividades recreativas',
@@ -844,6 +851,7 @@ return [
                 'Pequenas barragens',
                 'Grandes barragens',
                 'Barragens (tamanho desconhecido)',
+                'Barragens para produção de energia',
             ],
             'group16' => [
                 'Espécies invasoras ou doenças introduzidas',
@@ -1009,10 +1017,10 @@ return [
             'group9' => 'Serviços de apoio',
         ],
         'predefined_values' => [
-            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)', 'Benefícios de repercussão nos pesqueiros vizinhos'],
+            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humana - animal (carne selvagem/de criação, insectos)', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)', 'Benefícios de repercussão nos pesqueiros vizinhos'],
             'group1' => ['Madeira de alto valor', 'Madeira para a construção local', 'Fibras de caule (palmeiras, kenaf, etc.)', 'Outras fibras (folhas, sumaúma, coco, etc.)', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes)', 'Areia (construção)', 'Algal/conchas', 'Terras de cultivo (agricultura, pecuária, florestas)'],
             'group2' => ['Lenha e biocombustíveis', 'Água para a energia', 'Fertilizante'],
-            'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Prevenção da erosão costeira'],
+            'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Regulação de resíduos (absorção de nutrientes)', 'Prevenção da erosão costeira'],
             'group4' => ['Controlo das cheias', 'Controlo da Seca', 'Protecção contra tempestades', 'Controlo da erosão da água', 'Controlo da erosão Ecological', 'Prevenção da erosão costeira'],
             'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'Navegação, natação e mergulho', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],
             'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],
