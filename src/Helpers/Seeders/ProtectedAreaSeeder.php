@@ -63,8 +63,8 @@ class ProtectedAreaSeeder extends Seeder
     public function runWithSample(bool $use_csv = false): void
     {
         // Run on CSV file (if provided)
-        if ($use_csv && config('dev.csv_protected_areas_sample_file') !== null) {
-            $csvFilePath = database_path(config('dev.csv_protected_areas_sample_file'));
+        if ($use_csv && config('imet-core.csv_sample_files.protected_areas') !== null) {
+            $csvFilePath = database_path(config('imet-core.csv_sample_files.protected_areas'));
             if (file_exists($csvFilePath)) {
                 echo "Seeding protected areas from CSV file ....\n";
                 ProtectedPlanetCSV::parseCSVFile($csvFilePath);

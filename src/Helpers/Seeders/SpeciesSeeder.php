@@ -94,8 +94,8 @@ class SpeciesSeeder extends Seeder
     public function runWithSample(bool $use_csv = false): void
     {
         // Run on CSV file (if provided)
-        if ($use_csv && config('dev.csv_species_sample_file') !== null &&
-            config('dev.csv_vernacular_names_sample_file') !== null) {
+        if ($use_csv && config('imet-core.csv_sample_files.species') !== null &&
+            config('imet-core.csv_sample_files.vernacular_names') !== null) {
             echo "Seeding species from CSV file ....\n";
             SpeciesUpdater::insertSpeciesAndVernacularNames(Str::uuid()->toString());
 

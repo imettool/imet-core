@@ -98,7 +98,7 @@ class SpeciesUpdater
 
     private static function upsertSpeciesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(config('dev.csv_species_sample_file'));
+        $filepath = database_path(config('imet-core.csv_sample_files.species'));
         if (file_exists($filepath)) {
 
             static::logInfo('Upserting species from CSV file: '.$filepath, $verbose);
@@ -127,7 +127,7 @@ class SpeciesUpdater
 
     private static function updateVernacularNamesFromCSV(string $jobId, bool $verbose = false): void
     {
-        $filepath = database_path(config('dev.csv_vernacular_names_sample_file'));
+        $filepath = database_path(config('imet-core.csv_sample_files.vernacular_names'));
         if (file_exists($filepath)) {
 
             static::logInfo('Updating vernacular names from CSV file: '.$filepath, $verbose);
