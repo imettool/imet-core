@@ -284,7 +284,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 
-@import "tailwindcss";
+@reference "@modular-forms/index.css";
 
 /* ---------- the cell ---------- */
 .heatmap-rating-cell {
