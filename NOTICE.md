@@ -1,6 +1,6 @@
 imet-core
 
-version: 3.1.7
+version: 3.1.8
 
 Copyright (C) 2025 European Union
 
@@ -8,7 +8,7 @@ See the LICENCE file for licensing information
 
 This product uses software developed by third parties which is provided under their respective licences:
 
-__akp/modular-forms 3.5.3__
+__akp/modular-forms 3.5.3.1__
   * https://code.europa.eu/akp/modular-forms
   * License: EUPL-1.2
   * Copyright: 

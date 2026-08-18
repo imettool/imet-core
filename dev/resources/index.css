@@ -14,7 +14,7 @@
 @import "@imet-core/index.css";
 
 /* ##### Tailwind configuration ##### */
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @source "./views";
 
 /* Default @theme and :root are define in modular-forms index.css file */

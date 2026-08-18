@@ -16,7 +16,7 @@
 @import './css/components/custom.css';
 
 /* Tailwindcss configuration */
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @source "../**/*.vue";
 @source "../**/*.blade.php";
 
