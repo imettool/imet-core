@@ -50,21 +50,23 @@ if ($controller === Controllers\Imet\ImetOecm\Controller::class) {
         {!! Template::icon('plus-circle', 'white') !!}
         {{ ucfirst(trans($create_title_prefix.'CreateNonWdpa.title')) }}
     </a>
-    {{-- Import json IMETs --}}
+    {{-- Import json --}}
     <a class="btn-nav rounded-sm"
        href="{{ route($route_prefix.'import') }}">
         {!! Template::icon('file-import', 'white') !!}
         {{ ucfirst(trans('modular-forms::common.import')) }}
+    </a>
+    {{-- Export json --}}
+    <a class="btn-nav rounded-sm"
+       href="{{ route($route_prefix.'export_view') }}">
+        {!! Template::icon('file-export', 'white') !!}
+        {{ ucfirst(trans('modular-forms::common.export')) }}
     </a>
     {{-- Scaling Up --}}
     <a class="btn-nav rounded-sm"
        href="{{ route('imet-core::scaling_up_index') }}">
         {!! Template::icon('chart-bar', 'white') !!}
         {{ ucfirst(trans('imet-core::analysis_report.scaling_up')) }}
-    </a>
-    <a class="btn-nav rounded-sm"
-       href="{{ route($route_prefix.'export_view') }}">
-        {!! Template::icon('file-export', 'white') !!}
     </a>
 
 @endsection
