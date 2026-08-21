@@ -35,7 +35,7 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
             setup_obj.records.forEach(function (item, index) {
                 result[index] = 0;
                 if(props.area!==null && props.area>0){
-                    result[index] = item['Amount'] / props.area * 100;
+                    result[index] = item['Amount'] / props.area;
                 }
                 result[index] = result[index]===0 ? null : result[index].toFixed(2);
             });
