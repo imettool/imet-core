@@ -27,7 +27,7 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
 
 ?>
 
-@extends('modular-forms::layouts.print')
+@extends('imet-core::layouts.print')
 
 @section('content')
 
@@ -47,42 +47,42 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
     {{--  Modules (by step): CONTEXT --}}
     <h1>@uclang('imet-core::common.context_long')</h1>
     @foreach($context_modules as $step => $modules_by_step)
-        @foreach($modules_by_step as $module)
-            @if(Role::hasRequiredAccessLevel($module))
-                <x-modular-forms::module.container
-                    :controller="$controller"
-                    :module="$module"
-                    :formId="$item->getKey()"
-                    :mode="ModuleViewModes::SHOW"
-                ></x-modular-forms::module.container>
-            @else
-                @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
-            @endif
-        @endforeach
+        @if($step!=='objectives')
+            @foreach($modules_by_step as $module)
+                @if(Role::hasRequiredAccessLevel($module))
+                    <x-modular-forms::module.container
+                        :controller="$controller"
+                        :module="$module"
+                        :formId="$item->getKey()"
+                        :mode="ModuleViewModes::PRINT"
+                    ></x-modular-forms::module.container>
+                @else
+                    @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
+                @endif
+            @endforeach
+        @endif
     @endforeach
 
     {{--  Modules (by step): EVALUATION --}}
-    <h1>@uclang('imet-core::common.context_long')</h1>
+    <h1>@uclang('imet-core::common.evaluation_long')</h1>
     @foreach($evaluation_modules as $step => $modules_by_step)
-        @foreach($modules_by_step as $module)
-            @if(Role::hasRequiredAccessLevel($module))
-                <x-modular-forms::module.container
-                    :controller="$controller"
-                    :module="$module"
-                    :formId="$item->getKey()"
-                    :mode="ModuleViewModes::SHOW"
-                ></x-modular-forms::module.container>
-            @else
-                @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
-            @endif
-        @endforeach
+        @if($step!=='objectives')
+            @foreach($modules_by_step as $module)
+                @if(Role::hasRequiredAccessLevel($module))
+                    <x-modular-forms::module.container
+                        :controller="$controller"
+                        :module="$module"
+                        :formId="$item->getKey()"
+                        :mode="ModuleViewModes::PRINT"
+                    ></x-modular-forms::module.container>
+                @else
+                    @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
+                @endif
+            @endforeach
+        @endif
     @endforeach
 
     <style>
-        .print_body {
-            margin: 20px;
-        }
-
         .entity-heading {
             margin-top: 20px;
         }
