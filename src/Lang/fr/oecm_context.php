@@ -314,19 +314,19 @@ return [
         'fields' => [
             'SpeciesID' => 'Species',
             'CommonName' => 'Nom commun',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
+            'InvasiveSpecies' => 'Inv',
             'PopulationEstimation' => 'État estimé',
             'DescribeEstimation' => 'Décrire l’état optimal',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul>
-            <li><b>EXP</b>: Espèces exploitées</li>
-            <li><b>PRT</b>: Espèces protégées</li>
-            <li><b>DSG</b>: Espèces en voie de disparition</li>
-            <li><b>INV</b>: Espèces envahissantes</li></ul>',
+            <li><b>Exp</b>: Espèces exploitées</li>
+            <li><b>Prt</b>: Espèces protégées</li>
+            <li><b>Dsg</b>: Espèces en voie de disparition</li>
+            <li><b>Inv</b>: Espèces envahissantes</li></ul>',
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>SA 2</i>',
     ],
 
@@ -334,19 +334,19 @@ return [
         'title' => 'Espèces végétales (exploitées, protégées, en voie de disparition, envahissantes, etc.)',
         'fields' => [
             'SpeciesID' => 'Species',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
+            'InvasiveSpecies' => 'Inv',
             'PopulationEstimation' => 'État estimé',
             'DescribeEstimation' => 'Décrire l’état optimal',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul>
-            <li><b>EXP</b>: Espèces exploitées</li>
-            <li><b>PRT</b>: Espèces protégées</li>
-            <li><b>DSG</b>: Espèces en voie de disparition</li>
-            <li><b>INV</b>: Espèces envahissantes</li></ul>',
+            <li><b>Exp</b>: Espèces exploitées</li>
+            <li><b>Prt</b>: Espèces protégées</li>
+            <li><b>Dsg</b>: Espèces en voie de disparition</li>
+            <li><b>Inv</b>: Espèces envahissantes</li></ul>',
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés): <i>SA 2</i>',
     ],
 
@@ -355,9 +355,9 @@ return [
         'fields' => [
             'EcosystemType' => 'Types d’habitats',
             'EcosystemDescription' => 'Description pour l\'espace conservé spécifique',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
             'PopulationEstimation' => 'État estimé',
             'DescribeEstimation' => 'Décrire l’état optimal',
             'Comments' => 'Source / Note',
@@ -367,9 +367,9 @@ return [
                  Identifiez la catégorie principale dans la liste suggérée d\'habitats, puis ajoutez un deuxième niveau de description qui
                  prend en compte votre domaine spécifique.<br />
                 <b>Species types</b><ul>
-                <li><b>EXP</b>: Exploité</li>
-                <li><b>PRT</b>: Protégé</li>
-                <li><b>DSG</b>: En voie de disparition</li></ul>',
+                <li><b>Exp</b>: Exploité</li>
+                <li><b>Prt</b>: Protégé</li>
+                <li><b>Dsg</b>: En voie de disparition</li></ul>',
         'warning_on_save' => 'AVERTISSEMENT !!  <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :  <i>SA 2</i>',
     ],
 
