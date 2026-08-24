@@ -10,13 +10,25 @@
 
 import ModuleImet from "../../../Module.js";
 
-import { ref, computed } from "vue";
+import { watch, nextTick, computed } from "vue";
 
 export default class FinancialAvailableResources extends ModuleImet {
 
     setupApp(props, input_data) {
 
         let setup_obj = super.setupApp(props, input_data);
+
+        watch(setup_obj.records, () => {
+            updateCurrency();
+        }, { deep: true });
+
+        function updateCurrency(){
+            console.log('before', setup_obj.records[0], setup_obj.records[0]['Currency']);
+            nextTick().then(() => {
+                setup_obj.records[0]['Currency'] = window.FinancialResources.records[0]['Currency'] || null;
+                console.log('after', setup_obj.records[0], setup_obj.records[0]['Currency']);
+            });
+        }
 
         /**
          * Calculate total for each line
