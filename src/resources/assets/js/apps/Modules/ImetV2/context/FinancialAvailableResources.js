@@ -18,6 +18,9 @@ export default class FinancialAvailableResources extends ModuleImet {
 
         let setup_obj = super.setupApp(props, input_data);
 
+        /**
+         * Calculate total for each line
+         */
         const line_totals = computed(() => {
             let result = [];
             setup_obj.records.forEach(function (item, index) {
@@ -31,6 +34,9 @@ export default class FinancialAvailableResources extends ModuleImet {
             return result;
         });
 
+        /**
+         * Calculate total for each column (exclude 1st line - only on operating/investment breakdown)
+         */
         const column_totals = computed(() => {
             let result = [
                 null, // NationalBudget
@@ -61,6 +67,7 @@ export default class FinancialAvailableResources extends ModuleImet {
             return result;
         });
 
+
         const sumTotals = computed(() => {
             let sum = null;
             line_totals.value.forEach(function (item, index) {
@@ -71,6 +78,7 @@ export default class FinancialAvailableResources extends ModuleImet {
             });
             return sum;
         });
+
 
         const nationalBudgetIsValid = computed(() => {
             return columnIsValid('NationalBudget', 0);
@@ -88,13 +96,17 @@ export default class FinancialAvailableResources extends ModuleImet {
            return columnIsValid('Partners', 3);
         });
 
+        /**
+         * Check whenever the operating/investment breakdown total is equal to FinancialResources (CTX 3.2.1)
+         */
         const totalIsValid = computed(() => {
-            let reference_value = line_totals.value === null || isEmptyButValid(line_totals.value[0]) ? null : line_totals.value[0];
-            return isEmptyButValid(reference_value)
-                || isEmptyButValid(sumTotals.value)
-                || parseFloat(sumTotals.value).toFixed(2) === parseFloat(reference_value).toFixed(2);
+            return isEmptyButValid(sumTotals.value)
+                || parseFloat(sumTotals.value).toFixed(2) === parseFloat(getTotalBudget()).toFixed(2);
         });
 
+        /**
+         * Check whenever the first line total is equal to FinancialResources (CTX 3.2.1)
+         */
         const annualTotalBudgetIsValid = computed(() => {
             return line_totals.value === null
                 || isEmptyButValid(line_totals.value[0])
@@ -119,6 +131,9 @@ export default class FinancialAvailableResources extends ModuleImet {
                 || isNaN(total);
         }
 
+        /**
+         * Get budget from FinancialResources (CTX 3.2.1)
+         */
         function getTotalBudget(){
             return window.FinancialResources.getTotalBudget();
         }
