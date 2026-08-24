@@ -668,6 +668,7 @@ return [
         'title' => 'Plant species (flagship, endangered, endemic, exploited, invasive, etc.) used as indicators for the state of the protected area and requiring monitoring over time',
         'fields' => [
             'Species' => 'Species',
+            'CommonName' => 'Common name',
             'FlagshipSpecies' => 'Pha',
             'EndangeredSpecies' => 'Pha',
             'EndemicSpecies' => 'End',

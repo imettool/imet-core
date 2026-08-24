@@ -675,6 +675,7 @@ return [
         'title' => 'Espèces de plantes: espèces phares, menacées, endémiques, exploitées, envahissantes, etc. et choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'Species' => 'Espèce',
+            'CommonName' => 'Nom commun',
             'FlagshipSpecies' => 'Pha',
             'EndangeredSpecies' => 'Pha',
             'EndemicSpecies' => 'End',

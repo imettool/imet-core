@@ -670,6 +670,7 @@ return [
         'title' => 'Espécies de plantas (emblemáticas, ameaçadas, endémicas, exploradas, invasorasivas, etc.) utilizadas como indicadores do estado da área protegida e que requerem monitorização ao longo do tempo',
         'fields' => [
             'Species' => 'Espécies',
+            'CommonName' => 'Nome comum',
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',

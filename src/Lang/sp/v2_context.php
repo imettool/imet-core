@@ -672,6 +672,7 @@ return [
         'title' => 'Especies vegetales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado del área protegida y que requieren vigilancia a lo largo del tiempo.',
         'fields' => [
             'Species' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
             'EndemicSpecies' => 'Edm',
