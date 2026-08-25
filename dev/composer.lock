@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "akp/modular-forms",
-            "version": "4.4.5",
+            "version": "4.4.7",
             "source": {
                 "type": "git",
                 "url": "https://code.europa.eu/akp/modular-forms.git",
-                "reference": "e228cff78025d6e0de0806de822e468ff2dced89"
+                "reference": "e424d4260be0f260e306b92467eee9db1d93c27b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://code.europa.eu/api/v4/projects/akp%2Fmodular-forms/repository/archive.zip?sha=e228cff78025d6e0de0806de822e468ff2dced89",
-                "reference": "e228cff78025d6e0de0806de822e468ff2dced89",
+                "url": "https://code.europa.eu/api/v4/projects/akp%2Fmodular-forms/repository/archive.zip?sha=e424d4260be0f260e306b92467eee9db1d93c27b",
+                "reference": "e424d4260be0f260e306b92467eee9db1d93c27b",
                 "shasum": ""
             },
             "require": {
@@ -93,9 +93,9 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://code.europa.eu/akp/modular-forms/-/tree/v4.4.5"
+                "source": "https://code.europa.eu/akp/modular-forms/-/tree/v4.4.7"
             },
-            "time": "2026-08-21T12:14:00+02:00"
+            "time": "2026-08-24T08:06:30+02:00"
         },
         {
             "name": "amphp/amp",
