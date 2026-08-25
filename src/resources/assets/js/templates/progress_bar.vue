@@ -81,7 +81,7 @@ import tooltip from '@modular-forms/js/templates/tooltip.vue';
 
 const props = defineProps({
     value: {
-        type: [Number, Array],
+        type: [String, Number, Array],
         default: () => 0
     },
     color: {
