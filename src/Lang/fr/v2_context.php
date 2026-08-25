@@ -278,6 +278,9 @@ return [
             Pour une gestion efficace, l\'intensité des patrouilles est exprimée en <b>nombre de jours-patrouille par kilomètre carré par an</b>,
             calculé en divisant le total des jours-patrouille par la superficie du secteur ou de l\'aire protégée. Un <b>jour-patrouille</b> correspond à une
             équipe de patrouille opérant pendant une journée, quelle que soit la taille de l\'équipe.
+            Le nombre de gardes forestiers participant à la patrouille ne doit pas être multiplié par le nombre de jours de patrouille: par exemple, une équipe
+            de 8 gardes forestiers opérant pendant 5 jours représente 5 jours de patrouille, et non 40 jours-garde. Si deux équipes de patrouille distinctes opèrent
+            le même jour, elles représentent deux jours de patrouille.
             En pratique, les données issues des aires protégées africaines indiquent que l\'intensité des patrouilles se situe généralement entre <b>0,1 et 0,6
             jours-patrouille par km² par an</b>, avec <b>0,3 à 0,4</b> représentant une couverture modérée et opérationnellement réaliste. Les valeurs
             approchant ou dépassant 0,6 jour-patrouille/km²/an sont considérées comme élevées et sont souvent difficiles à maintenir sur de grandes superficies.

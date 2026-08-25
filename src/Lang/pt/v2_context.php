@@ -272,6 +272,9 @@ return [
             Para uma gestão eficaz, a intensidade de patrulhamento é expressa como o <b>número de dias-patrulha por quilômetro quadrado por ano</b>,
             calculado dividindo o total de dias-patrulha pela área do setor ou da área protegida. Um <b>dia-patrulha</b> corresponde a uma
             equipe de patrulhamento operando durante um dia, independentemente do tamanho da equipe.
+            O número de guardas florestais que participam na patrulha não deve ser multiplicado pelo número de dias de patrulha: por exemplo, uma
+            equipa de 8 guardas florestais a operar durante 5 dias representa 5 dias de patrulha, e não 40 dias de guarda florestal. Se duas equipas
+            de patrulha separadas operarem no mesmo dia, representam dois dias de patrulha.
             Na prática, evidências das áreas protegidas africanas indicam que a intensidade de patrulhamento geralmente varia entre <b>0,1 e 0,6
             dias-patrulha por km² por ano</b>, sendo <b>0,3 a 0,4</b> uma cobertura moderada e operacionalmente realista. Valores
             que se aproximam ou ultrapassam 0,6 dia-patrulha/km²/ano são considerados elevados e frequentemente difíceis de sustentar em grandes áreas.

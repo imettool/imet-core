@@ -273,6 +273,9 @@ return [
             For effective management, patrol intensity is expressed as the <b>number of patrol-days per square kilometer per year</b>,
             calculated as total patrol-days divided by the area of the sector or protected area. A <b>patrol-day</b> corresponds to one
             patrol team operating for one day, regardless of team size.
+            The number of rangers participating in the patrol should not be multiplied by the number of patrol days: for example, a team
+            of 8 rangers operating for 5 days represents 5 patrol-days, not 40 ranger-days. If two separate patrol teams operate on the
+            same day, they represent two patrol-days.
             In practice, evidence from African protected areas indicates that patrol intensity typically ranges between <b>0.1 and 0.6
             patrol-days per km² per year</b>, with <b>0.3 to 0.4</b> representing moderate and operationally realistic coverage. Values
             approaching 0.6 or more patrol-day/km²/year are considered high and are often difficult to sustain across large areas.

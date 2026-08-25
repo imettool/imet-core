@@ -274,6 +274,9 @@ return [
             Para una gestión eficaz, la intensidad de patrullaje se expresa como el <b>número de días-patrulla por kilómetro cuadrado por año</b>,
             calculado dividiendo el total de días-patrulla por el área del sector o del área protegida. Un <b>día-patrulla</b> corresponde a un
             equipo de patrullaje operando durante un día, independientemente del tamaño del equipo.
+            El número de guardaparques que participan en la patrulla no debe multiplicarse por el número de días de patrullaje: por ejemplo, un equipo
+            de 8 guardaparques que opera durante 5 días representa 5 días de patrullaje, no 40 días de patrullaje. Si dos equipos de patrullaje
+            distintos operan el mismo día, representan dos días de patrullaje.
             En la práctica, la evidencia de las áreas protegidas africanas indica que la intensidad de patrullaje generalmente oscila entre <b>0,1 y 0,6
             días-patrulla por km² por año</b>, donde <b>0,3 a 0,4</b> representa una cobertura moderada y operativamente realista. Los valores
             que se aproximan o superan 0,6 días-patrulla/km²/año se consideran altos y suelen ser difíciles de mantener en áreas extensas.
