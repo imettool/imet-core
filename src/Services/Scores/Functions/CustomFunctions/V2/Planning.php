@@ -71,23 +71,27 @@ trait Planning
     {
         $record = $records[0] ?? null;
 
-        if ($record !== null && $record['PlanExistence'] !== 'false') {
-            $record['VisionAdequacy'] = intval($record['VisionAdequacy']);
-            $record['PlanAdequacyScore'] = intval($record['PlanAdequacyScore']);
+        if ($record !== null) {
+            if($record['PlanExistence'] !== 'false') {
+                $record['VisionAdequacy'] = intval($record['VisionAdequacy']);
+                $record['PlanAdequacyScore'] = intval($record['PlanAdequacyScore']);
 
-            $numerator =
-                ($record['PlanExistence'] ? 1 : 0) +
-                ($record['PlanUptoDate'] ? 1 : 0) +
-                ($record['PlanApproved'] ? 1 : 0) +
-                ($record['PlanImplemented'] ? 1 : 0) +
-                ($record['VisionAdequacy'] ?? 0) +
-                ($record['PlanAdequacyScore'] ?? 0);
+                $numerator =
+                    ($record['PlanExistence'] ? 1 : 0) +
+                    ($record['PlanUptoDate'] ? 1 : 0) +
+                    ($record['PlanApproved'] ? 1 : 0) +
+                    ($record['PlanImplemented'] ? 1 : 0) +
+                    ($record['VisionAdequacy'] ?? 0) +
+                    ($record['PlanAdequacyScore'] ?? 0);
 
-            $score = 100 * $numerator / 10;
+                $score = 100 * $numerator / 10;
 
-            return $score !== null ?
-                round($score, 2)
-                : null;
+                return $score !== null ?
+                    round($score, 2)
+                    : null;
+            } else {
+                return 0;
+            }
         }
 
         return null;
