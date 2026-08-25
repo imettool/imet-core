@@ -27,6 +27,7 @@ trait Process
 
         $values = StaffCompetence::getModule($imet_id)
             ->map(function (StaffCompetence $record) use ($staff_weights): StaffCompetence {
+
                 if ($record['EvaluationScore'] !== null) {
                     $eval_score = $record['EvaluationScore'];
                 } elseif (isset($staff_weights[$record['Theme']])) {
@@ -34,14 +35,12 @@ trait Process
                 } else {
                     $eval_score = 0;
                 }
+                $record['eval_score'] = $eval_score;
 
                 $weight = 1;
-                $record['eval_score'] = $eval_score;
                 if ($record['EvaluationScore'] === null && isset($staff_weights[$record['Theme']])) {
                     $weight = $staff_weights[$record['Theme']]['w_avg'];
                 }
-
-                $record['eval_score'] = $eval_score;
                 $record['weight'] = $weight;
 
                 return $record;
@@ -55,7 +54,7 @@ trait Process
                 if ($item['PercentageLevel'] === null && $item['weight'] === null) {
                     $sum += 0;
                 } elseif ($item['PercentageLevel'] === null || $item['weight'] === null) {
-                    return null;
+                    continue;
                 } else {
                     $sum += ($item['PercentageLevel'] * $item['weight']);
                 }
