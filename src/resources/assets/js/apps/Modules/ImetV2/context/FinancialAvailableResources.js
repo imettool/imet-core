@@ -23,10 +23,8 @@ export default class FinancialAvailableResources extends ModuleImet {
         }, { deep: true });
 
         function updateCurrency(){
-            console.log('before', setup_obj.records[0], setup_obj.records[0]['Currency']);
             nextTick().then(() => {
                 setup_obj.records[0]['Currency'] = window.FinancialResources.records[0]['Currency'] || null;
-                console.log('after', setup_obj.records[0], setup_obj.records[0]['Currency']);
             });
         }
 
