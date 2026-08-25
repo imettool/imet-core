@@ -13,8 +13,11 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 
 use ImetCore\Models\Imet\ImetV2\Modules;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\EquipmentMaintenance;
+use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\ManagementEquipmentAdequacy;
 use ImetCore\Models\User\Role;
 use ModularForms\Enums\ModuleTypes;
+use Override;
 
 final class Equipments extends Modules\Component\ImetModule
 {
@@ -79,10 +82,18 @@ final class Equipments extends Modules\Component\ImetModule
 
     }
 
+    #[Override]
+    public static function updateModuleRecords(array $records, ?int $form_id): void
+    {
+        parent::updateModuleRecords($records, $form_id);
+        EquipmentMaintenance::refreshRecords($form_id);
+        ManagementEquipmentAdequacy::refreshRecords($form_id);
+    }
+
     /**
      * Override
      */
-    #[\Override]
+    #[Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v2.0 -> v2.0b  ####

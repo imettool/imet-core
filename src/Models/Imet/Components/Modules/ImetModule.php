@@ -160,4 +160,14 @@ class ImetModule extends Module
             }
         }
     }
+
+    /**
+     * Force refresh of records to DB. Used if external scores are involved
+     * @throws ValidationException
+     */
+    public static function refreshRecords(?int $form_id): void
+    {
+        $records = static::getModuleRecords($form_id);
+        static::updateModuleRecords($records['records'], $form_id);
+    }
 }
