@@ -53,6 +53,18 @@
                 ></imet_score_row>
             </template>
 
+            <!-- "Management context" additional scores -->
+            <div class="mb-6" v-if="step_key === 'context' && version !== 'oecm'">
+                <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']" :key="ctx_key">
+                    <imet_score_row
+                        :label="labels[ctx_key]"
+                        :code=ctx_key
+                        :value="api_data['scores']['context'][ctx_key]"
+                        histogram_type="0_to_100"
+                        :color=step_props.color
+                    ></imet_score_row>
+                </template>
+            </div>
 
             <!-- Scores-->
             <div v-for="(index, idx) in step_props.indexes" :key="index">
@@ -64,19 +76,9 @@
                     :color=step_props.color
                 ></imet_score_row>
             </div>
-            <!-- custom additional scores -->
-            <div class="mt-4" v-if="step_key === 'context' && version !== 'oecm'">
-                <template v-for="ctx_key in ['C11', 'C12', 'C13', 'C14', 'C15']" :key="ctx_key">
-                    <imet_score_row
-                        :label="labels[ctx_key]"
-                        :code=ctx_key
-                        :value="api_data['scores']['context'][ctx_key]"
-                        histogram_type="0_to_100"
-                        :color=step_props.color
-                    ></imet_score_row>
-                </template>
-            </div>
-            <div class="mt-4" v-else-if="step_key === 'process' && version !== 'oecm'">
+
+            <!-- "Process" (OECM) additional scores -->
+            <div class="mt-4" v-if="step_key === 'process' && version !== 'oecm'">
                 <imet_process_radar :values="[
                     api_data['scores']['process']['PRA'],
                     api_data['scores']['process']['PRB'],

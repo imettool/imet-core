@@ -20,6 +20,10 @@ $categoryStats = array_key_exists('FormID', $records[0])
     ? MenacesPressions::getStats($records[0]['FormID'])['categoryStats']
     : null;
 
+$categoryStats = array_map(function($item) {
+    return $item * -1;
+}, $categoryStats);
+
 ?>
 
         <!-- Categories with histograms -->
@@ -41,6 +45,8 @@ $categoryStats = array_key_exists('FormID', $records[0])
                             :label="$category_label"
                             :score="$score_value"
                             :percentage="$percentage_value"
+                            limit-min=-100
+                            limit-max=0
                     ></x-imet-core::score-bar>
                 </div>
             </div>

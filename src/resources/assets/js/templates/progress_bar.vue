@@ -28,7 +28,7 @@
 
             <template v-if="percent(value)!==null">
                 <div class="bar" :class="{'float-right': negative}" :style=style(value)></div>
-                <div class="label">
+                <div class="label" :class="{'negative': negative}">
                     {{ percent(value) }}%
                 </div>
             </template>
@@ -59,6 +59,9 @@
             width: 100%;
             text-align: center;
             font-weight: bold;
+        }
+        .label.negative{
+            @apply text-red-600;
         }
 
         &.stacked{
