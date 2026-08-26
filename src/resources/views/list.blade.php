@@ -145,7 +145,7 @@ if ($controller === Controllers\Imet\ImetOecm\Controller::class) {
                     :values='@json($item->assessment_radar)'
                 ></imet_radar>
             </td>
-            <td class="text-center">
+            <td class="text-center w-64">
 
                 {{-- Show --}}
                 @include('imet-core::components.buttons.show', ['version' => $item->version])
