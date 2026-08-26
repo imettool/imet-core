@@ -29,7 +29,7 @@ if (Str::contains($controller, 'EvalController')) {
     $phase = 'evaluation';
     $step_labels = 'common.steps_eval';
 }
-$step_menu_classes['cross_analysis'] = 'cross-analysis-warnings';
+$step_menu_classes['cross_analysis'] = !empty($cross_analysis_warnings) ? 'cross-analysis-warnings': '';
 
 $steps = $phase === 'evaluation' && Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V2)
     ? Imet\ImetV2\EvalController::steps($item)
