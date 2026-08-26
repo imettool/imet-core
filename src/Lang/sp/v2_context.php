@@ -274,6 +274,9 @@ return [
             Para una gestión eficaz, la intensidad de patrullaje se expresa como el <b>número de días-patrulla por kilómetro cuadrado por año</b>,
             calculado dividiendo el total de días-patrulla por el área del sector o del área protegida. Un <b>día-patrulla</b> corresponde a un
             equipo de patrullaje operando durante un día, independientemente del tamaño del equipo.
+            El número de guardaparques que participan en la patrulla no debe multiplicarse por el número de días de patrullaje: por ejemplo, un equipo
+            de 8 guardaparques que opera durante 5 días representa 5 días de patrullaje, no 40 días de patrullaje. Si dos equipos de patrullaje
+            distintos operan el mismo día, representan dos días de patrullaje.
             En la práctica, la evidencia de las áreas protegidas africanas indica que la intensidad de patrullaje generalmente oscila entre <b>0,1 y 0,6
             días-patrulla por km² por año</b>, donde <b>0,3 a 0,4</b> representa una cobertura moderada y operativamente realista. Los valores
             que se aproximan o superan 0,6 días-patrulla/km²/año se consideran altos y suelen ser difíciles de mantener en áreas extensas.
@@ -652,9 +655,9 @@ return [
             'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
-            'EndemicSpecies' => 'EDM',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'EndemicSpecies' => 'Edm',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBNC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservación favorable',
@@ -662,7 +665,7 @@ return [
             'Reliability' => 'Fiabilidad',
             'Comments' => 'Fuente/Nota',
         ],
-        'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
+        'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>Edm</b>: Especies endémicas</li> <li><b>Exp</b>: Especies explotadas</li> <li><b>Inv</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
         'validation_min3' => 'Por favor, codifique al menos 3 especies clave',
         'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
@@ -672,11 +675,12 @@ return [
         'title' => 'Especies vegetales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado del área protegida y que requieren vigilancia a lo largo del tiempo.',
         'fields' => [
             'Species' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
-            'EndemicSpecies' => 'EDM',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'EndemicSpecies' => 'Edm',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBNC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservación favorable',
@@ -684,7 +688,7 @@ return [
             'Reliability' => 'Fiabilidad',
             'Comments' => 'Fuente/Nota',
         ],
-        'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
+        'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>Edm</b>: Especies endémicas</li> <li><b>Exp</b>: Especies explotadas</li> <li><b>Inv</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],

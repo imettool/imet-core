@@ -272,6 +272,9 @@ return [
             Para uma gestão eficaz, a intensidade de patrulhamento é expressa como o <b>número de dias-patrulha por quilômetro quadrado por ano</b>,
             calculado dividindo o total de dias-patrulha pela área do setor ou da área protegida. Um <b>dia-patrulha</b> corresponde a uma
             equipe de patrulhamento operando durante um dia, independentemente do tamanho da equipe.
+            O número de guardas florestais que participam na patrulha não deve ser multiplicado pelo número de dias de patrulha: por exemplo, uma
+            equipa de 8 guardas florestais a operar durante 5 dias representa 5 dias de patrulha, e não 40 dias de guarda florestal. Se duas equipas
+            de patrulha separadas operarem no mesmo dia, representam dois dias de patrulha.
             Na prática, evidências das áreas protegidas africanas indicam que a intensidade de patrulhamento geralmente varia entre <b>0,1 e 0,6
             dias-patrulha por km² por ano</b>, sendo <b>0,3 a 0,4</b> uma cobertura moderada e operacionalmente realista. Valores
             que se aproximam ou ultrapassam 0,6 dia-patrulha/km²/ano são considerados elevados e frequentemente difíceis de sustentar em grandes áreas.
@@ -651,8 +654,8 @@ return [
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Situacao de conservação favorável',
@@ -660,7 +663,7 @@ return [
             'Reliability' => 'Confiabilidade',
             'Comments' => 'Fonte/Observação',
         ],
-        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
+        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>Exp</b>: Espécies exploradas</li> <li><b>Inv</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
         'validation_min3' => 'Introduza pelo menos 3 espécies chave',
         'warning_on_save' => 'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
@@ -670,19 +673,20 @@ return [
         'title' => 'Espécies de plantas (emblemáticas, ameaçadas, endémicas, exploradas, invasorasivas, etc.) utilizadas como indicadores do estado da área protegida e que requerem monitorização ao longo do tempo',
         'fields' => [
             'Species' => 'Espécies',
+            'CommonName' => 'Nome comum',
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservação favorável',
             'TrendRating' => 'Tendencias',
             'Reliability' => 'confiabilidade',
             'Comments' => 'Fonte/Observação',
         ],
-        'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> EXP</b>: Espécies exploradas</li> <li><b> INV</b>: Espécies Invasoras</li> <li><b> INS</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
+        'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> Exp</b>: Espécies exploradas</li> <li><b> Inv</b>: Espécies Invasoras</li> <li><b> Ins</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
         'warning_on_save' => 'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],

@@ -189,6 +189,18 @@ $table_id = 'table_' . $definitions['slug'];
 
     </tbody>
 
+    {{-- not valid total budget (error message)  --}}
+    <tfoot>
+    <tr>
+        <td colspan="6" class="text-left">
+            <div v-if="!totalIsValid" class="text-contextual-danger text-right mr-4" style="font-size: 0.9em;">
+                <i class="fa fa-exclamation-triangle"></i>
+                {!!  ucfirst(trans('imet-core::v2_context.FinancialAvailableResources.sum_error')) !!}
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+
 </table>
 
 

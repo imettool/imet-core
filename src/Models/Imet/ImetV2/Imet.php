@@ -176,6 +176,7 @@ class Imet extends BaseImetForm
     #[\Override]
     public static function upgradeModules(array $data, $imet_version = null): array
     {
+        // Ensure Currency is always the same as defined in CTX 2.1.3
         if (array_key_exists('FinancialResources', $data)) {
             $data = FinancialAvailableResources::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesBudgetLines::copyCurrencyFromCTX213($data);

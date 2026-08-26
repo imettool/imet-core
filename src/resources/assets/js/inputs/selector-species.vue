@@ -117,10 +117,10 @@
     const computedLabel = computed(() => {
         if(inputValue.value in cached_species.value){
             let speciesInfo = cached_species.value[inputValue.value];
-            let label = '<b>' + speciesInfo['genus'] + ' ' + speciesInfo['species'] + '</b>';
+            let label = '<i>' + speciesInfo['genus'] + ' ' + speciesInfo['species'] + '</i>';
             let vernacular_names = getVernacularNames(speciesInfo);
             if(vernacular_names.length>0){
-                label += '<br /><i>' + vernacular_names.join(', ') + '</i>';
+                label += '<br />' + vernacular_names.join(', ');
             }
             return label;
         }

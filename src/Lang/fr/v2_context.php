@@ -278,6 +278,9 @@ return [
             Pour une gestion efficace, l\'intensité des patrouilles est exprimée en <b>nombre de jours-patrouille par kilomètre carré par an</b>,
             calculé en divisant le total des jours-patrouille par la superficie du secteur ou de l\'aire protégée. Un <b>jour-patrouille</b> correspond à une
             équipe de patrouille opérant pendant une journée, quelle que soit la taille de l\'équipe.
+            Le nombre de gardes forestiers participant à la patrouille ne doit pas être multiplié par le nombre de jours de patrouille: par exemple, une équipe
+            de 8 gardes forestiers opérant pendant 5 jours représente 5 jours de patrouille, et non 40 jours-garde. Si deux équipes de patrouille distinctes opèrent
+            le même jour, elles représentent deux jours de patrouille.
             En pratique, les données issues des aires protégées africaines indiquent que l\'intensité des patrouilles se situe généralement entre <b>0,1 et 0,6
             jours-patrouille par km² par an</b>, avec <b>0,3 à 0,4</b> représentant une couverture modérée et opérationnellement réaliste. Les valeurs
             approchant ou dépassant 0,6 jour-patrouille/km²/an sont considérées comme élevées et sont souvent difficiles à maintenir sur de grandes superficies.
@@ -639,12 +642,12 @@ return [
         'fields' => [
             'SpeciesID' => 'Espèce',
             'CommonName' => 'Nom commun',
-            'FlagshipSpecies' => 'PHA',
-            'EndangeredSpecies' => 'MEN',
-            'EndemicSpecies' => 'END',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'FlagshipSpecies' => 'Pha',
+            'EndangeredSpecies' => 'Pha',
+            'EndemicSpecies' => 'End',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estimation de l’état actuel',
             'DesiredPopulation' => 'Etat de conservation souhaité',
             'TrendRating' => 'Tendance',
@@ -661,10 +664,10 @@ return [
             B - oiseaux et C - amphibiens), un nombre limité d’espèces clés de l’aire protégée.<br />
             <b>Types d\'espèces</b>
             <ul>
-                <li><b>PHA</b>: Espèce phare</li>
-                <li><b>MEN</b>: Espèce en voie de disparition menacée</li>
-                <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li>
-                <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li>
+                <li><b>Pha</b>: Espèce phare</li>
+                <li><b>Pha</b>: Espèce en voie de disparition menacée</li>
+                <li><b>End</b>: Espèce endémique</li> <li><b>Exp</b>: Espèce exploitée</li>
+                <li><b>Inv</b>: Espèce invasive</li> <li><b>Ins</b>: Espèce avec faible niveau de connaissance</li>
             </ul>',
         'validation_min3' => 'Veuillez encoder au moins 3 des espèces clés.',
         'warning_on_save' => 'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
@@ -675,19 +678,20 @@ return [
         'title' => 'Espèces de plantes: espèces phares, menacées, endémiques, exploitées, envahissantes, etc. et choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'Species' => 'Espèce',
-            'FlagshipSpecies' => 'PHA',
-            'EndangeredSpecies' => 'MEN',
-            'EndemicSpecies' => 'END',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'CommonName' => 'Nom commun',
+            'FlagshipSpecies' => 'Pha',
+            'EndangeredSpecies' => 'Pha',
+            'EndemicSpecies' => 'End',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estimation de l’état actuel',
             'DesiredPopulation' => 'Etat de conservation souhaité',
             'TrendRating' => 'Tendance',
             'Reliability' => 'Fiabilité de l’information',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' => 'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
+        'module_info' => 'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>Pha</b>: Espèce phare</li> <li><b>Pha</b>: Espèce menacée</li> <li><b>End</b>: Espèce endémique</li> <li><b>Exp</b>: Espèce exploitée</li> <li><b>Inv</b>: Espèce invasive</li> <li><b>Ins</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'warning_on_save' => 'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],

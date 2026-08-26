@@ -10,17 +10,21 @@ use \Illuminate\Support\Str;
     <div class="flex flex-col items-center">
 
         <!-- Start buttons -->
-        <div class="flex flex-row gap-4">
+        <div class="flex flex-col items-center gap-4">
 
             <!-- IMET -->
             <a href="{{ route('imet-core::index') }}" class="btn-nav big mt-4 !font-bold !px-5">
                 {!! Str::upper(trans('imet-core::common.imet_short')) !!}
             </a>
 
+
             <!-- OECM -->
-            <a href="{{ route('imet-core::oecm.index') }}" class="btn-nav big mt-4 !font-bold !px-5">
-                {!! Str::upper(trans('imet-core::oecm_common.oecm_short')) !!}
-            </a>
+            <span>
+                <a href="{{ route('imet-core::oecm.index') }}" class="btn-nav big mt-4 !font-bold !px-5">
+                    {!! Str::upper(trans('imet-core::oecm_common.oecm_short')) !!}
+                </a>&nbsp;
+                <span class="text-red-400 font-bold">Under revision</span>
+            </span>
 
         </div>
 

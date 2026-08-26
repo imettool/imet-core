@@ -27,6 +27,8 @@ final class FinancialResourcesPartners extends Modules\Component\ImetModule
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.financial_resources_partners';
+
     public function __construct(array $attributes = [])
     {
 
