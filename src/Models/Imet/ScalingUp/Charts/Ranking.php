@@ -347,7 +347,7 @@ final class Ranking
                 App::setLocale($locale);
                 $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($k + 1), []);
 
-                if ($protected_area === '') {
+                if ($protected_area === '' or $protected_area === null) {
                     $value = ScalingUpAnalysis::UNDEFINED_VALUE;
                 } else {
                     $items_to_calculate[$j] += 1;

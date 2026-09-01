@@ -187,7 +187,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
 
         foreach ($valuesByCategory as $values) {
             $stat = self::calculateStats($values);
-            $category_stats[] = $stat > 0 ? round($stat * 100 / 3, 2) : '';
+            $category_stats[] = $stat > 0 ? round($stat * 100 / 3, 2) : null;
         }
 
         return [
