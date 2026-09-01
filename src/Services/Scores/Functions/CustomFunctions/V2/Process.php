@@ -35,12 +35,14 @@ trait Process
                 } else {
                     $eval_score = 0;
                 }
+
                 $record['eval_score'] = $eval_score;
 
                 $weight = 1;
                 if ($record['EvaluationScore'] === null && isset($staff_weights[$record['Theme']])) {
                     $weight = $staff_weights[$record['Theme']]['w_avg'];
                 }
+
                 $record['weight'] = $weight;
 
                 return $record;
@@ -48,7 +50,7 @@ trait Process
 
         $weights = $values->sum('weight');
         $weighted_eval_core = $values->sum(fn (StaffCompetence $item): int|float => intval($item['eval_score']) * $item['weight']);
-        $weighted_percentage = (function ($data): null|int|float {
+        $weighted_percentage = (function ($data): int|float {
             $sum = 0;
             foreach ($data as $item) {
                 if ($item['PercentageLevel'] === null && $item['weight'] === null) {

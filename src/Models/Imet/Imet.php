@@ -14,6 +14,7 @@ namespace ImetCore\Models\Imet;
 
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Query\JoinClause;
@@ -94,9 +95,9 @@ abstract class Imet extends Form
     /**
      * Mutator: ensure to retrieve in lowercase
      */
-    public function getLanguageAttribute($value): string
+    protected function language(): Attribute
     {
-        return strtolower((string) $value);
+        return Attribute::make(get: fn ($value): string => strtolower((string) $value));
     }
 
     /**

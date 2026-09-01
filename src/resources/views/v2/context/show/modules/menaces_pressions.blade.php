@@ -20,9 +20,7 @@ $categoryStats = array_key_exists('FormID', $records[0])
     ? MenacesPressions::getStats($records[0]['FormID'])['categoryStats']
     : null;
 
-$categoryStats = array_map(function($item) {
-    return $item * -1;
-}, $categoryStats);
+$categoryStats = array_map(fn($item) => $item * -1, $categoryStats);
 
 ?>
 

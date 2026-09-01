@@ -163,6 +163,7 @@ class ImetModule extends Module
 
     /**
      * Force refresh of records to DB. Used if external scores are involved
+     *
      * @throws ValidationException
      */
     public static function refreshRecords(?int $form_id): void

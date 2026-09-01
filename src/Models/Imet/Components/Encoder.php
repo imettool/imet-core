@@ -12,8 +12,11 @@
 
 namespace ImetCore\Models\Imet\Components;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Date;
 
+#[Unguarded]
 abstract class Encoder extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
@@ -22,8 +25,6 @@ abstract class Encoder extends BaseModel
 
     public const UPDATED_BY = null;
 
-    protected $guarded = [];
-
     protected $table;
 
     protected $appends = ['name'];
@@ -31,9 +32,9 @@ abstract class Encoder extends BaseModel
     /**
      * Accessor to full name
      */
-    public function getNameAttribute(): string
+    protected function name(): Attribute
     {
-        return $this->attributes['last_name'].' '.$this->attributes['first_name'];
+        return Attribute::make(get: fn (): string => $this->attributes['last_name'].' '.$this->attributes['first_name']);
     }
 
     public static function touchOnFormUpdate($formId, array $user_info): void

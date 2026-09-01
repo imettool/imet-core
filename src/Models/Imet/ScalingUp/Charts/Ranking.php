@@ -336,18 +336,14 @@ final class Ranking
             $wdpa_id = $pa->wdpa_id;
 
             foreach ($protected_areas[$j]['categoryStats'] as $k => $protected_area) {
-                if (! isset($sum_values[$j])) {
-                    $sum_values[$j] = 0;
-                }
+                $sum_values[$j] ??= 0;
 
-                if (! isset($items_to_calculate[$j])) {
-                    $items_to_calculate[$j] = 0;
-                }
+                $items_to_calculate[$j] ??= 0;
 
                 App::setLocale($locale);
                 $name = trans('imet-core::v2_context.MenacesPressions.categories.title'.($k + 1), []);
 
-                if ($protected_area === '' or $protected_area === null) {
+                if ($protected_area === '' || $protected_area === null) {
                     $value = ScalingUpAnalysis::UNDEFINED_VALUE;
                 } else {
                     $items_to_calculate[$j] += 1;

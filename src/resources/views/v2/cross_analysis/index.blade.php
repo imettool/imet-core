@@ -7,7 +7,7 @@ use ModularForms\Enums\ModuleViewModes;
 /** @var string $mode */
 /** @var array $cross_analysis_warnings */
 
-$cross_analysis_warnings = $cross_analysis_warnings ?? [];
+$cross_analysis_warnings ??= [];
 
 $route = $mode === ModuleViewModes::EDIT
     ? Controller::ROUTE_PREFIX . 'evaluation_edit'

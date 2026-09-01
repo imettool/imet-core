@@ -72,7 +72,7 @@ trait Planning
         $record = $records[0] ?? null;
 
         if ($record !== null) {
-            if($record['PlanExistence'] !== 'false') {
+            if ($record['PlanExistence'] !== 'false') {
                 $record['VisionAdequacy'] = intval($record['VisionAdequacy']);
                 $record['PlanAdequacyScore'] = intval($record['PlanAdequacyScore']);
 
@@ -89,9 +89,9 @@ trait Planning
                 return $score !== null ?
                     round($score, self::DECIMAL_PRECISION)
                     : null;
-            } else {
-                return 0;
             }
+
+            return 0;
         }
 
         return null;

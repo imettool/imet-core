@@ -343,7 +343,7 @@ trait ImportExportJSON
     {
         try {
             if ($json === null) {
-                $fileContent = static::getUploadFileContent($request->get('json_file')['temp_filename']);
+                $fileContent = static::getUploadFileContent($request->input('json_file')['temp_filename']);
                 $json = json_decode($fileContent, true);
             }
 

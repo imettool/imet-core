@@ -69,7 +69,7 @@ final class Networks extends Modules\Component\ImetModule
     #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
-        if ($record['ProtectedAreas'] !== null){
+        if ($record['ProtectedAreas'] !== null) {
 
             // #### global_ids to WDPA ids ####
             if (Str::contains($record['ProtectedAreas'], '_')) {
@@ -79,8 +79,10 @@ final class Networks extends Modules\Component\ImetModule
                 $pas = collect($pas)->map(function ($pa) {
                     if (Str::startsWith($pa, 'OFAC_')) {
                         $model = ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
+
                         return $model->wdpa_id ?? null;
                     }
+
                     return explode('_', $pa)[1];
                     // for other regions: global_id is region + wdpa
                 })->all();
@@ -96,7 +98,6 @@ final class Networks extends Modules\Component\ImetModule
             }
 
         }
-
 
         return $record;
     }

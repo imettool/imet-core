@@ -12,13 +12,14 @@
 
 namespace ImetCore\Models\Imet\Components;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
+
+#[Unguarded]
 abstract class Report extends BaseModel
 {
     public const CREATED_AT = 'UpdateDate';
 
     public const UPDATED_AT = 'UpdateDate';
-
-    protected $guarded = [];
 
     protected static array $report_fields = [
         'key_species_comment',

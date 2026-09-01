@@ -12,6 +12,7 @@
 
 namespace ImetCore\Models\User;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use ImetCore\Models\Country;
@@ -66,9 +67,9 @@ class User extends BaseUser
     /**
      * Get the user's full name.
      */
-    public function getNameAttribute(): string
+    protected function name(): Attribute
     {
-        return sprintf('%s %s', $this->first_name, $this->last_name);
+        return Attribute::make(get: fn (): string => sprintf('%s %s', $this->first_name, $this->last_name));
     }
 
     /**
