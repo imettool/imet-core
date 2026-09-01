@@ -1383,7 +1383,6 @@ return [
         'fields' => [
             'Program' => 'Critério – Conceito medido – Variável',
             'EvaluationScore' => 'Classificação: Adequação das medidas de adaptação',
-            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'predefined_values' => [
@@ -1421,7 +1420,6 @@ return [
         'fields' => [
             'Intervention' => 'Critério – Conceito medido – Variáveis',
             'EvaluationScore' => 'Adequação da gestão dos serviços ecossistémicos',
-            'InManagementPlan' => 'Acção incluída no plano de gestão',
             'Comments' => 'Comentários/Explicação',
         ],
         'categories' => [

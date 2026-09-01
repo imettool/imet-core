@@ -39,7 +39,6 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Intervention',      'type' => 'custom::v2-ecosystem-services-intervention',  'label' => trans('imet-core::v2_evaluation.EcosystemServices.fields.Intervention')],
             ['name' => 'EvaluationScore',   'type' => 'rating-0to3WithNA',      'label' => trans('imet-core::v2_evaluation.EcosystemServices.fields.EvaluationScore')],
-            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.EcosystemServices.fields.InManagementPlan')],
             ['name' => 'Comments',          'type' => 'text-area',                   'label' => trans('imet-core::v2_evaluation.EcosystemServices.fields.Comments')],
         ];
 
@@ -72,7 +71,11 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
     public static function upgradeModule($record, $imet_version = null): array
     {
         // ####  v3.7.3 -> v3.7.4 ####
-        return self::addField($record, 'InManagementPlan');
+        // InManagementPlan added: code removed because subsequent remove make it unnecessary
 
+        // ####  v3.9.1 -> v3.10.0 ####
+        $record = self::dropField($record, 'InManagementPlan');
+
+        return $record;
     }
 }
