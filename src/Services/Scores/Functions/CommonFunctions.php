@@ -38,7 +38,7 @@ trait CommonFunctions
             ? $transform($average, $denominator)
             : $average / $denominator * 100;
 
-        return round($score, 2);
+        return round($score, self::DECIMAL_PRECISION);
     }
 
     /**
@@ -72,6 +72,6 @@ trait CommonFunctions
             ? $transform($average)
             : $average / 3 * 100;
 
-        return round($score, 2);
+        return round($score, self::DECIMAL_PRECISION);
     }
 }

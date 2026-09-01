@@ -47,7 +47,7 @@ trait Planning
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -87,7 +87,7 @@ trait Planning
                 $score = 100 * $numerator / 10;
 
                 return $score !== null ?
-                    round($score, 2)
+                    round($score, self::DECIMAL_PRECISION)
                     : null;
             } else {
                 return 0;

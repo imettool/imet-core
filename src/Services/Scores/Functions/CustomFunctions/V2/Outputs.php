@@ -42,7 +42,7 @@ trait Outputs
         }
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -84,7 +84,7 @@ trait Outputs
         $score = self::average([$sanctuary_score, $no_take_score, $buffer_zone_score]);
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 }

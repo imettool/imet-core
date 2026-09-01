@@ -20,6 +20,8 @@ abstract class _Scores
 {
     use Math;
 
+    const int DECIMAL_PRECISION = 1;
+
     const CACHE_PREFIX = 'imet_scores';
 
     const string RADAR_SCORES = 'global';
@@ -95,7 +97,7 @@ abstract class _Scores
             $scores[self::RADAR_SCORES][static::PROCESS],
             $scores[self::RADAR_SCORES][static::OUTPUTS],
             $scores[self::RADAR_SCORES][static::OUTCOMES],
-        ]);
+        ], self::DECIMAL_PRECISION);
 
         return $scores;
     }

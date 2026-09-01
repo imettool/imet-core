@@ -34,7 +34,7 @@ trait Outcomes
         $score = static::average($values, null);
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
 
     }

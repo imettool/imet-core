@@ -40,7 +40,7 @@ class V1ToV2Scores extends _Scores
             + (($scores['C2'] ?? 0) / 2 + 50)
             + (($scores['C3'] ?? 0) + 100);
         $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], fn ($x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }
@@ -80,8 +80,8 @@ class V1ToV2Scores extends _Scores
             'P1' => $scores_v1['P1'],
             'P2' => $scores_v1['P2'],
             'P3' => $conditional_p3($scores_v1['P3']),
-            'P4' => round($scores_v1['P4'] * 0.92, 2),
-            'P5' => round($scores_v1['P5'] * 0.837, 2),
+            'P4' => round($scores_v1['P4'] * 0.92, self::DECIMAL_PRECISION),
+            'P5' => round($scores_v1['P5'] * 0.837, self::DECIMAL_PRECISION),
             'P6' => $scores_v1['P6'],
         ];
 
@@ -93,7 +93,7 @@ class V1ToV2Scores extends _Scores
             + ($scores['P5'] ?? 0)
             + ($scores['P6'] ?? 0);
         $count = count(array_filter($scores, fn ($x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }
@@ -146,11 +146,11 @@ class V1ToV2Scores extends _Scores
         };
 
         $scores = [
-            'I1' => $scores_v1['I1'] !== null ? round($scores_v1['I1'] * 0.8, 2) : null,
-            'I2' => $scores_v1['I2'] !== null ? round($scores_v1['I2'] * 0.91, 2) : null,
-            'I3' => $scores_v1['I3'] !== null ? round($conditional_i3($scores_v1['I3']), 2) : null,
-            'I4' => $scores_v1['I4'] !== null ? round($conditional_i4($scores_v1['I4']), 2) : null,
-            'I5' => $scores_v1['I5'] !== null ? round($scores_v1['I5'] * 0.893, 2) : null,
+            'I1' => $scores_v1['I1'] !== null ? round($scores_v1['I1'] * 0.8, self::DECIMAL_PRECISION) : null,
+            'I2' => $scores_v1['I2'] !== null ? round($scores_v1['I2'] * 0.91, self::DECIMAL_PRECISION) : null,
+            'I3' => $scores_v1['I3'] !== null ? round($conditional_i3($scores_v1['I3']), self::DECIMAL_PRECISION) : null,
+            'I4' => $scores_v1['I4'] !== null ? round($conditional_i4($scores_v1['I4']), self::DECIMAL_PRECISION) : null,
+            'I5' => $scores_v1['I5'] !== null ? round($scores_v1['I5'] * 0.893, self::DECIMAL_PRECISION) : null,
         ];
 
         // aggregate step score
@@ -172,7 +172,7 @@ class V1ToV2Scores extends _Scores
             'PR3' => $scores_v1['PR3'],
             'PR4' => $scores_v1['PR4'],
             'PR5' => $scores_v1['PR5'],
-            'PR6' => $scores_v1['PR6'] !== null ? round($scores_v1['PR6'] * 0.8, 2) : null,
+            'PR6' => $scores_v1['PR6'] !== null ? round($scores_v1['PR6'] * 0.8, self::DECIMAL_PRECISION) : null,
             'PR7' => $scores_v1['PR7'],
             'PR8' => $scores_v1['PR10'],
             'PR9' => $scores_v1['PR10'],
@@ -207,13 +207,13 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_outputs($imet_id);
         $scores = [
-            'OP1' => $scores_v1['R1'] !== null ? round($scores_v1['R1'] * 0.76, 2) : null,
+            'OP1' => $scores_v1['R1'] !== null ? round($scores_v1['R1'] * 0.76, self::DECIMAL_PRECISION) : null,
             'OP3' => V1Scores::score_pr9($imet_id),
             'OP4' => null,
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average($scores, 2);
+        $scores['avg_indicator'] = static::average($scores, self::DECIMAL_PRECISION);
 
         return $scores;
     }
@@ -225,8 +225,8 @@ class V1ToV2Scores extends _Scores
     {
         $scores_v1 = V1Scores::scores_outcomes($imet_id);
         $scores = [
-            'OC1' => $scores_v1['EI1'] !== null ? round($scores_v1['EI1'] * 0.76, 2) : null,
-            'OC2' => round(((($scores_v1['EI2'] ?? 0) + $scores_v1['EI3']) / 2), 2),
+            'OC1' => $scores_v1['EI1'] !== null ? round($scores_v1['EI1'] * 0.76, self::DECIMAL_PRECISION) : null,
+            'OC2' => round(((($scores_v1['EI2'] ?? 0) + $scores_v1['EI3']) / 2), self::DECIMAL_PRECISION),
             'OC3' => $scores_v1['EI4'],
         ];
 
@@ -234,7 +234,7 @@ class V1ToV2Scores extends _Scores
             + ($scores['OC2'] / 2 + 50 ?? 0)
             + ($scores['OC3'] / 2 + 50 ?? 0);
         $count = count(array_filter($scores, fn ($x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }

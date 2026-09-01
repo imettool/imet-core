@@ -84,9 +84,8 @@ class OECMScores extends _Scores
             ? $numerator / $denominator
             : null;
 
-        // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
@@ -111,7 +110,7 @@ class OECMScores extends _Scores
 
         // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
@@ -135,7 +134,7 @@ class OECMScores extends _Scores
 
         // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
@@ -172,7 +171,7 @@ class OECMScores extends _Scores
 
         // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
@@ -193,7 +192,7 @@ class OECMScores extends _Scores
 
         // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
@@ -227,9 +226,8 @@ class OECMScores extends _Scores
             ? $numerator / $denominator
             : null;
 
-        // round to 1 decimal
         $scores['avg_indicator'] = $scores['avg_indicator'] !== null
-            ? round($scores['avg_indicator'], 1)
+            ? round($scores['avg_indicator'], self::DECIMAL_PRECISION)
             : null;
 
         return $scores;

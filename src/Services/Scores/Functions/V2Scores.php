@@ -46,7 +46,7 @@ class V2Scores extends _Scores
             + ($scores['C2'] ? $scores['C2'] / 2 + 50 : 0)
             + ($scores['C3'] ? $scores['C3'] + 100 : 0);
         $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], fn (?float $x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }
@@ -159,14 +159,14 @@ class V2Scores extends _Scores
         ];
 
         $scores['stacked'] = [
-            $scores['OC1'] ? round($scores['OC1'] / 9, 2) : null,
-            $scores['OC2'] ? round(($scores['OC2'] + 100) / 4.5, 2) : null,
-            $scores['OC3'] ? round(($scores['OC3'] + 100) / 4.5, 2) : null,
+            $scores['OC1'] ? round($scores['OC1'] / 9, self::DECIMAL_PRECISION) : null,
+            $scores['OC2'] ? round(($scores['OC2'] + 100) / 4.5, self::DECIMAL_PRECISION) : null,
+            $scores['OC3'] ? round(($scores['OC3'] + 100) / 4.5, self::DECIMAL_PRECISION) : null,
         ];
 
         // aggregate step score
         $scores['avg_indicator'] = filled(array_filter($scores['stacked']))
-            ? round(array_sum($scores['stacked']), 2)
+            ? round(array_sum($scores['stacked']), self::DECIMAL_PRECISION)
             : null;
 
         return $scores;
