@@ -11,7 +11,6 @@ use ModularForms\Enums\ModuleViewModes;
 $show_general_info = !ProtectedAreaNonWdpa::isNonWdpa($item->wdpa_id);
 $scores = ImetScores::get_all($item);
 
-dd($scores);
 ?>
 
 @include('imet-core::v2.report.report', [
