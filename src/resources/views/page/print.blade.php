@@ -27,7 +27,7 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
 
 ?>
 
-@extends('imet-core::layouts.print')
+@extends('modular-forms::layouts.forms')
 
 @section('content')
 
