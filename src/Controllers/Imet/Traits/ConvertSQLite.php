@@ -24,19 +24,27 @@ trait ConvertSQLite
     /**
      * Convert IMET
      */
-    public static function convert($imet, $sqlite_connection): array
+    public static function convert($imet, $sqlite_connection, $includeAWY): array
     {
-        // skip if test
         if ($imet->Country === 'AWY') {
-            return [];
-        }
 
-        // Retrieve WDPAID
-        [$wdpa, $pa_name] = Modules\Component\ImetModule::identifySqlitePa($imet, $sqlite_connection);
+            // Include also assessments on country fake country AWY
+            if($includeAWY){
+                $pa_name = 'Far Far Away Park';
+                $wdpa = null;
+            } else {
+                return [];
+            }
 
-        // no WDPA nor NAME found: cannot identify
-        if (blank($wdpa) && blank($pa_name)) {
-            return [];
+        } else {
+
+            // Retrieve WDPAID
+            [$wdpa, $pa_name] = Modules\Component\ImetModule::identifySqlitePa($imet, $sqlite_connection);
+
+            // no WDPA nor NAME found: cannot identify
+            if (blank($wdpa) && blank($pa_name)) {
+                return [];
+            }
         }
 
         // Non-WDPA protected area

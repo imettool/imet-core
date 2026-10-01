@@ -77,32 +77,33 @@ trait ConvertSQLite
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
         /** @var class-string $called_class */
-        $called_class = self::class;
-
+        $called_class = static::class;
         if (! method_exists($called_class, 'conversionParameters')) {
             return [];
         }
 
         $sqlite_structure = $called_class::conversionParameters();
 
-        return $sqlite_connection->table('ProtectedAreas_'.$sqlite_structure['table'])
+        return $sqlite_connection
+            ->table('ProtectedAreas_'.$sqlite_structure['table'])
             ->select()
             ->where('FormID', $imet_data->FormID)
             ->where($sqlite_structure['query_conditions'] ?? [])
             ->get()
-            ->map(function ($record) use ($sqlite_structure, $called_class): array {
+            ->map(function ($record) use ($sqlite_structure, $called_class, $sqlite_connection): array {
 
                 $record = (array) $record;
                 $json = [];
 
                 // Review data from SQLITE whenever necessary
                 if (method_exists($called_class, 'conversionDataReview')) {
-                    $record = $called_class::conversionDataReview($record);
+                    $record = $called_class::conversionDataReview($record, $sqlite_connection);
                 }
 
                 // Match SQLite fields to current module fields
                 $module_fields = (new static)->getModuleFieldsNames(['FILE_BINARY']);
                 $sqlite_fields = $sqlite_structure['fields'];
+
                 foreach ($module_fields as $field_idx => $field) {
                     // Find and import corresponding BYTEA field
                     if (Str::contains($field, '_BYTEA')) {
@@ -113,7 +114,7 @@ trait ConvertSQLite
                     }
 
                     // Import corresponding field
-                    if ($sqlite_fields[$field_idx] !== null) {
+                    if (array_key_exists($field_idx, $sqlite_fields) && $sqlite_fields[$field_idx] !== null) {
                         $json[$field] = $record[$sqlite_fields[$field_idx]];
                     }
                 }

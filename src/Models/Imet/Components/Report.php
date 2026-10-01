@@ -92,11 +92,13 @@ abstract class Report extends BaseModel
     /**
      * Import report (from JSON export)
      */
-    public static function import($form_id, array $data): void
+    public static function import($form_id, ?array $data = null): void
     {
-        $report = new (static::class);
-        $data['FormID'] = $form_id;
-        $report->fill($data);
-        $report->save();
+        if($data!==null){
+            $report = new (static::class);
+            $data['FormID'] = $form_id;
+            $report->fill($data);
+            $report->save();
+        }
     }
 }

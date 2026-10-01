@@ -29,7 +29,7 @@ class ConvertSQLite extends Command
      *
      * @var string
      */
-    protected $signature = 'imet:convert_sqlite {filename}';
+    protected $signature = 'imet:convert_sqlite {filename} {--include-awy}';
 
     /**
      * The console command description.
@@ -58,6 +58,7 @@ class ConvertSQLite extends Command
      */
     public function handle(): int
     {
+        $includeAWY = $this->option('include-awy');
 
         $sqlite_db_file = $this->argument('filename');
         $basename = basename($sqlite_db_file);
@@ -87,7 +88,7 @@ class ConvertSQLite extends Command
                 $this->comment(($i + 1).'. #############');
 
                 // Execute IMET conversion
-                $this->convert($imet);
+                $this->convert($imet, $includeAWY);
             }
         } else {
             $this->error('No IMET found');
@@ -130,9 +131,9 @@ class ConvertSQLite extends Command
     /**
      * Convert IMET
      */
-    private function convert($imet): void
+    private function convert($imet, $includeAWY = false): void
     {
-        $json = Controller::convert($imet, $this->db_connection);
+        $json = Controller::convert($imet, $this->db_connection, $includeAWY);
 
         if (filled($json)) {
 
