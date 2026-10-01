@@ -15,6 +15,7 @@ import imetRadar from "../templates/imet_radar.vue";
 import progressBar from "../templates/progress_bar.vue";
 import multipleFilesUpload from "../inputs/multiple-files-upload.vue";
 import scopeIcon from "../templates/scope_icon.vue";
+import imetEncodersResponsibles from "../templates/imet_encoders_responsibles.vue";
 
 export default class BaseImet extends Base {
 
@@ -25,9 +26,10 @@ export default class BaseImet extends Base {
             // Register components
             .component('imet_score_bar', imetScoreBar)
             .component('imet_radar', imetRadar)
+            .component('imet-encoders-responsibles', imetEncodersResponsibles)
             .component('progressBar', progressBar)
             .component('multiple-files-upload', multipleFilesUpload)
-            .component('scope-icon', scopeIcon);
+            .component('scope-icon', scopeIcon)
 
     }
 
