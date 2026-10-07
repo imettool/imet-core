@@ -304,7 +304,7 @@ final class Radar
 
                 if (! isset($radar_values[$name])) {
                     $radar_values[$name] = [];
-                    if (!empty($item['color'])) {
+                    if (filled($item['color'])) {
                         $radar_values[$name]['color'] = $item['color'];
                     }
                 }

@@ -30,7 +30,7 @@ final class Habitats extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v1_context.Habitats.title');
         $this->module_fields = [
             ['name' => 'EcosystemType',             'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.EcosystemType')],
-            ['name' => 'Value',                     'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Value')],
+            ['name' => 'EcosystemDescription',      'type' => 'text-area',   'label' => trans('imet-core::v1_context.Habitats.fields.Value')],
             ['name' => 'Area',                      'type' => 'integer',   'label' => trans('imet-core::v1_context.Habitats.fields.Area')],
             ['name' => 'DesiredConservationStatus', 'type' => 'integer',   'label' => trans('imet-core::v1_context.Habitats.fields.DesiredConservationStatus')],
             ['name' => 'Trend',                     'type' => 'rating-Minus2to2',   'label' => trans('imet-core::v1_context.Habitats.fields.Trend')],

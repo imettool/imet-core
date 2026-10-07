@@ -12,6 +12,8 @@
 
 namespace ImetCore\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Unguarded;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use ImetCore\Helpers\Database;
 use ModularForms\Models\BaseModel;
 
@@ -28,6 +30,7 @@ use ModularForms\Models\BaseModel;
  * @property int $status_year
  * @property string $ownership_type
  */
+#[Unguarded]
 class ProtectedAreaNonWdpa extends BaseModel
 {
     protected static ?string $schema = Database::COMMON_SCHEMA;
@@ -37,8 +40,6 @@ class ProtectedAreaNonWdpa extends BaseModel
     public const LABEL = 'name';
 
     private const int START_FAKE_ID = 999990000;
-
-    protected $guarded = [];
 
     protected $appends = ['wdpa_id'];
 
@@ -54,9 +55,9 @@ class ProtectedAreaNonWdpa extends BaseModel
     /**
      * Append "wdpa_id" as id alias
      */
-    public function getWdpaIdAttribute(): string
+    protected function wdpaId(): Attribute
     {
-        return $this->id;
+        return Attribute::make(get: fn () => $this->id);
     }
 
     /**

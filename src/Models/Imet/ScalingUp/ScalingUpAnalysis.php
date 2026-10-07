@@ -43,7 +43,7 @@ final class ScalingUpAnalysis extends Model
 
     public const int UNDEFINED_VALUE = -99999999;
 
-    public static int $scaling_id;
+    public static ?int $scaling_id = null;
 
     #[\Override]
     public function getTable(): string

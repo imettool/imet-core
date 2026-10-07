@@ -239,14 +239,10 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
 
             if ($record['Element'] !== null) {
                 $category = $record['group_key'];
-                if (! isset($items[$category])) {
-                    $items[$category] = [];
-                }
+                $items[$category] ??= [];
 
                 $element = $record['Element'];
-                if (! isset($items[$category][$element])) {
-                    $items[$category][$element] = ['elements' => []];
-                }
+                $items[$category][$element] ??= ['elements' => []];
 
                 if ($record['Description'] !== null) {
                     $items[$category][$element]['elements'][] = $record['Description'];

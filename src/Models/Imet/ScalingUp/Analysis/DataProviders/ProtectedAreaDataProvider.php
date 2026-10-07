@@ -17,7 +17,6 @@ use ImetCore\Models\Imet\ScalingUp\ScalingUpWdpa;
 
 final readonly class ProtectedAreaDataProvider extends BaseDataProvider
 {
-
     /**
      * @throws \Exception
      */

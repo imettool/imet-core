@@ -274,11 +274,13 @@ return [
             'Source' => 'Source',
             'Observations' => 'Observations',
         ],
-        'module_info' =>
-            '<div class="font-bold">Jours-Patrouille moyens par Km² (cas des Parcs Nationaux Africains)</div>
+        'module_info' => '<div class="font-bold">Jours-Patrouille moyens par Km² (cas des Parcs Nationaux Africains)</div>
             Pour une gestion efficace, l\'intensité des patrouilles est exprimée en <b>nombre de jours-patrouille par kilomètre carré par an</b>,
             calculé en divisant le total des jours-patrouille par la superficie du secteur ou de l\'aire protégée. Un <b>jour-patrouille</b> correspond à une
             équipe de patrouille opérant pendant une journée, quelle que soit la taille de l\'équipe.
+            Le nombre de gardes forestiers participant à la patrouille ne doit pas être multiplié par le nombre de jours de patrouille: par exemple, une équipe
+            de 8 gardes forestiers opérant pendant 5 jours représente 5 jours de patrouille, et non 40 jours-garde. Si deux équipes de patrouille distinctes opèrent
+            le même jour, elles représentent deux jours de patrouille.
             En pratique, les données issues des aires protégées africaines indiquent que l\'intensité des patrouilles se situe généralement entre <b>0,1 et 0,6
             jours-patrouille par km² par an</b>, avec <b>0,3 à 0,4</b> représentant une couverture modérée et opérationnellement réaliste. Les valeurs
             approchant ou dépassant 0,6 jour-patrouille/km²/an sont considérées comme élevées et sont souvent difficiles à maintenir sur de grandes superficies.
@@ -307,43 +309,24 @@ return [
             'FunctionalEcosystemArea' => 'Aire fonctionnelle de l’écosystème',
             'BenefitsOfEcosystemServicesArea' => 'Zone qui bénéficie des services écosystémiques fournis par l’aire protégée',
         ],
-        'module_info' => '<b>Landscape</b>: Linked governance and management of a protected area and its surrounding territories
-          can contribute to biodiversity conservation and climate resilience, maintenance of natural resources and ecosystem
-          services that ensure sustainable development of local communities. <br />
-          <b>Protected and Conserved Areas (PCAs)</b>: They are one of the most effective tools for preventing loss of
-          natural ecosystems and species, as well as to achieve long-term sustainable development, including Aichi targets
-          11 and 12 and several Sustainable Development Goals (SDGs). In some regions, PCAs are the center of economic
-          development, through tourism, sustainable use of resources and as sources of freshwater. PCAs also contribute
-          to food security through maintenance of the ecosystem services that support agriculture, by protecting resources
-          essential for crop breeding programmes, and by providing space for traditional biodiversity-friendly farming and
-          grazing systems. PCAs also have a major role to play in climate resilience, both by storing and sequestering carbon,
-          and by ensuring that ecosystems continue to provide goods and services to human societies (WWF).',
+        'module_info' => '<b>Paysage</b> : Une gouvernance et une gestion articulées d’une aire protégée et des territoires qui l’entourent peuvent contribuer à la conservation de la biodiversité et à la résilience climatique, au maintien des ressources naturelles et des services écosystémiques qui assurent le développement durable des communautés locales. <br /> <b>Aires protégées et conservées (APC)</b> : Elles constituent l’un des outils les plus efficaces pour prévenir la perte d’écosystèmes naturels et d’espèces, ainsi que pour atteindre un développement durable à long terme, y compris les objectifs d’Aichi 11 et 12 et plusieurs objectifs de développement durable (ODD). Dans certaines régions, les APC sont au cœur du développement économique, par le tourisme, l’utilisation durable des ressources et en tant que sources d’eau douce. Les APC contribuent également à la sécurité alimentaire par le maintien des services écosystémiques qui soutiennent l’agriculture, en protégeant des ressources essentielles aux programmes de sélection variétale et en offrant un espace aux systèmes traditionnels d’agriculture et de pâturage respectueux de la biodiversité. Les APC ont aussi un rôle majeur à jouer dans la résilience climatique, à la fois en stockant et en séquestrant le carbone, et en garantissant que les écosystèmes continuent de fournir des biens et des services aux sociétés humaines (WWF).',
     ],
 
     'Connectivity' => [
-        'title'  => 'Connectivité',
+        'title' => 'Connectivité',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Commencer par documenter les preuves',
-            'EvidenceOfConnectivity' => '2.	Baser la classification sur les preuves, non sur les suppositions',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analyser le degré d\'intégration de la connectivité dans la planification de la gestion',
+            'DocumentedConnectivity' => 'Q1. Évaluation de la connectivité structurelle',
+            'EvidenceOfConnectivity' => 'Q2. Confiance dans la connectivité fonctionnelle',
+            'EvidencesListConnectivity' => 'Q3. Preuves et observations clés',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Intégration de la connectivité dans la gestion',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Existe-t-il une connectivité structurelle documentée entre l\'aire protégée et les habitats environnants (corridors, continuité des habitats, courants marins, îlots-relais) ?',
-            'EvidenceOfConnectivity' => 'Existe-t-il des preuves de connectivité fonctionnelle (déplacement des espèces, migration, échanges génétiques, dispersion larvaire) ?',
-            'EvidencesListConnectivity' => 'Les indications et preuves peuvent inclure :',
-            'ConnectivityIntegrationInManagementPlan' => 'La connectivité est-elle intégrée dans la planification de la gestion ?',
+            'DocumentedConnectivity' => 'Existe-t-il une connectivité structurelle documentée entre l\'aire protégée et les habitats environnants (p. ex. corridors écologiques, continuité des habitats, îlots-relais, zones tampons, systèmes fluviaux ou courants marins) ?',
+            'EvidenceOfConnectivity' => 'Quel est le niveau de confiance quant à l\'existence d\'une connectivité écologique entre l\'aire protégée et les écosystèmes environnants (p. ex. déplacement des espèces, migration, flux génétique, dispersion larvaire ou interactions trophiques) ?',
+            'EvidencesListConnectivity' => 'Veuillez décrire les principales observations ou informations qui appuient votre évaluation à la Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'Dans quelle mesure la connectivité écologique est-elle explicitement prise en compte dans la gestion de l\'aire protégée ?',
         ],
-        'connectivity_title' => 'Comment évaluer la connectivité dans l\'IMET',
-        'link_to_me' => '4.	Relier la connectivité à l\'efficacité de la gestion',
-        'link_to_me_details' => '
-            <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :</p>
-            <ul>
-                <li>C1.5 – Services écosystémiques (importance et priorisation)</li>
-                <li>I1 - Informations de base</li>
-                <li>PR7 - Gestion des valeurs clés et des menaces (actions de gestion)</li>
-                <li>O/C2 - Résultats écologiques et/ou O/C3 : Effets sur la qualité de vie locale</li>
-            </ul>',
-
+        'connectivity_title' => 'Évaluation de la connectivité',
         'module_info' => '<p>La connectivité désigne les liens écologiques structurels et fonctionnels entre l\'aire protégée et
             les habitats ou écosystèmes environnants qui permettent des processus écologiques clés tels que le déplacement des espèces, le flux génétique,
             la migration, la dispersion larvaire et l\'adaptation au changement climatique.</p>
@@ -375,7 +358,44 @@ return [
                 <li>La dynamique de débordement (spillover)</li>
                 <li>La viabilité à long terme des éléments de conservation clés</li>
                 <li>L\'adaptation au changement climatique</li>
-            </ul>',
+            </ul>
+             <b class="blue">Comment évaluer la connectivité dans l\'IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Commencer par documenter les preuves</b>
+                    <p>Avant de classer la connectivité, évaluez les deux aspects :</p>
+                    <ul>
+                        <li>Connectivité structurelle : preuves de continuité des habitats (p. ex. corridors, îlots-relais, zones tampons, courants marins ou réseaux écologiques transfrontaliers). </li>
+                        <li>Connectivité fonctionnelle : preuves que des processus écologiques se produisent à l\'échelle du paysage ou du paysage marin (p. ex. déplacement des espèces, migration, flux génétique ou dispersion larvaire).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Baser la classification sur les preuves, non sur les suppositions</b>
+                    <p>Après avoir examiné les informations disponibles, sélectionnez la classification qui reflète le mieux le niveau de connectivité documenté :</p>
+                    <ul>
+                        <li>Pas de connectivité : l\'aire protégée est très isolée. </li>
+                        <li>Connectivité limitée : les liens écologiques sont faibles ou fragmentés. </li>
+                        <li>Connectivité modérée : une continuité écologique partielle existe. </li>
+                        <li>Connectivité forte : l\'aire protégée fait partie d\'un réseau écologique intégré. </li>
+                    </ul>
+                    <p>Lorsque les preuves sont limitées, indiquez le niveau de confiance approprié plutôt que de supposer une connectivité plus forte.</p>
+                </li>
+                <li>
+                    <b>Relier la connectivité à la planification de la gestion</b>
+                    <p>Évaluez si la connectivité est explicitement prise en compte dans la planification de la gestion à travers des mesures telles que la protection des corridors, la gestion des zones tampons, des actions de restauration ou la coordination avec les aires protégées voisines.</p>
+                </li>
+                <li>
+                    <b>Relier la connectivité à l\'efficacité de la gestion</b>
+                    <p>La classification sélectionnée informe l\'analyse IMET dans les sections suivantes :<p>
+                    <ul>
+                        <li>C1.5 – Services écosystémiques (importance et priorisation) ; </li>
+                        <li>I1 – Informations de base ; </li>
+                        <li>PR7 – Gestion des valeurs clés et des menaces (actions de gestion) ; </li>
+                        <li>O/C2 – Résultats écologiques et/ou O/C3 – Effets sur la qualité de vie locale.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [
@@ -524,15 +544,13 @@ return [
             'Disputes' => 'Contentieux (trésor public)',
             'Partners' => 'Contributions des partenaires',
             'total' => 'Total',
-            'percentage' => '% des prévisions du budget',
         ],
         'predefined_values' => [
             'Budget total annuel disponible',
             'Budget total annuel disponible pour le fonctionnement',
             'Budget total annuel disponible pour les investissements',
         ],
-        'module_info' =>
-            'Ce tableau permet de résumer les ressources financières annuelles effectivement disponibles pour la gestion de l\'aire protégée.
+        'module_info' => 'Ce tableau permet de résumer les ressources financières annuelles effectivement disponibles pour la gestion de l\'aire protégée.
             Il doit refléter le budget réel mobilisé et accessible au cours de l\'année de référence, quelle que soit la source de financement d\'origine.
             L\'objectif est de :
             <ul>
@@ -598,12 +616,12 @@ return [
             'group0' => ['Bureaux', 'Postes de patrouille', 'Points de barrières', 'Bâtiments scientifiques', 'Garage et atelier', 'Espace pour les bouteilles et autres équipements de plongée', 'Hangars à bateaux', 'Parking voitures-bateaux', 'Services divers (magazine, radio, etc.)', 'Dispensaires'],
             'group1' => ['pour Officiers et sous-officiers', 'pour les Agents', 'pour le Personnel d\'appui', 'pour le Personnel scientifique'],
             'group2' => ['Hôtels (capacité d’accueil)', 'Eco-lodges (capacité d’accueil)', 'Campements', 'Accueils des touristes', 'Points de vue ou points d’observation (miradors)', 'Parcours touristiques aménagés'],
-            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Jet ski', 'Animaux (chevaux)'],
+            'group3' => ['Voitures', 'Motos/Quads', 'Vélos', 'Bateaux', 'Moteurs hors-bord', 'Pirogues', 'Avion, ULM', 'Engins lourds'],
             'group4' => ['Radar de contrôle', 'Armements', 'Cartouches', 'Tenues', 'Rations', 'GPS, Boussoles', 'Matériel de camping et de brousse'],
             'group5' => ['Radios VHF-HF', 'V-SAT', 'Téléphones fixes', 'Téléphones GSM', 'Téléphones satellitaires', 'Connexion internet'],
             'group6' => ['Ordinateurs fixes', 'Ordinateurs portables', 'Imprimantes', 'Photocopieurs', 'Onduleur'],
-            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne'],
-            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique'],
+            'group7' => ['Groupes électrogènes', 'Installation électrique solaire', 'Installation électrique hydraulique', 'Installation électrique éolienne', 'Adduction d’eau'],
+            'group8' => ['Matériel roulant/bateaux', 'Radios', 'Bâtiments', 'Réseau électrique', 'Réseau hydraulique', 'Engins lourds'],
             'group9' => ['Routes/pistes de pénétration dans l\'aire protégée', 'Route de délimitation de l’aire protégée', 'Chemins à l’intérieur de l’aire protégée'],
             'group10' => ['Voies fluviales à l’intérieur de l’aire protégée'],
             'group11' => ['Pistes aériennes à l\'intérieur et/ou à l\'extérieur de l\'aire protégée'],
@@ -624,12 +642,12 @@ return [
         'fields' => [
             'SpeciesID' => 'Espèce',
             'CommonName' => 'Nom commun',
-            'FlagshipSpecies' => 'PHA',
-            'EndangeredSpecies' => 'MEN',
-            'EndemicSpecies' => 'END',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'FlagshipSpecies' => 'Pha',
+            'EndangeredSpecies' => 'Pha',
+            'EndemicSpecies' => 'End',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estimation de l’état actuel',
             'DesiredPopulation' => 'Etat de conservation souhaité',
             'TrendRating' => 'Tendance',
@@ -646,10 +664,10 @@ return [
             B - oiseaux et C - amphibiens), un nombre limité d’espèces clés de l’aire protégée.<br />
             <b>Types d\'espèces</b>
             <ul>
-                <li><b>PHA</b>: Espèce phare</li>
-                <li><b>MEN</b>: Espèce en voie de disparition menacée</li>
-                <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li>
-                <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li>
+                <li><b>Pha</b>: Espèce phare</li>
+                <li><b>Pha</b>: Espèce en voie de disparition menacée</li>
+                <li><b>End</b>: Espèce endémique</li> <li><b>Exp</b>: Espèce exploitée</li>
+                <li><b>Inv</b>: Espèce invasive</li> <li><b>Ins</b>: Espèce avec faible niveau de connaissance</li>
             </ul>',
         'validation_min3' => 'Veuillez encoder au moins 3 des espèces clés.',
         'warning_on_save' => 'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
@@ -660,19 +678,20 @@ return [
         'title' => 'Espèces de plantes: espèces phares, menacées, endémiques, exploitées, envahissantes, etc. et choisis comme éléments clés pour l’aire protégée et qui devront faire l’objet d’un suivi dans le temps',
         'fields' => [
             'Species' => 'Espèce',
-            'FlagshipSpecies' => 'PHA',
-            'EndangeredSpecies' => 'MEN',
-            'EndemicSpecies' => 'END',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'CommonName' => 'Nom commun',
+            'FlagshipSpecies' => 'Pha',
+            'EndangeredSpecies' => 'Pha',
+            'EndemicSpecies' => 'End',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estimation de l’état actuel',
             'DesiredPopulation' => 'Etat de conservation souhaité',
             'TrendRating' => 'Tendance',
             'Reliability' => 'Fiabilité de l’information',
             'Comments' => 'Commentaires / Source',
         ],
-        'module_info' => 'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>PHA</b>: Espèce phare</li> <li><b>MEN</b>: Espèce menacée</li> <li><b>END</b>: Espèce endémique</li> <li><b>EXP</b>: Espèce exploitée</li> <li><b>INV</b>: Espèce invasive</li> <li><b>INS</b>: Espèce avec faible niveau de connaissance</li> </ul>',
+        'module_info' => 'État de conservation favorable: Selon Natura 2000, L’état de conservation des espèces est considéré comme « favorable » lorsque:<ul><li>les données sur la dynamique des populations de l’espèce concernée indiquent qu’elle se maintient à long terme en tant que composante viable de ses habitats naturels, et</li><li>l’aire de répartition naturelle de l’espèce n’est ni réduite ni susceptible de l’être dans un avenir prévisible, et il existe, et il existera probablement encore à long terme un habitat suffisamment vaste pour maintenir ses populations</li></ul>Evaluation: Évaluer, à partir de la liste des plantes supposées exister (voir les listes mises à disposition et les informations du parc), un nombre limité d’espèces végétales clés de l’aire protégée.<br /> <b>Types d\'espèces</b> <ul> <li><b>Pha</b>: Espèce phare</li> <li><b>Pha</b>: Espèce menacée</li> <li><b>End</b>: Espèce endémique</li> <li><b>Exp</b>: Espèce exploitée</li> <li><b>Inv</b>: Espèce invasive</li> <li><b>Ins</b>: Espèce avec faible niveau de connaissance</li> </ul>',
         'warning_on_save' => 'ATTENTION!!<br />Toute modification peut provoquer une perte de données dans les modules
             d\'évaluation suivants (s\'ils sont déjà codés):<br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -703,6 +722,7 @@ return [
             'Duration' => 'Durée',
             'Trend' => 'Tendance',
             'Probability' => 'Probabilité de la menace dans le futur',
+            'Comments' => 'Commentaires',
         ],
         'groups' => [
             'group0' => 'Développement commercial et résidentiel',
@@ -746,6 +766,7 @@ return [
                 'Petites exploitations agricoles',
                 'Exploitations agro-industrielles',
                 'Production de fruits/légumes',
+                'Extraction de fertilisant pour l’agriculture',
             ],
             'group2' => [
                 'Petites plantations',
@@ -778,10 +799,14 @@ return [
             'group8' => [
                 'Chasse d\'animaux terrestres',
                 'Prélèvement d\'animaux vivants',
+                'Collecte de petits animaux, comme les insectes, ou de leurs produits, comme le miel',
             ],
             'group9' => [
                 'Cueillette de produits des plantes',
                 'Prélèvement des plantes vivantes',
+                'Récolte de produits alimentaires végétaux (tubercules, fruits, etc.)',
+                'Récolte de plantes médicinales',
+                'Récolte de tiges et de fibres (palmiers, kénaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Exploitation bois d\'oeuvre à grande échelle',
@@ -800,6 +825,8 @@ return [
                 'Surpêche et pêche destructive',
                 'Exploitation des espèces menacées d’extinction',
                 'Chalutiers/sous-marins',
+                'Récolte de ressources ornementales et d’aquariophilie (collecte de graines, coquillages et poissons)',
+                'Récolte d’algues',
             ],
             'group12' => [
                 'Activités récréatives',
@@ -831,6 +858,7 @@ return [
                 'Petits barrages',
                 'Grands barrages',
                 'Barrages (taille inconnue)',
+                'Barrages pour la production d’énergie',
             ],
             'group16' => [
                 'Espèces ou maladies introduites et envahissantes',
@@ -873,7 +901,6 @@ return [
             'group22' => [
                 'Pollution lumineuse',
                 'Pollution thermique',
-                'Pollution à l\'ozone',
                 'Pollution sonore',
             ],
             'group23' => [
@@ -1018,7 +1045,7 @@ return [
         'ratingLegend' => [
             'Importance' => [
                 'Locale' => 'Importance limitée aux communautés locales ou régionales (ex. tubercules, fruits, bois de chauffage, etc.)',
-                'Larger' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
+                'Plus grand' => 'Importance étendue à la société nationale et mondiale (bassin versant, tourisme, etc.)',
             ],
             'ImportanceRegional' => [
                 '0' => 'très faible',

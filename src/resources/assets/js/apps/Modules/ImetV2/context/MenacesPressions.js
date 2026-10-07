@@ -83,7 +83,7 @@ export default class MenacesPressions extends ModuleImet {
                     stats.push(null);
                 } else {
                     stats.push(
-                        (calculateStats(category_stats) * 100 / 3.0).toFixed(2)
+                        (calculateStats(category_stats) * 100 / 3.0).toFixed(2) * -1
                     );
                 }
             });

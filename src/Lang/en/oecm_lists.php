@@ -15,6 +15,8 @@ return [
     'languages' => [
         'fr' => 'French',
         'en' => 'English',
+        'sp' => 'Spanish',
+        'pt' => 'Portuguese',
     ],
 
     'ShortOrLongTerm' => [

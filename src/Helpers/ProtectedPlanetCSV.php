@@ -117,8 +117,8 @@ class ProtectedPlanetCSV
         array_shift($legacyGlobalIds);
 
         return array_combine(
-            array_map(fn (array $item) => $item['wdpa_id'], $legacyGlobalIds),
-            array_map(fn (array $item) => $item['global_id'], $legacyGlobalIds)
+            array_map(fn (array $item): ?string => $item['wdpa_id'], $legacyGlobalIds),
+            array_map(fn (array $item): ?string => $item['global_id'], $legacyGlobalIds)
         );
     }
 

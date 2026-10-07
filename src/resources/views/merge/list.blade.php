@@ -168,10 +168,9 @@ if (!function_exists('get_quoted_responsible')) {
 
 @endsection
 
-{{--@push('scripts')--}}
-{{--    <script>--}}
-{{--        new Vue({--}}
-{{--            el: '#merge_table',--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@endpush--}}
+@push('scripts')
+    <script type="module">
+        (new window.ImetCore.Apps.Base())
+            .mount('#merge_table');
+    </script>
+@endpush

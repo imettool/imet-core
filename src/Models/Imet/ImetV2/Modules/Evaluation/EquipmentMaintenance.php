@@ -64,7 +64,7 @@ final class EquipmentMaintenance extends Modules\Component\ImetModule_Eval
         $new_records = [];
         $adequacy = self::calculateEquipementAdequacy($form_id);
         foreach ($predefined_values['values'] as $i => $predefined_value) {
-            if ($adequacy[$i] != null) {
+            if ($adequacy[$i] !== null) {
                 $records[$i]['AdequacyLevel'] = $adequacy[$i];
                 $new_records[] = $records[$i];
             }

@@ -5,10 +5,11 @@
 
 $group_key ??= null;
 
-if($definitions['module_type']==='GROUP_TABLE'){
+if ($definitions['module_type'] === 'GROUP_TABLE') {
     $records = array_filter($records, fn(array $item): bool => $item[$definitions['group_key_field']] === $group_key);
 }
 
+use ModularForms\Enums\ModuleViewModes;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Wa72\HtmlPageDom\Helpers;
 
@@ -17,10 +18,10 @@ $group_key ??= '';
 $num_cols = count($definitions['fields']);
 
 $original_table = \Illuminate\Support\Facades\View::make('modular-forms::module.show.type.table', ['definitions' => $definitions, 'records' => $records, 'group_key' => $group_key])->render();
-$nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])->render();
+$nothing_to_evaluate = \Illuminate\Support\Facades\View::make('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols, 'mode' => ModuleViewModes::SHOW])->render();
 
 $dom = HtmlPageCrawler::create(Helpers::trimNewlines($original_table));
-if(blank($records) || (isset($records[0]) && $records[0][$definitions['fields'][0]['name']]===null)){
+if (blank($records) || (isset($records[0]) && $records[0][$definitions['fields'][0]['name']] === null)) {
     $tbody = HtmlPageCrawler::create($dom->filter('tbody'));
     $tbody->setInnerHtml($nothing_to_evaluate);
 }

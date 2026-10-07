@@ -55,7 +55,7 @@ class Country extends BaseModel
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->attributes[static::labelKey()],
+            get: fn (): mixed => $this->attributes[static::labelKey()],
         );
     }
 

@@ -34,6 +34,8 @@ $terrestrial_groups = MenacesPressions::get_terrestrial_groups();
                     :label="$category_label"
                     :score="$score_value"
                     :percentage="$percentage_value"
+                    limit-min=-100
+                    limit-max=0
                 ></x-imet-core::score-bar>
             </x-slot:title>
 

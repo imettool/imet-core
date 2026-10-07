@@ -32,7 +32,7 @@ return [
 
     'protected_area' => [
         'protected_area' => 'área protegida|áreas protegidas',
-        'wdpa_id' => 'WDPA id|WDPA ids',
+        'wdpa_id' => 'ID WDPA|IDs WDPA',
         'iucn_category' => 'Categoría UICN',
     ],
 
@@ -120,8 +120,7 @@ return [
     ],
 
     'score_info' => [
-        'outcomes' =>
-            'El <b>indicador sintético</b> no se calcula como un simple promedio de los tres componentes (O/C1, O/C2, O/C3).
+        'outcomes' => 'El <b>indicador sintético</b> no se calcula como un simple promedio de los tres componentes (O/C1, O/C2, O/C3).
             En cambio, se <b>deriva de una transformación de las puntuaciones brutas</b>, diseñada para reflejar la contribución relativa
             de cada componente al desempeño general de los resultados.
             Los indicadores O/C2 y O/C3 se expresan en una escala bipolar que va de -100 a +100, reflejando tendencias
@@ -133,7 +132,7 @@ return [
             al indicador final que lo sugerido por sus valores iniciales.
             Aunque O/C1 alcanza la puntuación máxima, su contribución al indicador sintético sigue siendo limitada, mientras que
             O/C2 y O/C3 tienen una influencia más fuerte, reflejando la importancia de las condiciones ecológicas y los resultados
-            para las partes interesadas en la efectividad global de la conservación.'
+            para las partes interesadas en la efectividad global de la conservación.',
     ],
 
     'Create' => [
@@ -170,9 +169,9 @@ return [
             'country' => 'país',
         ],
         'module_info' => 'Todos los campos son obligatorios excepto la superficie del área protegida.',
-        'allowed_international' => 'Allowed values for international-level designations',
-        'allowed_regional' => 'Allowed values for regional-level designations',
-        'allowed_national' => 'No fixed values for protected areas designated at a national level',
+        'allowed_international' => 'Valores permitidos para designaciones de nivel internacional',
+        'allowed_regional' => 'Valores permitidos para designaciones de nivel regional',
+        'allowed_national' => 'No hay valores fijos para las áreas protegidas designadas a nivel nacional',
     ],
 
     'ResponsablesInterviewers' => [

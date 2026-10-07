@@ -269,11 +269,13 @@ return [
             'Source' => 'Source',
             'Observations' => 'Notes',
         ],
-        'module_info' =>
-            '<div class="font-bold">Average Patrol Day-Km² (case of African National Parks)</div>
+        'module_info' => '<div class="font-bold">Average Patrol Day-Km² (case of African National Parks)</div>
             For effective management, patrol intensity is expressed as the <b>number of patrol-days per square kilometer per year</b>,
             calculated as total patrol-days divided by the area of the sector or protected area. A <b>patrol-day</b> corresponds to one
             patrol team operating for one day, regardless of team size.
+            The number of rangers participating in the patrol should not be multiplied by the number of patrol days: for example, a team
+            of 8 rangers operating for 5 days represents 5 patrol-days, not 40 ranger-days. If two separate patrol teams operate on the
+            same day, they represent two patrol-days.
             In practice, evidence from African protected areas indicates that patrol intensity typically ranges between <b>0.1 and 0.6
             patrol-days per km² per year</b>, with <b>0.3 to 0.4</b> representing moderate and operationally realistic coverage. Values
             approaching 0.6 or more patrol-day/km²/year are considered high and are often difficult to sustain across large areas.
@@ -317,29 +319,20 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Connectivity',
+        'title' => 'Connectivity',
         'fields' => [
-            'DocumentedConnectivity' => '1.	First, document the evidence',
-            'EvidenceOfConnectivity' => '2.	Base your classification on the evidence, not your assumptions',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analyse the degree of integration of connectivity in management planning',
+            'DocumentedConnectivity' => 'Q1. Assessment of structural connectivity',
+            'EvidenceOfConnectivity' => 'Q2. Confidence in functional connectivity',
+            'EvidencesListConnectivity' => 'Q3. Evidence and key observations',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integration of connectivity into management',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Is there documented structural connectivity between the protected area and surrounding habitats (corridors, habitat continuity, marine currents, stepping stones)?',
-            'EvidenceOfConnectivity' => 'Is there evidence of functional connectivity (species movement, migration, genetic exchange, larval dispersal)?',
-            'EvidencesListConnectivity' => 'Indications and evidence may include:',
-            'ConnectivityIntegrationInManagementPlan' => 'Is connectivity integrated into management planning?',
+            'DocumentedConnectivity' => 'Is there documented structural connectivity between the protected area and surrounding habitats (e.g. ecological corridors, habitat continuity, stepping stones, buffer zones, river systems or marine currents)?',
+            'EvidenceOfConnectivity' => 'What is the level of confidence that ecological connectivity occurs between the protected area and surrounding ecosystems (e.g. species movement, migration, gene flow, larval dispersal or trophic interactions)?',
+            'EvidencesListConnectivity' => 'Please describe the main observations or information that support your assessment in Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'To what extent is ecological connectivity explicitly considered in protected area management?',
         ],
-        'connectivity_title' => 'How to assess connectivity in IMET',
-        'link_to_me' => '4.	Link connectivity to management effectiveness',
-        'link_to_me_details' => '
-            <p>The selected classification informs IMET analysis across:</p>
-            <ul>
-                <li>C1.5 – Ecosystem services (importance and prioritisation)</li>
-                <li>I1 - Basic information</li>
-                <li>PR7 - Management of key values and threats (management actions)</li>
-                <li>O/C2 - Ecological outcomes and/or O/C3: Effects on local quality of life</li>
-            </ul>',
-
+        'connectivity_title' => 'Connectivity assessment',
         'module_info' => '<p>Connectivity refers to the structural and functional ecological linkages between the protected area and
             surrounding habitats or ecosystems that enable key ecological processes such as species movement, gene flow,
             migration, larval dispersal, and climate adaptation.</p>
@@ -371,7 +364,44 @@ return [
                 <li>Spillover dynamics</li>
                 <li>The long-term viability of key conservation elements</li>
                 <li>Climate adaptation</li>
-            </ul>',
+            </ul>
+             <b class="blue">How to assess connectivity in IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>First, document the evidence</b>
+                    <p>Before classifying connectivity, assess both:</p>
+                    <ul>
+                        <li>Structural connectivity: evidence of habitat continuity (e.g. corridors, stepping stones, buffer zones, marine currents or transboundary ecological networks). </li>
+                        <li>Functional connectivity: evidence that ecological processes occur across the landscape or seascape (e.g. species movement, migration, gene flow or larval dispersal).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base your classification on the evidence, not your assumptions</b>
+                    <p>After reviewing the available information, select the classification that best reflects the documented level of connectivity:</p>
+                    <ul>
+                        <li>No connectivity: the protected area is highly isolated. </li>
+                        <li>Limited connectivity: ecological links are weak or fragmented. </li>
+                        <li>Moderate connectivity: partial ecological continuity exists. </li>
+                        <li>Strong connectivity: the protected area is part of an integrated ecological network. </li>
+                    </ul>
+                    <p>When evidence is limited, indicate the appropriate confidence level rather than assuming stronger connectivity.</p>
+                </li>
+                <li>
+                    <b>Link connectivity to management planning</b>
+                    <p>Assess whether connectivity is explicitly considered in management planning through measures such as corridor protection, buffer zone management, restoration actions or coordination with neighbouring protected areas.</p>
+                </li>
+                <li>
+                    <b>Link connectivity to management effectiveness</b>
+                    <p>The selected classification informs IMET analysis across:<p>
+                    <ul>
+                        <li>C1.5 – Ecosystem services (importance and prioritisation); </li>
+                        <li>I1 – Basic information; </li>
+                        <li>PR7 – Management of key values and threats (management actions); </li>
+                        <li>O/C2 – Ecological outcomes and/or O/C3 – Effects on local quality of life.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [
@@ -520,15 +550,14 @@ return [
             'OwnRevenues' => 'Revenues from the operations of the protected area',
             'Disputes' => 'Income from litigation (national treasury)',
             'Partners' => 'Contributions from the partners',
-            'total' => 'total'
+            'total' => 'total',
         ],
         'predefined_values' => [
             'Total annual budget available',
             'Total annual budget available for operating',
             'Total annual budget available for investments',
         ],
-        'module_info' =>
-            'This table is used to summarize the annual financial resources effectively available for the management of the protected area.
+        'module_info' => 'This table is used to summarize the annual financial resources effectively available for the management of the protected area.
             It should reflect the real budget mobilized and accessible during the reference year, regardless of the original funding source.
             The objective is to:
             <ul>
@@ -620,19 +649,19 @@ return [
         'fields' => [
             'SpeciesID' => 'Species',
             'CommonName' => 'Common name',
-            'FlagshipSpecies' => 'FLA',
-            'EndangeredSpecies' => 'EDG',
-            'EndemicSpecies' => 'EDM',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'LLK',
+            'FlagshipSpecies' => 'Fla',
+            'EndangeredSpecies' => 'Edg',
+            'EndemicSpecies' => 'Edm',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Llk',
             'PopulationEstimation' => 'Estimated current status',
             'DesiredPopulation' => 'Favourable conservation status',
             'TrendRating' => 'Trend',
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>FLA</b>: Flagship species</li> <li><b>EDG</b>: Endangered (threatened) species</li> <li><b>EDM</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>LLK</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
+        'module_info' => 'Favourable conservation status: From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of species that are assumed to exist (see the IUCN’s lists of A - mammals, B - birds and C - amphibians), a limited number of key species of the protected area.<br /> <b>Species types</b> <ul> <li><b>Fla</b>: Flagship species</li> <li><b>Edg</b>: Endangered (threatened) species</li> <li><b>Edm</b>: Endemic species</li> <li><b>Exp</b>: Exploited species</li> <li><b>Inv</b>: Invasive species</li> <li><b>Llk</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of trend graph.',
         'validation_min3' => 'Please encode not less than 3 key species',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
@@ -642,19 +671,20 @@ return [
         'title' => 'Plant species (flagship, endangered, endemic, exploited, invasive, etc.) used as indicators for the state of the protected area and requiring monitoring over time',
         'fields' => [
             'Species' => 'Species',
-            'FlagshipSpecies' => 'PHA',
-            'EndangeredSpecies' => 'MEN',
-            'EndemicSpecies' => 'END',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'CommonName' => 'Common name',
+            'FlagshipSpecies' => 'Pha',
+            'EndangeredSpecies' => 'Pha',
+            'EndemicSpecies' => 'End',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estimated current status',
             'DesiredPopulation' => 'Favourable conservation status',
             'TrendRating' => 'Trend',
             'Reliability' => 'Reliability',
             'Comments' => 'Source / Note',
         ],
-        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>PHA</b>: Flagship species</li> <li><b>MEN</b>: Endangered (threatened) species</li> <li><b>END</b>: Endemic species</li> <li><b>EXP</b>: Exploited species</li> <li><b>INV</b>: Invasive species</li> <li><b>INS</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
+        'module_info' => 'Favourable conservation status:<br />From Natura 2000, the conservation status of species is considered ‘favourable’ when:<ul><li>population dynamics data on the species concerned indicate that it is maintaining itself on a long-term basis as a viable component of its natural habitats, and</li><li>the natural range of the species is neither being reduced nor is likely to be reduced in the foreseeable future, and there is, and will probably continue to be, a sufficiently large habitat to maintain its populations on a long-term basis</li></ul>Rating: Evaluate from the list of the plants that are assumed to exist (see the lists available and park information), a limited number of key plants of the protected area<br /> <b>Species types</b> <ul> <li><b>Pha</b>: Flagship species</li> <li><b>Pha</b>: Endangered (threatened) species</li> <li><b>End</b>: Endemic species</li> <li><b>Exp</b>: Exploited species</li> <li><b>Inv</b>: Invasive species</li> <li><b>Ins</b>: Species with low level of knowledge</li> </ul> <b>Estimated population:</b> Ecological monitoring programme and generation of multiannual trend graph.<br />',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following
             evaluation modules (if already encoded): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -822,9 +852,6 @@ return [
                 'Large dams',
                 'Dams (size unknown)',
                 'Dams for energy',
-            ],
-            'group' => [
-                'Harvesting sand from the beaches',
             ],
             'group16' => [
                 'Invasive introduced species or diseases',

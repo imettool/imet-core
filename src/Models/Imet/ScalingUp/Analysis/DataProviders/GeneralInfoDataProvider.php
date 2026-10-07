@@ -19,7 +19,6 @@ use ModularForms\Helpers\Locale;
 
 final readonly class GeneralInfoDataProvider extends BaseDataProvider
 {
-
     /**
      * Get general information aggregated from multiple protected areas
      */

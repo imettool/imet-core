@@ -41,7 +41,6 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Activity',  'type' => 'custom::v2-key-element',   'label' => trans('imet-core::v2_evaluation.ManagementActivities.fields.Activity')],
             ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ManagementActivities.fields.EvaluationScore')],
-            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.ManagementActivities.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ManagementActivities.fields.Comments')],
         ];
 
@@ -125,8 +124,11 @@ final class ManagementActivities extends Modules\Component\ImetModule_Eval
         // ####  v2.7 -> v2.8 (marine pas)  ####
         if (blank($imet_version) || $imet_version < 'v2.7.6b') {
             // group3 merged into group2
-            return self::replaceGroup($record, 'group_key', 'group3', 'group2');
+            $record = self::replaceGroup($record, 'group_key', 'group3', 'group2');
         }
+
+        // ####  v3.7.3 -> v3.7.4 ####
+        $record = self::dropField($record, 'InManagementPlan');
 
         return $record;
     }

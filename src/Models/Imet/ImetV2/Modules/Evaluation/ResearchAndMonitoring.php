@@ -31,8 +31,6 @@ final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $this->module_fields = [
             ['name' => 'Program',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.Program')],
             ['name' => 'EvaluationScore',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.EvaluationScore')],
-            ['name' => 'EvaluationScoreAdequacy',  'type' => 'rating-0to3WithNA',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.EvaluationScoreAdequacy')],
-            ['name' => 'InManagementPlan',  'type' => 'checkbox-boolean_numeric',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.InManagementPlan')],
             ['name' => 'Comments',  'type' => 'text-area',   'label' => trans('imet-core::v2_evaluation.ResearchAndMonitoring.fields.Comments')],
         ];
 
@@ -81,6 +79,9 @@ final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $record = self::dropIfPredefinedValueObsolete($record, 'Program', 'Investigação e monitorização ecológica a longo prazo dos ecossistemas e habitats marinhos');
         $record = self::dropIfPredefinedValueObsolete($record, 'Program', 'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas y hábitats marinos');
 
-        return $record ?? [];
+        // ####  v3.7.3 -> v3.7.4 ####
+        $record = self::dropField($record, 'EvaluationScoreAdequacy');
+
+        return self::dropField($record, 'InManagementPlan');
     }
 }

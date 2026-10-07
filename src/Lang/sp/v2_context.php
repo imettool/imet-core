@@ -270,11 +270,13 @@ return [
             'Source' => 'Fuente',
             'Observations' => 'Notas',
         ],
-        'module_info' =>
-            '<div class="font-bold">Días-Patrulla promedio por Km² (caso de los Parques Nacionales Africanos)</div>
+        'module_info' => '<div class="font-bold">Días-Patrulla promedio por Km² (caso de los Parques Nacionales Africanos)</div>
             Para una gestión eficaz, la intensidad de patrullaje se expresa como el <b>número de días-patrulla por kilómetro cuadrado por año</b>,
             calculado dividiendo el total de días-patrulla por el área del sector o del área protegida. Un <b>día-patrulla</b> corresponde a un
             equipo de patrullaje operando durante un día, independientemente del tamaño del equipo.
+            El número de guardaparques que participan en la patrulla no debe multiplicarse por el número de días de patrullaje: por ejemplo, un equipo
+            de 8 guardaparques que opera durante 5 días representa 5 días de patrullaje, no 40 días de patrullaje. Si dos equipos de patrullaje
+            distintos operan el mismo día, representan dos días de patrullaje.
             En la práctica, la evidencia de las áreas protegidas africanas indica que la intensidad de patrullaje generalmente oscila entre <b>0,1 y 0,6
             días-patrulla por km² por año</b>, donde <b>0,3 a 0,4</b> representa una cobertura moderada y operativamente realista. Los valores
             que se aproximan o superan 0,6 días-patrulla/km²/año se consideran altos y suelen ser difíciles de mantener en áreas extensas.
@@ -319,29 +321,20 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Conectividad',
+        'title' => 'Conectividad',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Primero, documente las evidencias',
-            'EvidenceOfConnectivity' => '2.	Base su clasificación en las evidencias, no en sus suposiciones',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analice el grado de integración de la conectividad en la planificación de la gestión',
+            'DocumentedConnectivity' => 'Q1. Evaluación de la conectividad estructural',
+            'EvidenceOfConnectivity' => 'Q2. Confianza en la conectividad funcional',
+            'EvidencesListConnectivity' => 'Q3. Evidencias y observaciones clave',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integración de la conectividad en la gestión',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => '¿Existe conectividad estructural documentada entre el área protegida y los hábitats circundantes (corredores, continuidad de hábitats, corrientes marinas, piedras de paso)?',
-            'EvidenceOfConnectivity' => '¿Existe evidencia de conectividad funcional (movimiento de especies, migración, intercambio genético, dispersión larval)?',
-            'EvidencesListConnectivity' => 'Las indicaciones y evidencias pueden incluir:',
-            'ConnectivityIntegrationInManagementPlan' => '¿La conectividad está integrada en la planificación de la gestión?',
+            'DocumentedConnectivity' => '¿Existe conectividad estructural documentada entre el área protegida y los hábitats circundantes (p. ej. corredores ecológicos, continuidad de hábitats, piedras de paso, zonas de amortiguamiento, sistemas fluviales o corrientes marinas)?',
+            'EvidenceOfConnectivity' => '¿Cuál es el nivel de confianza de que exista conectividad ecológica entre el área protegida y los ecosistemas circundantes (p. ej. movimiento de especies, migración, flujo génico, dispersión larval o interacciones tróficas)?',
+            'EvidencesListConnectivity' => 'Describa las principales observaciones o información que respaldan su evaluación en Q2.',
+            'ConnectivityIntegrationInManagementPlan' => '¿En qué medida se considera explícitamente la conectividad ecológica en la gestión del área protegida?',
         ],
-        'connectivity_title' => 'Cómo evaluar la conectividad en IMET',
-        'link_to_me' => '4.	Vincule la conectividad con la efectividad de la gestión',
-        'link_to_me_details' => '
-            <p>La clasificación seleccionada informa el análisis IMET en:</p>
-            <ul>
-                <li>C1.5 – Servicios ecosistémicos (importancia y priorización)</li>
-                <li>I1 - Información básica</li>
-                <li>PR7 - Gestión de los valores y amenazas principales (acciones de gestión)</li>
-                <li>O/C2 - Resultados ecológicos y/o O/C3: Efectos en la calidad de vida local</li>
-            </ul>',
-
+        'connectivity_title' => 'Evaluación de la conectividad',
         'module_info' => '<p>La conectividad se refiere a los vínculos ecológicos estructurales y funcionales entre el área protegida y
             los hábitats o ecosistemas circundantes que permiten procesos ecológicos clave, como el movimiento de especies,
             el flujo génico, la migración, la dispersión larval y la adaptación climática.</p>
@@ -373,7 +366,44 @@ return [
                 <li>Dinámicas de spillover</li>
                 <li>La viabilidad a largo plazo de los elementos clave de conservación</li>
                 <li>Adaptación climática</li>
-            </ul>',
+            </ul>
+             <b class="blue">Cómo evaluar la conectividad en IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Primero, documente las evidencias</b>
+                    <p>Antes de clasificar la conectividad, evalúe ambas:</p>
+                    <ul>
+                        <li>Conectividad estructural: evidencia de continuidad de hábitats (p. ej. corredores, piedras de paso, zonas de amortiguamiento, corrientes marinas o redes ecológicas transfronterizas). </li>
+                        <li>Conectividad funcional: evidencia de que los procesos ecológicos ocurren a lo largo del paisaje o del paisaje marino (p. ej. movimiento de especies, migración, flujo génico o dispersión larval).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Base su clasificación en las evidencias, no en sus suposiciones</b>
+                    <p>Tras revisar la información disponible, seleccione la clasificación que mejor refleje el nivel de conectividad documentado:</p>
+                    <ul>
+                        <li>Sin conectividad: el área protegida está muy aislada. </li>
+                        <li>Conectividad limitada: los vínculos ecológicos son débiles o fragmentados. </li>
+                        <li>Conectividad moderada: existe una continuidad ecológica parcial. </li>
+                        <li>Conectividad fuerte: el área protegida forma parte de una red ecológica integrada. </li>
+                    </ul>
+                    <p>Cuando la evidencia sea limitada, indique el nivel de confianza apropiado en lugar de asumir una mayor conectividad.</p>
+                </li>
+                <li>
+                    <b>Vincule la conectividad con la planificación de la gestión</b>
+                    <p>Evalúe si la conectividad se considera explícitamente en la planificación de la gestión mediante medidas como la protección de corredores, la gestión de zonas de amortiguamiento, acciones de restauración o la coordinación con áreas protegidas vecinas.</p>
+                </li>
+                <li>
+                    <b>Vincule la conectividad con la efectividad de la gestión</b>
+                    <p>La clasificación seleccionada informa el análisis IMET en:<p>
+                    <ul>
+                        <li>C1.5 – Servicios ecosistémicos (importancia y priorización); </li>
+                        <li>I1 – Información básica; </li>
+                        <li>PR7 – Gestión de los valores y amenazas principales (acciones de gestión); </li>
+                        <li>O/C2 – Resultados ecológicos y/o O/C3 – Efectos en la calidad de vida local.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [
@@ -525,15 +555,13 @@ return [
             'Disputes' => 'Ingresos por litigios (tesoro nacional)',
             'Partners' => 'Contribuciones de los socios',
             'total' => 'Total',
-            'percentage' => '% del presupuesto previsto',
         ],
         'predefined_values' => [
             '% anual total disponible',
             '% anual total disponible para el funcionamiento',
             '% anual total disponible para inversiones',
         ],
-        'module_info' =>
-            'Esta tabla se utiliza para resumir los recursos financieros anuales efectivamente disponibles para la gestión del área protegida.
+        'module_info' => 'Esta tabla se utiliza para resumir los recursos financieros anuales efectivamente disponibles para la gestión del área protegida.
             Debe reflejar el presupuesto real movilizado y accesible durante el año de referencia, independientemente de la fuente de financiamiento original.
             El objetivo es:
             <ul>
@@ -627,9 +655,9 @@ return [
             'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
-            'EndemicSpecies' => 'EDM',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'EndemicSpecies' => 'Edm',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBNC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservación favorable',
@@ -637,7 +665,7 @@ return [
             'Reliability' => 'Fiabilidad',
             'Comments' => 'Fuente/Nota',
         ],
-        'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
+        'module_info' => 'Estado de conservación favorable: Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul>los datos sobre la dinámica de la población de la especie en cuestión indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de especies que se supone que existen (véanse las listas de la UICN de A - mamíferos, B - aves y C - anfibios), un número limitado de especies clave de la zona protegida.<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro (amenazadas)</li> <li><b>Edm</b>: Especies endémicas</li> <li><b>Exp</b>: Especies explotadas</li> <li><b>Inv</b>: Especies invasoras</li> <li><b>EBNC</b>: Especie con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.',
         'validation_min3' => 'Por favor, codifique al menos 3 especies clave',
         'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
@@ -647,11 +675,12 @@ return [
         'title' => 'Especies vegetales (emblemáticas, en peligro, endémicas, explotadas, invasoras, etc.) utilizadas como indicadores del estado del área protegida y que requieren vigilancia a lo largo del tiempo.',
         'fields' => [
             'Species' => 'Especies',
+            'CommonName' => 'Nombre común',
             'FlagshipSpecies' => 'BAN',
             'EndangeredSpecies' => 'EN',
-            'EndemicSpecies' => 'EDM',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'EndemicSpecies' => 'Edm',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBNC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservación favorable',
@@ -659,7 +688,7 @@ return [
             'Reliability' => 'Fiabilidad',
             'Comments' => 'Fuente/Nota',
         ],
-        'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>EDM</b>: Especies endémicas</li> <li><b>EXP</b>: Especies explotadas</li> <li><b>INV</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
+        'module_info' => 'Estado de conservación favorable:<br />Según Natura 2000, el estado de conservación de las especies se considerará "favorable" cuando:<ul><li>los datos sobre la dinámica de la población de la especie en cuestión, indican que se mantiene a largo plazo como un componente viable de sus hábitats naturales, y</li><li>el área de distribución natural de la especie no se está reduciendo ni es probable que se reduzca en un futuro previsible, y existe, y probablemente seguirá existiendo, un hábitat suficientemente grande para mantener sus poblaciones a largo plazo</li></ul>Clasificación: Evaluar a partir de la lista de plantas que se supone que existen (ver las listas disponibles y la información del parque), un número limitado de plantas clave del área protegida<br /> <b>Indicadores de especies</b> <ul> <li><b>BAN</b>: Especies emblemáticas o bandera</li> <li><b>EN</b>: Especies en peligro de extinción (amenazadas)</li> <li><b>Edm</b>: Especies endémicas</li> <li><b>Exp</b>: Especies explotadas</li> <li><b>Inv</b>: Especies invasoras</li> <li><b>EBNC</b>: Especies con bajo nivel de conocimiento</li> </ul> <b>Población estimada:</b> Programa de monitoreo y vigilancia ecológica y generación de un gráfico de tendencias multianual.<br /> <b>Fiabilidad de la información</b> <ul> <li>1: Bajo<li>2: Medio<li>3: Alto</li> </ul>',
         'warning_on_save' => 'ADVERTENCIA!! <br /> Cualquier modificación puede causar la pérdida de datos en
             los módulos de evaluación (si ya se ha codificado): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -690,6 +719,7 @@ return [
             'Duration' => 'Cuánto tiempo',
             'Trend' => 'Tendencia',
             'Probability' => 'Probabilidad de una amenaza en el futuro',
+            'Comments' => 'Comentarios',
         ],
         'groups' => [
             'group0' => 'Comercial y residencial',
@@ -733,6 +763,7 @@ return [
                 'La agricultura en pequeña escala',
                 'Grandes empresas agroindustriales',
                 'Producción de frutas/huerto vegetal',
+                'Extracción de fertilizante para la agricultura',
             ],
             'group2' => [
                 'Pequeñas plantaciones',
@@ -765,10 +796,14 @@ return [
             'group8' => [
                 'Caza de animales terrestres',
                 'Recolección de animales vivos',
+                'Recolección de pequeños animales, como insectos, o de sus productos, como la miel',
             ],
             'group9' => [
                 'Recolección de plantas',
                 'Cosecha de plantas',
+                'Recolección de alimentos vegetales (tubérculos, frutos, etc.)',
+                'Recolección de plantas medicinales',
+                'Recolección de tallos y fibras (palmas, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Operaciones madereras en pequeña escala',
@@ -787,6 +822,8 @@ return [
                 'Sobrepesca y pesca destructiva',
                 'Explotación de especies en peligro',
                 'Arrastreros/marinos',
+                'Recolección de recursos ornamentales y de acuariofilia (recogida de semillas, conchas y peces)',
+                'Recolección de algas',
             ],
             'group12' => [
                 'Actividades recreativas',
@@ -818,6 +855,7 @@ return [
                 'Pequeñas presas',
                 'Grandes presas',
                 'Presas (tamaño desconocido)',
+                'Presas para producción de energía',
             ],
             'group16' => [
                 'Especies o enfermedades introducidas invasivas',
@@ -895,32 +933,32 @@ return [
             'title12' => 'Otras presiones y amenazas',
         ],
         'ratingLegend' => [
-            'Impacto' => [
+            'Impact' => [
                 '0' => 'Suave',
                 '1' => 'Moderado',
                 '2' => 'Alto',
                 '3' => 'Severo',
             ],
-            'Extensión' => [
+            'Extension' => [
                 '0' => 'Localizado <5%',
                 '1' => 'Escaso 5-15%',
                 '2' => 'Ampliamente disperso 15-50%',
                 '3' => 'En todas partes>50%',
             ],
-            'Duración' => [
+            'Duration' => [
                 '0' => 'A corto plazo <5 años',
                 '1' => 'Medio plazo 5-20 años',
                 '2' => 'Muy largo plazo 20-100 años',
                 '3' => 'Permanente>100 años',
             ],
-            'Tendencia' => [
+            'Trend' => [
                 '-2' => 'Disminuye',
                 '-1' => 'Ligeramente decreciente',
                 '0' => 'No hay cambios',
                 '1' => 'Ligeramente creciente',
                 '2' => 'Incrementa',
             ],
-            'Probabilidad de la amenaza en el futuro' => [
+            'Probability' => [
                 '0' => 'Muy bajo',
                 '1' => 'Bajo',
                 '2' => 'Medio',

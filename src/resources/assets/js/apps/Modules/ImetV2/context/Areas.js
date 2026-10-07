@@ -22,18 +22,18 @@ export default class Areas extends ModuleImet {
             calculateShapeIndex();
         }, { deep: true });
 
-        const AdministrativeArea_km2 = ref(input_data.records[0]['AdministrativeArea']/100);
-        const WDPAArea_km2 = ref(input_data.records[0]['WDPAArea']/100);
-        const GISArea_km2 = ref(input_data.records[0]['GISArea']/100);
+        const AdministrativeArea_km2 = ref((input_data.records[0]['AdministrativeArea']/100).toFixed(2));
+        const WDPAArea_km2 = ref((input_data.records[0]['WDPAArea']/100).toFixed(2));
+        const GISArea_km2 = ref((input_data.records[0]['GISArea']/100).toFixed(2));
 
         function convertToKm(fieldName) {
             nextTick().then(() => {
                 if (fieldName === 'AdministrativeArea') {
-                    AdministrativeArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                    AdministrativeArea_km2.value = (parseFloat(setup_obj.records[0][fieldName]) / 100).toFixed(2);
                 } else if (fieldName === 'WDPAArea') {
-                    WDPAArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                    WDPAArea_km2.value = (parseFloat(setup_obj.records[0][fieldName]) / 100).toFixed(2);
                 } else if (fieldName === 'GISArea') {
-                    GISArea_km2.value = parseFloat(setup_obj.records[0][fieldName]) / 100;
+                    GISArea_km2.value = (parseFloat(setup_obj.records[0][fieldName]) / 100).toFixed(2);
                 }
             });
         }
@@ -41,11 +41,11 @@ export default class Areas extends ModuleImet {
         function convertToHa(fieldName) {
             nextTick().then(() => {
                 if(fieldName==='AdministrativeArea'){
-                    setup_obj.records[0][fieldName] = AdministrativeArea_km2.value*100;
+                    setup_obj.records[0][fieldName] = (AdministrativeArea_km2.value*100).toFixed(2);
                 } else if(fieldName==='WDPAArea'){
-                    setup_obj.records[0][fieldName] = WDPAArea_km2.value*100;
+                    setup_obj.records[0][fieldName] = (WDPAArea_km2.value*100).toFixed(2);
                 } else if(fieldName==='GISArea'){
-                    setup_obj.records[0][fieldName] = GISArea_km2.value * 100;
+                    setup_obj.records[0][fieldName] = (GISArea_km2.value * 100).toFixed(2);
                 }
             });
         }

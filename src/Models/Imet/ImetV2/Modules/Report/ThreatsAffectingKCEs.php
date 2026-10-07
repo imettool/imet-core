@@ -21,6 +21,8 @@ final class ThreatsAffectingKCEs extends ImetModule_Report
 
     public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.report.edit.modules.threats_affecting_kces';
 
+    public const string BODY_SHOW_BLADE_VIEW = 'imet-core::v2.report.show.modules.threats_affecting_kces';
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = ModuleTypes::TABLE;

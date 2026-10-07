@@ -32,7 +32,7 @@ trait Planning
         }
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -74,7 +74,7 @@ trait Planning
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -97,7 +97,7 @@ trait Planning
             $score = 100 * $numerator / 17;
 
             return $score !== null ?
-                round($score, 2)
+                round($score, self::DECIMAL_PRECISION)
                 : null;
 
         }

@@ -52,7 +52,7 @@ class ProtectedAreaSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->runWithSample(false);
+        $this->runWithSample();
     }
 
     /**
@@ -60,16 +60,20 @@ class ProtectedAreaSeeder extends Seeder
      *
      * @throws UpdateFromProtectedPlanetCsvFailed
      */
-    public function runWithSample(?bool $from_file = false): void
+    public function runWithSample(bool $use_csv = false): void
     {
-        // Run on CSV file if exists, otherwise use sample data
-        $csvFilePath = database_path('WDPA_WDOECM_Public_all_csv.csv');
-        if ($from_file && file_exists($csvFilePath)) {
-            ProtectedPlanetCSV::parseCSVFile($csvFilePath);
+        // Run on CSV file (if provided)
+        if ($use_csv && config('imet-core.csv_sample_files.protected_areas') !== null) {
+            $csvFilePath = database_path(config('imet-core.csv_sample_files.protected_areas'));
+            if (file_exists($csvFilePath)) {
+                echo "Seeding protected areas from CSV file ....\n";
+                ProtectedPlanetCSV::parseCSVFile($csvFilePath);
 
-            return;
+                return;
+            }
         }
 
+        // Run on SAMPLE_DATA
         foreach (self::SAMPLE_DATA as $species) {
             ProtectedAreaFactory::new()->create([
                 'global_id' => $species[0],

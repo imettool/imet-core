@@ -1,4 +1,7 @@
 <?php
+/** @var ?string $id */
+/** @var ?string $slug */
+
 use ModularForms\Helpers\ModuleKey;
 
 $field_name = rtrim(last(explode('_', $id)), "'");

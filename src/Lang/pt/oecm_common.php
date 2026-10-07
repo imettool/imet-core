@@ -11,17 +11,23 @@
  */
 
 return [
-
+    'oecm' => 'Outras medidas eficazes de conservação baseadas em áreas',
+    'oecm_short' => 'IMET área conservada',
+    'steps' => [
+        'general_info' => 'Informações gerais sobre a área conservada',
+        'areas' => 'Áreas',
+        'resources' => 'Recursos humanos, financeiros e materiais',
+        'key_elements' => 'Animais, plantas, habitats',
+        'stakeholders' => 'Partes interessadas envolvidas na gestão ou na utilização dos recursos naturais',
+        'stakeholder_analysis' => 'Análise das partes interessadas dos serviços ecossistémicos',
+        'objectives' => 'Objectivos',
+    ],
     'assessment' => [
-
         'C2' => 'Restrições ou apoios das partes interessadas',
         'C3' => 'Ameaças',
-
         'PRA' => 'Sistemas e processos internos de gestão',
         'PRB' => 'Gestão/Proteção dos valores',
         'PRC' => 'Relações com partes interessadas',
-        'PRD' => 'Turismo/Monitoramento - Pesquisa',
-
+        'PRD' => 'Gestão turística',
     ],
-
 ];

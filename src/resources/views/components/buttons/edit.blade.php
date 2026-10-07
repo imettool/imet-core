@@ -23,6 +23,9 @@ if ($version === \ImetCore\Models\Imet\Imet::IMET_V1) {
     <span id="edit_{{ $item->getKey() }}">
         <button class="btn-nav mr-1 small yellow">{!! \ModularForms\Helpers\Template::icon('pen', 'white') !!}</button>
     </span>
+    <tooltip>
+        {{ ucfirst(trans('modular-forms::common.edit')) }}
+    </tooltip>
     <tooltip :on-click=true
              anchor-elem-id="edit_{{ $item->getKey() }}">
 

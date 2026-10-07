@@ -18,6 +18,8 @@ use ImetCore\Models\Species;
 /**
  * Class ProtectedAreaFactory
  * Factory for creating instances of the ProtectedArea model for testing and seeding (ONLY DEV ENVIRONMENT).
+ *
+ * @extends Factory<Species>
  */
 class SpeciesFactory extends Factory
 {
@@ -78,21 +80,21 @@ class SpeciesFactory extends Factory
 
     public function definition(): array
     {
-        $species = explode(' ', (string) $this->faker->randomElement(self::SAMPLE_SCIENTIFIC_NAMES));
+        $species = explode(' ', (string) fake()->randomElement(self::SAMPLE_SCIENTIFIC_NAMES));
 
         return [
-            'kingdom' => $this->faker->randomElement(self::SAMPLE_KINGDOMS),
-            'phylum' => $this->faker->randomElement(self::SAMPLE_PHYLA),
-            'class' => $this->faker->randomElement(self::SAMPLE_CLASSES),
-            'order' => $this->faker->randomElement(self::SAMPLE_ORDERS),
-            'family' => $this->faker->randomElement(self::SAMPLE_FAMILIES),
+            'kingdom' => fake()->randomElement(self::SAMPLE_KINGDOMS),
+            'phylum' => fake()->randomElement(self::SAMPLE_PHYLA),
+            'class' => fake()->randomElement(self::SAMPLE_CLASSES),
+            'order' => fake()->randomElement(self::SAMPLE_ORDERS),
+            'family' => fake()->randomElement(self::SAMPLE_FAMILIES),
             'genus' => $species[0],
             'species' => $species[1],
             'authorship' => fake()->lastName().' '.fake()->year(),
             'col_id' => fake()->unique()->bothify('******'),
-            'vernacular_names_eng' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_EN),
-            'vernacular_names_spa' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_SP),
-            'vernacular_names_fra' => $this->faker->randomElement(self::SAMPLE_VERNACULAR_NAMES_FR),
+            'vernacular_names_eng' => fake()->randomElement(self::SAMPLE_VERNACULAR_NAMES_EN),
+            'vernacular_names_spa' => fake()->randomElement(self::SAMPLE_VERNACULAR_NAMES_SP),
+            'vernacular_names_fra' => fake()->randomElement(self::SAMPLE_VERNACULAR_NAMES_FR),
         ];
     }
 }

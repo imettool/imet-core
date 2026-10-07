@@ -27,6 +27,7 @@ trait Process
 
         $values = StaffCompetence::getModule($imet_id)
             ->map(function (StaffCompetence $record) use ($staff_weights): StaffCompetence {
+
                 if ($record['EvaluationScore'] !== null) {
                     $eval_score = $record['EvaluationScore'];
                 } elseif (isset($staff_weights[$record['Theme']])) {
@@ -35,13 +36,13 @@ trait Process
                     $eval_score = 0;
                 }
 
-                $weight = 1;
                 $record['eval_score'] = $eval_score;
+
+                $weight = 1;
                 if ($record['EvaluationScore'] === null && isset($staff_weights[$record['Theme']])) {
                     $weight = $staff_weights[$record['Theme']]['w_avg'];
                 }
 
-                $record['eval_score'] = $eval_score;
                 $record['weight'] = $weight;
 
                 return $record;
@@ -49,13 +50,13 @@ trait Process
 
         $weights = $values->sum('weight');
         $weighted_eval_core = $values->sum(fn (StaffCompetence $item): int|float => intval($item['eval_score']) * $item['weight']);
-        $weighted_percentage = (function ($data): null|int|float {
+        $weighted_percentage = (function ($data): int|float {
             $sum = 0;
             foreach ($data as $item) {
                 if ($item['PercentageLevel'] === null && $item['weight'] === null) {
                     $sum += 0;
                 } elseif ($item['PercentageLevel'] === null || $item['weight'] === null) {
-                    return null;
+                    continue;
                 } else {
                     $sum += ($item['PercentageLevel'] * $item['weight']);
                 }
@@ -69,7 +70,7 @@ trait Process
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -87,7 +88,7 @@ trait Process
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -114,7 +115,7 @@ trait Process
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -138,7 +139,7 @@ trait Process
         $score = $average !== null ? $average / 3 * 100 : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -190,7 +191,7 @@ trait Process
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -204,7 +205,7 @@ trait Process
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 }

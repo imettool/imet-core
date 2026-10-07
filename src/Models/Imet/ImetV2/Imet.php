@@ -53,7 +53,7 @@ class Imet extends BaseImetForm
             Modules\Context\GeographicalLocation::class,
             Modules\Context\Areas::class,
             Modules\Context\Sectors::class,
-            Modules\Context\TerritorialReferenceContext::class,
+            TerritorialReferenceContext::class,
             Modules\Context\Connectivity::class,
             Modules\Context\Spillover::class,
             Modules\Context\Objectives2::class,
@@ -176,6 +176,7 @@ class Imet extends BaseImetForm
     #[\Override]
     public static function upgradeModules(array $data, $imet_version = null): array
     {
+        // Ensure Currency is always the same as defined in CTX 2.1.3
         if (array_key_exists('FinancialResources', $data)) {
             $data = FinancialAvailableResources::copyCurrencyFromCTX213($data);
             $data = FinancialResourcesBudgetLines::copyCurrencyFromCTX213($data);

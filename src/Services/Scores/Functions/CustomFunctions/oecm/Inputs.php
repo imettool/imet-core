@@ -71,7 +71,7 @@ trait Inputs
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -111,7 +111,7 @@ trait Inputs
             : null;
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 }

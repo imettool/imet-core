@@ -83,10 +83,9 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $record = self::dropField($record, 'DocumentedConnectivity');
         $record = self::dropField($record, 'EvidenceOfConnectivity');
         $record = self::dropField($record, 'EvidencesListConnectivity');
-        $record = self::dropField($record, 'ConnectivityIntegrationInManagementPlan');
-        // Existing data split managed in splitConnectivity()
 
-        return $record;
+        // Existing data split managed in splitConnectivity()
+        return self::dropField($record, 'ConnectivityIntegrationInManagementPlan');
     }
 
     /**
@@ -97,10 +96,10 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
         $self_class = self::getShortClassName();
         $connectivity_class = Connectivity::getShortClassName();
 
-        if( array_key_exists($self_class, $data)
+        if (array_key_exists($self_class, $data)
             && array_key_exists(0, $data[$self_class])
             && array_key_exists('DocumentedConnectivity', $data[$self_class][0])
-            && !array_key_exists($connectivity_class, $data)){
+            && ! array_key_exists($connectivity_class, $data)) {
 
             $self_class_records = $data[$self_class][0];
 
@@ -124,5 +123,4 @@ final class TerritorialReferenceContext extends Modules\Component\ImetModule
 
         return $data;
     }
-
 }

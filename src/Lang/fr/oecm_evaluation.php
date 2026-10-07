@@ -43,13 +43,13 @@ return [
         'module_info_EvaluationQuestion' => [
             'Evaluate the Intégration of values and importance of designations (national designation and international designations, e.g., World Heritage site or Ramsar site) for the management of the conserved area',
         ],
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
     'KeyElements' => [
         'title' => 'Eléments clés de l’espace conservé',
         'fields' => [
-            'Aspect' => 'Key element / service',
+            'Aspect' => 'Élément clé / service',
             'Importance' => 'Importance',
             'EvaluationScore' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
@@ -79,13 +79,13 @@ return [
         'key_elements_importance_composition' => 'Importance composition: :imp_dir (de :num_dir partie(s) prenante(s) direct) + :imp_ind (de :num_ind partie(s) prenante(s) indirect)',
         'num_stakeholders' => 'Indiqué par :num_dir partie(s) prenante(s) direct et par :num_ind partie(s) prenante(s) indirect',
         'ranking' => 'Classement',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>P6, I1, PR6</i>',
     ],
 
     'SupportsAndConstraints' => [
         'title' => 'Contraintes ou soutiens de la part des parties prenantes',
         'fields' => [
-            'Partie prenante' => 'Partie prenante',
+            'Stakeholder' => 'Partie prenante',
             'Weight' => 'Implication de la partie prenante (0-100)',
             'ConstraintLevel' => 'Niveau de la contrainte/du conflit ou du soutien/de la conformité',
             'Comments' => 'Commentaires/Explication',
@@ -114,10 +114,10 @@ return [
     ],
 
     'SupportsAndConstraintsIntegration' => [
-        'title' => 'Intégration of Partie prenantes\' constraints or supports in management and governance',
+        'title' => 'Intégration des contraintes ou des soutiens des parties prenantes dans la gestion et la gouvernance',
         'fields' => [
-            'Partie prenante' => 'Partie prenante',
-            'Intégration' => 'Intégration',
+            'Stakeholder' => 'Partie prenante',
+            'Integration' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -126,7 +126,7 @@ return [
             'group1' => 'Utilisateurs indirects',
         ],
         'ratingLegend' => [
-            'Intégration' => [
+            'Integration' => [
                 '0' => 'pas d’intégration',
                 '1' => 'faible intégration',
                 '2' => 'intégration modérée',
@@ -143,7 +143,7 @@ return [
             'Évaluer l\'intégration actuelle dans la gestion des contraintes ou de l\'accompagnement des parties prenantes',
         ],
         'ranking' => 'Notation (C2.1)',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>I1, PR6</i>',
     ],
 
     'ThreatsBiodiversity' => [
@@ -254,12 +254,12 @@ return [
         'title' => 'Intégration des menaces',
         'fields' => [
             'Threat' => 'Menace',
-            'Intégration' => 'Intégration',
+            'Integration' => 'Intégration',
             'IncludeInStatistics' => 'Doit-il être prioritaire dans la gestion?',
             'Comments' => 'Commentaires/Explication',
         ],
         'ratingLegend' => [
-            'Intégration' => [
+            'Integration' => [
                 '0' => 'pas d’intégration',
                 '1' => 'faible intégration',
                 '2' => 'intégration modérée',
@@ -274,7 +274,7 @@ return [
             'Évaluer l\'intégration actuelle des menaces dans la gestion de l\'espace conservé',
         ],
         'ranking' => 'Notation (C3.1)',
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) :<i>I1, PR6</i>',
     ],
 
     'RegulationsAdequacy' => [
@@ -403,7 +403,7 @@ return [
             'PlanApproved' => 'Le plan de gestion a-t-il été approuvé ?',
             'PlanImplemented' => 'Le plan de gestion a-t-il été mis en œuvre ?',
             'PlanAdequacyScore' => 'B) Adéquation concernant la clarté et l’applicabilité du plan de gestion',
-            'Comments' => 'Comments / Explanation',
+            'Comments' => 'Commentaires / Explication',
         ],
         'ratingLegend' => [
             'KnowledgePercentage' => [
@@ -489,7 +489,7 @@ return [
         'module_info_Rating' => [
             'Évaluer la pertinence des objectifs du plan de gestion pour les éléments clés de l\'espace conservé, en fonction des objectifs existants du plan de gestion et du contexte de gestion',
         ],
-        'WARNING_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>O/C1</i>',
+        'warning_on_save' => 'AVERTISSEMENT!! <br /> Toute modification peut entraîner une perte de données dans les modules suivants (s’ils sont déjà encodés) : <i>O/C1</i>',
     ],
 
     'ObjectivesContext' => [
@@ -582,7 +582,7 @@ return [
     ],
 
     'BudgetSecurization' => [
-        'title' => 'Securing the budget',
+        'title' => 'Sécurisation du financement futur',
         'fields' => [
             'Percentage' => 'A) Evaluer en pourcentage la "Sécurité des financements futurs',
             'EvaluationScore' => 'B) Évaluer en années la "Période de sécurité des financements futurs',
@@ -762,10 +762,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -781,7 +781,7 @@ return [
         'title' => 'Gestion des éléments clés',
         'fields' => [
             'Activity' => 'Critères - Concept mesuré - Variable',
-            'EvaluationScore' => 'Adéquation of management actions',
+            'EvaluationScore' => 'Adéquation des mesures de gestion',
             'InManagementPlan' => 'Action incluse dans le plan de gestion',
             'Comments' => 'Commentaires/Explication',
         ],
@@ -791,10 +791,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [
@@ -833,7 +833,7 @@ return [
                 'Organisation du système d’informateurs orientation et soutien orientation et soutien des unités/groupes de contrôle contre les activités illégales ou les questions litigieuses',
                 'Système de mise en œuvre d’actions légales contre les activités illégales',
                 'Un système pour résoudre les questions litigieuses',
-                'System to solve contentious issues',
+                'Système de résolution des questions litigieuses',
                 'Jugements obtenus selon les règles traditionnelles',
                 'Collaboration avec des ONG spécialisées dans les lois terrestres et marines, l’application, etc. (droits, règles, etc.) sur la gestion durable des éléments clés de l’espace conservé',
             ],
@@ -983,7 +983,7 @@ return [
         'title' => 'La gestion du tourisme',
         'fields' => [
             'Aspect' => 'Critères - Concept mesuré - Variable',
-            'EvaluationScore' => 'Adéquation of visitor facilities and services',
+            'EvaluationScore' => 'Adéquation des installations et des services aux visiteurs',
             'Comments' => 'Commentaires/Explication',
         ],
         'predefined_values' => [
@@ -1117,7 +1117,6 @@ return [
         ],
         'module_info_EvaluationQuestion' => [
             'Dans quelle mesure l’espace conservé a-t-elle atteint les principaux objectifs de son plan de gestion et de gouvernance ?',
-            '(Sur la base de l\'analyse du contexte d\'intervention, point CTX1.5 Vision – Objectifs ou éléments de planification, point P6 – Objectifs existants du plan de gestion).',
             'Les buts et objectifs d’une espace conservé doivent être clairement compris si l’on veut que la gestion soit réussie sur la base de résultats mesurables',
         ],
         'module_info_Rating' => [
@@ -1260,10 +1259,10 @@ return [
         'ratingLegend' => [
             'EvaluationScore' => [
                 'N/A' => 'cet élément n’est pas lié à la gestion de l’espace conservé',
-                '0' => 'Inadéquat (0-30% of the needs)',
-                '1' => 'Plutôt inadéquat (31-60% of the needs)',
-                '2' => 'Adéquat (61-90% of the needs)',
-                '3' => 'Totalement adéquat (91-100% of the needs)',
+                '0' => 'Inadéquat (0-30% des besoins)',
+                '1' => 'Plutôt inadéquat (31-60% des besoins)',
+                '2' => 'Adéquat (61-90% des besoins)',
+                '3' => 'Totalement adéquat (91-100% des besoins)',
             ],
         ],
         'module_info_EvaluationQuestion' => [

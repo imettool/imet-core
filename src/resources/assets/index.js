@@ -156,6 +156,9 @@ window.ImetCore.Apps.Modules.ImetV2.context.FinancialAvailableResources = Financ
 import FinancialResourcesBudgetLines from "./js/apps/Modules/ImetV2/context/FinancialResourcesBudgetLines";
 window.ImetCore.Apps.Modules.ImetV2.context.FinancialResourcesBudgetLines = FinancialResourcesBudgetLines;
 
+import FinancialResourcesPartners from "./js/apps/Modules/ImetV2/context/FinancialResourcesPartners"
+window.ImetCore.Apps.Modules.ImetV2.context.FinancialResourcesPartners = FinancialResourcesPartners;
+
 import Equipments from "./js/apps/Modules/ImetV2/context/Equipments";
 window.ImetCore.Apps.Modules.ImetV2.context.Equipments = Equipments;
 
@@ -195,6 +198,9 @@ import WorkProgramImplementation from "./js/apps/Modules/ImetV2/evaluation/WorkP
 window.ImetCore.Apps.Modules.ImetV2.evaluation.WorkProgramImplementation = WorkProgramImplementation;
 
 // ##### ImetV2 - report #####
+
+import KeyConservationElements from "./js/apps/Modules/ImetV2/report/KeyConservationElements";
+window.ImetCore.Apps.Modules.ImetV2.report.KeyConservationElements = KeyConservationElements;
 
 import ThreatsAffectingKCEs from "./js/apps/Modules/ImetV2/report/ThreatsAffectingKCEs";
 window.ImetCore.Apps.Modules.ImetV2.report.ThreatsAffectingKCEs = ThreatsAffectingKCEs;

@@ -225,10 +225,10 @@ return [
         'fields' => [
             'LimitsExist' => 'Existência de limites oficiais georeferenciados (sim/não)',
             'Shapefile' => 'Arquivo GIS',
-            'Source SHP' => 'Fonte do Arquivo GIS',
+            'SourceSHP' => 'Fonte do Arquivo GIS',
             'Coordinates' => 'Coordenadas Geográficas (dados de base para ou ponto chave do parque)',
-            'Source Coords' => 'Fonte',
-            'Administrative Location' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
+            'SourceCoords' => 'Fonte',
+            'AdministrativeLocation' => 'Localização Administrativa da localização da área protegida (província, região, etc.)',
         ],
         'module_info' => 'Esta secção fornece informações sobre a localização geográfica da área protegida. Inclui as suas coordenadas
             e localização administrativa das áreas protegidas. A descrição destaca a posição das áreas protegidas dentro
@@ -239,11 +239,11 @@ return [
         'title' => 'Superficie da área protegida e contexto de conservação',
         'fields' => [
             'BoundaryLength' => 'Comprimento dos limites',
-            'Administrative Area' => 'Superficie Administrativa',
+            'AdministrativeArea' => 'Superficie Administrativa',
             'WDPAArea' => 'Superficie de acordo com a WDPA',
             'GISArea' => 'Superficie Actual (GIS para o parque ou autoridade responsável para a área protegida) correspondente ao carregamento dos arquivos',
-            'Terrestrial Area' => 'Área Protegida Terrestre',
-            'Marine Area' => 'Área protegida marinha e costeira',
+            'TerrestrialArea' => 'Área Protegida Terrestre',
+            'MarineArea' => 'Área protegida marinha e costeira',
             'PercentageNationalNetwork' => '% da Superficie da rede nacional de áreas protegidas',
             'PercentageEcoregion' => '% da Superficie da ecoregião',
             'PercentageTransnationalNetwork' => ' % da superficie da rede transfronteiriça',
@@ -268,11 +268,13 @@ return [
             'Source' => 'Fonte',
             'Observations' => 'Observacoes',
         ],
-        'module_info' =>
-            '<div class="font-bold">Dias-Patrulha médios por Km² (caso dos Parques Nacionais Africanos)</div>
+        'module_info' => '<div class="font-bold">Dias-Patrulha médios por Km² (caso dos Parques Nacionais Africanos)</div>
             Para uma gestão eficaz, a intensidade de patrulhamento é expressa como o <b>número de dias-patrulha por quilômetro quadrado por ano</b>,
             calculado dividindo o total de dias-patrulha pela área do setor ou da área protegida. Um <b>dia-patrulha</b> corresponde a uma
             equipe de patrulhamento operando durante um dia, independentemente do tamanho da equipe.
+            O número de guardas florestais que participam na patrulha não deve ser multiplicado pelo número de dias de patrulha: por exemplo, uma
+            equipa de 8 guardas florestais a operar durante 5 dias representa 5 dias de patrulha, e não 40 dias de guarda florestal. Se duas equipas
+            de patrulha separadas operarem no mesmo dia, representam dois dias de patrulha.
             Na prática, evidências das áreas protegidas africanas indicam que a intensidade de patrulhamento geralmente varia entre <b>0,1 e 0,6
             dias-patrulha por km² por ano</b>, sendo <b>0,3 a 0,4</b> uma cobertura moderada e operacionalmente realista. Valores
             que se aproximam ou ultrapassam 0,6 dia-patrulha/km²/ano são considerados elevados e frequentemente difíceis de sustentar em grandes áreas.
@@ -317,29 +319,20 @@ return [
     ],
 
     'Connectivity' => [
-        'title'  => 'Conectividade',
+        'title' => 'Conectividade',
         'fields' => [
-            'DocumentedConnectivity' => '1.	Primeiro, documente as evidências',
-            'EvidenceOfConnectivity' => '2.	Baseie a sua classificação nas evidências, não nas suas suposições',
-            'ConnectivityIntegrationInManagementPlan' => '3. Analise o grau de integração da conectividade no planeamento de gestão',
+            'DocumentedConnectivity' => 'Q1. Avaliação da conectividade estrutural',
+            'EvidenceOfConnectivity' => 'Q2. Confiança na conectividade funcional',
+            'EvidencesListConnectivity' => 'Q3. Evidências e observações-chave',
+            'ConnectivityIntegrationInManagementPlan' => 'Q4. Integração da conectividade na gestão',
         ],
         'sub_titles' => [
-            'DocumentedConnectivity' => 'Existe conectividade estrutural documentada entre a área protegida e os habitats circundantes (corredores, continuidade de habitats, correntes marinhas, trampolins)?',
-            'EvidenceOfConnectivity' => 'Existe evidência de conectividade funcional (movimento de espécies, migração, troca genética, dispersão larvar)?',
-            'EvidencesListConnectivity' => 'As indicações e evidências podem incluir:',
-            'ConnectivityIntegrationInManagementPlan' => 'A conectividade está integrada no planeamento de gestão?',
+            'DocumentedConnectivity' => 'Existe conectividade estrutural documentada entre a área protegida e os habitats circundantes (p. ex. corredores ecológicos, continuidade de habitats, trampolins, zonas tampão, sistemas fluviais ou correntes marinhas)?',
+            'EvidenceOfConnectivity' => 'Qual é o nível de confiança de que ocorre conectividade ecológica entre a área protegida e os ecossistemas circundantes (p. ex. movimento de espécies, migração, fluxo génico, dispersão larvar ou interações tróficas)?',
+            'EvidencesListConnectivity' => 'Descreva as principais observações ou informações que apoiam a sua avaliação na Q2.',
+            'ConnectivityIntegrationInManagementPlan' => 'Em que medida a conectividade ecológica é considerada explicitamente na gestão da área protegida?',
         ],
-        'connectivity_title' => 'Como avaliar a conectividade no IMET',
-        'link_to_me' => '4.	Relacione a conectividade com a eficácia de gestão',
-        'link_to_me_details' => '
-            <p>A classificação selecionada informa a análise IMET em:</p>
-            <ul>
-                <li>C1.5 – Serviços ecossistémicos (importância e priorização)</li>
-                <li>I1 - Informação básica</li>
-                <li>PR7 - Gestão dos valores e ameaças principais (ações de gestão)</li>
-                <li>O/C2 - Resultados ecológicos e/ou O/C3: Efeitos na qualidade de vida local</li>
-            </ul>',
-
+        'connectivity_title' => 'Avaliação da conectividade',
         'module_info' => '<p>A conectividade refere-se às ligações ecológicas estruturais e funcionais entre a área protegida e
             os habitats ou ecossistemas circundantes que permitem processos ecológicos chave, como o movimento de espécies,
             o fluxo génico, a migração, a dispersão larvar e a adaptação climática.</p>
@@ -371,7 +364,44 @@ return [
                 <li>Dinâmicas de spillover</li>
                 <li>A viabilidade a longo prazo dos elementos de conservação chave</li>
                 <li>Adaptação climática</li>
-            </ul>',
+            </ul>
+             <b class="blue">Como avaliar a conectividade no IMET</b>
+             <ol style="list-style-type:decimal">
+                <li>
+                    <b>Primeiro, documente as evidências</b>
+                    <p>Antes de classificar a conectividade, avalie ambas:</p>
+                    <ul>
+                        <li>Conectividade estrutural: evidência de continuidade de habitats (p. ex. corredores, trampolins, zonas tampão, correntes marinhas ou redes ecológicas transfronteiriças). </li>
+                        <li>Conectividade funcional: evidência de que os processos ecológicos ocorrem ao longo da paisagem ou da paisagem marinha (p. ex. movimento de espécies, migração, fluxo génico ou dispersão larvar).</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Baseie a sua classificação nas evidências, não nas suas suposições</b>
+                    <p>Após rever a informação disponível, selecione a classificação que melhor reflete o nível de conectividade documentado:</p>
+                    <ul>
+                        <li>Sem conectividade: a área protegida está muito isolada. </li>
+                        <li>Conectividade limitada: as ligações ecológicas são fracas ou fragmentadas. </li>
+                        <li>Conectividade moderada: existe uma continuidade ecológica parcial. </li>
+                        <li>Conectividade forte: a área protegida faz parte de uma rede ecológica integrada. </li>
+                    </ul>
+                    <p>Quando a evidência for limitada, indique o nível de confiança apropriado em vez de assumir uma conectividade mais forte.</p>
+                </li>
+                <li>
+                    <b>Relacione a conectividade com o planeamento de gestão</b>
+                    <p>Avalie se a conectividade é considerada explicitamente no planeamento de gestão através de medidas como a proteção de corredores, a gestão de zonas tampão, ações de restauro ou a coordenação com áreas protegidas vizinhas.</p>
+                </li>
+                <li>
+                    <b>Relacione a conectividade com a eficácia de gestão</b>
+                    <p>A classificação selecionada informa a análise IMET em:<p>
+                    <ul>
+                        <li>C1.5 – Serviços ecossistémicos (importância e priorização); </li>
+                        <li>I1 – Informação básica; </li>
+                        <li>PR7 – Gestão dos valores e ameaças principais (ações de gestão); </li>
+                        <li>O/C2 – Resultados ecológicos e/ou O/C3 – Efeitos na qualidade de vida local.</li>
+                    </ul>
+                </li>
+            </ol>
+             ',
     ],
 
     'Spillover' => [
@@ -518,20 +548,18 @@ return [
         'title' => 'Recursos financeiros: Orçamento disponível',
         'fields' => [
             'BudgetType' => '',
-            'National Budget' => 'Orçamento nacional',
+            'NationalBudget' => 'Orçamento nacional',
             'OwnRevenues' => 'Receitas provenientes das operações da área protegida',
             'Disputes' => 'Rendimento do litígio/multas (tesouro nacional)',
             'Partners' => 'Contribuições dos parceiros',
             'total' => 'total',
-            'percentage' => '% do orçamento previsto',
         ],
         'predefined_values' => [
             'Orçamento anual total disponível',
             'Orçamento total anual disponível para o funcionamento',
             'Orçamento total anual disponível para investimentos',
         ],
-        'module_info' =>
-            'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
+        'module_info' => 'Esta tabela é utilizada para resumir os recursos financeiros anuais efetivamente disponíveis para a gestão da área protegida.
             Deve refletir o orçamento real mobilizado e acessível durante o ano de referência, independentemente da fonte de financiamento original.
             O objetivo é:
             <ul>
@@ -626,8 +654,8 @@ return [
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
             'InsufficientDataSpecies' => 'EBC',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Situacao de conservação favorável',
@@ -635,8 +663,8 @@ return [
             'Reliability' => 'Confiabilidade',
             'Comments' => 'Fonte/Observação',
         ],
-        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>EXP</b>: Espécies exploradas</li> <li><b>INV</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
-        'validation_min3' => 'Please encode not less than 3 key species',
+        'module_info' => 'Estado de conservação favorável: A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e<li> a área variedade natural de distribuição da espécie não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar a partir da lista de espécies que se supõe existirem (ver as listas da IUCN de A - mamiferos, B -_ aves e C - anfibios), um número limitado de espécies chave da área protegida. <br /> <b>Espécies indicadoras</b> <ul> <li><b>EE</b>: Espécies emblemáticas</li> <li><b>EP</b>: especies em perigo (Ameaçadas)</li> <li><b>EED</b>: Espécies Endémicas </li> <li><b>Exp</b>: Espécies exploradas</li> <li><b>Inv</b>: Espécies invasoras</li> <li><b>EBC</b>: Espécie com baixo nível de conhecimento</li></ul> <b>Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.',
+        'validation_min3' => 'Introduza pelo menos 3 espécies chave',
         'warning_on_save' => 'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -645,19 +673,20 @@ return [
         'title' => 'Espécies de plantas (emblemáticas, ameaçadas, endémicas, exploradas, invasorasivas, etc.) utilizadas como indicadores do estado da área protegida e que requerem monitorização ao longo do tempo',
         'fields' => [
             'Species' => 'Espécies',
+            'CommonName' => 'Nome comum',
             'FlagshipSpecies' => 'EE',
             'EndangeredSpecies' => 'EP',
             'EndemicSpecies' => 'EED',
-            'ExploitedSpecies' => 'EXP',
-            'InvasiveSpecies' => 'INV',
-            'InsufficientDataSpecies' => 'INS',
+            'ExploitedSpecies' => 'Exp',
+            'InvasiveSpecies' => 'Inv',
+            'InsufficientDataSpecies' => 'Ins',
             'PopulationEstimation' => 'Estado actual estimado',
             'DesiredPopulation' => 'Estado de conservação favorável',
             'TrendRating' => 'Tendencias',
             'Reliability' => 'confiabilidade',
             'Comments' => 'Fonte/Observação',
         ],
-        'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> EXP</b>: Espécies exploradas</li> <li><b> INV</b>: Espécies Invasoras</li> <li><b> INS</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
+        'module_info' => 'Estado de conservação favorável:<br /> A partir de Natura 2000, o estado de conservação das espécies será considerado "favorável" quando:<ul><li> os dados sobre a dinâmica populacional das espécies em causa indicam que se mantém a longo prazo como uma componente viável dos seus habitats naturais, e </li><li>a área variedade natural de distribuição das espécies não está a ser reduzida nem será provavelmente reduzida num futuro previsível, e existe, e provavelmente continuará a existir, um habitat suficientemente grande para manter as suas populações a longo prazo</li></ul> Classificação: Avaliar, a partir da lista de plantas que se supõe existirem (ver as listas disponíveis e informações do parque), um número limitado de plantas-chave da área protegida<br /> <b>Indicadores das espécies</b> <ul> <li><b>EE</b>: Espécies emblemáticas  </li> <li><b>EP</b>:Espécies em perigo (ameaçadas) </li> <li><b>EED</b>: Espécies Endémicas</li> <li><b> Exp</b>: Espécies exploradas</li> <li><b> Inv</b>: Espécies Invasoras</li> <li><b> Ins</b>: Espécie com baixo nível de conhecimento</li> </ul> <br/><b> EB Estimativa da população</b>: Programa de monitorização ecológica e geração de gráfico de tendências plurianuais.<br /> <b>Fiabilidade da informacao</b>: <ul><li>1 Baixa</li> <li>2: Media</li><li> 3: alta</li></ul>',
         'warning_on_save' => 'Advertência !! <br/> Qualquer modificação pode causar perda de dados no seguinte
             módulos de avaliação (se já codificados): <br /> <i>C1.2</i>, <i>I1</i>, <i>PR7</i> and <i>O/C2</i>',
     ],
@@ -688,6 +717,7 @@ return [
             'Duration' => 'Quanto tempo',
             'Trend' => 'Tendencias',
             'Probability' => 'Probabilidade para ameacas no futuro',
+            'Comments' => 'Comentários',
         ],
         'groups' => [
             'group0' => 'Comercial e residencial',
@@ -731,6 +761,7 @@ return [
                 'Pequenos Agricultores',
                 'Grandes empresas agro-industriais',
                 'Produção de frutas/vegetais de jardim',
+                'Extracção de fertilizante para a agricultura',
             ],
             'group2' => [
                 'Pequenas plantações',
@@ -763,10 +794,14 @@ return [
             'group8' => [
                 'Caça de animais terrestres',
                 'Colheita de animais vivos',
+                'Recolha de pequenos animais, como insectos, ou dos seus produtos, como o mel',
             ],
             'group9' => [
                 'Recolha de plantas',
                 'Colheita de plantas',
+                'Colheita de produtos alimentares vegetais (tubérculos, frutos, etc.)',
+                'Colheita de plantas medicinais',
+                'Colheita de caules e fibras (palmeiras, kenaf, kapok, coco, etc.)',
             ],
             'group10' => [
                 'Operações de madeireiras em pequena escala',
@@ -785,6 +820,8 @@ return [
                 'Sobrepesca e pesca destrutiva',
                 'Exploração de espécies ameaçadas de extinção',
                 'Arrastões/encarregadores',
+                'Recolha de recursos ornamentais e de aquariofilia (recolha de sementes, conchas e peixes)',
+                'Colheita de algas',
             ],
             'group12' => [
                 'Actividades recreativas',
@@ -816,6 +853,7 @@ return [
                 'Pequenas barragens',
                 'Grandes barragens',
                 'Barragens (tamanho desconhecido)',
+                'Barragens para produção de energia',
             ],
             'group16' => [
                 'Espécies invasoras ou doenças introduzidas',
@@ -981,10 +1019,10 @@ return [
             'group9' => 'Serviços de apoio',
         ],
         'predefined_values' => [
-            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação, insectos)', 'Alimentação humanaHumano food - animal (carne selvagem/domésticae criação,insectos)- legal', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)', 'Benefícios de repercussão nos pesqueiros vizinhos'],
+            'group0' => ['Abastecimento de água', 'Alimentação humana - vegetal (tubérculos, frutas, mel, cogumelos, algas marinhas, etc.)', 'Alimentação humana - animal (carne selvagem/de criação, insectos)', 'Medicamentos e biotecnologia azul (óleo de peixe)', 'Alimento para peixes/animais (selvagens, de criação, isco)', 'Benefícios de repercussão nos pesqueiros vizinhos'],
             'group1' => ['Madeira de alto valor', 'Madeira para a construção local', 'Fibras de caule (palmeiras, kenaf, etc.)', 'Outras fibras (folhas, sumaúma, coco, etc.)', 'Recursos ornamentais e aquários (colecção de sementes, conchas e peixes)', 'Areia (construção)', 'Algal/conchas', 'Terras de cultivo (agricultura, pecuária, florestas)'],
             'group2' => ['Lenha e biocombustíveis', 'Água para a energia', 'Fertilizante'],
-            'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Prevenção da erosão costeira'],
+            'group3' => ['Regulação de gás (C sequestro de C)', 'Enterro/remoção/neutralização de resíduos', 'Regulação de resíduos (absorção de nutrientes)', 'Prevenção da erosão costeira'],
             'group4' => ['Controlo das cheias', 'Controlo da Seca', 'Protecção contra tempestades', 'Controlo da erosão da água', 'Controlo da erosão Ecological', 'Prevenção da erosão costeira'],
             'group5' => ['Benefícios estéticos (integridade do ecossistema)', 'Ecoturismo e observação da natureza', 'Caminhadas, escaladas de montanhas e recreacao em geral', 'Navegação, natação e mergulho', 'Mergulho com tubo de respiração, navegação e mergulho', 'Caça ou pesca, se for permitida', 'Pesca tradicional específica'],
             'group6' => ['Ciência - Investigação', 'Educação', 'Património cultural'],

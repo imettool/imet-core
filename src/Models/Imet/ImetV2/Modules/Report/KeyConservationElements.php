@@ -19,6 +19,8 @@ final class KeyConservationElements extends ImetModule_Report
 {
     protected $table = 'report_key_conservation_elements';
 
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.report.edit.modules.key_conservation_elements';
+
     public function __construct(array $attributes = [])
     {
         $this->module_type = ModuleTypes::TABLE;

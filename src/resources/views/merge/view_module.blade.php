@@ -12,10 +12,10 @@ use ModularForms\Enums\ModuleViewModes;
 $modal_id = 'imet_' . $formID . '_' . $module_class::getShortClassName();
 ?>
 
-<floating_dialog>
+<dialog-box>
 
     <!-- anchor -->
-    <template slot="dialog-anchor">
+    <template v-slot:dialog-anchor>
         <button type="button" class="btn-nav small">
             {!! \ModularForms\Helpers\Template::icon('eye', 'white') !!}
         </button>
@@ -23,7 +23,7 @@ $modal_id = 'imet_' . $formID . '_' . $module_class::getShortClassName();
     </template>
 
     <!-- dialog -->
-    <template slot="dialog-content">
+    <template v-slot:dialog-content>
         <div class="with_header_and_footer">
 
             <!-- dialog header -->
@@ -37,11 +37,11 @@ $modal_id = 'imet_' . $formID . '_' . $module_class::getShortClassName();
                     :controller="$controller"
                     :module="$module_class"
                     :formId="$formID"
-                    :mode="ModuleViewModes::SHOW"
+                    :mode="ModuleViewModes::PRINT"
                 ></x-modular-forms::module.container>
             </div>
 
         </div>
     </template>
 
-</floating_dialog>
+</dialog-box>

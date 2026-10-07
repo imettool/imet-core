@@ -12,9 +12,7 @@
 
 namespace ImetCore\Services\Scores\Functions\CustomFunctions\V2;
 
-use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\AchievedObjectives;
 use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\KeyConservationTrend;
-use ImetCore\Models\Imet\ImetV2\Modules\Evaluation\LifeQualityImpact;
 
 trait Outcomes
 {
@@ -36,7 +34,7 @@ trait Outcomes
         $score = static::average($values, null);
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
 
     }

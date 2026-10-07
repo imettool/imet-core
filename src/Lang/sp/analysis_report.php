@@ -28,6 +28,7 @@ return [
     'average_explained' => '* Media calculada en base al conjunto de áreas protegidas que participan en el ejercicio de ampliación',
     'ranking_rescaled_indicators' => 'Clasificación de los indicadores reescalada a 0-100',
     'ranking_info_indicators' => '* Las puntuaciones en la ventana emergente son la contribución al indicador sintético',
+    'average_protected_areas' => '* Sin áreas protegidas seleccionadas, las puntuaciones corresponden a la media de todas las áreas protegidas. Con áreas protegidas seleccionadas, las puntuaciones medias se refieren a las áreas protegidas seleccionadas.',
     'source' => 'Fuente',
     'download_files' => 'descarga de archivos',
     'custom_names' => 'Nombres de zonas protegidas',
@@ -47,6 +48,7 @@ return [
     'add_all' => 'Añadir todo',
     'close' => 'Cerrar',
     'remove_all' => 'Eliminar todo',
+    'average' => 'Media',
     'sections' => [
         'first' => 'Ubicación de las áreas protegidas seleccionadas',
         'second' => 'Información General de las áreas protegidas',
@@ -75,6 +77,7 @@ return [
                 'ranking' => '6.1.2.1 Clasificación de los subindicadores de valor e importancia',
                 'average_contribution' => '6.1.2.2 Contribución media y variabilidad de los subindicadores de valor e Importancia',
                 'datatable' => '6.1.2.4 Tabla de datos de los subindicadores de valor e Importancia',
+                'datatable_average' => 'Subindicadores del valor y la importancia',
             ],
         ],
         'threats' => [
@@ -267,14 +270,6 @@ return [
             'persistent_increase' => 'Aumento persistente de la productividad [km2]',
         ],
     ],
-    'total_carbon' => [
-        'title' => 'Carbono total',
-        'min' => 'Min. [Mg]',
-        'mean' => 'Media [Mg]',
-        'max' => 'Max. [Mg]',
-        'sum' => 'Suma [Mg]',
-        'std_dev' => 'Desviación estándar Dev',
-    ],
     'relative_performance_effectiveness_bar_average' => [
         'titles' => [
             'context_sub_indicators' => 'Contribución media de los seis subindicadores al valor y la importancia',
@@ -285,6 +280,16 @@ return [
             'process_sub_indicators' => 'Contribución media de los seis subelementos de los indicadores de proceso',
             'outputs' => 'Contribución media de los indicadores de resultados',
             'outcomes' => 'Contribución media de los indicadores de resultados',
+        ],
+        'legends' => [
+            'context_sub_indicators' => 'Subindicadores del valor y la importancia',
+            'context_indicators' => 'Indicadores del contexto de la gestión',
+            'planning_indicators' => 'Indicadores de planificación',
+            'inputs_indicators' => 'Indicadores de los insumos',
+            'process_indicators' => 'Indicadores del proceso',
+            'process_sub_indicators' => 'Subelementos de los indicadores de proceso',
+            'outputs_indicators' => 'Indicadores de productos',
+            'outcomes_indicators' => 'Indicadores de efectos e impactos',
         ],
     ],
 

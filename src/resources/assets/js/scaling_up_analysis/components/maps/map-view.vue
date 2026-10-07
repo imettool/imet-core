@@ -60,7 +60,6 @@ const retrieveWdpaIDs = async () => {
     })
         .then(response => response.json())
         .then(data => Object.values(data.records).map(item => {
-            console.log(item);
             return item.wdpa_id
         }))
         .catch(error => {

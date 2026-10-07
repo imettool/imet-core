@@ -120,8 +120,7 @@ return [
     ],
 
     'score_info' => [
-        'outcomes' =>
-            'The <b>synthetic indicator</b> is not calculated as a simple average of the three components (O/C1, O/C2, O/C3).
+        'outcomes' => 'The <b>synthetic indicator</b> is not calculated as a simple average of the three components (O/C1, O/C2, O/C3).
             Instead, it is <b>derived from a transformation of the raw scores</b>, designed to reflect the relative contribution
             of each component to the overall outcome performance.
             The indicators O/C2 and O/C3 are expressed on a bipolar scale ranging from -100 to +100, reflecting negative
@@ -133,7 +132,7 @@ return [
             suggested by their initial values.
             Although O/C1 reaches the maximum score, its contribution to the synthetic indicator remains limited, while
             O/C2 and O/C3 have a stronger influence, reflecting the importance of ecological conditions and stakeholder
-            outcomes in overall conservation effectiveness.'
+            outcomes in overall conservation effectiveness.',
     ],
 
     'Create' => [

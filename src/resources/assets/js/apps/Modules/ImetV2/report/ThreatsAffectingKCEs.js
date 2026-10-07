@@ -21,4 +21,20 @@ export default class ThreatsAffectingKCEs extends ModuleImet {
             .component('heatmap-rating', heatmapRating);
     }
 
+
+    setupApp(props, input_data) {
+
+        let setup_obj = super.setupApp(props, input_data);
+
+
+        const kce_names = computed(() => {
+            return window.KeyConservationElements.kceNames;
+        });
+
+        return {
+            ...setup_obj,
+            kce_names
+        }
+    }
+
 }

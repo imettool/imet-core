@@ -10,7 +10,7 @@
 
 import ModuleImet from "../../../Module.js";
 
-import { ref, computed } from "vue";
+import { watch, nextTick, computed } from "vue";
 
 export default class FinancialResourcesBudgetLines extends ModuleImet {
 
@@ -30,12 +30,22 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
 
         let setup_obj = super.setupApp(props, input_data);
 
+        watch(setup_obj.records, () => {
+            updateCurrency();
+        }, { deep: true });
+
+        function updateCurrency(){
+            nextTick().then(() => {
+                setup_obj.records[0]['Currency'] = window.FinancialResources.records[0]['Currency'] || null;
+            });
+        }
+
         const costs = computed(() => {
             let result = [];
             setup_obj.records.forEach(function (item, index) {
                 result[index] = 0;
                 if(props.area!==null && props.area>0){
-                    result[index] = item['Amount'] / props.area * 100;
+                    result[index] = item['Amount'] / props.area;
                 }
                 result[index] = result[index]===0 ? null : result[index].toFixed(2);
             });
@@ -45,7 +55,7 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
         const percentages = computed(() => {
             let _this = this;
             let result = [];
-            let totalBudget = get_total_budget();
+            let totalBudget = getTotalBudget();
             setup_obj.records.forEach(function (item, index) {
                 result[index] = '';
                 if(item['Amount']>0 && totalBudget>0){
@@ -64,12 +74,16 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
                 || sumBudget.value===''
                 || isNaN(sumBudget.value)
                 || (sumBudget.value>0
-                    && parseFloat(sumBudget.value).toFixed(2)===parseFloat(get_total_budget()).toFixed(2));
+                    && parseFloat(sumBudget.value).toFixed(2)===parseFloat(getTotalBudget()).toFixed(2));
 
         });
 
-        function get_total_budget(){
+        function getTotalBudget(){
             return window.FinancialResources.records[0]['TotalBudget'];
+        }
+
+        function getCurrency(){
+            return window.FinancialResources.records[0]['Currency'];
         }
 
         return {
@@ -77,7 +91,7 @@ export default class FinancialResourcesBudgetLines extends ModuleImet {
             costs,
             percentages,
             sumBudget,
-            totalIsValid
+            totalIsValid,
         };
 
     }

@@ -51,7 +51,7 @@ $stakeholders_categories = Stakeholders::getStakeholders($module->data['id'], $u
             @endphp
 
             @if($categories === [])
-                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 6])
+                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 6, 'mode' => ModuleViewModes::SHOW])
 
             @else
 
@@ -106,7 +106,7 @@ $stakeholders_categories = Stakeholders::getStakeholders($module->data['id'], $u
 
                             {{-- nothing to evaluate --}}
                             @if(!array_key_exists($group_key, $grouped_records))
-                                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols])
+                                @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => $num_cols, 'mode' => ModuleViewModes::SHOW])
 
                                 {{-- body  --}}
                             @else

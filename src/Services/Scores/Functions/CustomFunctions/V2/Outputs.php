@@ -26,10 +26,10 @@ trait Outputs
         $score = null;
         if ($values) {
 
-            $numerator = ($values['Patrol'] ?? 0)
-                + ($values['RapidIntervention'] ?? 0)
-                + ($values['AirVehicles'] ? 1 : 0)
-                + ($values['Planes'] ? 1 : 0);
+            $numerator = intval($values['Patrol'] ?? 0)
+                + intval($values['RapidIntervention'] ?? 0)
+                + (($values['AirVehicles'] === 'true' || $values['AirVehicles'] === true) ? 1 : 0)
+                + (($values['Planes'] === 'true' || $values['Planes'] === true) ? 1 : 0);
 
             $denominator = 3
                 * (($values['Patrol'] !== null ? 1 : 0) + ($values['RapidIntervention'] !== null ? 1 : 0))
@@ -42,7 +42,7 @@ trait Outputs
         }
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 
@@ -84,7 +84,7 @@ trait Outputs
         $score = self::average([$sanctuary_score, $no_take_score, $buffer_zone_score]);
 
         return $score !== null ?
-            round($score, 2)
+            round($score, self::DECIMAL_PRECISION)
             : null;
     }
 }

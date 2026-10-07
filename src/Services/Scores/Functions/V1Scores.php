@@ -45,7 +45,7 @@ class V1Scores extends _Scores
             + (($scores['C2'] ?? 0) / 2 + 50)
             + (($scores['C3'] ?? 0) + 100);
         $count = count(array_filter([$scores['C1'], $scores['C2'], $scores['C3']], fn (?float $x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }
@@ -72,7 +72,7 @@ class V1Scores extends _Scores
             + ($scores['P5'] ?? 0)
             + ($scores['P6'] ?? 0);
         $count = count(array_filter($scores, fn (?float $x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }
@@ -91,7 +91,7 @@ class V1Scores extends _Scores
         ];
 
         // aggregate step score
-        $scores['avg_indicator'] = static::average($scores, 1);
+        $scores['avg_indicator'] = static::average($scores, self::DECIMAL_PRECISION);
 
         return $scores;
     }
@@ -175,7 +175,7 @@ class V1Scores extends _Scores
             + ($scores['EI5'] / 2 + 50 ?? 0)
             + ($scores['EI6'] / 2 + 50 ?? 0);
         $count = count(array_filter($scores, fn (?float $x): bool => $x !== null));
-        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, 1) : null;
+        $scores['avg_indicator'] = $count !== 0 ? round($sum / $count, self::DECIMAL_PRECISION) : null;
 
         return $scores;
     }

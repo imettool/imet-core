@@ -319,19 +319,19 @@ return [
         'fields' => [
             'SpeciesID' => 'Species',
             'CommonName' => 'Common name',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
+            'InvasiveSpecies' => 'Inv',
             'PopulationEstimation' => 'Estimated status',
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul>
-            <li><b>EXP</b>: Exploited species</li>
-            <li><b>PRT</b>: Protected species</li>
-            <li><b>DSG</b>: Disappearing species</li>
-            <li><b>INV</b>: Invasive species</li></ul>',
+            <li><b>Exp</b>: Exploited species</li>
+            <li><b>Prt</b>: Protected species</li>
+            <li><b>Dsg</b>: Disappearing species</li>
+            <li><b>Inv</b>: Invasive species</li></ul>',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 
@@ -339,19 +339,19 @@ return [
         'title' => 'Plant species (exploited, protected, disappearing, invasive)',
         'fields' => [
             'SpeciesID' => 'Species',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
-            'InvasiveSpecies' => 'INV',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
+            'InvasiveSpecies' => 'Inv',
             'PopulationEstimation' => 'Estimated status',
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
         ],
         'module_info' => '<b>Species types</b> <ul>
-            <li><b>EXP</b>: Exploited species</li>
-            <li><b>PRT</b>: Protected species</li>
-            <li><b>DSG</b>: Disappearing species</li>
-            <li><b>INV</b>: Invasive species</li></ul>',
+            <li><b>Exp</b>: Exploited species</li>
+            <li><b>Prt</b>: Protected species</li>
+            <li><b>Dsg</b>: Disappearing species</li>
+            <li><b>Inv</b>: Invasive species</li></ul>',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 
@@ -360,9 +360,9 @@ return [
         'fields' => [
             'EcosystemType' => 'Habitats types',
             'EcosystemDescription' => 'Description for the specific conserved area',
-            'ExploitedSpecies' => 'EXP',
-            'ProtectedSpecies' => 'PRT',
-            'DisappearingSpecies' => 'DSG',
+            'ExploitedSpecies' => 'Exp',
+            'ProtectedSpecies' => 'Prt',
+            'DisappearingSpecies' => 'Dsg',
             'PopulationEstimation' => 'Estimated status',
             'DescribeEstimation' => 'Describe the optimum status',
             'Comments' => 'Source / Note',
@@ -372,9 +372,9 @@ return [
                 Identify the main category in the suggested list of habitats, then add a second level of description that
                 takes into account your specific area.<br />
                 <b>Species types</b><ul>
-                <li><b>EXP</b>: Exploited</li>
-                <li><b>PRT</b>: Protected</li>
-                <li><b>DSG</b>: Disappearing</li></ul>',
+                <li><b>Exp</b>: Exploited</li>
+                <li><b>Prt</b>: Protected</li>
+                <li><b>Dsg</b>: Disappearing</li></ul>',
         'warning_on_save' => 'WARNING!! <br /> Any modification might cause data loss in the following modules (if already encoded): <i>SA 2</i>',
     ],
 

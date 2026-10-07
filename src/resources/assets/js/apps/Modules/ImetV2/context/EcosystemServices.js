@@ -50,7 +50,7 @@ export default class EcosystemServices extends ModuleImet {
                     stats.push(
                         parseFloat(record['Importance'])
                         + (parseFloat(record['ImportanceRegional'])/3)
-                        + ((2-parseFloat(record['ImportanceGlobal']))/4)
+                        + ((parseFloat(record['ImportanceGlobal'])+2)/4)
                     );
                 } else {
                     stats.push(null);

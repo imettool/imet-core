@@ -12,9 +12,7 @@ $view_groupTable = \Illuminate\Support\Facades\View::make('modular-forms::module
 
 $averages = [];
 foreach ($records as $record) {
-    if (!isset($averages[$record['group_key']])) {
-        $averages[$record['group_key']] = [];
-    }
+    $averages[$record['group_key']] ??= [];
     if ($record['AdequacyLevel'] !== null) {
         $averages[$record['group_key']][] = $record['AdequacyLevel'];
     }

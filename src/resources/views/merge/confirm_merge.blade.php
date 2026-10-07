@@ -9,7 +9,7 @@ $modal_id = 'imet_merge_' . $source->FormID . '_to_' . $destination->FormID . '_
 ?>
 
 
-<floating_dialog>
+<dialog-box>
 
     <!-- anchor -->
     <template slot="dialog-anchor">
@@ -74,7 +74,7 @@ $modal_id = 'imet_merge_' . $source->FormID . '_to_' . $destination->FormID . '_
         </div>
     </template>
 
-</floating_dialog>
+</dialog-box>
 
 
 

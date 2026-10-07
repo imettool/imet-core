@@ -15,7 +15,6 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Enums\ModuleTypes;
 
 final class WorkProgramImplementation extends Modules\Component\ImetModule_Eval
 {

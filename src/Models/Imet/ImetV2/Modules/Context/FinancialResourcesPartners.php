@@ -15,8 +15,8 @@ namespace ImetCore\Models\Imet\ImetV2\Modules\Context;
 use Illuminate\Database\Eloquent\Collection;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
-use ModularForms\Models\Module;
 use ModularForms\Enums\ModuleTypes;
+use ModularForms\Models\Module;
 
 /**
  * @property string $Currency
@@ -26,6 +26,8 @@ final class FinancialResourcesPartners extends Modules\Component\ImetModule
     protected $table = 'context_financial_resources_partners';
 
     public const int REQUIRED_ACCESS_LEVEL = Role::ACCESS_LEVEL_HIGH;
+
+    public const string BODY_EDIT_BLADE_VIEW = 'imet-core::v2.context.edit.modules.financial_resources_partners';
 
     public function __construct(array $attributes = [])
     {

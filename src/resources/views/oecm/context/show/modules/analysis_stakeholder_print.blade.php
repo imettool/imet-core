@@ -22,7 +22,7 @@ $categories = $categories !== null ? json_decode($categories) : [];
 
 
 @if($categories === [])
-    @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 6])
+    @include('imet-core::components.module.nothing_to_evaluate', ['num_cols' => 6, 'mode' => ModuleViewModes::SHOW])
 
 @else
 

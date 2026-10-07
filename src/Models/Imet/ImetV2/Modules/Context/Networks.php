@@ -17,7 +17,6 @@ use Illuminate\Support\Str;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\ProtectedArea;
 use ImetCore\Models\User\Role;
-use ModularForms\Helpers\Type\JSON;
 use ModularForms\Enums\ModuleTypes;
 
 final class Networks extends Modules\Component\ImetModule
@@ -70,26 +69,34 @@ final class Networks extends Modules\Component\ImetModule
     #[\Override]
     public static function upgradeModule($record, $imet_version = null): array
     {
-        // ### Update "ProtectedAreas" to comma-separated list of WDPA ids ###
-        if ($record['ProtectedAreas'] !== null && Str::contains($record['ProtectedAreas'], '_')) {
+        if ($record['ProtectedAreas'] !== null) {
 
-            $pas = explode(',', $record['ProtectedAreas']);
+            // #### global_ids to WDPA ids ####
+            if (Str::contains($record['ProtectedAreas'], '_')) {
+                $pas = explode(',', $record['ProtectedAreas']);
 
-            // Convert global_id to wdpa
-            $pas = collect($pas)->map(function ($pa) {
-                if (Str::startsWith($pa, 'OFAC_')) {
-                    $model = ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
+                // Convert global_id to wdpa
+                $pas = collect($pas)->map(function ($pa) {
+                    if (Str::startsWith($pa, 'OFAC_')) {
+                        $model = ProtectedArea::query()->find($pa);  // for OFAC: global_id is 'OFAC_' + local_id
 
-                    return $model->wdpa_id ?? null;
-                }
+                        return $model->wdpa_id ?? null;
+                    }
 
-                return explode('_', $pa)[1];
-                // for other regions: global_id is region + wdpa
+                    return explode('_', $pa)[1];
+                    // for other regions: global_id is region + wdpa
+                })->all();
 
-            })->all();
+                // Convert JSON to comma-separated list
+                $record['ProtectedAreas'] = implode(',', $pas);
+            }
 
-            // Convert JSON to comma-separated list
-            $record['ProtectedAreas'] = implode(',', $pas);
+            //  #### JSON formatted to comma-separated list ####
+            if (Str::contains($record['ProtectedAreas'], '[')) {
+                $pas = json_decode($record['ProtectedAreas'], true);
+                $record['ProtectedAreas'] = implode(',', $pas);
+            }
+
         }
 
         return $record;

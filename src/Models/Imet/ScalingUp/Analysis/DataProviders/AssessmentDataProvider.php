@@ -16,7 +16,6 @@ use ImetCore\Helpers\ScalingUp\Common;
 
 final readonly class AssessmentDataProvider extends BaseDataProvider
 {
-
     public function getAssessments(array $formIds): array
     {
         $assessments = Common::get_assessments($formIds, $this->getScalingId());

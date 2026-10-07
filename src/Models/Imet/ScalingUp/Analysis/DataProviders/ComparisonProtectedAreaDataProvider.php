@@ -16,7 +16,6 @@ use ImetCore\Models\Imet\ScalingUp\Charts\Radar;
 
 final readonly class ComparisonProtectedAreaDataProvider extends BaseDataProvider
 {
-
     public function getUpperLowerProtectedAreasDiagramCompare(
         array $formIds,
         bool $width = true,

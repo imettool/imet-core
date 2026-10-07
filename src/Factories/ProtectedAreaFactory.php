@@ -18,6 +18,8 @@ use ImetCore\Models\ProtectedArea;
 /**
  * Class ProtectedAreaFactory
  * Factory for creating instances of the ProtectedArea model for testing and seeding (ONLY DEV ENVIRONMENT).
+ *
+ * @extends Factory<ProtectedArea>
  */
 class ProtectedAreaFactory extends Factory
 {

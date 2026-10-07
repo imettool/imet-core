@@ -5,12 +5,16 @@ use ImetCore\Models\Country;
 use ImetCore\Models\Imet\ImetV2\Imet_Report;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\Areas;
 use ImetCore\Models\Imet\ImetV2\Modules\Context\GeneralInfo;
+use ImetCore\Models\Imet\ImetV2\Modules\Context\Missions;
 use ImetCore\Models\ProtectedAreaNonWdpa;
 
 $general_info = GeneralInfo::getModuleRecords($item->getKey())['records'][0] ?? null;
 $area = Areas::getArea($item->getKey()) ?? null;
+$vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?? null;
 
 ?>
+
+
 
 <div class="module-container">
     <div class="module-header">
@@ -20,8 +24,9 @@ $area = Areas::getArea($item->getKey()) ?? null;
         <div class="grid grid-flow-col grid-rows-4 gap-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.country')</div>
-                <span class="italic">{{ !empty($general_info['Country']) ? Country::getByISO($general_info['Country'])?->name : '-' }}</span>
-            </div>
+                <span class="italic">
+                    {{ !empty($general_info['Country']) ? Country::getByISO($general_info['Country'])?->name : '-' }}
+                </span></div>
             <div>
                 <div class="strong">@lang('imet-core::v2_report.name')</div>
                 <span class="italic">{{ $general_info['CompleteName'] ?? '-' }}</span>
@@ -52,15 +57,15 @@ $area = Areas::getArea($item->getKey()) ?? null;
             </div>
             <div>
                 <div class="strong">@lang('imet-core::v2_report.vision')</div>
-                <span class="italic">{{ $general_info['LocalVision'] ?? '-' }}</span>
+                <span class="italic">{{ $vision_objectives['LocalVision'] ?? '-' }}</span>
             </div>
             <div>
                 <div class="strong">@lang('imet-core::v2_report.mission')</div>
-                <span class="italic">{{ $general_info['LocalMission'] ?? '-' }}</span>
+                <span class="italic">{{ $vision_objectives['LocalMission'] ?? '-' }}</span>
             </div>
             <div>
                 <div class="strong">@lang('imet-core::v2_report.objectives')</div>
-                <span class="italic">{{ $general_info['LocalObjective'] ?? '-' }}</span>
+                <span class="italic">{{ $vision_objectives['LocalObjective'] ?? '-' }}</span>
             </div>
         </div>
     </div>

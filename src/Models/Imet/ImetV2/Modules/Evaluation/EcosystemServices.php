@@ -66,4 +66,16 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
                 : [],
         ];
     }
+
+    #[\Override]
+    public static function upgradeModule($record, $imet_version = null): array
+    {
+        // ####  v3.7.3 -> v3.7.4 ####
+        // InManagementPlan added: code removed because subsequent remove make it unnecessary
+
+        // ####  v3.9.1 -> v3.10.0 ####
+        $record = self::dropField($record, 'InManagementPlan');
+
+        return $record;
+    }
 }

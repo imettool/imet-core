@@ -12,8 +12,10 @@
 
 return [
 
-    'management' => 'IMET management (v2 - Consolidated)',
-    'v2' => 'v2 - Consolidated',
+    'management' => 'Gestión IMET (v2 - Consolidado)',
+    'v2' => 'v2 - Consolidado',
+    'terrestrial' => 'terrestre',
+    'marine' => 'marina y costera',
 
     'synthetic_indicator' => 'Indicador sintético',
 
@@ -26,7 +28,6 @@ return [
         'climate' => 'El cambio climático y la conservación',
         'ecosystem_services' => 'Servicios/funciones ecosistémicas y dependencia de las comunidades',
         'objectives' => 'Objetivos y gestión',
-        'cross_analysis' => 'Cross Analysis',
     ],
 
     'assessment' => [

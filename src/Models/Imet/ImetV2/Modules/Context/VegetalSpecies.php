@@ -37,6 +37,7 @@ final class VegetalSpecies extends Modules\Component\ImetModule
         $this->module_title = trans('imet-core::v2_context.VegetalSpecies.title');
         $this->module_fields = [
             ['name' => 'Species',                   'type' => 'text-area',               'label' => trans('imet-core::v2_context.VegetalSpecies.fields.Species')],
+            ['name' => 'CommonName',                'type' => 'text-area',          'label' => trans('imet-core::v2_context.VegetalSpecies.fields.CommonName')],
             ['name' => 'FlagshipSpecies',           'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.VegetalSpecies.fields.FlagshipSpecies')],
             ['name' => 'EndangeredSpecies',         'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.VegetalSpecies.fields.EndangeredSpecies')],
             ['name' => 'EndemicSpecies',            'type' => 'checkbox-boolean',   'label' => trans('imet-core::v2_context.VegetalSpecies.fields.EndemicSpecies')],
