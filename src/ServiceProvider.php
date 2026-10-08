@@ -24,7 +24,9 @@ use ImetCore\Policies\ImetPolicy;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    const BASE_PATH = __DIR__.'/';
+    const string BASE_PATH = __DIR__.'/';
+
+    public static bool $runsMigrations = true;
 
     /**
      * Register services.
@@ -37,17 +39,28 @@ class ServiceProvider extends BaseServiceProvider
     }
 
     /**
+     * Do not run migration in hosting application if this method is called in AppServiceProvider
+     */
+    public static function ignoreMigrations(): void
+    {
+        static::$runsMigrations = false;
+    }
+
+
+    /**
      * Bootstrap services.
      */
     public function boot(): void
     {
 
         // Migrations
-        $this->loadMigrationsFrom([
-            static::BASE_PATH.'database/migrations/public',
-            static::BASE_PATH.'database/migrations/imet',
-            static::BASE_PATH.'database/migrations/oecm',
-        ]);
+        if(static::$runsMigrations) {
+            $this->loadMigrationsFrom([
+                static::BASE_PATH . 'database/migrations/public',
+                static::BASE_PATH . 'database/migrations/imet',
+                static::BASE_PATH . 'database/migrations/oecm',
+            ]);
+        }
 
         // Views
         $this->loadViewsFrom(static::BASE_PATH.'resources/views', 'imet-core');
