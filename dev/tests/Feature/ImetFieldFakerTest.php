@@ -44,3 +44,13 @@ test('ImetFieldFaker picks an OECM protected area type as the OECM radio input d
 
     expect($values)->each->toBeIn(array_keys(SelectionList::getList('Imet_PaType')));
 });
+
+test('ImetFieldFaker picks a key of the list named after radio- for custom radio inputs', function (string $listType): void {
+    $values = fakeImetField('custom::radio-'.$listType, 'Field', Imet\ImetV2\Modules\Context\Spillover::class);
+
+    expect($values)->each->toBeIn(array_keys(SelectionList::getList($listType)));
+})->with([
+    'ImetV2_ConnectivityIntegrationInManagementPlan',
+    'ImetV2_SupportingEvidence',
+    'ImetV2_ProvisioningPerceivedCatchChange',
+]);

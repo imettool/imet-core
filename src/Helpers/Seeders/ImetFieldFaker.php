@@ -45,6 +45,10 @@ class ImetFieldFaker extends FieldFaker
             return $this->protectedAreaType($field);
         }
 
+        if (Str::startsWith($field->type, 'custom::radio-')) {
+            return array_rand(SelectionList::getList(Str::after($field->type, 'custom::radio-')));
+        }
+
         if (Str::contains($field->type, '_EcosystemServicesImportance')) {
             return collect([0, 1])->random();
         }

@@ -34,18 +34,6 @@ const UNSEEDED_CUSTOM_FIELDS = [
     // management equipment adequacy score: not handled
     'ManagementEquipmentAdequacy.EvaluationScore (custom::management-equipment-adequacy-score)',
     'ManagementEquipmentAdequacy.Adequacy (custom::management-equipment-adequacy-score)',
-    // radio-* lists: not handled
-    'Connectivity.ConnectivityIntegrationInManagementPlan (custom::radio-ImetV2_ConnectivityIntegrationInManagementPlan)',
-    'Connectivity.DocumentedConnectivity (custom::radio-ImetV2_DocumentedConnectivity)',
-    'Connectivity.EvidenceOfConnectivity (custom::radio-ImetV2_EvidenceOfConnectivity)',
-    'Spillover.ProvisioningEvidence (custom::radio-ImetV2_ProvisioningEvidence)',
-    'Spillover.ProvisioningKeyObservations (custom::radio-ImetV2_ProvisioningKeyObservations)',
-    'Spillover.ProvisioningPerceivedCatchChange (custom::radio-ImetV2_ProvisioningPerceivedCatchChange)',
-    'Spillover.ProvisioningPerceivedSpillover (custom::radio-ImetV2_ProvisioningPerceivedSpillover)',
-    'Spillover.SupportingEvidence (custom::radio-ImetV2_SupportingEvidence)',
-    'Spillover.SupportingKeyObservations (custom::radio-ImetV2_SupportingKeyObservations)',
-    'Spillover.SupportingPerceivedSizeChange (custom::radio-ImetV2_SupportingPerceivedSizeChange)',
-    'Spillover.SupportingPerceivedSpeciesChange (custom::radio-ImetV2_SupportingPerceivedSpeciesChange)',
 ];
 
 /**
