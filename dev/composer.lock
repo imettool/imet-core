@@ -9,16 +9,16 @@
     "packages-dev": [
         {
             "name": "akp/modular-forms",
-            "version": "4.4.11",
+            "version": "4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://code.europa.eu/akp/modular-forms.git",
-                "reference": "b5ccbd49007d5d650bd06bc51762bc1fdf562569"
+                "reference": "41b6fe62d7ceae930225a4c9232c6ed90ae4c028"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://code.europa.eu/api/v4/projects/akp%2Fmodular-forms/repository/archive.zip?sha=b5ccbd49007d5d650bd06bc51762bc1fdf562569",
-                "reference": "b5ccbd49007d5d650bd06bc51762bc1fdf562569",
+                "url": "https://code.europa.eu/api/v4/projects/akp%2Fmodular-forms/repository/archive.zip?sha=41b6fe62d7ceae930225a4c9232c6ed90ae4c028",
+                "reference": "41b6fe62d7ceae930225a4c9232c6ed90ae4c028",
                 "shasum": ""
             },
             "require": {
@@ -31,12 +31,16 @@
             },
             "require-dev": {
                 "driftingly/rector-laravel": "^2.2",
+                "fakerphp/faker": "^1.24",
                 "larastan/larastan": "^3.9",
                 "laravel/pao": "^1.0",
                 "laravel/pint": "^1.29",
                 "orchestra/testbench": "^11.0",
                 "pestphp/pest": "^4.6",
                 "rector/rector": "^2.3"
+            },
+            "suggest": {
+                "fakerphp/faker": "Required to seed forms with fake data (ModularForms\\Seeders\\FormSeeder)."
             },
             "type": "library",
             "extra": {
@@ -93,9 +97,9 @@
             ],
             "description": "A package to build modular data collection forms",
             "support": {
-                "source": "https://code.europa.eu/akp/modular-forms/-/tree/v4.4.11"
+                "source": "https://code.europa.eu/akp/modular-forms/-/tree/v4.5.0"
             },
-            "time": "2026-10-01T14:11:56+02:00"
+            "time": "2026-11-05T16:20:45+00:00"
         },
         {
             "name": "amphp/amp",
@@ -3370,14 +3374,14 @@
         },
         {
             "name": "imettool/imet-core",
-            "version": "3.10.0",
+            "version": "3.10.2",
             "dist": {
                 "type": "path",
                 "url": "./package/imet-core",
-                "reference": "6a6c8a9f654b576873104edeaf27769997d4e46e"
+                "reference": "6d34beb880585241594fc7325c05754779db0c97"
             },
             "require": {
-                "akp/modular-forms": "^4.4.10",
+                "akp/modular-forms": "^4.5.0",
                 "ext-json": "*",
                 "ext-zip": "*",
                 "php": ">=8.4"
@@ -12223,5 +12227,5 @@
         "ext-sockets": "*",
         "ext-zip": "*"
     },
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
