@@ -29,9 +29,6 @@ uses(RefreshDatabase::class);
  * Remove an entry when the corresponding seeding gap is fixed.
  */
 const UNSEEDED_CUSTOM_FIELDS = [
-    // ctx11 type: the seeder checks "ctx11_type", the declared types use a hyphen
-    'GeneralInfo.Type (custom::v2-ctx11-type)',
-    'GeneralInfo.Type (custom::oecm-ctx11-type)',
     // sub-governance model: the seeder checks ".SubGovernanceModel"
     'Governance.SubGovernanceModel (custom::sub-governance-model)',
     // management equipment adequacy score: not handled

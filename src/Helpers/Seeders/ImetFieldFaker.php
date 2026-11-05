@@ -41,8 +41,8 @@ class ImetFieldFaker extends FieldFaker
     #[Override]
     protected function custom(FieldContext $field): mixed
     {
-        if (Str::contains($field->type, 'ctx11_type')) {
-            return array_rand(SelectionList::getList('Imet_PaType'));
+        if (Str::contains($field->type, 'ctx11-type')) {
+            return $this->protectedAreaType($field);
         }
 
         if (Str::contains($field->type, '_EcosystemServicesImportance')) {
@@ -89,6 +89,20 @@ class ImetFieldFaker extends FieldFaker
         }
 
         return parent::fallback($field);
+    }
+
+    /**
+     * Same values as the v2-ctx11-type / oecm-ctx11-type radio inputs
+     *
+     * @throws Throwable
+     */
+    private function protectedAreaType(FieldContext $field): string
+    {
+        $list = Str::contains($field->type, 'v2-')
+            ? trans('imet-core::v2_lists.PaType')
+            : SelectionList::getList('Imet_PaType');
+
+        return (string) array_rand($list);
     }
 
     /**
