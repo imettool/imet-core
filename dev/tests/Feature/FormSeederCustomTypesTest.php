@@ -25,13 +25,10 @@ use ModularForms\Models\Module;
 uses(RefreshDatabase::class);
 
 /**
- * `custom::*` fields the seeder does not fill yet (always NULL).
- * Remove an entry when the corresponding seeding gap is fixed.
+ * `custom::*` fields the seeder leaves NULL.
  */
 const UNSEEDED_CUSTOM_FIELDS = [
-    // sub-governance model: the seeder checks ".SubGovernanceModel"
-    'Governance.SubGovernanceModel (custom::sub-governance-model)',
-    // management equipment adequacy score: not handled
+    // management equipment adequacy score: display-only, computed from the context Equipments module (null by design)
     'ManagementEquipmentAdequacy.EvaluationScore (custom::management-equipment-adequacy-score)',
     'ManagementEquipmentAdequacy.Adequacy (custom::management-equipment-adequacy-score)',
 ];
@@ -85,7 +82,8 @@ beforeEach(function (): void {
 });
 
 test('every custom:: field is either seeded or listed as a known gap', function (string $version, array $formClasses): void {
-    (new FormSeeder)->run($version, 1);
+    // two forms, so that fields that are legitimately empty sometimes (e.g. SubGovernanceModel) get a value
+    (new FormSeeder)->run($version, 2);
 
     $unseeded = unseededFields(customFields($formClasses));
     $expected = collect(UNSEEDED_CUSTOM_FIELDS)

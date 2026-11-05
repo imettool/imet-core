@@ -54,3 +54,20 @@ test('ImetFieldFaker picks a key of the list named after radio- for custom radio
     'ImetV2_SupportingEvidence',
     'ImetV2_ProvisioningPerceivedCatchChange',
 ]);
+
+test('ImetFieldFaker picks a sub-governance model of the record governance model', function (string $module, string $governanceModel): void {
+    $values = fakeImetField('custom::sub-governance-model', 'SubGovernanceModel', $module, ['GovernanceModel' => $governanceModel]);
+
+    expect($values)->each->toBeIn(array_keys(SelectionList::getList('ImetOECM_SubGovernanceModel')[$governanceModel]));
+})->with([
+    'v2 government' => [Imet\ImetV2\Modules\Context\Governance::class, 'government'],
+    'v2 indigenous' => [Imet\ImetV2\Modules\Context\Governance::class, 'indigenous'],
+    'oecm shared' => [Imet\ImetOecm\Modules\Context\Governance::class, 'shared'],
+    'oecm private' => [Imet\ImetOecm\Modules\Context\Governance::class, 'private'],
+]);
+
+test('ImetFieldFaker leaves the sub-governance model empty without a governance model with sub-models', function (?string $governanceModel): void {
+    $values = fakeImetField('custom::sub-governance-model', 'SubGovernanceModel', Imet\ImetV2\Modules\Context\Governance::class, ['GovernanceModel' => $governanceModel], 5);
+
+    expect($values)->each->toBeNull();
+})->with(['not_reported', null]);

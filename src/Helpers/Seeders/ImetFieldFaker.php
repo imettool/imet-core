@@ -53,9 +53,7 @@ class ImetFieldFaker extends FieldFaker
             return collect([0, 1])->random();
         }
 
-        if (Str::contains($field->type, '.SubGovernanceModel')
-            && (Str::contains(Str::lower($field->type), 'v2')
-                || Str::contains(Str::lower($field->type), 'oecm'))) {
+        if ($field->type === 'custom::sub-governance-model') {
             return $this->subGovernanceModel($field);
         }
 
@@ -110,16 +108,21 @@ class ImetFieldFaker extends FieldFaker
     }
 
     /**
+     * A key of the sub-models of the record's governance model (null when there is none, e.g. "not_reported"),
+     * from the same list the v2 and OECM governance edit pages give to the dropdown
+     *
      * @throws Throwable
      */
-    private function subGovernanceModel(FieldContext $field): mixed
+    private function subGovernanceModel(FieldContext $field): int|string|null
     {
-        $list = Str::contains(Str::lower($field->type), 'v2')
-            ? SelectionList::getList('ImetV2_SubGovernanceModel')
-            : SelectionList::getList('ImetOECM_SubGovernanceModel');
-        $random_group = collect($list)->random();
+        $groups = SelectionList::getList('ImetOECM_SubGovernanceModel');
+        $governance_model = $field->record['GovernanceModel'] ?? null;
 
-        return collect($random_group)->random();
+        if (! is_string($governance_model) || ! is_array($groups[$governance_model] ?? null) || $groups[$governance_model] === []) {
+            return null;
+        }
+
+        return array_rand($groups[$governance_model]);
     }
 
     private function analysisStakeholder(): mixed
