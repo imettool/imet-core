@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 use ImetCore\Helpers\Seeders\FormSeeder;
 use ImetCore\Helpers\Seeders\ProtectedAreaSeeder;
 use ImetCore\Helpers\Seeders\SpeciesSeeder;
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\Imet;
 use ModularForms\Models\Module;
 
@@ -31,6 +32,15 @@ const UNSEEDED_CUSTOM_FIELDS = [
     // management equipment adequacy score: display-only, computed from the context Equipments module (null by design)
     'ManagementEquipmentAdequacy.EvaluationScore (custom::management-equipment-adequacy-score)',
     'ManagementEquipmentAdequacy.Adequacy (custom::management-equipment-adequacy-score)',
+];
+
+/**
+ * `custom::*` fields legitimately empty depending on another field: checked by dedicated tests, not by the
+ * "is it ever filled" check (which would be random for them)
+ */
+const CONDITIONAL_CUSTOM_FIELDS = [
+    // empty when GovernanceModel has no sub-models (e.g. "not_reported")
+    'Governance.SubGovernanceModel (custom::sub-governance-model)',
 ];
 
 /**
@@ -66,6 +76,7 @@ function customFields(array $formClasses): array
 function unseededFields(array $fields): array
 {
     return collect($fields)
+        ->except(CONDITIONAL_CUSTOM_FIELDS)
         ->filter(fn (array $field): bool => DB::table((new $field['module'])->getTable())
             ->whereNotNull($field['field'])
             ->doesntExist())
@@ -82,8 +93,7 @@ beforeEach(function (): void {
 });
 
 test('every custom:: field is either seeded or listed as a known gap', function (string $version, array $formClasses): void {
-    // two forms, so that fields that are legitimately empty sometimes (e.g. SubGovernanceModel) get a value
-    (new FormSeeder)->run($version, 2);
+    (new FormSeeder)->run($version, 1);
 
     $unseeded = unseededFields(customFields($formClasses));
     $expected = collect(UNSEEDED_CUSTOM_FIELDS)
@@ -97,4 +107,22 @@ test('every custom:: field is either seeded or listed as a known gap', function 
     'IMET v1' => [Imet\Imet::IMET_V1, [Imet\ImetV1\Imet::class, Imet\ImetV1\Imet_Eval::class]],
     'IMET v2' => [Imet\Imet::IMET_V2, [Imet\ImetV2\Imet::class, Imet\ImetV2\Imet_Eval::class]],
     'IMET OECM' => [Imet\Imet::IMET_OECM, [Imet\ImetOecm\Imet::class, Imet\ImetOecm\Imet_Eval::class]],
+]);
+
+test('the sub-governance model is seeded exactly when the governance model has sub-models', function (string $version, string $module): void {
+    (new FormSeeder)->run($version, 5);
+
+    $groups = SelectionList::getList('ImetOECM_SubGovernanceModel');
+    $records = DB::table((new $module)->getTable())->get(['GovernanceModel', 'SubGovernanceModel']);
+
+    expect($records)->not->toBeEmpty();
+    foreach ($records as $record) {
+        $subModels = array_keys($groups[$record->GovernanceModel] ?? []);
+        $subModels === []
+            ? expect($record->SubGovernanceModel)->toBeNull()
+            : expect($record->SubGovernanceModel)->toBeIn($subModels);
+    }
+})->with([
+    'IMET v2' => [Imet\Imet::IMET_V2, Imet\ImetV2\Modules\Context\Governance::class],
+    'IMET OECM' => [Imet\Imet::IMET_OECM, Imet\ImetOecm\Modules\Context\Governance::class],
 ]);
