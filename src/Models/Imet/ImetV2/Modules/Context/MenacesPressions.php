@@ -147,7 +147,7 @@ final class MenacesPressions extends Modules\Component\ImetModule
         $record = self::replacePredefinedValue($record, 'Value', 'Other: Outros: Aumento da precipitação e mudanças sazonais', 'Aumento da precipitação e mudanças sazonais');
         $record = self::replacePredefinedValue($record, 'Value', 'Otro: Aumento de las precipitaciones y cambios estacionales', 'Aumento de las precipitaciones y cambios estacionales');
         $record = self::replacePredefinedValue($record, 'Value', 'Renewable energies', 'Renewable abiotic energy use');
-        $record = self::replacePredefinedValue($record, 'Value', 'Energies renouvelables', 'Utilisation de l\'énergie abiotique renouvelable');
+        $record = self::replacePredefinedValue($record, 'Value', 'Energies renouvelables', "Utilisation de l'énergie abiotique renouvelable");
         $record = self::replacePredefinedValue($record, 'Value', 'Energias renováveis', 'Uso de energia abiótica renovável');
 
         return self::replacePredefinedValue($record, 'Value', 'Energías renovables', 'Uso de energía abiótica renovable');

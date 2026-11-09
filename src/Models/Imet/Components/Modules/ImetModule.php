@@ -12,7 +12,6 @@
 
 namespace ImetCore\Models\Imet\Components\Modules;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\App;
 use ImetCore\Helpers\Database;

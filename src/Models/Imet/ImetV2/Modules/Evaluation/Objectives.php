@@ -65,7 +65,7 @@ final class Objectives extends Modules\Component\ImetModule_Eval
 
         $record = self::replacePredefinedValue($record, 'Objective',
             'Services écosystémiques — Approvisionnement (utilisation durable)',
-            'Services écosystémiques — Approvisionnement (nourriture, produits de la mer, matériel, qualité de l\'eau, etc. utilisation durable)');
+            "Services écosystémiques — Approvisionnement (nourriture, produits de la mer, matériel, qualité de l'eau, etc. utilisation durable)");
         $record = self::replacePredefinedValue($record, 'Objective',
             'Services écosystémiques - Régulation (utilisation durable)',
             'Services écosystémiques - Régulation (protection contre les tempêtes et le littoral, érosion hydrique, etc. utilisation durable)');

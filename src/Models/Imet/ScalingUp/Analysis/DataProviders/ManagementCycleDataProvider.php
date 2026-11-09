@@ -206,7 +206,7 @@ final readonly class ManagementCycleDataProvider extends BaseDataProvider
         $indicators = self::TABLE_INDICATORS[$type];
 
         // Convert indicator keys to empty arrays
-        return array_map(fn ($group): array => array_fill_keys($group, []), $indicators);
+        return array_map(fn (array $group): array => array_fill_keys($group, []), $indicators);
     }
 
     /**

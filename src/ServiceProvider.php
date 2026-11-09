@@ -53,11 +53,11 @@ class ServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         // Migrations
-        if(static::$runsMigrations) {
+        if (static::$runsMigrations) {
             $this->loadMigrationsFrom([
-                static::BASE_PATH . 'database/migrations/public',
-                static::BASE_PATH . 'database/migrations/imet',
-                static::BASE_PATH . 'database/migrations/oecm',
+                static::BASE_PATH.'database/migrations/public',
+                static::BASE_PATH.'database/migrations/imet',
+                static::BASE_PATH.'database/migrations/oecm',
             ]);
         }
 
