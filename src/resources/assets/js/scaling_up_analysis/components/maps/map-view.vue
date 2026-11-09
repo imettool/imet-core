@@ -20,7 +20,7 @@
 </template>
 <script setup>
 import { inject, ref, onMounted } from 'vue';
-import maplibregl from 'maplibre-gl';
+import { Map as MaplibreMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import BiopamaWDPA from '../../../helpers/biopamaWDPA';
 import Map from '../../../helpers/map';
@@ -72,7 +72,7 @@ const loadMap = async () => {
     const wdpa_ids = await retrieveWdpaIDs();
 
     if (wdpa_ids) {
-        const report_map = new maplibregl.Map({
+        const report_map = new MaplibreMap({
             container: `map-load`,
             style: Map.openstreetmap,
             center: [30, 0],
