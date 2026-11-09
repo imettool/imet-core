@@ -4,9 +4,11 @@
                 value="rsync -aiv --delete
                 --exclude='.git/'
                 --exclude='.idea/'
+                --exclude='.claude/'
                 --exclude='./vendor/'
                 --exclude='./node_modules/'
                 --exclude='./dev/storage/app/'
+                --exclude='./dev/storage/debugbar/'
                 --exclude='./dev/storage/framework/'
                 --exclude='./dev/package/'
                 imet-core:/workspace/ ./" />
