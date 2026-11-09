@@ -57,31 +57,16 @@ const dropzoneComponent = ref(null);
 const dropZoneOptions = {
     url: props.uploadUrl,
     previewTemplate:
-        `<div class="dropzone-file-list text-sm">
-            <div class="file-row">
-                <div class="file-details">
-                    <div class="name" data-dz-name></div>
-                    <div class="size" data-dz-size></div>
-                    <div class="dz-remove" data-dz-remove></div>
-                    <div class="progress">
-                        <div class="progress-bar total-progress" style="width:0;" data-dz-uploadprogress></div>
-                    </div>
+        ` <div class="file-row text-sm">
+            <div class="file-details">
+                <div class="name" data-dz-name></div>
+                <div class="size" data-dz-size></div>
+                <div class="dz-remove" data-dz-remove></div>
+                <div class="progress">
+                    <div class="progress-bar total-progress" style="width:0;" data-dz-uploadprogress></div>
                 </div>
             </div>
         </div>`,
-    // previewTemplate:
-    //     `<div class="files text-sm">
-    //         <div class="file-row dz-preview dz-file-preview">
-    //             <div class="dz-details">
-    //                 <div class="dz-filename"><span data-dz-name></span></div>
-    //                 <div class="dz-size" data-dz-size></div>
-    //             </div>
-    //             <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-    //             <div class="dz-success-mark"><span>✔</span></div>
-    //             <div class="dz-error-mark"><span>✘</span></div>
-    //             <div class="dz-error-message"><span data-dz-errormessage></span></div>
-    //         </div>
-    //     </div>`,
     params(files, xhr, chunk) {
         return {
             _token: window.Laravel.csrfToken
@@ -94,6 +79,7 @@ const dropZoneOptions = {
     timeout: 100000,
     acceptedFiles: ".json,.zip",
     autoProcessQueue: true,
+    parallelUploads: 1,
     dictDefaultMessage: Locale.getLabel('imet-core::common.dropzone.dict_default_message'),
     dictFallbackMessage: Locale.getLabel('imet-core::common.dropzone.dict_fallback_message'),
     dictFallbackText: Locale.getLabel('imet-core::common.dropzone.dict_fallback_text'),
@@ -169,31 +155,26 @@ function uploadedSuccessfully(file, response) {
     width: 100%;
 }
 
-.dropzone-file-list{
-    display: flex;
-    gap: 30px;
+.file-row{
+    width: 100%;
+    margin-bottom: 7px;
 
-    .file-row{
-        width: 100%;
+    .file-details {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
 
-        .file-details {
+        .progress{
             flex-grow: 1;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 15px;
-
-            .progress{
-                flex-grow: 1;
+            border-radius: 4px;
+            .progress-bar{
                 border-radius: 4px;
-                .progress-bar{
-                    border-radius: 4px;
-                    font-weight: bold;
-                    padding: 3px 6px;
-                }
+                font-weight: bold;
+                padding: 3px 6px;
             }
-
         }
 
     }
