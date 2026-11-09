@@ -12,6 +12,12 @@
 
 namespace ImetCore\View\Module;
 
+use ImetCore\Models\Imet\ImetV1\Modules\Component\ImetModule as ImetModuleV1;
+use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule as ImetModuleV2;
+use ImetCore\Models\Imet\ImetOecm\Modules\Component\ImetModule as ImetOecmModule;
+use ImetCore\Models\Imet\ImetV1\Modules\Component\ImetModule_Eval as ImetModuleEvalV1;
+use ImetCore\Models\Imet\ImetV2\Modules\Component\ImetModule_Eval as ImetModuleEvalV2;
+use ImetCore\Models\Imet\ImetOecm\Modules\Component\ImetModule_Eval as ImetOecmModuleEval;
 use ModularForms\View\Module\Container as ModuleContainer;
 
 class Container extends ModuleContainer
@@ -19,6 +25,7 @@ class Container extends ModuleContainer
     public function __construct(string $controller, string $module, ?int $formId, string $mode)
     {
         // Force locale to IMET language in order to retrieve correct labels and predefined values
+        /** @var class-string<ImetModuleV1|ImetModuleV2|ImetOecmModule|ImetModuleEvalV1|ImetModuleEvalV2|ImetOecmModuleEval> $module */
         $module::forceLanguage($formId);
 
         parent::__construct($controller, $module, $formId, $mode);
