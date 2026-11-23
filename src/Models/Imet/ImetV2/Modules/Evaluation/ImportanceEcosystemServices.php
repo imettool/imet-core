@@ -13,6 +13,7 @@
 namespace ImetCore\Models\Imet\ImetV2\Modules\Evaluation;
 
 use Illuminate\Database\Eloquent\Collection;
+use ImetCore\Helpers\SelectionList;
 use ImetCore\Models\Imet\ImetV2\Modules;
 use ImetCore\Models\User\Role;
 use ModularForms\Enums\ModuleTypes;
@@ -91,11 +92,12 @@ final class ImportanceEcosystemServices extends Modules\Component\ImetModule_Eva
     {
         $records = parent::arrange_records($predefined_values, $records, $empty_record);
         $form_id = $empty_record['FormID'];
+        $importanceValues = SelectionList::getList('ImetV2_EcosystemServicesImportance');
 
         // Inject rankings
         foreach (self::getEcosystemServices($form_id)->values()->toArray() as $index => $record) {
             $records[$index]['_rank'] = $record['_rank'];
-            $records[$index]['_Importance'] = $record['Importance'];
+            $records[$index]['_Importance'] = $importanceValues[$record['Importance']];
             $records[$index]['_ImportanceRegional'] = $record['ImportanceRegional'];
             $records[$index]['_ImportanceGlobal'] = $record['ImportanceGlobal'];
             $records[$index]['_categories'] = $record['_categories'];
