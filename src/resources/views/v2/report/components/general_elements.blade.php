@@ -21,7 +21,7 @@ $vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?
         <div class="module-title">@lang('imet-core::v2_report.general_elements')</div>
     </div>
     <div class="module-body">
-        <div class="grid grid-flow-col grid-rows-4 gap-4">
+        <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.country')</div>
                 <span class="italic">
@@ -35,6 +35,8 @@ $vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?
                 <div class="strong">@lang('imet-core::v2_report.category')</div>
                 <span class="italic">{{ $general_info['NationalCategory'] ?? '-' }}</span>
             </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.gazetting')</div>
                 <span class="italic">{{ $general_info['CreationYear'] ?? '-' }}</span>
@@ -47,6 +49,8 @@ $vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?
                 <div class="strong">@lang('imet-core::v2_report.agency')</div>
                 <span class="italic">{{ $general_info['Institution'] ?? '-' }}</span>
             </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.biome')</div>
                 <span class="italic">{{ $general_info['Biome'] ?? '-' }}</span>
@@ -59,6 +63,8 @@ $vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?
                 <div class="strong">@lang('imet-core::v2_report.vision')</div>
                 <span class="italic">{{ $vision_objectives['LocalVision'] ?? '-' }}</span>
             </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
                 <div class="strong">@lang('imet-core::v2_report.mission')</div>
                 <span class="italic">{{ $vision_objectives['LocalMission'] ?? '-' }}</span>
@@ -67,6 +73,7 @@ $vision_objectives = Missions::getModuleRecords($item->getKey())['records'][0] ?
                 <div class="strong">@lang('imet-core::v2_report.objectives')</div>
                 <span class="italic">{{ $vision_objectives['LocalObjective'] ?? '-' }}</span>
             </div>
+            <div></div>
         </div>
     </div>
 </div>
