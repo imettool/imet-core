@@ -13,19 +13,6 @@ $groups = $definitions['groups'];
 $module->vueData['spillover_predefined'] = EcosystemServices::get_spillover_predefined();
 $module->vueData['connectivity_predefined'] = EcosystemServices::get_connectivity_predefined();
 
-function injectSpilloverMessages(string $view, string $label, string $vue_if): string
-{
-    $message =
-        '<div class="text-xs mt-1 text-blue-600" v-if=' . $vue_if . '>
-            <i class="fa fa-exclamation-triangle" style="font-size: 1.2em; margin-right: 10px;"></i>
-            <span>' . $label . '</span>
-        </div>';
-    $dom = HtmlPageCrawler::create(Helpers::trimNewlines($view));
-    $td = $dom->filter('tr.module-table-item td')->eq(0);
-    $td->setInnerHtml($td->getInnerHtml() . $message);
-    return $dom->saveHTML();
-}
-
 ?>
 
         <!-- Collapsible categories with histograms -->
@@ -53,15 +40,10 @@ function injectSpilloverMessages(string $view, string $label, string $vue_if): s
 
                     <h5>{{ $group_label }}</h5>
 
-                    @php
-                        $view = View::make('modular-forms::module.edit.type.table', [
-                            'definitions' => $definitions,
-                            'group_key' => $group_key
-                        ])->render();
-                        $view = injectSpilloverMessages($view, trans('imet-core::v2_context.spillover_waring_message'), 'is_spillover(records[index].Element)');
-                        $view = injectSpilloverMessages($view, trans('imet-core::v2_context.connectivity_waring_message'), 'is_connectivity(records[index].Element)');
-                    @endphp
-                    {!! $view !!}
+                    @include('modular-forms::module.edit.type.table', [
+                        'definitions' => $definitions,
+                        'group_key' => $group_key
+                    ])
 
                 @endif
             @endforeach

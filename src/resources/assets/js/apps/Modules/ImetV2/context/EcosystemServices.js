@@ -91,22 +91,11 @@ export default class EcosystemServices extends ModuleImet {
             return categoryStats.value[index];
         }
 
-        function is_spillover(value){
-            return props.spillover_predefined.includes(value);
-        }
-
-        function is_connectivity(value){
-            return props.connectivity_predefined.includes(value);
-        }
-
-
         return {
             ...setup_obj,
             recordStats,
             categoryStats,
-            categoryStat,
-            is_spillover,
-            is_connectivity
+            categoryStat
         };
 
     }
