@@ -66,6 +66,20 @@ class ImetEnv
     }
 
     /**
+     * Return the IMET tool version
+     */
+    public static function getVersion(): string
+    {
+        // Get IMET offline version
+        $offlineEnvClass = '\App\Helpers\ImetEnv';
+        if(class_exists($offlineEnvClass)){
+            return $offlineEnvClass::getVersion();
+        }
+
+        return 'online';
+    }
+
+    /**
      * Check if there is an active internet connection
      *
      * @throws ConnectionException

@@ -260,9 +260,7 @@ trait ImportExportJSON
             ->makeHidden(['FormID', 'UpdateDate', 'UpdateBy', 'protected_area_global_id', 'sync_unique_id', 'synced'])
             ->toArray();
 
-        $imet_form['imet_version'] = function_exists('imet_offline_tool_version')
-            ? imet_offline_tool_version()
-            : 'online';
+        $imet_form['imet_version'] = ImetEnv::getVersion();
 
         // #####  IMET V1  #####
         if ($imet_form['version'] === Imet\Imet::IMET_V1) {
