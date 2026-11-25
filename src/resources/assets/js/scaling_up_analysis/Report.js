@@ -79,6 +79,11 @@ export default class Report {
                     }
 
                 }
+                // navigation menu is rendered outside the app; set after mount since app.vue resets window.ScalingUp
+                onMounted(() => {
+                    window.ScalingUp.goTo = goTo;
+                });
+
                 return {
                     goTo,
                     url:input_data.url
