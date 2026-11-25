@@ -72,7 +72,9 @@ final class EcosystemServices extends Modules\Component\ImetModule_Eval
     {
         // ####  v3.7.3 -> v3.7.4 ####
         // InManagementPlan added: code removed because subsequent remove make it unnecessary
-
+        if ($record === null) {
+            return [];
+        }
         // ####  v3.9.1 -> v3.10.0 ####
         $record = self::dropField($record, 'InManagementPlan');
 
