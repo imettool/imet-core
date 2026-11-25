@@ -3,11 +3,11 @@
     "name": "imet-core",
     "dependencies": {
         "dropzone-vue3": "1.0.2",
-        "echarts": "^6.0.0",
+        "echarts": "^6.1.0",
         "html-to-image": "1.11.13",
-        "maplibre-gl": "^5.18.0",
+        "maplibre-gl": "^6.16.0",
         "modular-forms": "file:./vendor/akp/modular-forms",
-        "pinia": "^3.0.4",
+        "pinia": "^4.1.0",
         "vue3-colorpicker": "^2.3.0"
     },
     "workspaces": [

@@ -61,7 +61,7 @@ final class StaffCompetence extends Modules\Component\ImetModule_Eval
     public static function getPredefined(?int $form_id = null): array
     {
         $actual_staff = Modules\Context\ManagementStaff::getModule($form_id)
-            ->filter(fn (Modules\Context\ManagementStaff $item) => $item['ActualPermanent'] > 0)
+            ->filter(fn (Modules\Context\ManagementStaff $item): bool => $item['ActualPermanent'] > 0)
             ->pluck('Function')
             ->toArray();
 

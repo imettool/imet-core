@@ -13,6 +13,7 @@
 namespace ImetCore\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\Log;
 use ImetCore\Models\Imet\ImetOecm\Imet as ImetOECM;
 use ImetCore\Models\Imet\ImetV2\Imet as ImetV2;
@@ -26,7 +27,7 @@ use ImetCore\Services\Scores\OecmScores;
  */
 class CalculateScores implements ShouldQueue
 {
-    use \Illuminate\Foundation\Queue\Queueable;
+    use Queueable;
     use Utils;
 
     /**

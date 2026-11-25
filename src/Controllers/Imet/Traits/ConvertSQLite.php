@@ -29,7 +29,7 @@ trait ConvertSQLite
         if ($imet->Country === 'AWY') {
 
             // Include also assessments on country fake country AWY
-            if($includeAWY){
+            if ($includeAWY) {
                 $pa_name = 'Far Far Away Park';
                 $wdpa = null;
             } else {

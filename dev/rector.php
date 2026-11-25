@@ -22,7 +22,6 @@ use RectorLaravel\Rector\ClassMethod\MakeModelAttributesAndScopesProtectedRector
 use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\MethodCall\ResponseHelperCallToJsonResponseRector;
 use RectorLaravel\Set\LaravelSetList;
-use RectorLaravel\Set\LaravelSetProvider;
 
 const PATH_TO_DEV = __DIR__;
 const PATH_TO_PACKAGE = __DIR__.'/package/imet-core/src';
@@ -77,7 +76,6 @@ return RectorConfig::configure()
 
     ])
     ->withPhpSets(php84: true)
-    ->withSetProviders(LaravelSetProvider::class)
     ->withComposerBased(laravel: true)
     ->withPreparedSets(
         deadCode: true,
@@ -105,7 +103,6 @@ return RectorConfig::configure()
         // LaravelSetList::LARAVEL_STATIC_TO_INJECTION          // No, not this one!! What's wrong with Laravel's Facades??
     ])
     ->withRules([
-        AddOverrideAttributeToOverriddenMethodsRector::class,
         EmptyToBlankAndFilledFuncRector::class,
         ResponseHelperCallToJsonResponseRector::class,
         UseForwardsCallsTraitRector::class,

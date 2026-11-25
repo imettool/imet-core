@@ -111,7 +111,7 @@ class ProtectedPlanetCSV
         $csvFilename = __DIR__.'/../database/'.self::LEGACY_GLOBAL_IDS_FILE;
 
         $legacyGlobalIds = array_map(str_getcsv(...), file($csvFilename));
-        array_walk($legacyGlobalIds, function (&$a) use ($legacyGlobalIds): void {
+        array_walk($legacyGlobalIds, function (array &$a) use ($legacyGlobalIds): void {
             $a = array_combine($legacyGlobalIds[0], $a);
         });
         array_shift($legacyGlobalIds);

@@ -33,12 +33,12 @@ $modal_id = 'imet_' . $formID . '_' . $module_class::getShortClassName();
 
             <!-- dialog body -->
             <div class="body text-center">
-                <x-modular-forms::module.container
+                <x-imet-core::module.container
                     :controller="$controller"
                     :module="$module_class"
                     :formId="$formID"
                     :mode="ModuleViewModes::PRINT"
-                ></x-modular-forms::module.container>
+                ></x-imet-core::module.container>
             </div>
 
         </div>

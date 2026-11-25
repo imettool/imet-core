@@ -107,12 +107,12 @@ $show_scrollbar = true;
 
             @foreach($item::modules()[$step] as $module)
                 @if(Role::hasRequiredAccessLevel($module))
-                    <x-modular-forms::module.container
+                    <x-imet-core::module.container
                         :controller="$controller"
                         :module="$module"
                         :formId="$item->getKey()"
                         :mode="ModuleViewModes::SHOW"
-                    ></x-modular-forms::module.container>
+                    ></x-imet-core::module.container>
                 @else
                     @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
                 @endif

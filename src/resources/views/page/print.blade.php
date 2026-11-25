@@ -50,12 +50,12 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
         @if($step!=='objectives')
             @foreach($modules_by_step as $module)
                 @if(Role::hasRequiredAccessLevel($module))
-                    <x-modular-forms::module.container
+                    <x-imet-core::module.container
                         :controller="$controller"
                         :module="$module"
                         :formId="$item->getKey()"
                         :mode="ModuleViewModes::PRINT"
-                    ></x-modular-forms::module.container>
+                    ></x-imet-core::module.container>
                 @else
                     @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
                 @endif
@@ -69,12 +69,12 @@ if (Str::contains(Str::lower($controller), Models\Imet\Imet::IMET_V1)) {
         @if($step!=='objectives')
             @foreach($modules_by_step as $module)
                 @if(Role::hasRequiredAccessLevel($module))
-                    <x-modular-forms::module.container
+                    <x-imet-core::module.container
                         :controller="$controller"
                         :module="$module"
                         :formId="$item->getKey()"
                         :mode="ModuleViewModes::PRINT"
-                    ></x-modular-forms::module.container>
+                    ></x-imet-core::module.container>
                 @else
                     @include('imet-core::components.module.not_allowed_container', ['module_class' => $module])
                 @endif

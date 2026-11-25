@@ -175,7 +175,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
         }
 
         $key_elements_importance_direct = collect($key_elements_importance_direct)
-            ->map(function (array $item) {
+            ->map(function (array $item): array {
                 $item['importance_direct'] = $item['importance'];
                 $item['stakeholder_direct_count'] = $item['stakeholder_count'];
                 unset($item['importance'], $item['stakeholder_count']);
@@ -184,7 +184,7 @@ abstract class _AnalysisStakeholders extends Modules\Component\ImetModule
             })
             ->mapWithKeys(fn (array $item): array => [$item['element'] => $item]);
         $key_elements_importance_indirect = collect($key_elements_importance_indirect)
-            ->map(function (array $item) {
+            ->map(function (array $item): array {
                 $item['importance_indirect'] = $item['importance'];
                 $item['stakeholder_indirect_count'] = $item['stakeholder_count'];
                 unset($item['importance'], $item['stakeholder_count']);

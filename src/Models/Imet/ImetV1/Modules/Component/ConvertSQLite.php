@@ -18,8 +18,8 @@ use Illuminate\Support\Str;
 use ImetCore\Models\ProtectedArea;
 
 /**
- * @method static conversionDataReview(array $record)
- * @method static conversionParameters()
+ * @method static array conversionDataReview(array $record, ConnectionInterface $sqlite_connection)
+ * @method static array conversionParameters()
  */
 trait ConvertSQLite
 {
@@ -76,7 +76,6 @@ trait ConvertSQLite
      */
     protected static function convert($imet_data, ConnectionInterface $sqlite_connection): array
     {
-        /** @var class-string $called_class */
         $called_class = static::class;
         if (! method_exists($called_class, 'conversionParameters')) {
             return [];

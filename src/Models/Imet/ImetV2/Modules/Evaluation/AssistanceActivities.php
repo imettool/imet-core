@@ -87,7 +87,7 @@ final class AssistanceActivities extends Modules\Component\ImetModule_Eval
             'Support for local activities (e.g. ecosystem services - provisioning management, climate change adaptation, etc.)');
         $record = self::replacePredefinedValue($record, 'Activity',
             'Soutien aux activités locales (gestion des services écosystémiques, atténuation du changement climatique, etc.)',
-            'Soutien aux activités locales (gestion des services écosystémiques - gestion de l\'approvisionnement, adaptation au changement climatique, etc.)');
+            "Soutien aux activités locales (gestion des services écosystémiques - gestion de l'approvisionnement, adaptation au changement climatique, etc.)");
         $record = self::replacePredefinedValue($record, 'Activity',
             'Apoio a actividades locais (por exemplo, gestão de serviços ecossistémicos, mitigação das alterações climáticas, etc.)',
             'Apoio a actividades locais (por exemplo, gestão de serviços ecossistémicos - gestão de aprovisionamento, adaptação às alterações climáticas, etc.)');
