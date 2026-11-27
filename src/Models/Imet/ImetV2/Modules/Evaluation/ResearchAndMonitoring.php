@@ -79,6 +79,10 @@ final class ResearchAndMonitoring extends Modules\Component\ImetModule_Eval
         $record = self::dropIfPredefinedValueObsolete($record, 'Program', 'Investigação e monitorização ecológica a longo prazo dos ecossistemas e habitats marinhos');
         $record = self::dropIfPredefinedValueObsolete($record, 'Program', 'Investigación y monitoreo ecológico/ambiental a largo plazo de los ecosistemas y hábitats marinos');
 
+        if ($record === null) {
+            return [];
+        }
+
         // ####  v3.7.3 -> v3.7.4 ####
         $record = self::dropField($record, 'EvaluationScoreAdequacy');
 
